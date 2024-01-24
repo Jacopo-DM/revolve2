@@ -59,13 +59,11 @@ class Evaluator:
             scenes=scenes,
         )
 
-        # Calculate the xy displacements.
-        xy_displacements = [
+        # Calculate and return the xy displacements.
+        return [
             fitness_functions.xy_displacement(
                 states[0].get_modular_robot_simulation_state(robot),
                 states[-1].get_modular_robot_simulation_state(robot),
             )
             for robot, states in zip(robots, scene_states)
         ]
-
-        return xy_displacements
