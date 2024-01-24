@@ -83,7 +83,7 @@ def setup_logging(level: int = logging.INFO, file_name: str | None = None) -> No
 
 def log_header(logging: logging.Logger) -> None:
     """
-    Log a header
+    Log a header.
 
     :param logging: The logger to use.
     """
