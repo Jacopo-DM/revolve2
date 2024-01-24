@@ -1,7 +1,3 @@
-"""
-This module defines the Cpg, CpgPair, and CpgNetworkStructure classes, which are used to represent the structure of a central pattern generator (CPG) network.
-"""
-
 from dataclasses import dataclass
 
 import numpy as np
