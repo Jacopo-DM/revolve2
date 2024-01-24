@@ -34,7 +34,7 @@ def main() -> None:
     robots = [ModularRobot(body, brain) for body, brain in zip(bodies, brains)]
 
     # Create the scene and put all robots in it.
-    # We place the robots at seperate locations in the terrain so they do not overlap at the start of the simulation.
+    # We place the robots at separate locations in the terrain so they do not overlap at the start of the simulation.
     scene = ModularRobotScene(terrain=terrains.flat())
     poses = [
         Pose(Vector3([1.0, 0.0, 0.0])),

@@ -42,7 +42,7 @@ def evaluate(parameters: npt.NDArray[np.float_]) -> float:
     errors = outputs - expected_outputs
 
     # Return the sum of squared errors.
-    # 0 would be an optimizal result.
+    # 0 would be an optimal result.
     # We invert so we can maximize the fitness instead of minimize.
     # Finally we convert from a numpy float_ type to the python float type. This is not really important.
     return float(-np.sum(errors**2))

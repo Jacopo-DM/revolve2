@@ -13,7 +13,7 @@ def run_experiment(num_samples: int, probability: float) -> None:
     Run all runs of an experiment using the provided parameters.
 
     :param num_samples: The number of samples to use for this experiment.
-    :param probability: The probablity to use for this experiment.
+    :param probability: The probability to use for this experiment.
     """
     # Create a list where we will store the success ratio for each repetition.
     success_ratios = []
@@ -27,7 +27,7 @@ def run_experiment(num_samples: int, probability: float) -> None:
         # A rng is not actually random; it is an algorithm creating semi-randomness from a given starting number (the 'seed'), defined by you.
         # This is both very useful and a pitfall.
         # Using the same seed makes our experiment reproducible,
-        # but using the same seed between two seperate experiments will generate the same numbers (usually bad).
+        # but using the same seed between two separate experiments will generate the same numbers (usually bad).
         # As such we create a unique seed for each experiment and run.
         # We will do this by creating a seed based on the current time.
         # This seed will be stored in the logs.
@@ -39,7 +39,7 @@ def run_experiment(num_samples: int, probability: float) -> None:
         # SEED = 1234
         # rng = revolve2.experimentation.rng.make_rng(SEED)
 
-        # Perform the experiment, sampling from a binomial distribution using the given paramaters.
+        # Perform the experiment, sampling from a binomial distribution using the given parameters.
         samples = rng.binomial(n=1, p=probability, size=num_samples)
         # Calculate the ratio of success and save it.
         success_ratios.append(np.sum(samples == 1) / num_samples)

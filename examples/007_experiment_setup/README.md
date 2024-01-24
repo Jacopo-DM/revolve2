@@ -1,4 +1,4 @@
-In this example you set up a trivial experiment with muliple repetitions.
+In this example you set up a trivial experiment with multiple repetitions.
 To change the experiments parameters, adjust the values in `config.py`.
 
 You learn:

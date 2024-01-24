@@ -36,7 +36,7 @@ def main() -> None:
         dbengine,
     )
 
-    # Calculate the max and mean fitness within in generation, for each experiment seperately.
+    # Calculate the max and mean fitness within in generation, for each experiment separately.
     agg_per_experiment_per_generation = (
         df.groupby(["experiment_id", "generation_index"])
         .agg({"fitness": ["max", "mean"]})
@@ -51,7 +51,7 @@ def main() -> None:
         "mean_fitness",
     ]
 
-    # For the mean and max fitnesses, calculate the mean and standard deviation with respect to the seperate experiments.
+    # For the mean and max fitnesses, calculate the mean and standard deviation with respect to the separate experiments.
     agg_per_generation = (
         agg_per_experiment_per_generation.groupby("generation_index")
         .agg({"max_fitness": ["mean", "std"], "mean_fitness": ["mean", "std"]})

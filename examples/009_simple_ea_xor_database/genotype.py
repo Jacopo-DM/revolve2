@@ -14,9 +14,9 @@ class Genotype(Base, HasId, GenericParameters):
     """
     ORM definition for our genotype that is a list of parameters.
 
-    In SQLAlchemy we can inherit from multiple classes that each define seperate table columns.
+    In SQLAlchemy we can inherit from multiple classes that each define separate table columns.
     Revolve2's 'GenericParameters' class defines our 'parameters' field.
-    Take a short look at the class to see that it writes the parameters to the database as a string of semicolon concatened floats.
+    Take a short look at the class to see that it writes the parameters to the database as a string of semicolon concatenated floats.
 
     Besides the removed dataclass decorator(identical behavior is provided by SQLAlchemy),
     the rest of this class is exactly the same as the original example!

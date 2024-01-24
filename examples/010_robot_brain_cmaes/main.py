@@ -28,7 +28,7 @@ def main() -> None:
         output_mapping,
     ) = active_hinges_to_cpg_network_structure_neighbor(active_hinges)
 
-    # Intialize the evaluator that will be used to evaluate robots.
+    # Initialize the evaluator that will be used to evaluate robots.
     evaluator = Evaluator(
         headless=True,
         num_simulators=config.NUM_SIMULATORS,
