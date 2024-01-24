@@ -1,16 +1,13 @@
 """Individual class."""
 
-from dataclasses import dataclass
-
 import sqlalchemy
-import sqlalchemy.orm as orm
 from base import Base
 from genotype import Genotype
+from sqlalchemy import orm
 
 from revolve2.experimentation.database import HasId
 
 
-@dataclass
 class Individual(Base, HasId, kw_only=True):
     """
     An individual in a population.
