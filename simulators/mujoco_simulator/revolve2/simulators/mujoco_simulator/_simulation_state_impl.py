@@ -46,8 +46,9 @@ class SimulationStateImpl(SimulationState):
         """
         Get the pose of a rigid body, relative to its parent multi-body system's reference frame.
 
+        # TODO (returns) The relative pose.
+
         :param rigid_body: The rigid body to get the pose for.
-        :returns: The relative pose.
         :raises NotImplementedError: Always.
         """
         raise NotImplementedError()
@@ -56,8 +57,9 @@ class SimulationStateImpl(SimulationState):
         """
         Get the pose of a rigid body, relative the global reference frame.
 
+        # TODO (returns) The absolute pose.
+
         :param rigid_body: The rigid body to get the pose for.
-        :returns: The absolute pose.
         :raises NotImplementedError: Always.
         """
         raise NotImplementedError()

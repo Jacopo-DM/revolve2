@@ -76,7 +76,9 @@ def setup_logging(level: int = logging.INFO, file_name: str | None = None) -> No
     if file_name is not None:
         logging.root.handlers.append(logging.FileHandler(file_name))
 
-    width = 25
-    [logging.info("=" * width) for _ in range(2)]
+    bar = "=" * 25
+    for _ in range(2):
+        logging.info(bar)
     logging.info(f"\t {Clr.G}New Log Starts Here{Clr.E}")
-    [logging.info("=" * width) for _ in range(2)]
+    for _ in range(2):
+        logging.info(bar)
