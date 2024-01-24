@@ -1,4 +1,5 @@
 """A custom viewer for mujoco with additional features."""
+import sys
 from enum import Enum
 from typing import Any
 
@@ -110,7 +111,10 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
                     topleft, "Center of [M]ass", "On" if self._com else "Off"
                 )
             case _:
-                print("Didnt reach anything with mode: " + self._viewer_mode.value)
+                sys.stdout.write(
+                    f"Didn't reach anything with mode: {self._viewer_mode.value}\n"
+                )
+                sys.stdout.flush()
 
         """These are default overlays, only change if you know what you are doing."""
         if self._render_every_frame:
@@ -159,7 +163,7 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
         self._add_overlay(topleft, "[H]ide Menus", "")
         if self._image_idx > 0:
             fname = self._image_path % (self._image_idx - 1)
-            self._add_overlay(topleft, "Cap[t]ure frame", "Saved as %s" % fname)
+            self._add_overlay(topleft, "Cap[t]ure frame", f"Saved as {fname}")
         else:
             self._add_overlay(topleft, "Cap[t]ure frame", "")
 
@@ -192,15 +196,16 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
         :param mods: The Mods.
         """
         super()._key_callback(window, key, scancode, action, mods)
-        if action != glfw.RELEASE:
-            if key == glfw.KEY_LEFT_ALT:
-                self._hide_menus = False
-        else:
+        if action == glfw.RELEASE:
             match key:
                 case glfw.KEY_K:  # Increment cycle position
                     self._increment_position()
                 case _:
                     pass
+        elif key == glfw.KEY_LEFT_ALT:
+            self._hide_menus = False
+        elif key == glfw.KEY_ESCAPE:
+            glfw.set_window_should_close(window, True)
 
     def render(self) -> int | None:
         """
@@ -208,10 +213,11 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
 
         :return: A cycle position if applicable.
         """
+        # Catch the case where the window is closed.
+        if glfw.window_should_close(self.window):
+            return None
         super().render()
-        if self._viewer_mode.value == "manual":
-            return self._position
-        return None
+        return self._position if self._viewer_mode.value == "manual" else None
 
     def _increment_position(self) -> None:
         """Increment our cycle position."""
