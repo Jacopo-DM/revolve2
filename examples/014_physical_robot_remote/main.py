@@ -1,5 +1,8 @@
 """An example on how to remote control a physical modular robot."""
 
+import logging
+
+from revolve2.experimentation.logging import setup_logging
 from revolve2.experimentation.rng import make_rng_time_seed
 from revolve2.modular_robot import ModularRobot
 from revolve2.modular_robot.body import RightAngles
@@ -43,12 +46,14 @@ def make_body() -> (
 
 def on_prepared() -> None:
     """Do things when the robot is prepared and ready to start the controller."""
-    print("Done. Press enter to start the brain.")
+    logging.info("Done. Press enter to start the brain.")
     input()
 
 
 def main() -> None:
     """Remote control a physical modular robot."""
+    # Set up logging.
+    setup_logging(file_name="log.txt")
     rng = make_rng_time_seed()
     # Create a modular robot, similar to what was done in the simulate_single_robot example. Of course, you can replace this with your own robot, such as one you have optimized using an evolutionary algorithm.
     body, hinges = make_body()
@@ -96,7 +101,7 @@ def main() -> None:
     Make sure to target the correct hardware type and fill in the correct IP and credentials.
     The debug flag is turned on. If the remote complains it cannot keep up, turning off debugging might improve performance.
     """
-    print("Initializing robot..")
+    logging.info("Initializing robot..")
     run_remote(
         config=config,
         hostname="localhost",  # "Set the robot IP here.
