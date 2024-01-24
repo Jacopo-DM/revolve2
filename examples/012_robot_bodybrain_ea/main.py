@@ -57,6 +57,7 @@ def select_survivors(
     :param offspring_population: The offspring.
     :returns: A newly created population.
     """
+    # TODO clean up lambda functions for clarity and optimization
     original_survivors, offspring_survivors = population_management.steady_state(
         old_genotypes=[i.genotype for i in original_population],
         old_fitnesses=[i.fitness for i in original_population],
@@ -98,7 +99,7 @@ def find_best_robot(
     :returns: The best individual.
     """
     return max(
-        population + [] if current_best is None else [current_best],
+        [*population] if current_best is None else [current_best],
         key=lambda x: x.fitness,
     )
 
@@ -111,7 +112,7 @@ def main() -> None:
     # Set up the random number generator.
     rng = make_rng_time_seed()
 
-    # Intialize the evaluator that will be used to evaluate robots.
+    # Initialize the evaluator that will be used to evaluate robots.
     evaluator = Evaluator(headless=True, num_simulators=config.NUM_SIMULATORS)
 
     # CPPN innovation databases.

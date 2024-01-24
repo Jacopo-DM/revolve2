@@ -27,7 +27,7 @@ def make_body() -> BodyV1:
     body.core_v1.left.attachment = ActiveHingeV1(RightAngles.DEG_0)
     body.core_v1.left.attachment.attachment = BrickV1(RightAngles.DEG_0)
     body.core_v1.right = ActiveHingeV1(RightAngles.DEG_0)
-    body.core_v1.right.attachment = ActiveHingeV1(RightAngles.DEG_0)
+    body.core_v1.right.attachment = ActiveHingeV1(RightAngles.DEG_90)
     body.core_v1.right.attachment.attachment = BrickV1(RightAngles.DEG_0)
     return body
 

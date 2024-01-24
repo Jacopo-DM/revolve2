@@ -60,6 +60,7 @@ def select_survivors(
     :param offspring_population: The offspring.
     :returns: A newly created population.
     """
+    # TODO clean up lambda functions for clarity and optimization
     original_survivors, offspring_survivors = population_management.steady_state(
         [i.genotype for i in original_population.individuals],
         [i.fitness for i in original_population.individuals],
@@ -95,7 +96,7 @@ def run_experiment(dbengine: Engine) -> None:
     """
     Run an experiment.
 
-    :param dbengine: An openened database with matching initialize database structure.
+    :param dbengine: An opened database with matching initialize database structure.
     """
     logging.info("----------------")
     logging.info("Start experiment")

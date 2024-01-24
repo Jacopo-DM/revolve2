@@ -27,6 +27,8 @@ class Evaluator:
     _body: Body
     _output_mapping: list[tuple[int, ActiveHinge]]
 
+    # WARN reduce the number of parameters
+    #   https://docs.astral.sh/ruff/rules/too-many-arguments
     def __init__(
         self,
         headless: bool,

@@ -53,6 +53,7 @@ def select_survivors(
     :param offspring_population: The offspring.
     :returns: A newly created population.
     """
+    # TODO clean up lambda functions for clarity and optimization
     original_survivors, offspring_survivors = population_management.steady_state(
         [i.genotype for i in original_population],
         [i.fitness for i in original_population],
