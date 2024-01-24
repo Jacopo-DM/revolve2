@@ -1,3 +1,7 @@
+"""
+This module defines the Cpg, CpgPair, and CpgNetworkStructure classes, which are used to represent the structure of a central pattern generator (CPG) network.
+"""
+
 from dataclasses import dataclass
 
 import numpy as np
@@ -6,16 +10,15 @@ import numpy.typing as npt
 
 @dataclass(frozen=True)
 class Cpg:
-    """Identifies a cpg to be used in a cpg network structure."""
+    """Identifies a CPG to be used in a CPG network structure."""
 
     index: int
 
 
 @dataclass(frozen=True, init=False)
 class CpgPair:
-    """A pair of cpgs that assures that the first cpg always has the lowest index."""
+    """A pair of CPGs that assures that the first CPG always has the lowest index."""
 
-    # lowest is automatically set to be the lowest state index of the two
     cpg_index_lowest: Cpg
     cpg_index_highest: Cpg
 
@@ -23,13 +26,11 @@ class CpgPair:
         """
         Initialize this object.
 
-        The order of the provided cpgs is irrelevant.
+        The order of the provided CPGs is irrelevant.
 
-        :param cpg_1: One of the cpgs part of the pair.
-        :param cpg_2: The other cpg part of the pair.
+        :param cpg_1: One of the CPGs part of the pair.
+        :param cpg_2: The other CPG part of the pair.
         """
-        # hacky but normal variable setting not possible with frozen enabled
-        # https://stackoverflow.com/questions/57893902/how-can-i-set-an-attribute-in-a-frozen-dataclass-custom-init-method
         if cpg_1.index < cpg_2.index:
             object.__setattr__(self, "cpg_index_lowest", cpg_1)
             object.__setattr__(self, "cpg_index_highest", cpg_2)
@@ -40,9 +41,9 @@ class CpgPair:
 
 class CpgNetworkStructure:
     """
-    Describes the structure of a cpg network.
+    Describes the structure of a CPG network.
 
-    Can generate parameters for a cpg network, such as the initial state.
+    Can generate parameters for a CPG network, such as the initial state and connection weights matrix.
     """
 
     cpgs: list[Cpg]
@@ -52,8 +53,8 @@ class CpgNetworkStructure:
         """
         Initialize this object.
 
-        :param cpgs: The cpgs used in the structure.
-        :param connections: The connections between cpgs.
+        :param cpgs: The CPGs used in the structure.
+        :param connections: The connections between CPGs.
         """
         assert isinstance(connections, set)
 
@@ -63,10 +64,10 @@ class CpgNetworkStructure:
     @staticmethod
     def make_cpgs(num_cpgs: int) -> list[Cpg]:
         """
-        Create a list of cpgs.
+        Create a list of CPGs.
 
-        :param num_cpgs: The number of cpgs to create.
-        :returns: The created list of cpgs.
+        :param num_cpgs: The number of CPGs to create.
+        :returns: The created list of CPGs.
         """
         return [Cpg(index) for index in range(num_cpgs)]
 
@@ -121,16 +122,16 @@ class CpgNetworkStructure:
         :param params: The connections to create the matrix from.
         :returns: The created matrix.
         """
-        assert len(params) == self.num_connections
+        assert len(params) == self.num_connections, (
+            f"Expected {self.num_connections} parameters, "
+            f"got {len(params)} instead."
+        )
 
-        internal_connection_weights = {
-            cpg: weight for cpg, weight in zip(self.cpgs, params[: self.num_cpgs])
-        }
+        internal_connection_weights = dict(zip(self.cpgs, params[: self.num_cpgs]))
 
-        external_connection_weights = {
-            pair: weight
-            for pair, weight in zip(self.connections, params[self.num_cpgs :])
-        }
+        external_connection_weights = dict(
+            zip(self.connections, params[self.num_cpgs :])
+        )
 
         return self.make_connection_weights_matrix(
             internal_connection_weights, external_connection_weights
@@ -139,9 +140,9 @@ class CpgNetworkStructure:
     @property
     def num_states(self) -> int:
         """
-        Get the number of states in a cpg network of this structure.
+        Get the number of states in a CPG network of this structure.
 
-        This would be twice the number of cpgs.
+        This would be twice the number of CPGs.
 
         :returns: The number of states.
         """
@@ -153,7 +154,7 @@ class CpgNetworkStructure:
 
         Will match the required number of states in this structure.
 
-        :param value: The value to use for all states
+        :param value: The value to use for all states.
         :returns: The array of states.
         """
         return np.full(self.num_states, value)
@@ -161,17 +162,17 @@ class CpgNetworkStructure:
     @property
     def num_cpgs(self) -> int:
         """
-        Get the number of cpgs in the structure.
+        Get the number of CPGs in the structure.
 
-        :returns: The number of cpgs.
+        :returns: The number of CPGs.
         """
         return len(self.cpgs)
 
     @property
     def output_indices(self) -> list[int]:
         """
-        Get the index in the state array for each cpg, matching the order the cpgs were provided in.
+        Get the index in the state array for each CPG, matching the order the CPGs were provided in.
 
         :returns: The indices.
         """
-        return [i for i in range(self.num_cpgs)]
+        return list(range(self.num_cpgs))
