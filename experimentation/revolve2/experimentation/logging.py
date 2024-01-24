@@ -76,17 +76,7 @@ def setup_logging(level: int = logging.INFO, file_name: str | None = None) -> No
     if file_name is not None:
         logging.root.handlers.append(logging.FileHandler(file_name))
 
-    log_header(logging)
+    width = 25
+    [logging.info("=" * width) for _ in range(2)]
     logging.info(f"\t {Clr.G}New Log Starts Here{Clr.E}")
-    log_header(logging)
-
-
-def log_header(logging: logging.Logger) -> None:
-    """
-    Log a header.
-
-    :param logging: The logger to use.
-    """
-    logging.info("=======================================")
-    logging.info("=======================================")
-    logging.info("=======================================")
+    [logging.info("=" * width) for _ in range(2)]
