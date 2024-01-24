@@ -55,7 +55,7 @@ def main() -> None:
     # Set up logging.
     setup_logging(file_name="log.txt")
     rng = make_rng_time_seed()
-    # Create a modular robot, similar to what was done in the simulate_single_robot example. Of course, you can replace this with your own robot, such as one you have optimized using an evolutionary algorithm.
+    # Create a modular robot, similar to what was done in the 000_simulate_single_robot example. Of course, you can replace this with your own robot, such as one you have optimized using an evolutionary algorithm.
     body, hinges = make_body()
     brain = BrainCpgNetworkNeighborRandom(body=body, rng=rng)
     robot = ModularRobot(body, brain)
