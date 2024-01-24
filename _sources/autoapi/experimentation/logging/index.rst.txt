@@ -27,7 +27,6 @@ Functions
 .. autoapisummary::
 
    experimentation.logging.setup_logging
-   experimentation.logging.log_header
 
 
 
@@ -177,12 +176,5 @@ Functions
 
    :param level: The log level to use.
    :param file_name: If not None, also writes to this file.
-
-
-.. py:function:: log_header(logging: log_header.logging) -> None
-
-   Log a header.
-
-   :param logging: The logger to use.
 
 
