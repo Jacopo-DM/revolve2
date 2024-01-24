@@ -2,14 +2,18 @@
 
 from __future__ import annotations
 
-import multineat
-import numpy as np
+from typing import TYPE_CHECKING
+
 from base import Base
 
 from revolve2.ci_group.genotypes.cppnwin.modular_robot import BrainGenotypeCpgOrm
 from revolve2.ci_group.genotypes.cppnwin.modular_robot.v1 import BodyGenotypeOrmV1
 from revolve2.experimentation.database import HasId
 from revolve2.modular_robot import ModularRobot
+
+if TYPE_CHECKING:
+    import multineat
+    import numpy as np
 
 
 class Genotype(Base, HasId, BodyGenotypeOrmV1, BrainGenotypeCpgOrm):

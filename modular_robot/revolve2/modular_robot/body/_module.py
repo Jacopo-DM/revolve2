@@ -1,10 +1,21 @@
+"""
+This module defines the base class for a module in a modular robot.
+
+A module represents a basic building block of a modular robot. It can have attachment points to connect with other modules, and it can have child modules attached to it.
+
+Classes:
+- Module: Base class for a module for modular robots.
+"""
+
 from __future__ import annotations
 
 import uuid
+from typing import TYPE_CHECKING
 
-from ._attachment_point import AttachmentPoint
-from ._color import Color
-from ._right_angles import RightAngles
+if TYPE_CHECKING:
+    from ._attachment_point import AttachmentPoint
+    from ._color import Color
+    from ._right_angles import RightAngles
 
 
 class Module:
@@ -155,12 +166,12 @@ class Module:
             for open_node, came_from in open_nodes:
                 attached_modules = [
                     self._children.get(index)
-                    for index in open_node.attachment_points.keys()
+                    for index in open_node.attachment_points
                     if self._children.get(index) is not None
                 ]
                 neighbours = [
                     mod
-                    for mod in attached_modules + [open_node.parent]
+                    for mod in [*attached_modules, open_node.parent]
                     if mod is not None
                     and (came_from is None or mod.uuid is not came_from.uuid)
                 ]

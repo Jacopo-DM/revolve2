@@ -1,7 +1,7 @@
 """Experiment class."""
 
-import sqlalchemy.orm as orm
 from base import Base
+from sqlalchemy import orm
 
 from revolve2.experimentation.database import HasId
 

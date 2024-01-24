@@ -1,10 +1,10 @@
 """Generation class."""
 
 import sqlalchemy
-import sqlalchemy.orm as orm
 from base import Base
 from experiment import Experiment
 from population import Population
+from sqlalchemy import orm
 
 from revolve2.experimentation.database import HasId
 

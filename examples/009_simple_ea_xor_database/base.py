@@ -1,6 +1,6 @@
 """Base class."""
 
-import sqlalchemy.orm as orm
+from sqlalchemy import orm
 
 
 class Base(orm.MappedAsDataclass, orm.DeclarativeBase):
