@@ -1,7 +1,7 @@
 import uuid
 import warnings
-import xml.dom.minidom as minidom
 import xml.etree.ElementTree as xml
+from xml.dom import minidom
 
 import scipy.spatial.transform
 from pyrr import Quaternion, Vector3
@@ -122,18 +122,18 @@ class _URDFConverter:
                 },
             )
             xml.SubElement(
-                inertial, "mass", {"value": "{:e}".format(rigid_body.mass())}
+                inertial, "mass", {"value": f"{rigid_body.mass():e}"}
             )
             xml.SubElement(
                 inertial,
                 "inertia",
                 {
-                    "ixx": "{:e}".format(inertia[0][0]),
-                    "ixy": "{:e}".format(inertia[0][1]),
-                    "ixz": "{:e}".format(inertia[0][2]),
-                    "iyy": "{:e}".format(inertia[1][1]),
-                    "iyz": "{:e}".format(inertia[1][2]),
-                    "izz": "{:e}".format(inertia[2][2]),
+                    "ixx": f"{inertia[0][0]:e}",
+                    "ixy": f"{inertia[0][1]:e}",
+                    "ixz": f"{inertia[0][2]:e}",
+                    "iyy": f"{inertia[1][1]:e}",
+                    "iyz": f"{inertia[1][2]:e}",
+                    "izz": f"{inertia[2][2]:e}",
                 },
             )
 

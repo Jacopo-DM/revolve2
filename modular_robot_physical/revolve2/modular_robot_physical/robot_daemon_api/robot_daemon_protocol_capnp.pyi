@@ -11,9 +11,10 @@ RoboServer
 
 from __future__ import annotations
 
+from collections.abc import Iterator, Sequence
 from contextlib import contextmanager
 from io import BufferedWriter
-from typing import Any, Iterator, Literal, Sequence
+from typing import Any, Literal
 
 class SetupArgs:
     version: str

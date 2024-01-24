@@ -20,6 +20,6 @@ def assert_command_succeeds(cmd: list[str]) -> None:
     :param cmd: Slices of the command.
     """
     print("running command:\n", " ".join(cmd))
-    res = subprocess.run(cmd, stdout=subprocess.PIPE)
+    res = subprocess.run(cmd, stdout=subprocess.PIPE, check=False)
     print(res.stdout)
     assert res.returncode == 0, f"expected return code 0, got {res.returncode}"

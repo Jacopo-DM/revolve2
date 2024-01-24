@@ -1,6 +1,7 @@
 import threading
 import time
-from typing import Any, Sequence
+from collections.abc import Sequence
+from typing import Any
 
 from .._hardware_type import HardwareType
 from .._protocol_version import PROTOCOL_VERSION

@@ -1,7 +1,7 @@
-from typing import TYPE_CHECKING, Any, ClassVar, ForwardRef, Generic, Type, TypeVar
+from typing import TYPE_CHECKING, Any, ClassVar, ForwardRef, Generic, TypeVar
 
 import sqlalchemy
-import sqlalchemy.orm as orm
+from sqlalchemy import orm
 from typing_extensions import Self
 
 from ..._util.init_subclass_get_generic_args import init_subclass_get_generic_args
@@ -57,9 +57,9 @@ class Generation(HasId, orm.MappedAsDataclass, Generic[TPopulation]):
         def population(cls) -> orm.Mapped[TPopulation]:  # noqa
             return cls.__population_impl()
 
-    __type_tpopulation: ClassVar[Type[TPopulation]]  # type: ignore[misc]
+    __type_tpopulation: ClassVar[type[TPopulation]]  # type: ignore[misc]
 
-    def __init_subclass__(cls: Type[Self], /, **kwargs: dict[str, Any]) -> None:
+    def __init_subclass__(cls: type[Self], /, **kwargs: dict[str, Any]) -> None:
         """
         Initialize a version of this class when it is subclassed.
 

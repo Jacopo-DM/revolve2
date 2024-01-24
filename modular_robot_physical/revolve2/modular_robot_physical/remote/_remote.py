@@ -1,6 +1,6 @@
 import asyncio
 import time
-from typing import Callable
+from collections.abc import Callable
 
 import capnp
 

@@ -1,5 +1,5 @@
 import math
-from typing import Generic, Type, TypeVar
+from typing import Generic, TypeVar
 
 import numpy as np
 from numpy.typing import NDArray
@@ -61,7 +61,7 @@ class Body:
         return position
 
     @classmethod
-    def __find_recur(cls, module: Module, module_type: Type[TModule]) -> list[TModule]:
+    def __find_recur(cls, module: Module, module_type: type[TModule]) -> list[TModule]:
         modules = []
         if isinstance(module, module_type):
             modules.append(module)
@@ -69,7 +69,7 @@ class Body:
             modules.extend(cls.__find_recur(child, module_type))
         return modules
 
-    def find_modules_of_type(self, module_type: Type[TModule]) -> list[TModule]:
+    def find_modules_of_type(self, module_type: type[TModule]) -> list[TModule]:
         """
         Find all Modules of a certain type in the robot.
 

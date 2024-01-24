@@ -2,8 +2,7 @@ from __future__ import annotations
 
 import multineat
 import numpy as np
-import sqlalchemy.orm as orm
-from sqlalchemy import event
+from sqlalchemy import event, orm
 from sqlalchemy.engine import Connection
 from typing_extensions import Self
 

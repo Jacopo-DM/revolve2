@@ -1,5 +1,5 @@
 import math
-from typing import Sequence
+from collections.abc import Sequence
 
 from robohatlib.hal.assemblyboard.PwmPlug import PwmPlug
 from robohatlib.hal.assemblyboard.servo.ServoData import ServoData

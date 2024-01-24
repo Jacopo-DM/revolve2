@@ -1,7 +1,6 @@
 import numpy as np
 import numpy.typing as npt
-import sqlalchemy.orm as orm
-from sqlalchemy import event
+from sqlalchemy import event, orm
 from sqlalchemy.engine import Connection
 
 
@@ -26,7 +25,7 @@ def _update_serialized_parameters(
     connection: Connection,
     target: Parameters,
 ) -> None:
-    target._serialized_parameters = ";".join((str(p) for p in target.parameters))
+    target._serialized_parameters = ";".join(str(p) for p in target.parameters)
 
 
 @event.listens_for(Parameters, "load", propagate=True)

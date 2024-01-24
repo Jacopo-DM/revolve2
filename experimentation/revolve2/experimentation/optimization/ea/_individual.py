@@ -1,7 +1,7 @@
-from typing import TYPE_CHECKING, Any, ClassVar, ForwardRef, Generic, Type, TypeVar
+from typing import TYPE_CHECKING, Any, ClassVar, ForwardRef, Generic, TypeVar
 
 import sqlalchemy
-import sqlalchemy.orm as orm
+from sqlalchemy import orm
 from typing_extensions import Self
 
 from ..._util.init_subclass_get_generic_args import init_subclass_get_generic_args
@@ -66,11 +66,11 @@ class Individual(HasId, orm.MappedAsDataclass, Generic[TGenotype]):
         def fitness(cls) -> orm.Mapped[float]:  # noqa
             return cls.__fitness_impl()
 
-    __type_tgenotype: ClassVar[Type[TGenotype]]  # type: ignore[misc]
+    __type_tgenotype: ClassVar[type[TGenotype]]  # type: ignore[misc]
     __population_table: ClassVar[str]
 
     def __init_subclass__(
-        cls: Type[Self], population_table: str, **kwargs: dict[str, Any]
+        cls: type[Self], population_table: str, **kwargs: dict[str, Any]
     ) -> None:
         """
         Initialize a version of this class when it is subclassed.

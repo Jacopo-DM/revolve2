@@ -1,4 +1,4 @@
-import sqlalchemy.orm as orm
+from sqlalchemy import orm
 
 
 class HasId(orm.MappedAsDataclass):
