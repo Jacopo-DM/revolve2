@@ -54,7 +54,7 @@ class Vector2(BaseVector):  # type:ignore
     __NMB = [Number, np.number]
     __VCT = ["Vector2", np.ndarray, list]
 
-    def __add__(self, other: Any) -> Vector2:    # type:ignore
+    def __add__(self, other: Any) -> Vector2:  # type:ignore
         """
         Add to the existing Vector2.
 
@@ -66,7 +66,7 @@ class Vector2(BaseVector):  # type:ignore
         else:
             self._unsupported_type("add", other)
 
-    def __sub__(self, other: Any) -> Vector2:    # type:ignore
+    def __sub__(self, other: Any) -> Vector2:  # type:ignore
         """
         Subtract from the existing Vector2.
 

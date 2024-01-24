@@ -121,9 +121,7 @@ class _URDFConverter:
                     "xyz": f"{com_xyz[0]} {com_xyz[1]} {com_xyz[2]}",
                 },
             )
-            xml.SubElement(
-                inertial, "mass", {"value": f"{rigid_body.mass():e}"}
-            )
+            xml.SubElement(inertial, "mass", {"value": f"{rigid_body.mass():e}"})
             xml.SubElement(
                 inertial,
                 "inertia",

@@ -108,9 +108,7 @@ def simulate_scene(
         if sample_step is not None and time >= last_sample_time + sample_step:
             last_sample_time = int(time / sample_step) * sample_step
             simulation_states.append(
-                SimulationStateImpl(
-                    data=data, abstraction_to_mujoco_mapping=mapping
-                )
+                SimulationStateImpl(data=data, abstraction_to_mujoco_mapping=mapping)
             )
 
         # step simulation
