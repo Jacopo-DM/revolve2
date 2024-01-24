@@ -53,19 +53,13 @@ def _get_domination_orders(
     """
     domination_orders = [0] * value_array.shape[0]
 
-    i = 0
-    for pair in value_array:
+    for i, pair in enumerate(value_array):
         dom = sum(
-            [
-                any(
-                    [
-                        p[j] > pair[j] if frontier_order[j] else p[j] < pair[j]
-                        for j in range(len(frontier_order))
-                    ]
-                )
-                for p in value_array
-            ]
+            any(
+                p[j] > pair[j] if frontier_order[j] else p[j] < pair[j]
+                for j in range(len(frontier_order))
+            )
+            for p in value_array
         )
         domination_orders[i] = dom
-        i += 1
     return domination_orders

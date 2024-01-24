@@ -31,7 +31,7 @@ def test_physical_robot(
         run_duration=99999,
         control_frequency=20,
         initial_hinge_positions={
-            UUIDKey(active_hinge.value): 0.0 for active_hinge in hinge_mapping.keys()
+            UUIDKey(active_hinge.value): 0.0 for active_hinge in hinge_mapping
         },
         inverse_servos=inverse_servos,
     )

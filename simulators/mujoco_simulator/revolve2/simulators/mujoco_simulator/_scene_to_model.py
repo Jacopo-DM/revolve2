@@ -20,8 +20,6 @@ try:
     logging.root.removeHandler(logging.root.handlers[-1])
 except Exception as e:
     print("Failed to fix absl logging bug", e)
-    pass
-
 from revolve2.simulation.scene import Scene, UUIDKey
 from revolve2.simulation.scene.conversion import multi_body_system_to_urdf
 from revolve2.simulation.scene.geometry import Geometry, GeometryHeightmap
@@ -165,9 +163,7 @@ def scene_to_model(
                 name=f"actuator_velocity_{name}",
             )
 
-        # Add plane geometries
-        i_plane = 0
-        for plane in plane_geometries:
+        for i_plane, plane in enumerate(plane_geometries):
             name = f"heightmap_{i_plane}"
             plane_kwargs: dict[str, Any] = {}
             if fast_sim:
@@ -195,11 +191,7 @@ def scene_to_model(
                 size=[plane.size.x / 2.0, plane.size.y / 2.0, 1.0],
                 **plane_kwargs,
             )
-            i_plane += 1
-
-        # Add heightmap geometries
-        i_heightmap = 0
-        for heightmap in heightmap_geometries:
+        for i_heightmap, heightmap in enumerate(heightmap_geometries):
             env_mjcf.asset.add(
                 "hfield",
                 name=f"hfield_{i_heightmap}",
@@ -242,8 +234,6 @@ def scene_to_model(
             )
 
             heightmaps.append(heightmap)
-            i_heightmap += 1
-
         # Set colors of geometries
         for geom, name in geoms_and_names:
             if fast_sim:

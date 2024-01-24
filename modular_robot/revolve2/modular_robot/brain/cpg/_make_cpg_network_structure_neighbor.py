@@ -18,9 +18,7 @@ def active_hinges_to_cpg_network_structure_neighbor(
     cpgs = CpgNetworkStructure.make_cpgs(len(active_hinges))
     connections: set[CpgPair] = set()
 
-    active_hinge_to_cpg = {
-        active_hinge: cpg for active_hinge, cpg in zip(active_hinges, cpgs)
-    }
+    active_hinge_to_cpg = dict(zip(active_hinges, cpgs))
 
     for active_hinge, cpg in zip(active_hinges, cpgs):
         neighbours = [
@@ -34,6 +32,6 @@ def active_hinges_to_cpg_network_structure_neighbor(
 
     cpg_network_structure = CpgNetworkStructure(cpgs, connections)
 
-    return cpg_network_structure, [
-        mapping for mapping in zip(cpg_network_structure.output_indices, active_hinges)
-    ]
+    return cpg_network_structure, list(
+        zip(cpg_network_structure.output_indices, active_hinges)
+    )

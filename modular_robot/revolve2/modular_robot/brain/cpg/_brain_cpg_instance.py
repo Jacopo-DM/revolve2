@@ -37,7 +37,7 @@ class BrainCpgInstance(BrainInstance):
         assert weight_matrix.ndim == 2
         assert weight_matrix.shape[0] == weight_matrix.shape[1]
         assert initial_state.shape[0] == weight_matrix.shape[0]
-        assert all([i >= 0 and i < len(initial_state) for i, _ in output_mapping])
+        assert all(i >= 0 and i < len(initial_state) for i, _ in output_mapping)
 
         self._state = initial_state
         self._weight_matrix = weight_matrix

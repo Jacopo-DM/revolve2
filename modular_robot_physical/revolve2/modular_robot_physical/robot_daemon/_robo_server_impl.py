@@ -152,7 +152,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
             print("setup")
 
         with self._lock:
-            self._active_pins = [pin for pin in args.activePins]
+            self._active_pins = list(args.activePins)
 
         self._enabled = True
         self._update_loop_thread = threading.Thread(target=self._update_loop)

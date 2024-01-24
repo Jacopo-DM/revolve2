@@ -177,8 +177,7 @@ def _make_rot_mat(theta: float) -> NDArray[np.int_]:
     :return: The matrix.
     """
     c, s = int(round(np.cos(theta))), int(round(np.sin(theta)))
-    rotation = np.array(((c, -s), (s, c)))
-    return rotation
+    return np.array(((c, -s), (s, c)))
 
 
 def _save_png(image: cairo.ImageSurface, path: str) -> None:
@@ -188,4 +187,4 @@ def _save_png(image: cairo.ImageSurface, path: str) -> None:
     :param image: The image.
     :param path: The path to save the image to.
     """
-    image.write_to_png(f"{path}/robot_2d_{str(hash(image))}.png")
+    image.write_to_png(f"{path}/robot_2d_{hash(image)}.png")

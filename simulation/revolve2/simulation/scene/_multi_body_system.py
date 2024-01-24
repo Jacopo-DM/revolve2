@@ -194,16 +194,15 @@ class MultiBodySystem:
                         "AABB calculation currently only supports GeometryBox."
                     )
 
-                for sign in [0.5, -0.5]:
-                    points.append(
-                        rigid_body.initial_pose.position
-                        + rigid_body.initial_pose.orientation
-                        * (
-                            geometry.pose.position
-                            + geometry.pose.orientation * (geometry.aabb.size * sign)
-                        )
+                points.extend(
+                    rigid_body.initial_pose.position
+                    + rigid_body.initial_pose.orientation
+                    * (
+                        geometry.pose.position
+                        + geometry.pose.orientation * (geometry.aabb.size * sign)
                     )
-
+                    for sign in [0.5, -0.5]
+                )
         # Calculate AABB from the points.
         # This is simply the min and max between the points for every dimension.
         aabb = pyrr.aabb.create_from_points(points)

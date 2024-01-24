@@ -62,14 +62,14 @@ async def _run_remote_impl(
         )
         client = capnp.TwoPartyClient(connection)
         service = client.bootstrap().cast_as(robot_daemon_protocol_capnp.RoboServer)
-    except ConnectionRefusedError:
-        raise ConnectionRefusedError("Could not connect to robot.")
+    except ConnectionRefusedError as e:
+        raise ConnectionRefusedError("Could not connect to robot.") from e
 
     # Setup the robot and check protocol version
     setup_response: robot_daemon_protocol_capnp.SetupResponse = (
         await service.setup(
             robot_daemon_protocol_capnp.SetupArgs(
-                version=PROTOCOL_VERSION, activePins=[x for x in range(32)]
+                version=PROTOCOL_VERSION, activePins=list(range(32))
             )
         )
     ).response
@@ -147,18 +147,17 @@ async def _run_remote_impl(
             case HardwareType.v1:
                 sensor_state = ModularRobotSensorStateImplV1()
             case HardwareType.v2:
-                pins = [pin for pin in active_hinge_sensor_to_pin.values()]
+                pins = list(active_hinge_sensor_to_pin.values())
                 sensor_readings = (
                     await service.readSensors(
-                        robot_daemon_protocol_capnp.ReadSensorsArgs(readPins=pins)
+                        robot_daemon_protocol_capnp.ReadSensorsArgs(
+                            readPins=pins
+                        )
                     )
                 ).response
                 sensor_state = ModularRobotSensorStateImplV2(
                     hinge_sensor_mapping=active_hinge_sensor_to_pin,
-                    positions={
-                        pin: position
-                        for pin, position in zip(pins, sensor_readings.pins)
-                    },
+                    positions=dict(zip(pins, sensor_readings.pins)),
                 )
             case _:
                 raise NotImplementedError("Hardware type not supported.")
@@ -195,11 +194,13 @@ async def _run_remote_impl(
             match hardware_type:
                 case HardwareType.v1:
                     await service.control(
-                        robot_daemon_protocol_capnp.ControlArgs(setPins=pin_controls)
+                        robot_daemon_protocol_capnp.ControlArgs(
+                            setPins=pin_controls
+                        )
                     )
                     sensor_state = ModularRobotSensorStateImplV1()
                 case HardwareType.v2:
-                    pins = [pin for pin in active_hinge_sensor_to_pin.values()]
+                    pins = list(active_hinge_sensor_to_pin.values())
                     sensor_readings = (
                         await service.controlAndReadSensors(
                             robot_daemon_protocol_capnp.ControlAndReadSensorsArgs(
@@ -209,14 +210,13 @@ async def _run_remote_impl(
                     ).response
                     sensor_state = ModularRobotSensorStateImplV2(
                         hinge_sensor_mapping=active_hinge_sensor_to_pin,
-                        positions={
-                            pin: position
-                            for pin, position in zip(pins, sensor_readings.pins)
-                        },
+                        positions=dict(zip(pins, sensor_readings.pins)),
                     )
 
                     if battery_print_timer > 5.0:
-                        print(f"Battery level is at {sensor_readings.battery*100.0}%.")
+                        print(
+                            f"Battery level is at {sensor_readings.battery*100.0}%."
+                        )
                         battery_print_timer = 0.0
                 case _:
                     raise NotImplementedError("Hardware type not supported.")

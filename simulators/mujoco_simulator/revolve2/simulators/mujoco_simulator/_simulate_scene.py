@@ -105,14 +105,13 @@ def simulate_scene(
             scene.handler.handle(simulation_state, control_interface, control_step)
 
         # sample state if it is time
-        if sample_step is not None:
-            if time >= last_sample_time + sample_step:
-                last_sample_time = int(time / sample_step) * sample_step
-                simulation_states.append(
-                    SimulationStateImpl(
-                        data=data, abstraction_to_mujoco_mapping=mapping
-                    )
+        if sample_step is not None and time >= last_sample_time + sample_step:
+            last_sample_time = int(time / sample_step) * sample_step
+            simulation_states.append(
+                SimulationStateImpl(
+                    data=data, abstraction_to_mujoco_mapping=mapping
                 )
+            )
 
         # step simulation
         mujoco.mj_step(model, data)

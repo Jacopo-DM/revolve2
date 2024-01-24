@@ -89,7 +89,6 @@ def simulate_manual_scene(
 
     except KeyboardInterrupt:
         """If we press ctrl-C this script will end with the finally clause."""
-        pass
     finally:
         viewer.close()
         logging.info("Testing done.")

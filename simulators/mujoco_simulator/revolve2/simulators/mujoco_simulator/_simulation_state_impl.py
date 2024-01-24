@@ -51,7 +51,6 @@ class SimulationStateImpl(SimulationState):
         :raises NotImplementedError: Always.
         """
         raise NotImplementedError()
-        return Pose()
 
     def get_rigid_body_absolute_pose(self, rigid_body: RigidBody) -> Pose:
         """
@@ -62,7 +61,6 @@ class SimulationStateImpl(SimulationState):
         :raises NotImplementedError: Always.
         """
         raise NotImplementedError()
-        return Pose()
 
     def get_multi_body_system_pose(self, multi_body_system: MultiBodySystem) -> Pose:
         """
@@ -74,10 +72,10 @@ class SimulationStateImpl(SimulationState):
         body_mujoco = self._abstraction_to_mujoco_mapping.multi_body_system[
             UUIDKey(multi_body_system)
         ]
-        pose = Pose(
-            Vector3(self._xpos[body_mujoco.id]), Quaternion(self._xquat[body_mujoco.id])
+        return Pose(
+            Vector3(self._xpos[body_mujoco.id]),
+            Quaternion(self._xquat[body_mujoco.id]),
         )
-        return pose
 
     def get_hinge_joint_position(self, joint: JointHinge) -> float:
         """

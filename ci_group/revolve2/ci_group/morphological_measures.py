@@ -128,10 +128,8 @@ class MorphologicalMeasures(Generic[TModule]):
 
     def __calculate_core_is_filled(self) -> bool:
         return all(
-            [
-                self.core.children.get(child_index) is not None
-                for child_index in self.core.attachment_points.keys()
-            ]
+            self.core.children.get(child_index) is not None
+            for child_index in self.core.attachment_points.keys()
         )
 
     def __calculate_filled_bricks(self) -> list[Brick]:
@@ -139,10 +137,8 @@ class MorphologicalMeasures(Generic[TModule]):
             brick
             for brick in self.bricks
             if all(
-                [
-                    brick.children.get(child_index) is not None
-                    for child_index in brick.attachment_points.keys()
-                ]
+                brick.children.get(child_index) is not None
+                for child_index in brick.attachment_points.keys()
             )
         ]
 
@@ -151,10 +147,8 @@ class MorphologicalMeasures(Generic[TModule]):
             active_hinge
             for active_hinge in self.active_hinges
             if all(
-                [
-                    active_hinge.children.get(child_index) is not None
-                    for child_index in active_hinge.attachment_points.keys()
-                ]
+                active_hinge.children.get(child_index) is not None
+                for child_index in active_hinge.attachment_points.keys()
             )
         ]
 
@@ -163,10 +157,8 @@ class MorphologicalMeasures(Generic[TModule]):
             brick
             for brick in self.bricks
             if all(
-                [
-                    brick.children.get(child_index) is None
-                    for child_index in brick.attachment_points.keys()
-                ]
+                brick.children.get(child_index) is None
+                for child_index in brick.attachment_points.keys()
             )
         ]
 
@@ -175,10 +167,8 @@ class MorphologicalMeasures(Generic[TModule]):
             brick
             for brick in self.bricks
             if sum(
-                [
-                    0 if brick.children.get(child_index) is None else 1
-                    for child_index in brick.attachment_points.keys()
-                ]
+                0 if brick.children.get(child_index) is None else 1
+                for child_index in brick.attachment_points.keys()
             )
             == 1
         ]
@@ -188,10 +178,8 @@ class MorphologicalMeasures(Generic[TModule]):
             active_hinge
             for active_hinge in self.active_hinges
             if sum(
-                [
-                    0 if active_hinge.children.get(child_index) is None else 1
-                    for child_index in active_hinge.attachment_points.keys()
-                ]
+                0 if active_hinge.children.get(child_index) is None else 1
+                for child_index in active_hinge.attachment_points.keys()
             )
             == 1
         ]
@@ -387,11 +375,7 @@ class MorphologicalMeasures(Generic[TModule]):
 
         pot_max_filled = max(0, (self.num_modules - 2) // 3)
 
-        # Enough bricks must be available for this strategy.
-        # We can count the core as the first brick.
-        pot_max_filled = min(pot_max_filled, 1 + self.num_bricks)
-
-        return pot_max_filled
+        return min(pot_max_filled, 1 + self.num_bricks)
 
     @property
     def filled_core_and_bricks_proportion(self) -> float:

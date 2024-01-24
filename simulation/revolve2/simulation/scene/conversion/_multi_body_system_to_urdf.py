@@ -99,11 +99,8 @@ class _URDFConverter:
             raise ValueError("Multi-body system is cyclic.")
         self.visited_rigid_bodies.add(rigid_body.uuid)
 
-        elements = []
-
         link = xml.Element("link", {"name": rigid_body_name})
-        elements.append(link)
-
+        elements = [link]
         com_xyz = link_pose.orientation.inverse * (
             rigid_body.initial_pose.position
             - link_pose.position

@@ -35,8 +35,7 @@ def _body_to_adjusted_coordinates(bodies: list[Body]) -> list[NDArray[np.float64
     :return: The coordinates for each body.
     """
     crds = [np.empty(shape=0, dtype=np.float64)] * len(bodies)
-    i = 0
-    for body in bodies:
+    for i, body in enumerate(bodies):
         tpl: tuple[NDArray[Any], Vector3] = body.to_grid()
         body_array, core_position = tpl
         x, y, z = body_array.shape
@@ -47,7 +46,6 @@ def _body_to_adjusted_coordinates(bodies: list[Body]) -> list[NDArray[np.float64
             if isinstance(target, Module):
                 elements.append(np.subtract((xe, ye, ze), core_position))
         crds[i] = np.asarray(elements)
-        i += 1
     return crds
 
 
@@ -59,8 +57,7 @@ def _coordinates_pca_change_basis(coordinates: list[NDArray[np.float64]]) -> Non
 
     :param coordinates: The coordinates.
     """
-    i = 0
-    for target_coordinates in coordinates:
+    for i, target_coordinates in enumerate(coordinates):
         if len(target_coordinates) > 1:
             covariance_matrix = np.cov(target_coordinates.T)
             eigen_values, eigen_vectors = np.linalg.eig(covariance_matrix)
@@ -86,7 +83,6 @@ def _coordinates_pca_change_basis(coordinates: list[NDArray[np.float64]]) -> Non
 
             final_coordinates = np.linalg.inv(eigen_vectors).dot(target_coordinates.T)
             coordinates[i] = final_coordinates.T
-        i += 1
 
 
 def _coordinates_pca_heuristic(crds: list[NDArray[np.float64]]) -> None:
@@ -97,8 +93,7 @@ def _coordinates_pca_heuristic(crds: list[NDArray[np.float64]]) -> None:
 
     :param crds: The coordinates.
     """
-    i = 0
-    for target_coords in crds:
+    for i, target_coords in enumerate(crds):
         if len(target_coords) > 1:
             covariance_matrix = np.cov(target_coords.T)
             eigen_values, _ = np.linalg.eig(covariance_matrix)
@@ -110,4 +105,3 @@ def _coordinates_pca_heuristic(crds: list[NDArray[np.float64]]) -> None:
                 target_coords[:, [j, candidate]] = target_coords[:, [candidate, j]]
                 srt[[j, candidate]] = srt[[candidate, j]]
             crds[i] = target_coords
-        i += 1

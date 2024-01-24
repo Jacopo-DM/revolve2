@@ -28,7 +28,7 @@ def multiple_unique(
     selected_individuals = []
     for _ in range(selection_size):
         new_individual = False
-        while new_individual is False:
+        while not new_individual:
             selected_individual = selection_function(population, fitnesses)
             if selected_individual not in selected_individuals:
                 selected_individuals.append(selected_individual)
