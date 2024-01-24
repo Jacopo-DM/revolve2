@@ -36,7 +36,7 @@ Attributes
 
    
 
-.. py:function:: steady_state(old_genotypes: list[Genotype], old_fitnesses: list[Fitness], new_genotypes: list[Genotype], new_fitnesses: list[Fitness], selection_function: Callable[[int, list[Genotype], list[Fitness]], numpy.typing.NDArray[numpy.float_]]) -> tuple[list[int], list[int]]
+.. py:function:: steady_state(old_genotypes: list[Genotype], old_fitnesses: list[Fitness], new_genotypes: list[Genotype], new_fitnesses: list[Fitness], selection_function: collections.abc.Callable[[int, list[Genotype], list[Fitness]], numpy.typing.NDArray[numpy.float_]]) -> tuple[list[int], list[int]]
 
    Select `len(old_genotypes)` individuals using the provided selection function from combined set of old and new individuals.
 

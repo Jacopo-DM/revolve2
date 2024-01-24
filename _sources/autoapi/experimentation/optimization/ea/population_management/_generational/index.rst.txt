@@ -36,7 +36,7 @@ Attributes
 
    
 
-.. py:function:: generational(old_genotypes: list[Genotype], old_fitnesses: list[Fitness], new_genotypes: list[Genotype], new_fitnesses: list[Fitness], selection_function: Callable[[int, list[Genotype], list[Fitness]], list[int]]) -> tuple[list[int], list[int]]
+.. py:function:: generational(old_genotypes: list[Genotype], old_fitnesses: list[Fitness], new_genotypes: list[Genotype], new_fitnesses: list[Fitness], selection_function: collections.abc.Callable[[int, list[Genotype], list[Fitness]], list[int]]) -> tuple[list[int], list[int]]
 
    Select `len(old_genotypes)` individuals using the provided selection function from only the offspring(`new_genotypes`).
 

@@ -253,7 +253,7 @@ Classes
       :raises KeyError: In case an attachment point is not found.
 
 
-   .. py:method:: find_modules_of_type(module_type: Type[TModule]) -> list[TModule]
+   .. py:method:: find_modules_of_type(module_type: type[TModule]) -> list[TModule]
 
       Find all Modules of a certain type in the robot.
 

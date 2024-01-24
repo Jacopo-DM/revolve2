@@ -62,7 +62,7 @@ Classes
       :raises NotImplementedError: If getting the battery level is not supported on this hardware.
 
 
-   .. py:method:: get_multiple_servo_positions(pins: Sequence[int]) -> list[float]
+   .. py:method:: get_multiple_servo_positions(pins: collections.abc.Sequence[int]) -> list[float]
       :abstractmethod:
 
       Get the current position of multiple servos.

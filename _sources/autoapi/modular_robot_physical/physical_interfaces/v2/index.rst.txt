@@ -61,7 +61,7 @@ Classes
       :returns: The battery level as a number between 0.0 and 1.0.
 
 
-   .. py:method:: get_multiple_servo_positions(pins: Sequence[int]) -> list[float]
+   .. py:method:: get_multiple_servo_positions(pins: collections.abc.Sequence[int]) -> list[float]
 
       Get the current position of multiple servos.
 

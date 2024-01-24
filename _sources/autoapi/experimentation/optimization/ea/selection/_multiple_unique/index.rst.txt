@@ -36,7 +36,7 @@ Attributes
 
    
 
-.. py:function:: multiple_unique(selection_size: int, population: list[TIndividual], fitnesses: list[TFitness], selection_function: Callable[[list[TIndividual], list[TFitness]], int]) -> numpy.typing.NDArray[numpy.float_]
+.. py:function:: multiple_unique(selection_size: int, population: list[TIndividual], fitnesses: list[TFitness], selection_function: collections.abc.Callable[[list[TIndividual], list[TFitness]], int]) -> numpy.typing.NDArray[numpy.float_]
 
    Select multiple distinct individuals from a population using the provided selection function.
 

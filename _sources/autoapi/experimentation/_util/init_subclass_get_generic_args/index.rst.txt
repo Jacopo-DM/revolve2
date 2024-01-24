@@ -34,7 +34,7 @@ Attributes
 
    
 
-.. py:function:: init_subclass_get_generic_args(child: Type[TChild], parent: Type[TParent]) -> tuple[Any, Ellipsis]
+.. py:function:: init_subclass_get_generic_args(child: type[TChild], parent: type[TParent]) -> tuple[Any, Ellipsis]
 
    Get the generic arguments from a class within the __init_subclass__ function.
 

@@ -19,7 +19,7 @@ Functions
 
 
 
-.. py:function:: run_remote(config: modular_robot_physical._config.Config, hostname: str, on_prepared: Callable[[], None] = lambda: None, port: int = STANDARD_PORT, debug: bool = False, manual_mode: bool = False) -> None
+.. py:function:: run_remote(config: modular_robot_physical._config.Config, hostname: str, on_prepared: collections.abc.Callable[[], None] = lambda: None, port: int = STANDARD_PORT, debug: bool = False, manual_mode: bool = False) -> None
 
    Control a robot remotely, running the controller on your local machine.
 

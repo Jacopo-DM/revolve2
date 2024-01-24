@@ -31,7 +31,7 @@ Attributes
 
    
 
-.. py:function:: argsort(seq: Sequence[Item]) -> list[int]
+.. py:function:: argsort(seq: collections.abc.Sequence[Item]) -> list[int]
 
    Get the indices of the sequence sorted by value.
 
