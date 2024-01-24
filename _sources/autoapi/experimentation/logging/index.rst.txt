@@ -12,6 +12,14 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   experimentation.logging.Clr
+
+
 
 Functions
 ~~~~~~~~~
@@ -19,7 +27,148 @@ Functions
 .. autoapisummary::
 
    experimentation.logging.setup_logging
+   experimentation.logging.log_header
 
+
+
+.. py:class:: Clr
+
+
+   Color palette for printing in the terminal.
+
+   .. py:attribute:: wh
+      :type: str
+      :value: '\x1b[97m'
+
+      
+
+   .. py:attribute:: gr
+      :type: str
+      :value: '\x1b[90m'
+
+      
+
+   .. py:attribute:: bk
+      :type: str
+      :value: '\x1b[30m'
+
+      
+
+   .. py:attribute:: r
+      :type: str
+      :value: '\x1b[91m'
+
+      
+
+   .. py:attribute:: g
+      :type: str
+      :value: '\x1b[92m'
+
+      
+
+   .. py:attribute:: b
+      :type: str
+      :value: '\x1b[94m'
+
+      
+
+   .. py:attribute:: c
+      :type: str
+      :value: '\x1b[96m'
+
+      
+
+   .. py:attribute:: m
+      :type: str
+      :value: '\x1b[95m'
+
+      
+
+   .. py:attribute:: y
+      :type: str
+      :value: '\x1b[93m'
+
+      
+
+   .. py:attribute:: WH
+      :type: str
+      :value: '\x1b[1;97m'
+
+      
+
+   .. py:attribute:: GR
+      :type: str
+      :value: '\x1b[1;90m'
+
+      
+
+   .. py:attribute:: BK
+      :type: str
+      :value: '\x1b[1;30m'
+
+      
+
+   .. py:attribute:: R
+      :type: str
+      :value: '\x1b[1;91m'
+
+      
+
+   .. py:attribute:: G
+      :type: str
+      :value: '\x1b[1;92m'
+
+      
+
+   .. py:attribute:: B
+      :type: str
+      :value: '\x1b[1;94m'
+
+      
+
+   .. py:attribute:: C
+      :type: str
+      :value: '\x1b[1;96m'
+
+      
+
+   .. py:attribute:: M
+      :type: str
+      :value: '\x1b[1;95m'
+
+      
+
+   .. py:attribute:: Y
+      :type: str
+      :value: '\x1b[1;93m'
+
+      
+
+   .. py:attribute:: EM
+      :value: '\x1b[1m'
+
+      
+
+   .. py:attribute:: NEM
+      :value: '\x1b[2m'
+
+      
+
+   .. py:attribute:: IT
+      :value: '\x1b[3m'
+
+      
+
+   .. py:attribute:: UN
+      :value: '\x1b[4m'
+
+      
+
+   .. py:attribute:: E
+      :type: str
+      :value: '\x1b[0m'
+
+      
 
 
 .. py:function:: setup_logging(level: int = logging.INFO, file_name: str | None = None) -> None
@@ -28,5 +177,12 @@ Functions
 
    :param level: The log level to use.
    :param file_name: If not None, also writes to this file.
+
+
+.. py:function:: log_header(logging: log_header.logging) -> None
+
+   Log a header.
+
+   :param logging: The logger to use.
 
 

@@ -238,7 +238,7 @@
 <td><p>A CPG brain with cpgs and connections defined by the user.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#modular_robot.brain.cpg.CpgNetworkStructure" title="modular_robot.brain.cpg.CpgNetworkStructure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CpgNetworkStructure</span></code></a></p></td>
-<td><p>Describes the structure of a cpg network.</p></td>
+<td><p>Describes the structure of a CPG network.</p></td>
 </tr>
 </tbody>
 </table>
@@ -366,8 +366,8 @@ I.e X’ = WX</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="modular_robot.brain.cpg.CpgNetworkStructure">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CpgNetworkStructure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cpgs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="_cpg_network_structure/index.html#modular_robot.brain.cpg._cpg_network_structure.Cpg" title="modular_robot.brain.cpg._cpg_network_structure.Cpg"><span class="pre">Cpg</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connections</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">set</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="_cpg_network_structure/index.html#modular_robot.brain.cpg._cpg_network_structure.CpgPair" title="modular_robot.brain.cpg._cpg_network_structure.CpgPair"><span class="pre">CpgPair</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modular_robot.brain.cpg.CpgNetworkStructure" title="Link to this definition"></a></dt>
-<dd><p>Describes the structure of a cpg network.</p>
-<p>Can generate parameters for a cpg network, such as the initial state.</p>
+<dd><p>Describes the structure of a CPG network.</p>
+<p>Can generate parameters for a CPG network, such as the initial state and connection weights matrix.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="modular_robot.brain.cpg.CpgNetworkStructure.num_connections">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_connections</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#modular_robot.brain.cpg.CpgNetworkStructure.num_connections" title="Link to this definition"></a></dt>
@@ -382,8 +382,8 @@ I.e X’ = WX</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="modular_robot.brain.cpg.CpgNetworkStructure.num_states">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_states</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#modular_robot.brain.cpg.CpgNetworkStructure.num_states" title="Link to this definition"></a></dt>
-<dd><p>Get the number of states in a cpg network of this structure.</p>
-<p>This would be twice the number of cpgs.</p>
+<dd><p>Get the number of states in a CPG network of this structure.</p>
+<p>This would be twice the number of CPGs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The number of states.</p>
@@ -394,10 +394,10 @@ I.e X’ = WX</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="modular_robot.brain.cpg.CpgNetworkStructure.num_cpgs">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_cpgs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#modular_robot.brain.cpg.CpgNetworkStructure.num_cpgs" title="Link to this definition"></a></dt>
-<dd><p>Get the number of cpgs in the structure.</p>
+<dd><p>Get the number of CPGs in the structure.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The number of cpgs.</p>
+<dd class="field-odd"><p>The number of CPGs.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -405,7 +405,7 @@ I.e X’ = WX</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="modular_robot.brain.cpg.CpgNetworkStructure.output_indices">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">output_indices</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#modular_robot.brain.cpg.CpgNetworkStructure.output_indices" title="Link to this definition"></a></dt>
-<dd><p>Get the index in the state array for each cpg, matching the order the cpgs were provided in.</p>
+<dd><p>Get the index in the state array for each CPG, matching the order the CPGs were provided in.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The indices.</p>
@@ -426,13 +426,13 @@ I.e X’ = WX</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="modular_robot.brain.cpg.CpgNetworkStructure.make_cpgs">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">make_cpgs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_cpgs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="_cpg_network_structure/index.html#modular_robot.brain.cpg._cpg_network_structure.Cpg" title="modular_robot.brain.cpg._cpg_network_structure.Cpg"><span class="pre">Cpg</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#modular_robot.brain.cpg.CpgNetworkStructure.make_cpgs" title="Link to this definition"></a></dt>
-<dd><p>Create a list of cpgs.</p>
+<dd><p>Create a list of CPGs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>num_cpgs</strong> – The number of cpgs to create.</p>
+<dd class="field-odd"><p><strong>num_cpgs</strong> – The number of CPGs to create.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The created list of cpgs.</p>
+<dd class="field-even"><p>The created list of CPGs.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -475,7 +475,7 @@ I.e X’ = WX</p>
 <p>Will match the required number of states in this structure.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>value</strong> – The value to use for all states</p>
+<dd class="field-odd"><p><strong>value</strong> – The value to use for all states.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The array of states.</p>

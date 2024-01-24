@@ -5,6 +5,16 @@
 
 .. py:module:: modular_robot.body._module
 
+.. autoapi-nested-parse::
+
+   This module defines the base class for a module in a modular robot.
+
+   A module represents a basic building block of a modular robot. It can have attachment points to connect with other modules, and it can have child modules attached to it.
+
+   Classes:
+   - Module: Base class for a module for modular robots.
+
+
 
 Module Contents
 ---------------
