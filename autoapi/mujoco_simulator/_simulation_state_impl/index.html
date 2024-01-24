@@ -142,21 +142,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../modular_robot_physical/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">modular_robot_physical</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../modular_robot_physical/index.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../modular_robot_physical/physical_interfaces/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">physical_interfaces</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../modular_robot_physical/remote/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">remote</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../modular_robot_physical/robot_daemon/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">robot_daemon</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../modular_robot_physical/robot_daemon_api/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">robot_daemon_api</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../modular_robot_physical/index.html#package-contents">Package Contents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../modular_robot_physical/index.html#classes">Classes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../modular_robot_physical/index.html#attributes">Attributes</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="../../modular_robot_simulation/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">modular_robot_simulation</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../modular_robot_simulation/index.html#package-contents">Package Contents</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../modular_robot_simulation/index.html#classes">Classes</a></li>
@@ -236,15 +221,13 @@
 <dt class="sig sig-object py" id="mujoco_simulator._simulation_state_impl.SimulationStateImpl.get_rigid_body_relative_pose">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_rigid_body_relative_pose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rigid_body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">revolve2.simulation.scene.RigidBody</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">revolve2.simulation.scene.Pose</span></span></span><a class="headerlink" href="#mujoco_simulator._simulation_state_impl.SimulationStateImpl.get_rigid_body_relative_pose" title="Link to this definition"></a></dt>
 <dd><p>Get the pose of a rigid body, relative to its parent multi-body system’s reference frame.</p>
+<p># TODO (returns) The relative pose.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>rigid_body</strong> – The rigid body to get the pose for.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The relative pose.</p>
-</dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>NotImplementedError</strong> – Always.</p>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>NotImplementedError</strong> – Always.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -253,15 +236,13 @@
 <dt class="sig sig-object py" id="mujoco_simulator._simulation_state_impl.SimulationStateImpl.get_rigid_body_absolute_pose">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_rigid_body_absolute_pose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rigid_body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">revolve2.simulation.scene.RigidBody</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">revolve2.simulation.scene.Pose</span></span></span><a class="headerlink" href="#mujoco_simulator._simulation_state_impl.SimulationStateImpl.get_rigid_body_absolute_pose" title="Link to this definition"></a></dt>
 <dd><p>Get the pose of a rigid body, relative the global reference frame.</p>
+<p># TODO (returns) The absolute pose.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>rigid_body</strong> – The rigid body to get the pose for.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The absolute pose.</p>
-</dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>NotImplementedError</strong> – Always.</p>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>NotImplementedError</strong> – Always.</p>
 </dd>
 </dl>
 </dd></dl>
