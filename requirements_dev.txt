@@ -9,7 +9,7 @@
 -e simulation[dev]
 -r ./codetools/requirements.txt
 -r ./docs/requirements.txt
--r ./examples/robot_bodybrain_ea_database/requirements.txt
--r ./examples/robot_brain_cmaes_database/requirements.txt
--r ./examples/simple_ea_xor_database/requirements.txt
+-r ./examples/013_robot_bodybrain_ea_database/requirements.txt
+-r ./examples/011_robot_brain_cmaes_database/requirements.txt
+-r ./examples/009_simple_ea_xor_database/requirements.txt
 -r ./tests/requirements.txt
