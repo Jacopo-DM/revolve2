@@ -1,0 +1,8 @@
+[tool.ruff]
+extend-select = ["C4", "I", "SIM", "TCH", "UP", "N", "NPY", "PL", "RUF", "T20"]
+ignore = []
+show-fixes = true
+target-version = "py311"
+
+[tool.mypy]
+strict = true

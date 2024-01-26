@@ -140,6 +140,7 @@ cython_debug/
 /ci_group/revolve2/ci_group/morphological_novelty_metric/_calculate_novelty.c
 
 # ----------------------------------- Environment ----------------------------------- #
+# VS Code
 **/.vscode
 
 # Mac 
@@ -155,15 +156,15 @@ cython_debug/
 **/*.png
 **/*.pdf
 **/*.sqlite
+**/*.drawio
 
 # Local History
-**/**.history
-
-# Ruff linter
-**/**.ruff_cache
+**/.history
 
 # -------------------------------------- Python -------------------------------------- #
+# Python
 **/__pycache__
+**/*.pyc
 
 # MyPy
 **/.mypy_cache
@@ -171,11 +172,19 @@ cython_debug/
 # ipython
 **/.ipynb_checkpoints
 
-# ------------------------------------- Project ------------------------------------- #
+# Ruff linter
+**/**.ruff_cache
 
+# ------------------------------------- Project ------------------------------------- #
 # MuJoCo
 MUJOCO_LOG.TXT
 
 # MyPyC
 **/build
 **/*.so
+
+# Aim-stack
+**/**.aim
+
+# Files
+cpg_test.py
