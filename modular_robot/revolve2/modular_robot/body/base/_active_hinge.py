@@ -256,7 +256,7 @@ class ActiveHinge(Module):
     @property
     def armature(self) -> float:
         """
-        Get thearmature of the joint.
+        Get the armature of the joint.
 
         This represents the inertia of the motor itself when nothing is attached.
 
