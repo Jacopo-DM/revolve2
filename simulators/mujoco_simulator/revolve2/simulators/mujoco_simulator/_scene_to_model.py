@@ -53,7 +53,8 @@ def scene_to_model(
     env_mjcf.compiler.angle = "radian"
 
     env_mjcf.option.timestep = simulation_timestep
-    env_mjcf.option.integrator = "RK4"
+    # env_mjcf.option.integrator = "RK4"
+    env_mjcf.option.integrator = "implicitfast"
 
     env_mjcf.option.gravity = [0, 0, -9.81]
 
@@ -110,12 +111,12 @@ def scene_to_model(
                     multi_body_system_mjcf = mjcf.from_file(
                         mjcf_file,
                     )
-                    # On Windows, an open file can’t be deleted, and hence it has to be closed first before removing
+                    # On Windows, an open file can't be deleted, and hence it has to be closed first before removing
                     mjcf_file.close()
                     os.remove(mjcf_file.name)
                 except Exception as e:
                     logging.info(repr(e))
-                    # On Windows, an open file can’t be deleted, and hence it has to be closed first before removing
+                    # On Windows, an open file can't be deleted, and hence it has to be closed first before removing
                     mjcf_file.close()
                     os.remove(mjcf_file.name)
 
