@@ -44,7 +44,7 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
         self,
         model: mujoco.MjModel,
         data: mujoco.MjData,
-        start_paused: bool = False,
+        start_paused: bool,
         render_every_frame: bool = False,
         mode: CustomMujocoViewerMode = CustomMujocoViewerMode.CLASSIC,
     ):
@@ -57,11 +57,6 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
         :param render_every_frame: If every frame is rendered or not.
         :param mode: The mode of the viewer (classic, manual).
         """
-        self._viewer_mode = mode
-        self._position = 0
-        self._paused = start_paused
-        self._render_every_frame = render_every_frame
-        self._mujoco_version = tuple(map(int, mujoco.__version__.split(".")))
         super().__init__(
             model,
             data,
@@ -71,6 +66,11 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
             height=None,
             hide_menus=False,
         )
+        self._viewer_mode = mode
+        self._position = 0
+        self._render_every_frame = render_every_frame
+        self._mujoco_version = tuple(map(int, mujoco.__version__.split(".")))
+        self._paused = start_paused
 
     def _add_overlay(self, gridpos: int, text1: str, text2: str) -> None:
         """
