@@ -49,9 +49,7 @@ class BrainCpgNetworkNeighbor(Brain):
             dict(zip(cpg_network_structure.cpgs, internal_weights)),
             dict(zip(cpg_network_structure.connections, external_weights)),
         )
-        self._initial_state = cpg_network_structure.make_uniform_state(
-            0.5 * math.sqrt(2)
-        )
+        self._initial_state = cpg_network_structure.make_alternating_state(0.01)
 
     def make_instance(self) -> BrainInstance:
         """
@@ -81,6 +79,6 @@ class BrainCpgNetworkNeighbor(Brain):
                             Opposite connection is not provided as weights are assumed to be negative.
         :param body: The body that matches this brain.
         :returns: Two lists. The first list contains the internal weights in cpgs, corresponding to `active_hinges`
-                 The second list contains the weights between connected cpgs, corresponding to `connections`
-                 The lists should match the order of the input parameters.
+                The second list contains the weights between connected cpgs, corresponding to `connections`
+                The lists should match the order of the input parameters.
         """

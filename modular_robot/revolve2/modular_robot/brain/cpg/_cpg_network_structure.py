@@ -155,6 +155,20 @@ class CpgNetworkStructure:
         """
         return np.full(self.num_states, value)
 
+    def make_alternating_state(self, value: float) -> npt.NDArray[np.float_]:
+        """
+        Make a state array with [x1, x1,..., 1-x, 1-x].
+
+        Will match the required number of states in this structure.
+        The number of states is guaranteed to be even.
+
+        :param value: The value to use for all states.
+        :returns: The array of states.
+        """
+        first_half = np.full(self.num_states // 2, value)
+        second_half = np.full(self.num_states // 2, 1 - value)
+        return np.concatenate((first_half, second_half))
+
     @property
     def num_cpgs(self) -> int:
         """
