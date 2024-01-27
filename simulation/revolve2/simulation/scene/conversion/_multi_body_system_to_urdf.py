@@ -176,8 +176,8 @@ class _URDFConverter:
         ):
             # Make sure we don't go back up the joint we came from.
             if parent_rigid_body is not None and (
-                joint.rigid_body1.uuid == parent_rigid_body.uuid
-                or joint.rigid_body2.uuid == parent_rigid_body.uuid
+                parent_rigid_body.uuid
+                in (joint.rigid_body1.uuid, joint.rigid_body2.uuid)
             ):
                 continue
 
