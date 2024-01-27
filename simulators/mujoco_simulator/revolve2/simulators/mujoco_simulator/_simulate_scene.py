@@ -117,7 +117,10 @@ def simulate_scene(
         if not headless or (
             record_settings is not None and time >= last_video_time + video_step
         ):
-            viewer.render()
+            viewer_return = viewer.render()
+            if viewer_return == "QUIT":
+                logging.warning("Quitting viewer")
+                raise SystemExit(0)
 
         # capture video frame if it's time
         if record_settings is not None and time >= last_video_time + video_step:

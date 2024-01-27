@@ -71,6 +71,7 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
         self._render_every_frame = render_every_frame
         self._mujoco_version = tuple(map(int, mujoco.__version__.split(".")))
         self._paused = start_paused
+        self._return_code = None
 
     def _add_overlay(self, gridpos: int, text1: str, text2: str) -> None:
         """
@@ -205,7 +206,7 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
         elif key == glfw.KEY_LEFT_ALT:
             self._hide_menus = False
         elif key == glfw.KEY_ESCAPE:
-            glfw.set_window_should_close(window, True)
+            self._return_code = "QUIT"
 
     def render(self) -> int | None:
         """
@@ -214,10 +215,15 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
         :return: A cycle position if applicable.
         """
         # Catch the case where the window is closed.
-        if glfw.window_should_close(self.window):
-            return None
+        if self._return_code == "QUIT":
+            return self._return_code
+        elif not self.is_alive:
+            self._return_code = "QUIT"
+            return self._return_code
         super().render()
-        return self._position if self._viewer_mode.value == "manual" else None
+        return (
+            self._position if self._viewer_mode.value == "manual" else self._return_code
+        )
 
     def _increment_position(self) -> None:
         """Increment our cycle position."""
