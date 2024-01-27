@@ -5,7 +5,6 @@ import pickle
 from typing import TYPE_CHECKING
 
 from evaluator import Evaluator
-
 from revolve2.experimentation.logging import setup_logging
 
 if TYPE_CHECKING:

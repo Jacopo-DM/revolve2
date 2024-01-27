@@ -6,11 +6,10 @@ import config
 from evaluator import Evaluator
 from genotype import Genotype
 from individual import Individual
-from sqlalchemy import select
-from sqlalchemy.orm import Session
-
 from revolve2.experimentation.database import OpenMethod, open_database_sqlite
 from revolve2.experimentation.logging import setup_logging
+from sqlalchemy import select
+from sqlalchemy.orm import Session
 
 
 def main() -> None:

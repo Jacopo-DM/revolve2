@@ -3,9 +3,8 @@
 import sqlalchemy.ext.orderinglist
 from base import Base
 from individual import Individual
-from sqlalchemy import orm
-
 from revolve2.experimentation.database import HasId
+from sqlalchemy import orm
 
 
 class Population(Base, HasId, kw_only=True):

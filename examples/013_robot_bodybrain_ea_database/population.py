@@ -2,7 +2,6 @@
 
 from base import Base
 from individual import Individual
-
 from revolve2.experimentation.optimization.ea import Population as GenericPopulation
 
 

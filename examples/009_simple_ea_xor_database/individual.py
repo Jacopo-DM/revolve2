@@ -3,9 +3,8 @@
 import sqlalchemy
 from base import Base
 from genotype import Genotype
-from sqlalchemy import orm
-
 from revolve2.experimentation.database import HasId
+from sqlalchemy import orm
 
 
 class Individual(Base, HasId, kw_only=True):

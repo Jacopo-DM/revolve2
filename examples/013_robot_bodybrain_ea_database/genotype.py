@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from base import Base
-
 from revolve2.ci_group.genotypes.cppnwin.modular_robot import BrainGenotypeCpgOrm
 from revolve2.ci_group.genotypes.cppnwin.modular_robot.v1 import BodyGenotypeOrmV1
 from revolve2.experimentation.database import HasId

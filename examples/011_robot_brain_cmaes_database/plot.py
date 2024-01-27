@@ -7,10 +7,9 @@ from experiment import Experiment
 from generation import Generation
 from individual import Individual
 from population import Population
-from sqlalchemy import select
-
 from revolve2.experimentation.database import OpenMethod, open_database_sqlite
 from revolve2.experimentation.logging import setup_logging
+from sqlalchemy import select
 
 
 def main() -> None:
