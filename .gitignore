@@ -139,5 +139,43 @@ dmypy.json
 cython_debug/
 /ci_group/revolve2/ci_group/morphological_novelty_metric/_calculate_novelty.c
 
+# ----------------------------------- Environment ----------------------------------- #
+**/.vscode
+
+# Mac 
+**/.DS_Store
+
+# Folders
+**/__*__
+**/revolve2
+**/j_lo
+
+# Files
+**/*.jpg
+**/*.png
+**/*.pdf
+**/*.sqlite
+
 # Local History
-**/.history
+**/**.history
+
+# Ruff linter
+**/**.ruff_cache
+
+# -------------------------------------- Python -------------------------------------- #
+**/__pycache__
+
+# MyPy
+**/.mypy_cache
+
+# ipython
+**/.ipynb_checkpoints
+
+# ------------------------------------- Project ------------------------------------- #
+
+# MuJoCo
+MUJOCO_LOG.TXT
+
+# MyPyC
+**/build
+**/*.so
