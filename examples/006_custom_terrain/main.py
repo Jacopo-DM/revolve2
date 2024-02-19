@@ -60,7 +60,7 @@ def make_custom_terrain() -> Terrain:
             ),
             GeometryBox(
                 pose=Pose(
-                    position=Vector3([-0.8 + 0.38, 0.3, 0.125]),
+                    position=Vector3([-0.8 + 0.38, 0.4, 0.125]),
                     orientation=Quaternion.from_eulers([0.0, math.pi / 4.0, 0.0]),
                 ),
                 mass=0.0,
@@ -98,7 +98,7 @@ def main() -> None:
     scene.add_robot(robot)
 
     # Simulate the scene.
-    simulator = LocalSimulator()
+    simulator = LocalSimulator(headless=False, start_paused=True)
     simulate_scenes(
         simulator=simulator,
         batch_parameters=make_standard_batch_parameters(),
