@@ -168,7 +168,7 @@ def main() -> None:
     scene.add_robot(robot)
 
     # Simulate the scene.
-    simulator = LocalSimulator()
+    simulator = LocalSimulator(headless=False, start_paused=True)
     simulate_scenes(
         simulator=simulator,
         batch_parameters=make_standard_batch_parameters(),
