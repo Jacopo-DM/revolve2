@@ -2,6 +2,7 @@
 
 import logging
 
+import numpy as np
 from revolve2.ci_group import modular_robots_v1, terrains
 from revolve2.ci_group.simulation_parameters import make_standard_batch_parameters
 from revolve2.experimentation.logging import setup_logging
@@ -59,10 +60,17 @@ class ANNBrainInstance(BrainInstance):
         ]
         logging.info(current_positions)
 
+        # Set the target angular positions of the active hinges
+        value = 0.01
+        first_half = np.full(len(sensors), value)
+        second_half = np.full(len(sensors), 1 - value)
+        states = np.concatenate((first_half, second_half))
+
         # Here you can implement your controller.
         # The current controller does nothing except for always settings the joint positions to 0.5.
-        for active_hinge, sensor in zip(self.active_hinges, sensors):
-            target = 0.5
+        # start_state = float(self._state[state_index]) * active_hinge.range
+        for idx, (active_hinge, _) in enumerate(zip(self.active_hinges, sensors)):
+            target = states[idx] * active_hinge.range
             control_interface.set_active_hinge_target(active_hinge, target)
 
 
@@ -120,7 +128,7 @@ def main() -> None:
     scene.add_robot(robot)
 
     # Simulate the scene.
-    simulator = LocalSimulator()
+    simulator = LocalSimulator(headless=False, start_paused=True)
     simulate_scenes(
         simulator=simulator,
         batch_parameters=make_standard_batch_parameters(),
