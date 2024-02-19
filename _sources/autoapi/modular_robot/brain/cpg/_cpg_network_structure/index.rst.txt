@@ -135,4 +135,15 @@ Classes
       :returns: The array of states.
 
 
+   .. py:method:: make_alternating_state(value: float) -> numpy.typing.NDArray[numpy.float_]
+
+      Make a state array with [x1, x1,..., 1-x, 1-x].
+
+      Will match the required number of states in this structure.
+      The number of states is guaranteed to be even.
+
+      :param value: The value to use for all states.
+      :returns: The array of states.
+
+
 

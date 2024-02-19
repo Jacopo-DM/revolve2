@@ -22,7 +22,7 @@ Classes
 .. py:class:: Terrain
 
 
-   Terrain consising of only static geometry.
+   Terrain consisting of only static geometry.
 
    .. py:attribute:: static_geometry
       :type: list[revolve2.simulation.scene.geometry.Geometry]

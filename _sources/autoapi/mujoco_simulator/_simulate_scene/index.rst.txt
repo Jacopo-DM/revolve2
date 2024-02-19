@@ -27,7 +27,7 @@ Functions
    :param scene: The scene to simulate.
    :param headless: If False, a viewer will be opened that allows a user to manually view and manually interact with the simulation.
    :param record_settings: If not None, recording will be done according to these settings.
-   :param start_paused: If true, the simulation will start in a paused state. Only makessense when headless is False.
+   :param start_paused: If true, the simulation will start in a paused state. Only makes sense when headless is False.
    :param control_step: The time between each call to the handle function of the scene handler. In seconds.
    :param sample_step: The time between each state sample of the simulation. In seconds.
    :param simulation_time: How long to simulate for. In seconds.
