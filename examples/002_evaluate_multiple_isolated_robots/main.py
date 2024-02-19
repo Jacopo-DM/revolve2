@@ -21,12 +21,9 @@ def main() -> None:
     rng = make_rng_time_seed()
 
     # Create the robots.
-    bodies = [
-        modular_robots_v1.gecko_v1(),
-        modular_robots_v1.ant_v1(),
-        modular_robots_v1.snake_v1(),
-        modular_robots_v1.spider_v1(),
-    ]
+    num = 100
+    bodies = [modular_robots_v1.gecko_v1() for _ in range(num)]
+
     brains = [BrainCpgNetworkNeighborRandom(body, rng) for body in bodies]
     robots = [ModularRobot(body, brain) for body, brain in zip(bodies, brains)]
 
@@ -44,7 +41,7 @@ def main() -> None:
     # A simulator can run multiple scene in parallel.
     # For the MuJoCo simulator, we can control this using the 'num_simulators' argument.
     # Increasing this number causes more simulations to run at the same time.
-    simulator = LocalSimulator(headless=True, num_simulators=4)
+    simulator = LocalSimulator(headless=True, num_simulators=16)
 
     # Simulate all scenes.
     scene_states = simulate_scenes(

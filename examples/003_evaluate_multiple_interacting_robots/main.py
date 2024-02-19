@@ -3,7 +3,6 @@
 import logging
 
 from pyrr import Vector3
-
 from revolve2.ci_group import fitness_functions, modular_robots_v1, terrains
 from revolve2.ci_group.simulation_parameters import make_standard_batch_parameters
 from revolve2.experimentation.logging import setup_logging
@@ -24,24 +23,24 @@ def main() -> None:
     rng = make_rng_time_seed()
 
     # Create the robots.
-    bodies = [
-        modular_robots_v1.gecko_v1(),
-        modular_robots_v1.ant_v1(),
-        modular_robots_v1.snake_v1(),
-        modular_robots_v1.spider_v1(),
-    ]
+    num = 25
+    bodies = [modular_robots_v1.gecko_v1() for _ in range(num)]
+
     brains = [BrainCpgNetworkNeighborRandom(body, rng) for body in bodies]
     robots = [ModularRobot(body, brain) for body, brain in zip(bodies, brains)]
 
     # Create the scene and put all robots in it.
     # We place the robots at separate locations in the terrain so they do not overlap at the start of the simulation.
     scene = ModularRobotScene(terrain=terrains.flat())
-    poses = [
-        Pose(Vector3([1.0, 0.0, 0.0])),
-        Pose(Vector3([-1.0, 0.0, 0.0])),
-        Pose(Vector3([0.0, 1.0, 0.0])),
-        Pose(Vector3([0.0, -1.0, 0.0])),
-    ]
+
+    poses = []
+    for i in range(num):
+        x = (((i % 2) * -2) + 1) * ((i // 4) + 1)
+        y = (((i % 2) * -2) + 1) * ((i // 4) + 1)
+        x = 0 if i % 4 > 1 else x
+        y = 0 if i % 4 <= 1 else y
+        poses.append(Pose(Vector3([x, y, 0.0])))
+
     for robot, pose in zip(robots, poses):
         scene.add_robot(robot, pose=pose)
 
