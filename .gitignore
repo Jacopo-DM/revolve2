@@ -150,6 +150,7 @@ cython_debug/
 **/__*__
 **/revolve2
 **/j_lo
+**/*.history
 
 # Files
 **/*.jpg
