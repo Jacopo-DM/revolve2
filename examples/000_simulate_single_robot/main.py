@@ -27,7 +27,7 @@ def make_body() -> BodyV1:
     body.core_v1.left.attachment = ActiveHingeV1(RightAngles.DEG_0)
     body.core_v1.left.attachment.attachment = BrickV1(RightAngles.DEG_0)
     body.core_v1.right = ActiveHingeV1(RightAngles.DEG_0)
-    body.core_v1.right.attachment = ActiveHingeV1(RightAngles.DEG_90)
+    body.core_v1.right.attachment = ActiveHingeV1(RightAngles.DEG_0)
     body.core_v1.right.attachment.attachment = BrickV1(RightAngles.DEG_0)
     return body
 
@@ -55,7 +55,7 @@ def main() -> None:
 
     # Create a simulator that will perform the simulation.
     # This tutorial chooses to use Mujoco, but your version of revolve might contain other simulators as well.
-    simulator = LocalSimulator()
+    simulator = LocalSimulator(headless=False, start_paused=True)
 
     # `batch_parameters` are important parameters for simulation.
     # Here, we use the parameters that are standard in CI Group.

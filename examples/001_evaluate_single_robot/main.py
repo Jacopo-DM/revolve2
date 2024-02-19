@@ -32,7 +32,7 @@ def main() -> None:
 
     # Create the simulator.
     # We set enable the headless flag, which will prevent visualization of the simulation, speeding it up.
-    simulator = LocalSimulator(headless=False)
+    simulator = LocalSimulator(headless=False, start_paused=True)
     batch_parameters = make_standard_batch_parameters()
 
     # Obtain the state of the simulation, measured at a predefined interval as defined in the batch parameters.
