@@ -81,10 +81,11 @@ def main() -> None:
 
 
 # Below is a very important idiom in python that you should understand as a programmer.
-# __name__ is only set to __main__ if it is directly ran as a script.
-# If the file is imported from another file the main function is not called.
-# If you do not perform this check the main function is ALWAYS called.
-# This leads to all kinds of unintended behaviour that is hard to debug.
-# See also various articles, such as https://stackoverflow.com/questions/419163/what-does-if-name-main-do
+#   __name__ is only set to __main__ if it is directly ran as a script.
+#   If the file is imported from another file the main function is not called.
+#   If you do not perform this check the main function is ALWAYS called.
+#   This leads to all kinds of unintended behaviour that is hard to debug.
+#   See also various articles, such as:
+#       https://stackoverflow.com/questions/419163/what-does-if-name-main-do
 if __name__ == "__main__":
     main()
