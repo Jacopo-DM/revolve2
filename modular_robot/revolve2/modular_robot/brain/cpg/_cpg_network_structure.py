@@ -1,3 +1,4 @@
+import math
 from dataclasses import dataclass
 
 import numpy as np
@@ -71,7 +72,7 @@ class CpgNetworkStructure:
         self,
         internal_connection_weights: dict[Cpg, float],
         external_connection_weights: dict[CpgPair, float],
-    ) -> npt.NDArray[np.float_]:
+    ) -> npt.NDArray[np.float64]:
         """
         Create a weight matrix from internal and external weights.
 
@@ -111,7 +112,7 @@ class CpgNetworkStructure:
 
     def make_connection_weights_matrix_from_params(
         self, params: list[float]
-    ) -> npt.NDArray[np.float_]:
+    ) -> npt.NDArray[np.float64]:
         """
         Create a connection weights matrix from a list if connections.
 
@@ -144,7 +145,7 @@ class CpgNetworkStructure:
         """
         return len(self.cpgs) * 2
 
-    def make_uniform_state(self, value: float) -> npt.NDArray[np.float_]:
+    def make_uniform_state(self, value: float) -> npt.NDArray[np.float64]:
         """
         Make a state array by repeating the same value.
 
@@ -155,7 +156,7 @@ class CpgNetworkStructure:
         """
         return np.full(self.num_states, value)
 
-    def make_alternating_state(self, value: float) -> npt.NDArray[np.float_]:
+    def make_alternating_state(self, value: float) -> npt.NDArray[np.float64]:
         """
         Make a state array with [x1, x1,..., 1-x, 1-x].
 
@@ -165,8 +166,9 @@ class CpgNetworkStructure:
         :param value: The value to use for all states.
         :returns: The array of states.
         """
+        max_val = 0.5 * math.sqrt(2)
         first_half = np.full(self.num_states // 2, value)
-        second_half = np.full(self.num_states // 2, 1 - value)
+        second_half = np.full(self.num_states // 2, max_val - value)
         return np.concatenate((first_half, second_half))
 
     @property
