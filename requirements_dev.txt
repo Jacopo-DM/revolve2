@@ -9,7 +9,9 @@
 -e simulation[dev]
 -r ./codetools/requirements.txt
 -r ./docs/requirements.txt
--r ./examples/009_simple_ea_xor_database/requirements.txt
--r ./examples/011_robot_brain_cmaes_database/requirements.txt
--r ./examples/013_robot_bodybrain_ea_database/requirements.txt
+-r ./examples/021_experiment_setup_aim/requirements.txt
+-r ./examples/031_simple_ea_xor_database/requirements.txt
+-r ./examples/040_robot_brain_cmaes/requirements.txt
+-r ./examples/041_robot_brain_cmaes_database/requirements.txt
+-r ./examples/051_robot_bodybrain_ea_database/requirements.txt
 -r ./tests/requirements.txt
