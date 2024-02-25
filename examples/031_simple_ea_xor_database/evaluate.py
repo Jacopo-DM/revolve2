@@ -5,8 +5,8 @@ import numpy.typing as npt
 
 
 def evaluate_network(
-    params: npt.NDArray[np.float_], inputs: npt.NDArray[np.float_]
-) -> np.float_:
+    params: npt.NDArray[np.float64], inputs: npt.NDArray[np.float64]
+) -> np.float64:
     """
     Pass two inputs through a fully connected relu network.
 
@@ -19,12 +19,12 @@ def evaluate_network(
     n1 = np.maximum(0, np.dot(params[3:5], inputs) + params[5])
 
     # Second layer
-    output: np.float_ = np.maximum(0, n0 * params[6] + n1 * params[7] + params[8])
+    output: np.float64 = np.maximum(0, n0 * params[6] + n1 * params[7] + params[8])
 
     return output
 
 
-def evaluate(parameters: npt.NDArray[np.float_]) -> float:
+def evaluate(parameters: npt.NDArray[np.float64]) -> float:
     """
     Measure one set of parameters.
 

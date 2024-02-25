@@ -55,8 +55,8 @@ class Evaluator:
 
     def evaluate(
         self,
-        solutions: list[npt.NDArray[np.float_]],
-    ) -> npt.NDArray[np.float_]:
+        solutions: list[npt.NDArray[np.float64]],
+    ) -> npt.NDArray[np.float64]:
         """
         Evaluate multiple robots.
 

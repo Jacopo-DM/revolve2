@@ -24,7 +24,7 @@ def select_parents(
     rng: np.random.Generator,
     population: Population,
     offspring_size: int,
-) -> npt.NDArray[np.float_]:
+) -> npt.NDArray[np.float64]:
     """
     Select pairs of parents using a tournament.
 
