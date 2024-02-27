@@ -2,13 +2,18 @@
 
 import logging
 
-from revolve2.ci_group import fitness_functions, modular_robots_v1, terrains
-from revolve2.ci_group.simulation_parameters import make_standard_batch_parameters
+from revolve2.ci_group import fitness_functions, modular_robots_v2, terrains
+from revolve2.ci_group.simulation_parameters import (
+    make_standard_batch_parameters,
+)
 from revolve2.experimentation.logging import setup_logging
 from revolve2.experimentation.rng import make_rng_time_seed
 from revolve2.modular_robot import ModularRobot
 from revolve2.modular_robot.brain.cpg import BrainCpgNetworkNeighborRandom
-from revolve2.modular_robot_simulation import ModularRobotScene, simulate_scenes
+from revolve2.modular_robot_simulation import (
+    ModularRobotScene,
+    simulate_scenes,
+)
 from revolve2.simulators.mujoco_simulator import LocalSimulator
 
 
@@ -22,7 +27,7 @@ def main() -> None:
 
     # Create the robots.
     num = 100
-    bodies = [modular_robots_v1.gecko_v1() for _ in range(num)]
+    bodies = [modular_robots_v2.gecko_v2() for _ in range(num)]
 
     brains = [BrainCpgNetworkNeighborRandom(body, rng) for body in bodies]
     robots = [ModularRobot(body, brain) for body, brain in zip(bodies, brains)]
@@ -41,6 +46,9 @@ def main() -> None:
     # A simulator can run multiple scene in parallel.
     # For the MuJoCo simulator, we can control this using the 'num_simulators' argument.
     # Increasing this number causes more simulations to run at the same time.
+    # simulator = LocalSimulator(
+    #     headless=False, num_simulators=1, start_paused=True
+    # )
     simulator = LocalSimulator(headless=True, num_simulators=16)
 
     # Simulate all scenes.

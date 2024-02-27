@@ -1,17 +1,22 @@
 """Main script for the example."""
 from revolve2.ci_group import terrains
-from revolve2.ci_group.simulation_parameters import make_standard_batch_parameters
+from revolve2.ci_group.simulation_parameters import (
+    make_standard_batch_parameters,
+)
 from revolve2.experimentation.logging import setup_logging
 from revolve2.experimentation.rng import make_rng_time_seed
 from revolve2.modular_robot import ModularRobot
 from revolve2.modular_robot.body import RightAngles
-from revolve2.modular_robot.body.v1 import ActiveHingeV1, BodyV1, BrickV1
+from revolve2.modular_robot.body.v2 import ActiveHingeV2, BodyV2, BrickV2
 from revolve2.modular_robot.brain.cpg import BrainCpgNetworkNeighborRandom
-from revolve2.modular_robot_simulation import ModularRobotScene, simulate_scenes
+from revolve2.modular_robot_simulation import (
+    ModularRobotScene,
+    simulate_scenes,
+)
 from revolve2.simulators.mujoco_simulator import LocalSimulator
 
 
-def make_body() -> BodyV1:
+def make_body() -> BrickV2:
     """
     Create a body for the robot.
 
@@ -22,13 +27,24 @@ def make_body() -> BodyV1:
     # From here, other modular can be attached.
     # Modules can be attached in a rotated fashion.
     # This can be any angle, although the original design takes into account only multiples of 90 degrees.
-    body = BodyV1()
-    body.core_v1.left = ActiveHingeV1(RightAngles.DEG_0)
-    body.core_v1.left.attachment = ActiveHingeV1(RightAngles.DEG_0)
-    body.core_v1.left.attachment.attachment = BrickV1(RightAngles.DEG_0)
-    body.core_v1.right = ActiveHingeV1(RightAngles.DEG_0)
-    body.core_v1.right.attachment = ActiveHingeV1(RightAngles.DEG_0)
-    body.core_v1.right.attachment.attachment = BrickV1(RightAngles.DEG_0)
+    body = BodyV2()
+
+    body.core_v2.left_face.bottom = ActiveHingeV2(RightAngles.DEG_90)
+    body.core_v2.left_face.bottom.attachment = ActiveHingeV2(
+        RightAngles.DEG_90
+    )
+    body.core_v2.left_face.bottom.attachment.attachment = BrickV2(
+        RightAngles.DEG_90
+    )
+
+    body.core_v2.right_face.bottom = ActiveHingeV2(RightAngles.DEG_90)
+    body.core_v2.right_face.bottom.attachment = ActiveHingeV2(
+        RightAngles.DEG_90
+    )
+    body.core_v2.right_face.bottom.attachment.attachment = BrickV2(
+        RightAngles.DEG_90
+    )
+
     return body
 
 
@@ -45,6 +61,7 @@ def main() -> None:
     # Create a brain for the robot.
     # We choose a 'CPG' brain with random parameters (the exact working will not be explained here).
     brain = BrainCpgNetworkNeighborRandom(body=body, rng=rng)
+
     # Combine the body and brain into a modular robot.
     robot = ModularRobot(body, brain)
 

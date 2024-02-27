@@ -2,13 +2,18 @@
 
 import logging
 
-from revolve2.ci_group import fitness_functions, modular_robots_v1, terrains
-from revolve2.ci_group.simulation_parameters import make_standard_batch_parameters
+from revolve2.ci_group import fitness_functions, modular_robots_v2, terrains
+from revolve2.ci_group.simulation_parameters import (
+    make_standard_batch_parameters,
+)
 from revolve2.experimentation.logging import setup_logging
 from revolve2.experimentation.rng import make_rng_time_seed
 from revolve2.modular_robot import ModularRobot
 from revolve2.modular_robot.brain.cpg import BrainCpgNetworkNeighborRandom
-from revolve2.modular_robot_simulation import ModularRobotScene, simulate_scenes
+from revolve2.modular_robot_simulation import (
+    ModularRobotScene,
+    simulate_scenes,
+)
 from revolve2.simulators.mujoco_simulator import LocalSimulator
 
 
@@ -21,7 +26,7 @@ def main() -> None:
     rng = make_rng_time_seed()
 
     # Create the robot.
-    body = modular_robots_v1.gecko_v1()
+    body = modular_robots_v2.gecko_v2()
 
     brain = BrainCpgNetworkNeighborRandom(body=body, rng=rng)
     robot = ModularRobot(body, brain)
