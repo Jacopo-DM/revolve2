@@ -20,14 +20,14 @@ class BrainCpgNetworkStatic(Brain):
     The first `num_output_neurons` in the state vector are the outputs for the controller created by this brain.
     """
 
-    _initial_state: npt.NDArray[np.float_]
-    _weight_matrix: npt.NDArray[np.float_]
+    _initial_state: npt.NDArray[np.float64]
+    _weight_matrix: npt.NDArray[np.float64]
     _output_mapping: list[tuple[int, ActiveHinge]]
 
     def __init__(
         self,
-        initial_state: npt.NDArray[np.float_],
-        weight_matrix: npt.NDArray[np.float_],
+        initial_state: npt.NDArray[np.float64],
+        weight_matrix: npt.NDArray[np.float64],
         output_mapping: list[tuple[int, ActiveHinge]],
     ) -> None:
         """
@@ -44,7 +44,7 @@ class BrainCpgNetworkStatic(Brain):
     @classmethod
     def uniform_from_params(
         cls,
-        params: npt.NDArray[np.float_],
+        params: npt.NDArray[np.float64],
         cpg_network_structure: CpgNetworkStructure,
         initial_state_uniform: float,
         output_mapping: list[tuple[int, ActiveHinge]],
@@ -58,7 +58,9 @@ class BrainCpgNetworkStatic(Brain):
         :param output_mapping: Marks neurons as controller outputs and map them to the correct active hinge.
         :returns: The created brain.
         """
-        initial_state = cpg_network_structure.make_uniform_state(initial_state_uniform)
+        initial_state = cpg_network_structure.make_uniform_state(
+            initial_state_uniform
+        )
         weight_matrix = (
             cpg_network_structure.make_connection_weights_matrix_from_params(
                 list(params)

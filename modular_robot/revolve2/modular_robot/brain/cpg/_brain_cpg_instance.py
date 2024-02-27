@@ -6,6 +6,8 @@ from ...body.base import ActiveHinge
 from ...sensor_state._modular_robot_sensor_state import ModularRobotSensorState
 from .._brain_instance import BrainInstance
 
+NP_ARRAY = npt.NDArray[np.float64]
+
 
 class BrainCpgInstance(BrainInstance):
     """
@@ -16,14 +18,15 @@ class BrainCpgInstance(BrainInstance):
     The outputs of the controller are defined by the `outputs`, a list of indices for the state array.
     """
 
-    _initial_state: npt.NDArray[np.float_]
-    _weight_matrix: npt.NDArray[np.float_]  # nxn matrix matching number of neurons
+    _initial_state: NP_ARRAY
+    _weight_matrix: NP_ARRAY
+    # nxn matrix matching number of neurons
     _output_mapping: list[tuple[int, ActiveHinge]]
 
     def __init__(
         self,
-        initial_state: npt.NDArray[np.float_],
-        weight_matrix: npt.NDArray[np.float_],
+        initial_state: NP_ARRAY,
+        weight_matrix: NP_ARRAY,
         output_mapping: list[tuple[int, ActiveHinge]],
     ) -> None:
         """
@@ -37,7 +40,9 @@ class BrainCpgInstance(BrainInstance):
         assert weight_matrix.ndim == 2
         assert weight_matrix.shape[0] == weight_matrix.shape[1]
         assert initial_state.shape[0] == weight_matrix.shape[0]
-        assert all(i >= 0 and i < len(initial_state) for i, _ in output_mapping)
+        assert all(
+            i >= 0 and i < len(initial_state) for i, _ in output_mapping
+        )
 
         self._state = initial_state
         self._weight_matrix = weight_matrix
@@ -45,13 +50,20 @@ class BrainCpgInstance(BrainInstance):
 
     @staticmethod
     def _rk45(
-        state: npt.NDArray[np.float_], A: npt.NDArray[np.float_], dt: float
-    ) -> npt.NDArray[np.float_]:
-        A1: npt.NDArray[np.float_] = np.matmul(A, state)
-        A2: npt.NDArray[np.float_] = np.matmul(A, (state + dt / 2 * A1))
-        A3: npt.NDArray[np.float_] = np.matmul(A, (state + dt / 2 * A2))
-        A4: npt.NDArray[np.float_] = np.matmul(A, (state + dt * A3))
-        return state + dt / 6 * (A1 + 2 * (A2 + A3) + A4)
+        state: NP_ARRAY,
+        a_mat: NP_ARRAY,
+        dt: float,
+    ) -> NP_ARRAY:
+        a_mat_1: NP_ARRAY = np.matmul(a_mat, state)
+        a_mat_2: NP_ARRAY = np.matmul(a_mat, (state + dt / 2 * a_mat_1))
+        a_mat_3: NP_ARRAY = np.matmul(a_mat, (state + dt / 2 * a_mat_2))
+        a_mat_4: NP_ARRAY = np.matmul(a_mat, (state + dt * a_mat_3))
+        return state + dt / 6 * (a_mat_1 + 2 * (a_mat_2 + a_mat_3) + a_mat_4)
+
+    @staticmethod
+    def _newtown_raphson(state: NP_ARRAY, A: NP_ARRAY, dt: float) -> NP_ARRAY:
+        delta = np.matmul(A, state) * dt
+        return state + delta, delta
 
     def control(
         self,
@@ -69,10 +81,15 @@ class BrainCpgInstance(BrainInstance):
         :param control_interface: Interface for controlling the robot.
         """
         # Integrate ODE to obtain new state.
-        self._state = self._rk45(self._state, self._weight_matrix, dt)
+        # self._state = self._rk45(self._state, self._weight_matrix, dt)
+        self._state, delta = self._newtown_raphson(
+            self._state, self._weight_matrix, dt
+        )
+        self._state = np.clip(self._state, -1, 1)
 
         # Set active hinge targets to match newly calculated state.
         for state_index, active_hinge in self._output_mapping:
             control_interface.set_active_hinge_target(
-                active_hinge, float(self._state[state_index]) * active_hinge.range
+                active_hinge,
+                float(delta[state_index]),
             )

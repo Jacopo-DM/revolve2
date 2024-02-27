@@ -156,7 +156,12 @@ class CpgNetworkStructure:
         :param value: The value to use for all states.
         :returns: The array of states.
         """
-        return np.full(self.num_states, value)
+        # The first half of the state array is positive, the second half is negative.
+        #   this makes the CPGs oscillate in opposite directions:
+        #   producing a more stable gait.
+        first_half = np.full(self.num_states // 2, value)
+        second_half = np.full(self.num_states // 2, -value)
+        return np.concatenate((first_half, second_half))
 
     @property
     def num_cpgs(self) -> int:
