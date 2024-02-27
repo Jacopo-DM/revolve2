@@ -53,6 +53,7 @@ def scene_to_model(
     env_mjcf.compiler.angle = "radian"
 
     env_mjcf.option.timestep = simulation_timestep
+
     # env_mjcf.option.integrator = "RK4"
     env_mjcf.option.integrator = "implicitfast"
 
@@ -68,7 +69,9 @@ def scene_to_model(
     env_mjcf.visual.headlight.active = 0
 
     conversions = [
-        multi_body_system_to_urdf(multi_body_system, f"mbs{multi_body_system_index}")
+        multi_body_system_to_urdf(
+            multi_body_system, f"mbs{multi_body_system_index}"
+        )
         for multi_body_system_index, multi_body_system in enumerate(
             scene.multi_body_systems
         )
@@ -107,7 +110,9 @@ def scene_to_model(
                 # to make sure the temp file is always deleted,
                 # an error catching is needed, in case the xml saving fails and crashes the program
                 try:
-                    mujoco.mj_saveLastXML(mjcf_file.name, multi_body_system_model)
+                    mujoco.mj_saveLastXML(
+                        mjcf_file.name, multi_body_system_model
+                    )
                     multi_body_system_mjcf = mjcf.from_file(
                         mjcf_file,
                     )
@@ -160,7 +165,9 @@ def scene_to_model(
             multi_body_system_mjcf.actuator.add(
                 "velocity",
                 kv=joint.pid_gain_d,
-                joint=multi_body_system_mjcf.find(namespace="joint", identifier=name),
+                joint=multi_body_system_mjcf.find(
+                    namespace="joint", identifier=name
+                ),
                 name=f"actuator_velocity_{name}",
             )
 
@@ -243,7 +250,9 @@ def scene_to_model(
                 ).rgba = geom.texture.primary_color.to_normalized_rgba_list()
             else:
                 m_name = f"geom_{name}"
-                __make_material(multi_body_system_mjcf, name=m_name, element=geom)
+                __make_material(
+                    multi_body_system_mjcf, name=m_name, element=geom
+                )
                 multi_body_system_mjcf.find(
                     "geom", name
                 ).material = f"{m_name}_material"
@@ -258,9 +267,9 @@ def scene_to_model(
     for heightmap in heightmaps:
         for x in range(len(heightmap.heights)):
             for y in range(len(heightmap.heights[0])):
-                model.hfield_data[y * len(heightmap.heights) + x] = heightmap.heights[
-                    x
-                ][y]
+                model.hfield_data[
+                    y * len(heightmap.heights) + x
+                ] = heightmap.heights[x][y]
         heightmap_offset += len(heightmap.heights) * len(heightmap.heights[0])
 
     # Create map from hinge joints to their corresponding indices in the ctrl and position array
@@ -277,20 +286,24 @@ def scene_to_model(
             )
 
     for mbs_i, multi_body_system in enumerate(scene.multi_body_systems):
-        mapping.multi_body_system[UUIDKey(multi_body_system)] = MultiBodySystemMujoco(
-            id=model.body(f"mbs{mbs_i}/").id
-        )
+        mapping.multi_body_system[
+            UUIDKey(multi_body_system)
+        ] = MultiBodySystemMujoco(id=model.body(f"mbs{mbs_i}/").id)
 
     return (model, mapping)
 
 
-def __make_material(env: mjcf.RootElement, name: str, element: Geometry) -> None:
+def __make_material(
+    env: mjcf.RootElement, name: str, element: Geometry
+) -> None:
     width, height = element.texture.size
     mat_kwargs = {}
 
     if element.texture.reference is not None:
         tex_kwargs = {
-            k: v for k, v in element.texture.reference.__dict__.items() if v is not None
+            k: v
+            for k, v in element.texture.reference.__dict__.items()
+            if v is not None
         }
         env.asset.add(
             "texture",

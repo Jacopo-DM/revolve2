@@ -1,7 +1,6 @@
 from typing import cast
 
 import multineat
-
 from revolve2.modular_robot.body.base import ActiveHinge, Body
 from revolve2.modular_robot.brain.cpg import (
     BrainCpgNetworkNeighbor as ModularRobotBrainCpgNetworkNeighbor,
@@ -52,7 +51,8 @@ class BrainCpgNetworkNeighborV1(ModularRobotBrainCpgNetworkNeighbor):
                 ],
             )
             for pos in [
-                body.grid_position(active_hinge) for active_hinge in active_hinges
+                body.grid_position(active_hinge)
+                for active_hinge in active_hinges
             ]
         ]
 
@@ -70,7 +70,10 @@ class BrainCpgNetworkNeighborV1(ModularRobotBrainCpgNetworkNeighbor):
                 ],
             )
             for (pos1, pos2) in [
-                (body.grid_position(active_hinge1), body.grid_position(active_hinge2))
+                (
+                    body.grid_position(active_hinge1),
+                    body.grid_position(active_hinge2),
+                )
                 for (active_hinge1, active_hinge2) in connections
             ]
         ]

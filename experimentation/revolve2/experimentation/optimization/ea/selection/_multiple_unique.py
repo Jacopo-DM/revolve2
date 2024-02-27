@@ -13,7 +13,7 @@ def multiple_unique(
     population: list[TIndividual],
     fitnesses: list[TFitness],
     selection_function: Callable[[list[TIndividual], list[TFitness]], int],
-) -> npt.NDArray[np.float_]:
+) -> npt.NDArray[np.float64]:
     """
     Select multiple distinct individuals from a population using the provided selection function.
 

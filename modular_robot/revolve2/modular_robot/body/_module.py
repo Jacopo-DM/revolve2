@@ -61,7 +61,9 @@ class Module:
         self._attachment_points = attachment_points
         self._children = {}
 
-        self._rotation = rotation if isinstance(rotation, float) else rotation.value
+        self._rotation = (
+            rotation if isinstance(rotation, float) else rotation.value
+        )
 
         self._parent = None
         self._parent_child_index = None
@@ -130,7 +132,9 @@ class Module:
         ), "Child module already connected to a different slot."
         module._parent = self
         module._parent_child_index = child_index
-        if self.is_free(child_index) and self.can_set_child(module, child_index):
+        if self.is_free(child_index) and self.can_set_child(
+            module, child_index
+        ):
             self._children[child_index] = module
         else:
             raise KeyError("Attachment point already populated")
@@ -161,6 +165,9 @@ class Module:
             (self, None)
         ]  # (module, came_from)
 
+        # WARN This is a very inefficient way of finding neighbours
+        #   with an adjacency list, you get the neighbours with a dot product
+        # [ ] implement adjacency list
         for _ in range(within_range):
             new_open_nodes: list[tuple[Module, Module | None]] = []
             for open_node, came_from in open_nodes:
@@ -176,7 +183,9 @@ class Module:
                     and (came_from is None or mod.uuid is not came_from.uuid)
                 ]
                 out_neighbours.extend(neighbours)
-                new_open_nodes += list(zip(neighbours, [open_node] * len(neighbours)))
+                new_open_nodes += list(
+                    zip(neighbours, [open_node] * len(neighbours))
+                )
             open_nodes = new_open_nodes
         return out_neighbours
 

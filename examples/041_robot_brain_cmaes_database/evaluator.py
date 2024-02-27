@@ -5,10 +5,15 @@ import math
 import numpy as np
 import numpy.typing as npt
 from revolve2.ci_group import fitness_functions, terrains
-from revolve2.ci_group.simulation_parameters import make_standard_batch_parameters
+from revolve2.ci_group.simulation_parameters import (
+    make_standard_batch_parameters,
+)
 from revolve2.modular_robot import ModularRobot
 from revolve2.modular_robot.body.base import ActiveHinge, Body
-from revolve2.modular_robot.brain.cpg import BrainCpgNetworkStatic, CpgNetworkStructure
+from revolve2.modular_robot.brain.cpg import (
+    BrainCpgNetworkStatic,
+    CpgNetworkStructure,
+)
 from revolve2.modular_robot_simulation import (
     ModularRobotScene,
     Terrain,
@@ -35,6 +40,7 @@ class Evaluator:
         cpg_network_structure: CpgNetworkStructure,
         body: Body,
         output_mapping: list[tuple[int, ActiveHinge]],
+        start_paused: bool = False,
     ) -> None:
         """
         Initialize this object.
@@ -46,7 +52,9 @@ class Evaluator:
         :param output_mapping: A mapping between active hinges and the index of their corresponding cpg in the cpg network structure.
         """
         self._simulator = LocalSimulator(
-            headless=headless, num_simulators=num_simulators
+            headless=headless,
+            num_simulators=num_simulators,
+            start_paused=start_paused,
         )
         self._terrain = terrains.flat()
         self._cpg_network_structure = cpg_network_structure

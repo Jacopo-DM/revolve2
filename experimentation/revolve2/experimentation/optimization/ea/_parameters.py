@@ -11,7 +11,7 @@ class Parameters(orm.MappedAsDataclass):
     The parameters are saved in the database as string of semicolon seperated floats.
     """
 
-    parameters: npt.NDArray[np.float_]
+    parameters: npt.NDArray[np.float64]
 
     _serialized_parameters: orm.Mapped[str] = orm.mapped_column(
         "serialized_parameters", init=False, nullable=False
@@ -29,7 +29,9 @@ def _update_serialized_parameters(
 
 
 @event.listens_for(Parameters, "load", propagate=True)
-def _deserialize_parameters(target: Parameters, context: orm.QueryContext) -> None:
+def _deserialize_parameters(
+    target: Parameters, context: orm.QueryContext
+) -> None:
     target.parameters = np.array(
         [float(p) for p in target._serialized_parameters.split(";")]
     )

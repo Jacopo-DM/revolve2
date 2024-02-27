@@ -9,7 +9,9 @@ TOther = TypeVar("TOther")
 
 
 def pareto_frontier(
-    frontier_values: list[list[TValues]], frontier_order: list[bool], to_take: int
+    frontier_values: list[list[TValues]],
+    frontier_order: list[bool],
+    to_take: int,
 ) -> list[int]:
     """
     Return individuals based on their respective frontier values and their domination order.
@@ -28,7 +30,9 @@ def pareto_frontier(
         np.array(frontier_values, dtype=np.float64).T, frontier_order
     )
 
-    all_values = np.array([domination_orders] + frontier_values, dtype=np.float64)
+    all_values = np.array(
+        [domination_orders] + frontier_values, dtype=np.float64
+    )
     frontier_order = [False] + frontier_order
     """Domination order is descending by default. The more individuals are dominated by a target, the better."""
 
@@ -42,7 +46,7 @@ def pareto_frontier(
 
 
 def _get_domination_orders(
-    value_array: NDArray[np.float_], frontier_order: list[bool]
+    value_array: NDArray[np.float64], frontier_order: list[bool]
 ) -> list[int]:
     """
     Find the pareto domination order for each point.

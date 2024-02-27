@@ -14,7 +14,7 @@ def steady_state(
     new_genotypes: list[Genotype],
     new_fitnesses: list[Fitness],
     selection_function: Callable[
-        [int, list[Genotype], list[Fitness]], npt.NDArray[np.float_]
+        [int, list[Genotype], list[Fitness]], npt.NDArray[np.float64]
     ],
 ) -> tuple[list[int], list[int]]:
     """
@@ -33,7 +33,9 @@ def steady_state(
     population_size = len(old_genotypes)
 
     selection = selection_function(
-        population_size, old_genotypes + new_genotypes, old_fitnesses + new_fitnesses
+        population_size,
+        old_genotypes + new_genotypes,
+        old_fitnesses + new_fitnesses,
     )
 
     selected_old = [s for s in selection if s < len(old_fitnesses)]

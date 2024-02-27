@@ -73,7 +73,9 @@ def crater(
         heightmap = np.zeros(num_edges)
         max_height = 1.0
     else:
-        heightmap = (ruggedness * rugged + curviness * bowl) / (ruggedness + curviness)
+        heightmap = (ruggedness * rugged + curviness * bowl) / (
+            ruggedness + curviness
+        )
 
     return Terrain(
         static_geometry=[
@@ -92,7 +94,7 @@ def rugged_heightmap(
     size: tuple[float, float],
     num_edges: tuple[int, int],
     density: float = 1.0,
-) -> npt.NDArray[np.float_]:
+) -> npt.NDArray[np.float64]:
     """
     Create a rugged terrain heightmap.
 
@@ -127,7 +129,7 @@ def rugged_heightmap(
 
 def bowl_heightmap(
     num_edges: tuple[int, int],
-) -> npt.NDArray[np.float_]:
+) -> npt.NDArray[np.float64]:
     r"""
     Create a terrain heightmap in the shape of a bowl.
 

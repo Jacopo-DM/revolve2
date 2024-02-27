@@ -37,12 +37,13 @@ def main() -> None:
     )
 
     # Initial parameter values for the brain.
-    initial_mean = cpg_network_structure.num_connections * [0.5]
+    initial_mean = [0] * cpg_network_structure.num_connections
 
     # We use the CMA-ES optimizer from the cma python package.
     # Initialize the cma optimizer.
     options = cma.CMAOptions()
     options.set("bounds", [-1.0, 1.0])
+
     # The cma package uses its own internal rng.
     # Instead of creating our own numpy rng, we use our seed to initialize cma.
     rng_seed = seed_from_time() % 2**32  # Cma seed must be smaller than 2**32.
@@ -54,7 +55,9 @@ def main() -> None:
     # Run cma for the defined number of generations.
     logging.info("Start optimization process.")
     while generation_index < config.NUM_GENERATIONS:
-        logging.info(f"Generation {generation_index + 1} / {config.NUM_GENERATIONS}.")
+        logging.info(
+            f"Generation {generation_index + 1} / {config.NUM_GENERATIONS}."
+        )
 
         # Get the sampled solutions(parameters) from cma.
         solutions = opt.ask()

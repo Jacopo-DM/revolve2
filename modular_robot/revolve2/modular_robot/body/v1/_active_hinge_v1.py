@@ -20,8 +20,10 @@ class ActiveHingeV1(ActiveHinge):
         super().__init__(
             rotation=rotation,
             range=1.047197551,  # 60 degrees
-            effort=0.948013269,  # motor specs: 9.4 kgfcm at 4.8V or 11 kgfcm at 6.0V -> at 5.0V: 9.6667 * 9.807 / 100
-            velocity=6.338968228,  # motor specs: 0.17  at 4.8V or 0.14 s/60deg at 6.0V -> at 5.0V: 1 / 0.1652 * 60 / 360 * 2pi
+            # motor specs: 9.4 kgfcm at 4.8V or 11 kgfcm at 6.0V -> at 5.0V: 9.6667 * 9.807 / 100
+            effort=0.948013269,
+            # motor specs: 0.17  at 4.8V or 0.14 s/60deg at 6.0V -> at 5.0V: 1 / 0.1652 * 60 / 360 * 2pi
+            velocity=6.338968228,
             frame_bounding_box=Vector3([0.018, 0.053, 0.0165891]),
             frame_offset=0.04525,
             servo1_bounding_box=Vector3([0.0583, 0.0512, 0.020]),

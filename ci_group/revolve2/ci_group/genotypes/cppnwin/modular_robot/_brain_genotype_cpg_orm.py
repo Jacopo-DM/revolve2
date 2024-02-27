@@ -1,17 +1,19 @@
 from __future__ import annotations
 
-import multineat
-import numpy as np
-from sqlalchemy import event, orm
-from sqlalchemy.engine import Connection
-from typing_extensions import Self
+from typing import TYPE_CHECKING, Self
 
-from revolve2.modular_robot.body.base import Body
+import multineat
+from sqlalchemy import event, orm
 
 from .._multineat_rng_from_random import multineat_rng_from_random
 from .._random_multineat_genotype import random_multineat_genotype
 from ._brain_cpg_network_neighbor_v1 import BrainCpgNetworkNeighborV1
 from ._multineat_params import get_multineat_params
+
+if TYPE_CHECKING:
+    import numpy as np
+    from revolve2.modular_robot.body.base import Body
+    from sqlalchemy.engine import Connection
 
 _MULTINEAT_PARAMS = get_multineat_params()
 
@@ -128,7 +130,9 @@ def _serialize_brain(
 
 
 @event.listens_for(BrainGenotypeCpgOrm, "load", propagate=True)
-def _deserialize_brain(target: BrainGenotypeCpgOrm, context: orm.QueryContext) -> None:
+def _deserialize_brain(
+    target: BrainGenotypeCpgOrm, context: orm.QueryContext
+) -> None:
     brain = multineat.Genome()
     brain.Deserialize(target._serialized_brain)
     target.brain = brain

@@ -148,8 +148,6 @@ cython_debug/
 
 # Folders
 **/__*__
-**/revolve2
-**/j_lo
 **/*.history
 
 # Files

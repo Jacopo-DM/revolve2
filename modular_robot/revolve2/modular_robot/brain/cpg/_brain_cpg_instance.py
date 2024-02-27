@@ -45,7 +45,8 @@ class BrainCpgInstance(BrainInstance):
         )
 
         # Stabilise the state by integrating it for a while.
-        for _ in range(250):
+        # TODO find a faster way to stabilise the state
+        for _ in range(200):
             initial_state, _ = self._newtown_raphson(
                 initial_state, weight_matrix, 0.05
             )

@@ -11,7 +11,10 @@ from evaluator import Evaluator
 from genotype import Genotype
 from individual import Individual
 from revolve2.experimentation.logging import setup_logging
-from revolve2.experimentation.optimization.ea import population_management, selection
+from revolve2.experimentation.optimization.ea import (
+    population_management,
+    selection,
+)
 from revolve2.experimentation.rng import make_rng_time_seed
 
 
@@ -57,12 +60,17 @@ def select_survivors(
     :returns: A newly created population.
     """
     # TODO clean up lambda functions for clarity and optimization
-    original_survivors, offspring_survivors = population_management.steady_state(
+    (
+        original_survivors,
+        offspring_survivors,
+    ) = population_management.steady_state(
         old_genotypes=[i.genotype for i in original_population],
         old_fitnesses=[i.fitness for i in original_population],
         new_genotypes=[i.genotype for i in offspring_population],
         new_fitnesses=[i.fitness for i in offspring_population],
-        selection_function=lambda n, genotypes, fitnesses: selection.multiple_unique(
+        selection_function=lambda n,
+        genotypes,
+        fitnesses: selection.multiple_unique(
             selection_size=n,
             population=genotypes,
             fitnesses=fitnesses,
@@ -140,7 +148,9 @@ def main() -> None:
     # Create a population of individuals, combining genotype with fitness.
     population = [
         Individual(genotype, fitness)
-        for genotype, fitness in zip(initial_genotypes, initial_fitnesses, strict=True)
+        for genotype, fitness in zip(
+            initial_genotypes, initial_fitnesses, strict=True
+        )
     ]
 
     # Save the best robot
@@ -152,7 +162,9 @@ def main() -> None:
     # Start the actual optimization process.
     logging.info("Start optimization process.")
     while generation_index < config.NUM_GENERATIONS:
-        logging.info(f"Generation {generation_index + 1} / {config.NUM_GENERATIONS}.")
+        logging.info(
+            f"Generation {generation_index + 1} / {config.NUM_GENERATIONS}."
+        )
 
         # Create offspring.
         parents = select_parents(rng, population, config.OFFSPRING_SIZE)
@@ -173,7 +185,9 @@ def main() -> None:
         # Make an intermediate offspring population.
         offspring_population = [
             Individual(genotype, fitness)
-            for genotype, fitness in zip(offspring_genotypes, offspring_fitnesses)
+            for genotype, fitness in zip(
+                offspring_genotypes, offspring_fitnesses
+            )
         ]
 
         # Create the next population by selecting survivors.
