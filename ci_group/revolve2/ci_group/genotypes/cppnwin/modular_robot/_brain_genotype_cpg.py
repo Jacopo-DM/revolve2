@@ -9,13 +9,13 @@ from .._multineat_genotype_pickle_wrapper import MultineatGenotypePickleWrapper
 from .._multineat_rng_from_random import multineat_rng_from_random
 from .._random_multineat_genotype import random_multineat_genotype
 from ._brain_cpg_network_neighbor_v1 import BrainCpgNetworkNeighborV1
-from ._multineat_params import get_multineat_params
+from ._multineat_params import ParametersClone
 
 if TYPE_CHECKING:
     import numpy as np
     from revolve2.modular_robot.body.base import Body
 
-_MULTINEAT_PARAMS = get_multineat_params()
+_MULTINEAT_PARAMS = ParametersClone()
 
 
 @dataclass
@@ -23,6 +23,8 @@ class BrainGenotypeCpg:
     """An SQLAlchemy model for a CPPNWIN cpg brain genotype."""
 
     _NUM_INITIAL_MUTATIONS = 5
+    _NUM_BRAIN_INPUTS = 7  # bias(always 1), x1, y1, z1, x2, y2, z2
+    _NUM_BRAIN_OUTPUTS = 1  # weight
 
     brain: MultineatGenotypePickleWrapper
 
@@ -47,8 +49,8 @@ class BrainGenotypeCpg:
                 rng=multineat_rng,
                 multineat_params=_MULTINEAT_PARAMS,
                 output_activation_func=multineat.ActivationFunction.SIGNED_SINE,
-                num_inputs=7,  # bias(always 1), x1, y1, z1, x2, y2, z2
-                num_outputs=1,  # weight
+                num_inputs=cls._NUM_BRAIN_INPUTS,
+                num_outputs=cls._NUM_BRAIN_OUTPUTS,
                 num_initial_mutations=cls._NUM_INITIAL_MUTATIONS,
             )
         )
@@ -119,4 +121,6 @@ class BrainGenotypeCpg:
         :param body: The body to develop the brain for.
         :returns: The created robot.
         """
-        return BrainCpgNetworkNeighborV1(genotype=self.brain.genotype, body=body)
+        return BrainCpgNetworkNeighborV1(
+            genotype=self.brain.genotype, body=body
+        )

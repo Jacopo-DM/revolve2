@@ -37,46 +37,60 @@ class BrainCpgNetworkNeighborV1(ModularRobotBrainCpgNetworkNeighbor):
         brain_net = multineat.NeuralNetwork()
         self._genotype.BuildPhenotype(brain_net)
 
-        internal_weights = [
-            self._evaluate_network(
-                brain_net,
-                [
-                    1.0,
-                    float(pos.x),
-                    float(pos.y),
-                    float(pos.z),
-                    float(pos.x),
-                    float(pos.y),
-                    float(pos.z),
-                ],
-            )
-            for pos in [
-                body.grid_position(active_hinge) for active_hinge in active_hinges
-            ]
+        # Create a list of grid positions for each active hinge
+        hinge_grid_positions = [
+            body.grid_position(active_hinge) for active_hinge in active_hinges
         ]
 
-        external_weights = [
-            self._evaluate_network(
-                brain_net,
-                [
-                    1.0,
-                    float(pos1.x),
-                    float(pos1.y),
-                    float(pos1.z),
-                    float(pos2.x),
-                    float(pos2.y),
-                    float(pos2.z),
-                ],
-            )
-            for (pos1, pos2) in [
-                (
-                    body.grid_position(active_hinge1),
-                    body.grid_position(active_hinge2),
-                )
-                for (active_hinge1, active_hinge2) in connections
+        # Initialize an empty list for the internal weights
+        internal_weights = []
+
+        # Iterate over each grid position
+        for pos in hinge_grid_positions:
+            # Create the input list for the network
+            network_input = [
+                1.0,
+                float(pos.x),
+                float(pos.y),
+                float(pos.z),
+                float(pos.x),
+                float(pos.y),
+                float(pos.z),
             ]
+            # Evaluate the network with the current input and append the result to the internal weights
+            internal_weights.append(
+                self._evaluate_network(brain_net, network_input)
+            )
+
+        # Create a list of tuples with the grid positions of each pair of connected hinges
+        hinge_positions = [
+            (
+                body.grid_position(active_hinge1),
+                body.grid_position(active_hinge2),
+            )
+            for (active_hinge1, active_hinge2) in connections
         ]
 
+        # Initialize an empty list for the external weights
+        external_weights = []
+
+        # Iterate over each pair of hinge positions
+        for pos1, pos2 in hinge_positions:
+            # Create the input list for the network
+            network_input = [
+                1.0,
+                float(pos1.x),
+                float(pos1.y),
+                float(pos1.z),
+                float(pos2.x),
+                float(pos2.y),
+                float(pos2.z),
+            ]
+
+            # Evaluate the network with the current input and append the result to the external weights
+            external_weights.append(
+                self._evaluate_network(brain_net, network_input)
+            )
         return (internal_weights, external_weights)
 
     @staticmethod

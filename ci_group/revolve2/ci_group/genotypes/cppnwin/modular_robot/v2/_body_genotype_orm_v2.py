@@ -7,7 +7,7 @@ from sqlalchemy import event, orm
 
 from ..._multineat_rng_from_random import multineat_rng_from_random
 from ..._random_multineat_genotype import random_multineat_genotype
-from .._multineat_params import get_multineat_params
+from .._multineat_params import ParametersClone
 from ._body_develop import develop
 
 if TYPE_CHECKING:
@@ -20,7 +20,9 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
     """SQLAlchemy model for a CPPNWIN body genotype."""
 
     _NUM_INITIAL_MUTATIONS = 5
-    _MULTINEAT_PARAMS = get_multineat_params()
+    _MULTINEAT_PARAMS = ParametersClone()
+    _NUM_BODY_INPUTS = 5  # bias(always 1), pos_x, pos_y, pos_z, chain_length
+    _NUM_BODY_OUTPUTS = 5  # empty, brick, activehinge, rot0, rot90
 
     body: multineat.Genome
 
@@ -47,9 +49,9 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
             innov_db=innov_db,
             rng=multineat_rng,
             multineat_params=cls._MULTINEAT_PARAMS,
-            output_activation_func=multineat.ActivationFunction.TANH,
-            num_inputs=5,  # bias(always 1), pos_x, pos_y, pos_z, chain_length
-            num_outputs=5,  # empty, brick, activehinge, rot0, rot90
+            output_activation_func=multineat.ActivationFunction.UNSIGNED_SIGMOID,
+            num_inputs=cls._NUM_BODY_INPUTS,
+            num_outputs=cls._NUM_BODY_OUTPUTS,
             num_initial_mutations=cls._NUM_INITIAL_MUTATIONS,
         )
 
@@ -128,7 +130,9 @@ def _update_serialized_body(
 
 
 @event.listens_for(BodyGenotypeOrmV2, "load", propagate=True)
-def _deserialize_body(target: BodyGenotypeOrmV2, context: orm.QueryContext) -> None:
+def _deserialize_body(
+    target: BodyGenotypeOrmV2, context: orm.QueryContext
+) -> None:
     body = multineat.Genome()
     body.Deserialize(target._serialized_body)
     target.body = body
