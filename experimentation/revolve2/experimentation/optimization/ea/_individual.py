@@ -1,10 +1,19 @@
-from typing import TYPE_CHECKING, Any, ClassVar, ForwardRef, Generic, TypeVar
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    ClassVar,
+    ForwardRef,
+    Generic,
+    Self,
+    TypeVar,
+)
 
 import sqlalchemy
 from sqlalchemy import orm
-from typing_extensions import Self
 
-from ..._util.init_subclass_get_generic_args import init_subclass_get_generic_args
+from ..._util.init_subclass_get_generic_args import (
+    init_subclass_get_generic_args,
+)
 from ...database import HasId
 
 TGenotype = TypeVar("TGenotype")

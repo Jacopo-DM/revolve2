@@ -21,7 +21,7 @@ def create(
     :param dtype: data-type.
     :return: The Vector.
     """
-    if isinstance(x, (list, np.ndarray)):
+    if isinstance(x, list | np.ndarray):
         raise ValueError("Function requires non-list arguments")
     return np.array([x, y], dtype=dtype)
 

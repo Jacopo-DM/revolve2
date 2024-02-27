@@ -1,17 +1,19 @@
 from __future__ import annotations
 
-import multineat
-import numpy as np
-from sqlalchemy import event, orm
-from sqlalchemy.engine import Connection
-from typing_extensions import Self
+from typing import TYPE_CHECKING, Self
 
-from revolve2.modular_robot.body.v2 import BodyV2
+import multineat
+from sqlalchemy import event, orm
 
 from ..._multineat_rng_from_random import multineat_rng_from_random
 from ..._random_multineat_genotype import random_multineat_genotype
 from .._multineat_params import get_multineat_params
 from ._body_develop import develop
+
+if TYPE_CHECKING:
+    import numpy as np
+    from revolve2.modular_robot.body.v2 import BodyV2
+    from sqlalchemy.engine import Connection
 
 
 class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
@@ -126,7 +128,9 @@ def _update_serialized_body(
 
 
 @event.listens_for(BodyGenotypeOrmV2, "load", propagate=True)
-def _deserialize_body(target: BodyGenotypeOrmV2, context: orm.QueryContext) -> None:
+def _deserialize_body(
+    target: BodyGenotypeOrmV2, context: orm.QueryContext
+) -> None:
     body = multineat.Genome()
     body.Deserialize(target._serialized_body)
     target.body = body

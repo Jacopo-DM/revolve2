@@ -1,4 +1,9 @@
-from revolve2.modular_robot.body.base import ActiveHinge, AttachmentFace, Brick, Core
+from revolve2.modular_robot.body.base import (
+    ActiveHinge,
+    AttachmentFace,
+    Brick,
+    Core,
+)
 
 from ._active_hinge_builder import ActiveHingeBuilder
 from ._attachment_face_builder import AttachmentFaceBuilder

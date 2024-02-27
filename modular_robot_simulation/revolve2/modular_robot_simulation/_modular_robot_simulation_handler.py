@@ -6,7 +6,9 @@ from revolve2.simulation.scene import (
 )
 
 from ._build_multi_body_systems import BodyToMultiBodySystemMapping
-from ._modular_robot_control_interface_impl import ModularRobotControlInterfaceImpl
+from ._modular_robot_control_interface_impl import (
+    ModularRobotControlInterfaceImpl,
+)
 from ._modular_robot_sensor_state_impl import ModularRobotSensorStateImpl
 
 

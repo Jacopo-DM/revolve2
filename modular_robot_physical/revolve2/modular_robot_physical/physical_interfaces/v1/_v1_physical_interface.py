@@ -44,7 +44,7 @@ class V1PhysicalInterface(PhysicalInterface):
             self._gpio = None
 
         if self._debug:
-            print(f"Using PWM frequency {self._PWM_FREQUENCY}Hz")
+            pass
 
     def set_servo_targets(self, pins: list[int], targets: list[float]) -> None:
         """
@@ -68,7 +68,7 @@ class V1PhysicalInterface(PhysicalInterface):
             for pin in self._PINS:
                 self._gpio.set_PWM_dutycycle(pin, self._CENTER)
                 if self._debug:
-                    print(f"setting {pin}..")
+                    pass
                 time.sleep(0.1)
 
     def disable(self) -> None:
@@ -78,7 +78,7 @@ class V1PhysicalInterface(PhysicalInterface):
         This disables all active modules and sensors.
         """
         if self._debug:
-            print("Turning off all pwm signals.")
+            pass
         if not self._dry:
             assert self._gpio is not None
 

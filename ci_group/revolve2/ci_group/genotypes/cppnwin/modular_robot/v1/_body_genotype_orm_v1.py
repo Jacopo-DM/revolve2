@@ -1,17 +1,19 @@
 from __future__ import annotations
 
-import multineat
-import numpy as np
-from sqlalchemy import event, orm
-from sqlalchemy.engine import Connection
-from typing_extensions import Self
+from typing import TYPE_CHECKING, Self
 
-from revolve2.modular_robot.body.v1 import BodyV1
+import multineat
+from sqlalchemy import event, orm
 
 from ..._multineat_rng_from_random import multineat_rng_from_random
 from ..._random_multineat_genotype import random_multineat_genotype
 from .._multineat_params import get_multineat_params
 from ._body_develop import develop
+
+if TYPE_CHECKING:
+    import numpy as np
+    from revolve2.modular_robot.body.v1 import BodyV1
+    from sqlalchemy.engine import Connection
 
 
 class BodyGenotypeOrmV1(orm.MappedAsDataclass, kw_only=True):

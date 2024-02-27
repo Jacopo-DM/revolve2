@@ -1,11 +1,10 @@
 import asyncio
 import time
 from collections.abc import Callable
+from typing import TYPE_CHECKING
 
 import capnp
-
 from revolve2.modular_robot.body.base import ActiveHinge
-from revolve2.modular_robot.sensor_state import ModularRobotSensorState
 
 from .._config import Config
 from .._hardware_type import HardwareType
@@ -13,9 +12,14 @@ from .._protocol_version import PROTOCOL_VERSION
 from .._standard_port import STANDARD_PORT
 from .._uuid_key import UUIDKey
 from ..robot_daemon_api import robot_daemon_protocol_capnp
-from ._modular_robot_control_interface_impl import ModularRobotControlInterfaceImpl
+from ._modular_robot_control_interface_impl import (
+    ModularRobotControlInterfaceImpl,
+)
 from ._modular_robot_sensor_state_impl_v1 import ModularRobotSensorStateImplV1
 from ._modular_robot_sensor_state_impl_v2 import ModularRobotSensorStateImplV2
+
+if TYPE_CHECKING:
+    from revolve2.modular_robot.sensor_state import ModularRobotSensorState
 
 
 def _active_hinge_targets_to_pin_controls(
@@ -104,23 +108,17 @@ async def _run_remote_impl(
                     )
                 )
             ).response
-            print(f"Battery level is at {sensor_readings.battery*100.0}%.")
 
     # Fire prepared callback
     on_prepared()
 
     if manual_mode:
-        print(
-            "Press Ctrl-C to exit. type a value between -1 and 1 to manually set the target for each active hinge."
-        )
         while True:
             try:
                 target = float(input())
             except ValueError:
-                print("Invalid target.")
                 continue
             if target < -1 or target > 1:
-                print("Invalid target.")
                 continue
             pin_controls = _active_hinge_targets_to_pin_controls(
                 config,
@@ -168,9 +166,6 @@ async def _run_remote_impl(
                 last_update_time = next_update_at
                 elapsed_time = control_period
             else:
-                print(
-                    f"WARNING: Loop is lagging {next_update_at - current_time} seconds behind the set update frequency. Is your control function too slow?"
-                )
                 elapsed_time = last_update_time - current_time
                 last_update_time = current_time
 
@@ -210,7 +205,6 @@ async def _run_remote_impl(
                     )
 
                     if battery_print_timer > 5.0:
-                        print(f"Battery level is at {sensor_readings.battery*100.0}%.")
                         battery_print_timer = 0.0
                 case _:
                     raise NotImplementedError("Hardware type not supported.")

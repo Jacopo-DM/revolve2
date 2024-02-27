@@ -1,12 +1,13 @@
 from itertools import product
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import numpy as np
 from numpy.typing import NDArray
-from pyrr import Vector3
-
 from revolve2.modular_robot.body import Module
 from revolve2.modular_robot.body.base import Body
+
+if TYPE_CHECKING:
+    from pyrr import Vector3
 
 
 def coords_from_bodies(

@@ -3,7 +3,9 @@ from collections.abc import Sequence
 
 from robohatlib.hal.assemblyboard.PwmPlug import PwmPlug
 from robohatlib.hal.assemblyboard.servo.ServoData import ServoData
-from robohatlib.hal.assemblyboard.ServoAssemblyConfig import ServoAssemblyConfig
+from robohatlib.hal.assemblyboard.ServoAssemblyConfig import (
+    ServoAssemblyConfig,
+)
 from robohatlib.Robohat import Robohat
 
 from .._physical_interface import PhysicalInterface
@@ -92,7 +94,7 @@ class V2PhysicalInterface(PhysicalInterface):
         """
         for pin, target in zip(pins, targets):
             if self._debug:
-                print(f"{pin:03d} | {target}")
+                pass
 
         if not self._dry:
             all_angles = [90.0] * 32
@@ -104,7 +106,7 @@ class V2PhysicalInterface(PhysicalInterface):
     def enable(self) -> None:
         """Start the robot."""
         if self._debug:
-            print("Waking up servos.")
+            pass
         if not self._dry:
             self._robohat.wakeup_servo()
 
@@ -115,7 +117,7 @@ class V2PhysicalInterface(PhysicalInterface):
         This disables all active modules and sensors.
         """
         if self._debug:
-            print("Putting servos to sleep.")
+            pass
         if not self._dry:
             self._robohat.put_servo_to_sleep()
 

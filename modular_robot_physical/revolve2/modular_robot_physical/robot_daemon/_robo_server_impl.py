@@ -50,7 +50,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
         self._active_pins = None
 
         if self._debug:
-            print("client connected")
+            pass
 
         self._physical_interface.enable()
 
@@ -129,10 +129,10 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
     def cleanup(self) -> None:
         """Stop the server and sets everything to low power."""
         if self._debug:
-            print("client disconnected.")
+            pass
 
         if self._debug:
-            print("stopping background thread.")
+            pass
         self._enabled = False
         self._update_loop_thread.join()
 
@@ -150,7 +150,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
         :returns: Whether the setup was successful.
         """
         if self._debug:
-            print("setup")
+            pass
 
         with self._lock:
             self._active_pins = list(args.activePins)
@@ -181,7 +181,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
         :param args: Args to the function.
         """
         if self._debug:
-            print("control")
+            pass
 
         self._queue_servo_targets(
             [pin_control.pin for pin_control in args.setPins],
@@ -202,7 +202,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
         :returns: The readings.
         """
         if self._debug:
-            print("read_sensors")
+            pass
 
         return self._get_sensor_readings(args.readPins)
 
@@ -220,7 +220,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
         :returns: The readings.
         """
         if self._debug:
-            print("control_and_read_sensors")
+            pass
 
         self._queue_servo_targets(
             [pin_control.pin for pin_control in args.setPins],

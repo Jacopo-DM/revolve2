@@ -18,8 +18,8 @@ try:
     ), "dm_control not adding logging handler as expected. Maybe they fixed their annoying behaviour? https://github.com/deepmind/dm_control/issues/314"
 
     logging.root.removeHandler(logging.root.handlers[-1])
-except Exception as e:
-    print("Failed to fix absl logging bug", e)
+except Exception:
+    pass
 from revolve2.simulation.scene import Scene, UUIDKey
 from revolve2.simulation.scene.conversion import multi_body_system_to_urdf
 from revolve2.simulation.scene.geometry import Geometry, GeometryHeightmap

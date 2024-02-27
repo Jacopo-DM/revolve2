@@ -47,7 +47,7 @@ class Vector2(BaseVector):  # type:ignore
         else:
             obj = np.zeros(cls._shape, dtype=dtype)
         obj = obj.view(cls)
-        return super(Vector2, cls).__new__(cls, obj)
+        return super().__new__(cls, obj)
 
     ########################
     # Operators
@@ -62,7 +62,7 @@ class Vector2(BaseVector):  # type:ignore
         :return: The added Vector2.
         """
         if type(other) in self.__NMB or type(other) in self.__VCT:
-            return Vector2(super(Vector2, self).__add__(other))
+            return Vector2(super().__add__(other))
         else:
             self._unsupported_type("add", other)
 
@@ -74,7 +74,7 @@ class Vector2(BaseVector):  # type:ignore
         :return: The subtracted Vector2.
         """
         if type(other) in self.__NMB or type(other) in self.__VCT:
-            return Vector2(super(Vector2, self).__sub__(other))
+            return Vector2(super().__sub__(other))
         else:
             self._unsupported_type("subtract", other)
 
@@ -86,7 +86,7 @@ class Vector2(BaseVector):  # type:ignore
         :return: the multiplied Vector2.
         """
         if type(other) in self.__NMB:
-            return Vector2(super(Vector2, self).__mul__(other))
+            return Vector2(super().__mul__(other))
         else:
             self._unsupported_type("multiply", other)
 
@@ -122,7 +122,7 @@ class Vector2(BaseVector):  # type:ignore
         :return: whether they are unequal.
         """
         if type(other) in self.__VCT:
-            return bool(np.any(super(Vector2, self).__ne__(other)))
+            return bool(np.any(super().__ne__(other)))
         else:
             self._unsupported_type("NE", other)
 
@@ -134,7 +134,7 @@ class Vector2(BaseVector):  # type:ignore
         :return: whether they are equal.
         """
         if type(other) in self.__VCT:
-            return bool(np.all(super(Vector2, self).__eq__(other)))
+            return bool(np.all(super().__eq__(other)))
         else:
             self._unsupported_type("EQ", other)
 

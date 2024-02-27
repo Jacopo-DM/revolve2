@@ -40,9 +40,7 @@ class _Program:
         """
         if self._has_client:
             if self._debug:
-                print(
-                    "Client connected, but still handling another client. Dropping new client.."
-                )
+                pass
             stream.close()
         else:
             self._has_client = True

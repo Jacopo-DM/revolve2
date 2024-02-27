@@ -1,8 +1,7 @@
-import math
 
 import mujoco
-from revolve2.simulation.scene import ControlInterface, JointHinge, UUIDKey
 import numpy as np
+from revolve2.simulation.scene import ControlInterface, JointHinge, UUIDKey
 
 from ._abstraction_to_mujoco_mapping import AbstractionToMujocoMapping
 

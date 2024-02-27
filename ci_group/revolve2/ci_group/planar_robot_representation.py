@@ -1,21 +1,21 @@
 """Draw 2D representations of Modular Robots. Based on Karine Miras` Method."""
 import os
 import time
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import cairo
 import numpy as np
 from numpy.typing import NDArray
-from pyrr import Vector3
-
 from revolve2.modular_robot import ModularRobot
 from revolve2.modular_robot.body import Module
 from revolve2.modular_robot.body.base import ActiveHinge, Body, Brick, Core
 
+if TYPE_CHECKING:
+    from pyrr import Vector3
+
 
 def __mk_path() -> str:
     path = f"planar_robot_representations_{time.time()}"
-    print(f"Saving images to: {path}")
     if not os.path.exists(path):
         os.mkdir(path)
     return path

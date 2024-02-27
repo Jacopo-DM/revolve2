@@ -1,7 +1,8 @@
 from collections.abc import Sequence
-from typing import TypeVar
+from typing import TYPE_CHECKING, TypeVar
 
-from ._supports_lt import SupportsLt
+if TYPE_CHECKING:
+    from ._supports_lt import SupportsLt
 
 Item = TypeVar("Item", bound="SupportsLt")
 

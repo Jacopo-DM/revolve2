@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from typing import TYPE_CHECKING
 
-from revolve2.modular_robot import ModularRobot
-from revolve2.modular_robot.body.base import ActiveHinge
+if TYPE_CHECKING:
+    from revolve2.modular_robot import ModularRobot
+    from revolve2.modular_robot.body.base import ActiveHinge
 
-from ._uuid_key import UUIDKey
+    from ._uuid_key import UUIDKey
 
 
 @dataclass

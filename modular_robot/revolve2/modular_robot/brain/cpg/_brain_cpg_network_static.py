@@ -1,13 +1,17 @@
 from __future__ import annotations
 
-import numpy as np
-import numpy.typing as npt
+from typing import TYPE_CHECKING
 
-from ...body.base import ActiveHinge
 from .._brain import Brain
-from .._brain_instance import BrainInstance
 from ._brain_cpg_instance import BrainCpgInstance
-from ._cpg_network_structure import CpgNetworkStructure
+
+if TYPE_CHECKING:
+    import numpy as np
+    import numpy.typing as npt
+
+    from ...body.base import ActiveHinge
+    from .._brain_instance import BrainInstance
+    from ._cpg_network_structure import CpgNetworkStructure
 
 
 class BrainCpgNetworkStatic(Brain):
