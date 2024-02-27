@@ -30,20 +30,12 @@ def make_body() -> BrickV2:
     body = BodyV2()
 
     body.core_v2.left_face.bottom = ActiveHingeV2(RightAngles.DEG_90)
-    body.core_v2.left_face.bottom.attachment = ActiveHingeV2(
-        RightAngles.DEG_90
-    )
-    body.core_v2.left_face.bottom.attachment.attachment = BrickV2(
-        RightAngles.DEG_90
-    )
+    body.core_v2.left_face.bottom.attachment = ActiveHingeV2(RightAngles.DEG_90)
+    body.core_v2.left_face.bottom.attachment.attachment = BrickV2(RightAngles.DEG_90)
 
     body.core_v2.right_face.bottom = ActiveHingeV2(RightAngles.DEG_90)
-    body.core_v2.right_face.bottom.attachment = ActiveHingeV2(
-        RightAngles.DEG_90
-    )
-    body.core_v2.right_face.bottom.attachment.attachment = BrickV2(
-        RightAngles.DEG_90
-    )
+    body.core_v2.right_face.bottom.attachment = ActiveHingeV2(RightAngles.DEG_90)
+    body.core_v2.right_face.bottom.attachment.attachment = BrickV2(RightAngles.DEG_90)
 
     return body
 

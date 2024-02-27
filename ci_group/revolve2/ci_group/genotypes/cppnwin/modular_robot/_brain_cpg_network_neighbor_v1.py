@@ -51,8 +51,7 @@ class BrainCpgNetworkNeighborV1(ModularRobotBrainCpgNetworkNeighbor):
                 ],
             )
             for pos in [
-                body.grid_position(active_hinge)
-                for active_hinge in active_hinges
+                body.grid_position(active_hinge) for active_hinge in active_hinges
             ]
         ]
 

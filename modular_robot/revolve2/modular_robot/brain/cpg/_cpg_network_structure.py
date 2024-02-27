@@ -123,9 +123,7 @@ class CpgNetworkStructure:
             f"got {len(params)} instead."
         )
 
-        internal_connection_weights = dict(
-            zip(self.cpgs, params[: self.num_cpgs])
-        )
+        internal_connection_weights = dict(zip(self.cpgs, params[: self.num_cpgs]))
 
         external_connection_weights = dict(
             zip(self.connections, params[self.num_cpgs :])

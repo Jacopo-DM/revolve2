@@ -64,13 +64,9 @@ def develop(
     while not to_explore.empty():
         module = to_explore.get()
 
-        for (
-            attachment_point_tuple
-        ) in module.module_reference.attachment_points.items():
+        for attachment_point_tuple in module.module_reference.attachment_points.items():
             if part_count < max_parts:
-                child = __add_child(
-                    body_net, module, attachment_point_tuple, grid
-                )
+                child = __add_child(body_net, module, attachment_point_tuple, grid)
                 if child is not None:
                     to_explore.put(child)
                     part_count += 1
@@ -128,12 +124,8 @@ def __add_child(
         return None
     grid[tuple(position)] += 1
 
-    new_pos = np.array(
-        np.round(position + attachment_point.offset), dtype=np.int64
-    )
-    child_type, child_rotation = __evaluate_cppn(
-        body_net, new_pos, chain_length
-    )
+    new_pos = np.array(np.round(position + attachment_point.offset), dtype=np.int64)
+    child_type, child_rotation = __evaluate_cppn(body_net, new_pos, chain_length)
     angle = child_rotation * (np.pi / 2.0)
     child = child_type(angle)
     if child_type is None or not module.module_reference.can_set_child(

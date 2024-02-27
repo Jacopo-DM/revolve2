@@ -28,9 +28,7 @@ def main() -> None:
     with Session(dbengine) as ses:
         row = ses.execute(
             select(Genotype, Individual.fitness)
-            .join_from(
-                Genotype, Individual, Genotype.id == Individual.genotype_id
-            )
+            .join_from(Genotype, Individual, Genotype.id == Individual.genotype_id)
             .order_by(Individual.fitness.desc())
             .limit(1)
         ).one()

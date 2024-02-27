@@ -29,9 +29,7 @@ def _update_serialized_parameters(
 
 
 @event.listens_for(Parameters, "load", propagate=True)
-def _deserialize_parameters(
-    target: Parameters, context: orm.QueryContext
-) -> None:
+def _deserialize_parameters(target: Parameters, context: orm.QueryContext) -> None:
     target.parameters = np.array(
         [float(p) for p in target._serialized_parameters.split(";")]
     )
