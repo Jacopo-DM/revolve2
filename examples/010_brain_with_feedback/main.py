@@ -3,14 +3,19 @@
 import logging
 
 import numpy as np
-from revolve2.ci_group import modular_robots_v1, terrains
-from revolve2.ci_group.simulation_parameters import make_standard_batch_parameters
+from revolve2.ci_group import modular_robots_v2, terrains
+from revolve2.ci_group.simulation_parameters import (
+    make_standard_batch_parameters,
+)
 from revolve2.experimentation.logging import setup_logging
 from revolve2.modular_robot import ModularRobot, ModularRobotControlInterface
 from revolve2.modular_robot.body.base import ActiveHinge, ActiveHingeSensor
 from revolve2.modular_robot.brain import Brain, BrainInstance
 from revolve2.modular_robot.sensor_state import ModularRobotSensorState
-from revolve2.modular_robot_simulation import ModularRobotScene, simulate_scenes
+from revolve2.modular_robot_simulation import (
+    ModularRobotScene,
+    simulate_scenes,
+)
 from revolve2.simulators.mujoco_simulator import LocalSimulator
 
 
@@ -60,6 +65,7 @@ class ANNBrainInstance(BrainInstance):
         ]
         logging.info(current_positions)
 
+        # TODO make more interesting
         # Set the target angular positions of the active hinges
         value = 0.01
         first_half = np.full(len(sensors), value)
@@ -69,7 +75,9 @@ class ANNBrainInstance(BrainInstance):
         # Here you can implement your controller.
         # The current controller does nothing except for always settings the joint positions to 0.5.
         # start_state = float(self._state[state_index]) * active_hinge.range
-        for idx, (active_hinge, _) in enumerate(zip(self.active_hinges, sensors)):
+        for idx, (active_hinge, _) in enumerate(
+            zip(self.active_hinges, sensors)
+        ):
             target = states[idx] * active_hinge.range
             control_interface.set_active_hinge_target(active_hinge, target)
 
@@ -107,7 +115,7 @@ def main() -> None:
     setup_logging()
 
     # Create a body for the robot.
-    body = modular_robots_v1.gecko_v1()
+    body = modular_robots_v2.gecko_v2()
 
     # Add sensors to each active hinge that measure the current angle of the hinge.
     active_hinges = body.find_modules_of_type(ActiveHinge)

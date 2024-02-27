@@ -3,8 +3,10 @@
 import math
 
 from pyrr import Quaternion, Vector3
-from revolve2.ci_group.modular_robots_v1 import gecko_v1
-from revolve2.ci_group.simulation_parameters import make_standard_batch_parameters
+from revolve2.ci_group.modular_robots_v2 import gecko_v2
+from revolve2.ci_group.simulation_parameters import (
+    make_standard_batch_parameters,
+)
 from revolve2.experimentation.logging import setup_logging
 from revolve2.experimentation.rng import make_rng_time_seed
 from revolve2.modular_robot import ModularRobot
@@ -18,7 +20,11 @@ from revolve2.simulation.scene import AABB, Color, Pose
 from revolve2.simulation.scene.geometry import GeometryBox, GeometryPlane
 from revolve2.simulation.scene.geometry.textures import MapType
 from revolve2.simulators.mujoco_simulator import LocalSimulator
-from revolve2.simulators.mujoco_simulator.textures import Checker, Flat, Gradient
+from revolve2.simulators.mujoco_simulator.textures import (
+    Checker,
+    Flat,
+    Gradient,
+)
 
 
 def make_custom_terrain() -> Terrain:
@@ -89,7 +95,7 @@ def main() -> None:
     rng = make_rng_time_seed()
 
     # Create a robot
-    body = gecko_v1()
+    body = gecko_v2()
     brain = BrainCpgNetworkNeighborRandom(body=body, rng=rng)
     robot = ModularRobot(body, brain)
 
