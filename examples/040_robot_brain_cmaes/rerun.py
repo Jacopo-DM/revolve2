@@ -13,15 +13,23 @@ from revolve2.modular_robot.brain.cpg import (
 # You can copy your own parameters from the optimization output log.
 PARAMS = np.array(
     [
-        0.28582455,
-        0.3037231,
-        -0.6800551,
-        0.04504218,
-        0.70664006,
-        -0.87443432,
-        -0.89959569,
-        0.97630598,
-        -0.99991301,
+        0.64095736,
+        0.73656541,
+        -0.73142523,
+        0.32122525,
+        0.99339834,
+        0.28400446,
+        -0.60034754,
+        0.68629471,
+        -0.4320507,
+        0.32869863,
+        0.79764717,
+        0.99172804,
+        0.63612167,
+        -0.96939572,
+        -0.71606361,
+        0.99628936,
+        0.57843282,
     ]
 )
 
@@ -47,6 +55,7 @@ def main() -> None:
         cpg_network_structure=cpg_network_structure,
         body=config.BODY,
         output_mapping=output_mapping,
+        start_paused=True,
     )
 
     # Show the robot.
