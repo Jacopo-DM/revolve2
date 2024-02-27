@@ -28,7 +28,7 @@ def develop(
     It is important that the genotype was created using a compatible function.
 
     :param genotype: The genotype to create the body from.
-    :returns: The create body.
+    :returns: The created body.
     """
     max_parts = 10
 
@@ -47,26 +47,30 @@ def develop(
     core_position = Vector3(
         [max_parts + 1, max_parts + 1, max_parts + 1], dtype=np.int_
     )
-    grid[tuple(core_position)] = 1
-    part_count = 1
 
     for attachment_face in v2_core.attachment_faces.values():
         to_explore.put(
             __Module(
                 core_position,
-                Vector3([0, -1, 0]),
-                Vector3([0, 0, 1]),
+                Vector3([0, -1, 0], dtype=np.int_),
+                Vector3([0, 0, 1], dtype=np.int_),
                 0,
                 attachment_face,
             )
         )
+    grid[tuple(core_position)] = 1
+    part_count = 1
 
     while not to_explore.empty():
         module = to_explore.get()
 
-        for attachment_point_tuple in module.module_reference.attachment_points.items():
+        for (
+            attachment_point_tuple
+        ) in module.module_reference.attachment_points.items():
             if part_count < max_parts:
-                child = __add_child(body_net, module, attachment_point_tuple, grid)
+                child = __add_child(
+                    body_net, module, attachment_point_tuple, grid
+                )
                 if child is not None:
                     to_explore.put(child)
                     part_count += 1
@@ -124,13 +128,21 @@ def __add_child(
         return None
     grid[tuple(position)] += 1
 
-    new_pos = np.array(np.round(position + attachment_point.offset), dtype=np.int64)
-    child_type, child_rotation = __evaluate_cppn(body_net, new_pos, chain_length)
+    new_pos = np.array(
+        np.round(position + attachment_point.offset), dtype=np.int64
+    )
+
+    child_type, child_rotation = __evaluate_cppn(
+        body_net, new_pos, chain_length
+    )
+
+    if child_type is None:
+        return None
+
     angle = child_rotation * (np.pi / 2.0)
     child = child_type(angle)
-    if child_type is None or not module.module_reference.can_set_child(
-        child, attachment_index
-    ):
+
+    if not module.module_reference.can_set_child(child, attachment_index):
         return None
 
     up = __rotate(module.up, forward, Quaternion.from_eulers([angle, 0, 0]))

@@ -37,21 +37,24 @@ def develop(
 
     to_explore: Queue[__Module] = Queue()
     grid = np.zeros(
-        shape=(max_parts * 2 + 1, max_parts * 2 + 1, max_parts * 2 + 1), dtype=np.uint8
+        shape=(max_parts * 2 + 1, max_parts * 2 + 1, max_parts * 2 + 1),
+        dtype=np.uint8,
     )
 
     body = BodyV1()
 
+    v1_core = body.core_v1
     core_position = Vector3(
         [max_parts + 1, max_parts + 1, max_parts + 1], dtype=np.int_
     )
+
     to_explore.put(
         __Module(
             core_position,
             Vector3([0, -1, 0], dtype=np.int_),
             Vector3([0, 0, 1], dtype=np.int_),
             0,
-            body.core,
+            v1_core,
         )
     )
     grid[tuple(core_position)] = 1
@@ -60,9 +63,13 @@ def develop(
     while not to_explore.empty():
         module = to_explore.get()
 
-        for attachment_point_tuple in module.module_reference.attachment_points.items():
+        for (
+            attachment_point_tuple
+        ) in module.module_reference.attachment_points.items():
             if part_count < max_parts:
-                child = __add_child(body_net, module, attachment_point_tuple, grid)
+                child = __add_child(
+                    body_net, module, attachment_point_tuple, grid
+                )
                 if child is not None:
                     to_explore.put(child)
                     part_count += 1
@@ -115,16 +122,22 @@ def __add_child(
     chain_length = module.chain_length + 1
 
     # if grid cell is occupied, don't make a child
+    # else, set cell as occupied
     if grid[tuple(position)] > 0:
         return None
     grid[tuple(position)] += 1
 
-    child_type, child_rotation = __evaluate_cppn(body_net, position, chain_length)
+    child_type, child_rotation = __evaluate_cppn(
+        body_net, position, chain_length
+    )
+
     if child_type is None:
         return None
+
     angle = child_rotation * (np.pi / 2.0)
-    up = __rotate(module.up, forward, Quaternion.from_eulers([angle, 0, 0]))
     child = child_type(angle)
+
+    up = __rotate(module.up, forward, Quaternion.from_eulers([angle, 0, 0]))
     module.module_reference.set_child(child, attachment_index)
 
     return __Module(
@@ -148,7 +161,9 @@ def __rotate(a: Vector3, b: Vector3, rotation: Quaternion) -> Vector3:
     cosangle: int = int(round(np.cos(rotation.angle)))
     sinangle: int = int(round(np.sin(rotation.angle)))
 
-    vec: Vector3 = a * cosangle + sinangle * b.cross(a) + (1 - cosangle) * b.dot(a) * b
+    vec: Vector3 = (
+        a * cosangle + sinangle * b.cross(a) + (1 - cosangle) * b.dot(a) * b
+    )
     return vec
 
 
