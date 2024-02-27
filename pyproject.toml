@@ -1,8 +1,24 @@
 [tool.ruff]
-extend-select = ["C4", "I", "SIM", "TCH", "UP", "N", "NPY", "PL", "RUF", "T20"]
-ignore = []
+lint.extend-select = [
+    "C4",
+    "I",
+    "SIM",
+    "TCH",
+    "UP",
+    "N",
+    "NPY",
+    "PL",
+    "RUF",
+    "T20",
+]
+lint.ignore = []
 show-fixes = true
 target-version = "py311"
+line-length = 79
+
+[tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = 79
 
 [tool.mypy]
 strict = true
