@@ -7,4 +7,4 @@ class OpenMethod(Enum):
     OPEN_IF_EXISTS = auto()
     OPEN_OR_CREATE = auto()
     NOT_EXISTS_AND_CREATE = auto()
-    OVERWITE_IF_EXISTS = auto()
+    OVERWRITE_IF_EXISTS = auto()

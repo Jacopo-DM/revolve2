@@ -36,7 +36,9 @@ def open_database_sqlite(
     return create_engine(f"sqlite:///{db_file}")
 
 
-def __common(db_file: str, open_method: OpenMethod = OpenMethod.OPEN_IF_EXISTS) -> None:
+def __common(
+    db_file: str, open_method: OpenMethod = OpenMethod.OPEN_IF_EXISTS
+) -> None:
     exists = os.path.exists(db_file)
     if open_method == OpenMethod.OPEN_IF_EXISTS:
         if not exists:
@@ -51,7 +53,7 @@ def __common(db_file: str, open_method: OpenMethod = OpenMethod.OPEN_IF_EXISTS) 
                 f"Open check set to NOT_EXISTS_AND_CREATE and database exists: {db_file}"
             )
         os.makedirs(Path(db_file).parent, exist_ok=True)
-    elif open_method == OpenMethod.OVERWITE_IF_EXISTS:
+    elif open_method == OpenMethod.OVERWRITE_IF_EXISTS:
         if exists:
             os.remove(db_file)
         else:

@@ -1,4 +1,5 @@
 import math
+import typing
 from typing import Generic, TypeVar
 
 import numpy as np
@@ -46,13 +47,17 @@ class Body:
             assert child is not None
             assert np.isclose(child.rotation % (math.pi / 2.0), 0.0)
 
-            position = Quaternion.from_eulers((child.rotation, 0.0, 0.0)) * position
+            position = (
+                Quaternion.from_eulers((child.rotation, 0.0, 0.0)) * position
+            )
             position += Vector3([1, 0, 0])
 
             attachment_point = parent.attachment_points.get(child_index)
 
             if attachment_point is None:
-                raise KeyError("No attachment point found at the specified location.")
+                raise KeyError(
+                    "No attachment point found at the specified location."
+                )
             position = attachment_point.orientation * position
             position = Vector3.round(position)
 
@@ -61,7 +66,9 @@ class Body:
         return position
 
     @classmethod
-    def __find_recur(cls, module: Module, module_type: type[TModule]) -> list[TModule]:
+    def __find_recur(
+        cls, module: Module, module_type: type[TModule]
+    ) -> list[TModule]:
         modules = []
         if isinstance(module, module_type):
             modules.append(module)
@@ -69,7 +76,9 @@ class Body:
             modules.extend(cls.__find_recur(child, module_type))
         return modules
 
-    def find_modules_of_type(self, module_type: type[TModule]) -> list[TModule]:
+    def find_modules_of_type(
+        self, module_type: type[TModule]
+    ) -> list[TModule]:
         """
         Find all Modules of a certain type in the robot.
 
@@ -102,13 +111,14 @@ class Body:
 
 
 class _GridMaker(Generic[TModuleNP]):
-    _x: list[int] = []
-    _y: list[int] = []
-    _z: list[int] = []
-    _modules: list[Module] = []
+    _x: typing.ClassVar[list[int]] = []
+    _y: typing.ClassVar[list[int]] = []
+    _z: typing.ClassVar[list[int]] = []
+    _modules: typing.ClassVar[list[Module]] = []
 
-    def make_grid(self, body: Body) -> tuple[NDArray[TModuleNP], Vector3[np.int_]]:
-
+    def make_grid(
+        self, body: Body
+    ) -> tuple[NDArray[TModuleNP], Vector3[np.int_]]:
         self._make_grid_recur(body._core, Vector3(), Quaternion())
 
         minx, maxx = min(self._x), max(self._x)
@@ -141,7 +151,9 @@ class _GridMaker(Generic[TModuleNP]):
                     * Quaternion.from_eulers([child.rotation, 0, 0])
                 )
                 self._make_grid_recur(
-                    child, position + rotation * Vector3([1.0, 0.0, 0.0]), rotation
+                    child,
+                    position + rotation * Vector3([1.0, 0.0, 0.0]),
+                    rotation,
                 )
 
     def _add(self, position: Vector3, module: Module) -> None:

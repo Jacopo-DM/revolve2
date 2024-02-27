@@ -16,7 +16,7 @@ from revolve2.modular_robot_simulation import (
 from revolve2.simulators.mujoco_simulator import LocalSimulator
 
 
-def make_body() -> BrickV2:
+def make_body() -> BodyV2:
     """
     Create a body for the robot.
 
@@ -28,14 +28,15 @@ def make_body() -> BrickV2:
     # Modules can be attached in a rotated fashion.
     # This can be any angle, although the original design takes into account only multiples of 90 degrees.
     body = BodyV2()
+    core = body.core_v2
 
-    body.core_v2.left_face.bottom = ActiveHingeV2(RightAngles.DEG_90)
-    body.core_v2.left_face.bottom.attachment = ActiveHingeV2(RightAngles.DEG_90)
-    body.core_v2.left_face.bottom.attachment.attachment = BrickV2(RightAngles.DEG_90)
+    core.left_face.bottom = ActiveHingeV2(RightAngles.DEG_0)
+    core.left_face.bottom.attachment = ActiveHingeV2(RightAngles.DEG_0)
+    core.left_face.bottom.attachment.attachment = BrickV2(RightAngles.DEG_0)
 
-    body.core_v2.right_face.bottom = ActiveHingeV2(RightAngles.DEG_90)
-    body.core_v2.right_face.bottom.attachment = ActiveHingeV2(RightAngles.DEG_90)
-    body.core_v2.right_face.bottom.attachment.attachment = BrickV2(RightAngles.DEG_90)
+    core.right_face.bottom = ActiveHingeV2(RightAngles.DEG_0)
+    core.right_face.bottom.attachment = ActiveHingeV2(RightAngles.DEG_0)
+    core.right_face.bottom.attachment.attachment = BrickV2(RightAngles.DEG_0)
 
     return body
 
