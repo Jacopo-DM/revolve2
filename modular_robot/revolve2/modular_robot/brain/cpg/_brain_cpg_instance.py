@@ -44,6 +44,13 @@ class BrainCpgInstance(BrainInstance):
             i >= 0 and i < len(initial_state) for i, _ in output_mapping
         )
 
+        # Stabilise the state by integrating it for a while.
+        for _ in range(250):
+            initial_state, _ = self._newtown_raphson(
+                initial_state, weight_matrix, 0.05
+            )
+            initial_state = np.clip(initial_state, -1, 1)
+
         self._state = initial_state
         self._weight_matrix = weight_matrix
         self._output_mapping = output_mapping
@@ -58,7 +65,8 @@ class BrainCpgInstance(BrainInstance):
         a_mat_2: NP_ARRAY = np.matmul(a_mat, (state + dt / 2 * a_mat_1))
         a_mat_3: NP_ARRAY = np.matmul(a_mat, (state + dt / 2 * a_mat_2))
         a_mat_4: NP_ARRAY = np.matmul(a_mat, (state + dt * a_mat_3))
-        return state + dt / 6 * (a_mat_1 + 2 * (a_mat_2 + a_mat_3) + a_mat_4)
+        delta = dt / 6 * (a_mat_1 + 2 * (a_mat_2 + a_mat_3) + a_mat_4)
+        return state + delta, delta
 
     @staticmethod
     def _newtown_raphson(state: NP_ARRAY, A: NP_ARRAY, dt: float) -> NP_ARRAY:
@@ -81,7 +89,7 @@ class BrainCpgInstance(BrainInstance):
         :param control_interface: Interface for controlling the robot.
         """
         # Integrate ODE to obtain new state.
-        # self._state = self._rk45(self._state, self._weight_matrix, dt)
+        # self._state, delta = self._rk45(self._state, self._weight_matrix, dt)
         self._state, delta = self._newtown_raphson(
             self._state, self._weight_matrix, dt
         )
