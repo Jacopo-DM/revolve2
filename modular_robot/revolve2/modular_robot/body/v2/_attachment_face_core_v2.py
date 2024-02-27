@@ -18,19 +18,22 @@ class AttachmentFaceCoreV2(AttachmentFace):
     """
     Check matrix allows us to determine which attachment points can be filled in the face.
     
-    check_matrix =  0   0   0
-                      C   C  
-                    0   0   0
-                      C   C  
-                    0   0   0
-     
+    check_matrix =  0       0       0
+                        C      C  
+                    0       0      0
+                        C      C  
+                    0      0       0
+                    
     By default the whole matrix is 0. Once we add a module at location x we adjust the C accordingly. 
     When adding a new module we want to have a C of 0 in the corresponding position, otherwise the attachment point cant be populated anymore.
     Applying a simple 2D convolution allows for fast conflict checks.
     """
 
     def __init__(
-        self, face_rotation: float, horizontal_offset: float, vertical_offset: float
+        self,
+        face_rotation: float,
+        horizontal_offset: float,
+        vertical_offset: float,
     ) -> None:
         """
         Initialize the attachment face for the V2 Core.
@@ -57,15 +60,31 @@ class AttachmentFaceCoreV2(AttachmentFace):
         """
         attachment_points = {}
         rot = Quaternion.from_eulers([0.0, 0.0, face_rotation])
-        for i in range(9):
-            h_o = (i % 3 - 1) * horizontal_offset
-            v_o = -(i // 3 - 1) * vertical_offset
 
-            offset = rot * Vector3([0.0, h_o, v_o])
+        # Expose only the bottom_middle attachment point
+        idx = 7
+        h_o = (idx % 3 - 1) * horizontal_offset
+        v_o = -(idx // 3 - 1) * vertical_offset
 
-            attachment_points[i] = AttachmentPoint(
-                orientation=rot, offset=self._child_offset + offset
-            )
+        offset = rot * Vector3([0.0, h_o, v_o])
+
+        attachment_points[idx] = AttachmentPoint(
+            orientation=rot, offset=self._child_offset + offset
+        )
+
+        # WARN we skip the top and middle attachment points
+        #   This is a temporary patch! Necessary to get decent results
+        #   A consequence of the error in
+        #       "cppnwin/modular_robot/v2/_body_develop.py"
+        # for i in range(9):
+        #     h_o = (i % 3 - 1) * horizontal_offset
+        #     v_o = -(i // 3 - 1) * vertical_offset
+
+        #     offset = rot * Vector3([0.0, h_o, v_o])
+
+        #     attachment_points[i] = AttachmentPoint(
+        #         orientation=rot, offset=self._child_offset + offset
+        #     )
         super().__init__(rotation=0.0, attachment_points=attachment_points)
 
     def can_set_child(

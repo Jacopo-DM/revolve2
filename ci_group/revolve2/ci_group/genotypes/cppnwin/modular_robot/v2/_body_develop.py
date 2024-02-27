@@ -63,10 +63,8 @@ def develop(
 
     while not to_explore.empty():
         module = to_explore.get()
-
-        for (
-            attachment_point_tuple
-        ) in module.module_reference.attachment_points.items():
+        attachment_dict = module.module_reference.attachment_points.items()
+        for attachment_point_tuple in attachment_dict:
             if part_count < max_parts:
                 child = __add_child(
                     body_net, module, attachment_point_tuple, grid
@@ -101,10 +99,12 @@ def __evaluate_cppn(
     # get module type from output probabilities
     type_probs = list(outputs[:3])
     types = [None, BrickV2, ActiveHingeV2]
+    # [ ] Try max?
     module_type = types[type_probs.index(min(type_probs))]
 
     # get rotation from output probabilities
     rotation_probs = list(outputs[3:5])
+    # [ ] Try max?
     rotation_index = rotation_probs.index(min(rotation_probs))
 
     return module_type, rotation_index
@@ -122,12 +122,6 @@ def __add_child(
     position = __vec3_int(module.position + forward)
     chain_length = module.chain_length + 1
 
-    # if grid cell is occupied, don't make a child
-    # else, set cell as occupied
-    if grid[tuple(position)] > 0:
-        return None
-    grid[tuple(position)] += 1
-
     new_pos = np.array(
         np.round(position + attachment_point.offset), dtype=np.int64
     )
@@ -135,6 +129,16 @@ def __add_child(
     child_type, child_rotation = __evaluate_cppn(
         body_net, new_pos, chain_length
     )
+
+    # if grid cell is occupied, don't make a child
+    # else, set cell as occupied
+    # ERROR this is MAJOR bug!
+    #   The core has 4 faces with 8 attachment points each,
+    #       however, all 8 share share the same "position + forward" !
+    #   This means that the core will always attach to the first position
+    #       when the cppn returns "not None" -> aka "top"
+    if grid[tuple(position)] > 0:
+        return None
 
     if child_type is None:
         return None
@@ -147,6 +151,7 @@ def __add_child(
 
     up = __rotate(module.up, forward, Quaternion.from_eulers([angle, 0, 0]))
     module.module_reference.set_child(child, attachment_index)
+    grid[tuple(position)] += 1
 
     return __Module(
         position,
