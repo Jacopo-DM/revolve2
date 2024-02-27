@@ -72,7 +72,9 @@ def run_experiment(dbengine: Engine) -> None:
     # Run cma for the defined number of generations.
     logging.info("Start optimization process.")
     while opt.countiter < config.NUM_GENERATIONS:
-        logging.info(f"Generation {opt.countiter + 1} / {config.NUM_GENERATIONS}.")
+        logging.info(
+            f"Generation {opt.countiter + 1} / {config.NUM_GENERATIONS}."
+        )
 
         # Get the sampled solutions(parameters) from cma.
         solutions = opt.ask()
@@ -111,7 +113,7 @@ def main() -> None:
 
     # Open the database, only if it does not already exists.
     dbengine = open_database_sqlite(
-        config.DATABASE_FILE, open_method=OpenMethod.NOT_EXISTS_AND_CREATE
+        config.DATABASE_FILE, open_method=OpenMethod.OVERWRITE_IF_EXISTS
     )
     # Create the structure of the database.
     Base.metadata.create_all(dbengine)
