@@ -24,9 +24,13 @@ class ModularRobotControlInterfaceImpl(ModularRobotControlInterface):
         :param body_to_multi_body_system_mapping: A mapping from body to multi-body system
         """
         self._simulation_control = simulation_control
-        self._body_to_multi_body_system_mapping = body_to_multi_body_system_mapping
+        self._body_to_multi_body_system_mapping = (
+            body_to_multi_body_system_mapping
+        )
 
-    def set_active_hinge_target(self, active_hinge: ActiveHinge, target: float) -> None:
+    def set_active_hinge_target(
+        self, active_hinge: ActiveHinge, target: float
+    ) -> None:
         """
         Set the position target for an active hinge.
 
@@ -37,5 +41,5 @@ class ModularRobotControlInterfaceImpl(ModularRobotControlInterface):
             self._body_to_multi_body_system_mapping.active_hinge_to_joint_hinge[
                 UUIDKey(active_hinge)
             ],
-            np.clip(target, a_min=-active_hinge.range, a_max=active_hinge.range),
+            target,
         )

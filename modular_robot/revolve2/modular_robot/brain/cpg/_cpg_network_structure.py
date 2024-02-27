@@ -124,7 +124,9 @@ class CpgNetworkStructure:
             f"got {len(params)} instead."
         )
 
-        internal_connection_weights = dict(zip(self.cpgs, params[: self.num_cpgs]))
+        internal_connection_weights = dict(
+            zip(self.cpgs, params[: self.num_cpgs])
+        )
 
         external_connection_weights = dict(
             zip(self.connections, params[self.num_cpgs :])
@@ -155,21 +157,6 @@ class CpgNetworkStructure:
         :returns: The array of states.
         """
         return np.full(self.num_states, value)
-
-    def make_alternating_state(self, value: float) -> npt.NDArray[np.float64]:
-        """
-        Make a state array with [x1, x1,..., 1-x, 1-x].
-
-        Will match the required number of states in this structure.
-        The number of states is guaranteed to be even.
-
-        :param value: The value to use for all states.
-        :returns: The array of states.
-        """
-        max_val = 0.5 * math.sqrt(2)
-        first_half = np.full(self.num_states // 2, value)
-        second_half = np.full(self.num_states // 2, max_val - value)
-        return np.concatenate((first_half, second_half))
 
     @property
     def num_cpgs(self) -> int:

@@ -20,8 +20,9 @@ class BrainCpgNetworkNeighbor(Brain):
     That means, NOT grid coordinates, but tree distance.
     """
 
-    _initial_state: npt.NDArray[np.float_]
-    _weight_matrix: npt.NDArray[np.float_]  # nxn matrix matching number of neurons
+    _initial_state: npt.NDArray[np.float64]
+    # nxn matrix matching number of neurons
+    _weight_matrix: npt.NDArray[np.float64]
     _output_mapping: list[tuple[int, ActiveHinge]]
 
     def __init__(self, body: Body) -> None:
@@ -45,11 +46,13 @@ class BrainCpgNetworkNeighbor(Brain):
         (internal_weights, external_weights) = self._make_weights(
             active_hinges, connections, body
         )
-        self._weight_matrix = cpg_network_structure.make_connection_weights_matrix(
-            dict(zip(cpg_network_structure.cpgs, internal_weights)),
-            dict(zip(cpg_network_structure.connections, external_weights)),
+        self._weight_matrix = (
+            cpg_network_structure.make_connection_weights_matrix(
+                dict(zip(cpg_network_structure.cpgs, internal_weights)),
+                dict(zip(cpg_network_structure.connections, external_weights)),
+            )
         )
-        self._initial_state = cpg_network_structure.make_alternating_state(0.01)
+        self._initial_state = cpg_network_structure.make_uniform_state(1)
 
     def make_instance(self) -> BrainInstance:
         """
