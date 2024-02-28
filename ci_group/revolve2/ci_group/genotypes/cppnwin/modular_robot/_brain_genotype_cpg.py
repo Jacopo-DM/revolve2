@@ -9,22 +9,23 @@ from .._multineat_genotype_pickle_wrapper import MultineatGenotypePickleWrapper
 from .._multineat_rng_from_random import multineat_rng_from_random
 from .._random_multineat_genotype import random_multineat_genotype
 from ._brain_cpg_network_neighbor_v1 import BrainCpgNetworkNeighborV1
-from ._multineat_params import ParametersClone
+from ._multineat_params import DefaultGenome
 
 if TYPE_CHECKING:
     import numpy as np
     from revolve2.modular_robot.body.base import Body
 
-_MULTINEAT_PARAMS = ParametersClone()
+MULTINEAT_PARAMS = DefaultGenome()
+OUTPUT_ACT_F = multineat.ActivationFunction.TANH
+SEARCH_MODE = multineat.SearchMode.COMPLEXIFYING
+NUM_INITIAL_MUTATIONS = 5
+NUM_BRAIN_INPUTS = 7  # bias(always 1), x1, y1, z1, x2, y2, z2
+NUM_BRAIN_OUTPUTS = 1  # weight
 
 
 @dataclass
 class BrainGenotypeCpg:
     """An SQLAlchemy model for a CPPNWIN cpg brain genotype."""
-
-    _NUM_INITIAL_MUTATIONS = 5
-    _NUM_BRAIN_INPUTS = 7  # bias(always 1), x1, y1, z1, x2, y2, z2
-    _NUM_BRAIN_OUTPUTS = 1  # weight
 
     brain: MultineatGenotypePickleWrapper
 
@@ -47,11 +48,11 @@ class BrainGenotypeCpg:
             random_multineat_genotype(
                 innov_db=innov_db,
                 rng=multineat_rng,
-                multineat_params=_MULTINEAT_PARAMS,
-                output_activation_func=multineat.ActivationFunction.SIGNED_SINE,
-                num_inputs=cls._NUM_BRAIN_INPUTS,
-                num_outputs=cls._NUM_BRAIN_OUTPUTS,
-                num_initial_mutations=cls._NUM_INITIAL_MUTATIONS,
+                multineat_params=MULTINEAT_PARAMS,
+                output_activation_func=OUTPUT_ACT_F,
+                num_inputs=NUM_BRAIN_INPUTS,
+                num_outputs=NUM_BRAIN_OUTPUTS,
+                num_initial_mutations=NUM_INITIAL_MUTATIONS,
             )
         )
 
@@ -77,9 +78,9 @@ class BrainGenotypeCpg:
             MultineatGenotypePickleWrapper(
                 self.brain.genotype.MutateWithConstraints(
                     False,
-                    multineat.SearchMode.BLENDED,
+                    SEARCH_MODE,
                     innov_db,
-                    _MULTINEAT_PARAMS,
+                    MULTINEAT_PARAMS,
                     multineat_rng,
                 )
             )
@@ -109,7 +110,7 @@ class BrainGenotypeCpg:
                     False,
                     False,
                     multineat_rng,
-                    _MULTINEAT_PARAMS,
+                    MULTINEAT_PARAMS,
                 )
             )
         )

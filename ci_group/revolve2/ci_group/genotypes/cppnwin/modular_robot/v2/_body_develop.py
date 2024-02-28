@@ -9,6 +9,9 @@ from pyrr import Quaternion, Vector3
 from revolve2.modular_robot.body import AttachmentPoint, Module
 from revolve2.modular_robot.body.v2 import ActiveHingeV2, BodyV2, BrickV2
 
+MAX_PARTS = 20
+GRID_SIZE = MAX_PARTS * 2 + 1
+
 
 @dataclass
 class __Module:
@@ -30,14 +33,13 @@ def develop(
     :param genotype: The genotype to create the body from.
     :returns: The created body.
     """
-    max_parts = 10
 
     body_net = multineat.NeuralNetwork()
     genotype.BuildPhenotype(body_net)
 
     to_explore: Queue[__Module] = Queue()
     grid = np.zeros(
-        shape=(max_parts * 2 + 1, max_parts * 2 + 1, max_parts * 2 + 1),
+        shape=(GRID_SIZE, GRID_SIZE, GRID_SIZE),
         dtype=np.uint8,
     )
 
@@ -45,7 +47,7 @@ def develop(
 
     v2_core = body.core_v2
     core_position = Vector3(
-        [max_parts + 1, max_parts + 1, max_parts + 1], dtype=np.int_
+        [MAX_PARTS + 1, MAX_PARTS + 1, MAX_PARTS + 1], dtype=np.int_
     )
 
     for attachment_face in v2_core.attachment_faces.values():
@@ -65,7 +67,7 @@ def develop(
         module = to_explore.get()
         attachment_dict = module.module_reference.attachment_points.items()
         for attachment_point_tuple in attachment_dict:
-            if part_count < max_parts:
+            if part_count < MAX_PARTS:
                 child = __add_child(
                     body_net, module, attachment_point_tuple, grid
                 )
@@ -73,6 +75,17 @@ def develop(
                     to_explore.put(child)
                     part_count += 1
     return body
+
+
+def softmax(x: np.ndarray) -> np.ndarray:
+    """
+    Compute softmax values for each sets of scores in x.
+
+    :param x: The input array.
+    :returns: The softmax array.
+    """
+    e_x = np.exp(x - np.max(x))
+    return e_x / e_x.sum(axis=0)
 
 
 def __evaluate_cppn(
@@ -89,24 +102,40 @@ def __evaluate_cppn(
     :returns: (module type, rotation_index)
     """
     x, y, z = position
+
     assert isinstance(
         x, np.int_
     ), f"Error: The position is not of type int. Type: {type(x)}."
-    body_net.Input([1.0, x, y, z, chain_length])  # 1.0 is the bias input
+
+    # normalize position by grid size
+    x /= GRID_SIZE
+    y /= GRID_SIZE
+    z /= GRID_SIZE
+    chain_length /= MAX_PARTS
+
+    # 1.0 is the bias input
+    body_net.Input([1.0, x, y, z, chain_length])
     body_net.ActivateAllLayers()
     outputs = body_net.Output()
 
-    # get module type from output probabilities
-    type_probs = list(outputs[:3])
-    types = [None, BrickV2, ActiveHingeV2]
-    # [ ] Try max?
-    module_type = types[type_probs.index(min(type_probs))]
+    # ========= Set up ========= #
+    rng = np.random.default_rng()
+    types = {0: None, 1: BrickV2, 2: ActiveHingeV2}
+    idxs_1 = list(types.keys())
+    idxs_2 = [3, 4]
 
-    # get rotation from output probabilities
-    rotation_probs = list(outputs[3:5])
-    # [ ] Try max?
-    rotation_index = rotation_probs.index(min(rotation_probs))
+    # ========= get module type from output probabilities ========= #
+    type_probs = softmax(np.array(outputs)[idxs_1])
+    # idx = rng.choice(idxs_1, p=type_probs)
+    idx = np.argmax(type_probs)
+    # [ ] Argmin ?
+    module_type = types[idx]
 
+    # ========= get rotation from output probabilities ========= #
+    rotation_probs = softmax(np.array(outputs)[idxs_2])
+    # rotation_index = rng.choice(idxs_2, p=rotation_probs)
+    # [ ] Argmin ?
+    rotation_index = np.argmax(rotation_probs)
     return module_type, rotation_index
 
 

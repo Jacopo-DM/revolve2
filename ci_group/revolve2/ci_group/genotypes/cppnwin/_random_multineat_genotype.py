@@ -1,4 +1,8 @@
 import multineat
+from .modular_robot._multineat_params import DefaultGenome
+
+HIDDEN_ACT_F = multineat.ActivationFunction.TANH
+SEARCH_MODE = multineat.SearchMode.COMPLEXIFYING
 
 
 def random_multineat_genotype(
@@ -32,7 +36,7 @@ def random_multineat_genotype(
         num_outputs,
         False,  # FS_NEAT
         output_activation_func,  # output activation type
-        multineat.ActivationFunction.TANH,  # hidden activation type
+        HIDDEN_ACT_F,  # hidden activation type
         0,  # seed_type
         multineat_params,
         0,  # number of hidden layers
@@ -41,7 +45,7 @@ def random_multineat_genotype(
     for _ in range(num_initial_mutations):
         genotype = genotype.MutateWithConstraints(
             False,
-            multineat.SearchMode.BLENDED,
+            SEARCH_MODE,
             innov_db,
             multineat_params,
             rng,
