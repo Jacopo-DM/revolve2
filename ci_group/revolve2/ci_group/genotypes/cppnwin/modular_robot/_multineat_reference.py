@@ -1,5 +1,9 @@
 from multineat._multineat import Parameters as multiNEATParamType
 
+# Tasks for this file:
+#   [ ] Check how values compares to default
+#   [ ] Add missing values if any
+
 
 class DefaultGenome:
     def get_multineat_params(self) -> multiNEATParamType:

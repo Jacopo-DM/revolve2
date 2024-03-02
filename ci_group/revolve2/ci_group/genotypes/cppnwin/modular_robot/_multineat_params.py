@@ -42,7 +42,6 @@ class CollectionOfDefaultValues:
         "MutateWeightsProb": 0.90,
         "WeightMutationMaxPower": 1.0,
         "WeightReplacementMaxPower": 5.0,
-        "MutateWeightsSevereProb": 0.5,
         "WeightMutationRate": 0.75,
         "MaxWeight": 20,
         "MutateAddNeuronProb": 0.01,
