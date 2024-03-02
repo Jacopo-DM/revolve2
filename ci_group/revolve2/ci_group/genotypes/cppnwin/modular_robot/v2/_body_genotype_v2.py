@@ -10,16 +10,16 @@ from ..._multineat_genotype_pickle_wrapper import (
 )
 from ..._multineat_rng_from_random import multineat_rng_from_random
 from ..._random_multineat_genotype import random_multineat_genotype
-from .._multineat_params import DefaultGenome
+from .._multineat_params import get_multineat_params
 from ._body_develop import develop
 
 if TYPE_CHECKING:
     import numpy as np
     from revolve2.modular_robot.body.v2 import BodyV2
 
-MULTINEAT_PARAMS = DefaultGenome()
-OUTPUT_ACT_F = multineat.ActivationFunction.UNSIGNED_SINE
-SEARCH_MODE = multineat.SearchMode.COMPLEXIFYING
+MULTINEAT_PARAMS = get_multineat_params()
+OUTPUT_ACT_F = multineat.ActivationFunction.TANH
+SEARCH_MODE = multineat.SearchMode.BLENDED
 NUM_INITIAL_MUTATIONS = 5
 NUM_BODY_INPUTS = 5  # bias(always 1), pos_x, pos_y, pos_z, chain_length
 NUM_BODY_OUTPUTS = 5  # empty, brick, activehinge, rot0, rot90
@@ -55,6 +55,7 @@ class BodyGenotypeV2:
                 num_inputs=NUM_BODY_INPUTS,
                 num_outputs=NUM_BODY_OUTPUTS,
                 num_initial_mutations=NUM_INITIAL_MUTATIONS,
+                search_mode=SEARCH_MODE,
             )
         )
 

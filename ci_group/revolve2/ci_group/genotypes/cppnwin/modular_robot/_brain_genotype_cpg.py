@@ -9,15 +9,15 @@ from .._multineat_genotype_pickle_wrapper import MultineatGenotypePickleWrapper
 from .._multineat_rng_from_random import multineat_rng_from_random
 from .._random_multineat_genotype import random_multineat_genotype
 from ._brain_cpg_network_neighbor_v1 import BrainCpgNetworkNeighborV1
-from ._multineat_params import DefaultGenome
+from ._multineat_params import get_multineat_params
 
 if TYPE_CHECKING:
     import numpy as np
     from revolve2.modular_robot.body.base import Body
 
-MULTINEAT_PARAMS = DefaultGenome()
+MULTINEAT_PARAMS = get_multineat_params()
 OUTPUT_ACT_F = multineat.ActivationFunction.TANH
-SEARCH_MODE = multineat.SearchMode.COMPLEXIFYING
+SEARCH_MODE = multineat.SearchMode.BLENDED
 NUM_INITIAL_MUTATIONS = 5
 NUM_BRAIN_INPUTS = 7  # bias(always 1), x1, y1, z1, x2, y2, z2
 NUM_BRAIN_OUTPUTS = 1  # weight
@@ -53,6 +53,7 @@ class BrainGenotypeCpg:
                 num_inputs=NUM_BRAIN_INPUTS,
                 num_outputs=NUM_BRAIN_OUTPUTS,
                 num_initial_mutations=NUM_INITIAL_MUTATIONS,
+                search_mode=SEARCH_MODE,
             )
         )
 

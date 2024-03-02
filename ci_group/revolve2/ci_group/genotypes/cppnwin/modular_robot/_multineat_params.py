@@ -1,321 +1,132 @@
+import faulthandler
 import sys
+from dataclasses import dataclass
+from typing import ClassVar
 
 import multineat
-from multineat._multineat import Parameters
+from multineat._multineat import Parameters as multiNEATParamType
+
+# Enable faulthandler to dump tracebacks on segfault.
+faulthandler.enable()
 
 
-def singleton(class_):
-    instances = {}
+@dataclass
+class CollectionOfDefaultValues:
+    Default: ClassVar[dict[str, float | int | bool]] = {}
+    GenericOld: ClassVar[dict[str, float | int | bool]] = {
+        "ActivationFunction_Tanh_Prob": 1.0,  # def:0.0
+        "ActivationFunction_UnsignedSigmoid_Prob": 0.0,  # def:1.0
+        "CompatTresholdModifier": 0.2,  # def:0.3
+        "CrossoverRate": 0.75,  # def:0.7
+        "LinkTries": 128,  # def:32
+        "MutateAddLinkProb": 0.07,  # def:0.03
+        "MutateRemLinkProb": 0.01,  # def:0.0
+        "MutateWeightsProb": 0.75,  # def:0.9
+        "OldAgePenalty": 1.0,  # def:0.5
+        "WeightDiffCoeff": 1.5,  # def:0.5
+    }
+    ball_keeper: ClassVar[dict[str, float | int | bool]] = {
+        "PopulationSize": 150,
+        "DynamicCompatibility": True,
+        "AllowClones": False,
+        "CompatTreshold": 5.0,
+        "CompatTresholdModifier": 0.3,
+        "YoungAgeTreshold": 15,
+        "SpeciesMaxStagnation": 100,
+        "OldAgeTreshold": 35,
+        "MinSpecies": 3,
+        "MaxSpecies": 10,
+        "RouletteWheelSelection": True,
+        "RecurrentProb": 0.0,
+        "OverallMutationRate": 0.02,
+        "MutateWeightsProb": 0.90,
+        "WeightMutationMaxPower": 1.0,
+        "WeightReplacementMaxPower": 5.0,
+        "MutateWeightsSevereProb": 0.5,
+        "WeightMutationRate": 0.75,
+        "MaxWeight": 20,
+        "MutateAddNeuronProb": 0.01,
+        "MutateAddLinkProb": 0.02,
+        "MutateRemLinkProb": 0.00,
+        "DivisionThreshold": 0.5,
+        "VarianceThreshold": 0.03,
+        "BandThreshold": 0.3,
+        "InitialDepth": 3,
+        "MaxDepth": 4,
+        "IterationLevel": 1,
+        "Leo": True,
+        "GeometrySeed": True,
+        "LeoSeed": True,
+        "LeoThreshold": 0.3,
+        "CPPN_Bias": -3.0,
+        "Qtree_X": 0.0,
+        "Qtree_Y": 0.0,
+        "Width": 1.0,
+        "Height": 1.0,
+        "Elitism": 0.1,
+        "CrossoverRate": 0.5,
+        "MutateWeightsSevereProb": 0.01,
+        "MutateNeuronTraitsProb": 0,
+        "MutateLinkTraitsProb": 0,
+    }
+    NoveltySearch: ClassVar[dict[str, float | int | bool]] = {}
+    TestTraits: ClassVar[dict[str, float | int | bool]] = {}
+    TestCondTraits: ClassVar[dict[str, float | int | bool]] = {}
+    TestNEAT_xor: ClassVar[dict[str, float | int | bool]] = {}
+    TestHyperNEAT_xor: ClassVar[dict[str, float | int | bool]] = {}
+    TestESHyperNEAT_xor: ClassVar[dict[str, float | int | bool]] = {}
+    TestESHyperNEAT_xor_3d: ClassVar[dict[str, float | int | bool]] = {}
 
-    def getinstance(*args, **kwargs):
-        if class_ not in instances:
-            instances[class_] = class_(*args, **kwargs)
-        return instances[class_]
+    __rejection__: ClassVar[dict[str, str | None]] = {
+        # NOTE - These fields are not allowed, use the following instead
+        "Elitism": "EliteFraction",
+        "SpeciesMaxStagnation": "SpeciesDropoffAge",
+        "IterationLevel": None,
+        "MutateGenomeTraitsProb": None,
+    }
 
-    return getinstance
+    __seg_fault_prone__: frozenset = frozenset(
+        [
+            "Default",
+            "GenericOld",
+            "ball_keeper",
+            "NoveltySearch",
+            "TestTraits",
+            "TestCondTraits",
+            "TestNEAT_xor",
+            "TestHyperNEAT_xor",
+            "TestESHyperNEAT_xor",
+            "TestESHyperNEAT_xor_3d",
+        ]
+    )
 
+    @property
+    def __collection__(self) -> dict:
+        return {
+            key: getattr(self, key)
+            for key in self.__dir__()
+            if not key.startswith("_")
+        }
 
-@singleton
-class DefaultGenome(Parameters):
-    # Basic Parameters
-    PopulationSize: int
-    DynamicCompatibility: bool
-    MinSpecies: int
-    MaxSpecies: int
-    InnovationsForever: bool
-    AllowClones: bool
-    ArchiveEnforcement: bool
-    NormalizeGenomeSize: bool
-
-    # GA Parameters
-    YoungAgeTreshold: int
-    YoungAgeFitnessBoost: float
-    StagnationDelta: float
-    OldAgeTreshold: int
-    OldAgePenalty: float
-    DetectCompetetiveCoevolutionStagnation: bool
-    KillWorstSpeciesEach: int
-    KillWorstAge: int
-    SurvivalRate: float
-    CrossoverRate: float
-    OverallMutationRate: float
-    InterspeciesCrossoverRate: float
-    MultipointCrossoverRate: float
-    RouletteWheelSelection: bool
-    TournamentSize: int
-    EliteFraction: float
-
-    # Phased Search Parameters
-    PhasedSearching: bool
-    DeltaCoding: bool
-    SimplifyingPhaseMPCTreshold: int
-    SimplifyingPhaseStagnationTreshold: int
-    ComplexityFloorGenerations: int
-
-    # Novelty Search Parameters
-    NoveltySearch_K: int
-    NoveltySearch_P_min: float
-    NoveltySearch_Dynamic_Pmin: bool
-    NoveltySearch_No_Archiving_Stagnation_Treshold: int
-    NoveltySearch_Pmin_lowering_multiplier: float
-    NoveltySearch_Pmin_min: float
-    NoveltySearch_Quick_Archiving_Min_Evaluations: int
-    NoveltySearch_Pmin_raising_multiplier: float
-    NoveltySearch_Recompute_Sparseness_Each: int
-
-    # Mutation Parameters
-    MutateAddNeuronProb: float
-    SplitRecurrent: bool
-    SplitLoopedRecurrent: bool
-    MutateAddLinkProb: float
-    MutateAddLinkFromBiasProb: float
-    MutateRemLinkProb: float
-    MutateRemSimpleNeuronProb: float
-    LinkTries: int
-    RecurrentProb: float
-    RecurrentLoopProb: float
-    MutateWeightsProb: float
-    MutateWeightsSevereProb: float
-    WeightMutationRate: float
-    WeightReplacementRate: float
-    WeightMutationMaxPower: float
-    WeightReplacementMaxPower: float
-    MaxWeight: float
-    MutateActivationAProb: float
-    MutateActivationBProb: float
-    ActivationAMutationMaxPower: float
-    ActivationBMutationMaxPower: float
-    TimeConstantMutationMaxPower: float
-    BiasMutationMaxPower: float
-    MinActivationA: float
-    MaxActivationA: float
-    MinActivationB: float
-    MaxActivationB: float
-    MutateNeuronActivationTypeProb: float
-    ActivationFunction_SignedSigmoid_Prob: float
-    ActivationFunction_UnsignedSigmoid_Prob: float
-    ActivationFunction_UnsignedSigmoid_Prob: float
-    ActivationFunction_Tanh_Prob: float
-    ActivationFunction_TanhCubic_Prob: float
-    ActivationFunction_SignedStep_Prob: float
-    ActivationFunction_UnsignedStep_Prob: float
-    ActivationFunction_SignedGauss_Prob: float
-    ActivationFunction_UnsignedGauss_Prob: float
-    ActivationFunction_Abs_Prob: float
-    ActivationFunction_SignedSine_Prob: float
-    ActivationFunction_UnsignedSine_Prob: float
-    ActivationFunction_Linear_Prob: float
-    MutateNeuronTimeConstantsProb: float
-    MutateNeuronBiasesProb: float
-    MinNeuronTimeConstant: float
-    MaxNeuronTimeConstant: float
-    MinNeuronBias: float
-    MaxNeuronBias: float
-
-    # Speciation Parameters
-    DisjointCoeff: float
-    ExcessCoeff: float
-    ActivationADiffCoeff: float
-    ActivationBDiffCoeff: float
-    WeightDiffCoeff: float
-    TimeConstantDiffCoeff: float
-    BiasDiffCoeff: float
-    ActivationFunctionDiffCoeff: float
-    CompatTreshold: float
-    MinCompatTreshold: float
-    CompatTresholdModifier: float
-    CompatTreshChangeInterval_Generations: int
-    CompatTreshChangeInterval_Evaluations: int
-
-    # Genome Properties Params
-    DontUseBiasNeuron: bool
-    AllowLoops: bool
-
-    # ES HyperNEAT Params
-    DivisionThreshold: float
-    VarianceThreshold: float
-    BandThreshold: float
-    InitialDepth: int
-    MaxDepth: int
-    CPPN_Bias: float
-    Width: float
-    Height: float
-    Qtree_X: float
-    Qtree_Y: float
-    Leo: bool
-    LeoThreshold: float
-    LeoSeed: bool
-    GeometrySeed: bool
-
-    # Universal Traits
-    MutateNeuronTraitsProb: float
-    MutateLinkTraitsProb: float
-
-    # Hidden Parameters
-    MutateOutputActivationFunction: bool
-    SpeciesDropoffAge: int
-    NeuronRecursionLimit: int
-
-    def __init__(self) -> None:
-        super().__init__()
-        self.basic_parameters()
-        self.ga_parameters()
-        self.phased_search_parameters()
-        self.novelty_search_parameters()
-        self.mutation_parameters()
-        self.activation_functions()
-        self.speciation_parameters()
-        self.genome_properties_parameters()
-        self.es_hyperneat_params()
-        self.universal_traits()
-        self.hidden_parameters()
-
-    def hidden_parameters(self):
-        self.MutateOutputActivationFunction = False
-        self.SpeciesDropoffAge = 50
-        self.NeuronRecursionLimit = 16384
-
-    def universal_traits(self):
-        self.MutateNeuronTraitsProb = 1.0
-        self.MutateLinkTraitsProb = 1.0
-        self.MutateGenomeTraitsProb = 0.2  # <- 0.1
-
-    def es_hyperneat_params(self):
-        self.DivisionThreshold = 0.03
-        self.VarianceThreshold = 0.03
-        self.BandThreshold = 0.3
-        self.InitialDepth = 2  # <- 3
-        self.MaxDepth = 10  # <- 3
-        self.CPPN_Bias = 1.0
-        self.Width = 2.0
-        self.Height = 2.0
-        self.Qtree_X = 0.0
-        self.Qtree_Y = 0.0
-        self.Leo = False
-        self.LeoThreshold = 0.1
-        self.LeoSeed = False
-        self.GeometrySeed = False
-
-    def genome_properties_parameters(self):
-        self.DontUseBiasNeuron = False
-        self.AllowLoops = True
-
-    def speciation_parameters(self):
-        self.DisjointCoeff = 1.0
-        self.ExcessCoeff = 1.0
-        self.ActivationADiffCoeff = 0.0
-        self.ActivationBDiffCoeff = 0.0
-        self.WeightDiffCoeff = 0.5
-        self.TimeConstantDiffCoeff = 0.0
-        self.BiasDiffCoeff = 0.0
-        self.ActivationFunctionDiffCoeff = 0.0
-        self.CompatTreshold = 5.0
-        self.MinCompatTreshold = 0.2
-        self.CompatTresholdModifier = 0.3
-        self.CompatTreshChangeInterval_Generations = 1
-        self.CompatTreshChangeInterval_Evaluations = 10
-
-    def mutation_parameters(self):
-        self.MutateAddNeuronProb = 0.1  # <- 0.01
-        self.SplitRecurrent = True
-        self.SplitLoopedRecurrent = True
-        self.MutateAddLinkProb = 0.1  # <- 0.03
-        self.MutateAddLinkFromBiasProb = 0.01  # <- 0.0
-        self.MutateRemLinkProb = 0.01  # <- 0.0
-        self.MutateRemSimpleNeuronProb = 0.01  # <- 0.0
-        self.LinkTries = 32
-        self.RecurrentProb = 0.25
-        self.RecurrentLoopProb = 0.25
-        self.MutateWeightsProb = 0.9  # ???
-        self.MutateWeightsSevereProb = 0.25
-        self.WeightMutationRate = 1.0
-        self.WeightReplacementRate = 0.2
-        self.WeightMutationMaxPower = 1.0
-        self.WeightReplacementMaxPower = 1.0
-        self.MaxWeight = 10.0
-        self.MinWeight = -10.0
-        self.MutateActivationAProb = 0.1  # <- 0.0
-        self.MutateActivationBProb = 0.1  # <- 0.0
-        self.ActivationAMutationMaxPower = 0.5  # <- 0.0
-        self.ActivationBMutationMaxPower = 0.5  # <- 0.0
-        self.TimeConstantMutationMaxPower = 0.5  # <- 0.0
-        self.BiasMutationMaxPower = 1.0
-        self.MinActivationA = 0.01  # <- 1.0
-        self.MaxActivationA = 3.0  # <- 1.0
-        self.MinActivationB = 0.01  # <- 0.0
-        self.MaxActivationB = 3.0  # <- 0.0
-        self.MutateNeuronActivationTypeProb = 0.1  # <- 0.0
-        self.MutateNeuronTimeConstantsProb = 0.1  # <- 0.0
-        self.MutateNeuronBiasesProb = 0.1  # <- 0.0
-        self.MinNeuronTimeConstant = -1.0  # <- 0.0
-        self.MaxNeuronTimeConstant = 1.0  # <- 0.0
-        self.MinNeuronBias = -1.0  # <- 0.0
-        self.MaxNeuronBias = 1.0  # <- 0.0
-
-    def activation_functions(self):
-        self.ActivationFunction_SignedSigmoid_Prob = 0.1  # <- 0.0
-        self.ActivationFunction_UnsignedSigmoid_Prob = 0.1  # <- 0.0
-        self.ActivationFunction_Tanh_Prob = 0.1  # <- 0.0
-        self.ActivationFunction_TanhCubic_Prob = 0.0
-        self.ActivationFunction_SignedStep_Prob = 0.1  # <- 0.0
-        self.ActivationFunction_UnsignedStep_Prob = 0.0
-        self.ActivationFunction_SignedGauss_Prob = 0.1  # <- 0.0
-        self.ActivationFunction_UnsignedGauss_Prob = 0.0
-        self.ActivationFunction_Abs_Prob = 0.1  # <- 0.0
-        self.ActivationFunction_SignedSine_Prob = 0.1  # <- 0.0
-        self.ActivationFunction_UnsignedSine_Prob = 0.1  # <- 0.0
-        self.ActivationFunction_Linear_Prob = 0.1  # <- 0.0
-
-    def novelty_search_parameters(self):
-        self.NoveltySearch_K = 15
-        self.NoveltySearch_P_min = 0.5
-        self.NoveltySearch_Dynamic_Pmin = True
-        self.NoveltySearch_No_Archiving_Stagnation_Treshold = 150
-        self.NoveltySearch_Pmin_lowering_multiplier = 0.9
-        self.NoveltySearch_Pmin_min = 0.05
-        self.NoveltySearch_Quick_Archiving_Min_Evaluations = 8
-        self.NoveltySearch_Pmin_raising_multiplier = 1.1
-        self.NoveltySearch_Recompute_Sparseness_Each = 25
-
-    def phased_search_parameters(self):
-        self.PhasedSearching = True  # False
-        self.DeltaCoding = True  # False
-        self.SimplifyingPhaseMPCTreshold = 20
-        self.SimplifyingPhaseStagnationTreshold = 30
-        self.ComplexityFloorGenerations = 40
-
-    def ga_parameters(self):
-        self.YoungAgeTreshold = 5
-        self.YoungAgeFitnessBoost = 1.1  # >= 1.0
-        self.StagnationDelta = 0.2  # 0.0 == NEAT, ???
-        self.OldAgeTreshold = 30
-        self.OldAgePenalty = 0.5  # < 1.0
-        self.DetectCompetetiveCoevolutionStagnation = True  # <- False # ???
-        self.KillWorstSpeciesEach = 15
-        self.KillWorstAge = 10
-        self.SurvivalRate = 0.333  # <- 0.25
-        self.CrossoverRate = 0.7
-        self.OverallMutationRate = 0.25
-        self.InterspeciesCrossoverRate = 0.05  # 0.0001
-        self.MultipointCrossoverRate = 0.75
-        self.RouletteWheelSelection = False  # ???
-        self.TournamentSize = 4
-        self.EliteFraction = 0.1  # 0.01
-
-    def basic_parameters(self):
-        self.PopulationSize = 300
-        self.DynamicCompatibility = True
-        self.MinSpecies = 5
-        self.MaxSpecies = 10
-        self.InnovationsForever = True
-        self.AllowClones = False  # True  # ???
-        self.ArchiveEnforcement = False
-        self.NormalizeGenomeSize = True
-
-    def print_multineat_params(self):
+    def _set_params(self, source: dict) -> multiNEATParamType:
         # Create the parameters
-        multineat_params = multineat.Parameters()
+        params = multineat.Parameters()
 
+        # Check if source has reject fields
+        for old_key, new_key in self.__rejection__.items():
+            if old_key in source:
+                value = source.pop(old_key)
+                if new_key is not None:
+                    source[new_key] = value
+
+        # Load params from dict
+        for key, value in source.items():
+            setattr(params, key, value)
+
+        # Return the parameters
+        return params
+
+    def _clean_source(self, params: multiNEATParamType):
         # Ignore fields
         ignore_fields = {
             "Reset",
@@ -337,20 +148,70 @@ class DefaultGenome(Parameters):
         }
 
         # Remove unwanted fields
-        param_keys = set(multineat_params.__dir__())
+        param_keys = set(params.__dir__())
         param_keys = [key for key in param_keys if "__" not in key]
         param_keys = [key for key in param_keys if key not in ignore_fields]
-
-        # Get diff
         param_keys.sort()
-        for key in param_keys:
-            old_param = getattr(multineat_params, key)
-            new_param = getattr(self, key)
-            if old_param != new_param:
-                sys.stdout.write(
-                    f"self.{key} = {new_param} # <- {old_param}\n"
-                )
+
+        # Retrieve values
+        param_values = [getattr(params, key) for key in param_keys]
+        return dict(zip(param_keys, param_values))
+
+    def _compare_sources(self, source_1: dict, source_2: dict):
+        # Extract params
+        params_1 = self._set_params(source_1)
+        params_2 = self._set_params(source_2)
+
+        # Get clean sources
+        clean_source_1 = self._clean_source(params_1)
+        clean_source_2 = self._clean_source(params_2)
+
+        # Get differences
+        return {
+            key_1: [value_1, clean_source_2[key_1]]
+            for key_1, value_1 in clean_source_1.items()
+            if value_1 != clean_source_2[key_1]
+        }
+
+    def _dict_printer(self, differences: dict, name: str, ref: str = "def:"):
+        # Print header
+        sys.stdout.write(
+            f"\n{' '*4}{name}: ClassVar[dict[str, float | int | bool]]"
+            + " = {\n"
+        )
+        for key, (new_value, old_value) in differences.items():
+            sys.stdout.write(
+                f'{" "*8}"{key}": {new_value},  # {ref}{old_value}\n'
+            )
+        sys.stdout.write(f'{" "*4}' + "}\n")
+
+    def _diff_printer(self, differences: dict):
+        sys.stdout.write("\n")
+        for key, (new_value, old_value) in differences.items():
+            sys.stdout.write(f"{key}\n")
+            sys.stdout.write(f"\t{old_value} -> {new_value}\n")
+            sys.stdout.write("\n")
+
+
+SOURCE = CollectionOfDefaultValues().GenericOld
+
+
+def get_multineat_params():
+    # Create the parameters
+    params = multineat.Parameters()
+
+    # Load params from dict
+    for key, value in SOURCE.items():
+        setattr(params, key, value)
+
+    # Return the parameters
+    return params
 
 
 if __name__ == "__main__":
-    DefaultGenome().print_multineat_params()
+    # _print_multineat_params_diff()
+    collection_obj = CollectionOfDefaultValues()
+    source_1 = collection_obj.GenericOld
+    source_2 = collection_obj.Default
+    diff = collection_obj._compare_sources(source_1, source_2)
+    collection_obj._diff_printer(diff)

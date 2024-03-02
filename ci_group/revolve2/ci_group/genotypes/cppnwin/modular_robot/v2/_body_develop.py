@@ -119,23 +119,26 @@ def __evaluate_cppn(
     outputs = body_net.Output()
 
     # ========= Set up ========= #
-    rng = np.random.default_rng()
     types = {0: None, 1: BrickV2, 2: ActiveHingeV2}
     idxs_1 = list(types.keys())
     idxs_2 = [3, 4]
 
     # ========= get module type from output probabilities ========= #
     type_probs = softmax(np.array(outputs)[idxs_1])
-    # idx = rng.choice(idxs_1, p=type_probs)
-    idx = np.argmax(type_probs)
-    # [ ] Argmin ?
+    # WARN Selection method is biased towards the first element
+    # [ ] Figure out best selection method
+    #   rng = np.random.default_rng()
+    #   idx = rng.choice(idxs_1, p=type_probs)
+    #   idx = np.argmax(type_probs)
+    idx = np.argmin(type_probs)
     module_type = types[idx]
 
     # ========= get rotation from output probabilities ========= #
     rotation_probs = softmax(np.array(outputs)[idxs_2])
-    # rotation_index = rng.choice(idxs_2, p=rotation_probs)
-    # [ ] Argmin ?
-    rotation_index = np.argmax(rotation_probs)
+    # [ ] Figure out best selection method
+    #   rotation_index = rng.choice(idxs_2, p=rotation_probs)
+    #   rotation_index = np.argmax(rotation_probs)
+    rotation_index = np.argmin(rotation_probs)
     return module_type, rotation_index
 
 
