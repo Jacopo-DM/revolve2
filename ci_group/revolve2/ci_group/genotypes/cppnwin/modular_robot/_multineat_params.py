@@ -158,14 +158,56 @@ class CollectionOfDefaultValues:
     }
 
     # [ ] Fill in remaining pre-made configurations
+
+    gym_lunar_lander: ClassVar[dict[str, float | int | bool]] = {
+        "PopulationSize": 150,  # def: 300
+        "MinSpecies": 2,  # def: 5
+        "MaxSpecies": 4,  # def: 10
+        "YoungAgeTreshold": 15,  # def: 5
+        "SpeciesDropoffAge": 15,  # def: 50
+        "OldAgeTreshold": 35,  # def: 30
+        "SurvivalRate": 0.2,  # def: 0.25
+        "CrossoverRate": 0.75,  # def: 0.7
+        "OverallMutationRate": 0.2,  # def: 0.25
+        "MultipointCrossoverRate": 0.4,  # def: 0.75
+        "MutateAddNeuronProb": 0.1,  # def: 0.01
+        "MutateAddLinkProb": 0.2,  # def: 0.03
+        "RecurrentProb": 0.15,  # def: 0.25
+        "MutateWeightsProb": 0.8,  # def: 0.9
+        "MutateWeightsSevereProb": 0.5,  # def: 0.25
+        "WeightMutationRate": 0.25,  # def: 1.0
+        "WeightMutationMaxPower": 0.5,  # def: 1.0
+        "MaxActivationA": 6.0,  # def: 1.0
+        "TimeConstantMutationMaxPower": 0.1,  # def: 0.0
+        "BiasMutationMaxPower": 0.5,  # def: 1.0 (WeightMutationMaxPower)
+        "MutateNeuronTimeConstantsProb": 0.1,  # def: 0.0
+        "MutateNeuronBiasesProb": 0.1,  # def: 0.0
+        "MinNeuronTimeConstant": 0.04,  # def: 0.0
+        "MaxNeuronTimeConstant": 0.24,  # def: 0.0
+        "MinNeuronBias": 8.0,  # def: 0.0 (MaxWeight)
+        "MaxNeuronBias": 8.0,  # def: 0.0 (MaxWeight)
+        "ActivationFunction_UnsignedSigmoid_Prob": 0.0,  # def: 1.0
+        "ActivationFunction_Tanh_Prob": 1.0,  # def: 0.0
+        "MutateNeuronTraitsProb": 0.0,  # def: 1.0
+        "MutateLinkTraitsProb": 0.0,  # def: 1.0
+        "WeightDiffCoeff": 1.0,  # def: 0.5
+        "CompatTreshold": 2.0,  # def: 5.0
+        "EliteFraction": 1.0,  # def: 0.01
+    }
+
+    gym_pole_balancing: ClassVar[dict[str, float | int | bool]] = {}
+    gym_swing: ClassVar[dict[str, float | int | bool]] = {}
+    gym_walker: ClassVar[dict[str, float | int | bool]] = {}
+    PythonObjectTraits: ClassVar[dict[str, float | int | bool]] = {}
+    DefaultConfig: ClassVar[dict[str, float | int | bool]] = {}
     ball_keeper: ClassVar[dict[str, float | int | bool]] = {}
     NoveltySearch: ClassVar[dict[str, float | int | bool]] = {}
-    TestTraits: ClassVar[dict[str, float | int | bool]] = {}
     TestCondTraits: ClassVar[dict[str, float | int | bool]] = {}
-    TestNEAT_xor: ClassVar[dict[str, float | int | bool]] = {}
-    TestHyperNEAT_xor: ClassVar[dict[str, float | int | bool]] = {}
-    TestESHyperNEAT_xor: ClassVar[dict[str, float | int | bool]] = {}
     TestESHyperNEAT_xor_3d: ClassVar[dict[str, float | int | bool]] = {}
+    TestESHyperNEAT_xor: ClassVar[dict[str, float | int | bool]] = {}
+    TestHyperNEAT_xor: ClassVar[dict[str, float | int | bool]] = {}
+    TestNEAT_xor: ClassVar[dict[str, float | int | bool]] = {}
+    TestTraits: ClassVar[dict[str, float | int | bool]] = {}
 
     __inject_override__: ClassVar[dict[str, float | int | bool]] = {
         # NOTE - These field-values are enforced in every case
@@ -323,7 +365,7 @@ class CollectionOfDefaultValues:
 
 
 def get_multineat_params(
-    source_name: str = "Default",
+    source_name: str = "gym_lunar_lander",
 ) -> multiNEATParamType:
     # Get source
     def_vals = CollectionOfDefaultValues()
@@ -337,7 +379,7 @@ def get_multineat_params(
 
 if __name__ == "__main__":
     collection_obj = CollectionOfDefaultValues()
-    target_name = "GenericOld"
+    target_name = "gym_lunar_lander"
     target = getattr(collection_obj, target_name)
     default = collection_obj.Default
     diff = collection_obj._diff_source_vals(target, default)
