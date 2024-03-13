@@ -45,7 +45,8 @@ class BrainCpgInstance(BrainInstance):
         )
 
         # Stabilise the state by integrating it for a while.
-        # TODO find a faster way to stabilise the state
+        # WARN very hacky way to stabilise the state
+        # [ ] find a faster/better way to stabilise the state
         for _ in range(200):
             initial_state, _ = self._newtown_raphson(
                 initial_state, weight_matrix, 0.05
@@ -70,8 +71,8 @@ class BrainCpgInstance(BrainInstance):
         return state + delta, delta
 
     @staticmethod
-    def _newtown_raphson(state: NP_ARRAY, A: NP_ARRAY, dt: float) -> NP_ARRAY:
-        delta = np.matmul(A, state) * dt
+    def _newtown_raphson(state: NP_ARRAY, a: NP_ARRAY, dt: float) -> NP_ARRAY:
+        delta = np.matmul(a, state) * dt
         return state + delta, delta
 
     def control(

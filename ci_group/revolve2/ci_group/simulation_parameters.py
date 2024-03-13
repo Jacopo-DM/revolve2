@@ -1,7 +1,7 @@
 """Standard simulation functions and parameters."""
 from revolve2.simulation.simulator import BatchParameters
 
-STANDARD_SIMULATION_TIME = 40
+STANDARD_SIMULATION_TIME = 60
 STANDARD_SAMPLING_FREQUENCY = 5
 STANDARD_SIMULATION_TIMESTEP = 0.01
 STANDARD_CONTROL_FREQUENCY = 20

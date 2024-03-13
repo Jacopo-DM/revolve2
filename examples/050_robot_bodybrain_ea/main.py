@@ -59,7 +59,6 @@ def select_survivors(
     :param offspring_population: The offspring.
     :returns: A newly created population.
     """
-    # TODO clean up lambda functions for clarity and optimization
     (
         original_survivors,
         offspring_survivors,
