@@ -23,6 +23,7 @@ class Evaluator:
         self,
         headless: bool,
         num_simulators: int,
+        start_paused: bool = False,
     ) -> None:
         """
         Initialize this object.
@@ -31,7 +32,9 @@ class Evaluator:
         :param num_simulators: `num_simulators` parameter for the physics simulator.
         """
         self._simulator = LocalSimulator(
-            headless=headless, num_simulators=num_simulators
+            headless=headless,
+            num_simulators=num_simulators,
+            start_paused=start_paused,
         )
         self._terrain = terrains.flat()
 

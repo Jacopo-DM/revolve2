@@ -1,5 +1,4 @@
 """Main script for the example."""
-
 import logging
 
 import config
@@ -63,8 +62,10 @@ def select_survivors(
     :param offspring_population: The offspring.
     :returns: A newly created population.
     """
-    # TODO clean up lambda functions for clarity and optimization
-    original_survivors, offspring_survivors = population_management.steady_state(
+    (
+        original_survivors,
+        offspring_survivors,
+    ) = population_management.steady_state(
         [i.genotype for i in original_population.individuals],
         [i.fitness for i in original_population.individuals],
         [i.genotype for i in offspring_population.individuals],
@@ -140,6 +141,10 @@ def run_experiment(dbengine: Engine) -> None:
 
     # Create an initial population.
     logging.info("Generating initial population.")
+    # TODO Find seg fault
+    #   for i in range(1_000):
+    #       logging.info(f"Evaluating initial population {i}")
+    #   exit(0)
     initial_genotypes = [
         Genotype.random(
             innov_db_body=innov_db_body,
@@ -150,10 +155,9 @@ def run_experiment(dbengine: Engine) -> None:
     ]
 
     # Evaluate the initial population.
-    logging.info("Evaluating initial population.")
-    initial_fitnesses = evaluator.evaluate(
-        [genotype.develop() for genotype in initial_genotypes]
-    )
+    logging.info("Evaluating initial population")
+    phenotypes = [genotype.develop() for genotype in initial_genotypes]
+    initial_fitnesses = evaluator.evaluate(phenotypes)
 
     # Create a population of individuals, combining genotype with fitness.
     population = Population(
@@ -169,7 +173,8 @@ def run_experiment(dbengine: Engine) -> None:
     generation = Generation(
         experiment=experiment, generation_index=0, population=population
     )
-    logging.info("Saving generation.")
+    best_fitness = find_best_robot(None, population.individuals).fitness
+    logging.info(f"Saving generation: {np.round(best_fitness, 4)}")
     with Session(dbengine, expire_on_commit=False) as session:
         session.add(generation)
         session.commit()
@@ -201,7 +206,9 @@ def run_experiment(dbengine: Engine) -> None:
         offspring_population = Population(
             individuals=[
                 Individual(genotype=genotype, fitness=fitness)
-                for genotype, fitness in zip(offspring_genotypes, offspring_fitnesses)
+                for genotype, fitness in zip(
+                    offspring_genotypes, offspring_fitnesses
+                )
             ]
         )
 
@@ -218,7 +225,8 @@ def run_experiment(dbengine: Engine) -> None:
             generation_index=generation.generation_index + 1,
             population=population,
         )
-        logging.info("Saving generation.")
+        best_fitness = find_best_robot(None, population.individuals).fitness
+        logging.info(f"Saving generation: {np.round(best_fitness, 4)}")
         with Session(dbengine, expire_on_commit=False) as session:
             session.add(generation)
             session.commit()
@@ -231,7 +239,7 @@ def main() -> None:
 
     # Open the database, only if it does not already exists.
     dbengine = open_database_sqlite(
-        config.DATABASE_FILE, open_method=OpenMethod.NOT_EXISTS_AND_CREATE
+        config.DATABASE_FILE, open_method=OpenMethod.OVERWRITE_IF_EXISTS
     )
     # Create the structure of the database.
     Base.metadata.create_all(dbengine)

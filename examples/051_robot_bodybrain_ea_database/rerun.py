@@ -24,7 +24,9 @@ def main() -> None:
     with Session(dbengine) as ses:
         row = ses.execute(
             select(Genotype, Individual.fitness)
-            .join_from(Genotype, Individual, Genotype.id == Individual.genotype_id)
+            .join_from(
+                Genotype, Individual, Genotype.id == Individual.genotype_id
+            )
             .order_by(Individual.fitness.desc())
             .limit(1)
         ).one()
@@ -38,7 +40,11 @@ def main() -> None:
     logging.info(f"Best fitness: {fitness}")
 
     # Create the evaluator.
-    evaluator = Evaluator(headless=False, num_simulators=1)
+    evaluator = Evaluator(
+        headless=False,
+        num_simulators=1,
+        start_paused=True,
+    )
 
     # Show the robot.
     evaluator.evaluate([modular_robot])
