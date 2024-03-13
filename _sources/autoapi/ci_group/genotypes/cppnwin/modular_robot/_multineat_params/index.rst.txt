@@ -53,6 +53,36 @@ Attributes
 
       
 
+   .. py:attribute:: gym_lunar_lander
+      :type: ClassVar[dict[str, float | int | bool]]
+
+      
+
+   .. py:attribute:: gym_pole_balancing
+      :type: ClassVar[dict[str, float | int | bool]]
+
+      
+
+   .. py:attribute:: gym_swing
+      :type: ClassVar[dict[str, float | int | bool]]
+
+      
+
+   .. py:attribute:: gym_walker
+      :type: ClassVar[dict[str, float | int | bool]]
+
+      
+
+   .. py:attribute:: PythonObjectTraits
+      :type: ClassVar[dict[str, float | int | bool]]
+
+      
+
+   .. py:attribute:: DefaultConfig
+      :type: ClassVar[dict[str, float | int | bool]]
+
+      
+
    .. py:attribute:: ball_keeper
       :type: ClassVar[dict[str, float | int | bool]]
 
@@ -63,22 +93,12 @@ Attributes
 
       
 
-   .. py:attribute:: TestTraits
-      :type: ClassVar[dict[str, float | int | bool]]
-
-      
-
    .. py:attribute:: TestCondTraits
       :type: ClassVar[dict[str, float | int | bool]]
 
       
 
-   .. py:attribute:: TestNEAT_xor
-      :type: ClassVar[dict[str, float | int | bool]]
-
-      
-
-   .. py:attribute:: TestHyperNEAT_xor
+   .. py:attribute:: TestESHyperNEAT_xor_3d
       :type: ClassVar[dict[str, float | int | bool]]
 
       
@@ -88,7 +108,17 @@ Attributes
 
       
 
-   .. py:attribute:: TestESHyperNEAT_xor_3d
+   .. py:attribute:: TestHyperNEAT_xor
+      :type: ClassVar[dict[str, float | int | bool]]
+
+      
+
+   .. py:attribute:: TestNEAT_xor
+      :type: ClassVar[dict[str, float | int | bool]]
+
+      
+
+   .. py:attribute:: TestTraits
       :type: ClassVar[dict[str, float | int | bool]]
 
       
@@ -115,7 +145,7 @@ Attributes
 
 
 
-.. py:function:: get_multineat_params(source_name: str = 'Default') -> multineat._multineat.Parameters
+.. py:function:: get_multineat_params(source_name: str = 'gym_lunar_lander') -> multineat._multineat.Parameters
 
 
 .. py:data:: collection_obj
