@@ -15,18 +15,20 @@ if TYPE_CHECKING:
     from revolve2.modular_robot.body.base import Body
     from sqlalchemy.engine import Connection
 
-MULTINEAT_PARAMS = get_multineat_params()
-OUTPUT_ACT_F = multineat.ActivationFunction.TANH
-SEARCH_MODE = multineat.SearchMode.BLENDED
-NUM_INITIAL_MUTATIONS = 5
-NUM_BRAIN_INPUTS = 7  # bias(always 1), x1, y1, z1, x2, y2, z2
-NUM_BRAIN_OUTPUTS = 1  # weight
-
 
 class BrainGenotypeCpgOrm(orm.MappedAsDataclass, kw_only=True):
     """An SQLAlchemy model for a CPPNWIN cpg brain genotype."""
 
     brain: multineat.Genome
+
+    _BRAIN_MULTINEAT_PARAMS = get_multineat_params()
+    _BRAIN_OUTPUT_ACT_FUNC = multineat.ActivationFunction.TANH
+    _BRAIN_SEARCH_MODE = multineat.SearchMode.BLENDED
+    _BRAIN_NUM_INITIAL_MUTATIONS = 5
+    # bias(always 1), x1, y1, z1, x2, y2, z2
+    _BRAIN_NUM_INPUTS = 7
+    # weight
+    _BRAIN_NUM_OUTPUTS = 1
 
     _serialized_brain: orm.Mapped[str] = orm.mapped_column(
         "serialized_brain", init=False, nullable=False
@@ -50,12 +52,12 @@ class BrainGenotypeCpgOrm(orm.MappedAsDataclass, kw_only=True):
         brain = random_multineat_genotype(
             innov_db=innov_db,
             rng=multineat_rng,
-            multineat_params=MULTINEAT_PARAMS,
-            output_activation_func=OUTPUT_ACT_F,
-            num_inputs=NUM_BRAIN_INPUTS,
-            num_outputs=NUM_BRAIN_OUTPUTS,
-            num_initial_mutations=NUM_INITIAL_MUTATIONS,
-            search_mode=SEARCH_MODE,
+            multineat_params=cls._BRAIN_MULTINEAT_PARAMS,
+            output_activation_func=cls._BRAIN_OUTPUT_ACT_FUNC,
+            num_inputs=cls._BRAIN_NUM_INPUTS,
+            num_outputs=cls._BRAIN_NUM_OUTPUTS,
+            num_initial_mutations=cls._BRAIN_NUM_INITIAL_MUTATIONS,
+            search_mode=cls._BRAIN_SEARCH_MODE,
         )
 
         return BrainGenotypeCpgOrm(brain=brain)
@@ -79,9 +81,9 @@ class BrainGenotypeCpgOrm(orm.MappedAsDataclass, kw_only=True):
         return BrainGenotypeCpgOrm(
             brain=self.brain.MutateWithConstraints(
                 False,
-                SEARCH_MODE,
+                self._BRAIN_SEARCH_MODE,
                 innov_db,
-                MULTINEAT_PARAMS,
+                self._BRAIN_MULTINEAT_PARAMS,
                 multineat_rng,
             )
         )
@@ -109,7 +111,7 @@ class BrainGenotypeCpgOrm(orm.MappedAsDataclass, kw_only=True):
                 False,
                 False,
                 multineat_rng,
-                MULTINEAT_PARAMS,
+                cls._BRAIN_MULTINEAT_PARAMS,
             )
         )
 

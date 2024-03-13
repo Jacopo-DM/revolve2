@@ -15,18 +15,20 @@ if TYPE_CHECKING:
     from revolve2.modular_robot.body.v2 import BodyV2
     from sqlalchemy.engine import Connection
 
-MULTINEAT_PARAMS = get_multineat_params()
-OUTPUT_ACT_F = multineat.ActivationFunction.TANH
-SEARCH_MODE = multineat.SearchMode.BLENDED
-NUM_INITIAL_MUTATIONS = 5
-NUM_BODY_INPUTS = 5  # bias(always 1), pos_x, pos_y, pos_z, chain_length
-NUM_BODY_OUTPUTS = 5  # empty, brick, activehinge, rot0, rot90
-
 
 class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
     """SQLAlchemy model for a CPPNWIN body genotype."""
 
     body: multineat.Genome
+
+    _BODY_MULTINEAT_PARAMS = get_multineat_params()
+    _BODY_OUTPUT_ACT_FUNC = multineat.ActivationFunction.TANH
+    _BODY_SEARCH_MODE = multineat.SearchMode.BLENDED
+    _BODY_NUM_INITIAL_MUTATIONS = 5
+    # bias(always 1), pos_x, pos_y, pos_z, chain_length
+    _BODY_NUM_INPUTS = 5
+    # empty, brick, activehinge, rot0, rot90
+    _BODY_NUM_OUTPUTS = 5
 
     _serialized_body: orm.Mapped[str] = orm.mapped_column(
         "serialized_body", init=False, nullable=False
@@ -50,12 +52,12 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
         body = random_multineat_genotype(
             innov_db=innov_db,
             rng=multineat_rng,
-            multineat_params=MULTINEAT_PARAMS,
-            output_activation_func=OUTPUT_ACT_F,
-            num_inputs=NUM_BODY_INPUTS,
-            num_outputs=NUM_BODY_OUTPUTS,
-            num_initial_mutations=NUM_INITIAL_MUTATIONS,
-            search_mode=SEARCH_MODE,
+            multineat_params=cls._BODY_MULTINEAT_PARAMS,
+            output_activation_func=cls._BODY_OUTPUT_ACT_FUNC,
+            num_inputs=cls._BODY_NUM_INPUTS,
+            num_outputs=cls._BODY_NUM_OUTPUTS,
+            num_initial_mutations=cls._BODY_NUM_INITIAL_MUTATIONS,
+            search_mode=cls._BODY_SEARCH_MODE,
         )
 
         return BodyGenotypeOrmV2(body=body)
@@ -79,9 +81,9 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
         return BodyGenotypeOrmV2(
             body=self.body.MutateWithConstraints(
                 False,
-                SEARCH_MODE,
+                self._BODY_SEARCH_MODE,
                 innov_db,
-                MULTINEAT_PARAMS,
+                self._BODY_MULTINEAT_PARAMS,
                 multineat_rng,
             )
         )
@@ -109,7 +111,7 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
                 False,
                 False,
                 multineat_rng,
-                MULTINEAT_PARAMS,
+                cls._BODY_MULTINEAT_PARAMS,
             )
         )
 
