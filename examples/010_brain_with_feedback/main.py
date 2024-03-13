@@ -65,7 +65,7 @@ class ANNBrainInstance(BrainInstance):
         ]
         logging.info(current_positions)
 
-        # TODO make more interesting
+        # [ ] check this works fine
         # Set the target angular positions of the active hinges
         value = 0.01
         first_half = np.full(len(sensors), value)

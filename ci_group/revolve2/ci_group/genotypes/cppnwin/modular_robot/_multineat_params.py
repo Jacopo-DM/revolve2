@@ -28,6 +28,7 @@ class CollectionOfDefaultValues:
     }
 
     MadeBreaker: ClassVar[dict[str, float | int | bool]] = {
+        # [ ] Complete experimentation around seg-faulting
         "PopulationSize": 300,
         "DynamicCompatibility": True,
         "MinSpecies": 5,
@@ -156,6 +157,7 @@ class CollectionOfDefaultValues:
         "GeometrySeed": False,
     }
 
+    # [ ] Fill in remaining pre-made configurations
     ball_keeper: ClassVar[dict[str, float | int | bool]] = {}
     NoveltySearch: ClassVar[dict[str, float | int | bool]] = {}
     TestTraits: ClassVar[dict[str, float | int | bool]] = {}
@@ -182,7 +184,7 @@ class CollectionOfDefaultValues:
 
     __seg_fault_prone__: frozenset = frozenset(
         [
-            # TODO Verify which of these are seg-fault prone
+            # [ ] Verify which of these are seg-fault prone
             "Default",
             "GenericOld",
             "ball_keeper",
@@ -321,7 +323,7 @@ class CollectionOfDefaultValues:
 
 
 def get_multineat_params(
-    source_name: str = "GenericOld",
+    source_name: str = "Default",
 ) -> multiNEATParamType:
     # Get source
     def_vals = CollectionOfDefaultValues()
