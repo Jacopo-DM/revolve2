@@ -145,7 +145,7 @@ Attributes
 
 
 
-.. py:function:: get_multineat_params(source_name: str = 'gym_lunar_lander') -> multineat._multineat.Parameters
+.. py:function:: get_multineat_params(source_name: str = 'gym_walker') -> multineat._multineat.Parameters
 
 
 .. py:data:: collection_obj
