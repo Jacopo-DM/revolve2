@@ -1,4 +1,5 @@
 """Main script for the example."""
+
 import logging
 
 import config
@@ -239,7 +240,7 @@ def main() -> None:
 
     # Open the database, only if it does not already exists.
     dbengine = open_database_sqlite(
-        config.DATABASE_FILE, open_method=OpenMethod.OVERWRITE_IF_EXISTS
+        config.DATABASE_FILE, open_method=OpenMethod.OPEN_IF_EXISTS
     )
     # Create the structure of the database.
     Base.metadata.create_all(dbengine)

@@ -43,10 +43,13 @@ def simulate_scene(
     :param fast_sim: If fancy rendering is disabled.
     :returns: The results of simulation. The number of returned states depends on `sample_step`.
     """
-    logging.info(f"Simulating scene {scene_id}")
+    logging.debug(f"Simulating scene {scene_id}")
 
     model, mapping = scene_to_model(
-        scene, simulation_timestep, cast_shadows=cast_shadows, fast_sim=fast_sim
+        scene,
+        simulation_timestep,
+        cast_shadows=cast_shadows,
+        fast_sim=fast_sim,
     )
     data = mujoco.MjData(model)
 
@@ -85,7 +88,9 @@ def simulate_scene(
     # Sample initial state.
     if sample_step is not None:
         simulation_states.append(
-            SimulationStateImpl(data=data, abstraction_to_mujoco_mapping=mapping)
+            SimulationStateImpl(
+                data=data, abstraction_to_mujoco_mapping=mapping
+            )
         )
 
     control_interface = ControlInterfaceImpl(
@@ -101,13 +106,17 @@ def simulate_scene(
             simulation_state = SimulationStateImpl(
                 data=data, abstraction_to_mujoco_mapping=mapping
             )
-            scene.handler.handle(simulation_state, control_interface, control_step)
+            scene.handler.handle(
+                simulation_state, control_interface, control_step
+            )
 
         # sample state if it is time
         if sample_step is not None and time >= last_sample_time + sample_step:
             last_sample_time = int(time / sample_step) * sample_step
             simulation_states.append(
-                SimulationStateImpl(data=data, abstraction_to_mujoco_mapping=mapping)
+                SimulationStateImpl(
+                    data=data, abstraction_to_mujoco_mapping=mapping
+                )
             )
 
         # step simulation
@@ -115,7 +124,8 @@ def simulate_scene(
 
         # render if not headless. also render when recording and if it time for a new video frame.
         if not headless or (
-            record_settings is not None and time >= last_video_time + video_step
+            record_settings is not None
+            and time >= last_video_time + video_step
         ):
             viewer_return = viewer.render()
             if viewer_return == "QUIT":
@@ -123,7 +133,10 @@ def simulate_scene(
                 raise SystemExit(0)
 
         # capture video frame if it's time
-        if record_settings is not None and time >= last_video_time + video_step:
+        if (
+            record_settings is not None
+            and time >= last_video_time + video_step
+        ):
             last_video_time = int(time / video_step) * video_step
 
             # https://github.com/deepmind/mujoco/issues/285 (see also record.cc)
@@ -150,9 +163,11 @@ def simulate_scene(
     # Sample one final time.
     if sample_step is not None:
         simulation_states.append(
-            SimulationStateImpl(data=data, abstraction_to_mujoco_mapping=mapping)
+            SimulationStateImpl(
+                data=data, abstraction_to_mujoco_mapping=mapping
+            )
         )
 
-    logging.info(f"Scene {scene_id} done.")
+    logging.debug(f"Scene {scene_id} done.")
 
     return simulation_states

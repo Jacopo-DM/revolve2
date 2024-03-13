@@ -27,135 +27,8 @@ class CollectionOfDefaultValues:
         "CompatTresholdModifier": 0.2,  # def: 0.3
     }
 
-    MadeBreaker: ClassVar[dict[str, float | int | bool]] = {
-        # [ ] Complete experimentation around seg-faulting
-        "PopulationSize": 300,
-        "DynamicCompatibility": True,
-        "MinSpecies": 5,
-        "MaxSpecies": 10,
-        "InnovationsForever": True,
-        "AllowClones": True,
-        "ArchiveEnforcement": False,
-        "NormalizeGenomeSize": True,
-        "DontUseBiasNeuron": False,
-        "AllowLoops": True,
-        "YoungAgeTreshold": 5,
-        "YoungAgeFitnessBoost": 1.1,
-        "SpeciesMaxStagnation": 50,
-        "StagnationDelta": 0.0,
-        "OldAgeTreshold": 30,
-        "OldAgePenalty": 0.5,
-        "DetectCompetetiveCoevolutionStagnation": False,
-        "KillWorstSpeciesEach": 15,
-        "KillWorstAge": 10,
-        "SurvivalRate": 0.25,
-        "CrossoverRate": 0.7,
-        "OverallMutationRate": 0.25,
-        "InterspeciesCrossoverRate": 0.0001,
-        "MultipointCrossoverRate": 0.75,
-        "RouletteWheelSelection": False,
-        "TournamentSize": 4,
-        "EliteFraction": 0.01,
-        "NeuronRecursionLimit": 16384,
-        "PhasedSearching": False,
-        "DeltaCoding": False,
-        "SimplifyingPhaseMPCTreshold": 20,
-        "SimplifyingPhaseStagnationTreshold": 30,
-        "ComplexityFloorGenerations": 40,
-        "NoveltySearch_K": 15,
-        "NoveltySearch_P_min": 0.5,
-        "NoveltySearch_Dynamic_Pmin": True,
-        "NoveltySearch_No_Archiving_Stagnation_Treshold": 150,
-        "NoveltySearch_Pmin_lowering_multiplier": 0.9,
-        "NoveltySearch_Pmin_min": 0.05,
-        "NoveltySearch_Quick_Archiving_Min_Evaluations": 8,
-        "NoveltySearch_Pmin_raising_multiplier": 1.1,
-        "NoveltySearch_Recompute_Sparseness_Each": 25,
-        "MutateAddNeuronProb": 0.01,
-        "SplitRecurrent": True,
-        "SplitLoopedRecurrent": True,
-        # "NeuronTries": 64,
-        "MutateAddLinkProb": 0.03,
-        "MutateAddLinkFromBiasProb": 0.0,
-        "MutateRemLinkProb": 0.0,
-        "MutateRemSimpleNeuronProb": 0.0,
-        "LinkTries": 32,
-        "RecurrentProb": 0.25,
-        "RecurrentLoopProb": 0.25,
-        "MutateWeightsProb": 0.90,
-        "MutateWeightsSevereProb": 0.25,
-        "WeightMutationRate": 1.0,
-        "WeightReplacementRate": 0.2,
-        "WeightMutationMaxPower": 1.0,
-        "WeightReplacementMaxPower": 1.0,
-        "MaxWeight": 8.0,
-        "MutateActivationAProb": 0.0,
-        "MutateActivationBProb": 0.0,
-        "ActivationAMutationMaxPower": 0.0,
-        "ActivationBMutationMaxPower": 0.0,
-        "TimeConstantMutationMaxPower": 0.0,
-        "BiasMutationMaxPower": 1.0,  # = WeightMutationMaxPower
-        "MinActivationA": 1.0,
-        "MaxActivationA": 1.0,
-        "MinActivationB": 0.0,
-        "MaxActivationB": 0.0,
-        "MutateNeuronActivationTypeProb": 0.0,
-        "MutateOutputActivationFunction": False,
-        "ActivationFunction_SignedSigmoid_Prob": 0.0,
-        "ActivationFunction_UnsignedSigmoid_Prob": 1.0,
-        "ActivationFunction_Tanh_Prob": 0.0,
-        "ActivationFunction_TanhCubic_Prob": 0.0,
-        "ActivationFunction_SignedStep_Prob": 0.0,
-        "ActivationFunction_UnsignedStep_Prob": 0.0,
-        "ActivationFunction_SignedGauss_Prob": 0.0,
-        "ActivationFunction_UnsignedGauss_Prob": 0.0,
-        "ActivationFunction_Abs_Prob": 0.0,
-        "ActivationFunction_SignedSine_Prob": 0.0,
-        "ActivationFunction_UnsignedSine_Prob": 0.0,
-        "ActivationFunction_Linear_Prob": 0.0,
-        # "ActivationFunction_Relu_Prob": 0.0,
-        # "ActivationFunction_Softplus_Prob": 0.0,
-        "MutateNeuronTimeConstantsProb": 0.0,
-        "MutateNeuronBiasesProb": 0.0,
-        "MinNeuronTimeConstant": 0.0,
-        "MaxNeuronTimeConstant": 0.0,
-        "MinNeuronBias": 0.0,
-        "MaxNeuronBias": 0.0,
-        # "NeuronTraits": None,
-        # "LinkTraits": None,
-        # "GenomeTraits": None,
-        "MutateNeuronTraitsProb": 1.0,
-        "MutateLinkTraitsProb": 1.0,
-        "MutateGenomeTraitsProb": 1.0,
-        "DisjointCoeff": 1.0,
-        "ExcessCoeff": 1.0,
-        "ActivationADiffCoeff": 0.0,
-        "ActivationBDiffCoeff": 0.0,
-        "WeightDiffCoeff": 0.5,
-        "TimeConstantDiffCoeff": 0.0,
-        "BiasDiffCoeff": 0.0,
-        "ActivationFunctionDiffCoeff": 0.0,
-        "CompatTreshold": 5.0,
-        "MinCompatTreshold": 0.2,
-        "CompatTresholdModifier": 0.3,
-        "CompatTreshChangeInterval_Generations": 1,
-        "CompatTreshChangeInterval_Evaluations": 10,
-        "DivisionThreshold": 0.03,
-        "VarianceThreshold": 0.03,
-        "BandThreshold": 0.3,
-        "InitialDepth": 3,
-        "MaxDepth": 3,
-        "IterationLevel": 1,
-        "CPPN_Bias": 1.0,
-        "Width": 2.0,
-        "Height": 2.0,
-        "Qtree_X": 0.0,
-        "Qtree_Y": 0.0,
-        "Leo": False,
-        "LeoThreshold": 0.1,
-        "LeoSeed": False,
-        "GeometrySeed": False,
-    }
+    # [ ] Complete experimentation around seg-faulting
+    MadeBreaker: ClassVar[dict[str, float | int | bool]] = {}
 
     # [ ] Fill in remaining pre-made configurations
 
@@ -197,11 +70,61 @@ class CollectionOfDefaultValues:
 
     gym_pole_balancing: ClassVar[dict[str, float | int | bool]] = {}
     gym_swing: ClassVar[dict[str, float | int | bool]] = {}
-    gym_walker: ClassVar[dict[str, float | int | bool]] = {}
+
+    gym_walker: ClassVar[dict[str, float | int | bool]] = {
+        "YoungAgeTreshold": 15,  # def: 5
+        "SpeciesDropoffAge": 15,  # def: 50
+        "OldAgeTreshold": 35,  # def: 30
+        "SurvivalRate": 0.2,  # def: 0.25
+        "CrossoverRate": 0.75,  # def: 0.7
+        "OverallMutationRate": 0.2,  # def: 0.25
+        "MultipointCrossoverRate": 0.4,  # def: 0.75
+        "MutateAddNeuronProb": 0.1,  # def: 0.01
+        "MutateAddLinkProb": 0.2,  # def: 0.03
+        "MutateWeightsProb": 0.8,  # def: 0.9
+        "MutateWeightsSevereProb": 0.5,  # def: 0.25
+        "WeightMutationRate": 0.25,  # def: 1.0
+        "WeightMutationMaxPower": 0.5,  # def: 1.0
+        "ActivationAMutationMaxPower": 0.5,  # def: 0.0
+        "MinActivationA": 1.1,  # def: 1.0
+        "MaxActivationA": 6.9,  # def: 1.0
+        "TimeConstantMutationMaxPower": 0.1,  # def: 0.0
+        "BiasMutationMaxPower": 0.5,  # def: 1.0
+        "MinNeuronTimeConstant": 0.04,  # def: 0.0
+        "MaxNeuronTimeConstant": 0.24,  # def: 0.0
+        "MinNeuronBias": 8.0,  # def: 0.0
+        "MaxNeuronBias": 8.0,  # def: 0.0
+        "ActivationFunction_UnsignedSigmoid_Prob": 0.0,  # def: 1.0
+        "ActivationFunction_Tanh_Prob": 1.0,  # def: 0.0
+        "MutateNeuronTraitsProb": 0.0,  # def: 1.0
+        "MutateLinkTraitsProb": 0.0,  # def: 1.0
+        "WeightDiffCoeff": 1.0,  # def: 0.5
+        "CompatTreshold": 2.0,  # def: 5.0
+        "EliteFraction": 1.0,  # def: 0.01
+    }
+
     PythonObjectTraits: ClassVar[dict[str, float | int | bool]] = {}
     DefaultConfig: ClassVar[dict[str, float | int | bool]] = {}
     ball_keeper: ClassVar[dict[str, float | int | bool]] = {}
-    NoveltySearch: ClassVar[dict[str, float | int | bool]] = {}
+
+    NoveltySearch: ClassVar[dict[str, float | int | bool]] = {
+        "MinSpecies": 3,  # def: 5
+        "AllowClones": False,  # def: True
+        "YoungAgeTreshold": 15,  # def: 5
+        "SpeciesDropoffAge": 100,  # def: 50
+        "OldAgeTreshold": 35,  # def: 30
+        "CrossoverRate": 0.5,  # def: 0.7
+        "OverallMutationRate": 0.02,  # def: 0.25
+        "RouletteWheelSelection": True,  # def: False
+        "MutateAddLinkProb": 0.02,  # def: 0.03
+        "MutateWeightsSevereProb": 0.5,  # def: 0.25
+        "WeightMutationRate": 0.75,  # def: 1.0
+        "WeightReplacementMaxPower": 5.0,  # def: 1.0
+        "MutateNeuronTraitsProb": 0.0,  # def: 1.0
+        "MutateLinkTraitsProb": 0.0,  # def: 1.0
+        "EliteFraction": 0.1,  # def: 0.01
+    }
+
     TestCondTraits: ClassVar[dict[str, float | int | bool]] = {}
     TestESHyperNEAT_xor_3d: ClassVar[dict[str, float | int | bool]] = {}
     TestESHyperNEAT_xor: ClassVar[dict[str, float | int | bool]] = {}
@@ -214,6 +137,12 @@ class CollectionOfDefaultValues:
         "PhasedSearching": True,  # def: False
         "DeltaCoding": True,  # def: False
         "MutateOutputActivationFunction": False,
+        "PopulationSize": 300,  # def: 150
+        # WARN The following parameters seem to be the cause of the seg-fault
+        # [ ] To study
+        "RecurrentProb": 0,  # def: 0.25,
+        "RecurrentLoopProb": 0,  # def: 0.25,
+        "AllowLoops": False,  # def: True,
     }
 
     __rejection__: ClassVar[dict[str, str | None]] = {
@@ -227,16 +156,22 @@ class CollectionOfDefaultValues:
     __seg_fault_prone__: frozenset = frozenset(
         [
             # [ ] Verify which of these are seg-fault prone
-            "Default",
-            "GenericOld",
-            "ball_keeper",
-            "NoveltySearch",
-            "TestTraits",
-            "TestCondTraits",
-            "TestNEAT_xor",
-            "TestHyperNEAT_xor",
-            "TestESHyperNEAT_xor",
-            "TestESHyperNEAT_xor_3d",
+            # "Default",
+            # "GenericOld",
+            # "gym_lunar_lander",
+            # "gym_pole_balancing",
+            # "gym_swing",
+            # "gym_walker",
+            # "PythonObjectTraits",
+            # "DefaultConfig",
+            # "ball_keeper",
+            # "NoveltySearch",
+            # "TestCondTraits",
+            # "TestESHyperNEAT_xor_3d",
+            # "TestESHyperNEAT_xor",
+            # "TestHyperNEAT_xor",
+            # "TestNEAT_xor",
+            # "TestTraits",
         ]
     )
 
@@ -365,7 +300,7 @@ class CollectionOfDefaultValues:
 
 
 def get_multineat_params(
-    source_name: str = "gym_lunar_lander",
+    source_name: str = "gym_walker",
 ) -> multiNEATParamType:
     # Get source
     def_vals = CollectionOfDefaultValues()
@@ -379,7 +314,7 @@ def get_multineat_params(
 
 if __name__ == "__main__":
     collection_obj = CollectionOfDefaultValues()
-    target_name = "gym_lunar_lander"
+    target_name = "NoveltySearch"
     target = getattr(collection_obj, target_name)
     default = collection_obj.Default
     diff = collection_obj._diff_source_vals(target, default)
