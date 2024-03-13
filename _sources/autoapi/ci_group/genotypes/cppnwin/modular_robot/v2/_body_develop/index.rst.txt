@@ -16,8 +16,27 @@ Functions
 .. autoapisummary::
 
    ci_group.genotypes.cppnwin.modular_robot.v2._body_develop.develop
+   ci_group.genotypes.cppnwin.modular_robot.v2._body_develop.softmax
 
 
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   ci_group.genotypes.cppnwin.modular_robot.v2._body_develop.MAX_PARTS
+   ci_group.genotypes.cppnwin.modular_robot.v2._body_develop.GRID_SIZE
+
+
+.. py:data:: MAX_PARTS
+   :value: 20
+
+   
+
+.. py:data:: GRID_SIZE
+
+   
 
 .. py:function:: develop(genotype: multineat.Genome) -> revolve2.modular_robot.body.v2.BodyV2
 
@@ -26,6 +45,14 @@ Functions
    It is important that the genotype was created using a compatible function.
 
    :param genotype: The genotype to create the body from.
-   :returns: The create body.
+   :returns: The created body.
+
+
+.. py:function:: softmax(x: numpy.ndarray) -> numpy.ndarray
+
+   Compute softmax values for each sets of scores in x.
+
+   :param x: The input array.
+   :returns: The softmax array.
 
 

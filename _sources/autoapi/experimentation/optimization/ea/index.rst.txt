@@ -114,7 +114,7 @@ Classes
    The parameters are saved in the database as string of semicolon seperated floats.
 
    .. py:attribute:: parameters
-      :type: numpy.typing.NDArray[numpy.float_]
+      :type: numpy.typing.NDArray[numpy.float64]
 
       
 

@@ -55,7 +55,7 @@ Classes
       :returns: A mutated copy of the provided genotype.
 
 
-   .. py:method:: crossover_brain(parent1: typing_extensions.Self, parent2: typing_extensions.Self, rng: numpy.random.Generator) -> BrainGenotypeCpgOrm
+   .. py:method:: crossover_brain(parent1: Self, parent2: Self, rng: numpy.random.Generator) -> BrainGenotypeCpgOrm
       :classmethod:
 
       Perform crossover between two genotypes.

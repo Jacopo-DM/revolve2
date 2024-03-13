@@ -52,7 +52,7 @@ Functions
    :returns: The created terrain.
 
 
-.. py:function:: rugged_heightmap(size: tuple[float, float], num_edges: tuple[int, int], density: float = 1.0) -> numpy.typing.NDArray[numpy.float_]
+.. py:function:: rugged_heightmap(size: tuple[float, float], num_edges: tuple[int, int], density: float = 1.0) -> numpy.typing.NDArray[numpy.float64]
 
    Create a rugged terrain heightmap.
 
@@ -69,7 +69,7 @@ Functions
    :returns: The created heightmap as a 2 dimensional array.
 
 
-.. py:function:: bowl_heightmap(num_edges: tuple[int, int]) -> numpy.typing.NDArray[numpy.float_]
+.. py:function:: bowl_heightmap(num_edges: tuple[int, int]) -> numpy.typing.NDArray[numpy.float64]
 
    Create a terrain heightmap in the shape of a bowl.
 

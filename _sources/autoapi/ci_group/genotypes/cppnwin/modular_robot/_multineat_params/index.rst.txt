@@ -9,6 +9,14 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   ci_group.genotypes.cppnwin.modular_robot._multineat_params.CollectionOfDefaultValues
+
+
 
 Functions
 ~~~~~~~~~
@@ -19,10 +27,98 @@ Functions
 
 
 
-.. py:function:: get_multineat_params() -> multineat.Parameters
+Attributes
+~~~~~~~~~~
 
-   Get Multineat Parameters.
+.. autoapisummary::
 
-   :returns: The parameters.
+   ci_group.genotypes.cppnwin.modular_robot._multineat_params.collection_obj
 
+
+.. py:class:: CollectionOfDefaultValues
+
+
+   .. py:attribute:: Default
+      :type: ClassVar[dict[str, float | int | bool]]
+
+      
+
+   .. py:attribute:: GenericOld
+      :type: ClassVar[dict[str, float | int | bool]]
+
+      
+
+   .. py:attribute:: MadeBreaker
+      :type: ClassVar[dict[str, float | int | bool]]
+
+      
+
+   .. py:attribute:: ball_keeper
+      :type: ClassVar[dict[str, float | int | bool]]
+
+      
+
+   .. py:attribute:: NoveltySearch
+      :type: ClassVar[dict[str, float | int | bool]]
+
+      
+
+   .. py:attribute:: TestTraits
+      :type: ClassVar[dict[str, float | int | bool]]
+
+      
+
+   .. py:attribute:: TestCondTraits
+      :type: ClassVar[dict[str, float | int | bool]]
+
+      
+
+   .. py:attribute:: TestNEAT_xor
+      :type: ClassVar[dict[str, float | int | bool]]
+
+      
+
+   .. py:attribute:: TestHyperNEAT_xor
+      :type: ClassVar[dict[str, float | int | bool]]
+
+      
+
+   .. py:attribute:: TestESHyperNEAT_xor
+      :type: ClassVar[dict[str, float | int | bool]]
+
+      
+
+   .. py:attribute:: TestESHyperNEAT_xor_3d
+      :type: ClassVar[dict[str, float | int | bool]]
+
+      
+
+   .. py:attribute:: __inject_override__
+      :type: ClassVar[dict[str, float | int | bool]]
+
+      
+
+   .. py:attribute:: __rejection__
+      :type: ClassVar[dict[str, str | None]]
+
+      
+
+   .. py:attribute:: __seg_fault_prone__
+      :type: frozenset
+
+      
+
+   .. py:method:: __print_diff_generic__(key, old_value, symbol, new_value)
+
+
+   .. py:method:: __print_diff_dict__(key, new_value, symbol='', old_value='')
+
+
+
+.. py:function:: get_multineat_params(source_name: str = 'Default') -> multineat._multineat.Parameters
+
+
+.. py:data:: collection_obj
+
+   
 

@@ -55,7 +55,7 @@ Classes
       :returns: A mutated copy of the provided genotype.
 
 
-   .. py:method:: crossover_body(parent1: typing_extensions.Self, parent2: typing_extensions.Self, rng: numpy.random.Generator) -> BodyGenotypeOrmV1
+   .. py:method:: crossover_body(parent1: Self, parent2: Self, rng: numpy.random.Generator) -> BodyGenotypeOrmV1
       :classmethod:
 
       Perform crossover between two genotypes.

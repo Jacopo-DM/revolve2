@@ -19,7 +19,7 @@ Functions
 
 
 
-.. py:function:: random_multineat_genotype(innov_db: multineat.InnovationDatabase, rng: multineat.RNG, multineat_params: multineat.Parameters, output_activation_func: multineat.ActivationFunction, num_inputs: int, num_outputs: int, num_initial_mutations: int) -> multineat.Genome
+.. py:function:: random_multineat_genotype(innov_db: multineat.InnovationDatabase, rng: multineat.RNG, multineat_params: multineat.Parameters, output_activation_func: multineat.ActivationFunction, num_inputs: int, num_outputs: int, num_initial_mutations: int, search_mode: multineat.SearchMode = multineat.SearchMode.BLENDED, hidden_act_f: multineat.ActivationFunction = multineat.ActivationFunction.TANH) -> multineat.Genome
 
    Create a random multineat genotype.
 

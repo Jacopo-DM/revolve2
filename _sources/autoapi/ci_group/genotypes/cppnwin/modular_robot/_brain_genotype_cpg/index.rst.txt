@@ -19,6 +19,46 @@ Classes
 
 
 
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   ci_group.genotypes.cppnwin.modular_robot._brain_genotype_cpg.MULTINEAT_PARAMS
+   ci_group.genotypes.cppnwin.modular_robot._brain_genotype_cpg.OUTPUT_ACT_F
+   ci_group.genotypes.cppnwin.modular_robot._brain_genotype_cpg.SEARCH_MODE
+   ci_group.genotypes.cppnwin.modular_robot._brain_genotype_cpg.NUM_INITIAL_MUTATIONS
+   ci_group.genotypes.cppnwin.modular_robot._brain_genotype_cpg.NUM_BRAIN_INPUTS
+   ci_group.genotypes.cppnwin.modular_robot._brain_genotype_cpg.NUM_BRAIN_OUTPUTS
+
+
+.. py:data:: MULTINEAT_PARAMS
+
+   
+
+.. py:data:: OUTPUT_ACT_F
+
+   
+
+.. py:data:: SEARCH_MODE
+
+   
+
+.. py:data:: NUM_INITIAL_MUTATIONS
+   :value: 5
+
+   
+
+.. py:data:: NUM_BRAIN_INPUTS
+   :value: 7
+
+   
+
+.. py:data:: NUM_BRAIN_OUTPUTS
+   :value: 1
+
+   
+
 .. py:class:: BrainGenotypeCpg
 
 
@@ -50,7 +90,7 @@ Classes
       :returns: A mutated copy of the provided genotype.
 
 
-   .. py:method:: crossover_brain(parent1: typing_extensions.Self, parent2: typing_extensions.Self, rng: numpy.random.Generator) -> BrainGenotypeCpg
+   .. py:method:: crossover_brain(parent1: Self, parent2: Self, rng: numpy.random.Generator) -> BrainGenotypeCpg
       :classmethod:
 
       Perform crossover between two genotypes.

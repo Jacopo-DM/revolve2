@@ -1,0 +1,16 @@
+:orphan:
+
+:py:mod:`_multineat_reference`
+=======================================================================
+
+.. py:module:: ci_group.genotypes.cppnwin.modular_robot._multineat_reference
+
+
+Module Contents
+---------------
+
+.. py:data:: DefaultGenome
+   :type: dict[str, float | int | bool]
+
+   
+

@@ -34,7 +34,7 @@ Attributes
 
 
 .. py:data:: STANDARD_SIMULATION_TIME
-   :value: 40
+   :value: 60
 
    
 

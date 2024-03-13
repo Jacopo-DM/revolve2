@@ -19,7 +19,19 @@ Classes
 
 
 
-.. py:class:: BrainCpgInstance(initial_state: numpy.typing.NDArray[numpy.float_], weight_matrix: numpy.typing.NDArray[numpy.float_], output_mapping: list[tuple[int, modular_robot.body.base.ActiveHinge]])
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   modular_robot.brain.cpg._brain_cpg_instance.NP_ARRAY
+
+
+.. py:data:: NP_ARRAY
+
+   
+
+.. py:class:: BrainCpgInstance(initial_state: NP_ARRAY, weight_matrix: NP_ARRAY, output_mapping: list[tuple[int, modular_robot.body.base.ActiveHinge]])
 
 
    Bases: :py:obj:`modular_robot.brain._brain_instance.BrainInstance`

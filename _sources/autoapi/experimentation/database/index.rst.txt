@@ -70,7 +70,7 @@ Functions
 
       
 
-   .. py:attribute:: OVERWITE_IF_EXISTS
+   .. py:attribute:: OVERWRITE_IF_EXISTS
 
       
 
