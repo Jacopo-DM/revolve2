@@ -1,4 +1,5 @@
 """Main script for the example."""
+
 import logging
 from datetime import datetime
 
@@ -8,7 +9,9 @@ from aim import Run
 from revolve2.experimentation.logging import setup_logging
 
 
-def run_experiment(num_samples: int, probability: float, repetitions: int) -> None:
+def run_experiment(
+    num_samples: int, probability: float, repetitions: int
+) -> None:
     """
     Run all runs of an experiment using the provided parameters.
 
