@@ -261,36 +261,6 @@ class CollectionOfDefaultValues:
         "EliteFraction": 0.1,  # def: 0.01
     }
 
-    TestESHyperNEAT_xor_3d: ClassVar[dict[str, float | int | bool]] = {
-        "YoungAgeTreshold": 15,  # def: 5
-        "SpeciesDropoffAge": 100,  # def: 50
-        "OldAgeTreshold": 35,  # def: 30
-        "OverallMutationRate": 0.15,  # def: 0.25
-        "MutateAddLinkProb": 0.08,  # def: 0.03
-        "MutateRemLinkProb": 0.02,  # def: 0.0
-        "WeightMutationMaxPower": 0.2,  # def: 1.0
-        "ActivationAMutationMaxPower": 0.5,  # def: 0.0
-        "MinActivationA": 0.05,  # def: 1.0
-        "MaxActivationA": 6.0,  # def: 1.0
-        "MutateNeuronActivationTypeProb": 0.03,  # def: 0.0
-        "ActivationFunction_UnsignedSigmoid_Prob": 0.0,  # def: 1.0
-        "ActivationFunction_Tanh_Prob": 1.0,  # def: 0.0
-        "ActivationFunction_SignedStep_Prob": 1.0,  # def: 0.0
-        "ActivationFunction_SignedGauss_Prob": 1.0,  # def: 0.0
-        "ActivationFunction_SignedSine_Prob": 1.0,  # def: 0.0
-        "ActivationFunction_Linear_Prob": 1.0,  # def: 0.0
-        "MutateNeuronTraitsProb": 0.0,  # def: 1.0
-        "MutateLinkTraitsProb": 0.0,  # def: 1.0
-        "CompatTreshold": 2.0,  # def: 5.0
-        "DivisionThreshold": 0.5,  # def: 0.03
-        "InitialDepth": 2,  # def: 3
-        "CPPN_Bias": -1.0,  # def: 1.0
-        "Width": 1.0,  # def: 2.0
-        "Height": 1.0,  # def: 2.0
-        "LeoThreshold": 0.3,  # def: 0.1
-        "EliteFraction": 0.1,  # def: 0.01
-    }
-
     TestHyperNEAT_xor: ClassVar[dict[str, float | int | bool]] = {
         "YoungAgeTreshold": 15,  # def: 5
         "SpeciesDropoffAge": 100,  # def: 50
@@ -369,7 +339,7 @@ class CollectionOfDefaultValues:
         # [ ] Transfer values from examples/DefaultConfig.NEAT
     }
 
-    __seg_fault_prone__: frozenset = frozenset(
+    __seg_fault_prone__: frozenset[str] = frozenset(
         [
             # [ ] Verify which of value dicts cause seg-faults
         ]
@@ -396,9 +366,7 @@ class CollectionOfDefaultValues:
         "MutateGenomeTraitsProb": None,
     }
 
-    def _set_params(
-        self, source: dict[str, float | bool]
-    ) -> multiNEATParamType:
+    def _set_params(self, source: dict[str, float | bool]) -> multiNEATParamType:
         # Create the parameters
         params = multineat.Parameters()
 
@@ -413,7 +381,7 @@ class CollectionOfDefaultValues:
         # Return the parameters
         return params
 
-    def _clean_source(self, params_list: list) -> list[str]:
+    def _clean_source(self, params_dict: dict[str, float | bool]) -> list[str]:
         # Ignore fields
         ignore_fields = {
             "Reset",
@@ -437,11 +405,13 @@ class CollectionOfDefaultValues:
         # Remove unwanted fields
         return [
             key
-            for key in params_list
+            for key in params_dict
             if key not in ignore_fields and not key.startswith("_")
         ]
 
-    def _extract_source(self, source: dict):
+    def _extract_source(
+        self, source: dict[str, float | bool]
+    ) -> dict[str, float | bool]:
         # Check if source has reject fields
         for old_key, new_key in self.__rejection__.items():
             if old_key in source:
@@ -453,15 +423,19 @@ class CollectionOfDefaultValues:
         params = self._set_params(source)
 
         # Extract dictionary
-        params_list = params.__dir__()
+        params_dict = params.__dir__()
 
         # Get clean sources
-        clean_source_keys = self._clean_source(params_list)
+        clean_source_keys = self._clean_source(params_dict)
 
         # Get values
         return {key: getattr(params, key) for key in clean_source_keys}
 
-    def _diff_source_vals(self, source_1: dict, source_2: dict):
+    def _diff_source_vals(
+        self,
+        source_1: dict[str, float | bool],
+        source_2: dict[str, float | bool],
+    ) -> dict[str, list[float | bool]]:
         # Get values
         clean_source_1 = self._extract_source(source_1)
         clean_source_2 = self._extract_source(source_2)
@@ -472,7 +446,9 @@ class CollectionOfDefaultValues:
             for key_1, value_1 in clean_source_1.items()
         }
 
-    def _print_diff(self, differences: dict, mode: str = "diff"):
+    def _print_diff(
+        self, differences: dict[str, list[float | bool]], mode: str = "diff"
+    ) -> None:
         sys.stdout.write("\n")
         allowed_modes = {"all", "same", "diff"}
         for key, (new_value, old_value) in differences.items():
@@ -484,40 +460,50 @@ class CollectionOfDefaultValues:
             elif mode not in allowed_modes:
                 raise ValueError(f"Invalid mode: {mode}")
 
-    def __print_diff_generic__(self, key, old_value, symbol, new_value):
+    def __print_diff_generic__(
+        self,
+        key: str,
+        old_value: float | int | bool,
+        symbol: str,
+        new_value: float | int | bool,
+    ) -> None:
         sys.stdout.write(f"{key}\n")
         sys.stdout.write(f"\t{old_value}{symbol}{new_value}\n")
         sys.stdout.write("\n")
 
     def _print_diff_dict(
         self,
-        differences: dict,
+        differences: dict[str, list[float | int | bool]],
         name: str,
         ref: str = "def:",
         mode: str = "diff",
-    ):
+    ) -> None:
         sys.stdout.write("\n")
         allowed_modes = {"all", "same", "diff"}
 
         indent = " " * 4
         sys.stdout.write(
-            f"\n{indent}{name}: ClassVar[dict[str, float | int | bool]]"
-            + " = {\n"
+            f"\n{indent}{name}: ClassVar[dict[str, float | int | bool]]" + " = {\n"
         )
 
-        for key, (new_value, old_value) in differences.items():
+        for key, value_list in differences.items():
+            new_value, old_value = value_list[:1]
             are_same = new_value == old_value
             if are_same and mode in {"all", "same"}:
                 self.__print_diff_dict__(key, new_value)
             elif not are_same and mode in {"all", "diff"}:
-                self.__print_diff_dict__(
-                    key, new_value, f"  # {ref} ", old_value
-                )
+                self.__print_diff_dict__(key, new_value, f"  # {ref} ", old_value)
             elif mode not in allowed_modes:
                 raise ValueError(f"Invalid mode: {mode}")
         sys.stdout.write(f"{indent}" + "}\n")
 
-    def __print_diff_dict__(self, key, new_value, symbol="", old_value=""):
+    def __print_diff_dict__(
+        self,
+        key: str,
+        new_value: float | int | bool,
+        symbol: str = "",
+        old_value: str | float | int | bool = "",
+    ) -> None:
         indent = " " * 8
         sys.stdout.write(f'{indent}"{key}": {new_value},{symbol}{old_value}\n')
 
