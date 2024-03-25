@@ -19,6 +19,3 @@ line-length = 79
 [tool.ruff.format]
 docstring-code-format = true
 docstring-code-line-length = 79
-
-[tool.mypy]
-strict = true
