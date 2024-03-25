@@ -29,7 +29,9 @@ class Individual(Base, HasId, kw_only=True):
     population_id: orm.Mapped[int] = orm.mapped_column(
         sqlalchemy.ForeignKey("population.id"), nullable=False, init=False
     )
-    population_index: orm.Mapped[int] = orm.mapped_column(nullable=False, init=False)
+    population_index: orm.Mapped[int] = orm.mapped_column(
+        nullable=False, init=False
+    )
     genotype_id: orm.Mapped[int] = orm.mapped_column(
         sqlalchemy.ForeignKey("genotype.id"), nullable=False, init=False
     )

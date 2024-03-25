@@ -62,7 +62,9 @@ class BrainCpgNetworkStatic(Brain):
         :param output_mapping: Marks neurons as controller outputs and map them to the correct active hinge.
         :returns: The created brain.
         """
-        initial_state = cpg_network_structure.make_uniform_state(initial_state_uniform)
+        initial_state = cpg_network_structure.make_uniform_state(
+            initial_state_uniform
+        )
         weight_matrix = (
             cpg_network_structure.make_connection_weights_matrix_from_params(
                 list(params)

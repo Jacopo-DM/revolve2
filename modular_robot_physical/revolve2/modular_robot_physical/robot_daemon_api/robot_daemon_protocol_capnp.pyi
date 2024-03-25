@@ -62,7 +62,9 @@ HardwareType = Literal["v1", "v2"]
 class SetupResponse:
     versionOk: bool
     hardwareType: HardwareType
-    def __init__(self, versionOk: bool, hardwareType: HardwareType) -> None: ...
+    def __init__(
+        self, versionOk: bool, hardwareType: HardwareType
+    ) -> None: ...
     @staticmethod
     @contextmanager
     def from_bytes(

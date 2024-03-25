@@ -7,7 +7,9 @@ Genotype = TypeVar("Genotype")
 Fitness = TypeVar("Fitness", bound=SupportsLt)
 
 
-def topn(n: int, genotypes: list[Genotype], fitnesses: list[Fitness]) -> list[int]:
+def topn(
+    n: int, genotypes: list[Genotype], fitnesses: list[Fitness]
+) -> list[int]:
     """
     Get indices of the top n genotypes sorted by their fitness.
 

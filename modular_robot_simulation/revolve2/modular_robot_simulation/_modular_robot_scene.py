@@ -16,7 +16,9 @@ class ModularRobotScene:
     terrain: Terrain
     """The terrain of the scene."""
 
-    _robots: list[tuple[ModularRobot, Pose, bool]] = field(default_factory=list)
+    _robots: list[tuple[ModularRobot, Pose, bool]] = field(
+        default_factory=list
+    )
     """
     The robots in the scene.
     This is an owning collection; the robots are assigned ids when they are added, equal to their index in this list.
@@ -75,8 +77,8 @@ class ModularRobotScene:
             handler.add_robot(
                 robot.brain.make_instance(), body_to_multi_body_system_mapping
             )
-            modular_robot_to_multi_body_system_mapping[
-                UUIDKey(robot)
-            ] = multi_body_system
+            modular_robot_to_multi_body_system_mapping[UUIDKey(robot)] = (
+                multi_body_system
+            )
 
         return scene, modular_robot_to_multi_body_system_mapping

@@ -136,7 +136,9 @@ def _serialize_brain(
 
 
 @event.listens_for(BrainGenotypeCpgOrm, "load", propagate=True)
-def _deserialize_brain(target: BrainGenotypeCpgOrm, context: orm.QueryContext) -> None:
+def _deserialize_brain(
+    target: BrainGenotypeCpgOrm, context: orm.QueryContext
+) -> None:
     brain = multineat.Genome()
     brain.Deserialize(target._serialized_brain)
     target.brain = brain

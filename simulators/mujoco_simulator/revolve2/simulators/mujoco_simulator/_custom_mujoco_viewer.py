@@ -97,14 +97,18 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
         match self._viewer_mode.value:
             case "manual":
                 self._add_overlay(topleft, "Iterate position", "[K]")
-                self._add_overlay(bottomleft, "position", str(self._position + 1))
+                self._add_overlay(
+                    bottomleft, "position", str(self._position + 1)
+                )
             case "classic":
                 self._add_overlay(
                     topleft,
                     "[C]ontact forces",
                     "On" if self._contacts else "Off",
                 )
-                self._add_overlay(topleft, "[J]oints", "On" if self._joints else "Off")
+                self._add_overlay(
+                    topleft, "[J]oints", "On" if self._joints else "Off"
+                )
                 self._add_overlay(
                     topleft,
                     "[G]raph Viewer",
@@ -142,11 +146,15 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
             "[Tab] (camera ID = %d)" % self.cam.fixedcamid,
         )
 
-        self._add_overlay(topleft, "Shad[O]ws", "On" if self._shadows else "Off")
+        self._add_overlay(
+            topleft, "Shad[O]ws", "On" if self._shadows else "Off"
+        )
         self._add_overlay(
             topleft, "T[r]ansparent", "On" if self._transparent else "Off"
         )
-        self._add_overlay(topleft, "[W]ireframe", "On" if self._wire_frame else "Off")
+        self._add_overlay(
+            topleft, "[W]ireframe", "On" if self._wire_frame else "Off"
+        )
         self._add_overlay(
             topleft,
             "Con[V]ex Hull Rendering",
@@ -177,7 +185,9 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
         else:
             self._add_overlay(topleft, "Cap[t]ure frame", "")
 
-        self._add_overlay(bottomleft, "FPS", "%d%s" % (1 / self._time_per_render, ""))
+        self._add_overlay(
+            bottomleft, "FPS", "%d%s" % (1 / self._time_per_render, "")
+        )
 
         if self._mujoco_version >= (3, 0, 0):
             self._add_overlay(
@@ -195,7 +205,9 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
             "Step",
             str(round(self.data.time / self.model.opt.timestep)),
         )
-        self._add_overlay(bottomleft, "timestep", "%.5f" % self.model.opt.timestep)
+        self._add_overlay(
+            bottomleft, "timestep", "%.5f" % self.model.opt.timestep
+        )
 
     def _key_callback(
         self, window: Any, key: Any, scancode: Any, action: Any, mods: Any
@@ -235,7 +247,9 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
             return self._return_code
         super().render()
         return (
-            self._position if self._viewer_mode.value == "manual" else self._return_code
+            self._position
+            if self._viewer_mode.value == "manual"
+            else self._return_code
         )
 
     def _increment_position(self) -> None:

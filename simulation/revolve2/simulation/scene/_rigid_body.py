@@ -55,7 +55,8 @@ class RigidBody:
         """
         if self.mass() == 0:
             return sum(
-                geometry.mass * geometry.pose.position for geometry in self.geometries
+                geometry.mass * geometry.pose.position
+                for geometry in self.geometries
             ) / len(self.geometries)
         else:
             return (
@@ -120,9 +121,12 @@ class RigidBody:
                 + (geometry.pose.position.y - com.y) ** 2
             )
 
-            ori_as_mat = self._quaternion_to_rotation_matrix(geometry.pose.orientation)
+            ori_as_mat = self._quaternion_to_rotation_matrix(
+                geometry.pose.orientation
+            )
             global_inertia = (
-                ori_as_mat * local_inertia * ori_as_mat.transpose() + translation
+                ori_as_mat * local_inertia * ori_as_mat.transpose()
+                + translation
             )
             # add to rigid body inertia tensor
             inertia += global_inertia

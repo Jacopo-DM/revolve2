@@ -40,8 +40,10 @@ class SceneSimulationState:
         :returns: The retrieved state.
         :raises ValueError: If the robot is not in the scene.
         """
-        maybe_multi_body_system = self._modular_robot_to_multi_body_system_mapping.get(
-            UUIDKey(modular_robot)
+        maybe_multi_body_system = (
+            self._modular_robot_to_multi_body_system_mapping.get(
+                UUIDKey(modular_robot)
+            )
         )
         if maybe_multi_body_system is None:
             raise ValueError("Modular robot not in scene.")

@@ -366,7 +366,9 @@ class CollectionOfDefaultValues:
         "MutateGenomeTraitsProb": None,
     }
 
-    def _set_params(self, source: dict[str, float | bool]) -> multiNEATParamType:
+    def _set_params(
+        self, source: dict[str, float | bool]
+    ) -> multiNEATParamType:
         # Create the parameters
         params = multineat.Parameters()
 
@@ -483,7 +485,8 @@ class CollectionOfDefaultValues:
 
         indent = " " * 4
         sys.stdout.write(
-            f"\n{indent}{name}: ClassVar[dict[str, float | int | bool]]" + " = {\n"
+            f"\n{indent}{name}: ClassVar[dict[str, float | int | bool]]"
+            + " = {\n"
         )
 
         for key, value_list in differences.items():
@@ -492,7 +495,9 @@ class CollectionOfDefaultValues:
             if are_same and mode in {"all", "same"}:
                 self.__print_diff_dict__(key, new_value)
             elif not are_same and mode in {"all", "diff"}:
-                self.__print_diff_dict__(key, new_value, f"  # {ref} ", old_value)
+                self.__print_diff_dict__(
+                    key, new_value, f"  # {ref} ", old_value
+                )
             elif mode not in allowed_modes:
                 raise ValueError(f"Invalid mode: {mode}")
         sys.stdout.write(f"{indent}" + "}\n")

@@ -27,7 +27,10 @@ def active_hinges_to_cpg_network_structure_neighbor(
             if isinstance(n, ActiveHinge)
         ]
         connections = connections.union(
-            [CpgPair(cpg, active_hinge_to_cpg[neighbour]) for neighbour in neighbours]
+            [
+                CpgPair(cpg, active_hinge_to_cpg[neighbour])
+                for neighbour in neighbours
+            ]
         )
 
     cpg_network_structure = CpgNetworkStructure(cpgs, connections)

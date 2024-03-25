@@ -10,7 +10,9 @@ def generational(
     old_fitnesses: list[Fitness],
     new_genotypes: list[Genotype],
     new_fitnesses: list[Fitness],
-    selection_function: Callable[[int, list[Genotype], list[Fitness]], list[int]],
+    selection_function: Callable[
+        [int, list[Genotype], list[Fitness]], list[int]
+    ],
 ) -> tuple[list[int], list[int]]:
     """
     Select `len(old_genotypes)` individuals using the provided selection function from only the offspring(`new_genotypes`).
@@ -26,4 +28,6 @@ def generational(
     assert len(new_genotypes) == len(new_fitnesses)
     assert len(new_fitnesses) >= population_size
 
-    return [], selection_function(population_size, new_genotypes, new_fitnesses)
+    return [], selection_function(
+        population_size, new_genotypes, new_fitnesses
+    )

@@ -86,9 +86,13 @@ def gecko_v1() -> BodyV1:
     body.core_v1.back.attachment.front = ActiveHingeV1(np.pi / 2.0)
     body.core_v1.back.attachment.front.attachment = BrickV1(-np.pi / 2.0)
     body.core_v1.back.attachment.front.attachment.left = ActiveHingeV1(0.0)
-    body.core_v1.back.attachment.front.attachment.left.attachment = BrickV1(0.0)
+    body.core_v1.back.attachment.front.attachment.left.attachment = BrickV1(
+        0.0
+    )
     body.core_v1.back.attachment.front.attachment.right = ActiveHingeV1(0.0)
-    body.core_v1.back.attachment.front.attachment.right.attachment = BrickV1(0.0)
+    body.core_v1.back.attachment.front.attachment.right.attachment = BrickV1(
+        0.0
+    )
 
     return body
 
@@ -115,9 +119,13 @@ def babya_v1() -> BodyV1:
     body.core_v1.back.attachment.front = ActiveHingeV1(np.pi / 2.0)
     body.core_v1.back.attachment.front.attachment = BrickV1(-np.pi / 2.0)
     body.core_v1.back.attachment.front.attachment.left = ActiveHingeV1(0.0)
-    body.core_v1.back.attachment.front.attachment.left.attachment = BrickV1(0.0)
+    body.core_v1.back.attachment.front.attachment.left.attachment = BrickV1(
+        0.0
+    )
     body.core_v1.back.attachment.front.attachment.right = ActiveHingeV1(0.0)
-    body.core_v1.back.attachment.front.attachment.right.attachment = BrickV1(0.0)
+    body.core_v1.back.attachment.front.attachment.right.attachment = BrickV1(
+        0.0
+    )
 
     return body
 
@@ -146,9 +154,13 @@ def ant_v1() -> BodyV1:
     body.core_v1.back.attachment.front = ActiveHingeV1(np.pi / 2.0)
     body.core_v1.back.attachment.front.attachment = BrickV1(-np.pi / 2.0)
     body.core_v1.back.attachment.front.attachment.left = ActiveHingeV1(0.0)
-    body.core_v1.back.attachment.front.attachment.left.attachment = BrickV1(0.0)
+    body.core_v1.back.attachment.front.attachment.left.attachment = BrickV1(
+        0.0
+    )
     body.core_v1.back.attachment.front.attachment.right = ActiveHingeV1(0.0)
-    body.core_v1.back.attachment.front.attachment.right.attachment = BrickV1(0.0)
+    body.core_v1.back.attachment.front.attachment.right.attachment = BrickV1(
+        0.0
+    )
 
     return body
 
@@ -174,27 +186,37 @@ def salamander_v1() -> BodyV1:
     body.core_v1.back.attachment.front.front = ActiveHingeV1(np.pi / 2.0)
     body.core_v1.back.attachment.front.front.attachment = BrickV1(-np.pi / 2.0)
 
-    body.core_v1.back.attachment.front.front.attachment.left = ActiveHingeV1(0.0)
-    body.core_v1.back.attachment.front.front.attachment.left.attachment = BrickV1(0.0)
+    body.core_v1.back.attachment.front.front.attachment.left = ActiveHingeV1(
+        0.0
+    )
+    body.core_v1.back.attachment.front.front.attachment.left.attachment = (
+        BrickV1(0.0)
+    )
     body.core_v1.back.attachment.front.front.attachment.left.attachment.left = BrickV1(
         0.0
     )
-    body.core_v1.back.attachment.front.front.attachment.left.attachment.front = (
-        ActiveHingeV1(np.pi / 2.0)
+    body.core_v1.back.attachment.front.front.attachment.left.attachment.front = ActiveHingeV1(
+        np.pi / 2.0
     )
     body.core_v1.back.attachment.front.front.attachment.left.attachment.front.attachment = ActiveHingeV1(
         -np.pi / 2.0
     )
 
     body.core_v1.back.attachment.front.front.attachment.front = BrickV1(0.0)
-    body.core_v1.back.attachment.front.front.attachment.front.left = ActiveHingeV1(0.0)
-    body.core_v1.back.attachment.front.front.attachment.front.front = BrickV1(0.0)
+    body.core_v1.back.attachment.front.front.attachment.front.left = (
+        ActiveHingeV1(0.0)
+    )
+    body.core_v1.back.attachment.front.front.attachment.front.front = BrickV1(
+        0.0
+    )
     body.core_v1.back.attachment.front.front.attachment.front.front.left = (
         ActiveHingeV1(0.0)
     )
-    body.core_v1.back.attachment.front.front.attachment.front.front.front = BrickV1(0.0)
-    body.core_v1.back.attachment.front.front.attachment.front.front.front.front = (
-        ActiveHingeV1(np.pi / 2.0)
+    body.core_v1.back.attachment.front.front.attachment.front.front.front = (
+        BrickV1(0.0)
+    )
+    body.core_v1.back.attachment.front.front.attachment.front.front.front.front = ActiveHingeV1(
+        np.pi / 2.0
     )
     body.core_v1.back.attachment.front.front.attachment.front.front.front.front.attachment = BrickV1(
         -np.pi / 2.0
@@ -225,12 +247,20 @@ def blokky_v1() -> BodyV1:
     body.core_v1.back.front.attachment.attachment = BrickV1(0.0)
     body.core_v1.back.front.attachment.attachment.front = BrickV1(0.0)
     body.core_v1.back.front.attachment.attachment.front.right = BrickV1(0.0)
-    body.core_v1.back.front.attachment.attachment.front.right.left = BrickV1(0.0)
-    body.core_v1.back.front.attachment.attachment.front.right.front = BrickV1(0.0)
+    body.core_v1.back.front.attachment.attachment.front.right.left = BrickV1(
+        0.0
+    )
+    body.core_v1.back.front.attachment.attachment.front.right.front = BrickV1(
+        0.0
+    )
     body.core_v1.back.front.attachment.attachment.right = BrickV1(0.0)
     body.core_v1.back.front.attachment.attachment.right.front = BrickV1(0.0)
-    body.core_v1.back.front.attachment.attachment.right.front.right = BrickV1(0.0)
-    body.core_v1.back.front.attachment.attachment.right.front.front = ActiveHingeV1(0.0)
+    body.core_v1.back.front.attachment.attachment.right.front.right = BrickV1(
+        0.0
+    )
+    body.core_v1.back.front.attachment.attachment.right.front.front = (
+        ActiveHingeV1(0.0)
+    )
 
     return body
 
@@ -249,19 +279,27 @@ def park_v1() -> BodyV1:
     body.core_v1.back.attachment.attachment.right = BrickV1(0.0)
     body.core_v1.back.attachment.attachment.left = ActiveHingeV1(0.0)
     body.core_v1.back.attachment.attachment.front = BrickV1(0.0)
-    body.core_v1.back.attachment.attachment.front.right = ActiveHingeV1(-np.pi / 2.0)
-    body.core_v1.back.attachment.attachment.front.front = ActiveHingeV1(-np.pi / 2.0)
-    body.core_v1.back.attachment.attachment.front.left = ActiveHingeV1(0.0)
-    body.core_v1.back.attachment.attachment.front.left.attachment = BrickV1(0.0)
-    body.core_v1.back.attachment.attachment.front.left.attachment.right = ActiveHingeV1(
+    body.core_v1.back.attachment.attachment.front.right = ActiveHingeV1(
         -np.pi / 2.0
     )
-    body.core_v1.back.attachment.attachment.front.left.attachment.left = BrickV1(0.0)
-    body.core_v1.back.attachment.attachment.front.left.attachment.front = ActiveHingeV1(
+    body.core_v1.back.attachment.attachment.front.front = ActiveHingeV1(
+        -np.pi / 2.0
+    )
+    body.core_v1.back.attachment.attachment.front.left = ActiveHingeV1(0.0)
+    body.core_v1.back.attachment.attachment.front.left.attachment = BrickV1(
         0.0
     )
-    body.core_v1.back.attachment.attachment.front.left.attachment.front.attachment = (
+    body.core_v1.back.attachment.attachment.front.left.attachment.right = (
+        ActiveHingeV1(-np.pi / 2.0)
+    )
+    body.core_v1.back.attachment.attachment.front.left.attachment.left = (
         BrickV1(0.0)
+    )
+    body.core_v1.back.attachment.attachment.front.left.attachment.front = (
+        ActiveHingeV1(0.0)
+    )
+    body.core_v1.back.attachment.attachment.front.left.attachment.front.attachment = BrickV1(
+        0.0
     )
 
     return body
@@ -279,22 +317,34 @@ def babyb_v1() -> BodyV1:
     body.core_v1.left.attachment = BrickV1(-np.pi / 2.0)
     body.core_v1.left.attachment.front = ActiveHingeV1(0.0)
     body.core_v1.left.attachment.front.attachment = BrickV1(0.0)
-    body.core_v1.left.attachment.front.attachment.front = ActiveHingeV1(np.pi / 2.0)
-    body.core_v1.left.attachment.front.attachment.front.attachment = BrickV1(0.0)
+    body.core_v1.left.attachment.front.attachment.front = ActiveHingeV1(
+        np.pi / 2.0
+    )
+    body.core_v1.left.attachment.front.attachment.front.attachment = BrickV1(
+        0.0
+    )
 
     body.core_v1.right = ActiveHingeV1(np.pi / 2.0)
     body.core_v1.right.attachment = BrickV1(-np.pi / 2.0)
     body.core_v1.right.attachment.front = ActiveHingeV1(0.0)
     body.core_v1.right.attachment.front.attachment = BrickV1(0.0)
-    body.core_v1.right.attachment.front.attachment.front = ActiveHingeV1(np.pi / 2.0)
-    body.core_v1.right.attachment.front.attachment.front.attachment = BrickV1(0.0)
+    body.core_v1.right.attachment.front.attachment.front = ActiveHingeV1(
+        np.pi / 2.0
+    )
+    body.core_v1.right.attachment.front.attachment.front.attachment = BrickV1(
+        0.0
+    )
 
     body.core_v1.front = ActiveHingeV1(np.pi / 2.0)
     body.core_v1.front.attachment = BrickV1(-np.pi / 2.0)
     body.core_v1.front.attachment.front = ActiveHingeV1(0.0)
     body.core_v1.front.attachment.front.attachment = BrickV1(0.0)
-    body.core_v1.front.attachment.front.attachment.front = ActiveHingeV1(np.pi / 2.0)
-    body.core_v1.front.attachment.front.attachment.front.attachment = BrickV1(0.0)
+    body.core_v1.front.attachment.front.attachment.front = ActiveHingeV1(
+        np.pi / 2.0
+    )
+    body.core_v1.front.attachment.front.attachment.front.attachment = BrickV1(
+        0.0
+    )
 
     body.core_v1.back = ActiveHingeV1(np.pi / 2.0)
     body.core_v1.back.attachment = BrickV1(-np.pi / 2.0)
@@ -317,7 +367,9 @@ def garrix_v1() -> BodyV1:
     body.core_v1.left.attachment.attachment = ActiveHingeV1(-np.pi / 2.0)
     body.core_v1.left.attachment.attachment.attachment = BrickV1(0.0)
     body.core_v1.left.attachment.attachment.attachment.front = BrickV1(0.0)
-    body.core_v1.left.attachment.attachment.attachment.left = ActiveHingeV1(0.0)
+    body.core_v1.left.attachment.attachment.attachment.left = ActiveHingeV1(
+        0.0
+    )
 
     part2 = BrickV1(0.0)
     part2.right = ActiveHingeV1(np.pi / 2.0)
@@ -346,13 +398,17 @@ def insect_v1() -> BodyV1:
     body.core_v1.right.attachment.attachment.right = ActiveHingeV1(0.0)
     body.core_v1.right.attachment.attachment.front = ActiveHingeV1(np.pi / 2.0)
     body.core_v1.right.attachment.attachment.left = ActiveHingeV1(np.pi / 2.0)
-    body.core_v1.right.attachment.attachment.left.attachment = BrickV1(-np.pi / 2.0)
-    body.core_v1.right.attachment.attachment.left.attachment.front = ActiveHingeV1(
-        np.pi / 2.0
+    body.core_v1.right.attachment.attachment.left.attachment = BrickV1(
+        -np.pi / 2.0
     )
-    body.core_v1.right.attachment.attachment.left.attachment.right = ActiveHingeV1(0.0)
-    body.core_v1.right.attachment.attachment.left.attachment.right.attachment = (
+    body.core_v1.right.attachment.attachment.left.attachment.front = (
+        ActiveHingeV1(np.pi / 2.0)
+    )
+    body.core_v1.right.attachment.attachment.left.attachment.right = (
         ActiveHingeV1(0.0)
+    )
+    body.core_v1.right.attachment.attachment.left.attachment.right.attachment = ActiveHingeV1(
+        0.0
     )
     body.core_v1.right.attachment.attachment.left.attachment.right.attachment.attachment = ActiveHingeV1(
         np.pi / 2.0
@@ -374,8 +430,12 @@ def linkin_v1() -> BodyV1:
     body.core_v1.right = ActiveHingeV1(np.pi / 2.0)
     body.core_v1.right.attachment = ActiveHingeV1(0.0)
     body.core_v1.right.attachment.attachment = ActiveHingeV1(0.0)
-    body.core_v1.right.attachment.attachment.attachment = ActiveHingeV1(-np.pi / 2.0)
-    body.core_v1.right.attachment.attachment.attachment.attachment = BrickV1(0.0)
+    body.core_v1.right.attachment.attachment.attachment = ActiveHingeV1(
+        -np.pi / 2.0
+    )
+    body.core_v1.right.attachment.attachment.attachment.attachment = BrickV1(
+        0.0
+    )
 
     part2 = body.core_v1.right.attachment.attachment.attachment.attachment
     part2.front = BrickV1(0.0)
@@ -387,7 +447,9 @@ def linkin_v1() -> BodyV1:
     part2.right.attachment = ActiveHingeV1(-np.pi / 2.0)
     part2.right.attachment.attachment = ActiveHingeV1(0.0)
     part2.right.attachment.attachment.attachment = ActiveHingeV1(np.pi / 2.0)
-    part2.right.attachment.attachment.attachment.attachment = ActiveHingeV1(0.0)
+    part2.right.attachment.attachment.attachment.attachment = ActiveHingeV1(
+        0.0
+    )
 
     return body
 
@@ -403,8 +465,12 @@ def longleg_v1() -> BodyV1:
     body.core_v1.left = ActiveHingeV1(np.pi / 2.0)
     body.core_v1.left.attachment = ActiveHingeV1(0.0)
     body.core_v1.left.attachment.attachment = ActiveHingeV1(0.0)
-    body.core_v1.left.attachment.attachment.attachment = ActiveHingeV1(-np.pi / 2.0)
-    body.core_v1.left.attachment.attachment.attachment.attachment = ActiveHingeV1(0.0)
+    body.core_v1.left.attachment.attachment.attachment = ActiveHingeV1(
+        -np.pi / 2.0
+    )
+    body.core_v1.left.attachment.attachment.attachment.attachment = (
+        ActiveHingeV1(0.0)
+    )
     body.core_v1.left.attachment.attachment.attachment.attachment.attachment = BrickV1(
         0.0
     )
@@ -435,20 +501,20 @@ def penguin_v1() -> BodyV1:
     body.core_v1.right.left.attachment = ActiveHingeV1(-np.pi / 2.0)
     body.core_v1.right.left.attachment.attachment = BrickV1(0.0)
     body.core_v1.right.left.attachment.attachment.right = ActiveHingeV1(0.0)
-    body.core_v1.right.left.attachment.attachment.left = ActiveHingeV1(np.pi / 2.0)
-    body.core_v1.right.left.attachment.attachment.left.attachment = ActiveHingeV1(
-        -np.pi / 2.0
+    body.core_v1.right.left.attachment.attachment.left = ActiveHingeV1(
+        np.pi / 2.0
     )
-    body.core_v1.right.left.attachment.attachment.left.attachment.attachment = (
-        ActiveHingeV1(np.pi / 2.0)
+    body.core_v1.right.left.attachment.attachment.left.attachment = (
+        ActiveHingeV1(-np.pi / 2.0)
+    )
+    body.core_v1.right.left.attachment.attachment.left.attachment.attachment = ActiveHingeV1(
+        np.pi / 2.0
     )
     body.core_v1.right.left.attachment.attachment.left.attachment.attachment.attachment = BrickV1(
         -np.pi / 2.0
     )
 
-    part2 = (
-        body.core_v1.right.left.attachment.attachment.left.attachment.attachment.attachment
-    )
+    part2 = body.core_v1.right.left.attachment.attachment.left.attachment.attachment.attachment
 
     part2.front = ActiveHingeV1(np.pi / 2.0)
     part2.front.attachment = BrickV1(-np.pi / 2.0)
@@ -458,7 +524,9 @@ def penguin_v1() -> BodyV1:
     part2.right.attachment.attachment = ActiveHingeV1(np.pi / 2.0)
     part2.right.attachment.attachment.attachment = BrickV1(-np.pi / 2.0)
 
-    part2.right.attachment.attachment.attachment.left = ActiveHingeV1(np.pi / 2.0)
+    part2.right.attachment.attachment.attachment.left = ActiveHingeV1(
+        np.pi / 2.0
+    )
 
     part2.right.attachment.attachment.attachment.right = BrickV1(0.0)
     part2.right.attachment.attachment.attachment.right.front = ActiveHingeV1(
@@ -479,8 +547,12 @@ def pentapod_v1() -> BodyV1:
     body.core_v1.right = ActiveHingeV1(np.pi / 2.0)
     body.core_v1.right.attachment = ActiveHingeV1(0.0)
     body.core_v1.right.attachment.attachment = ActiveHingeV1(0.0)
-    body.core_v1.right.attachment.attachment.attachment = ActiveHingeV1(-np.pi / 2.0)
-    body.core_v1.right.attachment.attachment.attachment.attachment = BrickV1(0.0)
+    body.core_v1.right.attachment.attachment.attachment = ActiveHingeV1(
+        -np.pi / 2.0
+    )
+    body.core_v1.right.attachment.attachment.attachment.attachment = BrickV1(
+        0.0
+    )
     part2 = body.core_v1.right.attachment.attachment.attachment.attachment
 
     part2.left = ActiveHingeV1(0.0)
@@ -563,12 +635,14 @@ def snake_v1() -> BodyV1:
     body.core_v1.left.attachment.front = ActiveHingeV1(np.pi / 2.0)
     body.core_v1.left.attachment.front.attachment = BrickV1(-np.pi / 2.0)
     body.core_v1.left.attachment.front.attachment.front = ActiveHingeV1(0.0)
-    body.core_v1.left.attachment.front.attachment.front.attachment = BrickV1(0.0)
+    body.core_v1.left.attachment.front.attachment.front.attachment = BrickV1(
+        0.0
+    )
     body.core_v1.left.attachment.front.attachment.front.attachment.front = (
         ActiveHingeV1(np.pi / 2.0)
     )
-    body.core_v1.left.attachment.front.attachment.front.attachment.front.attachment = (
-        BrickV1(-np.pi / 2.0)
+    body.core_v1.left.attachment.front.attachment.front.attachment.front.attachment = BrickV1(
+        -np.pi / 2.0
     )
     body.core_v1.left.attachment.front.attachment.front.attachment.front.attachment.front = ActiveHingeV1(
         0.0
@@ -610,18 +684,24 @@ def stingray_v1() -> BodyV1:
     body.core_v1.right.attachment.attachment.right = BrickV1(0.0)
     body.core_v1.right.attachment.attachment.left = ActiveHingeV1(0.0)
     body.core_v1.right.attachment.attachment.front = BrickV1(0.0)
-    body.core_v1.right.attachment.attachment.front.right = ActiveHingeV1(np.pi / 2.0)
-    body.core_v1.right.attachment.attachment.front.front = ActiveHingeV1(np.pi / 2.0)
+    body.core_v1.right.attachment.attachment.front.right = ActiveHingeV1(
+        np.pi / 2.0
+    )
+    body.core_v1.right.attachment.attachment.front.front = ActiveHingeV1(
+        np.pi / 2.0
+    )
     body.core_v1.right.attachment.attachment.front.left = ActiveHingeV1(0.0)
-    body.core_v1.right.attachment.attachment.front.left.attachment = BrickV1(0.0)
+    body.core_v1.right.attachment.attachment.front.left.attachment = BrickV1(
+        0.0
+    )
     body.core_v1.right.attachment.attachment.front.left.attachment.right = (
         ActiveHingeV1(np.pi / 2.0)
     )
     body.core_v1.right.attachment.attachment.front.left.attachment.front = (
         ActiveHingeV1(0.0)
     )
-    body.core_v1.right.attachment.attachment.front.left.attachment.front.attachment = (
-        BrickV1(0.0)
+    body.core_v1.right.attachment.attachment.front.left.attachment.front.attachment = BrickV1(
+        0.0
     )
 
     return body
@@ -638,8 +718,12 @@ def tinlicker_v1() -> BodyV1:
     body.core_v1.right = ActiveHingeV1(np.pi / 2.0)
     body.core_v1.right.attachment = ActiveHingeV1(0.0)
     body.core_v1.right.attachment.attachment = ActiveHingeV1(0.0)
-    body.core_v1.right.attachment.attachment.attachment = ActiveHingeV1(-np.pi / 2.0)
-    body.core_v1.right.attachment.attachment.attachment.attachment = BrickV1(0.0)
+    body.core_v1.right.attachment.attachment.attachment = ActiveHingeV1(
+        -np.pi / 2.0
+    )
+    body.core_v1.right.attachment.attachment.attachment.attachment = BrickV1(
+        0.0
+    )
     part2 = body.core_v1.right.attachment.attachment.attachment.attachment
 
     part2.left = BrickV1(0.0)
@@ -670,9 +754,13 @@ def turtle_v1() -> BodyV1:
     body.core_v1.left.left.attachment.attachment = BrickV1(0.0)
 
     body.core_v1.left.left.attachment.attachment.front = BrickV1(0.0)
-    body.core_v1.left.left.attachment.attachment.left = ActiveHingeV1(np.pi / 2.0)
+    body.core_v1.left.left.attachment.attachment.left = ActiveHingeV1(
+        np.pi / 2.0
+    )
     body.core_v1.left.left.attachment.attachment.right = ActiveHingeV1(0.0)
-    body.core_v1.left.left.attachment.attachment.right.attachment = BrickV1(0.0)
+    body.core_v1.left.left.attachment.attachment.right.attachment = BrickV1(
+        0.0
+    )
     part2 = body.core_v1.left.left.attachment.attachment.right.attachment
 
     part2.left = ActiveHingeV1(np.pi / 2.0)
@@ -684,7 +772,9 @@ def turtle_v1() -> BodyV1:
     part2.right.attachment.left = ActiveHingeV1(np.pi / 2.0)
     part2.right.attachment.left.attachment = ActiveHingeV1(-np.pi / 2.0)
     part2.right.attachment.left.attachment.attachment = ActiveHingeV1(0.0)
-    part2.right.attachment.left.attachment.attachment.attachment = ActiveHingeV1(0.0)
+    part2.right.attachment.left.attachment.attachment.attachment = (
+        ActiveHingeV1(0.0)
+    )
 
     return body
 
@@ -702,8 +792,12 @@ def ww_v1() -> BodyV1:
     body.core_v1.right.attachment = ActiveHingeV1(0.0)
     body.core_v1.right.attachment.attachment = ActiveHingeV1(-np.pi / 2.0)
     body.core_v1.right.attachment.attachment.attachment = BrickV1(0.0)
-    body.core_v1.right.attachment.attachment.attachment.left = ActiveHingeV1(0.0)
-    body.core_v1.right.attachment.attachment.attachment.left.attachment = BrickV1(0.0)
+    body.core_v1.right.attachment.attachment.attachment.left = ActiveHingeV1(
+        0.0
+    )
+    body.core_v1.right.attachment.attachment.attachment.left.attachment = (
+        BrickV1(0.0)
+    )
     part2 = body.core_v1.right.attachment.attachment.attachment.left.attachment
 
     part2.left = ActiveHingeV1(0.0)
@@ -731,8 +825,12 @@ def zappa_v1() -> BodyV1:
     body.core_v1.right = ActiveHingeV1(np.pi / 2.0)
     body.core_v1.right.attachment = ActiveHingeV1(0.0)
     body.core_v1.right.attachment.attachment = ActiveHingeV1(0.0)
-    body.core_v1.right.attachment.attachment.attachment = ActiveHingeV1(-np.pi / 2.0)
-    body.core_v1.right.attachment.attachment.attachment.attachment = ActiveHingeV1(0.0)
+    body.core_v1.right.attachment.attachment.attachment = ActiveHingeV1(
+        -np.pi / 2.0
+    )
+    body.core_v1.right.attachment.attachment.attachment.attachment = (
+        ActiveHingeV1(0.0)
+    )
     body.core_v1.right.attachment.attachment.attachment.attachment.attachment = BrickV1(
         0.0
     )

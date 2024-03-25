@@ -72,7 +72,9 @@ def crater(
         heightmap = np.zeros(num_edges)
         max_height = 1.0
     else:
-        heightmap = (ruggedness * rugged + curviness * bowl) / (ruggedness + curviness)
+        heightmap = (ruggedness * rugged + curviness * bowl) / (
+            ruggedness + curviness
+        )
 
     return Terrain(
         static_geometry=[

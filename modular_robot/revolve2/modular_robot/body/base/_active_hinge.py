@@ -102,7 +102,9 @@ class ActiveHinge(Module):
             ),
         }
 
-        super().__init__(rotation, Color(255, 255, 255, 255), attachment_points)
+        super().__init__(
+            rotation, Color(255, 255, 255, 255), attachment_points
+        )
 
         self._sensor = None
 

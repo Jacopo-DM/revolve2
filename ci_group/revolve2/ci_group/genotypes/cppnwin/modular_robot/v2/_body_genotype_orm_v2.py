@@ -135,7 +135,9 @@ def _update_serialized_body(
 
 
 @event.listens_for(BodyGenotypeOrmV2, "load", propagate=True)
-def _deserialize_body(target: BodyGenotypeOrmV2, context: orm.QueryContext) -> None:
+def _deserialize_body(
+    target: BodyGenotypeOrmV2, context: orm.QueryContext
+) -> None:
     body = multineat.Genome()
     body.Deserialize(target._serialized_body)
     target.body = body

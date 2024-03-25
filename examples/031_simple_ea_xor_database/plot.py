@@ -29,9 +29,15 @@ def main() -> None:
             Generation.generation_index,
             Individual.fitness,
         )
-        .join_from(Experiment, Generation, Experiment.id == Generation.experiment_id)
-        .join_from(Generation, Population, Generation.population_id == Population.id)
-        .join_from(Population, Individual, Population.id == Individual.population_id),
+        .join_from(
+            Experiment, Generation, Experiment.id == Generation.experiment_id
+        )
+        .join_from(
+            Generation, Population, Generation.population_id == Population.id
+        )
+        .join_from(
+            Population, Individual, Population.id == Individual.population_id
+        ),
         dbengine,
     )
 
@@ -78,8 +84,10 @@ def main() -> None:
     )
     plt.fill_between(
         agg_per_generation["generation_index"],
-        agg_per_generation["max_fitness_mean"] - agg_per_generation["max_fitness_std"],
-        agg_per_generation["max_fitness_mean"] + agg_per_generation["max_fitness_std"],
+        agg_per_generation["max_fitness_mean"]
+        - agg_per_generation["max_fitness_std"],
+        agg_per_generation["max_fitness_mean"]
+        + agg_per_generation["max_fitness_std"],
         color="b",
         alpha=0.2,
     )

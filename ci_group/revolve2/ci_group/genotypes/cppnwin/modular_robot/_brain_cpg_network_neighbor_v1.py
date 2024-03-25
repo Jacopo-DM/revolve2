@@ -59,7 +59,9 @@ class BrainCpgNetworkNeighborV1(ModularRobotBrainCpgNetworkNeighbor):
                 float(pos.z),
             ]
             # Evaluate the network with the current input and append the result to the internal weights
-            internal_weights.append(self._evaluate_network(brain_net, network_input))
+            internal_weights.append(
+                self._evaluate_network(brain_net, network_input)
+            )
 
         # Create a list of tuples with the grid positions of each pair of connected hinges
         hinge_positions = [
@@ -87,7 +89,9 @@ class BrainCpgNetworkNeighborV1(ModularRobotBrainCpgNetworkNeighbor):
             ]
 
             # Evaluate the network with the current input and append the result to the external weights
-            external_weights.append(self._evaluate_network(brain_net, network_input))
+            external_weights.append(
+                self._evaluate_network(brain_net, network_input)
+            )
         return (internal_weights, external_weights)
 
     @staticmethod

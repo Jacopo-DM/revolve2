@@ -55,7 +55,10 @@ class V1PhysicalInterface(PhysicalInterface):
         if not self._dry:
             assert self._gpio is not None
             for pin, target in zip(pins, targets):
-                angle = self._CENTER + target / (1.0 / 3.0 * math.pi) * self._ANGLE60
+                angle = (
+                    self._CENTER
+                    + target / (1.0 / 3.0 * math.pi) * self._ANGLE60
+                )
                 self._gpio.set_PWM_dutycycle(pin, angle)
 
     def enable(self) -> None:
@@ -84,7 +87,9 @@ class V1PhysicalInterface(PhysicalInterface):
 
         :raises NotImplementedError: If getting the battery level is not supported on this hardware.
         """
-        raise NotImplementedError("Getting battery level not supported on v1 harware.")
+        raise NotImplementedError(
+            "Getting battery level not supported on v1 harware."
+        )
 
     def get_multiple_servo_positions(self, pins: Sequence[int]) -> list[float]:
         """
@@ -93,4 +98,6 @@ class V1PhysicalInterface(PhysicalInterface):
         :param pins: The GPIO pin numbers.
         :raises NotImplementedError: If getting the servo position is not supported on this hardware.
         """
-        raise NotImplementedError("Getting servo position not supported on v1 harware.")
+        raise NotImplementedError(
+            "Getting servo position not supported on v1 harware."
+        )

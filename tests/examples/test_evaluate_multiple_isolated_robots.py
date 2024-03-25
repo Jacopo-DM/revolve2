@@ -15,13 +15,17 @@ def test_evaluate_multiple_isolated_robots(mocker: Mock) -> None:
 
     :param mocker: The mock object.
     """
-    exp_dir = os.path.join(EXAMPLES_DIR, "002_evaluate_multiple_isolated_robots")
+    exp_dir = os.path.join(
+        EXAMPLES_DIR, "002_evaluate_multiple_isolated_robots"
+    )
     # Clear any previously imported modules from examples directory from cache
     clear_exp_modules_from_cache()
     # Add examples directory to path, so we can import them without the examples being packages.
     sys.path.insert(0, exp_dir)
     # Override import for patching batch parameters.
-    mocker.patch("main.make_standard_batch_parameters", make_patched_batch_parameters)
+    mocker.patch(
+        "main.make_standard_batch_parameters", make_patched_batch_parameters
+    )
 
     try:
         # This type ignore is required since mypy cant resolve this import.

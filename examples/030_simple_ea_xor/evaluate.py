@@ -19,7 +19,9 @@ def evaluate_network(
     n1 = np.maximum(0, np.dot(params[3:5], inputs) + params[5])
 
     # Second layer
-    output: np.float64 = np.maximum(0, n0 * params[6] + n1 * params[7] + params[8])
+    output: np.float64 = np.maximum(
+        0, n0 * params[6] + n1 * params[7] + params[8]
+    )
 
     return output
 
@@ -36,7 +38,9 @@ def evaluate(parameters: npt.NDArray[np.float64]) -> float:
     expected_outputs = np.array([0, 1, 1, 0])
 
     # Evaluate the provided network parameters
-    outputs = np.array([evaluate_network(parameters, input) for input in inputs])
+    outputs = np.array(
+        [evaluate_network(parameters, input) for input in inputs]
+    )
 
     # Calculate the difference between the network outputs and the expect outputs
     errors = outputs - expected_outputs

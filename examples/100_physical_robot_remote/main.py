@@ -92,7 +92,9 @@ def main() -> None:
         hinge_mapping=hinge_mapping,
         run_duration=30,
         control_frequency=20,
-        initial_hinge_positions={UUIDKey(active_hinge): 0.0 for active_hinge in hinges},
+        initial_hinge_positions={
+            UUIDKey(active_hinge): 0.0 for active_hinge in hinges
+        },
         inverse_servos={},
     )
 

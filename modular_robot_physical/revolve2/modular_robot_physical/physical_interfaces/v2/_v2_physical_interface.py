@@ -79,7 +79,9 @@ class V2PhysicalInterface(PhysicalInterface):
             self._robohat = Robohat(
                 self._SERVOASSEMBLY_1_CONFIG, self._SERVOASSEMBLY_2_CONFIG, 7
             )
-            self._robohat.init(servoboard_1_datas_list, servoboard_2_datas_list)
+            self._robohat.init(
+                servoboard_1_datas_list, servoboard_2_datas_list
+            )
             self._robohat.do_buzzer_beep()
             self._robohat.set_servo_direct_mode(_mode=True)
 
@@ -94,7 +96,9 @@ class V2PhysicalInterface(PhysicalInterface):
         """
         if not self._dry:
             all_angles = [90.0] * 32
-            angles = [90.0 + target / (2.0 * math.pi) * 360.0 for target in targets]
+            angles = [
+                90.0 + target / (2.0 * math.pi) * 360.0 for target in targets
+            ]
             for pin, angle in zip(pins, angles):
                 all_angles[pin] = angle
             self._robohat.update_servo_data_direct(all_angles)

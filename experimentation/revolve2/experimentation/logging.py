@@ -50,7 +50,9 @@ class Clr:
     E: str = "\033[0m"  # End
 
 
-def setup_logging(level: int = logging.INFO, file_name: str | None = None) -> None:
+def setup_logging(
+    level: int = logging.INFO, file_name: str | None = None
+) -> None:
     """
     Set up logging.
 

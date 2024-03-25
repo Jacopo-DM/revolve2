@@ -8,9 +8,7 @@ import numpy as np
 from pyrr.utils import parameters_as_numpy_arrays
 
 
-def create(
-    x: float = 0.0, y: float = 0.0, dtype: Any = None
-) -> np.ndarray:  # type:ignore
+def create(x: float = 0.0, y: float = 0.0, dtype: Any = None) -> np.ndarray:  # type:ignore
     """
     Create a Vector2 object.
 

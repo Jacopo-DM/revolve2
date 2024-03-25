@@ -26,7 +26,8 @@ def to_batch(
         scenes = [scenes]
 
     converted = [
-        modular_robot_scene.to_simulation_scene() for modular_robot_scene in scenes
+        modular_robot_scene.to_simulation_scene()
+        for modular_robot_scene in scenes
     ]
 
     batch = Batch(parameters=batch_parameters, record_settings=record_settings)

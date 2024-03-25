@@ -44,11 +44,15 @@ class Individual(HasId, orm.MappedAsDataclass, Generic[TGenotype]):
     # Class members interesting to the user
     # -------------------------------------
     if TYPE_CHECKING:
-        population_id: orm.Mapped[int] = orm.mapped_column(nullable=False, init=False)
+        population_id: orm.Mapped[int] = orm.mapped_column(
+            nullable=False, init=False
+        )
         population_index: orm.Mapped[int] = orm.mapped_column(
             nullable=False, init=False
         )
-        genotype_id: orm.Mapped[int] = orm.mapped_column(nullable=False, init=False)
+        genotype_id: orm.Mapped[int] = orm.mapped_column(
+            nullable=False, init=False
+        )
         genotype: orm.Mapped[TGenotype] = orm.relationship()
         fitness: orm.Mapped[float] = orm.mapped_column(nullable=False)
 

@@ -30,7 +30,9 @@ def pareto_frontier(
         np.array(frontier_values, dtype=np.float64).T, frontier_order
     )
 
-    all_values = np.array([domination_orders, *frontier_values], dtype=np.float64)
+    all_values = np.array(
+        [domination_orders, *frontier_values], dtype=np.float64
+    )
     frontier_order = [False, *frontier_order]
     """Domination order is descending by default. The more individuals are dominated by a target, the better."""
 

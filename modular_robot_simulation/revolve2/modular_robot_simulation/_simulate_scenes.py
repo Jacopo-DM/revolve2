@@ -81,7 +81,9 @@ def simulate_scenes(
 
     results = [
         [
-            SceneSimulationState(state, modular_robot_to_multi_body_system_mapping)
+            SceneSimulationState(
+                state, modular_robot_to_multi_body_system_mapping
+            )
             for state in simulation_result
         ]
         for simulation_result, modular_robot_to_multi_body_system_mapping in zip(

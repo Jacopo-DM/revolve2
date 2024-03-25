@@ -7,7 +7,9 @@ class ModularRobotControlInterface(ABC):
     """Interface for controlling modular robots."""
 
     @abstractmethod
-    def set_active_hinge_target(self, active_hinge: ActiveHinge, target: float) -> None:
+    def set_active_hinge_target(
+        self, active_hinge: ActiveHinge, target: float
+    ) -> None:
         """
         Set the position target for an active hinge.
 

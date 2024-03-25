@@ -66,8 +66,12 @@ def _coordinates_to_magnitudes_orientation(
         orts = [(0.0, 0.0)] * coordinates_amount
         for j in range(coordinates_amount):
             coord = coordinates[i][j]
-            ax = atan2(sqrt(coord[1] ** 2 + coord[2] ** 2), coord[0]) * 180 / pi
-            az = atan2(coord[2], sqrt(coord[1] ** 2 + coord[0] ** 2)) * 180 / pi
+            ax = (
+                atan2(sqrt(coord[1] ** 2 + coord[2] ** 2), coord[0]) * 180 / pi
+            )
+            az = (
+                atan2(coord[2], sqrt(coord[1] ** 2 + coord[0] ** 2)) * 180 / pi
+            )
             orts[j] = (ax, az)
             mags[j] = sqrt(coord.dot(coord))
         orientations[i] = orts
@@ -90,7 +94,9 @@ def _gen_gradient_histogram(
     """
     bin_size = 360 / num_bins
     instances = len(orientations)
-    histograms = np.zeros(shape=(instances, num_bins, num_bins), dtype=np.float64)
+    histograms = np.zeros(
+        shape=(instances, num_bins, num_bins), dtype=np.float64
+    )
     for i in range(instances):
         for orientation, magnitude in zip(orientations[i], magnitudes[i]):
             x, z = (
@@ -131,7 +137,11 @@ def _normalize_cast_int(histograms: NDArray[np.float64]) -> NDArray[np.int64]:
         # each histogram must sum up to _INT_CASTER. Therefore, a mask is applied.
         mask[:error] += 1
         np.random.seed(42)  # forces shuffles into reproducible patterns
-        np.random.shuffle(mask)  # shuffling the mask to minimize bias in the histogram
-        int_histograms[i] = histogram + np.reshape(mask, (-1, histogram.shape[0]))
+        np.random.shuffle(
+            mask
+        )  # shuffling the mask to minimize bias in the histogram
+        int_histograms[i] = histogram + np.reshape(
+            mask, (-1, histogram.shape[0])
+        )
 
     return int_histograms

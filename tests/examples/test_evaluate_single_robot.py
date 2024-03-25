@@ -19,7 +19,9 @@ def test_evaluate_single_robot(mocker: Mock) -> None:
     # Add examples directory to path, so we can import them without the examples being packages.
     sys.path.insert(0, exp_dir)
     # Override import for patching batch parameters.
-    mocker.patch("main.make_standard_batch_parameters", make_patched_batch_parameters)
+    mocker.patch(
+        "main.make_standard_batch_parameters", make_patched_batch_parameters
+    )
 
     try:
         # This type ignore is required since mypy cant resolve this import.

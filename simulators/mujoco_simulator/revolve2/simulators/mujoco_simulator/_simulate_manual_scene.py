@@ -43,9 +43,7 @@ def simulate_manual_scene(
     )
 
     """Here we set our values for cycling different positions."""
-    prev_position: int = (
-        0  # This is the initial idle position for all hinges (index of the positions).
-    )
+    prev_position: int = 0  # This is the initial idle position for all hinges (index of the positions).
     positions: list[float] = [
         0.0,
         0.5,

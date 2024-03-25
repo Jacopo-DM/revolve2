@@ -17,4 +17,6 @@ class ModularRobotSensorStateImplV1(ModularRobotSensorState):
         :param sensor: The sensor to query.
         :raises NotImplementedError: Always.
         """
-        raise NotImplementedError("V1 hardware does not support sensor reading.")
+        raise NotImplementedError(
+            "V1 hardware does not support sensor reading."
+        )

@@ -51,7 +51,9 @@ class Population(HasId, orm.MappedAsDataclass, Generic[TIndividual]):
 
     __type_tindividual: ClassVar[type[TIndividual]]  # type: ignore[misc]
 
-    def __init_subclass__(cls: type[Self], /, **kwargs: dict[str, Any]) -> None:
+    def __init_subclass__(
+        cls: type[Self], /, **kwargs: dict[str, Any]
+    ) -> None:
         """
         Initialize a version of this class when it is subclassed.
 

@@ -81,12 +81,16 @@ def _coordinates_pca_change_basis(
                 k = np.array([[0, -rz, ry], [rz, 0, -rx], [-ry, rx, 0]])
                 rotation_matrix = np.identity(3) + 2 * np.dot(k, k)
 
-                target_coordinates = np.dot(target_coordinates, rotation_matrix.T)
+                target_coordinates = np.dot(
+                    target_coordinates, rotation_matrix.T
+                )
 
                 eigen_vectors[[j, candidate]] = eigen_vectors[[candidate, j]]
                 srt[[j, candidate]] = srt[[candidate, j]]
 
-            final_coordinates = np.linalg.inv(eigen_vectors).dot(target_coordinates.T)
+            final_coordinates = np.linalg.inv(eigen_vectors).dot(
+                target_coordinates.T
+            )
             coordinates[i] = final_coordinates.T
 
 
@@ -107,6 +111,8 @@ def _coordinates_pca_heuristic(crds: list[NDArray[np.float64]]) -> None:
                 if srt[j] == j:
                     continue
                 candidate = srt[j]
-                target_coords[:, [j, candidate]] = target_coords[:, [candidate, j]]
+                target_coords[:, [j, candidate]] = target_coords[
+                    :, [candidate, j]
+                ]
                 srt[[j, candidate]] = srt[[candidate, j]]
             crds[i] = target_coords

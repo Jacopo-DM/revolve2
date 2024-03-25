@@ -48,7 +48,9 @@ def make_custom_terrain() -> Terrain:
                 ),
             ),
             GeometryBox(
-                pose=Pose(position=Vector3([1.0, 0.0, 0.1]), orientation=Quaternion()),
+                pose=Pose(
+                    position=Vector3([1.0, 0.0, 0.1]), orientation=Quaternion()
+                ),
                 mass=0.0,
                 texture=Flat(primary_color=Color(0, 255, 0, 255)),
                 aabb=AABB(size=Vector3([0.5, 0.5, 0.2])),
@@ -68,7 +70,9 @@ def make_custom_terrain() -> Terrain:
             GeometryBox(
                 pose=Pose(
                     position=Vector3([-0.8 + 0.38, 0.4, 0.125]),
-                    orientation=Quaternion.from_eulers([0.0, math.pi / 4.0, 0.0]),
+                    orientation=Quaternion.from_eulers(
+                        [0.0, math.pi / 4.0, 0.0]
+                    ),
                 ),
                 mass=0.0,
                 texture=Flat(primary_color=Color(50, 80, 180, 255)),

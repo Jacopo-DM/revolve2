@@ -5,7 +5,9 @@ import numpy as np
 Fitness = TypeVar("Fitness")
 
 
-def tournament(rng: np.random.Generator, fitnesses: list[Fitness], k: int) -> int:
+def tournament(
+    rng: np.random.Generator, fitnesses: list[Fitness], k: int
+) -> int:
     """
     Perform tournament selection and return the index of the best individual.
 

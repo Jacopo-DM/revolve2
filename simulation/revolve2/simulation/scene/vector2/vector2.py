@@ -23,7 +23,9 @@ class Vector2(BaseVector):  # type:ignore
 
     ########################
     # Creation
-    def __new__(cls, value: Any = None, w: float = 0.0, dtype: Any = None) -> Any:
+    def __new__(
+        cls, value: Any = None, w: float = 0.0, dtype: Any = None
+    ) -> Any:
         """
         Make a new Vector2.
 
@@ -44,7 +46,9 @@ class Vector2(BaseVector):  # type:ignore
                     3,
                 )
             ) or isinstance(obj, BaseMatrix33):
-                obj = vector2.create_from_matrix33_translation(obj, dtype=dtype)
+                obj = vector2.create_from_matrix33_translation(
+                    obj, dtype=dtype
+                )
         else:
             obj = np.zeros(cls._shape, dtype=dtype)
         obj = obj.view(cls)

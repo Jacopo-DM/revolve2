@@ -50,7 +50,9 @@ class MultiBodySystem:
     )
     """Maps rigid bodies to their index in the rigid body list."""
 
-    _half_adjacency_matrix: list[Joint | None] = field(default_factory=list, init=False)
+    _half_adjacency_matrix: list[Joint | None] = field(
+        default_factory=list, init=False
+    )
     """
     Adjacency matrix, defining joints between rigid bodies.
     
@@ -74,7 +76,9 @@ class MultiBodySystem:
         largest_index = max(rigid_body1_list_index, rigid_body2_list_index)
         assert largest_index < len(self._rigid_bodies)
 
-        base_index = ((largest_index - 1) * largest_index // 2) + (largest_index - 1)
+        base_index = ((largest_index - 1) * largest_index // 2) + (
+            largest_index - 1
+        )
         return base_index - smallest_index
 
     def add_rigid_body(self, rigid_body: RigidBody) -> None:
@@ -91,7 +95,9 @@ class MultiBodySystem:
         self._half_adjacency_matrix.extend([None] * len(self._rigid_bodies))
 
         # Add rigid body
-        self._rigid_body_to_index[UUIDKey(rigid_body)] = len(self._rigid_bodies)
+        self._rigid_body_to_index[UUIDKey(rigid_body)] = len(
+            self._rigid_bodies
+        )
         self._rigid_bodies.append(rigid_body)
 
     def add_joint(self, joint: Joint) -> None:
@@ -199,7 +205,8 @@ class MultiBodySystem:
                     + rigid_body.initial_pose.orientation
                     * (
                         geometry.pose.position
-                        + geometry.pose.orientation * (geometry.aabb.size * sign)
+                        + geometry.pose.orientation
+                        * (geometry.aabb.size * sign)
                     )
                     for sign in [0.5, -0.5]
                 )

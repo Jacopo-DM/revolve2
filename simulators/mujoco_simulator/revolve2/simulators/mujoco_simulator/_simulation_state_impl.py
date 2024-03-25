@@ -63,7 +63,9 @@ class SimulationStateImpl(SimulationState):
         """
         raise NotImplementedError()
 
-    def get_multi_body_system_pose(self, multi_body_system: MultiBodySystem) -> Pose:
+    def get_multi_body_system_pose(
+        self, multi_body_system: MultiBodySystem
+    ) -> Pose:
         """
         Get the pose of a multi-body system, relative to the global reference frame.
 
@@ -85,5 +87,7 @@ class SimulationStateImpl(SimulationState):
         :param joint: The joint to get the rotational position for.
         :returns: The rotational position.
         """
-        joint_mujoco = self._abstraction_to_mujoco_mapping.hinge_joint[UUIDKey(joint)]
+        joint_mujoco = self._abstraction_to_mujoco_mapping.hinge_joint[
+            UUIDKey(joint)
+        ]
         return float(self._qpos[joint_mujoco.id])

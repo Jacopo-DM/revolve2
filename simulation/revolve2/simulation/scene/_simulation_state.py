@@ -28,7 +28,9 @@ class SimulationState(ABC):
         """
 
     @abstractmethod
-    def get_multi_body_system_pose(self, multi_body_system: MultiBodySystem) -> Pose:
+    def get_multi_body_system_pose(
+        self, multi_body_system: MultiBodySystem
+    ) -> Pose:
         """
         Get the pose of a multi-body system, relative to the global reference frame.
 

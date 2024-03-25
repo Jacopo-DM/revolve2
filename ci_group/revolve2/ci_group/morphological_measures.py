@@ -108,8 +108,12 @@ class MorphologicalMeasures(Generic[TModule]):
         self.core_is_filled = self.__calculate_core_is_filled()
         self.filled_bricks = self.__calculate_filled_bricks()
         self.filled_active_hinges = self.__calculate_filled_active_hinges()
-        self.single_neighbour_bricks = self.__calculate_single_neighbour_bricks()
-        self.double_neighbour_bricks = self.__calculate_double_neighbour_bricks()
+        self.single_neighbour_bricks = (
+            self.__calculate_single_neighbour_bricks()
+        )
+        self.double_neighbour_bricks = (
+            self.__calculate_double_neighbour_bricks()
+        )
         self.double_neighbour_active_hinges = (
             self.__calculate_double_neighbour_active_hinges()
         )
@@ -123,7 +127,10 @@ class MorphologicalMeasures(Generic[TModule]):
     def __calculate_is_2d_recur(cls, module: Module) -> bool:
         return all(
             [np.isclose(module.rotation, 0.0)]
-            + [cls.__calculate_is_2d_recur(child) for child in module.children.values()]
+            + [
+                cls.__calculate_is_2d_recur(child)
+                for child in module.children.values()
+            ]
         )
 
     def __calculate_core_is_filled(self) -> bool:
@@ -201,7 +208,10 @@ class MorphologicalMeasures(Generic[TModule]):
             range(self.bounding_box_width),
             range(1, (self.bounding_box_height - 1) // 2),
         ):
-            if self.symmetry_grid[x, y, self.core_grid_position[2]] is not None:
+            if (
+                self.symmetry_grid[x, y, self.core_grid_position[2]]
+                is not None
+            ):
                 num_along_plane += 1
             if self.symmetry_grid[
                 x, y, self.core_grid_position[2] + z
@@ -223,7 +233,10 @@ class MorphologicalMeasures(Generic[TModule]):
             range(1, (self.bounding_box_width - 1) // 2),
             range(self.bounding_box_height),
         ):
-            if self.symmetry_grid[x, self.core_grid_position[1], z] is not None:
+            if (
+                self.symmetry_grid[x, self.core_grid_position[1], z]
+                is not None
+            ):
                 num_along_plane += 1
             if self.symmetry_grid[
                 x, self.core_grid_position[1] + y, z
@@ -244,7 +257,10 @@ class MorphologicalMeasures(Generic[TModule]):
             range(self.bounding_box_width),
             range(self.bounding_box_height),
         ):
-            if self.symmetry_grid[self.core_grid_position[0], y, z] is not None:
+            if (
+                self.symmetry_grid[self.core_grid_position[0], y, z]
+                is not None
+            ):
                 num_along_plane += 1
             if self.symmetry_grid[
                 self.core_grid_position[0] + x, y, z
@@ -499,7 +515,8 @@ class MorphologicalMeasures(Generic[TModule]):
             return 0.0
 
         return (
-            self.num_double_neighbour_bricks + self.num_double_neighbour_active_hinges
+            self.num_double_neighbour_bricks
+            + self.num_double_neighbour_active_hinges
         ) / self.potential_double_neighbour_bricks_and_active_hinges
 
     @property
@@ -512,7 +529,9 @@ class MorphologicalMeasures(Generic[TModule]):
         :returns: The volume.
         """
         return (
-            self.bounding_box_width * self.bounding_box_height * self.bounding_box_depth
+            self.bounding_box_width
+            * self.bounding_box_height
+            * self.bounding_box_depth
         )
 
     @property

@@ -123,4 +123,6 @@ class BrainGenotypeCpg:
         :param body: The body to develop the brain for.
         :returns: The created robot.
         """
-        return BrainCpgNetworkNeighborV1(genotype=self.brain.genotype, body=body)
+        return BrainCpgNetworkNeighborV1(
+            genotype=self.brain.genotype, body=body
+        )

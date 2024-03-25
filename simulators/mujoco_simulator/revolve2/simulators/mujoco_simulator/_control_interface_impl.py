@@ -34,8 +34,10 @@ class ControlInterfaceImpl(ControlInterface):
         :param joint_hinge: The hinge to set the position target for.
         :param position: The position target.
         """
-        maybe_hinge_joint_mujoco = self._abstraction_to_mujoco_mapping.hinge_joint.get(
-            UUIDKey(joint_hinge)
+        maybe_hinge_joint_mujoco = (
+            self._abstraction_to_mujoco_mapping.hinge_joint.get(
+                UUIDKey(joint_hinge)
+            )
         )
         assert (
             maybe_hinge_joint_mujoco is not None

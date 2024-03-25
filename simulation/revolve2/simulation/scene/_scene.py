@@ -9,14 +9,18 @@ class Scene:
     """Description of a scene that can be simulated."""
 
     handler: SimulationHandler
-    _multi_body_systems: list[MultiBodySystem] = field(default_factory=list, init=False)
+    _multi_body_systems: list[MultiBodySystem] = field(
+        default_factory=list, init=False
+    )
     """
     Multi-body system in this scene.
 
     Don't add to this directly, but use `add_multi_body_system` instead.
     """
 
-    def add_multi_body_system(self, multi_body_system: MultiBodySystem) -> None:
+    def add_multi_body_system(
+        self, multi_body_system: MultiBodySystem
+    ) -> None:
         """
         Add a multi-body system to the scene.
 

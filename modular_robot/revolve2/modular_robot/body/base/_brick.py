@@ -44,7 +44,9 @@ class Brick(Module):
             ),
             self.RIGHT: AttachmentPoint(
                 offset=Vector3([child_offset, 0.0, 0.0]),
-                orientation=Quaternion.from_eulers([0.0, 0.0, math.pi / 2.0 * 3]),
+                orientation=Quaternion.from_eulers(
+                    [0.0, 0.0, math.pi / 2.0 * 3]
+                ),
             ),
         }
         self._mass = mass

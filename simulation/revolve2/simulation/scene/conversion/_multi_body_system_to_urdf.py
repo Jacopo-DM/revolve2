@@ -121,7 +121,9 @@ class _URDFConverter:
                     "xyz": f"{com_xyz[0]} {com_xyz[1]} {com_xyz[2]}",
                 },
             )
-            xml.SubElement(inertial, "mass", {"value": f"{rigid_body.mass():e}"})
+            xml.SubElement(
+                inertial, "mass", {"value": f"{rigid_body.mass():e}"}
+            )
             xml.SubElement(
                 inertial,
                 "inertia",
@@ -295,13 +297,18 @@ class _URDFConverter:
         xml.SubElement(
             geometry_xml,
             "box",
-            {"size": f"{geometry.size.x} {geometry.size.y} {PLANE_BOX_HEIGHT}"},
+            {
+                "size": f"{geometry.size.x} {geometry.size.y} {PLANE_BOX_HEIGHT}"
+            },
         )
         xyz = link_pose.orientation.inverse * (
             rigid_body.initial_pose.position
             - link_pose.position
             + rigid_body.initial_pose.orientation
-            * (geometry.pose.position + Vector3([0.0, 0.0, -PLANE_BOX_HEIGHT / 2.0]))
+            * (
+                geometry.pose.position
+                + Vector3([0.0, 0.0, -PLANE_BOX_HEIGHT / 2.0])
+            )
         )
         rpy = _quaternion_to_euler(
             link_pose.orientation.inverse

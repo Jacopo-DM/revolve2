@@ -11,7 +11,9 @@ class AttachmentFaceBuilder(Builder):
 
     _module: AttachmentFace
 
-    def __init__(self, module: AttachmentFace, rigid_body: RigidBody, slot_pose: Pose):
+    def __init__(
+        self, module: AttachmentFace, rigid_body: RigidBody, slot_pose: Pose
+    ):
         """
         Initialize the Attachment Face Builder.
 

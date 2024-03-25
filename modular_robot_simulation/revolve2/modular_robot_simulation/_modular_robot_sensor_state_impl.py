@@ -27,7 +27,9 @@ class ModularRobotSensorStateImpl(ModularRobotSensorState):
         :param body_to_multi_body_system_mapping: A mapping from body to multi-body system
         """
         self._simulation_state = simulation_state
-        self._body_to_multi_body_system_mapping = body_to_multi_body_system_mapping
+        self._body_to_multi_body_system_mapping = (
+            body_to_multi_body_system_mapping
+        )
 
     def get_active_hinge_sensor_state(
         self, sensor: ActiveHingeSensor

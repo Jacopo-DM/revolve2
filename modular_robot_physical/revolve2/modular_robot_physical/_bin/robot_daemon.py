@@ -10,7 +10,9 @@ class Args(tap.TypedArgs):
     """Arguments for the program."""
 
     debug: bool = tap.arg(help="Print debug messages.", default=False)
-    hardware: HardwareType = tap.arg(help="The type of hardware this brain runs on.")
+    hardware: HardwareType = tap.arg(
+        help="The type of hardware this brain runs on."
+    )
     dry: bool = tap.arg(
         help="Run in dry mode, not doing anything with the robot hardware.",
         default=False,
@@ -23,7 +25,9 @@ def main_with_args(args: Args) -> None:
 
     :param args: The parsed program arguments.
     """
-    run_robot_daemon(debug=args.debug, dry=args.dry, hardware_type=args.hardware)
+    run_robot_daemon(
+        debug=args.debug, dry=args.dry, hardware_type=args.hardware
+    )
 
 
 def main() -> None:

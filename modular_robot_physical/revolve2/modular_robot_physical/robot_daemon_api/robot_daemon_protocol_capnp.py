@@ -10,7 +10,9 @@ import capnp  # type: ignore
 
 capnp.remove_import_hook()
 here = os.path.dirname(os.path.abspath(__file__))
-module_file = os.path.abspath(os.path.join(here, "robot_daemon_protocol.capnp"))
+module_file = os.path.abspath(
+    os.path.join(here, "robot_daemon_protocol.capnp")
+)
 SetupArgs = capnp.load(module_file).SetupArgs
 SetupArgsBuilder = SetupArgs
 SetupaArgsReader = SetupArgs

@@ -47,14 +47,20 @@ def gecko_v2() -> BodyV2:
     body.core_v2.back_face.bottom = ActiveHingeV2(np.pi / 2.0)
     body.core_v2.back_face.bottom.attachment = BrickV2(-np.pi / 2.0)
     body.core_v2.back_face.bottom.attachment.front = ActiveHingeV2(np.pi / 2.0)
-    body.core_v2.back_face.bottom.attachment.front.attachment = BrickV2(-np.pi / 2.0)
-    body.core_v2.back_face.bottom.attachment.front.attachment.left = ActiveHingeV2(0.0)
-    body.core_v2.back_face.bottom.attachment.front.attachment.right = ActiveHingeV2(0.0)
+    body.core_v2.back_face.bottom.attachment.front.attachment = BrickV2(
+        -np.pi / 2.0
+    )
+    body.core_v2.back_face.bottom.attachment.front.attachment.left = (
+        ActiveHingeV2(0.0)
+    )
+    body.core_v2.back_face.bottom.attachment.front.attachment.right = (
+        ActiveHingeV2(0.0)
+    )
     body.core_v2.back_face.bottom.attachment.front.attachment.left.attachment = BrickV2(
         0.0
     )
-    body.core_v2.back_face.bottom.attachment.front.attachment.right.attachment = (
-        BrickV2(0.0)
+    body.core_v2.back_face.bottom.attachment.front.attachment.right.attachment = BrickV2(
+        0.0
     )
 
     return body
@@ -79,19 +85,25 @@ def gecko_plus_v2() -> BodyV2:
     body.core_v2.back_face.bottom = ActiveHingeV2(np.pi / 2.0)
     body.core_v2.back_face.bottom.attachment = BrickV2(-np.pi / 2.0)
     body.core_v2.back_face.bottom.attachment.front = ActiveHingeV2(np.pi / 2.0)
-    body.core_v2.back_face.bottom.attachment.front.attachment = BrickV2(-np.pi / 2.0)
-    body.core_v2.back_face.bottom.attachment.front.attachment.left = ActiveHingeV2(0.0)
-    body.core_v2.back_face.bottom.attachment.front.attachment.right = ActiveHingeV2(0.0)
-
-    body.core_v2.back_face.bottom.attachment.front.attachment.left.attachment = (
+    body.core_v2.back_face.bottom.attachment.front.attachment = BrickV2(
+        -np.pi / 2.0
+    )
+    body.core_v2.back_face.bottom.attachment.front.attachment.left = (
         ActiveHingeV2(0.0)
+    )
+    body.core_v2.back_face.bottom.attachment.front.attachment.right = (
+        ActiveHingeV2(0.0)
+    )
+
+    body.core_v2.back_face.bottom.attachment.front.attachment.left.attachment = ActiveHingeV2(
+        0.0
     )
     body.core_v2.back_face.bottom.attachment.front.attachment.left.attachment.attachment = BrickV2(
         0.0
     )
 
-    body.core_v2.back_face.bottom.attachment.front.attachment.right.attachment = (
-        ActiveHingeV2(0.0)
+    body.core_v2.back_face.bottom.attachment.front.attachment.right.attachment = ActiveHingeV2(
+        0.0
     )
     body.core_v2.back_face.bottom.attachment.front.attachment.right.attachment.attachment = BrickV2(
         0.0

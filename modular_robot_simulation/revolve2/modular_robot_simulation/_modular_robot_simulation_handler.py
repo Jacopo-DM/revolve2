@@ -32,7 +32,9 @@ class ModularRobotSimulationHandler(SimulationHandler):
         :param brain_instance: The brain.
         :param body_to_multi_body_system_mapping: A mapping from body to multi-body system
         """
-        self._brains.append((brain_instance, body_to_multi_body_system_mapping))
+        self._brains.append(
+            (brain_instance, body_to_multi_body_system_mapping)
+        )
 
     def handle(
         self,

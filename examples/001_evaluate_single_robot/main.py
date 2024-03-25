@@ -52,7 +52,9 @@ def main() -> None:
     scene_state_end = scene_states[-1]
 
     # Retrieve the state of the modular robot.
-    robot_state_begin = scene_state_begin.get_modular_robot_simulation_state(robot)
+    robot_state_begin = scene_state_begin.get_modular_robot_simulation_state(
+        robot
+    )
     robot_state_end = scene_state_end.get_modular_robot_simulation_state(robot)
 
     # Calculate the xy displacement.

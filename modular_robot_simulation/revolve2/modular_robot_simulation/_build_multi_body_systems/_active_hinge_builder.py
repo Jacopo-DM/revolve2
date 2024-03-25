@@ -22,7 +22,9 @@ class ActiveHingeBuilder(Builder):
 
     _module: ActiveHinge
 
-    def __init__(self, module: ActiveHinge, rigid_body: RigidBody, slot_pose: Pose):
+    def __init__(
+        self, module: ActiveHinge, rigid_body: RigidBody, slot_pose: Pose
+    ):
         """
         Initialize the Active Hinge Builder.
 
@@ -75,7 +77,8 @@ class ActiveHingeBuilder(Builder):
                 + self._slot_pose.orientation
                 * Vector3([self._module.servo_offset, 0.0, 0.0])
             ),
-            self._rigid_body.initial_pose.orientation * self._slot_pose.orientation,
+            self._rigid_body.initial_pose.orientation
+            * self._slot_pose.orientation,
         )
         joint_pose = Pose(
             self._rigid_body.initial_pose.position
@@ -85,7 +88,8 @@ class ActiveHingeBuilder(Builder):
                 + self._slot_pose.orientation
                 * Vector3([self._module.joint_offset, 0.0, 0.0])
             ),
-            self._rigid_body.initial_pose.orientation * self._slot_pose.orientation,
+            self._rigid_body.initial_pose.orientation
+            * self._slot_pose.orientation,
         )
 
         self._rigid_body.geometries.append(
@@ -144,7 +148,9 @@ class ActiveHingeBuilder(Builder):
         )
 
         tasks = []
-        attachment_point = self._module.attachment_points[self._module.ATTACHMENT]
+        attachment_point = self._module.attachment_points[
+            self._module.ATTACHMENT
+        ]
         child = self._module.children.get(self._module.ATTACHMENT)
         if child is not None:
             unbuilt = UnbuiltChild(

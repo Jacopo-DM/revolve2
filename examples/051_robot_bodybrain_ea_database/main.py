@@ -63,7 +63,10 @@ def select_survivors(
     :param offspring_population: The offspring.
     :returns: A newly created population.
     """
-    (original_survivors, offspring_survivors,) = population_management.steady_state(
+    (
+        original_survivors,
+        offspring_survivors,
+    ) = population_management.steady_state(
         [i.genotype for i in original_population.individuals],
         [i.fitness for i in original_population.individuals],
         [i.genotype for i in offspring_population.individuals],
@@ -204,7 +207,9 @@ def run_experiment(dbengine: Engine) -> None:
         offspring_population = Population(
             individuals=[
                 Individual(genotype=genotype, fitness=fitness)
-                for genotype, fitness in zip(offspring_genotypes, offspring_fitnesses)
+                for genotype, fitness in zip(
+                    offspring_genotypes, offspring_fitnesses
+                )
             ]
         )
 
