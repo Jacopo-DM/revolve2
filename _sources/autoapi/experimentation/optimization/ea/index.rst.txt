@@ -86,7 +86,9 @@ Classes
 
    For example::
 
-       class MyIndividual(Base, Individual[MyGenotype], population_table="my_population"):
+       class MyIndividual(
+           Base, Individual[MyGenotype], population_table="my_population"
+       ):
            __tablename__ = "my_individual"
 
    .. py:method:: __init_subclass__(population_table: str, **kwargs: dict[str, Any]) -> None

@@ -48,11 +48,6 @@ Attributes
 
       
 
-   .. py:attribute:: MadeBreaker
-      :type: ClassVar[dict[str, float | int | bool]]
-
-      
-
    .. py:attribute:: gym_lunar_lander
       :type: ClassVar[dict[str, float | int | bool]]
 
@@ -78,11 +73,6 @@ Attributes
 
       
 
-   .. py:attribute:: DefaultConfig
-      :type: ClassVar[dict[str, float | int | bool]]
-
-      
-
    .. py:attribute:: ball_keeper
       :type: ClassVar[dict[str, float | int | bool]]
 
@@ -103,11 +93,6 @@ Attributes
 
       
 
-   .. py:attribute:: TestESHyperNEAT_xor
-      :type: ClassVar[dict[str, float | int | bool]]
-
-      
-
    .. py:attribute:: TestHyperNEAT_xor
       :type: ClassVar[dict[str, float | int | bool]]
 
@@ -123,6 +108,21 @@ Attributes
 
       
 
+   .. py:attribute:: MadeBreaker
+      :type: ClassVar[dict[str, float | int | bool]]
+
+      
+
+   .. py:attribute:: DefaultConfig
+      :type: ClassVar[dict[str, float | int | bool]]
+
+      
+
+   .. py:attribute:: __seg_fault_prone__
+      :type: frozenset[str]
+
+      
+
    .. py:attribute:: __inject_override__
       :type: ClassVar[dict[str, float | int | bool]]
 
@@ -133,19 +133,14 @@ Attributes
 
       
 
-   .. py:attribute:: __seg_fault_prone__
-      :type: frozenset
-
-      
-
-   .. py:method:: __print_diff_generic__(key, old_value, symbol, new_value)
+   .. py:method:: __print_diff_generic__(key: str, old_value: float | int | bool, symbol: str, new_value: float | int | bool) -> None
 
 
-   .. py:method:: __print_diff_dict__(key, new_value, symbol='', old_value='')
+   .. py:method:: __print_diff_dict__(key: str, new_value: float | int | bool, symbol: str = '', old_value: str | float | int | bool = '') -> None
 
 
 
-.. py:function:: get_multineat_params(source_name: str = 'gym_walker') -> multineat._multineat.Parameters
+.. py:function:: get_multineat_params(source_name: str = 'TestESHyperNEAT_xor') -> multineat._multineat.Parameters
 
 
 .. py:data:: collection_obj
