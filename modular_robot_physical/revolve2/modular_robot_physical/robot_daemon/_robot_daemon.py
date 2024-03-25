@@ -39,8 +39,6 @@ class _Program:
         :param stream: Connection stream.
         """
         if self._has_client:
-            if self._debug:
-                pass
             stream.close()
         else:
             self._has_client = True

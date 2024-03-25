@@ -6,7 +6,8 @@ from revolve2.modular_robot_simulation import ModularRobotSimulationState
 
 
 def xy_displacement(
-    begin_state: ModularRobotSimulationState, end_state: ModularRobotSimulationState
+    begin_state: ModularRobotSimulationState,
+    end_state: ModularRobotSimulationState,
 ) -> float:
     """
     Calculate the distance traveled on the xy-plane by a single modular robot.

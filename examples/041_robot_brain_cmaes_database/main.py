@@ -72,9 +72,7 @@ def run_experiment(dbengine: Engine) -> None:
     # Run cma for the defined number of generations.
     logging.info("Start optimization process.")
     while opt.countiter < config.NUM_GENERATIONS:
-        logging.info(
-            f"Generation {opt.countiter + 1} / {config.NUM_GENERATIONS}."
-        )
+        logging.info(f"Generation {opt.countiter + 1} / {config.NUM_GENERATIONS}.")
 
         # Get the sampled solutions(parameters) from cma.
         solutions = opt.ask()

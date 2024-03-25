@@ -58,7 +58,6 @@ class AttachmentFaceCoreV2(AttachmentFace):
         |                 |            |                  |
         ---------------------------------------------------
         """
-        attachment_points = {}
         rot = Quaternion.from_eulers([0.0, 0.0, face_rotation])
 
         # Expose only the bottom_middle attachment point
@@ -68,10 +67,11 @@ class AttachmentFaceCoreV2(AttachmentFace):
 
         offset = rot * Vector3([0.0, h_o, v_o])
 
-        attachment_points[idx] = AttachmentPoint(
-            orientation=rot, offset=self._child_offset + offset
-        )
-
+        attachment_points = {
+            idx: AttachmentPoint(
+                orientation=rot, offset=self._child_offset + offset
+            )
+        }
         # WARN we skip the top and middle attachment points
         #   This is a temporary patch! Necessary to get decent results
         #   A consequence of the error in

@@ -10,7 +10,9 @@ class ModularRobotSimulationState:
     """The multi-body system corresponding to the modular robot."""
 
     def __init__(
-        self, simulation_state: SimulationState, multi_body_system: MultiBodySystem
+        self,
+        simulation_state: SimulationState,
+        multi_body_system: MultiBodySystem,
     ) -> None:
         """
         Initialize this object.

@@ -68,9 +68,7 @@ def develop(
         attachment_dict = module.module_reference.attachment_points.items()
         for attachment_point_tuple in attachment_dict:
             if part_count < MAX_PARTS:
-                child = __add_child(
-                    body_net, module, attachment_point_tuple, grid
-                )
+                child = __add_child(body_net, module, attachment_point_tuple, grid)
                 if child is not None:
                     to_explore.put(child)
                     part_count += 1
@@ -154,13 +152,9 @@ def __add_child(
     position = __vec3_int(module.position + forward)
     chain_length = module.chain_length + 1
 
-    new_pos = np.array(
-        np.round(position + attachment_point.offset), dtype=np.int64
-    )
+    new_pos = np.array(np.round(position + attachment_point.offset), dtype=np.int64)
 
-    child_type, child_rotation = __evaluate_cppn(
-        body_net, new_pos, chain_length
-    )
+    child_type, child_rotation = __evaluate_cppn(body_net, new_pos, chain_length)
 
     # if grid cell is occupied, don't make a child
     # else, set cell as occupied

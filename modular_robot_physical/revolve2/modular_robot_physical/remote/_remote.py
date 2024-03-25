@@ -23,7 +23,8 @@ if TYPE_CHECKING:
 
 
 def _active_hinge_targets_to_pin_controls(
-    config: Config, active_hinges_and_targets: list[tuple[UUIDKey[ActiveHinge], float]]
+    config: Config,
+    active_hinges_and_targets: list[tuple[UUIDKey[ActiveHinge], float]],
 ) -> list[robot_daemon_protocol_capnp.PinControl]:
     pins = [
         config.hinge_mapping[active_hinge]

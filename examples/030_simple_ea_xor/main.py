@@ -55,10 +55,7 @@ def select_survivors(
     :param offspring_population: The offspring.
     :returns: A newly created population.
     """
-    (
-        original_survivors,
-        offspring_survivors,
-    ) = population_management.steady_state(
+    (original_survivors, offspring_survivors,) = population_management.steady_state(
         [i.genotype for i in original_population],
         [i.fitness for i in original_population],
         [i.genotype for i in offspring_population],
@@ -121,9 +118,7 @@ def main() -> None:
     # Start the actual optimization process.
     logging.info("Start optimization process.")
     while generation_index < config.NUM_GENERATIONS:
-        logging.info(
-            f"Generation {generation_index + 1} / {config.NUM_GENERATIONS}."
-        )
+        logging.info(f"Generation {generation_index + 1} / {config.NUM_GENERATIONS}.")
 
         # Create offspring.
         parents = select_parents(rng, population, config.OFFSPRING_SIZE)
@@ -146,9 +141,7 @@ def main() -> None:
         # Make an intermediate offspring population.
         offspring_population = [
             Individual(genotype, fitness)
-            for genotype, fitness in zip(
-                offspring_genotypes, offspring_fitnesses
-            )
+            for genotype, fitness in zip(offspring_genotypes, offspring_fitnesses)
         ]
 
         # Create the next generation by selecting survivors between original population and offspring.

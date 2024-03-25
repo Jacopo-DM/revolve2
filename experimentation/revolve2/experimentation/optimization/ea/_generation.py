@@ -59,8 +59,8 @@ class Generation(HasId, orm.MappedAsDataclass, Generic[TPopulation]):
             return cls.__generation_index_impl()
 
         @orm.declared_attr
-        def _population_id(cls) -> orm.Mapped[int]:
-            return cls.__population_id_impl()
+        def _population_id(self) -> orm.Mapped[int]:
+            return self.__population_id_impl()
 
         @orm.declared_attr
         def population(cls) -> orm.Mapped[TPopulation]:  # noqa

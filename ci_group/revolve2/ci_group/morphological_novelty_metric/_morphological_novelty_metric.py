@@ -15,7 +15,9 @@ Magnitudes = list[list[float]]
 
 
 def get_novelty_from_population(
-    population: list[ModularRobot], cob_heuristic: bool = False, num_bins: int = 20
+    population: list[ModularRobot],
+    cob_heuristic: bool = False,
+    num_bins: int = 20,
 ) -> NDArray[np.float64]:
     """
     Get the morphological novelty score for individuals in a population.
@@ -91,7 +93,10 @@ def _gen_gradient_histogram(
     histograms = np.zeros(shape=(instances, num_bins, num_bins), dtype=np.float64)
     for i in range(instances):
         for orientation, magnitude in zip(orientations[i], magnitudes[i]):
-            x, z = int(orientation[0] / bin_size), int(orientation[1] / bin_size)
+            x, z = (
+                int(orientation[0] / bin_size),
+                int(orientation[1] / bin_size),
+            )
             histograms[i, x, z] += magnitude
     return histograms
 

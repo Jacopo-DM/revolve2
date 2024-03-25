@@ -37,5 +37,8 @@ def test_physical_robot(
     )
 
     run_remote(
-        config=config, hostname=hostname, on_prepared=lambda: None, manual_mode=True
+        config=config,
+        hostname=hostname,
+        on_prepared=lambda: None,
+        manual_mode=True,
     )

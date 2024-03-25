@@ -34,7 +34,9 @@ class Individual(HasId, orm.MappedAsDataclass, Generic[TGenotype]):
 
     For example::
 
-        class MyIndividual(Base, Individual[MyGenotype], population_table="my_population"):
+        class MyIndividual(
+            Base, Individual[MyGenotype], population_table="my_population"
+        ):
             __tablename__ = "my_individual"
     """
 

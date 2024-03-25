@@ -1,6 +1,5 @@
 """Evaluator class."""
 
-
 import numpy as np
 import numpy.typing as npt
 from revolve2.ci_group import fitness_functions, terrains

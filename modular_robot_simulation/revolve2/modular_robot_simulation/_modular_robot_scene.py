@@ -23,7 +23,10 @@ class ModularRobotScene:
     """
 
     def add_robot(
-        self, robot: ModularRobot, pose: Pose = Pose(), translate_z_aabb: bool = True
+        self,
+        robot: ModularRobot,
+        pose: Pose = Pose(),
+        translate_z_aabb: bool = True,
     ) -> None:
         """
         Add a robot to the scene.

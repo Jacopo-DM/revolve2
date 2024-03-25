@@ -20,7 +20,12 @@ class Color:
 
         :returns: The list.
         """
-        return [self.red / 255, self.green / 255, self.blue / 255, self.alpha / 255]
+        return [
+            self.red / 255,
+            self.green / 255,
+            self.blue / 255,
+            self.alpha / 255,
+        ]
 
     def to_normalized_rgb_list(self) -> list[float]:
         """

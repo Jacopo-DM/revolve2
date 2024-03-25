@@ -11,7 +11,10 @@ from revolve2.experimentation.optimization.ea import (
 
 @dataclass
 class Individual(
-    Base, GenericIndividual[Genotype], population_table="population", kw_only=True
+    Base,
+    GenericIndividual[Genotype],
+    population_table="population",
+    kw_only=True,
 ):
     """An individual in a population."""
 

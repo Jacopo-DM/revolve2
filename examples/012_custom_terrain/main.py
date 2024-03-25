@@ -55,7 +55,8 @@ def make_custom_terrain() -> Terrain:
             ),
             GeometryBox(
                 pose=Pose(
-                    position=Vector3([-0.8, 0.4, 0.125]), orientation=Quaternion()
+                    position=Vector3([-0.8, 0.4, 0.125]),
+                    orientation=Quaternion(),
                 ),
                 mass=0.0,
                 texture=Gradient(
@@ -74,7 +75,10 @@ def make_custom_terrain() -> Terrain:
                 aabb=AABB(size=Vector3([0.5, 0.4, 0.02])),
             ),
             GeometryBox(
-                pose=Pose(position=Vector3([-0.1, 0.9, 0.5]), orientation=Quaternion()),
+                pose=Pose(
+                    position=Vector3([-0.1, 0.9, 0.5]),
+                    orientation=Quaternion(),
+                ),
                 mass=0.0,
                 texture=Flat(
                     primary_color=Color(100, 0, 100, 255),

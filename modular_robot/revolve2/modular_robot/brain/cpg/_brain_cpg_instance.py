@@ -40,17 +40,13 @@ class BrainCpgInstance(BrainInstance):
         assert weight_matrix.ndim == 2
         assert weight_matrix.shape[0] == weight_matrix.shape[1]
         assert initial_state.shape[0] == weight_matrix.shape[0]
-        assert all(
-            i >= 0 and i < len(initial_state) for i, _ in output_mapping
-        )
+        assert all(i >= 0 and i < len(initial_state) for i, _ in output_mapping)
 
         # Stabilise the state by integrating it for a while.
         # WARN very hacky way to stabilise the state
         # [ ] find a faster/better way to stabilise the state
         for _ in range(200):
-            initial_state, _ = self._newtown_raphson(
-                initial_state, weight_matrix, 0.05
-            )
+            initial_state, _ = self._newtown_raphson(initial_state, weight_matrix, 0.05)
             initial_state = np.clip(initial_state, -1, 1)
 
         self._state = initial_state
@@ -92,9 +88,7 @@ class BrainCpgInstance(BrainInstance):
         """
         # Integrate ODE to obtain new state.
         # self._state, delta = self._rk45(self._state, self._weight_matrix, dt)
-        self._state, delta = self._newtown_raphson(
-            self._state, self._weight_matrix, dt
-        )
+        self._state, delta = self._newtown_raphson(self._state, self._weight_matrix, dt)
         self._state = np.clip(self._state, -1, 1)
 
         # Set active hinge targets to match newly calculated state.

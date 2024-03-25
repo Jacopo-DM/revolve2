@@ -92,10 +92,6 @@ class V2PhysicalInterface(PhysicalInterface):
         :param pins: The GPIO pin numbers.
         :param targets: The target angles.
         """
-        for pin, target in zip(pins, targets):
-            if self._debug:
-                pass
-
         if not self._dry:
             all_angles = [90.0] * 32
             angles = [90.0 + target / (2.0 * math.pi) * 360.0 for target in targets]
@@ -105,8 +101,6 @@ class V2PhysicalInterface(PhysicalInterface):
 
     def enable(self) -> None:
         """Start the robot."""
-        if self._debug:
-            pass
         if not self._dry:
             self._robohat.wakeup_servo()
 
@@ -116,8 +110,6 @@ class V2PhysicalInterface(PhysicalInterface):
 
         This disables all active modules and sensors.
         """
-        if self._debug:
-            pass
         if not self._dry:
             self._robohat.put_servo_to_sleep()
 

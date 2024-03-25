@@ -28,7 +28,9 @@ def coords_from_bodies(
     return crds
 
 
-def _body_to_adjusted_coordinates(bodies: list[Body]) -> list[NDArray[np.float64]]:
+def _body_to_adjusted_coordinates(
+    bodies: list[Body],
+) -> list[NDArray[np.float64]]:
     """
     Extract coordinates of modules in a body and adjusts them with the core position.
 
@@ -50,7 +52,9 @@ def _body_to_adjusted_coordinates(bodies: list[Body]) -> list[NDArray[np.float64
     return crds
 
 
-def _coordinates_pca_change_basis(coordinates: list[NDArray[np.float64]]) -> None:
+def _coordinates_pca_change_basis(
+    coordinates: list[NDArray[np.float64]],
+) -> None:
     """
     Transform the coordinate distribution by the magnitude of variance of the respective basis.
 

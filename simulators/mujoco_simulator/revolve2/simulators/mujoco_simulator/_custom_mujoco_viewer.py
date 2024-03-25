@@ -1,4 +1,5 @@
 """A custom viewer for mujoco with additional features."""
+
 import sys
 from enum import Enum
 from typing import Any
@@ -99,11 +100,15 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
                 self._add_overlay(bottomleft, "position", str(self._position + 1))
             case "classic":
                 self._add_overlay(
-                    topleft, "[C]ontact forces", "On" if self._contacts else "Off"
+                    topleft,
+                    "[C]ontact forces",
+                    "On" if self._contacts else "Off",
                 )
                 self._add_overlay(topleft, "[J]oints", "On" if self._joints else "Off")
                 self._add_overlay(
-                    topleft, "[G]raph Viewer", "Off" if self._hide_graph else "On"
+                    topleft,
+                    "[G]raph Viewer",
+                    "Off" if self._hide_graph else "On",
                 )
                 self._add_overlay(
                     topleft, "[I]nertia", "On" if self._inertias else "Off"
@@ -127,7 +132,9 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
                 "[S]lower, [F]aster",
             )
         self._add_overlay(
-            topleft, "Ren[d]er every frame", "On" if self._render_every_frame else "Off"
+            topleft,
+            "Ren[d]er every frame",
+            "On" if self._render_every_frame else "Off",
         )
         self._add_overlay(
             topleft,
@@ -159,7 +166,9 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
             ",".join(["On" if g else "Off" for g in self.vopt.geomgroup]),
         )
         self._add_overlay(
-            topleft, "Referenc[e] frames", mujoco.mjtFrame(self.vopt.frame).name
+            topleft,
+            "Referenc[e] frames",
+            mujoco.mjtFrame(self.vopt.frame).name,
         )
         self._add_overlay(topleft, "[H]ide Menus", "")
         if self._image_idx > 0:
@@ -172,7 +181,9 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
 
         if self._mujoco_version >= (3, 0, 0):
             self._add_overlay(
-                bottomleft, "Max solver iters", str(max(self.data.solver_niter) + 1)
+                bottomleft,
+                "Max solver iters",
+                str(max(self.data.solver_niter) + 1),
             )
         else:
             self._add_overlay(
@@ -180,7 +191,9 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
             )
 
         self._add_overlay(
-            bottomleft, "Step", str(round(self.data.time / self.model.opt.timestep))
+            bottomleft,
+            "Step",
+            str(round(self.data.time / self.model.opt.timestep)),
         )
         self._add_overlay(bottomleft, "timestep", "%.5f" % self.model.opt.timestep)
 

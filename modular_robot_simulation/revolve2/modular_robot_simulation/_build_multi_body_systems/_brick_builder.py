@@ -56,7 +56,10 @@ class BrickBuilder(Builder):
         )
 
         tasks = []
-        for child_index, attachment_point in self._module.attachment_points.items():
+        for (
+            child_index,
+            attachment_point,
+        ) in self._module.attachment_points.items():
             child = self._module.children.get(child_index)
             if child is not None:
                 unbuilt = UnbuiltChild(

@@ -1,4 +1,5 @@
 """Draw 2D representations of Modular Robots. Based on Karine Miras` Method."""
+
 import os
 import time
 from typing import TYPE_CHECKING, Any
@@ -22,13 +23,18 @@ def __mk_path() -> str:
 
 
 def draw_robots(
-    robots: list[ModularRobot] | list[Body], scale: int = 100, path: str | None = None
+    robots: list[ModularRobot] | list[Body],
+    scale: int = 100,
+    path: str | None = None,
 ) -> None:
     """
     Draw multiple robots at once.
 
     How to use:
-     >>> robots: list[revolve2.modular_robot.ModularRobot] | list[revolve2.modular_robot.body.base.Body]
+     >>> robots: (
+     ...     list[revolve2.modular_robot.ModularRobot]
+     ...     | list[revolve2.modular_robot.body.base.Body]
+     ... )
      >>> draw_robots(robots, path="<your desired path to save the image to>")
 
     :param robots: The robots.
@@ -49,7 +55,9 @@ def draw_robot(
     Draw a 2D representation for a modular robots body.
 
     How to use:
-     >>> robot: revolve2.modular_robot.ModularRobot | revolve2.modular_robot.body.base.Body
+     >>> robot: (
+     ...     revolve2.modular_robot.ModularRobot | revolve2.modular_robot.body.base.Body
+     ... )
      >>> draw_robot(robot, path="<your desired path to save the image to>")
 
     :param robot: Supply the robot as a ModularRobot object, or the body directly as a Body object.

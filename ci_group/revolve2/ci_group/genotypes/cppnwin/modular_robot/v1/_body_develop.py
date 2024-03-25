@@ -63,13 +63,9 @@ def develop(
     while not to_explore.empty():
         module = to_explore.get()
 
-        for (
-            attachment_point_tuple
-        ) in module.module_reference.attachment_points.items():
+        for attachment_point_tuple in module.module_reference.attachment_points.items():
             if part_count < max_parts:
-                child = __add_child(
-                    body_net, module, attachment_point_tuple, grid
-                )
+                child = __add_child(body_net, module, attachment_point_tuple, grid)
                 if child is not None:
                     to_explore.put(child)
                     part_count += 1
@@ -127,9 +123,7 @@ def __add_child(
         return None
     grid[tuple(position)] += 1
 
-    child_type, child_rotation = __evaluate_cppn(
-        body_net, position, chain_length
-    )
+    child_type, child_rotation = __evaluate_cppn(body_net, position, chain_length)
 
     if child_type is None:
         return None
@@ -161,9 +155,7 @@ def __rotate(a: Vector3, b: Vector3, rotation: Quaternion) -> Vector3:
     cosangle: int = int(round(np.cos(rotation.angle)))
     sinangle: int = int(round(np.sin(rotation.angle)))
 
-    vec: Vector3 = (
-        a * cosangle + sinangle * b.cross(a) + (1 - cosangle) * b.dot(a) * b
-    )
+    vec: Vector3 = a * cosangle + sinangle * b.cross(a) + (1 - cosangle) * b.dot(a) * b
     return vec
 
 
