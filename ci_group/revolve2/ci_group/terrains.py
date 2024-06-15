@@ -7,9 +7,13 @@ import numpy.typing as npt
 from noise import pnoise2
 from pyrr import Vector3
 from revolve2.modular_robot_simulation import Terrain
-from revolve2.simulation.scene import Pose
+from revolve2.simulation.scene import Color, Pose
 from revolve2.simulation.scene.geometry import GeometryHeightmap, GeometryPlane
+from revolve2.simulation.scene.geometry.textures import MapType
 from revolve2.simulation.scene.vector2 import Vector2
+from revolve2.simulators.mujoco_simulator.textures import (
+    Checker,
+)
 
 
 def flat(size: Vector2 = Vector2([20.0, 20.0])) -> Terrain:
@@ -25,6 +29,11 @@ def flat(size: Vector2 = Vector2([20.0, 20.0])) -> Terrain:
                 pose=Pose(),
                 mass=0.0,
                 size=size,
+                texture=Checker(
+                    primary_color=Color(25, 51, 76, 255),
+                    secondary_color=Color(51, 76, 102, 255),
+                    map_type=MapType.MAP2D,
+                ),
             )
         ]
     )

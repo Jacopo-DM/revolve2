@@ -3,6 +3,7 @@ import tempfile
 from typing import Any
 
 import mujoco
+from cv2 import log
 
 try:
     import logging
@@ -61,12 +62,12 @@ def scene_to_model(
 
     env_mjcf.worldbody.add(
         "light",
-        pos=[0, 0, 100],
-        ambient=[0.5, 0.5, 0.5],
-        directional=True,
+        pos=[0, 0, 1],
+        # ambient=[0.1, 0.1, 0.1],
+        # directional=True,
         castshadow=cast_shadows,
     )
-    env_mjcf.visual.headlight.active = 0
+    env_mjcf.visual.headlight.active = 1
 
     conversions = [
         multi_body_system_to_urdf(
