@@ -30,6 +30,45 @@ def get(name: str) -> BodyV2:
             raise ValueError(f"Robot does not exist: {name}")
 
 
+def runner() -> BodyV2:
+    """
+    Sample robot with new HW config.
+
+    :returns: the robot
+    """
+    body = BodyV2()
+
+    degs_90 = np.pi / 2.0
+    body.core_v2.back_face.bottom = BrickV2(degs_90)
+
+    body.core_v2.front_face.bottom = BrickV2(degs_90)
+    body.core_v2.front_face.bottom.front = ActiveHingeV2(degs_90)
+    body.core_v2.front_face.bottom.front.attachment = BrickV2(degs_90)
+
+    body.core_v2.right_face.bottom = BrickV2(degs_90)
+    body.core_v2.right_face.bottom.right = ActiveHingeV2(0.0)
+    body.core_v2.right_face.bottom.right.attachment = ActiveHingeV2(0.0)
+    body.core_v2.right_face.bottom.right.attachment.attachment = BrickV2(
+        degs_90
+    )
+    body.core_v2.right_face.bottom.right.attachment.attachment.front = BrickV2(
+        0.0
+    )
+
+    body.core_v2.left_face.bottom = BrickV2(0.0)
+    body.core_v2.left_face.bottom.front = BrickV2(degs_90)
+    body.core_v2.left_face.bottom.front.right = ActiveHingeV2(0.0)
+    body.core_v2.left_face.bottom.front.right.attachment = BrickV2(0.0)
+    body.core_v2.left_face.bottom.front.right.attachment.front = ActiveHingeV2(
+        0.0
+    )
+    body.core_v2.left_face.bottom.front.right.attachment.front.attachment = (
+        BrickV2(0.0)
+    )
+
+    return body
+
+
 def gecko_v2() -> BodyV2:
     """
     Sample robot with new HW config.
