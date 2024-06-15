@@ -20,6 +20,7 @@ Functions
 
    ci_group.modular_robots_v2.all
    ci_group.modular_robots_v2.get
+   ci_group.modular_robots_v2.runner
    ci_group.modular_robots_v2.gecko_v2
    ci_group.modular_robots_v2.gecko_plus_v2
 
@@ -39,6 +40,13 @@ Functions
    :param name: The name of the robot to get.
    :returns: The robot with that name.
    :raises ValueError: When a robot with that name does not exist.
+
+
+.. py:function:: runner() -> revolve2.modular_robot.body.v2.BodyV2
+
+   Sample robot with new HW config.
+
+   :returns: the robot
 
 
 .. py:function:: gecko_v2() -> revolve2.modular_robot.body.v2.BodyV2
