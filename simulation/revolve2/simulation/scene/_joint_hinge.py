@@ -19,7 +19,7 @@ class JointHinge(Joint):
     range: float
     """
     Rotation range of the joint in radians.
-    
+
     How much it can rotate to each side, in radians.
     So double this is the complete range of motion.
     """

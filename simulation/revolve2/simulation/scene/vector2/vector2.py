@@ -147,5 +147,5 @@ class Vector2(BaseVector):  # type:ignore
     # Methods and Properties
     @property
     def inverse(self) -> Vector2:
-        """:return: the inversed Vector2."""
+        """:return: the inverted Vector2."""
         return Vector2(-self)

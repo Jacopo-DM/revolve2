@@ -38,7 +38,7 @@ class MultiBodySystem:
     is_static: bool
     """
     Whether the root rigid body is static.
-    
+
     I.e. its root (the first rigid body) is attached to the world and will not move or rotate.
     """
 
@@ -55,7 +55,7 @@ class MultiBodySystem:
     )
     """
     Adjacency matrix, defining joints between rigid bodies.
-    
+
     The the indices of the list match the following indices in the adjacency matrix:
 
     joints | 0 1 2 3 4
@@ -64,7 +64,7 @@ class MultiBodySystem:
          1 | 0 - 1 4 8
          2 | 2 1 - 3 7
          3 | 5 4 3 - 6
-         4 | 9 8 7 6 -          
+         4 | 9 8 7 6 -
     """
 
     def _half_matrix_index(
@@ -200,16 +200,17 @@ class MultiBodySystem:
                         "AABB calculation currently only supports GeometryBox."
                     )
 
-                points.extend(
-                    rigid_body.initial_pose.position
-                    + rigid_body.initial_pose.orientation
-                    * (
-                        geometry.pose.position
-                        + geometry.pose.orientation
-                        * (geometry.aabb.size * sign)
+                for sign in [0.5, -0.5]:
+                    points.append(
+                        rigid_body.initial_pose.position
+                        + rigid_body.initial_pose.orientation
+                        * (
+                            geometry.pose.position
+                            + geometry.pose.orientation
+                            * (geometry.aabb.size * sign)
+                        )
                     )
-                    for sign in [0.5, -0.5]
-                )
+
         # Calculate AABB from the points.
         # This is simply the min and max between the points for every dimension.
         aabb = pyrr.aabb.create_from_points(points)
