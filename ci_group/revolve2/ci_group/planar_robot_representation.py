@@ -1,5 +1,6 @@
 """Draw 2D representations of Modular Robots. Based on Karine Miras` Method."""
 
+import logging
 import os
 import time
 from typing import TYPE_CHECKING, Any
@@ -17,6 +18,7 @@ if TYPE_CHECKING:
 
 def __mk_path() -> str:
     path = f"planar_robot_representations_{time.time()}"
+    logging.info(f"Saving images to: {path}")
     if not os.path.exists(path):
         os.mkdir(path)
     return path
@@ -31,11 +33,11 @@ def draw_robots(
     Draw multiple robots at once.
 
     How to use:
-     >>> robots: (
-     ...     list[revolve2.modular_robot.ModularRobot]
-     ...     | list[revolve2.modular_robot.body.base.Body]
-     ... )
-     >>> draw_robots(robots, path="<your desired path to save the image to>")
+    >>> robots: (
+    ...     list[revolve2.modular_robot.ModularRobot]
+    ...     | list[revolve2.modular_robot.body.base.Body]
+    ... )
+    >>> draw_robots(robots, path="<your desired path to save the image to>")
 
     :param robots: The robots.
     :param scale: The scale for the robots to be drawn.
@@ -55,10 +57,10 @@ def draw_robot(
     Draw a 2D representation for a modular robots body.
 
     How to use:
-     >>> robot: (
-     ...     revolve2.modular_robot.ModularRobot | revolve2.modular_robot.body.base.Body
-     ... )
-     >>> draw_robot(robot, path="<your desired path to save the image to>")
+    >>> robot: (
+    ...     revolve2.modular_robot.ModularRobot | revolve2.modular_robot.body.base.Body
+    ... )
+    >>> draw_robot(robot, path="<your desired path to save the image to>")
 
     :param robot: Supply the robot as a ModularRobot object, or the body directly as a Body object.
     :param scale: Allows to set the size of the drawing.
@@ -114,12 +116,12 @@ def _draw_module(
             context.set_source_rgb(255, 255, 0)  # Yellow
         case ActiveHinge():
             context.set_source_rgb(1, 0, 0)  # Red
-            if module.rotation == 0:
+            if np.isclose(module.orientation.angle, 0.0):
                 context.set_source_rgb(1.0, 0.4, 0.4)  # Flesh Color
         case Brick():
             context.set_source_rgb(0, 0, 1)  # Blue
         case _:
-            raise Exception(
+            raise ValueError(
                 f"Module of type {type(module)} has no defined structure for drawing."
             )
 

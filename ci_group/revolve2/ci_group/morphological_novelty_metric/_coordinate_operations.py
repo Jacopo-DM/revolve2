@@ -69,6 +69,7 @@ def _coordinates_pca_change_basis(
 
             # sorting axis by amplitude of variance
             srt = np.argsort(eigen_values)[::-1]
+            temp_coordinates = target_coordinates.copy()
             for j in range(len(srt)):
                 if srt[j] == j:
                     continue
@@ -81,7 +82,7 @@ def _coordinates_pca_change_basis(
                 k = np.array([[0, -rz, ry], [rz, 0, -rx], [-ry, rx, 0]])
                 rotation_matrix = np.identity(3) + 2 * np.dot(k, k)
 
-                target_coordinates = np.dot(
+                temp_coordinates = np.dot(
                     target_coordinates, rotation_matrix.T
                 )
 
@@ -89,7 +90,7 @@ def _coordinates_pca_change_basis(
                 srt[[j, candidate]] = srt[[candidate, j]]
 
             final_coordinates = np.linalg.inv(eigen_vectors).dot(
-                target_coordinates.T
+                temp_coordinates.T
             )
             coordinates[i] = final_coordinates.T
 
