@@ -60,7 +60,9 @@ HardwareType = Literal["v1", "v2"]
 class SetupResponse:
     versionOk: bool
     hardwareType: HardwareType
-    def __init__(self, versionOk: bool, hardwareType: HardwareType) -> None: ...
+    def __init__(
+        self, versionOk: bool, hardwareType: HardwareType
+    ) -> None: ...
     @staticmethod
     @contextmanager
     def from_bytes(
@@ -134,7 +136,8 @@ class PinControlBuilder(PinControl):
 class ControlArgs:
     setPins: Sequence[PinControl | PinControlBuilder | PinControlReader]
     def __init__(
-        self, setPins: Sequence[PinControl | PinControlBuilder | PinControlReader]
+        self,
+        setPins: Sequence[PinControl | PinControlBuilder | PinControlReader],
     ) -> None: ...
     @staticmethod
     @contextmanager
@@ -239,7 +242,9 @@ class ControlAndReadSensorsArgsReader(ControlAndReadSensorsArgs):
 class ControlAndReadSensorsArgsBuilder(ControlAndReadSensorsArgs):
     setPins: Sequence[PinControl | PinControlBuilder | PinControlReader]
     @staticmethod
-    def from_dict(dictionary: dict[Any, Any]) -> ControlAndReadSensorsArgsBuilder: ...
+    def from_dict(
+        dictionary: dict[Any, Any],
+    ) -> ControlAndReadSensorsArgsBuilder: ...
     def copy(self) -> ControlAndReadSensorsArgsBuilder: ...
     def to_bytes(self) -> bytes: ...
     def to_bytes_packed(self) -> bytes: ...

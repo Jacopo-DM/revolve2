@@ -6,7 +6,6 @@ import capnp
 import numpy as np
 from numpy.typing import NDArray
 from pyrr import Vector3
-
 from revolve2.modular_robot.body.base import ActiveHinge
 from revolve2.modular_robot.body.sensors import CameraSensor, IMUSensor
 from revolve2.modular_robot.sensor_state import ModularRobotSensorState
@@ -19,13 +18,16 @@ from .._uuid_key import UUIDKey
 from ..robot_daemon_api import robot_daemon_protocol_capnp
 from ._camera_sensor_state_impl import CameraSensorStateImpl
 from ._imu_sensor_state_impl import IMUSensorStateImpl
-from ._modular_robot_control_interface_impl import ModularRobotControlInterfaceImpl
+from ._modular_robot_control_interface_impl import (
+    ModularRobotControlInterfaceImpl,
+)
 from ._modular_robot_sensor_state_impl_v1 import ModularRobotSensorStateImplV1
 from ._modular_robot_sensor_state_impl_v2 import ModularRobotSensorStateImplV2
 
 
 def _active_hinge_targets_to_pin_controls(
-    config: Config, active_hinges_and_targets: list[tuple[UUIDKey[ActiveHinge], float]]
+    config: Config,
+    active_hinges_and_targets: list[tuple[UUIDKey[ActiveHinge], float]],
 ) -> list[robot_daemon_protocol_capnp.PinControl]:
     pins = [
         config.hinge_mapping[active_hinge]
@@ -35,7 +37,9 @@ def _active_hinge_targets_to_pin_controls(
     targets = [
         (-1.0 if inverse else 1.0)
         * min(max(target, -active_hinge.value.range), active_hinge.value.range)
-        for (active_hinge, target), inverse in zip(active_hinges_and_targets, inverses)
+        for (active_hinge, target), inverse in zip(
+            active_hinges_and_targets, inverses
+        )
     ]
     return [
         robot_daemon_protocol_capnp.PinControl(pin=pin, target=target)
@@ -66,7 +70,9 @@ async def _run_remote_impl(
             host=hostname, port=port
         )
         client = capnp.TwoPartyClient(connection)
-        service = client.bootstrap().cast_as(robot_daemon_protocol_capnp.RoboServer)
+        service = client.bootstrap().cast_as(
+            robot_daemon_protocol_capnp.RoboServer
+        )
     except ConnectionRefusedError:
         raise ConnectionRefusedError("Could not connect to robot.")
 
@@ -129,7 +135,10 @@ async def _run_remote_impl(
                 continue
             pin_controls = _active_hinge_targets_to_pin_controls(
                 config,
-                [(active_hinge, target) for active_hinge in config.hinge_mapping],
+                [
+                    (active_hinge, target)
+                    for active_hinge in config.hinge_mapping
+                ],
             )
 
             await service.control(
@@ -155,11 +164,14 @@ async def _run_remote_impl(
                 pins = [pin for pin in active_hinge_sensor_to_pin.values()]
                 sensor_readings = (
                     await service.readSensors(
-                        robot_daemon_protocol_capnp.ReadSensorsArgs(readPins=pins)
+                        robot_daemon_protocol_capnp.ReadSensorsArgs(
+                            readPins=pins
+                        )
                     )
                 ).response
                 imu_sensor_states = _get_imu_sensor_state(
-                    config.modular_robot.body.core.sensors.imu_sensor, sensor_readings
+                    config.modular_robot.body.core.sensors.imu_sensor,
+                    sensor_readings,
                 )
                 camera_sensor_states = _get_camera_sensor_state(
                     config.modular_robot.body.core.sensors.camera_sensor,
@@ -210,7 +222,9 @@ async def _run_remote_impl(
             match hardware_type:
                 case HardwareType.v1:
                     await service.control(
-                        robot_daemon_protocol_capnp.ControlArgs(setPins=pin_controls)
+                        robot_daemon_protocol_capnp.ControlArgs(
+                            setPins=pin_controls
+                        )
                     )
                     sensor_state = ModularRobotSensorStateImplV1()
                 case HardwareType.v2:
@@ -236,7 +250,9 @@ async def _run_remote_impl(
                         hinge_sensor_mapping=active_hinge_sensor_to_pin,
                         hinge_positions={
                             pin: position
-                            for pin, position in zip(pins, sensor_readings.pins)
+                            for pin, position in zip(
+                                pins, sensor_readings.pins
+                            )
                         },
                         imu_sensor_states=imu_sensor_states,
                         camera_sensor_states=camera_sensor_states,

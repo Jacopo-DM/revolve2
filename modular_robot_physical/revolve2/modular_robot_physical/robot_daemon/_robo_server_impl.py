@@ -11,7 +11,9 @@ from .._protocol_version import PROTOCOL_VERSION
 from ..physical_interfaces import PhysicalInterface
 from ..robot_daemon_api import robot_daemon_protocol_capnp
 from ..robot_daemon_api.robot_daemon_protocol_capnp import Image as capnpImage
-from ..robot_daemon_api.robot_daemon_protocol_capnp import Vector3 as capnpVector3
+from ..robot_daemon_api.robot_daemon_protocol_capnp import (
+    Vector3 as capnpVector3,
+)
 
 Pin = int
 
@@ -86,7 +88,9 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
 
             pins: list[int] = []
             targets: list[float] = []
-            for desired_pin, desired_target in zip(desired_pins, desired_targets):
+            for desired_pin, desired_target in zip(
+                desired_pins, desired_targets
+            ):
                 pins.append(desired_pin)
 
                 maybe_current_target = self._current_targets.get(desired_pin)
@@ -99,15 +103,16 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
                                 maybe_current_target
                                 + min(
                                     max(
-                                        (desired_target - maybe_current_target),
+                                        (
+                                            desired_target
+                                            - maybe_current_target
+                                        ),
                                         -self._CAREFUL_STEP,
                                     ),
                                     self._CAREFUL_STEP,
                                 )
                             )
-                        case (
-                            HardwareType.v2
-                        ):  # careful mode disabled for v2. enable when running into power failures.
+                        case HardwareType.v2:  # careful mode disabled for v2. enable when running into power failures.
                             targets.append(desired_target)
 
             for pin, target in zip(pins, targets):
@@ -117,12 +122,16 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
 
             # Read measured hinge positions
             if self._hardware_type is not HardwareType.v1:
-                hinge_positions = self._physical_interface.get_multiple_servo_positions(
-                    self._active_pins
+                hinge_positions = (
+                    self._physical_interface.get_multiple_servo_positions(
+                        self._active_pins
+                    )
                 )
 
                 with self._lock:
-                    for pin, position in zip(self._active_pins, hinge_positions):
+                    for pin, position in zip(
+                        self._active_pins, hinge_positions
+                    ):
                         self._measured_hinge_positions[pin] = position
 
                 battery = self._physical_interface.get_battery_level()
@@ -131,7 +140,9 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
 
             time.sleep(1 / 60)
 
-    def _queue_servo_targets(self, pins: list[int], targets: list[float]) -> None:
+    def _queue_servo_targets(
+        self, pins: list[int], targets: list[float]
+    ) -> None:
         with self._lock:
             for pin, target in zip(pins, targets):
                 self._targets[pin] = target
@@ -258,7 +269,9 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
             battery = self._physical_interface.get_battery_level()
 
             imu_orientation = self._physical_interface.get_imu_orientation()
-            imu_specific_force = self._physical_interface.get_imu_specific_force()
+            imu_specific_force = (
+                self._physical_interface.get_imu_specific_force()
+            )
             imu_angular_rate = self._physical_interface.get_imu_angular_rate()
             camera_view = self._physical_interface.get_camera_view()
 

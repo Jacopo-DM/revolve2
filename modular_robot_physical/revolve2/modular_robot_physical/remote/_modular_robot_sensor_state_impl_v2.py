@@ -30,7 +30,9 @@ class ModularRobotSensorStateImplV2(ModularRobotSensorState):
         hinge_sensor_mapping: dict[UUIDKey[ActiveHingeSensor], int],
         hinge_positions: dict[int, float],
         imu_sensor_states: dict[UUIDKey[IMUSensor], IMUSensorStateImpl],
-        camera_sensor_states: dict[UUIDKey[CameraSensor], CameraSensorStateImpl],
+        camera_sensor_states: dict[
+            UUIDKey[CameraSensor], CameraSensorStateImpl
+        ],
     ) -> None:
         """
         Initialize this object.
@@ -73,7 +75,9 @@ class ModularRobotSensorStateImplV2(ModularRobotSensorState):
             )
         return state
 
-    def get_camera_sensor_state(self, sensor: CameraSensor) -> CameraSensorState:
+    def get_camera_sensor_state(
+        self, sensor: CameraSensor
+    ) -> CameraSensorState:
         """
         Get the state of the provided camera sensor.
 
