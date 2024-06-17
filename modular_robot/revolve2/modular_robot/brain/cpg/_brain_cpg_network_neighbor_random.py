@@ -30,7 +30,15 @@ class BrainCpgNetworkNeighborRandom(BrainCpgNetworkNeighbor):
         connections: list[tuple[ActiveHinge, ActiveHinge]],
         body: Body,
     ) -> tuple[list[float], list[float]]:
+        # TODO ideal initial state?
+        multiplier = 0.001
+        recenter = -multiplier / 2.0
         return (
-            (self._rng.random(size=len(active_hinges)) * 2.0 - 1).tolist(),
-            (self._rng.random(size=len(connections)) * 2.0 - 1).tolist(),
+            (
+                self._rng.random(size=len(active_hinges)) * multiplier
+                + recenter
+            ).tolist(),
+            (
+                self._rng.random(size=len(connections)) * multiplier + recenter
+            ).tolist(),
         )

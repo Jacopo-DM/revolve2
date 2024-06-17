@@ -34,9 +34,9 @@ class BrainCpgNetworkNeighborV1(ModularRobotBrainCpgNetworkNeighbor):
         connections: list[tuple[ActiveHinge, ActiveHinge]],
         body: Body,
     ) -> tuple[list[float], list[float]]:
+        # [ ] Understand this code and check for bugs
         brain_net = multineat.NeuralNetwork()
         self._genotype.BuildPhenotype(brain_net)
-        # [ ] Understand this code and check for bugs
 
         # Create a list of grid positions for each active hinge
         hinge_grid_positions = [

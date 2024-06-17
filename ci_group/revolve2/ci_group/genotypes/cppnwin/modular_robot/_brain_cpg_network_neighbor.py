@@ -34,6 +34,8 @@ class BrainCpgNetworkNeighbor(ModularRobotBrainCpgNetworkNeighbor):
         connections: list[tuple[ActiveHinge, ActiveHinge]],
         body: Body,
     ) -> tuple[list[float], list[float]]:
+        # [ ] Understand this code and check for bugs
+
         brain_net = multineat.NeuralNetwork()
         self._genotype.BuildPhenotype(brain_net)
 
