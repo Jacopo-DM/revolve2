@@ -1,3 +1,4 @@
+import math
 from abc import abstractmethod
 
 import numpy as np
@@ -51,7 +52,12 @@ class BrainCpgNetworkNeighbor(Brain):
                 dict(zip(cpg_network_structure.connections, external_weights)),
             )
         )
-        self._initial_state = cpg_network_structure.make_uniform_state(1)
+        # TODO value??
+        value = 0.5 * math.sqrt(2)
+        # value = 1
+        self._initial_state = cpg_network_structure.make_uniform_state(
+            value=value
+        )
 
     def make_instance(self) -> BrainInstance:
         """
@@ -81,6 +87,6 @@ class BrainCpgNetworkNeighbor(Brain):
                             Opposite connection is not provided as weights are assumed to be negative.
         :param body: The body that matches this brain.
         :returns: Two lists. The first list contains the internal weights in cpgs, corresponding to `active_hinges`
-                The second list contains the weights between connected cpgs, corresponding to `connections`
-                The lists should match the order of the input parameters.
+                 The second list contains the weights between connected cpgs, corresponding to `connections`
+                 The lists should match the order of the input parameters.
         """

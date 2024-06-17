@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 
 class BrainCpgNetworkStatic(Brain):
     """
-    A CPG brain with cpgs and connections defined by the user.
+    A CPG (central pattern generator) brain with CPGs and connections defined by the user.
 
     A state vector is integrated over time using a weight matrix which multiplication with the state vector sum defines the derivative of the state vector.
     I.e X' = WX

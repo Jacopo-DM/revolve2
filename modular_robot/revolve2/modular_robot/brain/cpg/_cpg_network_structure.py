@@ -6,15 +6,16 @@ import numpy.typing as npt
 
 @dataclass(frozen=True)
 class Cpg:
-    """Identifies a CPG to be used in a CPG network structure."""
+    """Identifies a cpg to be used in a cpg network structure."""
 
     index: int
 
 
 @dataclass(frozen=True, init=False)
 class CpgPair:
-    """A pair of CPGs that assures that the first CPG always has the lowest index."""
+    """A pair of CPGs that assures that the first cpg always has the lowest index."""
 
+    # lowest is automatically set to be the lowest state index of the two
     cpg_index_lowest: Cpg
     cpg_index_highest: Cpg
 
@@ -27,6 +28,8 @@ class CpgPair:
         :param cpg_1: One of the CPGs part of the pair.
         :param cpg_2: The other CPG part of the pair.
         """
+        # hacky but normal variable setting not possible with frozen enabled
+        # https://stackoverflow.com/questions/57893902/how-can-i-set-an-attribute-in-a-frozen-dataclass-custom-init-method
         if cpg_1.index < cpg_2.index:
             object.__setattr__(self, "cpg_index_lowest", cpg_1)
             object.__setattr__(self, "cpg_index_highest", cpg_2)
@@ -138,7 +141,7 @@ class CpgNetworkStructure:
     @property
     def num_states(self) -> int:
         """
-        Get the number of states in a CPG network of this structure.
+        Get the number of states in a cpg network of this structure.
 
         This would be twice the number of CPGs.
 
@@ -146,15 +149,19 @@ class CpgNetworkStructure:
         """
         return len(self.cpgs) * 2
 
-    def make_uniform_state(self, value: float) -> npt.NDArray[np.float64]:
+    def make_uniform_state(
+        self, value: float, balanced: bool = True
+    ) -> npt.NDArray[np.float64]:
         """
         Make a state array by repeating the same value.
 
         Will match the required number of states in this structure.
 
-        :param value: The value to use for all states.
+        :param value: The value to use for all states
         :returns: The array of states.
         """
+        if not balanced:
+            return np.full(self.num_states, value)
         # The first half of the state array is positive, the second half is negative.
         #   this makes the CPGs oscillate in opposite directions:
         #   producing a more stable gait.
@@ -174,7 +181,7 @@ class CpgNetworkStructure:
     @property
     def output_indices(self) -> list[int]:
         """
-        Get the index in the state array for each CPG, matching the order the CPGs were provided in.
+        Get the index in the state array for each cpg, matching the order the CPGs were provided in.
 
         :returns: The indices.
         """
