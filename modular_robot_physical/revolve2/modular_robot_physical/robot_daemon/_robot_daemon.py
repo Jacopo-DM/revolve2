@@ -19,9 +19,7 @@ class _Program:
     _hardware_type: HardwareType
     _physical_interface: PhysicalInterface
 
-    def __init__(
-        self, debug: bool, dry: bool, hardware_type: HardwareType
-    ) -> None:
+    def __init__(self, debug: bool, dry: bool, hardware_type: HardwareType) -> None:
         """
         Initialize this object.
 
@@ -41,6 +39,10 @@ class _Program:
         :param stream: Connection stream.
         """
         if self._has_client:
+            if self._debug:
+                print(
+                    "Client connected, but still handling another client. Dropping new client.."
+                )
             stream.close()
         else:
             self._has_client = True
@@ -59,7 +61,7 @@ class _Program:
         """Run the program."""
         self._physical_interface = get_interface(
             hardware_type=self._hardware_type, debug=self._debug, dry=self._dry
-        )
+        )  # Here we define the interface that controls the physical modular robot.
 
         server = await capnp.AsyncIoStream.create_server(
             self._new_connection, "*", STANDARD_PORT
@@ -68,9 +70,7 @@ class _Program:
             await server.serve_forever()
 
 
-def run_robot_daemon(
-    debug: bool, dry: bool, hardware_type: HardwareType
-) -> None:
+def run_robot_daemon(debug: bool, dry: bool, hardware_type: HardwareType) -> None:
     """
     Run the server.
 
@@ -79,7 +79,5 @@ def run_robot_daemon(
     :param hardware_type: The type of hardware this runs on.
     """
     asyncio.run(
-        capnp.run(
-            _Program(debug=debug, dry=dry, hardware_type=hardware_type).run()
-        )
+        capnp.run(_Program(debug=debug, dry=dry, hardware_type=hardware_type).run())
     )

@@ -2,7 +2,6 @@
 This is an automatically generated stub for `robot_daemon_protocol.capnp`.
 
 This file was manually edited to work better with the code tools.
-
 Added __init__ functions
 Made `dict` into `dict[Any,Any]`
 Formatted file with black
@@ -11,10 +10,9 @@ RoboServer
 
 from __future__ import annotations
 
-from collections.abc import Iterator, Sequence
 from contextlib import contextmanager
 from io import BufferedWriter
-from typing import Any, Literal
+from typing import Any, Iterator, Literal, Sequence
 
 class SetupArgs:
     version: str
@@ -62,9 +60,7 @@ HardwareType = Literal["v1", "v2"]
 class SetupResponse:
     versionOk: bool
     hardwareType: HardwareType
-    def __init__(
-        self, versionOk: bool, hardwareType: HardwareType
-    ) -> None: ...
+    def __init__(self, versionOk: bool, hardwareType: HardwareType) -> None: ...
     @staticmethod
     @contextmanager
     def from_bytes(
@@ -138,8 +134,7 @@ class PinControlBuilder(PinControl):
 class ControlArgs:
     setPins: Sequence[PinControl | PinControlBuilder | PinControlReader]
     def __init__(
-        self,
-        setPins: Sequence[PinControl | PinControlBuilder | PinControlReader],
+        self, setPins: Sequence[PinControl | PinControlBuilder | PinControlReader]
     ) -> None: ...
     @staticmethod
     @contextmanager
@@ -244,9 +239,7 @@ class ControlAndReadSensorsArgsReader(ControlAndReadSensorsArgs):
 class ControlAndReadSensorsArgsBuilder(ControlAndReadSensorsArgs):
     setPins: Sequence[PinControl | PinControlBuilder | PinControlReader]
     @staticmethod
-    def from_dict(
-        dictionary: dict[Any, Any],
-    ) -> ControlAndReadSensorsArgsBuilder: ...
+    def from_dict(dictionary: dict[Any, Any]) -> ControlAndReadSensorsArgsBuilder: ...
     def copy(self) -> ControlAndReadSensorsArgsBuilder: ...
     def to_bytes(self) -> bytes: ...
     def to_bytes_packed(self) -> bytes: ...
@@ -257,10 +250,98 @@ class ControlAndReadSensorsArgsBuilder(ControlAndReadSensorsArgs):
     @staticmethod
     def write_packed(file: BufferedWriter) -> None: ...
 
+class Vector3:
+    x: float
+    y: float
+    z: float
+    def __init__(self, x: float, y: float, z: float) -> None: ...
+    @staticmethod
+    @contextmanager
+    def from_bytes(
+        data: bytes,
+        traversal_limit_in_words: int | None = ...,
+        nesting_limit: int | None = ...,
+    ) -> Iterator[Vector3Reader]: ...
+    @staticmethod
+    def from_bytes_packed(
+        data: bytes,
+        traversal_limit_in_words: int | None = ...,
+        nesting_limit: int | None = ...,
+    ) -> Vector3Reader: ...
+    @staticmethod
+    def new_message() -> Vector3Builder: ...
+    def to_dict(self) -> dict[Any, Any]: ...
+
+class Vector3Reader(Vector3):
+    def as_builder(self) -> Vector3Builder: ...
+
+class Vector3Builder(Vector3):
+    @staticmethod
+    def from_dict(dictionary: dict[Any, Any]) -> Vector3Builder: ...
+    def copy(self) -> Vector3Builder: ...
+    def to_bytes(self) -> bytes: ...
+    def to_bytes_packed(self) -> bytes: ...
+    def to_segments(self) -> list[bytes]: ...
+    def as_reader(self) -> Vector3Reader: ...
+    @staticmethod
+    def write(file: BufferedWriter) -> None: ...
+    @staticmethod
+    def write_packed(file: BufferedWriter) -> None: ...
+
+class Image:
+    r: list[int]
+    g: list[int]
+    b: list[int]
+    def __init__(self, r: list[int], g: list[int], b: list[int]) -> None: ...
+    @staticmethod
+    @contextmanager
+    def from_bytes(
+        data: bytes,
+        traversal_limit_in_words: int | None = ...,
+        nesting_limit: int | None = ...,
+    ) -> Iterator[ImageReader]: ...
+    @staticmethod
+    def from_bytes_packed(
+        data: bytes,
+        traversal_limit_in_words: int | None = ...,
+        nesting_limit: int | None = ...,
+    ) -> ImageReader: ...
+    @staticmethod
+    def new_message() -> ImageBuilder: ...
+    def to_dict(self) -> dict[Any, Any]: ...
+
+class ImageReader(Image):
+    def as_builder(self) -> ImageBuilder: ...
+
+class ImageBuilder(Image):
+    @staticmethod
+    def from_dict(dictionary: dict[Any, Any]) -> ImageBuilder: ...
+    def copy(self) -> ImageBuilder: ...
+    def to_bytes(self) -> bytes: ...
+    def to_bytes_packed(self) -> bytes: ...
+    def to_segments(self) -> list[bytes]: ...
+    def as_reader(self) -> ImageReader: ...
+    @staticmethod
+    def write(file: BufferedWriter) -> None: ...
+    @staticmethod
+    def write_packed(file: BufferedWriter) -> None: ...
+
 class SensorReadings:
     pins: Sequence[float]
     battery: float
-    def __init__(self, pins: Sequence[float], battery: float) -> None: ...
+    imuOrientation: Vector3 | Vector3Builder | Vector3Reader
+    imuSpecificForce: Vector3 | Vector3Builder | Vector3Reader
+    imuAngularRate: Vector3 | Vector3Builder | Vector3Reader
+    cameraView: Image | ImageBuilder | ImageReader
+    def __init__(
+        self,
+        pins: Sequence[float],
+        battery: float,
+        imuOrientation: Vector3 | Vector3Builder | Vector3Reader,
+        imuSpecificForce: Vector3 | Vector3Builder | Vector3Reader,
+        imuAngularRate: Vector3 | Vector3Builder | Vector3Reader,
+        cameraView: Image | ImageBuilder | ImageReader,
+    ) -> None: ...
     @staticmethod
     @contextmanager
     def from_bytes(

@@ -1,5 +1,9 @@
 from abc import ABC, abstractmethod
-from collections.abc import Sequence
+from typing import Sequence
+
+import numpy as np
+from numpy.typing import NDArray
+from pyrr import Vector3
 
 
 class PhysicalInterface(ABC):
@@ -12,7 +16,7 @@ class PhysicalInterface(ABC):
 
         This can be a fairly slow operation.
 
-        :param pins: The GPIO pin numbers.
+        :param pins: The GPIO pins.
         :param targets: The target angles.
         """
 
@@ -42,7 +46,43 @@ class PhysicalInterface(ABC):
         """
         Get the current position of multiple servos.
 
-        :param pins: The GPIO pin numbers.
+        :param pins: The GPIO pins.
         :returns: The current positions.
         :raises NotImplementedError: If getting the servo position is not supported on this hardware.
+        """
+
+    @abstractmethod
+    def get_imu_angular_rate(self) -> Vector3:
+        """
+        Get the angular rate from the IMU.
+
+        :returns: The angular rate.
+        :raises NotImplementedError: If the IMU is not supported on this hardware.
+        """
+
+    @abstractmethod
+    def get_imu_orientation(self) -> Vector3:
+        """
+        Get the orientation from the IMU.
+
+        :returns: The orientation.
+        :raises NotImplementedError: If the IMU is not supported on this hardware.
+        """
+
+    @abstractmethod
+    def get_imu_specific_force(self) -> Vector3:
+        """
+        Get the specific force from the IMU.
+
+        :returns: The specific force.
+        :raises NotImplementedError: If the IMU is not supported on this hardware.
+        """
+
+    @abstractmethod
+    def get_camera_view(self) -> NDArray[np.uint8]:
+        """
+        Get the current view from the camera.
+
+        :return: The camera view.
+        :raises NotImplementedError: If the Camera is not supported on this hardware.
         """

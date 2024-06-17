@@ -10,12 +10,10 @@ import capnp  # type: ignore
 
 capnp.remove_import_hook()
 here = os.path.dirname(os.path.abspath(__file__))
-module_file = os.path.abspath(
-    os.path.join(here, "robot_daemon_protocol.capnp")
-)
+module_file = os.path.abspath(os.path.join(here, "robot_daemon_protocol.capnp"))
 SetupArgs = capnp.load(module_file).SetupArgs
 SetupArgsBuilder = SetupArgs
-SetupaArgsReader = SetupArgs
+SetupArgsReader = SetupArgs
 SetupResponse = capnp.load(module_file).SetupResponse
 SetupResponseBuilder = SetupResponse
 SetupResponseReader = SetupResponse
@@ -31,6 +29,12 @@ ReadSensorsArgsReader = ReadSensorsArgs
 ControlAndReadSensorsArgs = capnp.load(module_file).ControlAndReadSensorsArgs
 ControlAndReadSensorsArgsBuilder = ControlAndReadSensorsArgs
 ControlAndReadSensorsArgsReader = ControlAndReadSensorsArgs
+Vector3 = capnp.load(module_file).Vector3
+Vector3Builder = Vector3
+Vector3Reader = Vector3
+Image = capnp.load(module_file).Image
+ImageBuilder = Image
+ImageReader = Image
 SensorReadings = capnp.load(module_file).SensorReadings
 SensorReadingsBuilder = SensorReadings
 SensorReadingsReader = SensorReadings

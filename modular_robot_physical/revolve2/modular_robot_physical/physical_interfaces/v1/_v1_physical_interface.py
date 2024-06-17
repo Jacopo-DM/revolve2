@@ -1,8 +1,11 @@
 import math
 import time
-from collections.abc import Sequence
+from typing import Sequence
 
+import numpy as np
 import pigpio
+from numpy.typing import NDArray
+from pyrr import Vector3
 
 from .._physical_interface import PhysicalInterface
 
@@ -43,22 +46,22 @@ class V1PhysicalInterface(PhysicalInterface):
         else:
             self._gpio = None
 
+        if self._debug:
+            print(f"Using PWM frequency {self._PWM_FREQUENCY}Hz")
+
     def set_servo_targets(self, pins: list[int], targets: list[float]) -> None:
         """
         Set the target for multiple servos.
 
         This can be a fairly slow operation.
 
-        :param pins: The GPIO pin numbers.
+        :param pins: The GPIO pins.
         :param targets: The target angles.
         """
         if not self._dry:
             assert self._gpio is not None
             for pin, target in zip(pins, targets):
-                angle = (
-                    self._CENTER
-                    + target / (1.0 / 3.0 * math.pi) * self._ANGLE60
-                )
+                angle = self._CENTER + target / (1.0 / 3.0 * math.pi) * self._ANGLE60
                 self._gpio.set_PWM_dutycycle(pin, angle)
 
     def enable(self) -> None:
@@ -67,6 +70,8 @@ class V1PhysicalInterface(PhysicalInterface):
             assert self._gpio is not None
             for pin in self._PINS:
                 self._gpio.set_PWM_dutycycle(pin, self._CENTER)
+                if self._debug:
+                    print(f"setting {pin}..")
                 time.sleep(0.1)
 
     def disable(self) -> None:
@@ -75,6 +80,8 @@ class V1PhysicalInterface(PhysicalInterface):
 
         This disables all active modules and sensors.
         """
+        if self._debug:
+            print("Turning off all pwm signals.")
         if not self._dry:
             assert self._gpio is not None
 
@@ -87,17 +94,45 @@ class V1PhysicalInterface(PhysicalInterface):
 
         :raises NotImplementedError: If getting the battery level is not supported on this hardware.
         """
-        raise NotImplementedError(
-            "Getting battery level not supported on v1 harware."
-        )
+        raise NotImplementedError("Getting battery level not supported on v1 harware.")
 
     def get_multiple_servo_positions(self, pins: Sequence[int]) -> list[float]:
         """
         Get the current position of multiple servos.
 
-        :param pins: The GPIO pin numbers.
+        :param pins: The GPIO pins.
         :raises NotImplementedError: If getting the servo position is not supported on this hardware.
         """
-        raise NotImplementedError(
-            "Getting servo position not supported on v1 harware."
-        )
+        raise NotImplementedError("Getting servo position not supported on v1 harware.")
+
+    def get_imu_angular_rate(self) -> Vector3:
+        """
+        Get the angular rate from the IMU.
+
+        :raises NotImplementedError: Always.
+        """
+        raise NotImplementedError()
+
+    def get_imu_orientation(self) -> Vector3:
+        """
+        Get the orientation from the IMU.
+
+        :raises NotImplementedError: Always.
+        """
+        raise NotImplementedError()
+
+    def get_imu_specific_force(self) -> Vector3:
+        """
+        Get the specific force from the IMU.
+
+        :raises NotImplementedError: Always.
+        """
+        raise NotImplementedError()
+
+    def get_camera_view(self) -> NDArray[np.uint8]:
+        """
+        Get the current view from the camera.
+
+        :raises NotImplementedError: If the Camera is not supported on this hardware.
+        """
+        raise NotImplementedError()

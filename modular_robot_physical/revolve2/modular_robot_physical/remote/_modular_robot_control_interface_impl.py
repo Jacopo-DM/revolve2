@@ -13,9 +13,7 @@ class ModularRobotControlInterfaceImpl(ModularRobotControlInterface):
         """Initialize this object."""
         self._set_active_hinges = []
 
-    def set_active_hinge_target(
-        self, active_hinge: ActiveHinge, target: float
-    ) -> None:
+    def set_active_hinge_target(self, active_hinge: ActiveHinge, target: float) -> None:
         """
         Set the position target for an active hinge.
 

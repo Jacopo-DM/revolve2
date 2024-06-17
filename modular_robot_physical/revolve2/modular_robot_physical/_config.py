@@ -1,13 +1,11 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING
 
-if TYPE_CHECKING:
-    from revolve2.modular_robot import ModularRobot
-    from revolve2.modular_robot.body.base import ActiveHinge
+from revolve2.modular_robot import ModularRobot
+from revolve2.modular_robot.body.base import ActiveHinge
 
-    from ._uuid_key import UUIDKey
+from ._uuid_key import UUIDKey
 
 
 @dataclass
@@ -26,6 +24,6 @@ class Config:
     """Frequency at which to call the brain control functions in seconds. There currently is a bug where if you set the control frequency to (around) 10 or smaller the program might hang. This is most likely a big in pycapnp and once pycapnp v2 is released this is probably resolved."""
     inverse_servos: dict[int, bool] = field(default_factory=dict)
     """
-    If a servo is mounted in the wrong direction on the body one can fix it by inversing the action.
+    If a servo is mounted in the wrong direction on the body one can fix it by inverting the action.
     inverse_servos allows you to inverse specific servos with their gpio number as key.
     """
