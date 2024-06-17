@@ -27,6 +27,4 @@ class ActiveHingeSensorStateImpl(ActiveHingeSensorState):
 
         :returns: The measured position.
         """
-        return self._simulation_state.get_hinge_joint_position(
-            self._hinge_joint
-        )
+        return self._simulation_state.get_hinge_joint_position(self._hinge_joint)

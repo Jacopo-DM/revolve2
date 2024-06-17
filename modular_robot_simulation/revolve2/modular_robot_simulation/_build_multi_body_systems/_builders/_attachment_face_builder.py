@@ -1,9 +1,9 @@
 from revolve2.modular_robot.body.base import AttachmentFace
 from revolve2.simulation.scene import MultiBodySystem, Pose, RigidBody
 
-from ._body_to_multi_body_system_mapping import BodyToMultiBodySystemMapping
+from .._body_to_multi_body_system_mapping import BodyToMultiBodySystemMapping
+from .._unbuilt_child import UnbuiltChild
 from ._builder import Builder
-from ._unbuilt_child import UnbuiltChild
 
 
 class AttachmentFaceBuilder(Builder):
@@ -11,9 +11,7 @@ class AttachmentFaceBuilder(Builder):
 
     _module: AttachmentFace
 
-    def __init__(
-        self, module: AttachmentFace, rigid_body: RigidBody, slot_pose: Pose
-    ):
+    def __init__(self, module: AttachmentFace, rigid_body: RigidBody, slot_pose: Pose):
         """
         Initialize the Attachment Face Builder.
 
@@ -38,14 +36,11 @@ class AttachmentFaceBuilder(Builder):
         :return: The next children to be built.
         """
         tasks = []
-        for (
-            child_index,
-            attachment_point,
-        ) in self._module.attachment_points.items():
+        for child_index, attachment_point in self._module.attachment_points.items():
             child = self._module.children.get(child_index)
             if child is not None:
                 unbuilt = UnbuiltChild(
-                    module=child,
+                    child_object=child,
                     rigid_body=self._rigid_body,
                 )
                 unbuilt.make_pose(

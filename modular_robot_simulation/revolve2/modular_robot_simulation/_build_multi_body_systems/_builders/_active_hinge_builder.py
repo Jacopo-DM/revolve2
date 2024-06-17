@@ -1,4 +1,5 @@
 from pyrr import Quaternion, Vector3
+
 from revolve2.modular_robot.body.base import ActiveHinge
 from revolve2.simulation.scene import (
     AABB,
@@ -11,10 +12,10 @@ from revolve2.simulation.scene import (
 from revolve2.simulation.scene.geometry import GeometryBox
 from revolve2.simulation.scene.geometry.textures import Texture
 
-from ._body_to_multi_body_system_mapping import BodyToMultiBodySystemMapping
+from .._body_to_multi_body_system_mapping import BodyToMultiBodySystemMapping
+from .._convert_color import convert_color
+from .._unbuilt_child import UnbuiltChild
 from ._builder import Builder
-from ._convert_color import convert_color
-from ._unbuilt_child import UnbuiltChild
 
 
 class ActiveHingeBuilder(Builder):
@@ -22,9 +23,7 @@ class ActiveHingeBuilder(Builder):
 
     _module: ActiveHinge
 
-    def __init__(
-        self, module: ActiveHinge, rigid_body: RigidBody, slot_pose: Pose
-    ):
+    def __init__(self, module: ActiveHinge, rigid_body: RigidBody, slot_pose: Pose):
         """
         Initialize the Active Hinge Builder.
 
@@ -77,8 +76,7 @@ class ActiveHingeBuilder(Builder):
                 + self._slot_pose.orientation
                 * Vector3([self._module.servo_offset, 0.0, 0.0])
             ),
-            self._rigid_body.initial_pose.orientation
-            * self._slot_pose.orientation,
+            self._rigid_body.initial_pose.orientation * self._slot_pose.orientation,
         )
         joint_pose = Pose(
             self._rigid_body.initial_pose.position
@@ -88,8 +86,7 @@ class ActiveHingeBuilder(Builder):
                 + self._slot_pose.orientation
                 * Vector3([self._module.joint_offset, 0.0, 0.0])
             ),
-            self._rigid_body.initial_pose.orientation
-            * self._slot_pose.orientation,
+            self._rigid_body.initial_pose.orientation * self._slot_pose.orientation,
         )
 
         self._rigid_body.geometries.append(
@@ -125,10 +122,6 @@ class ActiveHingeBuilder(Builder):
         body_to_multi_body_system_mapping.active_hinge_to_joint_hinge[
             UUIDKey(self._module)
         ] = joint
-        if self._module.sensor is not None:
-            body_to_multi_body_system_mapping.active_hinge_sensor_to_joint_hinge[
-                UUIDKey(self._module.sensor)
-            ] = joint
 
         next_rigid_body.geometries.append(
             GeometryBox(
@@ -148,13 +141,15 @@ class ActiveHingeBuilder(Builder):
         )
 
         tasks = []
-        attachment_point = self._module.attachment_points[
-            self._module.ATTACHMENT
-        ]
+        attachment_point = self._module.attachment_points[self._module.ATTACHMENT]
         child = self._module.children.get(self._module.ATTACHMENT)
+
+        for sensor in self._module.sensors.get_all_sensors():
+            tasks.append(UnbuiltChild(child_object=sensor, rigid_body=next_rigid_body))
+
         if child is not None:
             unbuilt = UnbuiltChild(
-                module=child,
+                child_object=child,
                 rigid_body=next_rigid_body,
             )
             unbuilt.make_pose(attachment_point.offset)
