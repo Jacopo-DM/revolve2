@@ -26,7 +26,7 @@ class LocalSimulator(Simulator):
         headless: bool = False,
         start_paused: bool = False,
         num_simulators: int = 1,
-        cast_shadows: bool = False,
+        cast_shadows: bool = True,
         fast_sim: bool = False,
         manual_control: bool = False,
         viewer_type: ViewerType | str = ViewerType.CUSTOM,
