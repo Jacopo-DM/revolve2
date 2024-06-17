@@ -18,10 +18,10 @@ from ._abstraction_to_mujoco_mapping import AbstractionToMujocoMapping
 class SimulationStateImpl(SimulationState):
     """Implementation of the simulation state interface for MuJoCo."""
 
-    _xpos: npt.NDArray[np.float_]
-    _xquat: npt.NDArray[np.float_]
-    _qpos: npt.NDArray[np.float_]
-    _sensordata: npt.NDArray[np.float_]
+    _xpos: npt.NDArray[np.float64]
+    _xquat: npt.NDArray[np.float64]
+    _qpos: npt.NDArray[np.float64]
+    _sensordata: npt.NDArray[np.float64]
     _abstraction_to_mujoco_mapping: AbstractionToMujocoMapping
     _camera_views: dict[int, npt.NDArray[np.uint8]]
 
