@@ -1,7 +1,6 @@
 import copy
 
 from pyrr import Vector3
-
 from revolve2.modular_robot.body.sensors import IMUSensor
 from revolve2.simulation.scene import MultiBodySystem, Pose, RigidBody, UUIDKey
 from revolve2.simulation.scene.sensors import IMUSensor as IMUSim
@@ -53,6 +52,8 @@ class IMUSensorBuilder(Builder):
         pose = copy.deepcopy(self._pose)
         pose.position += self._imu_location
         sensor = IMUSim(pose=pose)
-        body_to_multi_body_system_mapping.imu_to_sim_imu[UUIDKey(self._sensor)] = sensor
+        body_to_multi_body_system_mapping.imu_to_sim_imu[
+            UUIDKey(self._sensor)
+        ] = sensor
         self._rigid_body.sensors.add_sensor(sensor)
         return []

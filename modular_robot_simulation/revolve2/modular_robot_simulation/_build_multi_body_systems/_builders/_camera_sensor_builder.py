@@ -15,7 +15,9 @@ class CameraSensorBuilder(Builder):
     _sensor: CameraSensor
     _pose: Pose
 
-    def __init__(self, sensor: CameraSensor, rigid_body: RigidBody, pose: Pose) -> None:
+    def __init__(
+        self, sensor: CameraSensor, rigid_body: RigidBody, pose: Pose
+    ) -> None:
         """
         Initialize the Camera Sensor Builder.
 

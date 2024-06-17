@@ -49,11 +49,16 @@ class CoreBuilder(Builder):
 
         tasks = []
         for sensor in self._module.sensors.get_all_sensors():
-            unbuilt = UnbuiltChild(child_object=sensor, rigid_body=self._rigid_body)
+            unbuilt = UnbuiltChild(
+                child_object=sensor, rigid_body=self._rigid_body
+            )
             unbuilt.make_pose(position=self._slot_pose.position)
             tasks.append(unbuilt)
 
-        for child_index, attachment_point in self._module.attachment_points.items():
+        for (
+            child_index,
+            attachment_point,
+        ) in self._module.attachment_points.items():
             child = self._module.children.get(child_index)
             if child is not None:
                 unbuilt = UnbuiltChild(

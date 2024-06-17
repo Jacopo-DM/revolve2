@@ -31,7 +31,6 @@ def to_batch(
     ]
 
     batch = Batch(parameters=batch_parameters, record_settings=record_settings)
+    batch.scenes.extend(simulation_scene for simulation_scene, _ in converted)
 
-    scenes, mappings = zip(*converted)
-    batch.scenes.extend(scenes)
-    return batch, mappings
+    return batch, [mapping for _, mapping in converted]

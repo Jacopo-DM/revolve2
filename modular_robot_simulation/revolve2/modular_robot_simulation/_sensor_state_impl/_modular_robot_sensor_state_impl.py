@@ -35,7 +35,9 @@ class ModularRobotSensorStateImpl(ModularRobotSensorState):
         :param body_to_multi_body_system_mapping: A mapping from body to multi-body system
         """
         self._simulation_state = simulation_state
-        self._body_to_multi_body_system_mapping = body_to_multi_body_system_mapping
+        self._body_to_multi_body_system_mapping = (
+            body_to_multi_body_system_mapping
+        )
 
     def get_active_hinge_sensor_state(
         self, sensor: ActiveHingeSensor
@@ -73,15 +75,19 @@ class ModularRobotSensorStateImpl(ModularRobotSensorState):
             imu=maybe_imu,
         )
 
-    def get_camera_sensor_state(self, sensor: CameraSensor) -> CameraSensorState:
+    def get_camera_sensor_state(
+        self, sensor: CameraSensor
+    ) -> CameraSensorState:
         """
         Get the state of the camera sensor.
 
         :param sensor: The camera sensor.
         :returns: The camera sensor state.
         """
-        maybe_camera = self._body_to_multi_body_system_mapping.camera_to_sim_camera.get(
-            UUIDKey(sensor)
+        maybe_camera = (
+            self._body_to_multi_body_system_mapping.camera_to_sim_camera.get(
+                UUIDKey(sensor)
+            )
         )
         assert maybe_camera is not None, "Camera not in scene."
 

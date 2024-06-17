@@ -11,7 +11,9 @@ class AttachmentFaceBuilder(Builder):
 
     _module: AttachmentFace
 
-    def __init__(self, module: AttachmentFace, rigid_body: RigidBody, slot_pose: Pose):
+    def __init__(
+        self, module: AttachmentFace, rigid_body: RigidBody, slot_pose: Pose
+    ):
         """
         Initialize the Attachment Face Builder.
 
@@ -36,7 +38,10 @@ class AttachmentFaceBuilder(Builder):
         :return: The next children to be built.
         """
         tasks = []
-        for child_index, attachment_point in self._module.attachment_points.items():
+        for (
+            child_index,
+            attachment_point,
+        ) in self._module.attachment_points.items():
             child = self._module.children.get(child_index)
             if child is not None:
                 unbuilt = UnbuiltChild(

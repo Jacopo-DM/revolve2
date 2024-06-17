@@ -1,5 +1,4 @@
 from pyrr import Vector3
-
 from revolve2.modular_robot.body.base import Brick
 from revolve2.simulation.scene import AABB, MultiBodySystem, Pose, RigidBody
 from revolve2.simulation.scene.geometry import GeometryBox
@@ -58,9 +57,14 @@ class BrickBuilder(Builder):
 
         tasks = []
         for sensor in self._module.sensors.get_all_sensors():
-            tasks.append(UnbuiltChild(child_object=sensor, rigid_body=self._rigid_body))
+            tasks.append(
+                UnbuiltChild(child_object=sensor, rigid_body=self._rigid_body)
+            )
 
-        for child_index, attachment_point in self._module.attachment_points.items():
+        for (
+            child_index,
+            attachment_point,
+        ) in self._module.attachment_points.items():
             child = self._module.children.get(child_index)
             if child is not None:
                 unbuilt = UnbuiltChild(

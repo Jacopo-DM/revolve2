@@ -38,20 +38,21 @@ class ModularRobotSimulationState:
         Get the pose of a module, relative to its parent module's reference frame.
 
         In case there is no parent(the core), this is equal to getting the absolute pose.
-        # TODO (returns) The relative pose.
 
         :param module: The module to get the pose for.
+        :returns: The relative pose.
         :raises NotImplementedError: Always.
         """
         raise NotImplementedError()
+        return Pose()
 
     def get_module_absolute_pose(self, module: Module) -> Pose:
         """
         Get the pose of this module, relative the global reference frame.
 
-        # TODO (returns) The absolute pose.
-
         :param module: The module to get the pose for.
+        :returns: The absolute pose.
         :raises NotImplementedError: Always.
         """
         raise NotImplementedError()
+        return Pose()
