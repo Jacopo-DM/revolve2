@@ -10,36 +10,38 @@ from revolve2.ci_group.simulation_parameters import (
 from revolve2.simulation.scene import Scene
 
 from ._control_interface_impl import ControlInterfaceImpl
-from ._custom_mujoco_viewer import CustomMujocoViewer, CustomMujocoViewerMode
+from ._render_backend import RenderBackend
 from ._scene_to_model import scene_to_model
 from ._simulation_state_impl import SimulationStateImpl
+from .viewers import CustomMujocoViewer, CustomMujocoViewerMode
 
 
 def simulate_manual_scene(
     scene: Scene,
+    render_backend: RenderBackend = RenderBackend.GLFW,
 ) -> None:
     """
     Simulate a scene for checking if a robot was built correctly.
 
     :param scene: The scene to simulate.
+    :param render_backend: The render backend.
     """
     logging.info("Simulating scene")
 
     model, mapping = scene_to_model(
-        scene, STANDARD_SIMULATION_TIMESTEP, cast_shadows=False, fast_sim=False
+        scene, STANDARD_SIMULATION_TIMESTEP, cast_shadows=True, fast_sim=False
     )
     data = mujoco.MjData(model)
     viewer = CustomMujocoViewer(
-        model,
-        data,
-        mode=CustomMujocoViewerMode.MANUAL,
+        model, data, mode=CustomMujocoViewerMode.MANUAL, backend=render_backend
     )
 
     # Compute forward dynamics without actually stepping forward in time.
     mujoco.mj_forward(model, data)
 
     control_interface = ControlInterfaceImpl(
-        data=data, abstraction_to_mujoco_mapping=mapping
+        data=data,
+        abstraction_to_mujoco_mapping=mapping,
     )
 
     """Here we set our values for cycling different positions."""
@@ -58,7 +60,9 @@ def simulate_manual_scene(
     try:
         while True:
             simulation_state = SimulationStateImpl(
-                data=data, abstraction_to_mujoco_mapping=mapping
+                data=data,
+                abstraction_to_mujoco_mapping=mapping,
+                camera_views={},
             )
             scene.handler.handle(
                 simulation_state, control_interface, STANDARD_CONTROL_FREQUENCY
@@ -72,7 +76,7 @@ def simulate_manual_scene(
                 If the simulated hinges are forced to the target location directly with big angles, the simulation detects instabilities and wont render, therefore we choose smaller steps.
                 """
                 step = 0.0025 if target > current else -0.0025
-                for hinge in mapping.hinge_joint:
+                for hinge in mapping.hinge_joint.keys():
                     control_interface.set_joint_hinge_position_target(
                         hinge.value, current + step
                     )
@@ -88,5 +92,5 @@ def simulate_manual_scene(
     except KeyboardInterrupt:
         """If we press ctrl-C this script will end with the finally clause."""
     finally:
-        viewer.close()
+        viewer.close_viewer()
         logging.info("Testing done.")
