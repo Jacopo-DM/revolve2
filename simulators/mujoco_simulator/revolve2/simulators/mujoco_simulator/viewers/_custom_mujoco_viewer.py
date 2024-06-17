@@ -1,5 +1,6 @@
 """A custom viewer for mujoco with additional features."""
 
+import sys
 from enum import Enum
 from typing import Any
 
@@ -95,9 +96,10 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
 
         self._viewer_mode = mode
         self._position = 0
-        self._paused = start_paused
-        self._mujoco_version = tuple(map(int, mujoco.__version__.split(".")))
         self._render_every_frame = render_every_frame
+        self._mujoco_version = tuple(map(int, mujoco.__version__.split(".")))
+        self._paused = start_paused
+        self._return_code: None | str = None
 
     def _add_overlay(self, gridpos: int, text1: str, text2: str) -> None:
         """
@@ -146,10 +148,10 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
                     topleft, "Center of [M]ass", "On" if self._com else "Off"
                 )
             case _:
-                print(
-                    "Didnt reach anything with mode: "
-                    + self._viewer_mode.value
+                sys.stdout.write(
+                    f"Didn't reach anything with mode: {self._viewer_mode.value}\n"
                 )
+                sys.stdout.flush()
 
         """These are default overlays, only change if you know what you are doing."""
         if self._render_every_frame:
@@ -157,7 +159,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
         else:
             self._add_overlay(
                 topleft,
-                "Run speed = %.3f x real time" % self._run_speed,
+                f"Run speed = {self._run_speed:.3f} x real time",
                 "[S]lower, [F]aster",
             )
         self._add_overlay(
@@ -206,9 +208,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
         self._add_overlay(topleft, "[H]ide Menus", "")
         if self._image_idx > 0:
             fname = self._image_path % (self._image_idx - 1)
-            self._add_overlay(
-                topleft, "Cap[t]ure frame", "Saved as %s" % fname
-            )
+            self._add_overlay(topleft, "Cap[t]ure frame", f"Saved as {fname}")
         else:
             self._add_overlay(topleft, "Cap[t]ure frame", "")
 
@@ -233,7 +233,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
             str(round(self.data.time / self.model.opt.timestep)),
         )
         self._add_overlay(
-            bottomleft, "timestep", "%.5f" % self.model.opt.timestep
+            bottomleft, "timestep", f"{self.model.opt.timestep:.5f}"
         )
 
     def _key_callback(
@@ -249,15 +249,17 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
         :param mods: The Mods.
         """
         super()._key_callback(window, key, scancode, action, mods)
-        if action != glfw.RELEASE:
-            if key == glfw.KEY_LEFT_ALT:
-                self._hide_menus = False
-        else:
+        if action == glfw.RELEASE:
             match key:
                 case glfw.KEY_K:  # Increment cycle position
                     self._increment_position()
                 case _:
                     pass
+
+        elif key == glfw.KEY_LEFT_ALT:
+            self._hide_menus = False
+        elif key == glfw.KEY_ESCAPE:
+            self._return_code = "QUIT"
 
     def current_viewport_size(self) -> tuple[int, int]:
         """
@@ -270,16 +272,26 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
         )
         return self.viewport.width, self.viewport.height
 
-    def render(self) -> int | None:
+    def render(self) -> int | None | str:
         """
         Render the scene.
 
         :return: A cycle position if applicable.
         """
+        # Catch the case where the window is closed.
+        if self._return_code == "QUIT":
+            return self._return_code
+        elif not self.is_alive:
+            self._return_code = "QUIT"
+            return self._return_code
+
         super().render()
-        if self._viewer_mode == CustomMujocoViewerMode.MANUAL:
-            return self._position
-        return None
+
+        return (
+            self._position
+            if self._viewer_mode == CustomMujocoViewerMode.MANUAL
+            else self._return_code
+        )
 
     def _increment_position(self) -> None:
         """Increment our cycle position."""
