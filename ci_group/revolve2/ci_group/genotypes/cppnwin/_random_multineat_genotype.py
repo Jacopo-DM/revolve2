@@ -10,7 +10,7 @@ def random_multineat_genotype(
     num_outputs: int,
     num_initial_mutations: int,
     search_mode: multineat.SearchMode = multineat.SearchMode.BLENDED,
-    hidden_act_f: multineat.ActivationFunction = multineat.ActivationFunction.TANH,
+    hidden_act_f: multineat.ActivationFunction = multineat.ActivationFunction.UNSIGNED_SIGMOID,
 ) -> multineat.Genome:
     """
     Create a random multineat genotype.
@@ -30,14 +30,14 @@ def random_multineat_genotype(
     genotype = multineat.Genome(
         0,  # ID
         num_inputs,
-        0,  # n_hidden
+        num_inputs,  # ignored for seed_type == 0, specifies number of hidden units if seed_type == 1
         num_outputs,
         False,  # FS_NEAT
         output_activation_func,  # output activation type
         hidden_act_f,  # hidden activation type
-        0,  # seed_type
+        1,  # seed_type
         multineat_params,
-        0,  # number of hidden layers
+        1,  # number of hidden layers
     )
 
     for _ in range(num_initial_mutations):

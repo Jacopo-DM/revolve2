@@ -18,7 +18,8 @@ if TYPE_CHECKING:
     from revolve2.modular_robot.body.v2 import BodyV2
 
 MULTINEAT_PARAMS = get_multineat_params()
-OUTPUT_ACT_F = multineat.ActivationFunction.TANH
+# TODO what act_f to use?
+OUTPUT_ACT_F = multineat.ActivationFunction.UNSIGNED_SINE
 SEARCH_MODE = multineat.SearchMode.BLENDED
 NUM_INITIAL_MUTATIONS = 5
 NUM_BODY_INPUTS = 5  # bias(always 1), pos_x, pos_y, pos_z, chain_length

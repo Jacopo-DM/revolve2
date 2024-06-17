@@ -7,7 +7,7 @@ from sqlalchemy import event, orm
 
 from .._multineat_rng_from_random import multineat_rng_from_random
 from .._random_multineat_genotype import random_multineat_genotype
-from ._brain_cpg_network_neighbor_v1 import BrainCpgNetworkNeighborV1
+from ._brain_cpg_network_neighbor import BrainCpgNetworkNeighbor
 from ._multineat_params import get_multineat_params
 
 if TYPE_CHECKING:
@@ -22,7 +22,7 @@ class BrainGenotypeCpgOrm(orm.MappedAsDataclass, kw_only=True):
     brain: multineat.Genome
 
     _BRAIN_MULTINEAT_PARAMS = get_multineat_params()
-    _BRAIN_OUTPUT_ACT_FUNC = multineat.ActivationFunction.TANH
+    _BRAIN_OUTPUT_ACT_FUNC = multineat.ActivationFunction.SIGNED_SINE
     _BRAIN_SEARCH_MODE = multineat.SearchMode.BLENDED
     _BRAIN_NUM_INITIAL_MUTATIONS = 5
     # bias(always 1), x1, y1, z1, x2, y2, z2
@@ -115,14 +115,14 @@ class BrainGenotypeCpgOrm(orm.MappedAsDataclass, kw_only=True):
             )
         )
 
-    def develop_brain(self, body: Body) -> BrainCpgNetworkNeighborV1:
+    def develop_brain(self, body: Body) -> BrainCpgNetworkNeighbor:
         """
         Develop the genotype into a modular robot.
 
         :param body: The body to develop the brain for.
         :returns: The created robot.
         """
-        return BrainCpgNetworkNeighborV1(genotype=self.brain, body=body)
+        return BrainCpgNetworkNeighbor(genotype=self.brain, body=body)
 
 
 @event.listens_for(BrainGenotypeCpgOrm, "before_update", propagate=True)

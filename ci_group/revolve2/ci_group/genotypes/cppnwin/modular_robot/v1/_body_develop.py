@@ -43,18 +43,16 @@ def develop(
 
     body = BodyV1()
 
-    v1_core = body.core_v1
     core_position = Vector3(
         [max_parts + 1, max_parts + 1, max_parts + 1], dtype=np.int_
     )
-
     to_explore.put(
         __Module(
             core_position,
             Vector3([0, -1, 0], dtype=np.int_),
             Vector3([0, 0, 1], dtype=np.int_),
             0,
-            v1_core,
+            body.core,
         )
     )
     grid[tuple(core_position)] = 1
