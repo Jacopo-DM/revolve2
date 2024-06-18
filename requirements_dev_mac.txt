@@ -1,4 +1,4 @@
-# Installs all Revolve2 packages in editable mode as well as all example requirements.
+# Installs all Revolve2 packages in editable mode as well as development tools and their requirements.
 
 -e ci_group[dev]
 -e simulators/mujoco_simulator[dev]
@@ -7,6 +7,7 @@
 # -e modular_robot_physical[remote] # breaks MacOS
 -e modular_robot[dev]
 -e simulation[dev]
--r ./examples/4_example_experiment_setups/4d_robot_bodybrain_ea_database/requirements.txt
--r ./examples/4_example_experiment_setups/4f_robot_brain_cmaes_database/requirements.txt
--r ./examples/4_example_experiment_setups/4b_simple_ea_xor_database/requirements.txt
+-r ./examples/requirements.txt
+# -r ./codetools/requirements.txt
+# -r ./docs/requirements.txt
+# -r ./tests/requirements.txt

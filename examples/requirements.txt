@@ -1,0 +1,7 @@
+cma
+matplotlib
+multineat
+numpy
+pandas
+pyrr
+SQLAlchemy

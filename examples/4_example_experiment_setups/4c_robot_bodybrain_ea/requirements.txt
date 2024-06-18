@@ -1,0 +1,2 @@
+multineat~=0.12
+numpy~=2.0.0
