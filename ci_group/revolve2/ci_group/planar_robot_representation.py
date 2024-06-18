@@ -122,9 +122,7 @@ def _draw_module(
             context.set_source_rgb(0, 0, 1)  # Blue
         case _:
             msg = f"Module of type {type(module)} has no defined structure for drawing."
-            raise ValueError(
-                msg
-            )
+            raise ValueError(msg)
 
     # default operation for every module
     context.fill_preserve()
