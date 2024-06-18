@@ -16,8 +16,9 @@ Magnitudes = list[list[float]]
 
 def get_novelty_from_population(
     population: list[ModularRobot],
-    cob_heuristic: bool = False,
     num_bins: int = 20,
+    *,
+    cob_heuristic: bool = False,
 ) -> NDArray[np.float64]:
     """
     Get the morphological novelty score for individuals in a population.

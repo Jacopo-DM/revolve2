@@ -88,9 +88,9 @@ def __evaluate_cppn(
     :returns: (module type, rotation_index)
     """
     x, y, z = position
-    assert isinstance(
-        x, np.int_
-    ), f"Error: The position is not of type int. Type: {type(x)}."
+    if isinstance(x, np.int_):
+        msg = f"Error: The position is not of type int. Type: {type(x)}."
+        raise TypeError(msg)
     body_net.Input([1.0, x, y, z, chain_length])  # 1.0 is the bias input
     body_net.ActivateAllLayers()
     outputs = body_net.Output()

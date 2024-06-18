@@ -97,6 +97,7 @@ def _draw_module(
     previous_position: tuple[int, int],
     orientation: NDArray[np.int_],
     context: "cairo.Context[cairo.ImageSurface]",
+    *,
     print_id: bool = False,
 ) -> None:
     """

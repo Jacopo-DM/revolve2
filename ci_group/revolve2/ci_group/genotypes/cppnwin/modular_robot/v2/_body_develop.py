@@ -108,9 +108,9 @@ def __evaluate_cppn(
     """
     x, y, z = position
 
-    assert isinstance(
-        x, np.int_
-    ), f"Error: The position is not of type int. Type: {type(x)}."
+    if isinstance(x, np.int_):
+        msg = f"Error: The position is not of type int. Type: {type(x)}."
+        raise TypeError(msg)
 
     # normalize position by grid size
     x /= GRID_SIZE
@@ -126,7 +126,7 @@ def __evaluate_cppn(
     # ========= Set up ========= #
     """We select the module type for the current position using the first output
     of the CPPN network."""
-    # TODO
+    # TODO(jmdm): gotta find a fix
     types = [None, BrickV2, ActiveHingeV2]
     target_idx = max(0, int(outputs[0] * len(types) - 1e-6))
     # types = {0: None, 1: BrickV2, 2: ActiveHingeV2}

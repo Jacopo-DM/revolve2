@@ -11,8 +11,9 @@ class Ball(MultiBodySystem):
         radius: float,
         mass: float,
         pose: Pose | None = None,
-        is_static: bool = False,
         texture: Texture | None = None,
+        *,
+        is_static: bool = False,
     ) -> None:
         """
         Initialize the ball.

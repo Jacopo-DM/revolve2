@@ -25,7 +25,7 @@ if TYPE_CHECKING:
     from revolve2.modular_robot.body.v2 import BodyV2
 
 MULTINEAT_PARAMS = get_multineat_params()
-# TODO what act_f to use?
+# TODO(jmdm): what act_f to use?
 OUTPUT_ACT_F = multineat.ActivationFunction.UNSIGNED_SINE
 SEARCH_MODE = multineat.SearchMode.BLENDED
 NUM_INITIAL_MUTATIONS = 5

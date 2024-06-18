@@ -843,51 +843,53 @@ def get(name: str) -> BodyV1:
     :returns: The robot with that name.
     :raises ValueError: When a robot with that name does not exist.
     """
+    body = None
     match name:
         case "gecko":
-            return gecko_v1()
+            body = gecko_v1()
         case "spider":
-            return spider_v1()
+            body = spider_v1()
         case "babya":
-            return babya_v1()
+            body = babya_v1()
         case "ant":
-            return ant_v1()
+            body = ant_v1()
         case "salamander":
-            return salamander_v1()
+            body = salamander_v1()
         case "blokky":
-            return blokky_v1()
+            body = blokky_v1()
         case "park":
-            return park_v1()
+            body = park_v1()
         case "babyb":
-            return babyb_v1()
+            body = babyb_v1()
         case "garrix":
-            return garrix_v1()
+            body = garrix_v1()
         case "insect":
-            return insect_v1()
+            body = insect_v1()
         case "linkin":
-            return linkin_v1()
+            body = linkin_v1()
         case "longleg":
-            return longleg_v1()
+            body = longleg_v1()
         case "penguin":
-            return penguin_v1()
+            body = penguin_v1()
         case "pentapod":
-            return pentapod_v1()
+            body = pentapod_v1()
         case "queen":
-            return queen_v1()
+            body = queen_v1()
         case "squarish":
-            return squarish_v1()
+            body = squarish_v1()
         case "snake":
-            return snake_v1()
+            body = snake_v1()
         case "stingray":
-            return stingray_v1()
+            body = stingray_v1()
         case "tinlicker":
-            return tinlicker_v1()
+            body = tinlicker_v1()
         case "turtle":
-            return turtle_v1()
+            body = turtle_v1()
         case "ww":
-            return ww_v1()
+            body = ww_v1()
         case "zappa":
-            return zappa_v1()
+            body = zappa_v1()
         case _:
             msg = f"Robot does not exist: {name}"
             raise ValueError(msg)
+    return body

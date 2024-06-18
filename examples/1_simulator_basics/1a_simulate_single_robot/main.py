@@ -1,10 +1,11 @@
 """Main script for the example."""
 
 from pyrr import Vector3
-
 from revolve2.ci_group import terrains
 from revolve2.ci_group.interactive_objects import Ball
-from revolve2.ci_group.simulation_parameters import make_standard_batch_parameters
+from revolve2.ci_group.simulation_parameters import (
+    make_standard_batch_parameters,
+)
 from revolve2.experimentation.logging import setup_logging
 from revolve2.experimentation.rng import make_rng_time_seed
 from revolve2.modular_robot import ModularRobot
@@ -30,10 +31,14 @@ def make_body() -> BodyV2:
     body = BodyV2()
     body.core_v2.left_face.bottom = ActiveHingeV2(RightAngles.DEG_0)
     body.core_v2.left_face.bottom.attachment = ActiveHingeV2(RightAngles.DEG_0)
-    body.core_v2.left_face.bottom.attachment.attachment = BrickV2(RightAngles.DEG_0)
+    body.core_v2.left_face.bottom.attachment.attachment = BrickV2(
+        RightAngles.DEG_0
+    )
     body.core_v2.right_face.bottom = ActiveHingeV2(RightAngles.DEG_0)
     body.core_v2.right_face.bottom.attachment = ActiveHingeV2(RightAngles.DEG_0)
-    body.core_v2.right_face.bottom.attachment.attachment = BrickV2(RightAngles.DEG_0)
+    body.core_v2.right_face.bottom.attachment.attachment = BrickV2(
+        RightAngles.DEG_0
+    )
     return body
 
 
@@ -51,7 +56,7 @@ def main() -> None:
     """
     Here we create a brain for the robot.
     We choose a 'CPG' brain with random parameters.
-    If you want to know more about CPGs checkout the Methods section in: https://doi.org/10.1038/s41598-023-48338-4. 
+    If you want to know more about CPGs checkout the Methods section in: https://doi.org/10.1038/s41598-023-48338-4.
     """
     brain = BrainCpgNetworkNeighborRandom(body=body, rng=rng)
 
@@ -73,7 +78,7 @@ def main() -> None:
     """
     After we have the scene ready we create a simulator that will perform the simulation.
     This tutorial chooses to use Mujoco, but your version of revolve might contain other simulators as well.
-    
+
     For mujoco we can select either the `native` mujoco viewer (more performance) or our `custom` viewer (which is more flexible for adjustments).
     """
     simulator = LocalSimulator(viewer_type="native")

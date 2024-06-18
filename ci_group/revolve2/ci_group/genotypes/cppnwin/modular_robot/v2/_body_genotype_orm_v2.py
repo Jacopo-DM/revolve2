@@ -20,7 +20,6 @@ from ._body_develop import develop
 if TYPE_CHECKING:
     import numpy as np
     from revolve2.modular_robot.body.v2 import BodyV2
-    from sqlalchemy.engine import Connection
 
 
 class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):

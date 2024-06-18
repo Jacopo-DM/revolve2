@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 
 def coords_from_bodies(
-    bodies: list[Body], cob_heuristics: bool
+    bodies: list[Body], *, cob_heuristics: bool
 ) -> list[NDArray[np.float64]]:
     """
     Extract coordinates of modules from a body.

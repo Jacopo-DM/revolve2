@@ -62,6 +62,8 @@ lint.extend-select = [
 lint.extend-ignore = [
     "ANN101", # Missing type annotation for self in method
     "ANN102", # Missing type annotation for cls in classmethod
+    # "PLR0913", # Too many arguments for method
+    # "FBT003",  # Found "bool" in function argument
 ]
 show-fixes = true
 target-version = "py311"

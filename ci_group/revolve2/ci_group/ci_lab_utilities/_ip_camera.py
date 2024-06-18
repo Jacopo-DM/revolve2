@@ -2,7 +2,6 @@ import logging
 import queue
 import threading
 import time
-from enum import Enum
 
 import cv2
 import numpy as np
@@ -169,34 +168,24 @@ class IPCamera:
             borderMode=cv2.BORDER_CONSTANT,
         )
 
-    class CameraStyle(Enum):
-        NO_STYLE = 0
-        DISPLAY = 1
-        RECORD = 2
-        BOTH = 3
-
-    def start(self, method: CameraStyle = CameraStyle.DISPLAY) -> None:
+    def start(self, *, record: bool = False, display: bool = True) -> None:
         """
         Start the camera.
 
         :param record: Whether to record.
         :param display: Whether to display the video stream.
         """
-        self._receive_thread = threading.Thread(target=self._receive)
-
-        if method == self.CameraStyle.NO_STYLE:
+        if not record and not display:
             msg = "The camera is neither recording or displaying, are you sure you are using it?"
             raise ValueError(msg)
 
-        if method == self.CameraStyle.DISPLAY:
-            self._display_thread = threading.Thread(target=self._display)
-            self._record_thread = threading.Thread(target=self._dump_record)
-        elif method == self.CameraStyle.RECORD:
-            self._display_thread = threading.Thread(target=self._dump_display)
-            self._record_thread = threading.Thread(target=self._record)
-        else:
-            self._display_thread = threading.Thread(target=self._display)
-            self._record_thread = threading.Thread(target=self._record)
+        self._receive_thread = threading.Thread(target=self._receive)
+        self._display_thread = threading.Thread(
+            target=self._display if display else self._dump_display
+        )
+        self._record_thread = threading.Thread(
+            target=self._record if record else self._dump_record
+        )
 
         self._is_running = True
 
