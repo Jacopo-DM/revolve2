@@ -22,10 +22,10 @@ class TextureReference(ABC):
         :raises NotImplementedError: If not sufficient arguments are given.
         """
         if self.builtin is None and self.file is None:
-            raise NotImplementedError(
-                "No texture reference given in form of a file or builtin texture."
-            )
+            msg = "No texture reference given in form of a file or builtin texture."
+            raise NotImplementedError(msg)
         if self.file is not None and self.content_type is None:
-            raise NotImplementedError(
+            msg = (
                 "Please indicate the content type of your texture source file."
             )
+            raise NotImplementedError(msg)

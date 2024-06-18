@@ -1,9 +1,8 @@
 """Population class."""
 
 import sqlalchemy.ext.orderinglist
-import sqlalchemy.orm as orm
-
 from revolve2.experimentation.database import HasId
+from sqlalchemy import orm
 
 from ._base import Base
 from ._individual import Individual
@@ -23,5 +22,7 @@ class Population(Base, HasId, kw_only=True):
 
     individuals: orm.Mapped[list[Individual]] = orm.relationship(
         order_by=Individual.population_index,
-        collection_class=sqlalchemy.ext.orderinglist.ordering_list("population_index"),
+        collection_class=sqlalchemy.ext.orderinglist.ordering_list(
+            "population_index"
+        ),
     )

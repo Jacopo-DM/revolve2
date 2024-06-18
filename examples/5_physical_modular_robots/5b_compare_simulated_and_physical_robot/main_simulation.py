@@ -2,7 +2,9 @@
 
 from revolve2.ci_group import terrains
 from revolve2.ci_group.modular_robots_v2 import gecko_v2
-from revolve2.ci_group.simulation_parameters import make_standard_batch_parameters
+from revolve2.ci_group.simulation_parameters import (
+    make_standard_batch_parameters,
+)
 from revolve2.modular_robot_simulation import test_robot
 from revolve2.simulators.mujoco_simulator import LocalSimulator
 

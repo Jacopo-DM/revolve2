@@ -43,8 +43,7 @@ class ModularRobotSimulationState:
         :returns: The relative pose.
         :raises NotImplementedError: Always.
         """
-        raise NotImplementedError()
-        return Pose()
+        raise NotImplementedError
 
     def get_module_absolute_pose(self, module: Module) -> Pose:
         """
@@ -54,5 +53,4 @@ class ModularRobotSimulationState:
         :returns: The absolute pose.
         :raises NotImplementedError: Always.
         """
-        raise NotImplementedError()
-        return Pose()
+        raise NotImplementedError

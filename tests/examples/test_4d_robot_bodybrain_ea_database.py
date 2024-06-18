@@ -2,7 +2,8 @@ import os
 import sys
 from unittest.mock import Mock
 
-from ..conftest import EXAMPLES_DIR
+from tests.conftest import EXAMPLES_DIR
+
 from ._clear_example_modules_from_cache import clear_exp_modules_from_cache
 
 
@@ -16,7 +17,8 @@ def test_4d_robot_bodybrain_ea_database(mocker: Mock, tmpdir: str) -> None:
     :param tmpdir: Temporary directory for spawning database file.
     """
     exp_dir = os.path.join(
-        EXAMPLES_DIR, "4_example_experiment_setups/4d_robot_bodybrain_ea_database"
+        EXAMPLES_DIR,
+        "4_example_experiment_setups/4d_robot_bodybrain_ea_database",
     )
 
     # Clear any previously imported modules from examples directory from cache

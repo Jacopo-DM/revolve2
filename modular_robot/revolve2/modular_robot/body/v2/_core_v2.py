@@ -2,8 +2,9 @@ import math
 
 from pyrr import Vector3
 
-from .._right_angles import RightAngles
-from ..base import Core
+from modular_robot.body._right_angles import RightAngles
+from modular_robot.body.base import Core
+
 from ._attachment_face_core_v2 import AttachmentFaceCoreV2
 
 
@@ -25,7 +26,7 @@ class CoreV2(Core):
         self,
         rotation: float | RightAngles,
         num_batteries: int = 1,
-    ):
+    ) -> None:
         """
         Initialize this object.
 

@@ -46,7 +46,8 @@ class SceneSimulationState:
             )
         )
         if maybe_multi_body_system is None:
-            raise ValueError("Modular robot not in scene.")
+            msg = "Modular robot not in scene."
+            raise ValueError(msg)
 
         return ModularRobotSimulationState(
             self._simulation_state, maybe_multi_body_system

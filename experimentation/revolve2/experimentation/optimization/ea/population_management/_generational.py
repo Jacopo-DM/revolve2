@@ -28,6 +28,4 @@ def generational(
     assert len(new_genotypes) == len(new_fitnesses)
     assert len(new_fitnesses) >= population_size
 
-    return [], selection_function(
-        population_size, new_genotypes, new_fitnesses
-    )
+    return [], selection_function(population_size, new_genotypes, new_fitnesses)

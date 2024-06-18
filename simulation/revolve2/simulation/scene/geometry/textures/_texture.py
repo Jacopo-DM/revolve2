@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 
-from ..._color import Color
+from simulation.scene._color import Color
+
 from ._map_type import MapType
 from ._texture_reference import TextureReference
 
@@ -11,9 +12,7 @@ class Texture:
 
     reference: TextureReference | None = field(default=None)
     """Reference the specific type of texture. If no reference is given, the base_color will be used on the Object."""
-    base_color: Color = field(
-        default_factory=lambda: Color(255, 255, 255, 255)
-    )
+    base_color: Color = field(default_factory=lambda: Color(255, 255, 255, 255))
     """Determines the base color of a material and its alpha value."""
     primary_color: Color = field(default_factory=lambda: Color(0, 0, 0, 0))
     """Determines the primary color of the texture."""

@@ -3,9 +3,8 @@
 from dataclasses import dataclass
 
 import sqlalchemy
-import sqlalchemy.orm as orm
-
 from revolve2.experimentation.database import HasId
+from sqlalchemy import orm
 
 from ._base import Base
 from ._genotype import Genotype
@@ -34,7 +33,9 @@ class Individual(Base, HasId, kw_only=True):
     population_id: orm.Mapped[int] = orm.mapped_column(
         sqlalchemy.ForeignKey("population.id"), nullable=False, init=False
     )
-    population_index: orm.Mapped[int] = orm.mapped_column(nullable=False, init=False)
+    population_index: orm.Mapped[int] = orm.mapped_column(
+        nullable=False, init=False
+    )
     genotype_id: orm.Mapped[int] = orm.mapped_column(
         sqlalchemy.ForeignKey("genotype.id"), nullable=False, init=False
     )

@@ -11,10 +11,10 @@ from typing import (
 import sqlalchemy
 from sqlalchemy import orm
 
-from ..._util.init_subclass_get_generic_args import (
+from experimentation._util.init_subclass_get_generic_args import (
     init_subclass_get_generic_args,
 )
-from ...database import HasId
+from experimentation.database import HasId
 
 TGenotype = TypeVar("TGenotype")
 

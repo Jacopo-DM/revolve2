@@ -2,7 +2,7 @@
 
 import config
 import matplotlib.pyplot as plt
-import pandas
+import pandas as pd
 from experiment import Experiment
 from generation import Generation
 from individual import Individual
@@ -23,7 +23,7 @@ def main() -> None:
 
     # Read data from the database into a pandas dataframe.
     # The loaded dataframe should have the columns `experiment_id`, `generation_index`, and `fitness`.
-    df = pandas.read_sql(
+    df = pd.read_sql(
         select(
             Experiment.id.label("experiment_id"),
             Generation.generation_index,

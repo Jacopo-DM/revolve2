@@ -4,9 +4,9 @@ import numpy as np
 from numpy.typing import NDArray
 from pyrr import Quaternion, Vector3
 
-from .. import Module
-from .._attachment_point import AttachmentPoint
-from ..base import AttachmentFace
+from modular_robot.body import Module
+from modular_robot.body._attachment_point import AttachmentPoint
+from modular_robot.body.base import AttachmentFace
 
 
 class AttachmentFaceCoreV2(AttachmentFace):
@@ -94,9 +94,8 @@ class AttachmentFaceCoreV2(AttachmentFace):
             self._check_matrix[child_index // 3, child_index % 3] += 1
             self._children[child_index] = module
         else:
-            raise KeyError(
-                f"Attachment point {'already populated' if can_set else 'occluded by other module'}"
-            )
+            msg = f"Attachment point {'already populated' if can_set else 'occluded by other module'}"
+            raise KeyError(msg)
 
     def can_set_child(self, child_index: int) -> bool:
         """

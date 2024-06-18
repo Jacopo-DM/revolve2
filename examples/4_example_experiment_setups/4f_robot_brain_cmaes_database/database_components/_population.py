@@ -1,6 +1,8 @@
 """Population class."""
 
-from revolve2.experimentation.optimization.ea import Population as GenericPopulation
+from revolve2.experimentation.optimization.ea import (
+    Population as GenericPopulation,
+)
 
 from ._base import Base
 from ._individual import Individual

@@ -12,5 +12,3 @@ class Base(orm.MappedAsDataclass, orm.DeclarativeBase):
     We can then use this base class to create the structure of our new (empty) database,
     automatically knowing all classes that inherited from the base.
     """
-
-    pass

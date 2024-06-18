@@ -40,15 +40,11 @@ class Vector2(BaseVector):  # type:ignore
                 obj = np.array(value, dtype=dtype)
 
             # matrix33
-            if obj.shape in (
-                (
-                    3,
-                    3,
-                )
-            ) or isinstance(obj, BaseMatrix33):
-                obj = vector2.create_from_matrix33_translation(
-                    obj, dtype=dtype
-                )
+            if obj.shape in ((
+                3,
+                3,
+            )) or isinstance(obj, BaseMatrix33):
+                obj = vector2.create_from_matrix33_translation(obj, dtype=dtype)
         else:
             obj = np.zeros(cls._shape, dtype=dtype)
         obj = obj.view(cls)
@@ -68,8 +64,8 @@ class Vector2(BaseVector):  # type:ignore
         """
         if type(other) in self.__NMB or type(other) in self.__VCT:
             return Vector2(super().__add__(other))
-        else:
-            self._unsupported_type("add", other)
+        self._unsupported_type("add", other)
+        return None
 
     def __sub__(self, other: Any) -> Vector2:  # type:ignore
         """
@@ -80,8 +76,8 @@ class Vector2(BaseVector):  # type:ignore
         """
         if type(other) in self.__NMB or type(other) in self.__VCT:
             return Vector2(super().__sub__(other))
-        else:
-            self._unsupported_type("subtract", other)
+        self._unsupported_type("subtract", other)
+        return None
 
     def __mul__(self, other: Any) -> Vector2:  # type:ignore
         """
@@ -92,8 +88,8 @@ class Vector2(BaseVector):  # type:ignore
         """
         if type(other) in self.__NMB:
             return Vector2(super().__mul__(other))
-        else:
-            self._unsupported_type("multiply", other)
+        self._unsupported_type("multiply", other)
+        return None
 
     def __xor__(self, other: Any) -> Any:
         """
@@ -104,8 +100,8 @@ class Vector2(BaseVector):  # type:ignore
         """
         if type(other) in self.__VCT:
             return self.cross(other)
-        else:
-            self._unsupported_type("XOR", other)
+        self._unsupported_type("XOR", other)
+        return None
 
     def __or__(self, other: Any) -> Any:
         """
@@ -116,10 +112,10 @@ class Vector2(BaseVector):  # type:ignore
         """
         if type(other) in self.__VCT:
             return self.dot(other)
-        else:
-            self._unsupported_type("OR", other)
+        self._unsupported_type("OR", other)
+        return None
 
-    def __ne__(self, other: Any) -> bool:  # type:ignore
+    def __ne__(self, other: object) -> bool:  # type:ignore
         """
         Not equal to the existing Vector2.
 
@@ -128,10 +124,10 @@ class Vector2(BaseVector):  # type:ignore
         """
         if type(other) in self.__VCT:
             return bool(np.any(super().__ne__(other)))
-        else:
-            self._unsupported_type("NE", other)
+        self._unsupported_type("NE", other)
+        return None
 
-    def __eq__(self, other: Any) -> bool:  # type:ignore
+    def __eq__(self, other: object) -> bool:  # type:ignore
         """
         Equal to the existing Vector2.
 
@@ -140,8 +136,8 @@ class Vector2(BaseVector):  # type:ignore
         """
         if type(other) in self.__VCT:
             return bool(np.all(super().__eq__(other)))
-        else:
-            self._unsupported_type("EQ", other)
+        self._unsupported_type("EQ", other)
+        return None
 
     ########################
     # Methods and Properties

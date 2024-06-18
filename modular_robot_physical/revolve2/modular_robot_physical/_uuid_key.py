@@ -14,7 +14,6 @@ class HasUUID(Protocol):
 
         # noqa: DAR202
         """
-        pass
 
 
 _T = TypeVar("_T", bound=HasUUID)
@@ -53,7 +52,7 @@ class UUIDKey(Generic[_T]):
         if not isinstance(other, UUIDKey) or not isinstance(
             other._value, type(self._value)
         ):
-            raise ValueError()
+            raise ValueError
         return self._value.uuid == other._value.uuid
 
     def __hash__(self) -> int:

@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
-from .._aabb import AABB
+from simulation.scene._aabb import AABB
+
 from ._geometry import Geometry
 
 

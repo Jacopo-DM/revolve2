@@ -26,9 +26,8 @@ class _AttachedSensors:
             case CameraSensor():
                 self.camera_sensors.append(sensor)
             case _:
-                raise ValueError(
-                    f"Sensor of type: {type(sensor)} is not defined for _rigid_body._AttachedSensors"
-                )
+                msg = f"Sensor of type: {type(sensor)} is not defined for _rigid_body._AttachedSensors"
+                raise ValueError(msg)
 
 
 class RigidBody:
@@ -123,9 +122,8 @@ class RigidBody:
                 case GeometrySphere():
                     local_inertia = self._calculate_sphere_inertia(geometry)
                 case _:
-                    raise ValueError(
-                        f"Geometries with non-zero mass of type {type(geometry)} are not supported yet."
-                    )
+                    msg = f"Geometries with non-zero mass of type {type(geometry)} are not supported yet."
+                    raise ValueError(msg)
 
             translation = Matrix33()
             translation[0, 0] += geometry.mass * (

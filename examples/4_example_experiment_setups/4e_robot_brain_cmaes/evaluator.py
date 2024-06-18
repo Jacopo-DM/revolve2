@@ -4,12 +4,16 @@ import math
 
 import numpy as np
 import numpy.typing as npt
-
 from revolve2.ci_group import fitness_functions, terrains
-from revolve2.ci_group.simulation_parameters import make_standard_batch_parameters
+from revolve2.ci_group.simulation_parameters import (
+    make_standard_batch_parameters,
+)
 from revolve2.modular_robot import ModularRobot
 from revolve2.modular_robot.body.base import ActiveHinge, Body
-from revolve2.modular_robot.brain.cpg import BrainCpgNetworkStatic, CpgNetworkStructure
+from revolve2.modular_robot.brain.cpg import (
+    BrainCpgNetworkStatic,
+    CpgNetworkStructure,
+)
 from revolve2.modular_robot_simulation import (
     ModularRobotScene,
     Terrain,
@@ -54,8 +58,8 @@ class Evaluator:
 
     def evaluate(
         self,
-        solutions: list[npt.NDArray[np.float_]],
-    ) -> npt.NDArray[np.float_]:
+        solutions: list[npt.NDArray[np.float64]],
+    ) -> npt.NDArray[np.float64]:
         """
         Evaluate multiple robots.
 
@@ -98,7 +102,7 @@ class Evaluator:
                 states[0].get_modular_robot_simulation_state(robot),
                 states[-1].get_modular_robot_simulation_state(robot),
             )
-            for robot, states in zip(robots, scene_states)
+            for robot, states in zip(robots, scene_states, strict=False)
         ]
 
         return np.array(xy_displacements)

@@ -16,9 +16,7 @@ class ModularRobotScene:
     terrain: Terrain
     """The terrain of the scene."""
 
-    _robots: list[tuple[ModularRobot, Pose, bool]] = field(
-        default_factory=list
-    )
+    _robots: list[tuple[ModularRobot, Pose, bool]] = field(default_factory=list)
     """
     The robots in the scene.
     This is an owning collection; the robots are assigned ids when they are added, equal to their index in this list.
@@ -40,13 +38,11 @@ class ModularRobotScene:
         :param translate_z_aabb: Whether the robot should be translated upwards so it's T-pose axis-aligned bounding box is exactly on the ground. I.e. if the robot should be placed exactly on the ground. The pose parameters is still added afterwards.
         """
         # Add the robot to the robots list.
-        self._robots.append(
-            (
-                robot,
-                Pose(pose.position.copy(), pose.orientation.copy()),
-                translate_z_aabb,
-            )
-        )
+        self._robots.append((
+            robot,
+            Pose(pose.position.copy(), pose.orientation.copy()),
+            translate_z_aabb,
+        ))
 
     def add_interactive_object(self, objt: MultiBodySystem) -> None:
         """

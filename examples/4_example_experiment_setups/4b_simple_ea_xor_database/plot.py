@@ -2,12 +2,11 @@
 
 import config
 import matplotlib.pyplot as plt
-import pandas
+import pandas as pd
 from database_components import Experiment, Generation, Individual, Population
-from sqlalchemy import select
-
 from revolve2.experimentation.database import OpenMethod, open_database_sqlite
 from revolve2.experimentation.logging import setup_logging
+from sqlalchemy import select
 
 
 def main() -> None:
@@ -21,15 +20,21 @@ def main() -> None:
 
     # Read data from the database into a pandas dataframe.
     # The loaded dataframe should have the columns `experiment_id`, `generation_index`, and `fitness`.
-    df = pandas.read_sql(
+    df = pd.read_sql(
         select(
             Experiment.id.label("experiment_id"),
             Generation.generation_index,
             Individual.fitness,
         )
-        .join_from(Experiment, Generation, Experiment.id == Generation.experiment_id)
-        .join_from(Generation, Population, Generation.population_id == Population.id)
-        .join_from(Population, Individual, Population.id == Individual.population_id),
+        .join_from(
+            Experiment, Generation, Experiment.id == Generation.experiment_id
+        )
+        .join_from(
+            Generation, Population, Generation.population_id == Population.id
+        )
+        .join_from(
+            Population, Individual, Population.id == Individual.population_id
+        ),
         dbengine,
     )
 
@@ -76,8 +81,10 @@ def main() -> None:
     )
     plt.fill_between(
         agg_per_generation["generation_index"],
-        agg_per_generation["max_fitness_mean"] - agg_per_generation["max_fitness_std"],
-        agg_per_generation["max_fitness_mean"] + agg_per_generation["max_fitness_std"],
+        agg_per_generation["max_fitness_mean"]
+        - agg_per_generation["max_fitness_std"],
+        agg_per_generation["max_fitness_mean"]
+        + agg_per_generation["max_fitness_std"],
         color="b",
         alpha=0.2,
     )

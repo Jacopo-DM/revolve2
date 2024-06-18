@@ -1,4 +1,5 @@
-from .._hardware_type import HardwareType
+from modular_robot_physical._hardware_type import HardwareType
+
 from ._physical_interface import PhysicalInterface
 
 
@@ -18,16 +19,20 @@ def get_interface(
     try:
         match hardware_type:
             case HardwareType.v1:
-                from ..physical_interfaces.v1 import V1PhysicalInterface
+                from modular_robot_physical.physical_interfaces.v1 import (
+                    V1PhysicalInterface,
+                )
 
                 return V1PhysicalInterface(debug=debug, dry=dry)
             case HardwareType.v2:
-                from ..physical_interfaces.v2 import V2PhysicalInterface
+                from modular_robot_physical.physical_interfaces.v2 import (
+                    V2PhysicalInterface,
+                )
 
                 return V2PhysicalInterface(debug=debug, dry=dry)
             case _:
-                raise NotImplementedError("Hardware type not supported.")
+                msg = "Hardware type not supported."
+                raise NotImplementedError(msg)
     except ModuleNotFoundError as e:
-        raise ModuleNotFoundError(
-            f"Could not import physical interface, did you install the required extras? Error: {e}"
-        ) from None
+        msg = f"Could not import physical interface, did you install the required extras? Error: {e}"
+        raise ModuleNotFoundError(msg) from None

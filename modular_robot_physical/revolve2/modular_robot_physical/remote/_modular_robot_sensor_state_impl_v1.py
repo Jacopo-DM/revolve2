@@ -23,9 +23,8 @@ class ModularRobotSensorStateImplV1(ModularRobotSensorState):
         :param sensor: The sensor to query.
         :raises NotImplementedError: Always.
         """
-        raise NotImplementedError(
-            "V1 hardware does not support sensor reading."
-        )
+        msg = "V1 hardware does not support sensor reading."
+        raise NotImplementedError(msg)
 
     def get_imu_sensor_state(self, sensor: IMUSensor) -> IMUSensorState:
         """
@@ -34,7 +33,7 @@ class ModularRobotSensorStateImplV1(ModularRobotSensorState):
         :param sensor: The sensor.
         :raises NotImplementedError: Always.
         """
-        raise NotImplementedError()
+        raise NotImplementedError
 
     def get_camera_sensor_state(
         self, sensor: CameraSensor
@@ -45,4 +44,4 @@ class ModularRobotSensorStateImplV1(ModularRobotSensorState):
         :param sensor: The sensor.
         :raises NotImplementedError: Always.
         """
-        raise NotImplementedError()
+        raise NotImplementedError

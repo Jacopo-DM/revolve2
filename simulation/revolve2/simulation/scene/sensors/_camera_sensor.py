@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 
-from .._pose import Pose
+from simulation.scene._pose import Pose
+
 from ._sensor import Sensor
 
 

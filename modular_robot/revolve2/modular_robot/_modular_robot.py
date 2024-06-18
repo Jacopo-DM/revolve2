@@ -12,7 +12,7 @@ class ModularRobot:
     body: Body
     brain: Brain
 
-    def __init__(self, body: Body, brain: Brain):
+    def __init__(self, body: Body, brain: Brain) -> None:
         """
         Initialize the ModularRobot.
 

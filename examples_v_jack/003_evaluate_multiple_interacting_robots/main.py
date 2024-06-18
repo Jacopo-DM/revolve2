@@ -32,7 +32,10 @@ def main() -> None:
     bodies = [modular_robots_v2.gecko_v2() for _ in range(num)]
 
     brains = [BrainCpgNetworkNeighborRandom(body, rng) for body in bodies]
-    robots = [ModularRobot(body, brain) for body, brain in zip(bodies, brains)]
+    robots = [
+        ModularRobot(body, brain)
+        for body, brain in zip(bodies, brains, strict=False)
+    ]
 
     # Create the scene and put all robots in it.
     # We place the robots at separate locations in the terrain so they do not overlap at the start of the simulation.
@@ -46,7 +49,7 @@ def main() -> None:
         y = 0 if i % 4 <= 1 else y
         poses.append(Pose(Vector3([x, y, 0.0])))
 
-    for robot, pose in zip(robots, poses):
+    for robot, pose in zip(robots, poses, strict=False):
         scene.add_robot(robot, pose=pose)
 
     # Create the simulator.

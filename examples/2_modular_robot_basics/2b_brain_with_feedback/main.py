@@ -3,9 +3,10 @@
 import logging
 
 from pyrr import Vector3
-
 from revolve2.ci_group import modular_robots_v2, terrains
-from revolve2.ci_group.simulation_parameters import make_standard_batch_parameters
+from revolve2.ci_group.simulation_parameters import (
+    make_standard_batch_parameters,
+)
 from revolve2.experimentation.logging import setup_logging
 from revolve2.modular_robot import ModularRobot, ModularRobotControlInterface
 from revolve2.modular_robot.body.base import ActiveHinge
@@ -75,7 +76,9 @@ class ANNBrainInstance(BrainInstance):
 
         # Here you can implement your controller.
         # The current controller does nothing except for always settings the joint positions to 0.5.
-        for active_hinge, sensor in zip(self.active_hinges, sensors):
+        for active_hinge, _sensor in zip(
+            self.active_hinges, sensors, strict=False
+        ):
             target = 0.5
             control_interface.set_active_hinge_target(active_hinge, target)
 
@@ -122,7 +125,9 @@ def main() -> None:
 
     """Every module on the robot can have sensors, to add them you do the following: """
     # Add an IMU Sensor to the core.
-    body.core.add_sensor(imu := IMUSensor(position=Vector3([0.075, 0.075, 0.14])))
+    body.core.add_sensor(
+        imu := IMUSensor(position=Vector3([0.075, 0.075, 0.14]))
+    )
 
     # Create a brain for the robot.
     active_hinges = body.find_modules_of_type(ActiveHinge)

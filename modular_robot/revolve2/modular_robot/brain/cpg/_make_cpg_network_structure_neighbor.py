@@ -1,4 +1,5 @@
-from ...body.base import ActiveHinge
+from modular_robot.body.base import ActiveHinge
+
 from ._cpg_network_structure import CpgNetworkStructure, CpgPair
 
 
@@ -18,23 +19,21 @@ def active_hinges_to_cpg_network_structure_neighbor(
     cpgs = CpgNetworkStructure.make_cpgs(len(active_hinges))
     connections: set[CpgPair] = set()
 
-    active_hinge_to_cpg = dict(zip(active_hinges, cpgs))
+    active_hinge_to_cpg = dict(zip(active_hinges, cpgs, strict=False))
 
-    for active_hinge, cpg in zip(active_hinges, cpgs):
+    for active_hinge, cpg in zip(active_hinges, cpgs, strict=False):
         neighbours = [
             n
             for n in active_hinge.neighbours(within_range=2)
             if isinstance(n, ActiveHinge)
         ]
-        connections = connections.union(
-            [
-                CpgPair(cpg, active_hinge_to_cpg[neighbour])
-                for neighbour in neighbours
-            ]
-        )
+        connections = connections.union([
+            CpgPair(cpg, active_hinge_to_cpg[neighbour])
+            for neighbour in neighbours
+        ])
 
     cpg_network_structure = CpgNetworkStructure(cpgs, connections)
 
     return cpg_network_structure, list(
-        zip(cpg_network_structure.output_indices, active_hinges)
+        zip(cpg_network_structure.output_indices, active_hinges, strict=False)
     )

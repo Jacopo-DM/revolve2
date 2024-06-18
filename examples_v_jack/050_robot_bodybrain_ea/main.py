@@ -140,9 +140,9 @@ def main() -> None:
 
     # Evaluate the initial population.
     logging.info("Evaluating initial population.")
-    initial_fitnesses = evaluator.evaluate(
-        [genotype.develop() for genotype in initial_genotypes]
-    )
+    initial_fitnesses = evaluator.evaluate([
+        genotype.develop() for genotype in initial_genotypes
+    ])
 
     # Create a population of individuals, combining genotype with fitness.
     population = [
@@ -177,15 +177,15 @@ def main() -> None:
         ]
 
         # Evaluate the offspring.
-        offspring_fitnesses = evaluator.evaluate(
-            [genotype.develop() for genotype in offspring_genotypes]
-        )
+        offspring_fitnesses = evaluator.evaluate([
+            genotype.develop() for genotype in offspring_genotypes
+        ])
 
         # Make an intermediate offspring population.
         offspring_population = [
             Individual(genotype, fitness)
             for genotype, fitness in zip(
-                offspring_genotypes, offspring_fitnesses
+                offspring_genotypes, offspring_fitnesses, strict=False
             )
         ]
 

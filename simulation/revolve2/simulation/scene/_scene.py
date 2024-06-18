@@ -18,9 +18,7 @@ class Scene:
     Don't add to this directly, but use `add_multi_body_system` instead.
     """
 
-    def add_multi_body_system(
-        self, multi_body_system: MultiBodySystem
-    ) -> None:
+    def add_multi_body_system(self, multi_body_system: MultiBodySystem) -> None:
         """
         Add a multi-body system to the scene.
 

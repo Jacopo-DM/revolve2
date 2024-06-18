@@ -127,11 +127,11 @@ class CpgNetworkStructure:
         )
 
         internal_connection_weights = dict(
-            zip(self.cpgs, params[: self.num_cpgs])
+            zip(self.cpgs, params[: self.num_cpgs], strict=False)
         )
 
         external_connection_weights = dict(
-            zip(self.connections, params[self.num_cpgs :])
+            zip(self.connections, params[self.num_cpgs :], strict=False)
         )
 
         return self.make_connection_weights_matrix(

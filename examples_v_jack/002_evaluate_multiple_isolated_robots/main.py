@@ -30,7 +30,10 @@ def main() -> None:
     bodies = [modular_robots_v2.gecko_v2() for _ in range(num)]
 
     brains = [BrainCpgNetworkNeighborRandom(body, rng) for body in bodies]
-    robots = [ModularRobot(body, brain) for body, brain in zip(bodies, brains)]
+    robots = [
+        ModularRobot(body, brain)
+        for body, brain in zip(bodies, brains, strict=False)
+    ]
 
     # Create a flat terrain
     terrain = terrains.flat()
@@ -64,7 +67,7 @@ def main() -> None:
             states[0].get_modular_robot_simulation_state(robot),
             states[-1].get_modular_robot_simulation_state(robot),
         )
-        for robot, states in zip(robots, scene_states)
+        for robot, states in zip(robots, scene_states, strict=False)
     ]
 
     logging.info(xy_displacements)

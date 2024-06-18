@@ -1,0 +1,671 @@
+[1;32m========================================[0m
+	 Python Directory Cleanup
+[1;32m========================================[0m
+
+[1;36m== RUN :[1;37m ruff clean[1;36m ==[0m
+[1;36m== END :[1;37m ruff clean[1;36m ==[0m
+
+[1;36m== RUN :[1;37m black ./* --line-length 80[1;36m ==[0m
+[1;36m== END :[1;37m black ./* --line-length 80[1;36m ==[0m
+
+[1;36m== RUN :[1;37m ruff format ./* --preview[1;36m ==[0m
+37 files reformatted, 331 files left unchanged
+[1;36m== END :[1;37m ruff format ./* --preview[1;36m ==[0m
+
+[1;36m== RUN :[1;37m ruff check ./* --fix --unsafe-fixes[1;36m ==[0m
+CONTRIBUTING.md:1:1: E999 SyntaxError: Expected a statement
+LICENSE:1:1: E999 SyntaxError: Unexpected indentation
+README.md:1:1: E999 SyntaxError: Expected a statement
+autoclean.sh:1:6: E999 SyntaxError: Simple statements must be separated by newlines or semicolons
+ci_group/revolve2/ci_group/ci_lab_utilities/_ip_camera.py:45:9: PLR0913 Too many arguments in function definition (7 > 5)
+ci_group/revolve2/ci_group/genotypes/cppnwin/_random_multineat_genotype.py:4:5: PLR0913 Too many arguments in function definition (9 > 5)
+ci_group/revolve2/ci_group/genotypes/cppnwin/_random_multineat_genotype.py:35:9: FBT003 Boolean positional value in function call
+ci_group/revolve2/ci_group/genotypes/cppnwin/_random_multineat_genotype.py:45:13: FBT003 Boolean positional value in function call
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/_brain_genotype_cpg.py:88:21: FBT003 Boolean positional value in function call
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/_brain_genotype_cpg.py:118:21: FBT003 Boolean positional value in function call
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/_brain_genotype_cpg.py:119:21: FBT003 Boolean positional value in function call
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/_brain_genotype_cpg_orm.py:87:17: FBT003 Boolean positional value in function call
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/_brain_genotype_cpg_orm.py:115:17: FBT003 Boolean positional value in function call
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/_brain_genotype_cpg_orm.py:116:17: FBT003 Boolean positional value in function call
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v1/_body_develop.py:14:7: N801 Class name `__Module` should use CapWords convention
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v1/_body_genotype_orm_v1.py:82:17: FBT003 Boolean positional value in function call
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v1/_body_genotype_orm_v1.py:110:17: FBT003 Boolean positional value in function call
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v1/_body_genotype_orm_v1.py:111:17: FBT003 Boolean positional value in function call
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v1/_body_genotype_v1.py:84:21: FBT003 Boolean positional value in function call
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v1/_body_genotype_v1.py:114:21: FBT003 Boolean positional value in function call
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v1/_body_genotype_v1.py:115:21: FBT003 Boolean positional value in function call
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_develop.py:19:7: N801 Class name `__Module` should use CapWords convention
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_develop.py:129:7: TD003 Missing issue link on the line following this TODO
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_develop.py:129:7: FIX002 Line contains TODO, consider resolving the issue
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_develop.py:132:5: ERA001 Found commented-out code
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_develop.py:133:5: ERA001 Found commented-out code
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_develop.py:134:5: ERA001 Found commented-out code
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_develop.py:138:5: ERA001 Found commented-out code
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_develop.py:141:5: ERA001 Found commented-out code
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_develop.py:142:5: ERA001 Found commented-out code
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_develop.py:143:5: ERA001 Found commented-out code
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_develop.py:144:5: ERA001 Found commented-out code
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_develop.py:145:5: ERA001 Found commented-out code
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_develop.py:153:5: ERA001 Found commented-out code
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_develop.py:155:5: ERA001 Found commented-out code
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_develop.py:156:5: ERA001 Found commented-out code
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_develop.py:157:5: ERA001 Found commented-out code
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_genotype_orm_v2.py:89:17: FBT003 Boolean positional value in function call
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_genotype_orm_v2.py:117:17: FBT003 Boolean positional value in function call
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_genotype_orm_v2.py:118:17: FBT003 Boolean positional value in function call
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_genotype_v2.py:28:3: TD003 Missing issue link on the line following this TODO
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_genotype_v2.py:28:3: FIX002 Line contains TODO, consider resolving the issue
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_genotype_v2.py:91:21: FBT003 Boolean positional value in function call
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_genotype_v2.py:121:21: FBT003 Boolean positional value in function call
+ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_genotype_v2.py:122:21: FBT003 Boolean positional value in function call
+ci_group/revolve2/ci_group/interactive_objects/_ball.py:9:9: PLR0913 Too many arguments in function definition (6 > 5)
+ci_group/revolve2/ci_group/modular_robots_v1.py:7:5: A001 Variable `all` is shadowing a Python builtin
+ci_group/revolve2/ci_group/modular_robots_v2.py:7:5: A001 Variable `all` is shadowing a Python builtin
+ci_group/revolve2/ci_group/planar_robot_representation.py:94:5: PLR0913 Too many arguments in function definition (6 > 5)
+contributors.txt:1:13: E999 SyntaxError: Simple statements must be separated by newlines or semicolons
+docs/source/conf.py:1:1: INP001 File `docs/source/conf.py` is part of an implicit namespace package. Add an `__init__.py`.
+docs/source/conf.py:12:1: A001 Variable `copyright` is shadowing a Python builtin
+docs/source/conf.py:30:6: PTH123 `open()` should be replaced by `Path.open()`
+examples/1_simulator_basics/1a_simulate_single_robot/main.py:1:1: INP001 File `examples/1_simulator_basics/1a_simulate_single_robot/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/1_simulator_basics/1b_custom_terrain/main.py:1:1: INP001 File `examples/1_simulator_basics/1b_custom_terrain/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/2_modular_robot_basics/2a_custom_brain/main.py:1:1: INP001 File `examples/2_modular_robot_basics/2a_custom_brain/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/2_modular_robot_basics/2a_custom_brain/main.py:79:9: ARG002 Unused method argument: `dt`
+examples/2_modular_robot_basics/2a_custom_brain/main.py:80:9: ARG002 Unused method argument: `sensor_state`
+examples/2_modular_robot_basics/2b_brain_with_feedback/main.py:1:1: INP001 File `examples/2_modular_robot_basics/2b_brain_with_feedback/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/2_modular_robot_basics/2b_brain_with_feedback/main.py:42:9: ARG002 Unused method argument: `dt`
+examples/2_modular_robot_basics/2b_brain_with_feedback/main.py:60:9: S101 Use of `assert` detected
+examples/2_modular_robot_basics/2b_brain_with_feedback/main.py:69:22: G004 Logging statement uses f-string
+examples/2_modular_robot_basics/2b_brain_with_feedback/main.py:73:22: G004 Logging statement uses f-string
+examples/2_modular_robot_basics/2b_brain_with_feedback/main.py:74:22: G004 Logging statement uses f-string
+examples/2_modular_robot_basics/2b_brain_with_feedback/main.py:75:22: G004 Logging statement uses f-string
+examples/3_experiment_foundations/3a_experiment_setup/config.py:1:1: INP001 File `examples/3_experiment_foundations/3a_experiment_setup/config.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/3_experiment_foundations/3a_experiment_setup/main.py:1:1: INP001 File `examples/3_experiment_foundations/3a_experiment_setup/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/3_experiment_foundations/3a_experiment_setup/main.py:22:13: G004 Logging statement uses f-string
+examples/3_experiment_foundations/3a_experiment_setup/main.py:40:9: ERA001 Found commented-out code
+examples/3_experiment_foundations/3a_experiment_setup/main.py:41:9: ERA001 Found commented-out code
+examples/3_experiment_foundations/3a_experiment_setup/main.py:53:18: G004 Logging statement uses f-string
+examples/3_experiment_foundations/3b_evaluate_single_robot/main.py:1:1: INP001 File `examples/3_experiment_foundations/3b_evaluate_single_robot/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/3_experiment_foundations/3c_evaluate_multiple_isolated_robots/main.py:1:1: INP001 File `examples/3_experiment_foundations/3c_evaluate_multiple_isolated_robots/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/3_experiment_foundations/3d_evaluate_multiple_interacting_robots/main.py:1:1: INP001 File `examples/3_experiment_foundations/3d_evaluate_multiple_interacting_robots/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4a_simple_ea_xor/config.py:1:1: INP001 File `examples/4_example_experiment_setups/4a_simple_ea_xor/config.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4a_simple_ea_xor/evaluate.py:1:1: INP001 File `examples/4_example_experiment_setups/4a_simple_ea_xor/evaluate.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4a_simple_ea_xor/evaluate.py:51:21: A001 Variable `input` is shadowing a Python builtin
+examples/4_example_experiment_setups/4a_simple_ea_xor/genotype.py:1:1: INP001 File `examples/4_example_experiment_setups/4a_simple_ea_xor/genotype.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4a_simple_ea_xor/individual.py:1:1: INP001 File `examples/4_example_experiment_setups/4a_simple_ea_xor/individual.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4a_simple_ea_xor/main.py:1:1: INP001 File `examples/4_example_experiment_setups/4a_simple_ea_xor/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4a_simple_ea_xor/main.py:40:47: ARG002 Unused method argument: `kwargs`
+examples/4_example_experiment_setups/4a_simple_ea_xor/main.py:40:55: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `**kwargs`
+examples/4_example_experiment_setups/4a_simple_ea_xor/main.py:74:55: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `**kwargs`
+examples/4_example_experiment_setups/4a_simple_ea_xor/main.py:137:55: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `**kwargs`
+examples/4_example_experiment_setups/4a_simple_ea_xor/main.py:205:13: G004 Logging statement uses f-string
+examples/4_example_experiment_setups/4a_simple_ea_xor/main.py:217:22: G004 Logging statement uses f-string
+examples/4_example_experiment_setups/4b_simple_ea_xor_database/config.py:1:1: INP001 File `examples/4_example_experiment_setups/4b_simple_ea_xor_database/config.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4b_simple_ea_xor_database/database_components/_individual.py:33:38: RUF009 Do not perform function call `orm.mapped_column` in dataclass defaults
+examples/4_example_experiment_setups/4b_simple_ea_xor_database/database_components/_individual.py:36:41: RUF009 Do not perform function call `orm.mapped_column` in dataclass defaults
+examples/4_example_experiment_setups/4b_simple_ea_xor_database/database_components/_individual.py:39:36: RUF009 Do not perform function call `orm.mapped_column` in dataclass defaults
+examples/4_example_experiment_setups/4b_simple_ea_xor_database/database_components/_individual.py:42:38: RUF009 Do not perform function call `orm.relationship` in dataclass defaults
+examples/4_example_experiment_setups/4b_simple_ea_xor_database/database_components/_individual.py:43:34: RUF009 Do not perform function call `orm.mapped_column` in dataclass defaults
+examples/4_example_experiment_setups/4b_simple_ea_xor_database/evaluate.py:1:1: INP001 File `examples/4_example_experiment_setups/4b_simple_ea_xor_database/evaluate.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4b_simple_ea_xor_database/evaluate.py:51:21: A001 Variable `input` is shadowing a Python builtin
+examples/4_example_experiment_setups/4b_simple_ea_xor_database/main.py:1:1: INP001 File `examples/4_example_experiment_setups/4b_simple_ea_xor_database/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4b_simple_ea_xor_database/main.py:53:41: ARG002 Unused method argument: `kwargs`
+examples/4_example_experiment_setups/4b_simple_ea_xor_database/main.py:53:49: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `**kwargs`
+examples/4_example_experiment_setups/4b_simple_ea_xor_database/main.py:85:49: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `**kwargs`
+examples/4_example_experiment_setups/4b_simple_ea_xor_database/main.py:148:55: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `**kwargs`
+examples/4_example_experiment_setups/4b_simple_ea_xor_database/main.py:249:13: G004 Logging statement uses f-string
+examples/4_example_experiment_setups/4b_simple_ea_xor_database/plot.py:1:1: INP001 File `examples/4_example_experiment_setups/4b_simple_ea_xor_database/plot.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4b_simple_ea_xor_database/plot.py:23:5: PD901 Avoid using the generic variable name `df` for DataFrames
+examples/4_example_experiment_setups/4c_robot_bodybrain_ea/config.py:1:1: INP001 File `examples/4_example_experiment_setups/4c_robot_bodybrain_ea/config.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4c_robot_bodybrain_ea/evaluator.py:1:1: INP001 File `examples/4_example_experiment_setups/4c_robot_bodybrain_ea/evaluator.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4c_robot_bodybrain_ea/evaluator.py:27:9: FBT001 Boolean-typed positional argument in function definition
+examples/4_example_experiment_setups/4c_robot_bodybrain_ea/genotype.py:1:1: INP001 File `examples/4_example_experiment_setups/4c_robot_bodybrain_ea/genotype.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4c_robot_bodybrain_ea/individual.py:1:1: INP001 File `examples/4_example_experiment_setups/4c_robot_bodybrain_ea/individual.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4c_robot_bodybrain_ea/main.py:1:1: INP001 File `examples/4_example_experiment_setups/4c_robot_bodybrain_ea/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4c_robot_bodybrain_ea/main.py:44:47: ARG002 Unused method argument: `kwargs`
+examples/4_example_experiment_setups/4c_robot_bodybrain_ea/main.py:44:55: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `**kwargs`
+examples/4_example_experiment_setups/4c_robot_bodybrain_ea/main.py:85:55: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `**kwargs`
+examples/4_example_experiment_setups/4c_robot_bodybrain_ea/main.py:161:59: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `**kwargs`
+examples/4_example_experiment_setups/4c_robot_bodybrain_ea/main.py:276:13: G004 Logging statement uses f-string
+examples/4_example_experiment_setups/4c_robot_bodybrain_ea/main.py:292:22: G004 Logging statement uses f-string
+examples/4_example_experiment_setups/4c_robot_bodybrain_ea/main.py:293:22: G004 Logging statement uses f-string
+examples/4_example_experiment_setups/4c_robot_bodybrain_ea/rerun.py:1:1: INP001 File `examples/4_example_experiment_setups/4c_robot_bodybrain_ea/rerun.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4c_robot_bodybrain_ea/rerun.py:22:30: S301 `pickle` and modules that wrap it can be unsafe when used to deserialize untrusted data, possible security issue
+examples/4_example_experiment_setups/4c_robot_bodybrain_ea/rerun.py:24:18: G004 Logging statement uses f-string
+examples/4_example_experiment_setups/4c_robot_bodybrain_ea/rerun.py:31:18: G004 Logging statement uses f-string
+examples/4_example_experiment_setups/4d_robot_bodybrain_ea_database/config.py:1:1: INP001 File `examples/4_example_experiment_setups/4d_robot_bodybrain_ea_database/config.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4d_robot_bodybrain_ea_database/evaluator.py:1:1: INP001 File `examples/4_example_experiment_setups/4d_robot_bodybrain_ea_database/evaluator.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4d_robot_bodybrain_ea_database/evaluator.py:27:9: FBT001 Boolean-typed positional argument in function definition
+examples/4_example_experiment_setups/4d_robot_bodybrain_ea_database/main.py:1:1: INP001 File `examples/4_example_experiment_setups/4d_robot_bodybrain_ea_database/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4d_robot_bodybrain_ea_database/main.py:52:41: ARG002 Unused method argument: `kwargs`
+examples/4_example_experiment_setups/4d_robot_bodybrain_ea_database/main.py:52:49: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `**kwargs`
+examples/4_example_experiment_setups/4d_robot_bodybrain_ea_database/main.py:97:49: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `**kwargs`
+examples/4_example_experiment_setups/4d_robot_bodybrain_ea_database/main.py:179:59: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `**kwargs`
+examples/4_example_experiment_setups/4d_robot_bodybrain_ea_database/main.py:288:13: G004 Logging statement uses f-string
+examples/4_example_experiment_setups/4d_robot_bodybrain_ea_database/plot.py:1:1: INP001 File `examples/4_example_experiment_setups/4d_robot_bodybrain_ea_database/plot.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4d_robot_bodybrain_ea_database/plot.py:20:5: PD901 Avoid using the generic variable name `df` for DataFrames
+examples/4_example_experiment_setups/4d_robot_bodybrain_ea_database/rerun.py:1:1: INP001 File `examples/4_example_experiment_setups/4d_robot_bodybrain_ea_database/rerun.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4d_robot_bodybrain_ea_database/rerun.py:32:9: S101 Use of `assert` detected
+examples/4_example_experiment_setups/4d_robot_bodybrain_ea_database/rerun.py:37:18: G004 Logging statement uses f-string
+examples/4_example_experiment_setups/4e_robot_brain_cmaes/config.py:1:1: INP001 File `examples/4_example_experiment_setups/4e_robot_brain_cmaes/config.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4e_robot_brain_cmaes/evaluator.py:1:1: INP001 File `examples/4_example_experiment_setups/4e_robot_brain_cmaes/evaluator.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4e_robot_brain_cmaes/evaluator.py:34:9: PLR0913 Too many arguments in function definition (6 > 5)
+examples/4_example_experiment_setups/4e_robot_brain_cmaes/evaluator.py:36:9: FBT001 Boolean-typed positional argument in function definition
+examples/4_example_experiment_setups/4e_robot_brain_cmaes/main.py:1:1: INP001 File `examples/4_example_experiment_setups/4e_robot_brain_cmaes/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4e_robot_brain_cmaes/main.py:58:13: G004 Logging statement uses f-string
+examples/4_example_experiment_setups/4e_robot_brain_cmaes/main.py:70:22: G004 Logging statement uses f-string
+examples/4_example_experiment_setups/4e_robot_brain_cmaes/rerun.py:1:1: INP001 File `examples/4_example_experiment_setups/4e_robot_brain_cmaes/rerun.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4f_robot_brain_cmaes_database/config.py:1:1: INP001 File `examples/4_example_experiment_setups/4f_robot_brain_cmaes_database/config.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4f_robot_brain_cmaes_database/evaluator.py:1:1: INP001 File `examples/4_example_experiment_setups/4f_robot_brain_cmaes_database/evaluator.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4f_robot_brain_cmaes_database/evaluator.py:34:9: PLR0913 Too many arguments in function definition (6 > 5)
+examples/4_example_experiment_setups/4f_robot_brain_cmaes_database/evaluator.py:36:9: FBT001 Boolean-typed positional argument in function definition
+examples/4_example_experiment_setups/4f_robot_brain_cmaes_database/main.py:1:1: INP001 File `examples/4_example_experiment_setups/4f_robot_brain_cmaes_database/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4f_robot_brain_cmaes_database/main.py:78:13: G004 Logging statement uses f-string
+examples/4_example_experiment_setups/4f_robot_brain_cmaes_database/plot.py:1:1: INP001 File `examples/4_example_experiment_setups/4f_robot_brain_cmaes_database/plot.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4f_robot_brain_cmaes_database/plot.py:20:5: PD901 Avoid using the generic variable name `df` for DataFrames
+examples/4_example_experiment_setups/4f_robot_brain_cmaes_database/rerun.py:1:1: INP001 File `examples/4_example_experiment_setups/4f_robot_brain_cmaes_database/rerun.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/4_example_experiment_setups/4f_robot_brain_cmaes_database/rerun.py:36:9: S101 Use of `assert` detected
+examples/4_example_experiment_setups/4f_robot_brain_cmaes_database/rerun.py:43:18: G004 Logging statement uses f-string
+examples/4_example_experiment_setups/4f_robot_brain_cmaes_database/rerun.py:44:18: G004 Logging statement uses f-string
+examples/5_physical_modular_robots/5a_physical_robot_remote/main.py:1:1: INP001 File `examples/5_physical_modular_robots/5a_physical_robot_remote/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/5_physical_modular_robots/5b_compare_simulated_and_physical_robot/main_physical.py:1:1: INP001 File `examples/5_physical_modular_robots/5b_compare_simulated_and_physical_robot/main_physical.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples/5_physical_modular_robots/5b_compare_simulated_and_physical_robot/main_simulation.py:1:1: INP001 File `examples/5_physical_modular_robots/5b_compare_simulated_and_physical_robot/main_simulation.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/000_simulate_single_robot/main.py:1:1: INP001 File `examples_v_jack/000_simulate_single_robot/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/001_evaluate_single_robot/main.py:1:1: INP001 File `examples_v_jack/001_evaluate_single_robot/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/002_evaluate_multiple_isolated_robots/main.py:1:1: INP001 File `examples_v_jack/002_evaluate_multiple_isolated_robots/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/002_evaluate_multiple_isolated_robots/main.py:52:5: ERA001 Found commented-out code
+examples_v_jack/002_evaluate_multiple_isolated_robots/main.py:54:5: ERA001 Found commented-out code
+examples_v_jack/003_evaluate_multiple_interacting_robots/main.py:1:1: INP001 File `examples_v_jack/003_evaluate_multiple_interacting_robots/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/010_brain_with_feedback/main.py:1:1: INP001 File `examples_v_jack/010_brain_with_feedback/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/010_brain_with_feedback/main.py:40:9: ARG002 Unused method argument: `dt`
+examples_v_jack/010_brain_with_feedback/main.py:57:9: S101 Use of `assert` detected
+examples_v_jack/010_brain_with_feedback/main.py:77:9: ERA001 Found commented-out code
+examples_v_jack/011_custom_brain/main.py:1:1: INP001 File `examples_v_jack/011_custom_brain/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/011_custom_brain/main.py:86:9: ARG002 Unused method argument: `dt`
+examples_v_jack/011_custom_brain/main.py:87:9: ARG002 Unused method argument: `sensor_state`
+examples_v_jack/012_custom_terrain/main.py:1:1: INP001 File `examples_v_jack/012_custom_terrain/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/020_experiment_setup/config.py:1:1: INP001 File `examples_v_jack/020_experiment_setup/config.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/020_experiment_setup/main.py:1:1: INP001 File `examples_v_jack/020_experiment_setup/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/020_experiment_setup/main.py:23:13: G004 Logging statement uses f-string
+examples_v_jack/020_experiment_setup/main.py:39:9: ERA001 Found commented-out code
+examples_v_jack/020_experiment_setup/main.py:40:9: ERA001 Found commented-out code
+examples_v_jack/020_experiment_setup/main.py:50:18: G004 Logging statement uses f-string
+examples_v_jack/021_experiment_setup_aim/config.py:1:1: INP001 File `examples_v_jack/021_experiment_setup_aim/config.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/021_experiment_setup_aim/main.py:1:1: INP001 File `examples_v_jack/021_experiment_setup_aim/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/021_experiment_setup_aim/main.py:32:13: G004 Logging statement uses f-string
+examples_v_jack/021_experiment_setup_aim/main.py:36:20: DTZ005 `datetime.datetime.now()` called without a `tz` argument
+examples_v_jack/021_experiment_setup_aim/main.py:53:18: G004 Logging statement uses f-string
+examples_v_jack/030_simple_ea_xor/config.py:1:1: INP001 File `examples_v_jack/030_simple_ea_xor/config.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/030_simple_ea_xor/evaluate.py:1:1: INP001 File `examples_v_jack/030_simple_ea_xor/evaluate.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/030_simple_ea_xor/evaluate.py:42:49: A001 Variable `input` is shadowing a Python builtin
+examples_v_jack/030_simple_ea_xor/genotype.py:1:1: INP001 File `examples_v_jack/030_simple_ea_xor/genotype.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/030_simple_ea_xor/individual.py:1:1: INP001 File `examples_v_jack/030_simple_ea_xor/individual.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/030_simple_ea_xor/main.py:1:1: INP001 File `examples_v_jack/030_simple_ea_xor/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/030_simple_ea_xor/main.py:127:13: G004 Logging statement uses f-string
+examples_v_jack/030_simple_ea_xor/main.py:146:22: G004 Logging statement uses f-string
+examples_v_jack/031_simple_ea_xor_database/base.py:1:1: INP001 File `examples_v_jack/031_simple_ea_xor_database/base.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/031_simple_ea_xor_database/config.py:1:1: INP001 File `examples_v_jack/031_simple_ea_xor_database/config.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/031_simple_ea_xor_database/evaluate.py:1:1: INP001 File `examples_v_jack/031_simple_ea_xor_database/evaluate.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/031_simple_ea_xor_database/evaluate.py:42:49: A001 Variable `input` is shadowing a Python builtin
+examples_v_jack/031_simple_ea_xor_database/experiment.py:1:1: INP001 File `examples_v_jack/031_simple_ea_xor_database/experiment.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/031_simple_ea_xor_database/generation.py:1:1: INP001 File `examples_v_jack/031_simple_ea_xor_database/generation.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/031_simple_ea_xor_database/genotype.py:1:1: INP001 File `examples_v_jack/031_simple_ea_xor_database/genotype.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/031_simple_ea_xor_database/individual.py:1:1: INP001 File `examples_v_jack/031_simple_ea_xor_database/individual.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/031_simple_ea_xor_database/main.py:1:1: INP001 File `examples_v_jack/031_simple_ea_xor_database/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/031_simple_ea_xor_database/main.py:164:13: G004 Logging statement uses f-string
+examples_v_jack/031_simple_ea_xor_database/plot.py:1:1: INP001 File `examples_v_jack/031_simple_ea_xor_database/plot.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/031_simple_ea_xor_database/plot.py:26:5: PD901 Avoid using the generic variable name `df` for DataFrames
+examples_v_jack/031_simple_ea_xor_database/population.py:1:1: INP001 File `examples_v_jack/031_simple_ea_xor_database/population.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/040_robot_brain_cmaes/config.py:1:1: INP001 File `examples_v_jack/040_robot_brain_cmaes/config.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/040_robot_brain_cmaes/evaluator.py:1:1: INP001 File `examples_v_jack/040_robot_brain_cmaes/evaluator.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/040_robot_brain_cmaes/evaluator.py:32:9: PLR0913 Too many arguments in function definition (7 > 5)
+examples_v_jack/040_robot_brain_cmaes/evaluator.py:34:9: FBT001 Boolean-typed positional argument in function definition
+examples_v_jack/040_robot_brain_cmaes/evaluator.py:39:9: FBT001 Boolean-typed positional argument in function definition
+examples_v_jack/040_robot_brain_cmaes/evaluator.py:39:9: FBT002 Boolean default positional argument in function definition
+examples_v_jack/040_robot_brain_cmaes/main.py:1:1: INP001 File `examples_v_jack/040_robot_brain_cmaes/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/040_robot_brain_cmaes/main.py:59:13: G004 Logging statement uses f-string
+examples_v_jack/040_robot_brain_cmaes/main.py:71:22: G004 Logging statement uses f-string
+examples_v_jack/040_robot_brain_cmaes/rerun.py:1:1: INP001 File `examples_v_jack/040_robot_brain_cmaes/rerun.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/041_robot_brain_cmaes_database/base.py:1:1: INP001 File `examples_v_jack/041_robot_brain_cmaes_database/base.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/041_robot_brain_cmaes_database/config.py:1:1: INP001 File `examples_v_jack/041_robot_brain_cmaes_database/config.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/041_robot_brain_cmaes_database/evaluator.py:1:1: INP001 File `examples_v_jack/041_robot_brain_cmaes_database/evaluator.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/041_robot_brain_cmaes_database/evaluator.py:34:9: PLR0913 Too many arguments in function definition (7 > 5)
+examples_v_jack/041_robot_brain_cmaes_database/evaluator.py:36:9: FBT001 Boolean-typed positional argument in function definition
+examples_v_jack/041_robot_brain_cmaes_database/evaluator.py:41:9: FBT001 Boolean-typed positional argument in function definition
+examples_v_jack/041_robot_brain_cmaes_database/evaluator.py:41:9: FBT002 Boolean default positional argument in function definition
+examples_v_jack/041_robot_brain_cmaes_database/experiment.py:1:1: INP001 File `examples_v_jack/041_robot_brain_cmaes_database/experiment.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/041_robot_brain_cmaes_database/generation.py:1:1: INP001 File `examples_v_jack/041_robot_brain_cmaes_database/generation.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/041_robot_brain_cmaes_database/genotype.py:1:1: INP001 File `examples_v_jack/041_robot_brain_cmaes_database/genotype.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/041_robot_brain_cmaes_database/individual.py:1:1: INP001 File `examples_v_jack/041_robot_brain_cmaes_database/individual.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/041_robot_brain_cmaes_database/main.py:1:1: INP001 File `examples_v_jack/041_robot_brain_cmaes_database/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/041_robot_brain_cmaes_database/main.py:76:13: G004 Logging statement uses f-string
+examples_v_jack/041_robot_brain_cmaes_database/plot.py:1:1: INP001 File `examples_v_jack/041_robot_brain_cmaes_database/plot.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/041_robot_brain_cmaes_database/plot.py:23:5: PD901 Avoid using the generic variable name `df` for DataFrames
+examples_v_jack/041_robot_brain_cmaes_database/population.py:1:1: INP001 File `examples_v_jack/041_robot_brain_cmaes_database/population.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/041_robot_brain_cmaes_database/rerun.py:1:1: INP001 File `examples_v_jack/041_robot_brain_cmaes_database/rerun.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/041_robot_brain_cmaes_database/rerun.py:37:9: S101 Use of `assert` detected
+examples_v_jack/041_robot_brain_cmaes_database/rerun.py:44:18: G004 Logging statement uses f-string
+examples_v_jack/041_robot_brain_cmaes_database/rerun.py:45:18: G004 Logging statement uses f-string
+examples_v_jack/050_robot_bodybrain_ea/config.py:1:1: INP001 File `examples_v_jack/050_robot_bodybrain_ea/config.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/050_robot_bodybrain_ea/evaluator.py:1:1: INP001 File `examples_v_jack/050_robot_bodybrain_ea/evaluator.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/050_robot_bodybrain_ea/evaluator.py:24:9: FBT001 Boolean-typed positional argument in function definition
+examples_v_jack/050_robot_bodybrain_ea/genotype.py:1:1: INP001 File `examples_v_jack/050_robot_bodybrain_ea/genotype.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/050_robot_bodybrain_ea/individual.py:1:1: INP001 File `examples_v_jack/050_robot_bodybrain_ea/individual.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/050_robot_bodybrain_ea/main.py:1:1: INP001 File `examples_v_jack/050_robot_bodybrain_ea/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/050_robot_bodybrain_ea/main.py:165:13: G004 Logging statement uses f-string
+examples_v_jack/050_robot_bodybrain_ea/main.py:202:22: G004 Logging statement uses f-string
+examples_v_jack/050_robot_bodybrain_ea/main.py:203:22: G004 Logging statement uses f-string
+examples_v_jack/050_robot_bodybrain_ea/rerun.py:1:1: INP001 File `examples_v_jack/050_robot_bodybrain_ea/rerun.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/050_robot_bodybrain_ea/rerun.py:22:30: S301 `pickle` and modules that wrap it can be unsafe when used to deserialize untrusted data, possible security issue
+examples_v_jack/050_robot_bodybrain_ea/rerun.py:25:18: G004 Logging statement uses f-string
+examples_v_jack/050_robot_bodybrain_ea/rerun.py:32:18: G004 Logging statement uses f-string
+examples_v_jack/051_robot_bodybrain_ea_database/base.py:1:1: INP001 File `examples_v_jack/051_robot_bodybrain_ea_database/base.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/051_robot_bodybrain_ea_database/config.py:1:1: INP001 File `examples_v_jack/051_robot_bodybrain_ea_database/config.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/051_robot_bodybrain_ea_database/evaluator.py:1:1: INP001 File `examples_v_jack/051_robot_bodybrain_ea_database/evaluator.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/051_robot_bodybrain_ea_database/evaluator.py:24:9: FBT001 Boolean-typed positional argument in function definition
+examples_v_jack/051_robot_bodybrain_ea_database/evaluator.py:26:9: FBT001 Boolean-typed positional argument in function definition
+examples_v_jack/051_robot_bodybrain_ea_database/evaluator.py:26:9: FBT002 Boolean default positional argument in function definition
+examples_v_jack/051_robot_bodybrain_ea_database/experiment.py:1:1: INP001 File `examples_v_jack/051_robot_bodybrain_ea_database/experiment.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/051_robot_bodybrain_ea_database/generation.py:1:1: INP001 File `examples_v_jack/051_robot_bodybrain_ea_database/generation.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/051_robot_bodybrain_ea_database/genotype.py:1:1: INP001 File `examples_v_jack/051_robot_bodybrain_ea_database/genotype.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/051_robot_bodybrain_ea_database/individual.py:1:1: INP001 File `examples_v_jack/051_robot_bodybrain_ea_database/individual.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/051_robot_bodybrain_ea_database/main.py:1:1: INP001 File `examples_v_jack/051_robot_bodybrain_ea_database/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/051_robot_bodybrain_ea_database/main.py:145:7: TD002 Missing author in TODO; try: `# TODO(<author_name>): ...` or `# TODO @<author_name>: ...`
+examples_v_jack/051_robot_bodybrain_ea_database/main.py:145:7: TD004 Missing colon in TODO
+examples_v_jack/051_robot_bodybrain_ea_database/main.py:145:7: TD003 Missing issue link on the line following this TODO
+examples_v_jack/051_robot_bodybrain_ea_database/main.py:145:7: FIX002 Line contains TODO, consider resolving the issue
+examples_v_jack/051_robot_bodybrain_ea_database/main.py:147:5: ERA001 Found commented-out code
+examples_v_jack/051_robot_bodybrain_ea_database/main.py:148:5: ERA001 Found commented-out code
+examples_v_jack/051_robot_bodybrain_ea_database/main.py:178:18: G004 Logging statement uses f-string
+examples_v_jack/051_robot_bodybrain_ea_database/main.py:187:13: G004 Logging statement uses f-string
+examples_v_jack/051_robot_bodybrain_ea_database/main.py:230:22: G004 Logging statement uses f-string
+examples_v_jack/051_robot_bodybrain_ea_database/plot.py:1:1: INP001 File `examples_v_jack/051_robot_bodybrain_ea_database/plot.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/051_robot_bodybrain_ea_database/plot.py:23:5: PD901 Avoid using the generic variable name `df` for DataFrames
+examples_v_jack/051_robot_bodybrain_ea_database/population.py:1:1: INP001 File `examples_v_jack/051_robot_bodybrain_ea_database/population.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/051_robot_bodybrain_ea_database/rerun.py:1:1: INP001 File `examples_v_jack/051_robot_bodybrain_ea_database/rerun.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/051_robot_bodybrain_ea_database/rerun.py:33:9: S101 Use of `assert` detected
+examples_v_jack/051_robot_bodybrain_ea_database/rerun.py:40:18: G004 Logging statement uses f-string
+examples_v_jack/100_physical_robot_remote/main.py:1:1: INP001 File `examples_v_jack/100_physical_robot_remote/main.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/101_compare_simulated_and_physical_robot/main_physical.py:1:1: INP001 File `examples_v_jack/101_compare_simulated_and_physical_robot/main_physical.py` is part of an implicit namespace package. Add an `__init__.py`.
+examples_v_jack/101_compare_simulated_and_physical_robot/main_simulation.py:1:1: INP001 File `examples_v_jack/101_compare_simulated_and_physical_robot/main_simulation.py` is part of an implicit namespace package. Add an `__init__.py`.
+experimentation/revolve2/experimentation/_util/init_subclass_get_generic_args.py:23:5: S101 Use of `assert` detected
+experimentation/revolve2/experimentation/database/_sqlite.py:42:14: PTH110 `os.path.exists()` should be replaced by `Path.exists()`
+experimentation/revolve2/experimentation/database/_sqlite.py:48:9: PTH103 `os.makedirs()` should be replaced by `Path.mkdir(parents=True)`
+experimentation/revolve2/experimentation/database/_sqlite.py:53:9: PTH103 `os.makedirs()` should be replaced by `Path.mkdir(parents=True)`
+experimentation/revolve2/experimentation/database/_sqlite.py:56:13: PTH107 `os.remove()` should be replaced by `Path.unlink()`
+experimentation/revolve2/experimentation/database/_sqlite.py:58:13: PTH103 `os.makedirs()` should be replaced by `Path.mkdir(parents=True)`
+experimentation/revolve2/experimentation/logging.py:86:18: G004 Logging statement uses f-string
+experimentation/revolve2/experimentation/optimization/ea/_generation.py:58:56: PGH004 Use specific rule codes when using `noqa`
+experimentation/revolve2/experimentation/optimization/ea/_generation.py:66:58: PGH004 Use specific rule codes when using `noqa`
+experimentation/revolve2/experimentation/optimization/ea/_generation.py:79:9: S101 Use of `assert` detected
+experimentation/revolve2/experimentation/optimization/ea/_generation.py:81:9: S101 Use of `assert` detected
+experimentation/revolve2/experimentation/optimization/ea/_individual.py:65:53: PGH004 Use specific rule codes when using `noqa`
+experimentation/revolve2/experimentation/optimization/ea/_individual.py:69:56: PGH004 Use specific rule codes when using `noqa`
+experimentation/revolve2/experimentation/optimization/ea/_individual.py:73:51: PGH004 Use specific rule codes when using `noqa`
+experimentation/revolve2/experimentation/optimization/ea/_individual.py:77:54: PGH004 Use specific rule codes when using `noqa`
+experimentation/revolve2/experimentation/optimization/ea/_individual.py:81:49: PGH004 Use specific rule codes when using `noqa`
+experimentation/revolve2/experimentation/optimization/ea/_individual.py:99:9: S101 Use of `assert` detected
+experimentation/revolve2/experimentation/optimization/ea/_individual.py:101:9: S101 Use of `assert` detected
+experimentation/revolve2/experimentation/optimization/ea/_individual.py:106:9: S101 Use of `assert` detected
+experimentation/revolve2/experimentation/optimization/ea/_parameters.py:24:5: ARG001 Unused function argument: `mapper`
+experimentation/revolve2/experimentation/optimization/ea/_parameters.py:25:5: ARG001 Unused function argument: `connection`
+experimentation/revolve2/experimentation/optimization/ea/_parameters.py:28:5: SLF001 Private member accessed: `_serialized_parameters`
+experimentation/revolve2/experimentation/optimization/ea/_parameters.py:33:25: ARG001 Unused function argument: `context`
+experimentation/revolve2/experimentation/optimization/ea/_parameters.py:36:27: SLF001 Private member accessed: `_serialized_parameters`
+experimentation/revolve2/experimentation/optimization/ea/_population.py:49:65: PGH004 Use specific rule codes when using `noqa`
+experimentation/revolve2/experimentation/optimization/ea/_population.py:63:9: S101 Use of `assert` detected
+experimentation/revolve2/experimentation/optimization/ea/_population.py:65:9: S101 Use of `assert` detected
+experimentation/revolve2/experimentation/optimization/ea/population_management/_generational.py:10:5: ARG001 Unused function argument: `old_fitnesses`
+experimentation/revolve2/experimentation/optimization/ea/population_management/_generational.py:28:5: S101 Use of `assert` detected
+experimentation/revolve2/experimentation/optimization/ea/population_management/_generational.py:29:5: S101 Use of `assert` detected
+experimentation/revolve2/experimentation/optimization/ea/population_management/_steady_state.py:30:5: S101 Use of `assert` detected
+experimentation/revolve2/experimentation/optimization/ea/population_management/_steady_state.py:31:5: S101 Use of `assert` detected
+experimentation/revolve2/experimentation/optimization/ea/selection/_multiple_unique.py:26:5: S101 Use of `assert` detected
+experimentation/revolve2/experimentation/optimization/ea/selection/_multiple_unique.py:27:5: S101 Use of `assert` detected
+experimentation/revolve2/experimentation/optimization/ea/selection/_pareto_frontier.py:26:5: S101 Use of `assert` detected
+experimentation/revolve2/experimentation/optimization/ea/selection/_pareto_frontier.py:27:5: S101 Use of `assert` detected
+experimentation/revolve2/experimentation/optimization/ea/selection/_topn.py:11:13: ARG001 Unused function argument: `genotypes`
+experimentation/revolve2/experimentation/optimization/ea/selection/_topn.py:21:5: S101 Use of `assert` detected
+experimentation/revolve2/experimentation/optimization/ea/selection/_tournament.py:19:5: S101 Use of `assert` detected
+experimentation/revolve2/experimentation/rng.py:10:20: FBT001 Boolean-typed positional argument in function definition
+experimentation/revolve2/experimentation/rng.py:10:20: FBT002 Boolean default positional argument in function definition
+experimentation/revolve2/experimentation/rng.py:17:16: DTZ005 `datetime.datetime.now()` called without a `tz` argument
+experimentation/revolve2/experimentation/rng.py:19:22: G004 Logging statement uses f-string
+experimentation/revolve2/experimentation/rng.py:46:24: FBT001 Boolean-typed positional argument in function definition
+experimentation/revolve2/experimentation/rng.py:46:24: FBT002 Boolean default positional argument in function definition
+modular_robot/revolve2/modular_robot/body/_module.py:226:9: S101 Use of `assert` detected
+modular_robot/revolve2/modular_robot/body/_module.py:227:13: SLF001 Private member accessed: `_parent`
+modular_robot/revolve2/modular_robot/body/_module.py:229:9: SLF001 Private member accessed: `_parent`
+modular_robot/revolve2/modular_robot/body/_module.py:230:9: SLF001 Private member accessed: `_parent_child_index`
+modular_robot/revolve2/modular_robot/body/_right_angles.py:12:5: PIE796 Enum contains duplicate value: `0`
+modular_robot/revolve2/modular_robot/body/_right_angles.py:13:5: PIE796 Enum contains duplicate value: `math.pi / 2.0`
+modular_robot/revolve2/modular_robot/body/_right_angles.py:14:5: PIE796 Enum contains duplicate value: `math.pi`
+modular_robot/revolve2/modular_robot/body/_right_angles.py:15:5: PIE796 Enum contains duplicate value: `math.pi / 2.0 * 3`
+modular_robot/revolve2/modular_robot/body/base/_active_hinge.py:34:9: PLR0913 Too many arguments in function definition (21 > 5)
+modular_robot/revolve2/modular_robot/body/base/_active_hinge.py:48:9: A002 Argument `range` is shadowing a Python builtin
+modular_robot/revolve2/modular_robot/body/base/_body.py:47:13: S101 Use of `assert` detected
+modular_robot/revolve2/modular_robot/body/base/_body.py:48:13: S101 Use of `assert` detected
+modular_robot/revolve2/modular_robot/body/base/_body.py:129:31: SLF001 Private member accessed: `_core`
+modular_robot/revolve2/modular_robot/body/base/_body.py:156:17: S101 Use of `assert` detected
+modular_robot/revolve2/modular_robot/body/base/_brick.py:22:9: PLR0913 Too many arguments in function definition (6 > 5)
+modular_robot/revolve2/modular_robot/body/base/_core.py:23:9: PLR0913 Too many arguments in function definition (6 > 5)
+modular_robot/revolve2/modular_robot/body/sensors/_camera_sensor.py:14:35: B008 Do not perform function call `Quaternion` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+modular_robot/revolve2/modular_robot/body/sensors/_imu_sensor.py:14:60: B008 Do not perform function call `Quaternion` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+modular_robot/revolve2/modular_robot/body/v2/_attachment_face_core_v2.py:88:9: S101 Use of `assert` detected
+modular_robot/revolve2/modular_robot/body/v2/_attachment_face_core_v2.py:89:13: SLF001 Private member accessed: `_parent`
+modular_robot/revolve2/modular_robot/body/v2/_attachment_face_core_v2.py:91:9: SLF001 Private member accessed: `_parent`
+modular_robot/revolve2/modular_robot/body/v2/_attachment_face_core_v2.py:92:9: SLF001 Private member accessed: `_parent_child_index`
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_instance.py:39:9: S101 Use of `assert` detected
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_instance.py:40:9: S101 Use of `assert` detected
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_instance.py:40:38: PLR2004 Magic value used in comparison, consider replacing `2` with a constant variable
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_instance.py:41:9: S101 Use of `assert` detected
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_instance.py:42:9: S101 Use of `assert` detected
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_instance.py:43:9: S101 Use of `assert` detected
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_instance.py:66:41: RUF002 Docstring contains ambiguous `–` (EN DASH). Did you mean `-` (HYPHEN-MINUS)?
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_instance.py:66:47: RUF002 Docstring contains ambiguous `–` (EN DASH). Did you mean `-` (HYPHEN-MINUS)?
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_instance.py:98:9: ARG002 Unused method argument: `sensor_state`
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_instance.py:111:9: ERA001 Found commented-out code
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_instance.py:120:19: TD002 Missing author in TODO; try: `# TODO(<author_name>): ...` or `# TODO @<author_name>: ...`
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_instance.py:120:19: TD004 Missing colon in TODO
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_instance.py:120:19: TD003 Missing issue link on the line following this TODO
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_instance.py:120:19: FIX002 Line contains TODO, consider resolving the issue
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_instance.py:123:17: ERA001 Found commented-out code
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_network_neighbor.py:68:11: TD002 Missing author in TODO; try: `# TODO(<author_name>): ...` or `# TODO @<author_name>: ...`
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_network_neighbor.py:68:11: TD004 Missing colon in TODO
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_network_neighbor.py:68:11: TD003 Missing issue link on the line following this TODO
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_network_neighbor.py:68:11: FIX002 Line contains TODO, consider resolving the issue
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_network_neighbor.py:70:9: ERA001 Found commented-out code
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_network_neighbor_random.py:32:9: ARG002 Unused method argument: `body`
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_network_neighbor_random.py:34:11: TD002 Missing author in TODO; try: `# TODO(<author_name>): ...` or `# TODO @<author_name>: ...`
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_network_neighbor_random.py:34:11: TD004 Missing colon in TODO
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_network_neighbor_random.py:34:11: TD003 Missing issue link on the line following this TODO
+modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_network_neighbor_random.py:34:11: FIX002 Line contains TODO, consider resolving the issue
+modular_robot/revolve2/modular_robot/brain/cpg/_cpg_network_structure.py:31:11: FIX004 Line contains HACK, consider resolving the issue
+modular_robot/revolve2/modular_robot/brain/cpg/_cpg_network_structure.py:58:9: S101 Use of `assert` detected
+modular_robot/revolve2/modular_robot/brain/cpg/_cpg_network_structure.py:87:9: S101 Use of `assert` detected
+modular_robot/revolve2/modular_robot/brain/cpg/_cpg_network_structure.py:88:9: S101 Use of `assert` detected
+modular_robot/revolve2/modular_robot/brain/cpg/_cpg_network_structure.py:124:9: S101 Use of `assert` detected
+modular_robot/revolve2/modular_robot/brain/cpg/_cpg_network_structure.py:153:29: FBT001 Boolean-typed positional argument in function definition
+modular_robot/revolve2/modular_robot/brain/cpg/_cpg_network_structure.py:153:29: FBT002 Boolean default positional argument in function definition
+modular_robot_physical/revolve2/modular_robot_physical/_uuid_key.py:55:13: TRY004 Prefer `TypeError` exception for invalid type
+modular_robot_physical/revolve2/modular_robot_physical/physical_interfaces/_get_interface.py:7:34: FBT001 Boolean-typed positional argument in function definition
+modular_robot_physical/revolve2/modular_robot_physical/physical_interfaces/_get_interface.py:7:47: FBT001 Boolean-typed positional argument in function definition
+modular_robot_physical/revolve2/modular_robot_physical/physical_interfaces/v1/_v1_physical_interface.py:21:13: RUF012 Mutable class attributes should be annotated with `typing.ClassVar`
+modular_robot_physical/revolve2/modular_robot_physical/physical_interfaces/v1/_v1_physical_interface.py:28:24: FBT001 Boolean-typed positional argument in function definition
+modular_robot_physical/revolve2/modular_robot_physical/physical_interfaces/v1/_v1_physical_interface.py:28:37: FBT001 Boolean-typed positional argument in function definition
+modular_robot_physical/revolve2/modular_robot_physical/physical_interfaces/v1/_v1_physical_interface.py:62:13: S101 Use of `assert` detected
+modular_robot_physical/revolve2/modular_robot_physical/physical_interfaces/v1/_v1_physical_interface.py:73:13: S101 Use of `assert` detected
+modular_robot_physical/revolve2/modular_robot_physical/physical_interfaces/v1/_v1_physical_interface.py:85:13: S101 Use of `assert` detected
+modular_robot_physical/revolve2/modular_robot_physical/physical_interfaces/v1/_v1_physical_interface.py:99:44: ARG002 Unused method argument: `pins`
+modular_robot_physical/revolve2/modular_robot_physical/physical_interfaces/v2/_v2_physical_interface.py:42:24: FBT001 Boolean-typed positional argument in function definition
+modular_robot_physical/revolve2/modular_robot_physical/physical_interfaces/v2/_v2_physical_interface.py:42:37: FBT001 Boolean-typed positional argument in function definition
+modular_robot_physical/revolve2/modular_robot_physical/physical_interfaces/v2/_v2_physical_interface.py:51:9: N806 Variable `INITIAL_VOLT_TO_ANGLE_FORMULA_A` in function should be lowercase
+modular_robot_physical/revolve2/modular_robot_physical/physical_interfaces/v2/_v2_physical_interface.py:52:9: N806 Variable `INITIAL_VOLT_TO_ANGLE_FORMULA_B` in function should be lowercase
+modular_robot_physical/revolve2/modular_robot_physical/remote/_modular_robot_sensor_state_impl_v1.py:18:15: ARG002 Unused method argument: `sensor`
+modular_robot_physical/revolve2/modular_robot_physical/remote/_remote.py:54:11: C901 `_run_remote_impl` is too complex (14 > 10)
+modular_robot_physical/revolve2/modular_robot_physical/remote/_remote.py:54:11: PLR0913 Too many arguments in function definition (6 > 5)
+modular_robot_physical/revolve2/modular_robot_physical/remote/_remote.py:54:11: PLR0912 Too many branches (15 > 12)
+modular_robot_physical/revolve2/modular_robot_physical/remote/_remote.py:54:11: PLR0915 Too many statements (72 > 50)
+modular_robot_physical/revolve2/modular_robot_physical/remote/_remote.py:59:5: FBT001 Boolean-typed positional argument in function definition
+modular_robot_physical/revolve2/modular_robot_physical/remote/_remote.py:59:5: ARG001 Unused function argument: `debug`
+modular_robot_physical/revolve2/modular_robot_physical/remote/_remote.py:60:5: FBT001 Boolean-typed positional argument in function definition
+modular_robot_physical/revolve2/modular_robot_physical/remote/_remote.py:217:25: SLF001 Private member accessed: `_set_active_hinges`
+modular_robot_physical/revolve2/modular_robot_physical/remote/_remote.py:255:46: PLR2004 Magic value used in comparison, consider replacing `5.0` with a constant variable
+modular_robot_physical/revolve2/modular_robot_physical/remote/_remote.py:296:5: RET505 Unnecessary `else` after `return` statement
+modular_robot_physical/revolve2/modular_robot_physical/remote/_remote.py:319:5: RET505 Unnecessary `else` after `return` statement
+modular_robot_physical/revolve2/modular_robot_physical/remote/_remote.py:329:5: PLR0913 Too many arguments in function definition (6 > 5)
+modular_robot_physical/revolve2/modular_robot_physical/remote/_remote.py:334:5: FBT001 Boolean-typed positional argument in function definition
+modular_robot_physical/revolve2/modular_robot_physical/remote/_remote.py:334:5: FBT002 Boolean default positional argument in function definition
+modular_robot_physical/revolve2/modular_robot_physical/remote/_remote.py:335:5: FBT001 Boolean-typed positional argument in function definition
+modular_robot_physical/revolve2/modular_robot_physical/remote/_remote.py:335:5: FBT002 Boolean default positional argument in function definition
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon/_robo_server_impl.py:24:71: PGH003 Use specific rule codes when ignoring type issues
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon/_robo_server_impl.py:47:9: FBT001 Boolean-typed positional argument in function definition
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon/_robo_server_impl.py:75:9: S101 Use of `assert` detected
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon/_robo_server_impl.py:157:19: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `_context`
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon/_robo_server_impl.py:186:19: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `_context`
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon/_robo_server_impl.py:198:15: N802 Function name `readSensors` should be lowercase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon/_robo_server_impl.py:201:19: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `_context`
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon/_robo_server_impl.py:213:15: N802 Function name `controlAndReadSensors` should be lowercase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon/_robo_server_impl.py:216:19: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `_context`
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon/_robot_daemon.py:27:15: FBT001 Boolean-typed positional argument in function definition
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon/_robot_daemon.py:27:28: FBT001 Boolean-typed positional argument in function definition
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon/_robot_daemon.py:41:45: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `stream`
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon/_robot_daemon.py:76:5: FBT001 Boolean-typed positional argument in function definition
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon/_robot_daemon.py:76:18: FBT001 Boolean-typed positional argument in function definition
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.py:9:15: PGH003 Use specific rule codes when ignoring type issues
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.py:12:8: PTH120 `os.path.dirname()` should be replaced by `Path.parent`
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.py:12:24: PTH100 `os.path.abspath()` should be replaced by `Path.resolve()`
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.py:13:15: PTH100 `os.path.abspath()` should be replaced by `Path.resolve()`
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.py:13:31: PTH118 `os.path.join()` should be replaced by `Path` with `/` operator
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:1:1: PYI021 Docstrings should not be included in stubs
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:11:1: PYI044 `from __future__ import annotations` has no effect in stub files, since type checkers automatically treat stubs as having those semantics
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:20:5: N815 Variable `activePins` in class scope should not be mixedCase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:24:9: N803 Argument name `activePins` should be lowercase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:62:5: N815 Variable `versionOk` in class scope should not be mixedCase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:63:5: N815 Variable `hardwareType` in class scope should not be mixedCase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:64:24: FBT001 Boolean-typed positional argument in function definition
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:64:24: N803 Argument name `versionOk` should be lowercase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:64:41: N803 Argument name `hardwareType` should be lowercase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:136:5: N815 Variable `setPins` in class scope should not be mixedCase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:139:9: N803 Argument name `setPins` should be lowercase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:159:5: N815 Variable `setPins` in class scope should not be mixedCase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:163:5: N815 Variable `setPins` in class scope should not be mixedCase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:177:5: N815 Variable `readPins` in class scope should not be mixedCase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:178:24: N803 Argument name `readPins` should be lowercase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:213:5: N815 Variable `setPins` in class scope should not be mixedCase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:214:5: N815 Variable `readPins` in class scope should not be mixedCase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:217:9: N803 Argument name `setPins` should be lowercase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:218:9: N803 Argument name `readPins` should be lowercase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:238:5: N815 Variable `setPins` in class scope should not be mixedCase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:242:5: N815 Variable `setPins` in class scope should not be mixedCase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:336:5: N815 Variable `imuOrientation` in class scope should not be mixedCase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:337:5: N815 Variable `imuSpecificForce` in class scope should not be mixedCase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:338:5: N815 Variable `imuAngularRate` in class scope should not be mixedCase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:339:5: N815 Variable `cameraView` in class scope should not be mixedCase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:340:9: PLR0913 Too many arguments in function definition (7 > 5)
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:344:9: N803 Argument name `imuOrientation` should be lowercase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:345:9: N803 Argument name `imuSpecificForce` should be lowercase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:346:9: N803 Argument name `imuAngularRate` should be lowercase
+modular_robot_physical/revolve2/modular_robot_physical/robot_daemon_api/robot_daemon_protocol_capnp.pyi:347:9: N803 Argument name `cameraView` should be lowercase
+modular_robot_simulation/revolve2/modular_robot_simulation/_build_multi_body_systems/_body_to_multi_body_system_converter.py:20:39: FBT001 Boolean-typed positional argument in function definition
+modular_robot_simulation/revolve2/modular_robot_simulation/_build_multi_body_systems/_builders/_active_hinge_builder.py:58:9: N806 Variable `SERVO_BBOX2_POSITION` in function should be lowercase
+modular_robot_simulation/revolve2/modular_robot_simulation/_build_multi_body_systems/_builders/_active_hinge_sensor_builder.py:50:15: PGH003 Use specific rule codes when ignoring type issues
+modular_robot_simulation/revolve2/modular_robot_simulation/_build_multi_body_systems/_builders/_attachment_face_builder.py:35:9: ARG002 Unused method argument: `multi_body_system`
+modular_robot_simulation/revolve2/modular_robot_simulation/_build_multi_body_systems/_builders/_attachment_face_builder.py:36:9: ARG002 Unused method argument: `body_to_multi_body_system_mapping`
+modular_robot_simulation/revolve2/modular_robot_simulation/_build_multi_body_systems/_builders/_brick_builder.py:41:9: ARG002 Unused method argument: `multi_body_system`
+modular_robot_simulation/revolve2/modular_robot_simulation/_build_multi_body_systems/_builders/_brick_builder.py:42:9: ARG002 Unused method argument: `body_to_multi_body_system_mapping`
+modular_robot_simulation/revolve2/modular_robot_simulation/_build_multi_body_systems/_builders/_camera_sensor_builder.py:39:9: ARG002 Unused method argument: `multi_body_system`
+modular_robot_simulation/revolve2/modular_robot_simulation/_build_multi_body_systems/_builders/_core_builder.py:40:9: ARG002 Unused method argument: `multi_body_system`
+modular_robot_simulation/revolve2/modular_robot_simulation/_build_multi_body_systems/_builders/_core_builder.py:41:9: ARG002 Unused method argument: `body_to_multi_body_system_mapping`
+modular_robot_simulation/revolve2/modular_robot_simulation/_build_multi_body_systems/_builders/_imu_sensor_builder.py:47:9: ARG002 Unused method argument: `multi_body_system`
+modular_robot_simulation/revolve2/modular_robot_simulation/_build_multi_body_systems/_get_builder.py:26:5: PLR0911 Too many return statements (7 > 6)
+modular_robot_simulation/revolve2/modular_robot_simulation/_build_multi_body_systems/_unbuilt_child.py:18:60: B008 Do not perform function call `Quaternion` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+modular_robot_simulation/revolve2/modular_robot_simulation/_modular_robot_scene.py:30:22: B008 Do not perform function call `Pose` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+modular_robot_simulation/revolve2/modular_robot_simulation/_modular_robot_scene.py:31:9: FBT001 Boolean-typed positional argument in function definition
+modular_robot_simulation/revolve2/modular_robot_simulation/_modular_robot_scene.py:31:9: FBT002 Boolean default positional argument in function definition
+modular_robot_simulation/revolve2/modular_robot_simulation/_sensor_state_impl/_modular_robot_sensor_state_impl.py:57:9: S101 Use of `assert` detected
+modular_robot_simulation/revolve2/modular_robot_simulation/_sensor_state_impl/_modular_robot_sensor_state_impl.py:73:9: S101 Use of `assert` detected
+modular_robot_simulation/revolve2/modular_robot_simulation/_sensor_state_impl/_modular_robot_sensor_state_impl.py:95:9: S101 Use of `assert` detected
+mypy.ini:4:13: E999 SyntaxError: Expected an identifier
+project.yml:3:31: E999 SyntaxError: Expected an expression
+report.txt:1:1: E999 SyntaxError: Got unexpected token 
+report.txt:2:1: W191 Indentation contains tabs
+requirements_dev.txt:3:4: E999 SyntaxError: Simple statements must be separated by newlines or semicolons
+requirements_dev_mac.txt:3:4: E999 SyntaxError: Simple statements must be separated by newlines or semicolons
+requirements_editable.txt:3:4: E999 SyntaxError: Simple statements must be separated by newlines or semicolons
+simulation/revolve2/simulation/scene/_multi_body_system.py:73:9: S101 Use of `assert` detected
+simulation/revolve2/simulation/scene/_multi_body_system.py:75:9: S101 Use of `assert` detected
+simulation/revolve2/simulation/scene/_multi_body_system.py:77:9: S101 Use of `assert` detected
+simulation/revolve2/simulation/scene/_multi_body_system.py:90:9: S101 Use of `assert` detected
+simulation/revolve2/simulation/scene/_multi_body_system.py:110:9: S101 Use of `assert` detected
+simulation/revolve2/simulation/scene/_multi_body_system.py:116:9: S101 Use of `assert` detected
+simulation/revolve2/simulation/scene/_multi_body_system.py:119:9: S101 Use of `assert` detected
+simulation/revolve2/simulation/scene/_multi_body_system.py:128:9: S101 Use of `assert` detected
+simulation/revolve2/simulation/scene/_multi_body_system.py:155:9: S101 Use of `assert` detected
+simulation/revolve2/simulation/scene/_multi_body_system.py:166:9: S101 Use of `assert` detected
+simulation/revolve2/simulation/scene/_multi_body_system.py:200:21: TRY004 Prefer `TypeError` exception for invalid type
+simulation/revolve2/simulation/scene/_rigid_body.py:94:9: RET505 Unnecessary `else` after `return` statement
+simulation/revolve2/simulation/scene/_uuid_key.py:55:13: TRY004 Prefer `TypeError` exception for invalid type
+simulation/revolve2/simulation/scene/conversion/_multi_body_system_to_urdf.py:3:8: N813 Camelcase `ElementTree` imported as lowercase `xml`
+simulation/revolve2/simulation/scene/conversion/_multi_body_system_to_urdf.py:71:9: S101 Use of `assert` detected
+simulation/revolve2/simulation/scene/conversion/_multi_body_system_to_urdf.py:92:13: S318 Using `xml` to parse untrusted data is known to be vulnerable to XML attacks; use `defusedxml` equivalents
+simulation/revolve2/simulation/scene/conversion/_multi_body_system_to_urdf.py:102:9: C901 `_make_links_xml_elements` is too complex (12 > 10)
+simulation/revolve2/simulation/scene/conversion/_multi_body_system_to_urdf.py:102:9: PLR0915 Too many statements (55 > 50)
+simulation/revolve2/simulation/scene/conversion/_multi_body_system_to_urdf.py:208:17: TRY004 Prefer `TypeError` exception for invalid type
+simulation/revolve2/simulation/scene/conversion/_multi_body_system_to_urdf.py:350:9: N806 Variable `PLANE_BOX_HEIGHT` in function should be lowercase
+simulation/revolve2/simulation/scene/geometry/textures/_texture_reference.py:6:7: B024 `TextureReference` is an abstract base class, but it has no abstract methods
+simulation/revolve2/simulation/scene/sensors/_sensor.py:7:7: B024 `Sensor` is an abstract base class, but it has no abstract methods
+simulation/revolve2/simulation/scene/vector2/vector2.py:14:29: PGH003 Use specific rule codes when ignoring type issues
+simulation/revolve2/simulation/scene/vector2/vector2.py:27:21: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `value`
+simulation/revolve2/simulation/scene/vector2/vector2.py:27:33: ARG003 Unused class method argument: `w`
+simulation/revolve2/simulation/scene/vector2/vector2.py:27:56: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `dtype`
+simulation/revolve2/simulation/scene/vector2/vector2.py:28:10: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `__new__`
+simulation/revolve2/simulation/scene/vector2/vector2.py:55:13: RUF012 Mutable class attributes should be annotated with `typing.ClassVar`
+simulation/revolve2/simulation/scene/vector2/vector2.py:56:13: RUF012 Mutable class attributes should be annotated with `typing.ClassVar`
+simulation/revolve2/simulation/scene/vector2/vector2.py:58:30: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `other`
+simulation/revolve2/simulation/scene/vector2/vector2.py:58:48: PGH003 Use specific rule codes when ignoring type issues
+simulation/revolve2/simulation/scene/vector2/vector2.py:70:30: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `other`
+simulation/revolve2/simulation/scene/vector2/vector2.py:70:48: PGH003 Use specific rule codes when ignoring type issues
+simulation/revolve2/simulation/scene/vector2/vector2.py:82:30: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `other`
+simulation/revolve2/simulation/scene/vector2/vector2.py:82:48: PGH003 Use specific rule codes when ignoring type issues
+simulation/revolve2/simulation/scene/vector2/vector2.py:94:30: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `other`
+simulation/revolve2/simulation/scene/vector2/vector2.py:94:38: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `__xor__`
+simulation/revolve2/simulation/scene/vector2/vector2.py:106:29: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `other`
+simulation/revolve2/simulation/scene/vector2/vector2.py:106:37: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `__or__`
+simulation/revolve2/simulation/scene/vector2/vector2.py:118:47: PGH003 Use specific rule codes when ignoring type issues
+simulation/revolve2/simulation/scene/vector2/vector2.py:130:47: PGH003 Use specific rule codes when ignoring type issues
+simulation/revolve2/simulation/scene/vector2/vector2aux.py:11:51: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `dtype`
+simulation/revolve2/simulation/scene/vector2/vector2aux.py:11:79: PGH003 Use specific rule codes when ignoring type issues
+simulation/revolve2/simulation/scene/vector2/vector2aux.py:24:9: TRY004 Prefer `TypeError` exception for invalid type
+simulation/revolve2/simulation/scene/vector2/vector2aux.py:28:33: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `dtype`
+simulation/revolve2/simulation/scene/vector2/vector2aux.py:28:61: PGH003 Use specific rule codes when ignoring type issues
+simulation/revolve2/simulation/scene/vector2/vector2aux.py:38:33: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `dtype`
+simulation/revolve2/simulation/scene/vector2/vector2aux.py:38:61: PGH003 Use specific rule codes when ignoring type issues
+simulation/revolve2/simulation/scene/vector2/vector2aux.py:48:37: PGH003 Use specific rule codes when ignoring type issues
+simulation/revolve2/simulation/scene/vector2/vector2aux.py:49:43: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `mat`
+simulation/revolve2/simulation/scene/vector2/vector2aux.py:49:55: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `dtype`
+simulation/revolve2/simulation/scene/vector2/vector2aux.py:49:83: PGH003 Use specific rule codes when ignoring type issues
+simulation/revolve2/simulation/scene/vector2/vector2aux.py:60:7: N801 Class name `index` should use CapWords convention
+simulation/revolve2/simulation/scene/vector2/vector2aux.py:70:7: N801 Class name `unit` should use CapWords convention
+simulation/revolve2/simulation/simulator/_viewer.py:13:25: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `render`
+simulation/revolve2/simulation/simulator/_viewer.py:30:28: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `view_port`
+simulation/revolve2/simulation/simulator/_viewer.py:39:26: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `context`
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_control_interface_impl.py:42:9: S101 Use of `assert` detected
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_control_interface_impl.py:48:11: TD002 Missing author in TODO; try: `# TODO(<author_name>): ...` or `# TODO @<author_name>: ...`
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_control_interface_impl.py:48:11: TD004 Missing colon in TODO
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_control_interface_impl.py:48:11: TD003 Missing issue link on the line following this TODO
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_control_interface_impl.py:48:11: FIX002 Line contains TODO, consider resolving the issue
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_custom_mujoco_viewer.py:24:56: PGH003 Use specific rule codes when ignoring type issues
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_custom_mujoco_viewer.py:44:9: PLR0913 Too many arguments in function definition (6 > 5)
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_custom_mujoco_viewer.py:48:9: FBT001 Boolean-typed positional argument in function definition
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_custom_mujoco_viewer.py:49:9: FBT001 Boolean-typed positional argument in function definition
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_custom_mujoco_viewer.py:49:9: FBT002 Boolean default positional argument in function definition
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_custom_mujoco_viewer.py:93:9: ERA001 Found commented-out code
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_custom_mujoco_viewer.py:95:9: ERA001 Found commented-out code
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_custom_mujoco_viewer.py:212:9: PLR0913 Too many arguments in function definition (6 > 5)
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_custom_mujoco_viewer.py:213:23: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `window`
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_custom_mujoco_viewer.py:213:33: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `key`
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_custom_mujoco_viewer.py:213:48: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `scancode`
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_custom_mujoco_viewer.py:213:61: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `action`
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_custom_mujoco_viewer.py:213:72: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `mods`
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_custom_mujoco_viewer.py:245:9: RET505 Unnecessary `elif` after `return` statement
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_local_simulator.py:24:9: PLR0913 Too many arguments in function definition (8 > 5)
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_local_simulator.py:26:9: FBT001 Boolean-typed positional argument in function definition
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_local_simulator.py:26:9: FBT002 Boolean default positional argument in function definition
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_local_simulator.py:27:9: FBT001 Boolean-typed positional argument in function definition
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_local_simulator.py:27:9: FBT002 Boolean default positional argument in function definition
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_local_simulator.py:29:9: FBT001 Boolean-typed positional argument in function definition
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_local_simulator.py:29:9: FBT002 Boolean default positional argument in function definition
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_local_simulator.py:30:9: FBT001 Boolean-typed positional argument in function definition
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_local_simulator.py:30:9: FBT002 Boolean default positional argument in function definition
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_local_simulator.py:31:9: FBT001 Boolean-typed positional argument in function definition
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_local_simulator.py:31:9: FBT002 Boolean default positional argument in function definition
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_local_simulator.py:45:9: S101 Use of `assert` detected
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_local_simulator.py:49:9: S101 Use of `assert` detected
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_local_simulator.py:83:13: PTH103 `os.makedirs()` should be replaced by `Path.mkdir(parents=True)`
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_local_simulator.py:91:23: TRY002 Create your own exception
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_open_gl_vision.py:33:9: PLR0913 Too many arguments in function definition (6 > 5)
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_open_gl_vision.py:37:9: FBT001 Boolean-typed positional argument in function definition
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_open_gl_vision.py:59:27: G004 Logging statement uses f-string
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_open_gl_vision.py:107:52: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `get_context`
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_scene_to_model.py:30:1: E402 Module level import not at top of file
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_scene_to_model.py:57:7: TD003 Missing issue link on the line following this TODO
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_scene_to_model.py:57:7: FIX002 Line contains TODO, consider resolving the issue
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_scene_to_model.py:180:12: BLE001 Do not catch blind exception: `Exception`
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_scene_to_model.py:193:17: PTH107 `os.remove()` should be replaced by `Path.unlink()`
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_scene_to_model.py:194:20: BLE001 Do not catch blind exception: `Exception`
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_scene_to_model.py:198:17: PTH107 `os.remove()` should be replaced by `Path.unlink()`
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_scene_to_model.py:204:5: FBT001 Boolean-typed positional argument in function definition
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_scene_to_model.py:237:5: FBT001 Boolean-typed positional argument in function definition
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_scene_to_model.py:384:5: FBT001 Boolean-typed positional argument in function definition
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_simulate_scene.py:19:5: C901 `simulate_scene` is too complex (16 > 10)
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_simulate_scene.py:19:5: PLR0913 Too many arguments in function definition (13 > 5)
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_simulate_scene.py:19:5: PLR0912 Too many branches (15 > 12)
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_simulate_scene.py:19:5: PLR0915 Too many statements (69 > 50)
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_simulate_scene.py:22:5: FBT001 Boolean-typed positional argument in function definition
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_simulate_scene.py:24:5: FBT001 Boolean-typed positional argument in function definition
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_simulate_scene.py:29:5: FBT001 Boolean-typed positional argument in function definition
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_simulate_scene.py:30:5: FBT001 Boolean-typed positional argument in function definition
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_simulate_scene.py:53:18: G004 Logging statement uses f-string
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_simulate_scene.py:231:18: G004 Logging statement uses f-string
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/viewers/_custom_mujoco_viewer.py:27:64: PGH003 Use specific rule codes when ignoring type issues
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/viewers/_custom_mujoco_viewer.py:47:9: PLR0913 Too many arguments in function definition (10 > 5)
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/viewers/_custom_mujoco_viewer.py:59:14: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `**_`
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/viewers/_custom_mujoco_viewer.py:120:9: ERA001 Found commented-out code
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/viewers/_custom_mujoco_viewer.py:122:9: ERA001 Found commented-out code
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/viewers/_custom_mujoco_viewer.py:239:9: PLR0913 Too many arguments in function definition (6 > 5)
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/viewers/_custom_mujoco_viewer.py:240:23: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `window`
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/viewers/_custom_mujoco_viewer.py:240:33: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `key`
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/viewers/_custom_mujoco_viewer.py:240:48: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `scancode`
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/viewers/_custom_mujoco_viewer.py:240:61: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `action`
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/viewers/_custom_mujoco_viewer.py:240:72: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `mods`
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/viewers/_custom_mujoco_viewer.py:284:9: RET505 Unnecessary `elif` after `return` statement
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/viewers/_native_mujoco_viewer.py:24:14: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `**_`
+student_install.sh:1:1: EXE003 Shebang should contain `python`
+student_install.sh:6:4: E999 SyntaxError: Simple statements must be separated by newlines or semicolons
+tests/conftest.py:11:12: PTH100 `os.path.abspath()` should be replaced by `Path.resolve()`
+tests/conftest.py:11:28: PTH120 `os.path.dirname()` should be replaced by `Path.parent`
+tests/conftest.py:12:12: PTH100 `os.path.abspath()` should be replaced by `Path.resolve()`
+tests/conftest.py:12:28: PTH120 `os.path.dirname()` should be replaced by `Path.parent`
+tests/conftest.py:14:16: PTH118 `os.path.join()` should be replaced by `Path` with `/` operator
+tests/conftest.py:25:26: S603 `subprocess` call: check for execution of untrusted input
+tests/conftest.py:28:5: S101 Use of `assert` detected
+tests/examples/test_1a_simulate_single_robot.py:17:15: PTH118 `os.path.join()` should be replaced by `Path` with `/` operator
+tests/examples/test_1a_simulate_single_robot.py:31:22: PGH003 Use specific rule codes when ignoring type issues
+tests/examples/test_2b_brain_with_feedback.py:16:15: PTH118 `os.path.join()` should be replaced by `Path` with `/` operator
+tests/examples/test_2b_brain_with_feedback.py:30:22: PGH003 Use specific rule codes when ignoring type issues
+tests/examples/test_3a_experiment_setup.py:8:15: PTH118 `os.path.join()` should be replaced by `Path` with `/` operator
+tests/examples/test_3a_experiment_setup.py:11:40: PTH118 `os.path.join()` should be replaced by `Path` with `/` operator
+tests/examples/test_3b_evaluate_single_robot.py:17:15: PTH118 `os.path.join()` should be replaced by `Path` with `/` operator
+tests/examples/test_3b_evaluate_single_robot.py:31:22: PGH003 Use specific rule codes when ignoring type issues
+tests/examples/test_3c_evaluate_multiple_isolated_robots.py:19:15: PTH118 `os.path.join()` should be replaced by `Path` with `/` operator
+tests/examples/test_3c_evaluate_multiple_isolated_robots.py:34:22: PGH003 Use specific rule codes when ignoring type issues
+tests/examples/test_4a_simple_ea_xor.py:8:15: PTH118 `os.path.join()` should be replaced by `Path` with `/` operator
+tests/examples/test_4a_simple_ea_xor.py:11:40: PTH118 `os.path.join()` should be replaced by `Path` with `/` operator
+tests/examples/test_4d_robot_bodybrain_ea_database.py:19:15: PTH118 `os.path.join()` should be replaced by `Path` with `/` operator
+tests/examples/test_4d_robot_bodybrain_ea_database.py:31:21: PTH118 `os.path.join()` should be replaced by `Path` with `/` operator
+tests/examples/test_4d_robot_bodybrain_ea_database.py:41:22: PGH003 Use specific rule codes when ignoring type issues
+tests/examples/test_4d_robot_bodybrain_ea_database.py:49:5: S101 Use of `assert` detected
+tests/examples/test_4d_robot_bodybrain_ea_database.py:49:12: PTH110 `os.path.exists()` should be replaced by `Path.exists()`
+tests/examples/test_4e_robot_brain_cmaes.py:16:15: PTH118 `os.path.join()` should be replaced by `Path` with `/` operator
+tests/examples/test_4e_robot_brain_cmaes.py:32:22: PGH003 Use specific rule codes when ignoring type issues
+uninstall.sh:1:1: EXE002 The file is executable but no shebang is present
+uninstall.sh:3:10: E999 SyntaxError: Got unexpected token $
+Found 637 errors.
+[1;36m== END :[1;37m ruff check ./* --fix --unsafe-fixes[1;36m ==[0m
+
+[1;36m== RUN :[1;37m sourcery review ./* --fix[1;36m ==[0m
+modular_robot_physical/revolve2/modular_robot_physical/remote/_remote.py:54-259 low-code-quality
+simulation/revolve2/simulation/scene/conversion/_multi_body_system_to_urdf.py:102-270 low-code-quality
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_simulate_scene.py:19-232 low-code-quality
+simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_local_simulator.py:91-91 raise-specific-error                                                                     
+tests/examples/_clear_example_modules_from_cache.py:3-3 dont-import-test-modules                                                                                                    
+tests/examples/test_3c_evaluate_multiple_isolated_robots.py:7-7 dont-import-test-modules                                                                                            
+tests/examples/test_3a_experiment_setup.py:3-3 dont-import-test-modules                                                                                                             
+tests/examples/test_1a_simulate_single_robot.py:5-5 dont-import-test-modules                                                                                                        
+tests/examples/test_3b_evaluate_single_robot.py:5-5 dont-import-test-modules                                                                                                        
+tests/examples/test_4d_robot_bodybrain_ea_database.py:5-5 dont-import-test-modules                                                                                                  
+tests/examples/test_2b_brain_with_feedback.py:5-5 dont-import-test-modules                                                                                                          
+tests/examples/test_4a_simple_ea_xor.py:3-3 dont-import-test-modules                                                                                                                
+tests/examples/test_4e_robot_brain_cmaes.py:5-5 dont-import-test-modules                                                                                                            
+[1;36m== END :[1;37m sourcery review ./* --fix[1;36m ==[0m
+

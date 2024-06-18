@@ -112,7 +112,9 @@ def main() -> None:
     # Create a population of individuals, combining genotype with fitness.
     population = [
         Individual(genotype, fitness)
-        for genotype, fitness in zip(initial_genotypes, initial_fitnesses)
+        for genotype, fitness in zip(
+            initial_genotypes, initial_fitnesses, strict=False
+        )
     ]
 
     # Set the current generation to 0.
@@ -147,7 +149,7 @@ def main() -> None:
         offspring_population = [
             Individual(genotype, fitness)
             for genotype, fitness in zip(
-                offspring_genotypes, offspring_fitnesses
+                offspring_genotypes, offspring_fitnesses, strict=False
             )
         ]
 

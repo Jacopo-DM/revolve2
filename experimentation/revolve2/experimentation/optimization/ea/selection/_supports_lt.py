@@ -12,4 +12,3 @@ class SupportsLt(Protocol):
 
         :param other: The object to compare this with.
         """
-        pass

@@ -2,7 +2,8 @@ import os
 import sys
 from unittest.mock import Mock
 
-from ..conftest import EXAMPLES_DIR
+from tests.conftest import EXAMPLES_DIR
+
 from ._clear_example_modules_from_cache import clear_exp_modules_from_cache
 
 

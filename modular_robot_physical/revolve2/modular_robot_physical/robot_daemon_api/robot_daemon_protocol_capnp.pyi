@@ -10,9 +10,10 @@ RoboServer
 
 from __future__ import annotations
 
+from collections.abc import Iterator, Sequence
 from contextlib import contextmanager
 from io import BufferedWriter
-from typing import Any, Iterator, Literal, Sequence
+from typing import Any, Literal, TypeAlias
 
 class SetupArgs:
     version: str
@@ -55,14 +56,12 @@ class SetupArgsBuilder(SetupArgs):
     @staticmethod
     def write_packed(file: BufferedWriter) -> None: ...
 
-HardwareType = Literal["v1", "v2"]
+HardwareType: TypeAlias = Literal["v1", "v2"]
 
 class SetupResponse:
     versionOk: bool
     hardwareType: HardwareType
-    def __init__(
-        self, versionOk: bool, hardwareType: HardwareType
-    ) -> None: ...
+    def __init__(self, versionOk: bool, hardwareType: HardwareType) -> None: ...
     @staticmethod
     @contextmanager
     def from_bytes(
@@ -381,4 +380,4 @@ class SensorReadingsBuilder(SensorReadings):
     def write_packed(file: BufferedWriter) -> None: ...
 
 # Defining the interface as any. The stub generator does not generate for interfaces yet.
-RoboServer = Any
+RoboServer: TypeAlias = Any

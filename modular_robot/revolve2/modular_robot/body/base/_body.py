@@ -5,7 +5,8 @@ import numpy as np
 from numpy.typing import NDArray
 from pyrr import Quaternion, Vector3
 
-from .._module import Module
+from modular_robot.body._module import Module
+
 from ._core import Core
 
 TModule = TypeVar("TModule", bound=Module)
@@ -52,9 +53,8 @@ class Body:
             attachment_point = parent.attachment_points.get(child_index)
 
             if attachment_point is None:
-                raise KeyError(
-                    "No attachment point found at the specified location."
-                )
+                msg = "No attachment point found at the specified location."
+                raise KeyError(msg)
             position = attachment_point.orientation * position
             position = Vector3.round(position)
 
@@ -138,7 +138,9 @@ class _GridMaker(Generic[TModuleNP]):
 
         grid = np.empty(shape=(depth, width, height), dtype=Module)
         grid.fill(None)
-        for x, y, z, module in zip(self._x, self._y, self._z, self._modules):
+        for x, y, z, module in zip(
+            self._x, self._y, self._z, self._modules, strict=False
+        ):
             grid[x - minx, y - miny, z - minz] = module
 
         return grid, Vector3([-minx, -miny, -minz])

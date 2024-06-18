@@ -75,6 +75,5 @@ def get_builder(unbuilt_child: UnbuiltChild) -> Builder:
                 pose=unbuilt_child.pose,
             )
         case _:
-            raise KeyError(
-                f"Module of type {type(unbuilt_child.child_object)} has no defined Builder."
-            )
+            msg = f"Module of type {type(unbuilt_child.child_object)} has no defined Builder."
+            raise KeyError(msg)

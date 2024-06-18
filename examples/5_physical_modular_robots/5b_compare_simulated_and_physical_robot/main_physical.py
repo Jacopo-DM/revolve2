@@ -18,11 +18,15 @@ def make_body() -> (
     body = BodyV2()
     body.core_v2.left_face.bottom = ActiveHingeV2(RightAngles.DEG_0)
     body.core_v2.left_face.bottom.attachment = ActiveHingeV2(RightAngles.DEG_0)
-    body.core_v2.left_face.bottom.attachment.attachment = BrickV2(RightAngles.DEG_0)
+    body.core_v2.left_face.bottom.attachment.attachment = BrickV2(
+        RightAngles.DEG_0
+    )
 
     body.core_v2.right_face.bottom = ActiveHingeV2(RightAngles.DEG_0)
     body.core_v2.right_face.bottom.attachment = ActiveHingeV2(RightAngles.DEG_0)
-    body.core_v2.right_face.bottom.attachment.attachment = BrickV2(RightAngles.DEG_0)
+    body.core_v2.right_face.bottom.attachment.attachment = BrickV2(
+        RightAngles.DEG_0
+    )
 
     """Here we collect all ActiveHinges, to map them later onto the physical robot."""
     active_hinges = (

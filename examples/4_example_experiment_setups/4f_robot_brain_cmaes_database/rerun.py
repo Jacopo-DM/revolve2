@@ -5,15 +5,14 @@ import logging
 import config
 from database_components import Genotype, Individual
 from evaluator import Evaluator
-from sqlalchemy import select
-from sqlalchemy.orm import Session
-
 from revolve2.experimentation.database import OpenMethod, open_database_sqlite
 from revolve2.experimentation.logging import setup_logging
 from revolve2.modular_robot.body.base import ActiveHinge
 from revolve2.modular_robot.brain.cpg import (
     active_hinges_to_cpg_network_structure_neighbor,
 )
+from sqlalchemy import select
+from sqlalchemy.orm import Session
 
 
 def main() -> None:
@@ -28,7 +27,9 @@ def main() -> None:
     with Session(dbengine) as ses:
         row = ses.execute(
             select(Genotype, Individual.fitness)
-            .join_from(Genotype, Individual, Genotype.id == Individual.genotype_id)
+            .join_from(
+                Genotype, Individual, Genotype.id == Individual.genotype_id
+            )
             .order_by(Individual.fitness.desc())
             .limit(1)
         ).one()

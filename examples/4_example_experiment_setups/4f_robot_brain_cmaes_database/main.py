@@ -13,9 +13,6 @@ from database_components import (
     Population,
 )
 from evaluator import Evaluator
-from sqlalchemy.engine import Engine
-from sqlalchemy.orm import Session
-
 from revolve2.experimentation.database import OpenMethod, open_database_sqlite
 from revolve2.experimentation.logging import setup_logging
 from revolve2.experimentation.rng import seed_from_time
@@ -23,6 +20,8 @@ from revolve2.modular_robot.body.base import ActiveHinge
 from revolve2.modular_robot.brain.cpg import (
     active_hinges_to_cpg_network_structure_neighbor,
 )
+from sqlalchemy.engine import Engine
+from sqlalchemy.orm import Session
 
 
 def run_experiment(dbengine: Engine) -> None:
@@ -75,7 +74,9 @@ def run_experiment(dbengine: Engine) -> None:
     # Run cma for the defined number of generations.
     logging.info("Start optimization process.")
     while opt.countiter < config.NUM_GENERATIONS:
-        logging.info(f"Generation {opt.countiter + 1} / {config.NUM_GENERATIONS}.")
+        logging.info(
+            f"Generation {opt.countiter + 1} / {config.NUM_GENERATIONS}."
+        )
 
         # Get the sampled solutions(parameters) from cma.
         solutions = opt.ask()
@@ -91,7 +92,9 @@ def run_experiment(dbengine: Engine) -> None:
         population = Population(
             individuals=[
                 Individual(genotype=Genotype(parameters), fitness=fitness)
-                for parameters, fitness in zip(solutions, fitnesses)
+                for parameters, fitness in zip(
+                    solutions, fitnesses, strict=False
+                )
             ]
         )
 

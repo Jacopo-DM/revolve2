@@ -141,7 +141,9 @@ def run_experiment(dbengine: Engine) -> None:
     population = Population(
         individuals=[
             Individual(genotype=genotype, fitness=fitness)
-            for genotype, fitness in zip(initial_genotypes, initial_fitnesses)
+            for genotype, fitness in zip(
+                initial_genotypes, initial_fitnesses, strict=False
+            )
         ]
     )
 
@@ -183,7 +185,7 @@ def run_experiment(dbengine: Engine) -> None:
             individuals=[
                 Individual(genotype=genotype, fitness=fitness)
                 for genotype, fitness in zip(
-                    offspring_genotypes, offspring_fitnesses
+                    offspring_genotypes, offspring_fitnesses, strict=False
                 )
             ]
         )

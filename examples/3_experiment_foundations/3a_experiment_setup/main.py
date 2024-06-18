@@ -4,7 +4,6 @@ import logging
 
 import config
 import numpy as np
-
 import revolve2.experimentation.rng
 from revolve2.experimentation.logging import setup_logging
 
@@ -16,9 +15,7 @@ def run_experiment(num_samples: int, probability: float) -> None:
     :param num_samples: The number of samples to use for this experiment.
     :param probability: The probablity to use for this experiment.
     """
-    success_ratios = (
-        []
-    )  # Create a list where we will store the success ratio for each repetition.
+    success_ratios = []  # Create a list where we will store the success ratio for each repetition.
 
     for repetition in range(config.NUM_REPETITIONS):
         logging.info(
@@ -60,7 +57,7 @@ def main() -> None:
     """Run the simulation."""
     """
     First we set up the logging.
-    
+
     This decides the level of severity of logged messages we want to display.
     By default this is 'INFO' or more severe, and 'DEBUG' is excluded.
     Furthermore, a standard message layout is set up.

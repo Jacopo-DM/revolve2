@@ -16,4 +16,3 @@ class ControlInterface(ABC):
         :param joint_hinge: The hinge to set the position target for.
         :param position: The position target.
         """
-        pass

@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 
-from ..scene import SimulationState
+from simulation.scene import SimulationState
+
 from ._batch import Batch
 
 
@@ -15,4 +16,3 @@ class Simulator(ABC):
         :param batch: The batch to run.
         :returns: List of simulation states in ascending order of time.
         """
-        pass

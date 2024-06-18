@@ -11,10 +11,10 @@ from typing import (
 import sqlalchemy
 from sqlalchemy import orm
 
-from ..._util.init_subclass_get_generic_args import (
+from experimentation._util.init_subclass_get_generic_args import (
     init_subclass_get_generic_args,
 )
-from ...database import HasId
+from experimentation.database import HasId
 
 TPopulation = TypeVar("TPopulation")
 
@@ -68,9 +68,7 @@ class Generation(HasId, orm.MappedAsDataclass, Generic[TPopulation]):
 
     __type_tpopulation: ClassVar[type[TPopulation]]  # type: ignore[misc]
 
-    def __init_subclass__(
-        cls: type[Self], /, **kwargs: dict[str, Any]
-    ) -> None:
+    def __init_subclass__(cls: type[Self], /, **kwargs: dict[str, Any]) -> None:
         """
         Initialize a version of this class when it is subclassed.
 
@@ -93,9 +91,7 @@ class Generation(HasId, orm.MappedAsDataclass, Generic[TPopulation]):
     @classmethod
     def __population_id_impl(cls) -> orm.Mapped[int]:
         return orm.mapped_column(
-            sqlalchemy.ForeignKey(
-                f"{cls.__type_tpopulation.__tablename__}.id"
-            ),
+            sqlalchemy.ForeignKey(f"{cls.__type_tpopulation.__tablename__}.id"),
             nullable=False,
             init=False,
         )

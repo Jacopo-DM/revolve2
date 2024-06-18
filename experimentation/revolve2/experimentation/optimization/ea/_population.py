@@ -11,10 +11,10 @@ from typing import (
 import sqlalchemy.ext.orderinglist
 from sqlalchemy import orm
 
-from ..._util.init_subclass_get_generic_args import (
+from experimentation._util.init_subclass_get_generic_args import (
     init_subclass_get_generic_args,
 )
-from ...database import HasId
+from experimentation.database import HasId
 
 TIndividual = TypeVar("TIndividual")
 
@@ -51,9 +51,7 @@ class Population(HasId, orm.MappedAsDataclass, Generic[TIndividual]):
 
     __type_tindividual: ClassVar[type[TIndividual]]  # type: ignore[misc]
 
-    def __init_subclass__(
-        cls: type[Self], /, **kwargs: dict[str, Any]
-    ) -> None:
+    def __init_subclass__(cls: type[Self], /, **kwargs: dict[str, Any]) -> None:
         """
         Initialize a version of this class when it is subclassed.
 

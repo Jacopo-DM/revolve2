@@ -1,7 +1,7 @@
 from pyrr import Vector3
 
-from .._right_angles import RightAngles
-from ..base import ActiveHinge
+from modular_robot.body._right_angles import RightAngles
+from modular_robot.body.base import ActiveHinge
 
 
 class ActiveHingeV1(ActiveHinge):
@@ -11,7 +11,7 @@ class ActiveHingeV1(ActiveHinge):
     This is a rotary joint.
     """
 
-    def __init__(self, rotation: float | RightAngles):
+    def __init__(self, rotation: float | RightAngles) -> None:
         """
         Initialize this object.
 

@@ -13,7 +13,7 @@ import numpy.typing as npt
 class Genotype:
     """A genotype that is a list of parameters."""
 
-    parameters: npt.NDArray[np.float_]
+    parameters: npt.NDArray[np.float64]
 
     @classmethod
     def random(

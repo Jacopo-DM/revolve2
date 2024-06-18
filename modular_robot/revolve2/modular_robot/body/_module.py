@@ -50,21 +50,23 @@ class _AttachedSensors:
                 if self._camera_sensor is None:
                     self._camera_sensor = sensor
                 else:
-                    raise KeyError("Camera sensor already populated")
+                    msg = "Camera sensor already populated"
+                    raise KeyError(msg)
             case IMUSensor():
                 if self._imu_sensor is None:
                     self._imu_sensor = sensor
                 else:
-                    raise KeyError("IMU sensor already populated")
+                    msg = "IMU sensor already populated"
+                    raise KeyError(msg)
             case ActiveHingeSensor():
                 if self._active_hinge_sensor is None:
                     self._active_hinge_sensor = sensor
                 else:
-                    raise KeyError("ActiveHinge sensor already populated")
+                    msg = "ActiveHinge sensor already populated"
+                    raise KeyError(msg)
             case _:
-                raise KeyError(
-                    f"Sensor of type {type(sensor)} is not defined in _module._AttachedSensors."
-                )
+                msg = f"Sensor of type {type(sensor)} is not defined in _module._AttachedSensors."
+                raise KeyError(msg)
 
     def get_all_sensors(self) -> list[Sensor]:
         """
@@ -229,7 +231,8 @@ class Module:
         if self.can_set_child(child_index):
             self._children[child_index] = module
         else:
-            raise KeyError("Attachment point already populated")
+            msg = "Attachment point already populated"
+            raise KeyError(msg)
 
     def can_set_child(self, child_index: int) -> bool:
         """
@@ -238,9 +241,7 @@ class Module:
         :param child_index: The child index.
         :return: The boolean value.
         """
-        if self._children.get(child_index, True):
-            return True
-        return False
+        return bool(self._children.get(child_index, True))
 
     def neighbours(self, within_range: int) -> list[Module]:
         """
@@ -260,18 +261,18 @@ class Module:
             for open_node, came_from in open_nodes:
                 attached_modules = [
                     self._children.get(index)
-                    for index in open_node.attachment_points.keys()
+                    for index in open_node.attachment_points
                     if self._children.get(index) is not None
                 ]
                 neighbours = [
                     mod
-                    for mod in attached_modules + [open_node.parent]
+                    for mod in [*attached_modules, open_node.parent]
                     if mod is not None
                     and (came_from is None or mod.uuid is not came_from.uuid)
                 ]
                 out_neighbours.extend(neighbours)
                 new_open_nodes += list(
-                    zip(neighbours, [open_node] * len(neighbours))
+                    zip(neighbours, [open_node] * len(neighbours), strict=False)
                 )
             open_nodes = new_open_nodes
         return out_neighbours

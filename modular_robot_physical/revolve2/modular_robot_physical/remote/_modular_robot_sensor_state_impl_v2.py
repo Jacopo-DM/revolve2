@@ -10,7 +10,8 @@ from revolve2.modular_robot.sensor_state import (
     ModularRobotSensorState,
 )
 
-from .._uuid_key import UUIDKey
+from modular_robot_physical._uuid_key import UUIDKey
+
 from ._active_hinge_sensor_state_impl import ActiveHingeSensorStateImpl
 from ._camera_sensor_state_impl import CameraSensorStateImpl
 from ._imu_sensor_state_impl import IMUSensorStateImpl
@@ -70,9 +71,8 @@ class ModularRobotSensorStateImplV2(ModularRobotSensorState):
         """
         state = self._imu_sensor_states.get(UUIDKey(sensor))
         if state is None:
-            raise ValueError(
-                "State for IMU sensor not found. Does it exist in the robot definition?"
-            )
+            msg = "State for IMU sensor not found. Does it exist in the robot definition?"
+            raise ValueError(msg)
         return state
 
     def get_camera_sensor_state(
@@ -87,7 +87,6 @@ class ModularRobotSensorStateImplV2(ModularRobotSensorState):
         """
         state = self._camera_sensor_states.get(UUIDKey(sensor))
         if state is None:
-            raise ValueError(
-                "State for camera sensor not found. Does it exist in the robot definition?"
-            )
+            msg = "State for camera sensor not found. Does it exist in the robot definition?"
+            raise ValueError(msg)
         return state

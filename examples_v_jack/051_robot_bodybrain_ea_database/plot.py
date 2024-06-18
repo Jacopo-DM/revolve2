@@ -2,7 +2,7 @@
 
 import config
 import matplotlib.pyplot as plt
-import pandas
+import pandas as pd
 from experiment import Experiment
 from generation import Generation
 from individual import Individual
@@ -20,7 +20,7 @@ def main() -> None:
         config.DATABASE_FILE, open_method=OpenMethod.OPEN_IF_EXISTS
     )
 
-    df = pandas.read_sql(
+    df = pd.read_sql(
         select(
             Experiment.id.label("experiment_id"),
             Generation.generation_index,

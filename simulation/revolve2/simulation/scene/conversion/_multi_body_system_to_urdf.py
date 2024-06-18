@@ -1,16 +1,16 @@
 import uuid
 import warnings
-import xml.dom.minidom as minidom
 import xml.etree.ElementTree as xml
+from xml.dom import minidom
 
 import scipy.spatial.transform
 from pyrr import Quaternion, Vector3
 
-from .._joint_hinge import JointHinge
-from .._multi_body_system import MultiBodySystem
-from .._pose import Pose
-from .._rigid_body import RigidBody
-from ..geometry import (
+from simulation.scene._joint_hinge import JointHinge
+from simulation.scene._multi_body_system import MultiBodySystem
+from simulation.scene._pose import Pose
+from simulation.scene._rigid_body import RigidBody
+from simulation.scene.geometry import (
     Geometry,
     GeometryBox,
     GeometryHeightmap,
@@ -107,7 +107,8 @@ class _URDFConverter:
         parent_rigid_body: RigidBody | None,
     ) -> list[xml.Element]:
         if rigid_body.uuid in self.visited_rigid_bodies:
-            raise ValueError("Multi-body system is cyclic.")
+            msg = "Multi-body system is cyclic."
+            raise ValueError(msg)
         self.visited_rigid_bodies.add(rigid_body.uuid)
 
         link = xml.Element("link", {"name": rigid_body_name})
@@ -165,23 +166,19 @@ class _URDFConverter:
                     )
                 case GeometryPlane():
                     if parent_rigid_body is not None:
-                        raise ValueError(
-                            "Plane geometry can only be included in the root rigid body."
-                        )
+                        msg = "Plane geometry can only be included in the root rigid body."
+                        raise ValueError(msg)
                     if not self.multi_body_system.is_static:
-                        raise ValueError(
-                            "Plane geometry can only be included in static multi-body systems."
-                        )
+                        msg = "Plane geometry can only be included in static multi-body systems."
+                        raise ValueError(msg)
                     self.planes.append(geometry)
                 case GeometryHeightmap():
                     if parent_rigid_body is not None:
-                        raise ValueError(
-                            "Heightmap geometry can only be included in the root rigid body."
-                        )
+                        msg = "Heightmap geometry can only be included in the root rigid body."
+                        raise ValueError(msg)
                     if not self.multi_body_system.is_static:
-                        raise ValueError(
-                            "Heightmap geometry can only be included in static multi-body systems."
-                        )
+                        msg = "Heightmap geometry can only be included in static multi-body systems."
+                        raise ValueError(msg)
                     self.heightmaps.append(geometry)
                 case GeometrySphere():
                     self.geometries_and_names.append((geometry, name))
@@ -193,7 +190,8 @@ class _URDFConverter:
                         rigid_body=rigid_body,
                     )
                 case _:
-                    raise ValueError("Geometry not yet supported.")
+                    msg = "Geometry not yet supported."
+                    raise ValueError(msg)
 
         for joint_index, joint in enumerate(
             self.multi_body_system.get_joints_for_rigid_body(rigid_body)
@@ -206,9 +204,8 @@ class _URDFConverter:
                 continue
 
             if not isinstance(joint, JointHinge):
-                raise ValueError(
-                    "Joints other that hinge joints are not yet supported."
-                )
+                msg = "Joints other that hinge joints are not yet supported."
+                raise ValueError(msg)
 
             child_name = f"{rigid_body_name}_link{joint_index}"
 
@@ -357,9 +354,7 @@ class _URDFConverter:
         xml.SubElement(
             geometry_xml,
             "box",
-            {
-                "size": f"{geometry.size.x} {geometry.size.y} {PLANE_BOX_HEIGHT}"
-            },
+            {"size": f"{geometry.size.x} {geometry.size.y} {PLANE_BOX_HEIGHT}"},
         )
         xyz = link_pose.orientation.inverse * (
             rigid_body.initial_pose.position
@@ -390,8 +385,11 @@ def _quaternion_to_euler(quaternion: Quaternion) -> Vector3:
         warnings.simplefilter(
             "ignore", UserWarning
         )  # ignore gimbal lock warning. it is irrelevant for us.
-        euler = scipy.spatial.transform.Rotation.from_quat(
-            [quaternion.x, quaternion.y, quaternion.z, quaternion.w]
-        ).as_euler("xyz")
+        euler = scipy.spatial.transform.Rotation.from_quat([
+            quaternion.x,
+            quaternion.y,
+            quaternion.z,
+            quaternion.w,
+        ]).as_euler("xyz")
 
     return Vector3(euler)

@@ -1,13 +1,13 @@
 from pyrr import Vector3
 
-from .._right_angles import RightAngles
-from ..base import Brick
+from modular_robot.body._right_angles import RightAngles
+from modular_robot.body.base import Brick
 
 
 class BrickV1(Brick):
     """A brick module for a v1 modular robot."""
 
-    def __init__(self, rotation: float | RightAngles):
+    def __init__(self, rotation: float | RightAngles) -> None:
         """
         Initialize this object.
 

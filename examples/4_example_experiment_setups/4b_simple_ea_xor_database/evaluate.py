@@ -3,8 +3,9 @@
 import numpy as np
 import numpy.typing as npt
 from database_components import Genotype
-
-from revolve2.experimentation.evolution.abstract_elements import Evaluator as Eval
+from revolve2.experimentation.evolution.abstract_elements import (
+    Evaluator as Eval,
+)
 
 
 class Evaluator(Eval):
@@ -12,8 +13,8 @@ class Evaluator(Eval):
 
     @staticmethod
     def evaluate_network(
-        params: npt.NDArray[np.float_], inputs: npt.NDArray[np.float_]
-    ) -> np.float_:
+        params: npt.NDArray[np.float64], inputs: npt.NDArray[np.float64]
+    ) -> np.float64:
         """
         Pass two inputs through a fully connected relu network.
 
@@ -26,7 +27,9 @@ class Evaluator(Eval):
         n1 = np.maximum(0, np.dot(params[3:5], inputs) + params[5])
 
         # Second layer
-        output: np.float_ = np.maximum(0, n0 * params[6] + n1 * params[7] + params[8])
+        output: np.float64 = np.maximum(
+            0, n0 * params[6] + n1 * params[7] + params[8]
+        )
         return output
 
     def evaluate(self, population: list[Genotype]) -> list[float]:
@@ -43,9 +46,10 @@ class Evaluator(Eval):
             expected_outputs = np.array([0, 1, 1, 0])
 
             # Evaluate the provided network parameters
-            outputs = np.array(
-                [self.evaluate_network(genotype.parameters, input) for input in inputs]
-            )
+            outputs = np.array([
+                self.evaluate_network(genotype.parameters, input)
+                for input in inputs
+            ])
 
             # Calculate the difference between the network outputs and the expect outputs
             errors = outputs - expected_outputs

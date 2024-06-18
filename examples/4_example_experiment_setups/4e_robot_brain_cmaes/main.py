@@ -5,7 +5,6 @@ import logging
 import cma
 import config
 from evaluator import Evaluator
-
 from revolve2.experimentation.logging import setup_logging
 from revolve2.experimentation.rng import seed_from_time
 from revolve2.modular_robot.body.base import ActiveHinge
@@ -55,7 +54,9 @@ def main() -> None:
     # Run cma for the defined number of generations.
     logging.info("Start optimization process.")
     while generation_index < config.NUM_GENERATIONS:
-        logging.info(f"Generation {generation_index + 1} / {config.NUM_GENERATIONS}.")
+        logging.info(
+            f"Generation {generation_index + 1} / {config.NUM_GENERATIONS}."
+        )
 
         # Get the sampled solutions(parameters) from cma.
         solutions = opt.ask()

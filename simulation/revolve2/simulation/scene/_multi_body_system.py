@@ -95,9 +95,7 @@ class MultiBodySystem:
         self._half_adjacency_matrix.extend([None] * len(self._rigid_bodies))
 
         # Add rigid body
-        self._rigid_body_to_index[UUIDKey(rigid_body)] = len(
-            self._rigid_bodies
-        )
+        self._rigid_body_to_index[UUIDKey(rigid_body)] = len(self._rigid_bodies)
         self._rigid_bodies.append(rigid_body)
 
     def add_joint(self, joint: Joint) -> None:
@@ -196,21 +194,21 @@ class MultiBodySystem:
         for rigid_body in self._rigid_bodies:
             for geometry in rigid_body.geometries:
                 if not isinstance(geometry, GeometryBox):
-                    raise ValueError(
+                    msg = (
                         "AABB calculation currently only supports GeometryBox."
                     )
+                    raise ValueError(msg)
 
-                for sign in [0.5, -0.5]:
-                    points.append(
-                        rigid_body.initial_pose.position
-                        + rigid_body.initial_pose.orientation
-                        * (
-                            geometry.pose.position
-                            + geometry.pose.orientation
-                            * (geometry.aabb.size * sign)
-                        )
+                points.extend(
+                    rigid_body.initial_pose.position
+                    + rigid_body.initial_pose.orientation
+                    * (
+                        geometry.pose.position
+                        + geometry.pose.orientation
+                        * (geometry.aabb.size * sign)
                     )
-
+                    for sign in [0.5, -0.5]
+                )
         # Calculate AABB from the points.
         # This is simply the min and max between the points for every dimension.
         aabb = pyrr.aabb.create_from_points(points)

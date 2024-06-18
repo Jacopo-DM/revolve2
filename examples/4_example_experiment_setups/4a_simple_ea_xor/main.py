@@ -9,10 +9,15 @@ from evaluate import Evaluator
 from genotype import Genotype
 from individual import Individual
 from numpy.typing import NDArray
-
-from revolve2.experimentation.evolution.abstract_elements import Reproducer, Selector
+from revolve2.experimentation.evolution.abstract_elements import (
+    Reproducer,
+    Selector,
+)
 from revolve2.experimentation.logging import setup_logging
-from revolve2.experimentation.optimization.ea import population_management, selection
+from revolve2.experimentation.optimization.ea import (
+    population_management,
+    selection,
+)
 from revolve2.experimentation.rng import make_rng_time_seed
 
 
@@ -41,19 +46,17 @@ class ParentSelector(Selector):
         :param kwargs: Additional kwargs that are not used in this example.
         :returns: Pairs of indices of selected parents. offspring_size x 2 ints, and the parent population in the KWArgs dict.
         """
-        final_selection = np.asarray(
-            [
-                selection.multiple_unique(
-                    2,
-                    [individual.genotype for individual in population],
-                    [individual.fitness for individual in population],
-                    lambda _, fitnesses: selection.tournament(
-                        self._rng, fitnesses, k=1
-                    ),
-                )
-                for _ in range(self._offspring_size)
-            ]
-        )
+        final_selection = np.asarray([
+            selection.multiple_unique(
+                2,
+                [individual.genotype for individual in population],
+                [individual.fitness for individual in population],
+                lambda _, fitnesses: selection.tournament(
+                    self._rng, fitnesses, k=1
+                ),
+            )
+            for _ in range(self._offspring_size)
+        ])
         """We select not the parents directly, but their respective indices for the reproduction step."""
         return final_selection, {"parent_population": population}
 
@@ -80,14 +83,18 @@ class SurvivorSelector(Selector):
         """
         offspring: list[Individual] | None = kwargs.get("children")
         if offspring is None:
-            raise KeyError("No children passed.")
+            msg = "No children passed."
+            raise KeyError(msg)
 
         """
         We want to get the survivors for the next generation, using our old population and the new children.
-        We determine the survivors by using a tournament, in which to random robots 'compete' against each other. 
+        We determine the survivors by using a tournament, in which to random robots 'compete' against each other.
         This competition is based on the fitness value and the fitter robot will survive.
         """
-        original_survivors, offspring_survivors = population_management.steady_state(
+        (
+            original_survivors,
+            offspring_survivors,
+        ) = population_management.steady_state(
             [i.genotype for i in population],
             [i.fitness for i in population],
             [i.genotype for i in offspring],
@@ -96,7 +103,9 @@ class SurvivorSelector(Selector):
                 n,
                 genotypes,
                 fitnesses,
-                lambda _, fitnesses: selection.tournament(self._rng, fitnesses, k=2),
+                lambda _, fitnesses: selection.tournament(
+                    self._rng, fitnesses, k=2
+                ),
             ),
         )
 
@@ -124,7 +133,9 @@ class CrossoverReproducer(Reproducer):
         """Initialize the Reproducer."""
         self._rng = make_rng_time_seed()
 
-    def reproduce(self, population: NDArray[np.int_], **kwargs: Any) -> list[Genotype]:
+    def reproduce(
+        self, population: NDArray[np.int_], **kwargs: Any
+    ) -> list[Genotype]:
         """
         Make Individuals Reproduce.
 
@@ -137,8 +148,9 @@ class CrossoverReproducer(Reproducer):
             "parent_population"
         )  # We select the population of parents that were passed in KWArgs of the parent selector object.
         if parents is None:
-            raise KeyError("No children passed.")
-        offspring = [
+            msg = "No children passed."
+            raise KeyError(msg)
+        return [
             Genotype.crossover(
                 parents[parent1_i].genotype,
                 parents[parent2_i].genotype,
@@ -146,7 +158,6 @@ class CrossoverReproducer(Reproducer):
             ).mutate(self._rng)
             for parent1_i, parent2_i in population
         ]
-        return offspring
 
 
 def main() -> None:
@@ -179,7 +190,9 @@ def main() -> None:
     # Create a population of individuals, combining genotype with fitness.
     population = [
         Individual(genotype, fitness)
-        for genotype, fitness in zip(initial_genotypes, initial_fitnesses)
+        for genotype, fitness in zip(
+            initial_genotypes, initial_fitnesses, strict=False
+        )
     ]
 
     # Set the current generation to 0.
@@ -188,7 +201,9 @@ def main() -> None:
     # Start the actual optimization process.
     logging.info("Start optimization process.")
     while generation_index < config.NUM_GENERATIONS:
-        logging.info(f"Generation {generation_index + 1} / {config.NUM_GENERATIONS}.")
+        logging.info(
+            f"Generation {generation_index + 1} / {config.NUM_GENERATIONS}."
+        )
 
         # Create offspring.
         parent_pairs, parent_kwargs = parent_selector.select(population)
@@ -204,7 +219,9 @@ def main() -> None:
         # Make an intermediate offspring population.
         offspring_population = [
             Individual(genotype, fitness)
-            for genotype, fitness in zip(offspring_genotypes, offspring_fitnesses)
+            for genotype, fitness in zip(
+                offspring_genotypes, offspring_fitnesses, strict=False
+            )
         ]
 
         # Create the next generation by selecting survivors between original population and offspring.

@@ -1,10 +1,12 @@
 import numpy as np
 import numpy.typing as npt
 
-from ..._modular_robot_control_interface import ModularRobotControlInterface
-from ...body.base import ActiveHinge
-from ...sensor_state import ModularRobotSensorState
-from .._brain_instance import BrainInstance
+from modular_robot._modular_robot_control_interface import (
+    ModularRobotControlInterface,
+)
+from modular_robot.body.base import ActiveHinge
+from modular_robot.brain._brain_instance import BrainInstance
+from modular_robot.sensor_state import ModularRobotSensorState
 
 
 class BrainCpgInstance(BrainInstance):
@@ -38,9 +40,7 @@ class BrainCpgInstance(BrainInstance):
         assert weight_matrix.ndim == 2
         assert weight_matrix.shape[0] == weight_matrix.shape[1]
         assert initial_state.shape[0] == weight_matrix.shape[0]
-        assert all(
-            i >= 0 and i < len(initial_state) for i, _ in output_mapping
-        )
+        assert all(i >= 0 and i < len(initial_state) for i, _ in output_mapping)
 
         # Stabilise the state by integrating it for a while.
         # WARN very hacky way to stabilise the state

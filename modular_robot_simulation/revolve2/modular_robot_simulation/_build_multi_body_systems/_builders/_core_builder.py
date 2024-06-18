@@ -3,9 +3,16 @@ from revolve2.simulation.scene import AABB, MultiBodySystem, Pose, RigidBody
 from revolve2.simulation.scene.geometry import GeometryBox
 from revolve2.simulation.scene.geometry.textures import Texture
 
-from .._body_to_multi_body_system_mapping import BodyToMultiBodySystemMapping
-from .._convert_color import convert_color
-from .._unbuilt_child import UnbuiltChild
+from modular_robot_simulation._build_multi_body_systems._body_to_multi_body_system_mapping import (
+    BodyToMultiBodySystemMapping,
+)
+from modular_robot_simulation._build_multi_body_systems._convert_color import (
+    convert_color,
+)
+from modular_robot_simulation._build_multi_body_systems._unbuilt_child import (
+    UnbuiltChild,
+)
+
 from ._builder import Builder
 
 
@@ -14,7 +21,9 @@ class CoreBuilder(Builder):
 
     _module: Core
 
-    def __init__(self, module: Core, rigid_body: RigidBody, slot_pose: Pose):
+    def __init__(
+        self, module: Core, rigid_body: RigidBody, slot_pose: Pose
+    ) -> None:
         """
         Initialize the Core Builder.
 

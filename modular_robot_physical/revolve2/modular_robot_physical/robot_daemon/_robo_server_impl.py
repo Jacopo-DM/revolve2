@@ -1,17 +1,20 @@
 import threading
 import time
-from typing import Any, Sequence
+from collections.abc import Sequence
+from typing import Any
 
 import numpy as np
 from numpy.typing import NDArray
 from pyrr import Vector3
 
-from .._hardware_type import HardwareType
-from .._protocol_version import PROTOCOL_VERSION
-from ..physical_interfaces import PhysicalInterface
-from ..robot_daemon_api import robot_daemon_protocol_capnp
-from ..robot_daemon_api.robot_daemon_protocol_capnp import Image as capnpImage
-from ..robot_daemon_api.robot_daemon_protocol_capnp import (
+from modular_robot_physical._hardware_type import HardwareType
+from modular_robot_physical._protocol_version import PROTOCOL_VERSION
+from modular_robot_physical.physical_interfaces import PhysicalInterface
+from modular_robot_physical.robot_daemon_api import robot_daemon_protocol_capnp
+from modular_robot_physical.robot_daemon_api.robot_daemon_protocol_capnp import (
+    Image as capnpImage,
+)
+from modular_robot_physical.robot_daemon_api.robot_daemon_protocol_capnp import (
     Vector3 as capnpVector3,
 )
 
@@ -58,9 +61,6 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
 
         self._active_pins = None
 
-        if self._debug:
-            print("client connected")
-
         self._physical_interface.enable()
 
         self._targets = {}
@@ -89,7 +89,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
             pins: list[int] = []
             targets: list[float] = []
             for desired_pin, desired_target in zip(
-                desired_pins, desired_targets
+                desired_pins, desired_targets, strict=False
             ):
                 pins.append(desired_pin)
 
@@ -103,10 +103,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
                                 maybe_current_target
                                 + min(
                                     max(
-                                        (
-                                            desired_target
-                                            - maybe_current_target
-                                        ),
+                                        (desired_target - maybe_current_target),
                                         -self._CAREFUL_STEP,
                                     ),
                                     self._CAREFUL_STEP,
@@ -115,7 +112,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
                         case HardwareType.v2:  # careful mode disabled for v2. enable when running into power failures.
                             targets.append(desired_target)
 
-            for pin, target in zip(pins, targets):
+            for pin, target in zip(pins, targets, strict=False):
                 self._current_targets[pin] = target
 
             self._physical_interface.set_servo_targets(pins, targets)
@@ -130,7 +127,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
 
                 with self._lock:
                     for pin, position in zip(
-                        self._active_pins, hinge_positions
+                        self._active_pins, hinge_positions, strict=False
                     ):
                         self._measured_hinge_positions[pin] = position
 
@@ -144,16 +141,11 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
         self, pins: list[int], targets: list[float]
     ) -> None:
         with self._lock:
-            for pin, target in zip(pins, targets):
+            for pin, target in zip(pins, targets, strict=False):
                 self._targets[pin] = target
 
     def cleanup(self) -> None:
         """Stop the server and sets everything to low power."""
-        if self._debug:
-            print("client disconnected.")
-
-        if self._debug:
-            print("stopping background thread.")
         self._enabled = False
         self._update_loop_thread.join()
 
@@ -170,11 +162,8 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
         :param args: Arguments to the setup process.
         :returns: Whether the setup was successful.
         """
-        if self._debug:
-            print("setup")
-
         with self._lock:
-            self._active_pins = [pin for pin in args.activePins]
+            self._active_pins = list(args.activePins)
 
         self._enabled = True
         self._update_loop_thread = threading.Thread(target=self._update_loop)
@@ -201,9 +190,6 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
 
         :param args: Args to the function.
         """
-        if self._debug:
-            print("control")
-
         self._queue_servo_targets(
             [pin_control.pin for pin_control in args.setPins],
             [pin_control.target for pin_control in args.setPins],
@@ -222,9 +208,6 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
         :param args: Args to the function.
         :returns: The readings.
         """
-        if self._debug:
-            print("read_sensors")
-
         return self._get_sensor_readings(args.readPins)
 
     async def controlAndReadSensors(
@@ -238,9 +221,6 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
         :param args: Args to the function.
         :returns: The readings.
         """
-        if self._debug:
-            print("control_and_read_sensors")
-
         self._queue_servo_targets(
             [pin_control.pin for pin_control in args.setPins],
             [pin_control.target for pin_control in args.setPins],
@@ -252,15 +232,15 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
         self, pins: Sequence[int]
     ) -> robot_daemon_protocol_capnp.SensorReadings:
         if self._active_pins is None:
-            raise RuntimeError("setup must be called first.")
+            msg = "setup must be called first."
+            raise RuntimeError(msg)
 
         pins_readings: list[float] = []
         with self._lock:
             for pin in pins:
                 if pin not in self._active_pins:
-                    raise ValueError(
-                        "Position requested for pin that was not flagged as active during setup."
-                    )
+                    msg = "Position requested for pin that was not flagged as active during setup."
+                    raise ValueError(msg)
                 value = self._measured_hinge_positions.get(pin)
                 if value is None:
                     value = 0.0

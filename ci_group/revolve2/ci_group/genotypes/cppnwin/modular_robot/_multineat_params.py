@@ -339,11 +339,9 @@ class CollectionOfDefaultValues:
         # [ ] Transfer values from examples/DefaultConfig.NEAT
     }
 
-    __seg_fault_prone__: frozenset[str] = frozenset(
-        [
-            # [ ] Verify which of value dicts cause seg-faults
-        ]
-    )
+    __seg_fault_prone__: frozenset[str] = frozenset([
+        # [ ] Verify which of value dicts cause seg-faults
+    ])
 
     __inject_override__: ClassVar[dict[str, float | int | bool]] = {
         # NOTE - These field-values are enforced in every case

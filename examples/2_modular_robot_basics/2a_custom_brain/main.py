@@ -1,7 +1,9 @@
 """Main script for the example."""
 
 from revolve2.ci_group import terrains
-from revolve2.ci_group.simulation_parameters import make_standard_batch_parameters
+from revolve2.ci_group.simulation_parameters import (
+    make_standard_batch_parameters,
+)
 from revolve2.experimentation.logging import setup_logging
 from revolve2.modular_robot import ModularRobot, ModularRobotControlInterface
 from revolve2.modular_robot.body import RightAngles
@@ -85,10 +87,18 @@ class CustomBrainInstance(BrainInstance):
         :param sensor_state: Interface for reading the current sensor state.
         :param control_interface: Interface for controlling the robot.
         """
-        control_interface.set_active_hinge_target(self.first_left_active_hinge, 1.0)
-        control_interface.set_active_hinge_target(self.second_left_active_hinge, 0.0)
-        control_interface.set_active_hinge_target(self.first_right_active_hinge, 0.0)
-        control_interface.set_active_hinge_target(self.second_right_active_hinge, -1.0)
+        control_interface.set_active_hinge_target(
+            self.first_left_active_hinge, 1.0
+        )
+        control_interface.set_active_hinge_target(
+            self.second_left_active_hinge, 0.0
+        )
+        control_interface.set_active_hinge_target(
+            self.first_right_active_hinge, 0.0
+        )
+        control_interface.set_active_hinge_target(
+            self.second_right_active_hinge, -1.0
+        )
 
 
 class CustomBrain(Brain):

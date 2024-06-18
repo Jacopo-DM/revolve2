@@ -1,10 +1,13 @@
 """Evaluator class."""
 
 from genotype import Genotype
-
 from revolve2.ci_group import fitness_functions, terrains
-from revolve2.ci_group.simulation_parameters import make_standard_batch_parameters
-from revolve2.experimentation.evolution.abstract_elements import Evaluator as Eval
+from revolve2.ci_group.simulation_parameters import (
+    make_standard_batch_parameters,
+)
+from revolve2.experimentation.evolution.abstract_elements import (
+    Evaluator as Eval,
+)
 from revolve2.modular_robot_simulation import (
     ModularRobotScene,
     Terrain,
@@ -63,12 +66,10 @@ class Evaluator(Eval):
         )
 
         # Calculate the xy displacements.
-        xy_displacements = [
+        return [
             fitness_functions.xy_displacement(
                 states[0].get_modular_robot_simulation_state(robot),
                 states[-1].get_modular_robot_simulation_state(robot),
             )
-            for robot, states in zip(robots, scene_states)
+            for robot, states in zip(robots, scene_states, strict=False)
         ]
-
-        return xy_displacements

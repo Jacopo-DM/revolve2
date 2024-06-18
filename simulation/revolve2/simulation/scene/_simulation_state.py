@@ -71,9 +71,7 @@ class SimulationState(ABC):
         """
 
     @abstractmethod
-    def get_camera_view(
-        self, camera_sensor: CameraSensor
-    ) -> NDArray[np.uint8]:
+    def get_camera_view(self, camera_sensor: CameraSensor) -> NDArray[np.uint8]:
         """
         Get the camera view.
 

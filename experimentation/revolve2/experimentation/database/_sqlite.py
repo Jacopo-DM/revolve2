@@ -42,16 +42,14 @@ def __common(
     exists = os.path.exists(db_file)
     if open_method == OpenMethod.OPEN_IF_EXISTS:
         if not exists:
-            raise RuntimeError(
-                f"Open check set to OPEN_IF_EXISTS and database does not exist: {db_file}"
-            )
+            msg = f"Open check set to OPEN_IF_EXISTS and database does not exist: {db_file}"
+            raise RuntimeError(msg)
     elif open_method == OpenMethod.OPEN_OR_CREATE:
         os.makedirs(Path(db_file).parent, exist_ok=True)
     elif open_method == OpenMethod.NOT_EXISTS_AND_CREATE:
         if exists:
-            raise RuntimeError(
-                f"Open check set to NOT_EXISTS_AND_CREATE and database exists: {db_file}"
-            )
+            msg = f"Open check set to NOT_EXISTS_AND_CREATE and database exists: {db_file}"
+            raise RuntimeError(msg)
         os.makedirs(Path(db_file).parent, exist_ok=True)
     elif open_method == OpenMethod.OVERWRITE_IF_EXISTS:
         if exists:

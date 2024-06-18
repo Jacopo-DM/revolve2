@@ -7,4 +7,11 @@ from ._genotype import Genotype
 from ._individual import Individual
 from ._population import Population
 
-__all__ = ["Base", "Experiment", "Generation", "Genotype", "Individual", "Population"]
+__all__ = [
+    "Base",
+    "Experiment",
+    "Generation",
+    "Genotype",
+    "Individual",
+    "Population",
+]

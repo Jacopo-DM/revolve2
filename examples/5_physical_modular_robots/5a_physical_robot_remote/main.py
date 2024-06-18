@@ -28,10 +28,14 @@ def make_body() -> (
     body = BodyV2()
     body.core_v2.left_face.bottom = ActiveHingeV2(RightAngles.DEG_0)
     body.core_v2.left_face.bottom.attachment = ActiveHingeV2(RightAngles.DEG_0)
-    body.core_v2.left_face.bottom.attachment.attachment = BrickV2(RightAngles.DEG_0)
+    body.core_v2.left_face.bottom.attachment.attachment = BrickV2(
+        RightAngles.DEG_0
+    )
     body.core_v2.right_face.bottom = ActiveHingeV2(RightAngles.DEG_0)
     body.core_v2.right_face.bottom.attachment = ActiveHingeV2(RightAngles.DEG_0)
-    body.core_v2.right_face.bottom.attachment.attachment = BrickV2(RightAngles.DEG_0)
+    body.core_v2.right_face.bottom.attachment.attachment = BrickV2(
+        RightAngles.DEG_0
+    )
 
     """Here we collect all ActiveHinges, to map them later onto the physical robot."""
     active_hinges = (
@@ -45,7 +49,6 @@ def make_body() -> (
 
 def on_prepared() -> None:
     """Do things when the robot is prepared and ready to start the controller."""
-    print("Done. Press enter to start the brain.")
     input()
 
 
@@ -62,12 +65,12 @@ def main() -> None:
 
     """
     Some important notes to understand:
-    - Hinge mappings are specific to each robot, so they have to be created new for each type of body. 
+    - Hinge mappings are specific to each robot, so they have to be created new for each type of body.
     - The pin`s id`s can be found on th physical robots HAT.
     - The order of the pin`s is crucial for a correct translation into the physical robot.
-    - Each ActiveHinge needs one corresponding pin to be able to move. 
+    - Each ActiveHinge needs one corresponding pin to be able to move.
     - If the mapping is faulty check the simulators behavior versus the physical behavior and adjust the mapping iteratively.
-    
+
     For a concrete implementation look at the following example of mapping the robots`s hinges:
     """
     hinge_1, hinge_2, hinge_3, hinge_4 = hinges
@@ -92,7 +95,9 @@ def main() -> None:
         hinge_mapping=hinge_mapping,
         run_duration=30,
         control_frequency=20,
-        initial_hinge_positions={UUIDKey(active_hinge): 0.0 for active_hinge in hinges},
+        initial_hinge_positions={
+            UUIDKey(active_hinge): 0.0 for active_hinge in hinges
+        },
         inverse_servos={},
     )
 
@@ -101,7 +106,6 @@ def main() -> None:
     Make sure to target the correct hardware type and fill in the correct IP and credentials.
     The debug flag is turned on. If the remote complains it cannot keep up, turning off debugging might improve performance.
     """
-    print("Initializing robot..")
     run_remote(
         config=config,
         hostname="localhost",  # "Set the robot IP here.

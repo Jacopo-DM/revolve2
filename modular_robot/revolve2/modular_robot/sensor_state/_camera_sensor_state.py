@@ -15,4 +15,3 @@ class CameraSensorState(ABC):
 
         :returns: The image.
         """
-        pass

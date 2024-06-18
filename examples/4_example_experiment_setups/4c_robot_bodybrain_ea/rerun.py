@@ -2,11 +2,13 @@
 
 import logging
 import pickle
+from typing import TYPE_CHECKING
 
 from evaluator import Evaluator
-from individual import Individual
-
 from revolve2.experimentation.logging import setup_logging
+
+if TYPE_CHECKING:
+    from individual import Individual
 
 # This is a pickled genotype we optimized.
 # You can copy your own parameters from the optimization output log.

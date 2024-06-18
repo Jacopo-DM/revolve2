@@ -1,13 +1,13 @@
 from pyrr import Vector3
 
-from .._right_angles import RightAngles
-from ..base import Core
+from modular_robot.body._right_angles import RightAngles
+from modular_robot.body.base import Core
 
 
 class CoreV1(Core):
     """The core module of a v1 modular robot."""
 
-    def __init__(self, rotation: float | RightAngles):
+    def __init__(self, rotation: float | RightAngles) -> None:
         """
         Initialize this object.
 

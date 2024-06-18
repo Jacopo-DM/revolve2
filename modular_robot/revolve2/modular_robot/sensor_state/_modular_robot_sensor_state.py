@@ -1,6 +1,11 @@
 from abc import ABC, abstractmethod
 
-from ..body.sensors import ActiveHingeSensor, CameraSensor, IMUSensor
+from modular_robot.body.sensors import (
+    ActiveHingeSensor,
+    CameraSensor,
+    IMUSensor,
+)
+
 from ._active_hinge_sensor_state import ActiveHingeSensorState
 from ._camera_sensor_state import CameraSensorState
 from ._imu_sensor_state import IMUSensorState

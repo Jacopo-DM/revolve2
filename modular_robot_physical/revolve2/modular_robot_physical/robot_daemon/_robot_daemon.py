@@ -3,9 +3,13 @@ from typing import Any
 
 import capnp
 
-from .._hardware_type import HardwareType
-from .._standard_port import STANDARD_PORT
-from ..physical_interfaces import PhysicalInterface, get_interface
+from modular_robot_physical._hardware_type import HardwareType
+from modular_robot_physical._standard_port import STANDARD_PORT
+from modular_robot_physical.physical_interfaces import (
+    PhysicalInterface,
+    get_interface,
+)
+
 from ._robo_server_impl import RoboServerImpl
 
 
@@ -41,10 +45,6 @@ class _Program:
         :param stream: Connection stream.
         """
         if self._has_client:
-            if self._debug:
-                print(
-                    "Client connected, but still handling another client. Dropping new client.."
-                )
             stream.close()
         else:
             self._has_client = True

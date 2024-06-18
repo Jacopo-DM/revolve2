@@ -18,4 +18,3 @@ class SimulationHandler(ABC):
         :param control: Interface for setting control targets.
         :param dt: The time since the last call to this function.
         """
-        pass

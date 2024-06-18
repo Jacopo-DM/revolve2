@@ -20,7 +20,8 @@ def create(x: float = 0.0, y: float = 0.0, dtype: Any = None) -> np.ndarray:  # 
     :return: The Vector.
     """
     if isinstance(x, list | np.ndarray):
-        raise ValueError("Function requires non-list arguments")
+        msg = "Function requires non-list arguments"
+        raise ValueError(msg)
     return np.array([x, y], dtype=dtype)
 
 
@@ -45,9 +46,7 @@ def create_unit_length_y(dtype: Any = None) -> np.ndarray:  # type:ignore
 
 
 @parameters_as_numpy_arrays("mat")  # type:ignore
-def create_from_matrix33_translation(
-    mat: Any, dtype: Any = None
-) -> np.ndarray:  # type:ignore
+def create_from_matrix33_translation(mat: Any, dtype: Any = None) -> np.ndarray:  # type:ignore
     """
     Create a Vector2 from a 3x3 Matrix.
 

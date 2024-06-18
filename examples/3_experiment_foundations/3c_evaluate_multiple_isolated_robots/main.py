@@ -3,7 +3,9 @@
 import logging
 
 from revolve2.ci_group import fitness_functions, modular_robots_v1, terrains
-from revolve2.ci_group.simulation_parameters import make_standard_batch_parameters
+from revolve2.ci_group.simulation_parameters import (
+    make_standard_batch_parameters,
+)
 from revolve2.experimentation.logging import setup_logging
 from revolve2.experimentation.rng import make_rng_time_seed
 from revolve2.modular_robot import ModularRobot
@@ -28,7 +30,10 @@ def main() -> None:
         modular_robots_v1.spider_v1(),
     ]
     brains = [BrainCpgNetworkNeighborRandom(body, rng) for body in bodies]
-    robots = [ModularRobot(body, brain) for body, brain in zip(bodies, brains)]
+    robots = [
+        ModularRobot(body, brain)
+        for body, brain in zip(bodies, brains, strict=False)
+    ]
 
     # Create a flat terrain
     terrain = terrains.flat()
@@ -62,7 +67,7 @@ def main() -> None:
             states[0].get_modular_robot_simulation_state(robot),
             states[-1].get_modular_robot_simulation_state(robot),
         )
-        for robot, states in zip(robots, scene_states)
+        for robot, states in zip(robots, scene_states, strict=False)
     ]
 
     logging.info(xy_displacements)

@@ -11,9 +11,16 @@ from revolve2.simulation.scene import (
 from revolve2.simulation.scene.geometry import GeometryBox
 from revolve2.simulation.scene.geometry.textures import Texture
 
-from .._body_to_multi_body_system_mapping import BodyToMultiBodySystemMapping
-from .._convert_color import convert_color
-from .._unbuilt_child import UnbuiltChild
+from modular_robot_simulation._build_multi_body_systems._body_to_multi_body_system_mapping import (
+    BodyToMultiBodySystemMapping,
+)
+from modular_robot_simulation._build_multi_body_systems._convert_color import (
+    convert_color,
+)
+from modular_robot_simulation._build_multi_body_systems._unbuilt_child import (
+    UnbuiltChild,
+)
+
 from ._builder import Builder
 
 
@@ -24,7 +31,7 @@ class ActiveHingeBuilder(Builder):
 
     def __init__(
         self, module: ActiveHinge, rigid_body: RigidBody, slot_pose: Pose
-    ):
+    ) -> None:
         """
         Initialize the Active Hinge Builder.
 
@@ -48,14 +55,12 @@ class ActiveHingeBuilder(Builder):
         :param body_to_multi_body_system_mapping: A mapping from body to multi-body system
         :return: The next children to be built.
         """
-        SERVO_BBOX2_POSITION = Vector3(
-            [
-                self._module.servo1_bounding_box[0] / 2.0
-                + self._module.servo2_bounding_box[0] / 2.0,
-                0.0,
-                0.0,
-            ]
-        )
+        SERVO_BBOX2_POSITION = Vector3([
+            self._module.servo1_bounding_box[0] / 2.0
+            + self._module.servo2_bounding_box[0] / 2.0,
+            0.0,
+            0.0,
+        ])
 
         frame_position = (
             self._slot_pose.position
@@ -143,17 +148,15 @@ class ActiveHingeBuilder(Builder):
             )
         )
 
-        tasks = []
         attachment_point = self._module.attachment_points[
             self._module.ATTACHMENT
         ]
         child = self._module.children.get(self._module.ATTACHMENT)
 
-        for sensor in self._module.sensors.get_all_sensors():
-            tasks.append(
-                UnbuiltChild(child_object=sensor, rigid_body=next_rigid_body)
-            )
-
+        tasks = [
+            UnbuiltChild(child_object=sensor, rigid_body=next_rigid_body)
+            for sensor in self._module.sensors.get_all_sensors()
+        ]
         if child is not None:
             unbuilt = UnbuiltChild(
                 child_object=child,

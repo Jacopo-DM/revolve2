@@ -16,15 +16,20 @@ from database_components import (
     Population,
 )
 from evaluator import Evaluator
-from sqlalchemy.engine import Engine
-from sqlalchemy.orm import Session
-
 from revolve2.experimentation.database import OpenMethod, open_database_sqlite
 from revolve2.experimentation.evolution import ModularRobotEvolution
-from revolve2.experimentation.evolution.abstract_elements import Reproducer, Selector
+from revolve2.experimentation.evolution.abstract_elements import (
+    Reproducer,
+    Selector,
+)
 from revolve2.experimentation.logging import setup_logging
-from revolve2.experimentation.optimization.ea import population_management, selection
+from revolve2.experimentation.optimization.ea import (
+    population_management,
+    selection,
+)
 from revolve2.experimentation.rng import make_rng, seed_from_time
+from sqlalchemy.engine import Engine
+from sqlalchemy.orm import Session
 
 
 class ParentSelector(Selector):
@@ -58,12 +63,15 @@ class ParentSelector(Selector):
                 selection.multiple_unique(
                     selection_size=2,
                     population=[
-                        individual.genotype for individual in population.individuals
+                        individual.genotype
+                        for individual in population.individuals
                     ],
                     fitnesses=[
-                        individual.fitness for individual in population.individuals
+                        individual.fitness
+                        for individual in population.individuals
                     ],
-                    selection_function=lambda _, fitnesses: selection.tournament(
+                    selection_function=lambda _,
+                    fitnesses: selection.tournament(
                         rng=self.rng, fitnesses=fitnesses, k=2
                     ),
                 )
@@ -99,16 +107,20 @@ class SurvivorSelector(Selector):
         offspring = kwargs.get("children")
         offspring_fitness = kwargs.get("child_task_performance")
         if offspring is None or offspring_fitness is None:
-            raise ValueError(
-                "No offspring was passed with positional argument 'children' and / or 'child_task_performance'."
-            )
+            msg = "No offspring was passed with positional argument 'children' and / or 'child_task_performance'."
+            raise ValueError(msg)
 
-        original_survivors, offspring_survivors = population_management.steady_state(
+        (
+            original_survivors,
+            offspring_survivors,
+        ) = population_management.steady_state(
             old_genotypes=[i.genotype for i in population.individuals],
             old_fitnesses=[i.fitness for i in population.individuals],
             new_genotypes=offspring,
             new_fitnesses=offspring_fitness,
-            selection_function=lambda n, genotypes, fitnesses: selection.multiple_unique(
+            selection_function=lambda n,
+            genotypes,
+            fitnesses: selection.multiple_unique(
                 selection_size=n,
                 population=genotypes,
                 fitnesses=fitnesses,
@@ -151,7 +163,7 @@ class CrossoverReproducer(Reproducer):
         rng: np.random.Generator,
         innov_db_body: multineat.InnovationDatabase,
         innov_db_brain: multineat.InnovationDatabase,
-    ):
+    ) -> None:
         """
         Initialize the reproducer.
 
@@ -176,9 +188,10 @@ class CrossoverReproducer(Reproducer):
         """
         parent_population: Population | None = kwargs.get("parent_population")
         if parent_population is None:
-            raise ValueError("No parent population given.")
+            msg = "No parent population given."
+            raise ValueError(msg)
 
-        offspring_genotypes = [
+        return [
             Genotype.crossover(
                 parent_population.individuals[parent1_i].genotype,
                 parent_population.individuals[parent2_i].genotype,
@@ -186,7 +199,6 @@ class CrossoverReproducer(Reproducer):
             ).mutate(self.innov_db_body, self.innov_db_brain, self.rng)
             for parent1_i, parent2_i in population
         ]
-        return offspring_genotypes
 
 
 def run_experiment(dbengine: Engine) -> None:
@@ -215,7 +227,7 @@ def run_experiment(dbengine: Engine) -> None:
 
     """
     Here we initialize the components used for the evolutionary process.
-    
+
     - evaluator: Allows us to evaluate a population of modular robots.
     - parent_selector: Allows us to select parents from a population of modular robots.
     - survivor_selector: Allows us to select survivors from a population.
@@ -223,7 +235,9 @@ def run_experiment(dbengine: Engine) -> None:
     - modular_robot_evolution: The evolutionary process as a object that can be iterated.
     """
     evaluator = Evaluator(headless=True, num_simulators=config.NUM_SIMULATORS)
-    parent_selector = ParentSelector(offspring_size=config.OFFSPRING_SIZE, rng=rng)
+    parent_selector = ParentSelector(
+        offspring_size=config.OFFSPRING_SIZE, rng=rng
+    )
     survivor_selector = SurvivorSelector(rng=rng)
     crossover_reproducer = CrossoverReproducer(
         rng=rng, innov_db_body=innov_db_body, innov_db_brain=innov_db_brain

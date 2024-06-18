@@ -1,5 +1,5 @@
 import math
-from typing import Sequence
+from collections.abc import Sequence
 
 import cv2
 import numpy as np
@@ -12,7 +12,9 @@ from robohatlib.hal.assemblyboard.ServoAssemblyConfig import (
 )
 from robohatlib.Robohat import Robohat
 
-from .._physical_interface import PhysicalInterface
+from modular_robot_physical.physical_interfaces._physical_interface import (
+    PhysicalInterface,
+)
 
 
 class V2PhysicalInterface(PhysicalInterface):
@@ -83,9 +85,7 @@ class V2PhysicalInterface(PhysicalInterface):
             self._robohat = Robohat(
                 self._SERVOASSEMBLY_1_CONFIG, self._SERVOASSEMBLY_2_CONFIG, 7
             )
-            self._robohat.init(
-                servoboard_1_datas_list, servoboard_2_datas_list
-            )
+            self._robohat.init(servoboard_1_datas_list, servoboard_2_datas_list)
             self._robohat.do_buzzer_beep()
             self._robohat.set_servo_direct_mode(_mode=True)
 
@@ -98,23 +98,17 @@ class V2PhysicalInterface(PhysicalInterface):
         :param pins: The GPIO pin numbers.
         :param targets: The target angles.
         """
-        for pin, target in zip(pins, targets):
-            if self._debug:
-                print(f"{pin:03d} | {target}")
-
         if not self._dry:
             all_angles = [90.0] * 32
             angles = [
                 90.0 + target / (2.0 * math.pi) * 360.0 for target in targets
             ]
-            for pin, angle in zip(pins, angles):
+            for pin, angle in zip(pins, angles, strict=False):
                 all_angles[pin] = angle
             self._robohat.update_servo_data_direct(all_angles)
 
     def enable(self) -> None:
         """Start the robot."""
-        if self._debug:
-            print("Waking up servos.")
         if not self._dry:
             self._robohat.wakeup_servo()
 
@@ -124,8 +118,6 @@ class V2PhysicalInterface(PhysicalInterface):
 
         This disables all active modules and sensors.
         """
-        if self._debug:
-            print("Putting servos to sleep.")
         if not self._dry:
             self._robohat.put_servo_to_sleep()
 
@@ -156,7 +148,8 @@ class V2PhysicalInterface(PhysicalInterface):
         """
         gyro = self._robohat.get_imu_gyro()
         if gyro is None:
-            raise RuntimeError("Could not get IMU gyro reading!")
+            msg = "Could not get IMU gyro reading!"
+            raise RuntimeError(msg)
         return Vector3(gyro)
 
     def get_imu_orientation(self) -> Vector3:
@@ -168,7 +161,8 @@ class V2PhysicalInterface(PhysicalInterface):
         """
         orientation = self._robohat.get_imu_magnetic_fields()
         if orientation is None:
-            raise RuntimeError("Could not get IMU magnetic fields reading!")
+            msg = "Could not get IMU magnetic fields reading!"
+            raise RuntimeError(msg)
         return Vector3(orientation)
 
     def get_imu_specific_force(self) -> Vector3:
@@ -180,7 +174,8 @@ class V2PhysicalInterface(PhysicalInterface):
         """
         accel = self._robohat.get_imu_acceleration()
         if accel is None:
-            raise RuntimeError("Could not get IMU acceleration reading!")
+            msg = "Could not get IMU acceleration reading!"
+            raise RuntimeError(msg)
         return Vector3(accel)
 
     def get_camera_view(self) -> NDArray[np.uint8]:

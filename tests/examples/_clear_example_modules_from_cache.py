@@ -1,6 +1,6 @@
 import sys
 
-from ..conftest import EXAMPLES_DIR
+from tests.conftest import EXAMPLES_DIR
 
 
 def clear_exp_modules_from_cache() -> None:
@@ -10,7 +10,7 @@ def clear_exp_modules_from_cache() -> None:
         for name, mod in sys.modules.items()
         if mod is not None
         and hasattr(mod, "__file__")
-        and getattr(mod, "__file__") is not None
+        and mod.__file__ is not None
         and getattr(mod, "__file__", "").startswith(EXAMPLES_DIR)
     ]
     for mod in modules_to_delete:

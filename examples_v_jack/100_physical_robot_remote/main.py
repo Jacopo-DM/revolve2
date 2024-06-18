@@ -62,12 +62,12 @@ def main() -> None:
 
     """
     Some important notes to understand:
-    - Hinge mappings are specific to each robot, so they have to be created new for each type of body. 
+    - Hinge mappings are specific to each robot, so they have to be created new for each type of body.
     - The pin`s id`s can be found on th physical robots HAT.
     - The order of the pin`s is crucial for a correct translation into the physical robot.
-    - Each ActiveHinge needs one corresponding pin to be able to move. 
+    - Each ActiveHinge needs one corresponding pin to be able to move.
     - If the mapping is faulty check the simulators behavior versus the physical behavior and adjust the mapping iteratively.
-    
+
     For a concrete implementation look at the following example of mapping the robots`s hinges:
     """
     hinge_1, hinge_2, hinge_3, hinge_4 = hinges

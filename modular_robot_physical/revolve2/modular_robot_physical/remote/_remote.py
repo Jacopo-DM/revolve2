@@ -1,6 +1,7 @@
 import asyncio
 import time
-from typing import Callable
+from collections.abc import Callable
+from typing import TYPE_CHECKING
 
 import capnp
 import numpy as np
@@ -8,14 +9,14 @@ from numpy.typing import NDArray
 from pyrr import Vector3
 from revolve2.modular_robot.body.base import ActiveHinge
 from revolve2.modular_robot.body.sensors import CameraSensor, IMUSensor
-from revolve2.modular_robot.sensor_state import ModularRobotSensorState
 
-from .._config import Config
-from .._hardware_type import HardwareType
-from .._protocol_version import PROTOCOL_VERSION
-from .._standard_port import STANDARD_PORT
-from .._uuid_key import UUIDKey
-from ..robot_daemon_api import robot_daemon_protocol_capnp
+from modular_robot_physical._config import Config
+from modular_robot_physical._hardware_type import HardwareType
+from modular_robot_physical._protocol_version import PROTOCOL_VERSION
+from modular_robot_physical._standard_port import STANDARD_PORT
+from modular_robot_physical._uuid_key import UUIDKey
+from modular_robot_physical.robot_daemon_api import robot_daemon_protocol_capnp
+
 from ._camera_sensor_state_impl import CameraSensorStateImpl
 from ._imu_sensor_state_impl import IMUSensorStateImpl
 from ._modular_robot_control_interface_impl import (
@@ -23,6 +24,9 @@ from ._modular_robot_control_interface_impl import (
 )
 from ._modular_robot_sensor_state_impl_v1 import ModularRobotSensorStateImplV1
 from ._modular_robot_sensor_state_impl_v2 import ModularRobotSensorStateImplV2
+
+if TYPE_CHECKING:
+    from revolve2.modular_robot.sensor_state import ModularRobotSensorState
 
 
 def _active_hinge_targets_to_pin_controls(
@@ -38,12 +42,12 @@ def _active_hinge_targets_to_pin_controls(
         (-1.0 if inverse else 1.0)
         * min(max(target, -active_hinge.value.range), active_hinge.value.range)
         for (active_hinge, target), inverse in zip(
-            active_hinges_and_targets, inverses
+            active_hinges_and_targets, inverses, strict=False
         )
     ]
     return [
         robot_daemon_protocol_capnp.PinControl(pin=pin, target=target)
-        for pin, target in zip(pins, targets)
+        for pin, target in zip(pins, targets, strict=False)
     ]
 
 
@@ -73,26 +77,28 @@ async def _run_remote_impl(
         service = client.bootstrap().cast_as(
             robot_daemon_protocol_capnp.RoboServer
         )
-    except ConnectionRefusedError:
-        raise ConnectionRefusedError("Could not connect to robot.")
+    except ConnectionRefusedError as e:
+        msg = "Could not connect to robot."
+        raise ConnectionRefusedError(msg) from e
 
     # Setup the robot and check protocol version
     setup_response: robot_daemon_protocol_capnp.SetupResponse = (
         await service.setup(
             robot_daemon_protocol_capnp.SetupArgs(
-                version=PROTOCOL_VERSION, activePins=[x for x in range(32)]
+                version=PROTOCOL_VERSION, activePins=list(range(32))
             )
         )
     ).response
     if not setup_response.versionOk:
-        raise RuntimeError("Protocol version does not match for robot.")
+        msg = "Protocol version does not match for robot."
+        raise RuntimeError(msg)
     match setup_response.hardwareType:
         case "v1":
             hardware_type = HardwareType.v1
         case "v2":
             hardware_type = HardwareType.v2
         case _:
-            raise NotImplementedError()
+            raise NotImplementedError
 
     # Set hinges to initial positions.
     pin_controls = _active_hinge_targets_to_pin_controls(
@@ -115,23 +121,17 @@ async def _run_remote_impl(
                     )
                 )
             ).response
-            print(f"Battery level is at {sensor_readings.battery * 100.0}%.")
 
     # Fire prepared callback
     on_prepared()
 
     if manual_mode:
-        print(
-            "Press Ctrl-C to exit. type a value between -1 and 1 to manually set the target for each active hinge."
-        )
         while True:
             try:
                 target = float(input())
             except ValueError:
-                print("Invalid target.")
                 continue
             if target < -1 or target > 1:
-                print("Invalid target.")
                 continue
             pin_controls = _active_hinge_targets_to_pin_controls(
                 config,
@@ -161,7 +161,7 @@ async def _run_remote_impl(
             case HardwareType.v1:
                 sensor_state = ModularRobotSensorStateImplV1()
             case HardwareType.v2:
-                pins = [pin for pin in active_hinge_sensor_to_pin.values()]
+                pins = list(active_hinge_sensor_to_pin.values())
                 sensor_readings = (
                     await service.readSensors(
                         robot_daemon_protocol_capnp.ReadSensorsArgs(
@@ -180,15 +180,15 @@ async def _run_remote_impl(
 
                 sensor_state = ModularRobotSensorStateImplV2(
                     hinge_sensor_mapping=active_hinge_sensor_to_pin,
-                    hinge_positions={
-                        pin: position
-                        for pin, position in zip(pins, sensor_readings.pins)
-                    },
+                    hinge_positions=dict(
+                        zip(pins, sensor_readings.pins, strict=False)
+                    ),
                     imu_sensor_states=imu_sensor_states,
                     camera_sensor_states=camera_sensor_states,
                 )
             case _:
-                raise NotImplementedError("Hardware type not supported.")
+                msg = "Hardware type not supported."
+                raise NotImplementedError(msg)
 
         while (current_time := time.time()) - start_time < config.run_duration:
             # Sleep until next control update
@@ -198,9 +198,6 @@ async def _run_remote_impl(
                 last_update_time = next_update_at
                 elapsed_time = control_period
             else:
-                print(
-                    f"WARNING: Loop is lagging {next_update_at - current_time} seconds behind the set update frequency. Is your control function too slow?"
-                )
                 elapsed_time = last_update_time - current_time
                 last_update_time = current_time
 
@@ -228,7 +225,7 @@ async def _run_remote_impl(
                     )
                     sensor_state = ModularRobotSensorStateImplV1()
                 case HardwareType.v2:
-                    pins = [pin for pin in active_hinge_sensor_to_pin.values()]
+                    pins = list(active_hinge_sensor_to_pin.values())
                     sensor_readings = (
                         await service.controlAndReadSensors(
                             robot_daemon_protocol_capnp.ControlAndReadSensorsArgs(
@@ -248,23 +245,18 @@ async def _run_remote_impl(
 
                     sensor_state = ModularRobotSensorStateImplV2(
                         hinge_sensor_mapping=active_hinge_sensor_to_pin,
-                        hinge_positions={
-                            pin: position
-                            for pin, position in zip(
-                                pins, sensor_readings.pins
-                            )
-                        },
+                        hinge_positions=dict(
+                            zip(pins, sensor_readings.pins, strict=False)
+                        ),
                         imu_sensor_states=imu_sensor_states,
                         camera_sensor_states=camera_sensor_states,
                     )
 
                     if battery_print_timer > 5.0:
-                        print(
-                            f"Battery level is at {sensor_readings.battery * 100.0}%."
-                        )
                         battery_print_timer = 0.0
                 case _:
-                    raise NotImplementedError("Hardware type not supported.")
+                    msg = "Hardware type not supported."
+                    raise NotImplementedError(msg)
 
 
 def _capnp_to_vector3(vector: robot_daemon_protocol_capnp.Vector3) -> Vector3:

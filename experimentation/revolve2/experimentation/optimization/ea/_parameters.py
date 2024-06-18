@@ -32,6 +32,6 @@ def _update_serialized_parameters(
 def _deserialize_parameters(
     target: Parameters, context: orm.QueryContext
 ) -> None:
-    target.parameters = np.array(
-        [float(p) for p in target._serialized_parameters.split(";")]
-    )
+    target.parameters = np.array([
+        float(p) for p in target._serialized_parameters.split(";")
+    ])

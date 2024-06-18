@@ -38,9 +38,9 @@ def evaluate(parameters: npt.NDArray[np.float64]) -> float:
     expected_outputs = np.array([0, 1, 1, 0])
 
     # Evaluate the provided network parameters
-    outputs = np.array(
-        [evaluate_network(parameters, input) for input in inputs]
-    )
+    outputs = np.array([
+        evaluate_network(parameters, input) for input in inputs
+    ])
 
     # Calculate the difference between the network outputs and the expect outputs
     errors = outputs - expected_outputs

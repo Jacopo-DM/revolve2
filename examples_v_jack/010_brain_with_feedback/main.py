@@ -76,7 +76,7 @@ class ANNBrainInstance(BrainInstance):
         # The current controller does nothing except for always settings the joint positions to 0.5.
         # start_state = float(self._state[state_index]) * active_hinge.range
         for idx, (active_hinge, _) in enumerate(
-            zip(self.active_hinges, sensors)
+            zip(self.active_hinges, sensors, strict=False)
         ):
             target = states[idx] * active_hinge.range
             control_interface.set_active_hinge_target(active_hinge, target)

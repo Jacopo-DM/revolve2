@@ -199,16 +199,16 @@ def run_experiment(dbengine: Engine) -> None:
         ]
 
         # Evaluate the offspring.
-        offspring_fitnesses = evaluator.evaluate(
-            [genotype.develop() for genotype in offspring_genotypes]
-        )
+        offspring_fitnesses = evaluator.evaluate([
+            genotype.develop() for genotype in offspring_genotypes
+        ])
 
         # Make an intermediate offspring population.
         offspring_population = Population(
             individuals=[
                 Individual(genotype=genotype, fitness=fitness)
                 for genotype, fitness in zip(
-                    offspring_genotypes, offspring_fitnesses
+                    offspring_genotypes, offspring_fitnesses, strict=False
                 )
             ]
         )
