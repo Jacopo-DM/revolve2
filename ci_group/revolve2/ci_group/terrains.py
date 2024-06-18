@@ -16,13 +16,15 @@ from revolve2.simulators.mujoco_simulator.textures import (
 )
 
 
-def flat(size: Vector2 = Vector2([20.0, 20.0])) -> Terrain:
+def flat(size: Vector2 | None = None) -> Terrain:
     """
     Create a flat plane terrain.
 
     :param size: Size of the plane.
     :returns: The created terrain.
     """
+    if size is None:
+        size = Vector2([20.0, 20.0])
     return Terrain(
         static_geometry=[
             GeometryPlane(
@@ -62,11 +64,12 @@ def crater(
     :param granularity_multiplier: Multiplier for how many edges are used in the heightmap.
     :returns: The created terrain.
     """
-    NUM_EDGES = 100  # arbitrary constant to get a nice number of edges
+    # arbitrary constant to get a nice number of edges
+    num_edges_int = 100
 
     num_edges = (
-        int(NUM_EDGES * size[0] * granularity_multiplier),
-        int(NUM_EDGES * size[1] * granularity_multiplier),
+        int(num_edges_int * size[0] * granularity_multiplier),
+        int(num_edges_int * size[1] * granularity_multiplier),
     )
 
     rugged = rugged_heightmap(
@@ -118,15 +121,15 @@ def rugged_heightmap(
     :param density: How coarse the ruggedness is.
     :returns: The created heightmap as a 2 dimensional array.
     """
-    OCTAVE = 10
-    C1 = 4.0  # arbitrary constant to get nice noise
+    octave = 10
+    c1 = 4.0  # arbitrary constant to get nice noise
 
     return np.fromfunction(
         np.vectorize(
             lambda y, x: pnoise2(
-                x / num_edges[0] * C1 * size[0] * density,
-                y / num_edges[1] * C1 * size[1] * density,
-                OCTAVE,
+                x / num_edges[0] * c1 * size[0] * density,
+                y / num_edges[1] * c1 * size[1] * density,
+                octave,
             ),
             otypes=[float],
         ),

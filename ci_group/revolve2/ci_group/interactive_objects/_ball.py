@@ -10,7 +10,7 @@ class Ball(MultiBodySystem):
         self,
         radius: float,
         mass: float,
-        pose: Pose = Pose(),
+        pose: Pose | None = None,
         is_static: bool = False,
         texture: Texture | None = None,
     ) -> None:
@@ -23,6 +23,8 @@ class Ball(MultiBodySystem):
         :param is_static: Whether the ball can be interacted with.
         :param texture: The texture of the ball.
         """
+        if pose is None:
+            pose = Pose()
         super().__init__(pose=pose, is_static=is_static)
 
         if texture is None:

@@ -2,10 +2,13 @@ import logging
 import queue
 import threading
 import time
+from enum import Enum
 
 import cv2
 import numpy as np
 from numpy.typing import NDArray
+
+EXT_KEY = 27
 
 
 class IPCamera:
@@ -27,7 +30,7 @@ class IPCamera:
     _r_q: queue.Queue[cv2.typing.MatLike]  # Record queue
 
     """Threads for camera functionality."""
-    _recieve_thread: threading.Thread
+    _receive_thread: threading.Thread
     _display_thread: threading.Thread
     _record_thread: threading.Thread
 
@@ -36,7 +39,7 @@ class IPCamera:
     _image_dimensions: tuple[int, int]
     _fps: int
 
-    """Maps for undistorting the camera."""
+    """Maps to straightening the camera image"""
     _map1: cv2.typing.MatLike
     _map2: cv2.typing.MatLike
 
@@ -45,17 +48,8 @@ class IPCamera:
         camera_location: str,
         recording_path: str | None = None,
         image_dimensions: tuple[int, int] = (1920, 1080),
-        distortion_coefficients: NDArray[np.float64] = np.array([
-            [-0.2976428547328032],
-            [3.2508343621538445],
-            [-17.38410840159056],
-            [30.01965021834286],
-        ]),
-        camera_matrix: NDArray[np.float64] = np.array([
-            [1490.4374643604199, 0.0, 990.6557248821284],
-            [0.0, 1490.6535480621505, 544.6243597123726],
-            [0.0, 0.0, 1.0],
-        ]),
+        distortion_coefficients: NDArray[np.float64] | None = None,
+        camera_matrix: NDArray[np.float64] | None = None,
         fps: int = 30,
     ) -> None:
         """
@@ -68,6 +62,23 @@ class IPCamera:
         :param camera_matrix: The camera matrix for calibration.
         :param fps: The FPS of the camera.
         """
+        if distortion_coefficients is None:
+            distortion_coefficients = np.array(
+                [
+                    [-0.2976428547328032],
+                    [3.2508343621538445],
+                    [-17.38410840159056],
+                    [30.01965021834286],
+                ]
+            )
+        if camera_matrix is None:
+            camera_matrix = np.array(
+                [
+                    [1490.4374643604199, 0.0, 990.6557248821284],
+                    [0.0, 1490.6535480621505, 544.6243597123726],
+                    [0.0, 0.0, 1.0],
+                ]
+            )
         self._camera_location = camera_location
         self._recording_path = recording_path or f"{time.time()}_output.mp4"
 
@@ -87,7 +98,7 @@ class IPCamera:
         )
 
     def _receive(self) -> None:
-        """Recieve data from the camera."""
+        """Receive data from the camera."""
         capture = cv2.VideoCapture(self._camera_location, cv2.CAP_FFMPEG)
         capture.set(cv2.CAP_PROP_FRAME_WIDTH, self._image_dimensions[0])
         capture.set(cv2.CAP_PROP_FRAME_HEIGHT, self._image_dimensions[1])
@@ -111,7 +122,7 @@ class IPCamera:
                 frame = self._d_q.get()
                 cv2.imshow("Camera View", frame)
             key = cv2.waitKey(1)
-            if key == 27:  # Exit the viewer using ESC-button
+            if key == EXT_KEY:  # Exit the viewer using ESC-button
                 self._is_running = False
         cv2.destroyAllWindows()
 
@@ -158,26 +169,37 @@ class IPCamera:
             borderMode=cv2.BORDER_CONSTANT,
         )
 
-    def start(self, record: bool = False, display: bool = True) -> None:
+    class CameraStyle(Enum):
+        NO_STYLE = 0
+        DISPLAY = 1
+        RECORD = 2
+        BOTH = 3
+
+    def start(self, method: CameraStyle = CameraStyle.DISPLAY) -> None:
         """
         Start the camera.
 
         :param record: Whether to record.
         :param display: Whether to display the video stream.
         """
-        assert (
-            record or display
-        ), "The camera is neither recording or displaying, are you sure you are using it?"
-        self._recieve_thread = threading.Thread(target=self._receive)
-        self._display_thread = threading.Thread(
-            target=self._display if display else self._dump_display
-        )
-        self._record_thread = threading.Thread(
-            target=self._record if record else self._dump_record
-        )
+        self._receive_thread = threading.Thread(target=self._receive)
+
+        if method == self.CameraStyle.NO_STYLE:
+            msg = "The camera is neither recording or displaying, are you sure you are using it?"
+            raise ValueError(msg)
+
+        if method == self.CameraStyle.DISPLAY:
+            self._display_thread = threading.Thread(target=self._display)
+            self._record_thread = threading.Thread(target=self._dump_record)
+        elif method == self.CameraStyle.RECORD:
+            self._display_thread = threading.Thread(target=self._dump_display)
+            self._record_thread = threading.Thread(target=self._record)
+        else:
+            self._display_thread = threading.Thread(target=self._display)
+            self._record_thread = threading.Thread(target=self._record)
 
         self._is_running = True
 
-        self._recieve_thread.start()
+        self._receive_thread.start()
         self._record_thread.start()
         self._display_thread.start()

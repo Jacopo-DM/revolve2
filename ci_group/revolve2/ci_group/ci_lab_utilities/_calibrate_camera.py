@@ -46,10 +46,13 @@ def calibrate_camera(
         image = cv2.imread(image_path)
         if _image_shape is None:
             _image_shape = image.shape[:2]
-        else:
-            assert (
-                _image_shape == image.shape[:2]
-            ), "All images must share the same size."
+        elif _image_shape != image.shape[:2]:
+            logging.error(
+                "Image %s has different size than the first image. Skipping.",
+                image_path,
+            )
+            msg = "All images must share the same size."
+            raise ValueError(msg)
 
         # Detect checkerboard
         returned, corners = cv2.findChessboardCorners(

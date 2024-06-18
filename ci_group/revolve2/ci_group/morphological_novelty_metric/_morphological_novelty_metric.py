@@ -134,10 +134,12 @@ def _normalize_cast_int(histograms: NDArray[np.float64]) -> NDArray[np.int64]:
 
         # each histogram must sum up to _INT_CASTER. Therefore, a mask is applied.
         mask[:error] += 1
-        np.random.seed(42)  # forces shuffles into reproducible patterns
-        np.random.shuffle(
-            mask
-        )  # shuffling the mask to minimize bias in the histogram
+
+        # forces shuffles into reproducible patterns
+        _rng = np.random.default_rng(42)
+        # shuffling the mask to minimize bias in the histogram
+        _rng.shuffle(mask)
+
         int_histograms[i] = histogram + np.reshape(
             mask, (-1, histogram.shape[0])
         )

@@ -20,7 +20,6 @@ from ._body_develop import develop
 if TYPE_CHECKING:
     import numpy as np
     from revolve2.modular_robot.body.v1 import BodyV1
-    from sqlalchemy.engine import Connection
 
 
 class BodyGenotypeOrmV1(orm.MappedAsDataclass, kw_only=True):
@@ -31,7 +30,7 @@ class BodyGenotypeOrmV1(orm.MappedAsDataclass, kw_only=True):
 
     body: multineat.Genome
 
-    _serialized_body: orm.Mapped[str] = orm.mapped_column(
+    serialized_body: orm.Mapped[str] = orm.mapped_column(
         "serialized_body", init=False, nullable=False
     )
 
@@ -127,17 +126,13 @@ class BodyGenotypeOrmV1(orm.MappedAsDataclass, kw_only=True):
 @event.listens_for(BodyGenotypeOrmV1, "before_update", propagate=True)
 @event.listens_for(BodyGenotypeOrmV1, "before_insert", propagate=True)
 def _update_serialized_body(
-    mapper: orm.Mapper[BodyGenotypeOrmV1],
-    connection: Connection,
     target: BodyGenotypeOrmV1,
 ) -> None:
-    target._serialized_body = target.body.Serialize()
+    target.serialized_body = target.body.Serialize()
 
 
 @event.listens_for(BodyGenotypeOrmV1, "load", propagate=True)
-def _deserialize_body(
-    target: BodyGenotypeOrmV1, context: orm.QueryContext
-) -> None:
+def _deserialize_body(target: BodyGenotypeOrmV1) -> None:
     body = multineat.Genome()
-    body.Deserialize(target._serialized_body)
+    body.Deserialize(target.serialized_body)
     target.body = body

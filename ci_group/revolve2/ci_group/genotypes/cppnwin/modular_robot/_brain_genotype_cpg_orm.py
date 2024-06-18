@@ -18,7 +18,6 @@ from ._multineat_params import get_multineat_params
 if TYPE_CHECKING:
     import numpy as np
     from revolve2.modular_robot.body.base import Body
-    from sqlalchemy.engine import Connection
 
 
 class BrainGenotypeCpgOrm(orm.MappedAsDataclass, kw_only=True):
@@ -35,7 +34,7 @@ class BrainGenotypeCpgOrm(orm.MappedAsDataclass, kw_only=True):
     # weight
     _BRAIN_NUM_OUTPUTS = 1
 
-    _serialized_brain: orm.Mapped[str] = orm.mapped_column(
+    serialized_brain: orm.Mapped[str] = orm.mapped_column(
         "serialized_brain", init=False, nullable=False
     )
 
@@ -133,17 +132,13 @@ class BrainGenotypeCpgOrm(orm.MappedAsDataclass, kw_only=True):
 @event.listens_for(BrainGenotypeCpgOrm, "before_update", propagate=True)
 @event.listens_for(BrainGenotypeCpgOrm, "before_insert", propagate=True)
 def _serialize_brain(
-    mapper: orm.Mapper[BrainGenotypeCpgOrm],
-    connection: Connection,
     target: BrainGenotypeCpgOrm,
 ) -> None:
-    target._serialized_brain = target.brain.Serialize()
+    target.serialized_brain = target.brain.Serialize()
 
 
 @event.listens_for(BrainGenotypeCpgOrm, "load", propagate=True)
-def _deserialize_brain(
-    target: BrainGenotypeCpgOrm, context: orm.QueryContext
-) -> None:
+def _deserialize_brain(target: BrainGenotypeCpgOrm) -> None:
     brain = multineat.Genome()
-    brain.Deserialize(target._serialized_brain)
+    brain.Deserialize(target.serialized_brain)
     target.brain = brain

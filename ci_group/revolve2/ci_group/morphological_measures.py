@@ -594,7 +594,10 @@ class MorphologicalMeasures(Generic[TModule]):
 
         :returns: Proportion measurement.
         """
-        assert self.is_2d
+        # assert self.is_2d
+        if not self.is_2d:
+            msg = "Proportion is only defined for 2D robots."
+            raise ValueError(msg)
 
         return min(self.bounding_box_depth, self.bounding_box_width) / max(
             self.bounding_box_depth, self.bounding_box_width

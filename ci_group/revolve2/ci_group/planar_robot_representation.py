@@ -1,7 +1,6 @@
 """Draw 2D representations of Modular Robots. Based on Karine Miras` Method."""
 
 import logging
-import os
 import time
 from typing import TYPE_CHECKING, Any
 
@@ -15,12 +14,15 @@ from revolve2.modular_robot.body.base import ActiveHinge, Body, Brick, Core
 if TYPE_CHECKING:
     from pyrr import Vector3
 
+from pathlib import Path
+
 
 def __mk_path() -> str:
     path = f"planar_robot_representations_{time.time()}"
-    logging.info(f"Saving images to: {path}")
-    if not os.path.exists(path):
-        os.mkdir(path)
+    logging.info("Saving images to: %s", path)
+    file_path = Path(path)
+    if not file_path.exists():
+        Path.mkdir(file_path)
     return path
 
 

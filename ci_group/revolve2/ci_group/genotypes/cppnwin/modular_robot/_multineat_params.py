@@ -339,9 +339,11 @@ class CollectionOfDefaultValues:
         # [ ] Transfer values from examples/DefaultConfig.NEAT
     }
 
-    __seg_fault_prone__: frozenset[str] = frozenset([
-        # [ ] Verify which of value dicts cause seg-faults
-    ])
+    __seg_fault_prone__: frozenset[str] = frozenset(
+        [
+            # [ ] Verify which of value dicts cause seg-faults
+        ]
+    )
 
     __inject_override__: ClassVar[dict[str, float | int | bool]] = {
         # NOTE - These field-values are enforced in every case
@@ -364,9 +366,7 @@ class CollectionOfDefaultValues:
         "MutateGenomeTraitsProb": None,
     }
 
-    def _set_params(
-        self, source: dict[str, float | bool]
-    ) -> multiNEATParamType:
+    def set_params(self, source: dict[str, float | bool]) -> multiNEATParamType:
         # Create the parameters
         params = multineat.Parameters()
 
@@ -420,7 +420,7 @@ class CollectionOfDefaultValues:
                     source[new_key] = value
 
         # Extract params
-        params = self._set_params(source)
+        params = self.set_params(source)
 
         # Extract dictionary
         params_dict = params.__dir__()
@@ -431,7 +431,7 @@ class CollectionOfDefaultValues:
         # Get values
         return {key: getattr(params, key) for key in clean_source_keys}
 
-    def _diff_source_vals(
+    def diff_source_vals(
         self,
         source_1: dict[str, float | bool],
         source_2: dict[str, float | bool],
@@ -446,7 +446,7 @@ class CollectionOfDefaultValues:
             for key_1, value_1 in clean_source_1.items()
         }
 
-    def _print_diff(
+    def print_diff(
         self, differences: dict[str, list[float | bool]], mode: str = "diff"
     ) -> None:
         sys.stdout.write("\n")
@@ -464,15 +464,15 @@ class CollectionOfDefaultValues:
     def __print_diff_generic__(
         self,
         key: str,
-        old_value: float | int | bool,
+        old_value: float | bool,
         symbol: str,
-        new_value: float | int | bool,
+        new_value: float | bool,
     ) -> None:
         sys.stdout.write(f"{key}\n")
         sys.stdout.write(f"\t{old_value}{symbol}{new_value}\n")
         sys.stdout.write("\n")
 
-    def _print_diff_dict(
+    def print_diff_dict(
         self,
         differences: dict[str, list[float | int | bool]],
         name: str,
@@ -505,9 +505,9 @@ class CollectionOfDefaultValues:
     def __print_diff_dict__(
         self,
         key: str,
-        new_value: float | int | bool,
+        new_value: float | bool,
         symbol: str = "",
-        old_value: str | float | int | bool = "",
+        old_value: str | float | bool = "",
     ) -> None:
         indent = " " * 8
         sys.stdout.write(f'{indent}"{key}": {new_value},{symbol}{old_value}\n')
@@ -519,7 +519,7 @@ def get_multineat_params(
     # Get source
     def_vals = CollectionOfDefaultValues()
     source = getattr(def_vals, source_name)
-    params = def_vals._set_params(source)
+    params = def_vals.set_params(source)
 
     # Return the parameters
     del def_vals, source
@@ -531,6 +531,6 @@ if __name__ == "__main__":
     target_name = "TestTraits"
     target = getattr(collection_obj, target_name)
     default = collection_obj.Default
-    diff = collection_obj._diff_source_vals(target, default)
-    collection_obj._print_diff(diff)
-    collection_obj._print_diff_dict(diff, target_name)
+    diff = collection_obj.diff_source_vals(target, default)
+    collection_obj.print_diff(diff)
+    collection_obj.print_diff_dict(diff, target_name)
