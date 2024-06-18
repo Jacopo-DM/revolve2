@@ -1,4 +1,4 @@
-<img  align="right" width="150" height="150"  src="./docs/source/logo.png">
+<img align="right" width="150" height="150"  src="./docs/source/logo_light.png">
 
 # Revolve2
 
@@ -14,7 +14,9 @@ Its primary features are a modular robot framework, an abstraction layer around 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8355869.svg)](https://doi.org/10.5281/zenodo.8355869) [![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](./LICENSE) [![CI](https://github.com/ci-group/revolve2/actions/workflows/main.yml/badge.svg)](https://github.com/ci-group/revolve2/actions)
 
 ## Sample
-Here we create and simulate a modular robot, and then calculate how far it moved over the xy plane. This is a shortened version of `examples/001_evaluate_single_robot`.
+
+Here we create and simulate a modular robot, and then calculate how far it moved over the xy plane. This is a shortened version of `examples/evaluate_single_robot`.
+
 ```python
 # (...) Omitted preamble
 
