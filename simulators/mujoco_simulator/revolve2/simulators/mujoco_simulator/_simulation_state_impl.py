@@ -56,8 +56,7 @@ class SimulationStateImpl(SimulationState):
         :returns: The relative pose.
         :raises NotImplementedError: Always.
         """
-        raise NotImplementedError()
-        return Pose()
+        raise NotImplementedError
 
     def get_rigid_body_absolute_pose(self, rigid_body: RigidBody) -> Pose:
         """
@@ -67,8 +66,7 @@ class SimulationStateImpl(SimulationState):
         :returns: The absolute pose.
         :raises NotImplementedError: Always.
         """
-        raise NotImplementedError()
-        return Pose()
+        raise NotImplementedError
 
     def get_multi_body_system_pose(
         self, multi_body_system: MultiBodySystem
@@ -82,11 +80,10 @@ class SimulationStateImpl(SimulationState):
         body_mujoco = self._abstraction_to_mujoco_mapping.multi_body_system[
             UUIDKey(multi_body_system)
         ]
-        pose = Pose(
+        return Pose(
             Vector3(self._xpos[body_mujoco.id]),
             Quaternion(self._xquat[body_mujoco.id]),
         )
-        return pose
 
     def get_hinge_joint_position(self, joint: JointHinge) -> float:
         """
@@ -140,5 +137,4 @@ class SimulationStateImpl(SimulationState):
         camera_id = self._abstraction_to_mujoco_mapping.camera_sensor[
             UUIDKey(camera_sensor)
         ].camera_id
-        image = self._camera_views[camera_id]
-        return image
+        return self._camera_views[camera_id]

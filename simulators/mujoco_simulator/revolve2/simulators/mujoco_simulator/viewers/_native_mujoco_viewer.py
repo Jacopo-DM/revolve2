@@ -1,6 +1,7 @@
 """The native rendering viewer for mujoco."""
 
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
 import mujoco.viewer
 from mujoco.viewer import Handle
@@ -21,7 +22,7 @@ class NativeMujocoViewer(Viewer):
         *,
         key_callback: Callable[[int], None] | None = None,
         **_: Any,
-    ):
+    ) -> None:
         """
         Initialize the Viewer.
 
@@ -57,9 +58,8 @@ class NativeMujocoViewer(Viewer):
 
         :raises NotImplementedError: As it is not implemented.
         """
-        raise NotImplementedError(
-            "current_viewport_size is not implemented for the native mujoco viewer yet."
-        )
+        msg = "current_viewport_size is not implemented for the native mujoco viewer yet."
+        raise NotImplementedError(msg)
 
     @property
     def context(self) -> mujoco.MjrContext:
@@ -68,10 +68,9 @@ class NativeMujocoViewer(Viewer):
 
         :returns: The context.
         """
-        context = mujoco.MjrContext(
+        return mujoco.MjrContext(
             self._model, mujoco.mjtFontScale.mjFONTSCALE_150.value
         )
-        return context
 
     @property
     def view_port(self) -> mujoco.MjrRect:
@@ -80,9 +79,8 @@ class NativeMujocoViewer(Viewer):
 
         :raises NotImplementedError: As it is not implemented.
         """
-        raise NotImplementedError(
-            "view_port is not implemented for the native mujoco viewer yet."
-        )
+        msg = "view_port is not implemented for the native mujoco viewer yet."
+        raise NotImplementedError(msg)
 
     @property
     def can_record(self) -> bool:

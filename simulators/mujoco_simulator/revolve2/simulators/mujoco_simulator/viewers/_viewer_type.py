@@ -24,4 +24,5 @@ class ViewerType(Enum):
             case "custom":
                 return ViewerType.CUSTOM
             case _:
-                raise ValueError(f"No viewer type {value} defined.")
+                msg = f"No viewer type {value} defined."
+                raise ValueError(msg)

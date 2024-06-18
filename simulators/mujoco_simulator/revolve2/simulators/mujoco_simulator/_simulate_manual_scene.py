@@ -76,7 +76,7 @@ def simulate_manual_scene(
                 If the simulated hinges are forced to the target location directly with big angles, the simulation detects instabilities and wont render, therefore we choose smaller steps.
                 """
                 step = 0.0025 if target > current else -0.0025
-                for hinge in mapping.hinge_joint.keys():
+                for hinge in mapping.hinge_joint:
                     control_interface.set_joint_hinge_position_target(
                         hinge.value, current + step
                     )

@@ -44,9 +44,9 @@ class AbstractionToMujocoMapping:
         init=False, default_factory=dict
     )
 
-    multi_body_system: dict[
-        UUIDKey[MultiBodySystem], MultiBodySystemMujoco
-    ] = field(init=False, default_factory=dict)
+    multi_body_system: dict[UUIDKey[MultiBodySystem], MultiBodySystemMujoco] = (
+        field(init=False, default_factory=dict)
+    )
 
     imu_sensor: dict[UUIDKey[IMUSensor], IMUSensorMujoco] = field(
         init=False, default_factory=dict

@@ -48,7 +48,7 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
         start_paused: bool,
         render_every_frame: bool = False,
         mode: CustomMujocoViewerMode = CustomMujocoViewerMode.CLASSIC,
-    ):
+    ) -> None:
         """
         Initialize the Viewer.
 

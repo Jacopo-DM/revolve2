@@ -1,28 +1,16 @@
+import logging
 import os
 import tempfile
 from itertools import product
 from typing import Any
 
 import mujoco
-
-try:
-    import logging
-
-    old_len = len(logging.root.handlers)
-
-    from dm_control import mjcf
-
-    new_len = len(logging.root.handlers)
-
-    assert (
-        old_len + 1 == new_len
-    ), "dm_control not adding logging handler as expected. Maybe they fixed their annoying behaviour? https://github.com/deepmind/dm_control/issues/314"
-
-    logging.root.removeHandler(logging.root.handlers[-1])
-except Exception as e:
-    logging.warning("Failed to fix absl logging bug: %s", e)
-
-from revolve2.simulation.scene import JointHinge, RigidBody, Scene, UUIDKey
+from revolve2.simulation.scene import (
+    JointHinge,
+    RigidBody,
+    Scene,
+    UUIDKey,
+)
 from revolve2.simulation.scene.conversion import multi_body_system_to_urdf
 from revolve2.simulation.scene.geometry import (
     Geometry,
@@ -38,10 +26,14 @@ from ._abstraction_to_mujoco_mapping import (
     MultiBodySystemMujoco,
 )
 
+logging.basicConfig(level=logging.DEBUG)
+from dm_control import mjcf
+
 
 def scene_to_model(
     scene: Scene,
     simulation_timestep: float,
+    *,
     cast_shadows: bool,
     fast_sim: bool,
 ) -> tuple[mujoco.MjModel, AbstractionToMujocoMapping]:
@@ -62,16 +54,14 @@ def scene_to_model(
 
     env_mjcf.option.timestep = simulation_timestep
 
-    # env_mjcf.option.integrator = "RK4"
-    env_mjcf.option.integrator = "implicitfast"
+    # TODO(jmdm): do different integrators make a difference?
+    env_mjcf.option.integrator = "implicitfast"  # "RK4"
 
     env_mjcf.option.gravity = [0, 0, -9.81]
 
     env_mjcf.worldbody.add(
         "light",
         pos=[0, 0, 1],
-        # ambient=[0.5, 0.5, 0.5],
-        # directional=True,
         castshadow=cast_shadows,
     )
     env_mjcf.visual.headlight.active = 1
@@ -104,7 +94,7 @@ def scene_to_model(
 
         # The following few are set automatically during the urdf conversion,
         # but make no sense when we combine multiple URDFs.
-        # So, we remote them and have mujoco calculate them for us.
+        # So, we remove them and have mujoco calculate them for us.
         multi_body_system_mjcf.statistic.extent = None
         multi_body_system_mjcf.statistic.center = None
         multi_body_system_mjcf.statistic.meansize = None
@@ -135,7 +125,9 @@ def scene_to_model(
         )
 
     xml = env_mjcf.to_xml_string()
-    assert isinstance(xml, str)
+    if isinstance(xml, str):
+        msg = "XML string is empty."
+        raise TypeError(msg)
 
     model = mujoco.MjModel.from_xml_string(xml)
 
@@ -334,7 +326,7 @@ def _add_sensors(
 
         """Here we add camera Sensors."""
         for camera_i, camera in enumerate(rigid_body.sensors.camera_sensors):
-            camera_name = f"camera_{name}_{camera_i+1}"
+            camera_name = f"camera_{name}_{camera_i + 1}"
             env_mjcf.worldbody.add(
                 "camera",
                 name=camera_name,
@@ -342,7 +334,7 @@ def _add_sensors(
                 xyaxes="0 -1 0 0 0 1",
                 dclass=env_mjcf.full_identifier,
             )
-            site_name = f"{name}_site_camera_{camera_i+1}"
+            site_name = f"{name}_site_camera_{camera_i + 1}"
             env_mjcf.worldbody.add(
                 "site",
                 name=site_name,
@@ -459,7 +451,7 @@ def _create_sensor_maps(
             for camera_i, camera in enumerate(
                 rigid_body.sensors.camera_sensors
             ):
-                camera_name = f"camera_{name}_{camera_i+1}"
+                camera_name = f"camera_{name}_{camera_i + 1}"
                 mapping.camera_sensor[UUIDKey(camera)] = CameraSensorMujoco(
                     camera_id=model.camera(camera_name).id,
                     camera_size=camera.camera_size,

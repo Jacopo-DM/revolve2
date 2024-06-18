@@ -30,7 +30,7 @@ class LocalSimulator(Simulator):
         fast_sim: bool = False,
         manual_control: bool = False,
         viewer_type: ViewerType | str = ViewerType.CUSTOM,
-    ):
+    ) -> None:
         """
         Initialize this object.
 
@@ -87,9 +87,8 @@ class LocalSimulator(Simulator):
 
         if self._manual_control:
             if self._headless:
-                raise Exception(
-                    "Manual control only works with rendered simulations."
-                )
+                msg = "Manual control only works with rendered simulations."
+                raise Exception(msg)
             for scene in batch.scenes:
                 simulate_manual_scene(scene=scene)
             return [[]]

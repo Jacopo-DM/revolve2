@@ -9,7 +9,7 @@ import mujoco
 import mujoco_viewer
 from revolve2.simulation.simulator import Viewer
 
-from .._render_backend import RenderBackend
+from mujoco_simulator._render_backend import RenderBackend
 
 
 class CustomMujocoViewerMode(Enum):
@@ -57,7 +57,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
         hide_menus: bool = False,
         mode: CustomMujocoViewerMode = CustomMujocoViewerMode.CLASSIC,
         **_: Any,
-    ):
+    ) -> None:
         """
         Initialize the Viewer.
 

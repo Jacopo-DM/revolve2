@@ -128,5 +128,6 @@ class OpenGLVision:
                 gl_context = OSMESAContext
                 os.environ["MUJOCO_GL"] = "osmesa"
             case _:
-                raise ValueError(f"Unknown OpenGL backend {open_gl_lib}")
+                msg = f"Unknown OpenGL backend {open_gl_lib}"
+                raise ValueError(msg)
         return gl_context

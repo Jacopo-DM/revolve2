@@ -68,6 +68,7 @@ def setup_logging(
         level=level,
         format=f" [%(asctime)s] [%(levelname)s] {Clr.NEM}[%(module)s]{Clr.E} %(message)s",
         datefmt="%H:%M:%S",
+        force=True,
     )
     # Add color to logging levels
     logging.addLevelName(logging.DEBUG, f"{Clr.GR}DEBUG{Clr.E}")

@@ -97,9 +97,8 @@ def simulate_scene(
             case viewer_type.NATIVE:
                 viewer = NativeMujocoViewer
             case _:
-                raise ValueError(
-                    f"Viewer of type {viewer_type} not defined in _simulate_scene."
-                )
+                msg = f"Viewer of type {viewer_type} not defined in _simulate_scene."
+                raise ValueError(msg)
 
         viewer = viewer(
             model,
@@ -115,9 +114,8 @@ def simulate_scene(
     """Record the scene if we want to record."""
     if record_settings is not None:
         if not viewer.can_record:
-            raise ValueError(
-                f"Selected Viewer {type(viewer).__name__} has no functionality to record."
-            )
+            msg = f"Selected Viewer {type(viewer).__name__} has no functionality to record."
+            raise ValueError(msg)
         video_step = 1 / record_settings.fps
         video_file_path = f"{record_settings.video_directory}/{scene_id}.mp4"
         fourcc = cv2.VideoWriter.fourcc(*"mp4v")
@@ -166,16 +164,15 @@ def simulate_scene(
             )
 
         # sample state if it is time
-        if sample_step is not None:
-            if time >= last_sample_time + sample_step:
-                last_sample_time = int(time / sample_step) * sample_step
-                simulation_states.append(
-                    SimulationStateImpl(
-                        data=data,
-                        abstraction_to_mujoco_mapping=mapping,
-                        camera_views=images,
-                    )
+        if sample_step is not None and time >= last_sample_time + sample_step:
+            last_sample_time = int(time / sample_step) * sample_step
+            simulation_states.append(
+                SimulationStateImpl(
+                    data=data,
+                    abstraction_to_mujoco_mapping=mapping,
+                    camera_views=images,
                 )
+            )
 
         # step simulation
         mujoco.mj_step(model, data)
@@ -187,8 +184,7 @@ def simulate_scene(
 
         # render if not headless. also render when recording and if it time for a new video frame.
         if not headless or (
-            record_settings is not None
-            and time >= last_video_time + video_step
+            record_settings is not None and time >= last_video_time + video_step
         ):
             viewer_return = viewer.render()
             if viewer_return == "QUIT":
@@ -196,10 +192,7 @@ def simulate_scene(
                 raise SystemExit(0)
 
         # capture video frame if it's time
-        if (
-            record_settings is not None
-            and time >= last_video_time + video_step
-        ):
+        if record_settings is not None and time >= last_video_time + video_step:
             last_video_time = int(time / video_step) * video_step
 
             # https://github.com/deepmind/mujoco/issues/285 (see also record.cc)
