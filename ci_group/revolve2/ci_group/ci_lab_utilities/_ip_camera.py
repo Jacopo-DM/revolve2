@@ -45,21 +45,17 @@ class IPCamera:
         camera_location: str,
         recording_path: str | None = None,
         image_dimensions: tuple[int, int] = (1920, 1080),
-        distortion_coefficients: NDArray[np.float64] = np.array(
-            [
-                [-0.2976428547328032],
-                [3.2508343621538445],
-                [-17.38410840159056],
-                [30.01965021834286],
-            ]
-        ),
-        camera_matrix: NDArray[np.float64] = np.array(
-            [
-                [1490.4374643604199, 0.0, 990.6557248821284],
-                [0.0, 1490.6535480621505, 544.6243597123726],
-                [0.0, 0.0, 1.0],
-            ]
-        ),
+        distortion_coefficients: NDArray[np.float64] = np.array([
+            [-0.2976428547328032],
+            [3.2508343621538445],
+            [-17.38410840159056],
+            [30.01965021834286],
+        ]),
+        camera_matrix: NDArray[np.float64] = np.array([
+            [1490.4374643604199, 0.0, 990.6557248821284],
+            [0.0, 1490.6535480621505, 544.6243597123726],
+            [0.0, 0.0, 1.0],
+        ]),
         fps: int = 30,
     ) -> None:
         """
