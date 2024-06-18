@@ -4,10 +4,10 @@
 -e simulators/mujoco_simulator[dev]
 -e experimentation[dev]
 -e modular_robot_simulation[dev]
-# -e modular_robot_physical[remote] # breaks MacOS
+-e modular_robot_physical[remote]
 -e modular_robot[dev]
 -e simulation[dev]
 -r ./examples/requirements.txt
-# -r ./codetools/requirements.txt
-# -r ./docs/requirements.txt
-# -r ./tests/requirements.txt
+-r ./codetools/requirements.txt
+-r ./docs/requirements.txt
+-r ./tests/requirements.txt

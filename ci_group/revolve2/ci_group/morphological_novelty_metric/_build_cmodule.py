@@ -12,11 +12,11 @@ def build() -> None:
 
     :raises OSError: If the users OS is not Windows or UNIX-based.
     """
+
     file_path = Path(__file__).resolve()
     directory_path = file_path.parent
 
-    source = directory_path / "_calculate_novelty.pyx"
-
+    source = str(directory_path / "_calculate_novelty.pyx")
     include = np.get_include()
 
     match os.name:
