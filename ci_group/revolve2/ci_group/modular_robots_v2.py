@@ -35,7 +35,8 @@ def get(name: str) -> BodyV2:
         case "runner":
             return runner_v2()
         case _:
-            raise ValueError(f"Robot does not exist: {name}")
+            msg = f"Robot does not exist: {name}"
+            raise ValueError(msg)
 
 
 def runner_v2() -> BodyV2:

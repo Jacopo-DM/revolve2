@@ -1,3 +1,5 @@
+import logging
+
 import cv2
 import numpy as np
 from numpy.typing import NDArray
@@ -66,12 +68,10 @@ def calibrate_camera(
     camera_matrix = np.zeros((3, 3))
     distortion_coefficients = np.zeros((4, 1))
     rotation_vectors = [
-        np.zeros((1, 1, 3), dtype=np.float64)
-        for _ in range(len(object_points))
+        np.zeros((1, 1, 3), dtype=np.float64) for _ in range(len(object_points))
     ]
     translation_vectors = [
-        np.zeros((1, 1, 3), dtype=np.float64)
-        for _ in range(len(object_points))
+        np.zeros((1, 1, 3), dtype=np.float64) for _ in range(len(object_points))
     ]
 
     # cv2 operations on numpy objects are in-place -> therefore we do not need to extract the return output.
@@ -90,5 +90,5 @@ def calibrate_camera(
             1e-6,
         ),
     )
-    print(f"Found {len(object_points)} valid images for calibration")
+    logging.info("Found %d valid images for calibration", len(object_points))
     return image.shape[:2][::-1], camera_matrix, distortion_coefficients

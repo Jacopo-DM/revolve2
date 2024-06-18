@@ -230,10 +230,7 @@ class MorphologicalMeasures(Generic[TModule]):
             range(self.bounding_box_width),
             range(1, (self.bounding_box_height - 1) // 2),
         ):
-            if (
-                self.symmetry_grid[x, y, self.core_grid_position[2]]
-                is not None
-            ):
+            if self.symmetry_grid[x, y, self.core_grid_position[2]] is not None:
                 num_along_plane += 1
             if self.symmetry_grid[
                 x, y, self.core_grid_position[2] + z
@@ -254,10 +251,7 @@ class MorphologicalMeasures(Generic[TModule]):
             range(1, (self.bounding_box_width - 1) // 2),
             range(self.bounding_box_height),
         ):
-            if (
-                self.symmetry_grid[x, self.core_grid_position[1], z]
-                is not None
-            ):
+            if self.symmetry_grid[x, self.core_grid_position[1], z] is not None:
                 num_along_plane += 1
             if self.symmetry_grid[
                 x, self.core_grid_position[1] + y, z
@@ -277,10 +271,7 @@ class MorphologicalMeasures(Generic[TModule]):
             range(self.bounding_box_width),
             range(self.bounding_box_height),
         ):
-            if (
-                self.symmetry_grid[self.core_grid_position[0], y, z]
-                is not None
-            ):
+            if self.symmetry_grid[self.core_grid_position[0], y, z] is not None:
                 num_along_plane += 1
             if self.symmetry_grid[
                 self.core_grid_position[0] + x, y, z

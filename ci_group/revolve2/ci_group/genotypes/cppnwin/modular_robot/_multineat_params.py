@@ -339,11 +339,9 @@ class CollectionOfDefaultValues:
         # [ ] Transfer values from examples/DefaultConfig.NEAT
     }
 
-    __seg_fault_prone__: frozenset[str] = frozenset(
-        [
-            # [ ] Verify which of value dicts cause seg-faults
-        ]
-    )
+    __seg_fault_prone__: frozenset[str] = frozenset([
+        # [ ] Verify which of value dicts cause seg-faults
+    ])
 
     __inject_override__: ClassVar[dict[str, float | int | bool]] = {
         # NOTE - These field-values are enforced in every case
@@ -460,7 +458,8 @@ class CollectionOfDefaultValues:
             elif not are_same and mode in {"all", "diff"}:
                 self.__print_diff_generic__(key, old_value, " -> ", new_value)
             elif mode not in allowed_modes:
-                raise ValueError(f"Invalid mode: {mode}")
+                msg = f"Invalid mode: {mode}"
+                raise ValueError(msg)
 
     def __print_diff_generic__(
         self,
@@ -499,7 +498,8 @@ class CollectionOfDefaultValues:
                     key, new_value, f"  # {ref} ", old_value
                 )
             elif mode not in allowed_modes:
-                raise ValueError(f"Invalid mode: {mode}")
+                msg = f"Invalid mode: {mode}"
+                raise ValueError(msg)
         sys.stdout.write(f"{indent}" + "}\n")
 
     def __print_diff_dict__(

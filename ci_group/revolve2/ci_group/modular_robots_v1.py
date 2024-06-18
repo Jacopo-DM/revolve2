@@ -86,9 +86,7 @@ def gecko_v1() -> BodyV1:
     body.core_v1.back.attachment.front = ActiveHingeV1(np.pi / 2.0)
     body.core_v1.back.attachment.front.attachment = BrickV1(-np.pi / 2.0)
     body.core_v1.back.attachment.front.attachment.left = ActiveHingeV1(0.0)
-    body.core_v1.back.attachment.front.attachment.left.attachment = BrickV1(
-        0.0
-    )
+    body.core_v1.back.attachment.front.attachment.left.attachment = BrickV1(0.0)
     body.core_v1.back.attachment.front.attachment.right = ActiveHingeV1(0.0)
     body.core_v1.back.attachment.front.attachment.right.attachment = BrickV1(
         0.0
@@ -119,9 +117,7 @@ def babya_v1() -> BodyV1:
     body.core_v1.back.attachment.front = ActiveHingeV1(np.pi / 2.0)
     body.core_v1.back.attachment.front.attachment = BrickV1(-np.pi / 2.0)
     body.core_v1.back.attachment.front.attachment.left = ActiveHingeV1(0.0)
-    body.core_v1.back.attachment.front.attachment.left.attachment = BrickV1(
-        0.0
-    )
+    body.core_v1.back.attachment.front.attachment.left.attachment = BrickV1(0.0)
     body.core_v1.back.attachment.front.attachment.right = ActiveHingeV1(0.0)
     body.core_v1.back.attachment.front.attachment.right.attachment = BrickV1(
         0.0
@@ -154,9 +150,7 @@ def ant_v1() -> BodyV1:
     body.core_v1.back.attachment.front = ActiveHingeV1(np.pi / 2.0)
     body.core_v1.back.attachment.front.attachment = BrickV1(-np.pi / 2.0)
     body.core_v1.back.attachment.front.attachment.left = ActiveHingeV1(0.0)
-    body.core_v1.back.attachment.front.attachment.left.attachment = BrickV1(
-        0.0
-    )
+    body.core_v1.back.attachment.front.attachment.left.attachment = BrickV1(0.0)
     body.core_v1.back.attachment.front.attachment.right = ActiveHingeV1(0.0)
     body.core_v1.back.attachment.front.attachment.right.attachment = BrickV1(
         0.0
@@ -192,8 +186,8 @@ def salamander_v1() -> BodyV1:
     body.core_v1.back.attachment.front.front.attachment.left.attachment = (
         BrickV1(0.0)
     )
-    body.core_v1.back.attachment.front.front.attachment.left.attachment.left = BrickV1(
-        0.0
+    body.core_v1.back.attachment.front.front.attachment.left.attachment.left = (
+        BrickV1(0.0)
     )
     body.core_v1.back.attachment.front.front.attachment.left.attachment.front = ActiveHingeV1(
         np.pi / 2.0
@@ -286,9 +280,7 @@ def park_v1() -> BodyV1:
         -np.pi / 2.0
     )
     body.core_v1.back.attachment.attachment.front.left = ActiveHingeV1(0.0)
-    body.core_v1.back.attachment.attachment.front.left.attachment = BrickV1(
-        0.0
-    )
+    body.core_v1.back.attachment.attachment.front.left.attachment = BrickV1(0.0)
     body.core_v1.back.attachment.attachment.front.left.attachment.right = (
         ActiveHingeV1(-np.pi / 2.0)
     )
@@ -367,9 +359,7 @@ def garrix_v1() -> BodyV1:
     body.core_v1.left.attachment.attachment = ActiveHingeV1(-np.pi / 2.0)
     body.core_v1.left.attachment.attachment.attachment = BrickV1(0.0)
     body.core_v1.left.attachment.attachment.attachment.front = BrickV1(0.0)
-    body.core_v1.left.attachment.attachment.attachment.left = ActiveHingeV1(
-        0.0
-    )
+    body.core_v1.left.attachment.attachment.attachment.left = ActiveHingeV1(0.0)
 
     part2 = BrickV1(0.0)
     part2.right = ActiveHingeV1(np.pi / 2.0)
@@ -447,9 +437,7 @@ def linkin_v1() -> BodyV1:
     part2.right.attachment = ActiveHingeV1(-np.pi / 2.0)
     part2.right.attachment.attachment = ActiveHingeV1(0.0)
     part2.right.attachment.attachment.attachment = ActiveHingeV1(np.pi / 2.0)
-    part2.right.attachment.attachment.attachment.attachment = ActiveHingeV1(
-        0.0
-    )
+    part2.right.attachment.attachment.attachment.attachment = ActiveHingeV1(0.0)
 
     return body
 
@@ -471,11 +459,13 @@ def longleg_v1() -> BodyV1:
     body.core_v1.left.attachment.attachment.attachment.attachment = (
         ActiveHingeV1(0.0)
     )
-    body.core_v1.left.attachment.attachment.attachment.attachment.attachment = BrickV1(
-        0.0
+    body.core_v1.left.attachment.attachment.attachment.attachment.attachment = (
+        BrickV1(0.0)
     )
 
-    part2 = body.core_v1.left.attachment.attachment.attachment.attachment.attachment
+    part2 = (
+        body.core_v1.left.attachment.attachment.attachment.attachment.attachment
+    )
     part2.right = ActiveHingeV1(0.0)
     part2.front = ActiveHingeV1(0.0)
     part2.left = ActiveHingeV1(np.pi / 2.0)
@@ -507,8 +497,8 @@ def penguin_v1() -> BodyV1:
     body.core_v1.right.left.attachment.attachment.left.attachment = (
         ActiveHingeV1(-np.pi / 2.0)
     )
-    body.core_v1.right.left.attachment.attachment.left.attachment.attachment = ActiveHingeV1(
-        np.pi / 2.0
+    body.core_v1.right.left.attachment.attachment.left.attachment.attachment = (
+        ActiveHingeV1(np.pi / 2.0)
     )
     body.core_v1.right.left.attachment.attachment.left.attachment.attachment.attachment = BrickV1(
         -np.pi / 2.0
@@ -758,9 +748,7 @@ def turtle_v1() -> BodyV1:
         np.pi / 2.0
     )
     body.core_v1.left.left.attachment.attachment.right = ActiveHingeV1(0.0)
-    body.core_v1.left.left.attachment.attachment.right.attachment = BrickV1(
-        0.0
-    )
+    body.core_v1.left.left.attachment.attachment.right.attachment = BrickV1(0.0)
     part2 = body.core_v1.left.left.attachment.attachment.right.attachment
 
     part2.left = ActiveHingeV1(np.pi / 2.0)
@@ -901,4 +889,5 @@ def get(name: str) -> BodyV1:
         case "zappa":
             return zappa_v1()
         case _:
-            raise ValueError(f"Robot does not exist: {name}")
+            msg = f"Robot does not exist: {name}"
+            raise ValueError(msg)

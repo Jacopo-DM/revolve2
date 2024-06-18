@@ -18,7 +18,7 @@ class BrainCpgNetworkNeighbor(ModularRobotBrainCpgNetworkNeighbor):
 
     _genotype: multineat.Genome
 
-    def __init__(self, genotype: multineat.Genome, body: Body):
+    def __init__(self, genotype: multineat.Genome, body: Body) -> None:
         """
         Initialize this object.
 

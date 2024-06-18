@@ -5,8 +5,13 @@ from typing import TYPE_CHECKING, Self
 import multineat
 from sqlalchemy import event, orm
 
-from .._multineat_rng_from_random import multineat_rng_from_random
-from .._random_multineat_genotype import random_multineat_genotype
+from ci_group.genotypes.cppnwin._multineat_rng_from_random import (
+    multineat_rng_from_random,
+)
+from ci_group.genotypes.cppnwin._random_multineat_genotype import (
+    random_multineat_genotype,
+)
+
 from ._brain_cpg_network_neighbor import BrainCpgNetworkNeighbor
 from ._multineat_params import get_multineat_params
 

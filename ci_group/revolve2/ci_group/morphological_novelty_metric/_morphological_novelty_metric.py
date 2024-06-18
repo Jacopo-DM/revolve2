@@ -66,12 +66,8 @@ def _coordinates_to_magnitudes_orientation(
         orts = [(0.0, 0.0)] * coordinates_amount
         for j in range(coordinates_amount):
             coord = coordinates[i][j]
-            ax = (
-                atan2(sqrt(coord[1] ** 2 + coord[2] ** 2), coord[0]) * 180 / pi
-            )
-            az = (
-                atan2(coord[2], sqrt(coord[1] ** 2 + coord[0] ** 2)) * 180 / pi
-            )
+            ax = atan2(sqrt(coord[1] ** 2 + coord[2] ** 2), coord[0]) * 180 / pi
+            az = atan2(coord[2], sqrt(coord[1] ** 2 + coord[0] ** 2)) * 180 / pi
             orts[j] = (ax, az)
             mags[j] = sqrt(coord.dot(coord))
         orientations[i] = orts
@@ -98,7 +94,9 @@ def _gen_gradient_histogram(
         shape=(instances, num_bins, num_bins), dtype=np.float64
     )
     for i in range(instances):
-        for orientation, magnitude in zip(orientations[i], magnitudes[i]):
+        for orientation, magnitude in zip(
+            orientations[i], magnitudes[i], strict=False
+        ):
             x, z = (
                 int(orientation[0] / bin_size),
                 int(orientation[1] / bin_size),

@@ -82,9 +82,7 @@ def _coordinates_pca_change_basis(
                 k = np.array([[0, -rz, ry], [rz, 0, -rx], [-ry, rx, 0]])
                 rotation_matrix = np.identity(3) + 2 * np.dot(k, k)
 
-                temp_coordinates = np.dot(
-                    target_coordinates, rotation_matrix.T
-                )
+                temp_coordinates = np.dot(target_coordinates, rotation_matrix.T)
 
                 eigen_vectors[[j, candidate]] = eigen_vectors[[candidate, j]]
                 srt[[j, candidate]] = srt[[candidate, j]]

@@ -1,7 +1,7 @@
 import os
-from os.path import join
+from pathlib import Path
 
-import numpy
+import numpy as np
 from Cython.Build import cythonize
 from setuptools import Extension, setup
 
@@ -12,11 +12,12 @@ def build() -> None:
 
     :raises OSError: If the users OS is not Windows or UNIX-based.
     """
-    directory_path = os.path.dirname(os.path.abspath(__file__))
+    file_path = Path(__file__).resolve()
+    directory_path = file_path.parent
 
-    source = join(directory_path, "_calculate_novelty.pyx")
+    source = directory_path / "_calculate_novelty.pyx"
 
-    include = numpy.get_include()
+    include = np.get_include()
 
     match os.name:
         case "nt":  # Windows
@@ -31,9 +32,8 @@ def build() -> None:
                 "-UNDEBUG",
             ]
         case _:
-            raise OSError(
-                f"No build parameter set for operating systems of type {os.name}"
-            )
+            msg = f"No build parameter set for operating systems of type {os.name}"
+            raise OSError(msg)
 
     ext = Extension(
         name="calculate_novelty",

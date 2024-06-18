@@ -121,8 +121,9 @@ def _draw_module(
         case Brick():
             context.set_source_rgb(0, 0, 1)  # Blue
         case _:
+            msg = f"Module of type {type(module)} has no defined structure for drawing."
             raise ValueError(
-                f"Module of type {type(module)} has no defined structure for drawing."
+                msg
             )
 
     # default operation for every module

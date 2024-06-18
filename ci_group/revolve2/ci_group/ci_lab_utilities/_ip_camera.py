@@ -1,3 +1,4 @@
+import logging
 import queue
 import threading
 import time
@@ -126,11 +127,12 @@ class IPCamera:
             self._fps,
             self._image_dimensions,
         )
-        print("Recording in progress.")
+        logging.info("Recording in progress...")
         while self._is_running:
             if not self._r_q.empty():
                 out.write(self._r_q.get())
-        print(f"Saving video to: {self._recording_path}")
+        logging.info("Recording finished.")
+        logging.info("Saving video to: %s", self._recording_path)
         out.release()
 
     def _dump_record(self) -> None:

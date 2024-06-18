@@ -4,6 +4,7 @@ from typing import Any
 
 import multineat
 import numpy as np
+import numpy.typing as npt
 from numpy.typing import NDArray
 from pyrr import Quaternion, Vector3
 from revolve2.modular_robot.body import AttachmentPoint, Module
@@ -81,7 +82,7 @@ def develop(
     return body
 
 
-def softmax(x: np.ndarray) -> np.ndarray:
+def softmax(x: npt.NDArray[np.float64]) -> npt.NDArray[np.float64]:
     """
     Compute softmax values for each sets of scores in x.
 
@@ -89,13 +90,13 @@ def softmax(x: np.ndarray) -> np.ndarray:
     :returns: The softmax array.
     """
     e_x = np.exp(x - np.max(x))
-    return e_x / e_x.sum(axis=0)
+    return np.array(e_x / e_x.sum(axis=0))
 
 
 def __evaluate_cppn(
     body_net: multineat.NeuralNetwork,
     position: Vector3[np.int_],
-    chain_length: int,
+    chain_length: float,
 ) -> tuple[Any, float]:
     """
     Get module type and orientation from a multineat CPPN network.
