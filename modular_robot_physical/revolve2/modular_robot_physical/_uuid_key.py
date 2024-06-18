@@ -47,7 +47,7 @@ class UUIDKey(Generic[_T]):
 
         :param other: The object to compare with.
         :returns: Whether their ids are equal.
-        :raises ValueError: If the other objecgt is not an UUIDKey.
+        :raises ValueError: If the other object is not an UUIDKey.
         """
         if not isinstance(other, UUIDKey) or not isinstance(
             other._value, type(self._value)

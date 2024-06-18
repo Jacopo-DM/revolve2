@@ -17,11 +17,6 @@ from database_components import (
 )
 from evaluator import Evaluator
 from revolve2.experimentation.database import OpenMethod, open_database_sqlite
-from revolve2.experimentation.evolution import ModularRobotEvolution
-from revolve2.experimentation.evolution.abstract_elements import (
-    Reproducer,
-    Selector,
-)
 from revolve2.experimentation.logging import setup_logging
 from revolve2.experimentation.optimization.ea import (
     population_management,
@@ -70,8 +65,7 @@ class ParentSelector(Selector):
                         individual.fitness
                         for individual in population.individuals
                     ],
-                    selection_function=lambda _,
-                    fitnesses: selection.tournament(
+                    selection_function=lambda _, fitnesses: selection.tournament(
                         rng=self.rng, fitnesses=fitnesses, k=2
                     ),
                 )
@@ -118,9 +112,7 @@ class SurvivorSelector(Selector):
             old_fitnesses=[i.fitness for i in population.individuals],
             new_genotypes=offspring,
             new_fitnesses=offspring_fitness,
-            selection_function=lambda n,
-            genotypes,
-            fitnesses: selection.multiple_unique(
+            selection_function=lambda n, genotypes, fitnesses: selection.multiple_unique(
                 selection_size=n,
                 population=genotypes,
                 fitnesses=fitnesses,

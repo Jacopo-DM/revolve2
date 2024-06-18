@@ -1,15 +1,3 @@
-"""
-This is an automatically generated stub for `robot_daemon_protocol.capnp`.
-
-This file was manually edited to work better with the code tools.
-Added __init__ functions
-Made `dict` into `dict[Any,Any]`
-Formatted file with black
-RoboServer
-"""
-
-from __future__ import annotations
-
 from collections.abc import Iterator, Sequence
 from contextlib import contextmanager
 from io import BufferedWriter

@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from simulation.scene._aabb import AABB
+from revolve2.simulation.scene._aabb import AABB
 
 from ._geometry import Geometry
 

@@ -1,7 +1,7 @@
 ## 5) Put your evolved robots into the real world.
-Simply simulating all your experiments might not be enough. 
+Simply simulating all your experiments might not be enough.
 To validate if the experiments can reproduce on actual physical robots, you first need to build the robot.
-If you dont know how to start with this visit the [Revolve2 Documentation](https://ci-group.github.io/revolve2/). 
+If you dont know how to start with this visit the [Revolve2 Documentation](https://ci-group.github.io/revolve2/).
 Specifically look at *Creating a physical robot* and *Physical Robot Core Setup*.
 
 - In `5a_physical_robot_remote` you learn how to control your newly built robot remotely.

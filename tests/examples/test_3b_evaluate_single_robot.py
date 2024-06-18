@@ -28,7 +28,7 @@ def test_3b_evaluate_single_robot(mocker: Mock) -> None:
 
     try:
         # This type ignore is required since mypy cant resolve this import.
-        import main  # type: ignore
+        import main
 
         main.main()
     finally:

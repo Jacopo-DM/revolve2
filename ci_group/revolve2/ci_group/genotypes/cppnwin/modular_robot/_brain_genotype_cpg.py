@@ -4,14 +4,9 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Self
 
 import multineat
-
-from ci_group.genotypes.cppnwin._multineat_genotype_pickle_wrapper import (
+from revolve2.ci_group.genotypes.cppnwin import (
     MultineatGenotypePickleWrapper,
-)
-from ci_group.genotypes.cppnwin._multineat_rng_from_random import (
     multineat_rng_from_random,
-)
-from ci_group.genotypes.cppnwin._random_multineat_genotype import (
     random_multineat_genotype,
 )
 

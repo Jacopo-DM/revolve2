@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 
-from simulation.scene._color import Color
-from simulation.scene.vector2 import Vector2
+from revolve2.simulation.scene._color import Color
+from revolve2.simulation.scene.vector2 import Vector2
 
 from ._geometry import Geometry
 from .textures import MapType, Texture

@@ -9,12 +9,11 @@ from typing import (
 )
 
 import sqlalchemy.ext.orderinglist
-from sqlalchemy import orm
-
-from experimentation._util.init_subclass_get_generic_args import (
+from revolve2.experimentation._util.init_subclass_get_generic_args import (
     init_subclass_get_generic_args,
 )
-from experimentation.database import HasId
+from revolve2.experimentation.database import HasId
+from sqlalchemy import orm
 
 TIndividual = TypeVar("TIndividual")
 
@@ -46,10 +45,10 @@ class Population(HasId, orm.MappedAsDataclass, Generic[TIndividual]):
     else:
 
         @orm.declared_attr
-        def individuals(cls) -> orm.Mapped[list[TIndividual]]:  # noqa
-            return cls.__individuals_impl()
+        def individuals(self) -> orm.Mapped[list[TIndividual]]:
+            return self.__individuals_impl()
 
-    __type_tindividual: ClassVar[type[TIndividual]]  # type: ignore[misc]
+    __type_tindividual: ClassVar[type[TIndividual]]
 
     def __init_subclass__(cls: type[Self], /, **kwargs: dict[str, Any]) -> None:
         """
@@ -60,13 +59,16 @@ class Population(HasId, orm.MappedAsDataclass, Generic[TIndividual]):
         :param kwargs: Remaining arguments passed to super.
         """
         generic_types = init_subclass_get_generic_args(cls, Population)
-        assert len(generic_types) == 1
-        cls.__type_tindividual = generic_types[0]
-        assert not isinstance(
-            cls.__type_tindividual, ForwardRef
-        ), "TIndividual generic argument cannot be a forward reference."
+        if len(generic_types) != 1:
+            msg = f"Expected exactly one generic argument for {cls.__name__}, got {len(generic_types)}."
+            raise ValueError(msg)
 
-        super().__init_subclass__(**kwargs)  # type: ignore[arg-type]
+        cls.__type_tindividual = generic_types[0]
+        if isinstance(cls.__type_tindividual, ForwardRef):
+            msg = "TIndividual generic argument cannot be a forward reference."
+            raise TypeError(msg)
+
+        super().__init_subclass__(**kwargs)
 
     @classmethod
     def __individuals_impl(cls) -> orm.Mapped[TIndividual]:

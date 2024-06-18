@@ -1,7 +1,7 @@
 In this example you see an experiment that optimizes the bodies and brains of a robots using a simple evolutionary algorithm.
 The genotypes for both body and brain are CPPNWIN.
 
-Before starting this tutorial, it is useful to look at the 
+Before starting this tutorial, it is useful to look at the
 `3c_evaluate_multiple_isolated_robots`, and `4a_simple_ea_xor` examples.
 It is also nice to understand the concept of a cpg brain and CPPN, although not really needed.
 

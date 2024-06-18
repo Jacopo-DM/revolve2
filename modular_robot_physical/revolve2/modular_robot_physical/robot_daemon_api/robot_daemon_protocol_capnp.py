@@ -6,7 +6,7 @@ This file was manually edited to contain the RoboServer interface.
 
 import os
 
-import capnp  # type: ignore
+import capnp
 
 capnp.remove_import_hook()
 here = os.path.dirname(os.path.abspath(__file__))

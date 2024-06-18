@@ -9,11 +9,10 @@ from revolve2.modular_robot.sensor_state import (
     IMUSensorState,
     ModularRobotSensorState,
 )
-from revolve2.simulation.scene import SimulationState, UUIDKey
-
-from modular_robot_simulation._build_multi_body_systems import (
+from revolve2.modular_robot_simulation._build_multi_body_systems import (
     BodyToMultiBodySystemMapping,
 )
+from revolve2.simulation.scene import SimulationState, UUIDKey
 
 from ._active_hinge_sensor_state_impl import ActiveHingeSensorStateImpl
 from ._camera_sensor_state_impl import CameraSensorStateImpl

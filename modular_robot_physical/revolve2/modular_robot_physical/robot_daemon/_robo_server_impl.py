@@ -6,22 +6,25 @@ from typing import Any
 import numpy as np
 from numpy.typing import NDArray
 from pyrr import Vector3
-
-from modular_robot_physical._hardware_type import HardwareType
-from modular_robot_physical._protocol_version import PROTOCOL_VERSION
-from modular_robot_physical.physical_interfaces import PhysicalInterface
-from modular_robot_physical.robot_daemon_api import robot_daemon_protocol_capnp
-from modular_robot_physical.robot_daemon_api.robot_daemon_protocol_capnp import (
+from revolve2.modular_robot_physical._hardware_type import HardwareType
+from revolve2.modular_robot_physical._protocol_version import PROTOCOL_VERSION
+from revolve2.modular_robot_physical.physical_interfaces import (
+    PhysicalInterface,
+)
+from revolve2.modular_robot_physical.robot_daemon_api import (
+    robot_daemon_protocol_capnp,
+)
+from revolve2.modular_robot_physical.robot_daemon_api.robot_daemon_protocol_capnp import (
     Image as capnpImage,
 )
-from modular_robot_physical.robot_daemon_api.robot_daemon_protocol_capnp import (
+from revolve2.modular_robot_physical.robot_daemon_api.robot_daemon_protocol_capnp import (
     Vector3 as capnpVector3,
 )
 
 Pin = int
 
 
-class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ignore
+class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):
     """Implements the Cap'n Proto interface, run on the physical modular robot."""
 
     _CAREFUL_STEP = 0.1
@@ -109,7 +112,9 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
                                     self._CAREFUL_STEP,
                                 )
                             )
-                        case HardwareType.v2:  # careful mode disabled for v2. enable when running into power failures.
+                        case (
+                            HardwareType.v2
+                        ):  # careful mode disabled for v2. enable when running into power failures.
                             targets.append(desired_target)
 
             for pin, target in zip(pins, targets, strict=False):

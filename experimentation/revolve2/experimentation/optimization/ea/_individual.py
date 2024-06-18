@@ -9,12 +9,11 @@ from typing import (
 )
 
 import sqlalchemy
-from sqlalchemy import orm
-
-from experimentation._util.init_subclass_get_generic_args import (
+from revolve2.experimentation._util.init_subclass_get_generic_args import (
     init_subclass_get_generic_args,
 )
-from experimentation.database import HasId
+from revolve2.experimentation.database import HasId
+from sqlalchemy import orm
 
 TGenotype = TypeVar("TGenotype")
 
@@ -62,26 +61,26 @@ class Individual(HasId, orm.MappedAsDataclass, Generic[TGenotype]):
     else:
 
         @orm.declared_attr
-        def population_id(cls) -> orm.Mapped[int]:  # noqa
-            return cls.__population_id_impl()
+        def population_id(self) -> orm.Mapped[int]:
+            return self.__population_id_impl()
 
         @orm.declared_attr
-        def population_index(cls) -> orm.Mapped[int]:  # noqa
-            return cls.__population_index_impl()
+        def population_index(self) -> orm.Mapped[int]:
+            return self.__population_index_impl()
 
         @orm.declared_attr
-        def genotype_id(cls) -> orm.Mapped[int]:  # noqa
-            return cls.__genotype_id_impl()
+        def genotype_id(self) -> orm.Mapped[int]:
+            return self.__genotype_id_impl()
 
         @orm.declared_attr
-        def genotype(cls) -> orm.Mapped[TGenotype]:  # noqa
-            return cls.__genotype_impl()
+        def genotype(self) -> orm.Mapped[TGenotype]:
+            return self.__genotype_impl()
 
         @orm.declared_attr
-        def fitness(cls) -> orm.Mapped[float]:  # noqa
-            return cls.__fitness_impl()
+        def fitness(self) -> orm.Mapped[float]:
+            return self.__fitness_impl()
 
-    __type_tgenotype: ClassVar[type[TGenotype]]  # type: ignore[misc]
+    __type_tgenotype: ClassVar[type[TGenotype]]
     __population_table: ClassVar[str]
 
     def __init_subclass__(
@@ -96,18 +95,21 @@ class Individual(HasId, orm.MappedAsDataclass, Generic[TGenotype]):
         :param kwargs: Remaining arguments passed to super.
         """
         generic_types = init_subclass_get_generic_args(cls, Individual)
-        assert len(generic_types) == 1
+        if len(generic_types) != 1:
+            msg = "Individual must have exactly one generic argument."
+            raise ValueError(msg)
+
         cls.__type_tgenotype = generic_types[0]
-        assert not isinstance(
-            cls.__type_tgenotype, ForwardRef
-        ), "TGenotype generic argument cannot be a forward reference."
+        if isinstance(cls.__type_tgenotype, ForwardRef):
+            msg = "TGenotype generic argument cannot be a forward reference."
+            raise TypeError(msg)
 
         cls.__population_table = population_table
-        assert isinstance(
-            cls.__population_table, str
-        ), "population_table argument must be a string."
+        if not isinstance(cls.__population_table, str):
+            msg = "population_table argument must be a string."
+            raise TypeError(msg)
 
-        super().__init_subclass__(**kwargs)  # type: ignore[arg-type]
+        super().__init_subclass__(**kwargs)
 
     @classmethod
     def __population_id_impl(cls) -> orm.Mapped[int]:

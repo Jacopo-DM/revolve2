@@ -2,7 +2,7 @@
 
 from dataclasses import dataclass, field
 
-from simulation.scene import Scene
+from revolve2.simulation.scene import Scene
 
 from ._batch_parameters import BatchParameters
 from ._record_settings import RecordSettings

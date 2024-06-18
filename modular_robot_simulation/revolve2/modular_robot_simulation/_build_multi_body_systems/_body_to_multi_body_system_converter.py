@@ -62,10 +62,12 @@ class BodyToMultiBodySystemConverter:
                     "translate_z_aabb does not yet support non-identity orientation. Orientation ignored for AABB calculation. Robot is probably not positioned as you would like."
                 )
             aabb_position, aabb = multi_body_system.calculate_aabb()
-            pose.position += Vector3([
-                0.0,
-                0.0,
-                -aabb_position.z + aabb.size.z / 2.0,
-            ])
+            pose.position += Vector3(
+                [
+                    0.0,
+                    0.0,
+                    -aabb_position.z + aabb.size.z / 2.0,
+                ]
+            )
 
         return multi_body_system, mapping

@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from simulation.scene._pose import Pose
+from revolve2.simulation.scene._pose import Pose
 
 from .textures import Texture
 

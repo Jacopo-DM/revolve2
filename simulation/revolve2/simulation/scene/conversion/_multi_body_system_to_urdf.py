@@ -5,12 +5,11 @@ from xml.dom import minidom
 
 import scipy.spatial.transform
 from pyrr import Quaternion, Vector3
-
-from simulation.scene._joint_hinge import JointHinge
-from simulation.scene._multi_body_system import MultiBodySystem
-from simulation.scene._pose import Pose
-from simulation.scene._rigid_body import RigidBody
-from simulation.scene.geometry import (
+from revolve2.simulation.scene._joint_hinge import JointHinge
+from revolve2.simulation.scene._multi_body_system import MultiBodySystem
+from revolve2.simulation.scene._pose import Pose
+from revolve2.simulation.scene._rigid_body import RigidBody
+from revolve2.simulation.scene.geometry import (
     Geometry,
     GeometryBox,
     GeometryHeightmap,
@@ -58,9 +57,7 @@ class _URDFConverter:
     planes: list[GeometryPlane]
     heightmaps: list[GeometryHeightmap]
 
-    def build(
-        self, multi_body_system: MultiBodySystem, name: str
-    ) -> tuple[
+    def build(self, multi_body_system: MultiBodySystem, name: str) -> tuple[
         str,
         list[GeometryPlane],
         list[GeometryHeightmap],
@@ -385,11 +382,13 @@ def _quaternion_to_euler(quaternion: Quaternion) -> Vector3:
         warnings.simplefilter(
             "ignore", UserWarning
         )  # ignore gimbal lock warning. it is irrelevant for us.
-        euler = scipy.spatial.transform.Rotation.from_quat([
-            quaternion.x,
-            quaternion.y,
-            quaternion.z,
-            quaternion.w,
-        ]).as_euler("xyz")
+        euler = scipy.spatial.transform.Rotation.from_quat(
+            [
+                quaternion.x,
+                quaternion.y,
+                quaternion.z,
+                quaternion.w,
+            ]
+        ).as_euler("xyz")
 
     return Vector3(euler)

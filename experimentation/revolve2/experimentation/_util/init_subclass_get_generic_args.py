@@ -19,10 +19,12 @@ def init_subclass_get_generic_args(
         orig_base
         for orig_base in child.__orig_bases__
         if get_origin(orig_base) is parent
-    ]  # type: ignore[attr-defined]
-    assert (
-        len(orig_bases) == 1
-    ), "Implementer thinks this should be impossible. Expected that user can only inherit from parent class once."
+    ]
+
+    if len(orig_bases) == 1:
+        msg = "Implementer thinks this should be impossible. Expected that user can only inherit from parent class once."
+        raise AssertionError(msg)
+
     orig_base = orig_bases[0]
     # get the generic types from the type annotations
     return get_args(orig_base)

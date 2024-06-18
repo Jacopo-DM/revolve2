@@ -21,7 +21,7 @@ class CustomMujocoViewerMode(Enum):
     MANUAL = "manual"
 
 
-class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
+class CustomMujocoViewer(mujoco_viewer.MujocoViewer):
     """
     Custom Viewer Object that allows for additional keyboard inputs.
 

@@ -1,5 +1,14 @@
 from pyrr import Quaternion, Vector3
 from revolve2.modular_robot.body.base import ActiveHinge
+from revolve2.modular_robot_simulation._build_multi_body_systems._body_to_multi_body_system_mapping import (
+    BodyToMultiBodySystemMapping,
+)
+from revolve2.modular_robot_simulation._build_multi_body_systems._convert_color import (
+    convert_color,
+)
+from revolve2.modular_robot_simulation._build_multi_body_systems._unbuilt_child import (
+    UnbuiltChild,
+)
 from revolve2.simulation.scene import (
     AABB,
     JointHinge,
@@ -10,16 +19,6 @@ from revolve2.simulation.scene import (
 )
 from revolve2.simulation.scene.geometry import GeometryBox
 from revolve2.simulation.scene.geometry.textures import Texture
-
-from modular_robot_simulation._build_multi_body_systems._body_to_multi_body_system_mapping import (
-    BodyToMultiBodySystemMapping,
-)
-from modular_robot_simulation._build_multi_body_systems._convert_color import (
-    convert_color,
-)
-from modular_robot_simulation._build_multi_body_systems._unbuilt_child import (
-    UnbuiltChild,
-)
 
 from ._builder import Builder
 
@@ -55,12 +54,14 @@ class ActiveHingeBuilder(Builder):
         :param body_to_multi_body_system_mapping: A mapping from body to multi-body system
         :return: The next children to be built.
         """
-        SERVO_BBOX2_POSITION = Vector3([
-            self._module.servo1_bounding_box[0] / 2.0
-            + self._module.servo2_bounding_box[0] / 2.0,
-            0.0,
-            0.0,
-        ])
+        SERVO_BBOX2_POSITION = Vector3(
+            [
+                self._module.servo1_bounding_box[0] / 2.0
+                + self._module.servo2_bounding_box[0] / 2.0,
+                0.0,
+                0.0,
+            ]
+        )
 
         frame_position = (
             self._slot_pose.position

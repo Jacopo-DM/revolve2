@@ -45,18 +45,21 @@ def simulate_manual_scene(
     )
 
     """Here we set our values for cycling different positions."""
-    prev_position: int = 0  # This is the initial idle position for all hinges (index of the positions).
+    # This is the initial idle position for all hinges (index of the positions).
+    prev_position: int | str = 0
+    # Those are the possible cycle positions we want.
     positions: list[float] = [
         0.0,
         0.5,
         1.0,
         -0.5,
         -1.0,
-    ]  # Those are the possible cycle positions we want.
+    ]
+    # Here we can check whether we are currently on the correct position.
     target, current = (
         0.0,
         0.0,
-    )  # Here we can check whether we are currently on the correct position.
+    )
     try:
         while True:
             simulation_state = SimulationStateImpl(

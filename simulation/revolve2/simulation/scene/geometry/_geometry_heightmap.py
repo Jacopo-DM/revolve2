@@ -3,8 +3,7 @@ from dataclasses import dataclass, field
 import numpy as np
 import numpy.typing as npt
 from pyrr import Vector3
-
-from simulation.scene._color import Color
+from revolve2.simulation.scene._color import Color
 
 from ._geometry import Geometry
 from .textures import MapType, Texture

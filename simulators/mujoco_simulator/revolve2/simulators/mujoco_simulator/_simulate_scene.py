@@ -81,9 +81,9 @@ def simulate_scene(
     last_sample_time = 0.0
     last_video_time = 0.0  # time at which last video frame was saved
 
-    simulation_states: list[
-        SimulationState
-    ] = []  # The measured states of the simulation
+    simulation_states: list[SimulationState] = (
+        []
+    )  # The measured states of the simulation
 
     """If we dont have cameras and the backend is not set we go to the default GLFW."""
     if len(mapping.camera_sensor.values()) == 0:

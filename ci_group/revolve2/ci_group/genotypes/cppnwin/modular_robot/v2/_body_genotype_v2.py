@@ -4,21 +4,16 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Self
 
 import multineat
-
-from ci_group.genotypes.cppnwin._multineat_genotype_pickle_wrapper import (
+from revolve2.ci_group.genotypes.cppnwin import (
     MultineatGenotypePickleWrapper,
-)
-from ci_group.genotypes.cppnwin._multineat_rng_from_random import (
     multineat_rng_from_random,
-)
-from ci_group.genotypes.cppnwin._random_multineat_genotype import (
     random_multineat_genotype,
 )
-from ci_group.genotypes.cppnwin.modular_robot._multineat_params import (
+from revolve2.ci_group.genotypes.cppnwin.modular_robot import (
     get_multineat_params,
 )
 
-from ._body_develop import develop
+from ._body_develop import develop_body_v2
 
 if TYPE_CHECKING:
     import numpy as np
@@ -132,4 +127,4 @@ class BodyGenotypeV2:
 
         :returns: The created robot.
         """
-        return develop(self.body.genotype)
+        return develop_body_v2(self.body.genotype)

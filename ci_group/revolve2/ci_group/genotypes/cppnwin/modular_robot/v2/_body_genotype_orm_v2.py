@@ -3,19 +3,16 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Self
 
 import multineat
-from sqlalchemy import event, orm
-
-from ci_group.genotypes.cppnwin._multineat_rng_from_random import (
+from revolve2.ci_group.genotypes.cppnwin import (
     multineat_rng_from_random,
-)
-from ci_group.genotypes.cppnwin._random_multineat_genotype import (
     random_multineat_genotype,
 )
-from ci_group.genotypes.cppnwin.modular_robot._multineat_params import (
+from revolve2.ci_group.genotypes.cppnwin.modular_robot import (
     get_multineat_params,
 )
+from sqlalchemy import event, orm
 
-from ._body_develop import develop
+from ._body_develop import develop_body_v2
 
 if TYPE_CHECKING:
     import numpy as np
@@ -127,7 +124,7 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
 
         :returns: The created robot.
         """
-        return develop(self.body)
+        return develop_body_v2(self.body)
 
 
 @event.listens_for(BodyGenotypeOrmV2, "before_update", propagate=True)

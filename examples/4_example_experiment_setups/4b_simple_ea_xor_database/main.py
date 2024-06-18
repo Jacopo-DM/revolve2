@@ -16,10 +16,6 @@ from database_components import (
 from evaluate import Evaluator
 from numpy.typing import NDArray
 from revolve2.experimentation.database import OpenMethod, open_database_sqlite
-from revolve2.experimentation.evolution.abstract_elements import (
-    Reproducer,
-    Selector,
-)
 from revolve2.experimentation.logging import setup_logging
 from revolve2.experimentation.optimization.ea import (
     population_management,
@@ -34,7 +30,7 @@ from sqlalchemy.engine import Engine
 from sqlalchemy.orm import Session
 
 
-class ParentSelector(Selector):
+class ParentSelector:
     """Here we create a selector object that helps us select the parents for reproduction."""
 
     _rng: np.random.Generator
@@ -59,17 +55,25 @@ class ParentSelector(Selector):
         :param kwargs: Additional kwargs that are not used in this example.
         :returns: Pairs of indices of selected parents. offspring_size x 2 ints, and the parent population in the KWArgs dict.
         """
-        return np.asarray([
-            selection.multiple_unique(
-                2,
-                [individual.genotype for individual in population.individuals],
-                [individual.fitness for individual in population.individuals],
-                lambda _, fitnesses: selection.tournament(
-                    self._rng, fitnesses, k=1
-                ),
-            )
-            for _ in range(self._offspring_size)
-        ]), {"parent_population": population}
+        return np.asarray(
+            [
+                selection.multiple_unique(
+                    2,
+                    [
+                        individual.genotype
+                        for individual in population.individuals
+                    ],
+                    [
+                        individual.fitness
+                        for individual in population.individuals
+                    ],
+                    lambda _, fitnesses: selection.tournament(
+                        self._rng, fitnesses, k=1
+                    ),
+                )
+                for _ in range(self._offspring_size)
+            ]
+        ), {"parent_population": population}
 
 
 class SurvivorSelector(Selector):

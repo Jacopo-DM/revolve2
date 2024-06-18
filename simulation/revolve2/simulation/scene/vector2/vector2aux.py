@@ -8,7 +8,7 @@ import numpy as np
 from pyrr.utils import parameters_as_numpy_arrays
 
 
-def create(x: float = 0.0, y: float = 0.0, dtype: Any = None) -> np.ndarray:  # type:ignore
+def create(x: float = 0.0, y: float = 0.0, dtype: Any = None) -> np.ndarray:
     """
     Create a Vector2 object.
 
@@ -21,11 +21,11 @@ def create(x: float = 0.0, y: float = 0.0, dtype: Any = None) -> np.ndarray:  # 
     """
     if isinstance(x, list | np.ndarray):
         msg = "Function requires non-list arguments"
-        raise ValueError(msg)
+        raise TypeError(msg)
     return np.array([x, y], dtype=dtype)
 
 
-def create_unit_length_x(dtype: Any = None) -> np.ndarray:  # type:ignore
+def create_unit_length_x(dtype: Any = None) -> np.ndarray:
     """
     Create a x unit Vector2.
 
@@ -35,7 +35,7 @@ def create_unit_length_x(dtype: Any = None) -> np.ndarray:  # type:ignore
     return np.array([1.0, 0.0], dtype=dtype)
 
 
-def create_unit_length_y(dtype: Any = None) -> np.ndarray:  # type:ignore
+def create_unit_length_y(dtype: Any = None) -> np.ndarray:
     """
     Create a y unit Vector2.
 
@@ -45,8 +45,8 @@ def create_unit_length_y(dtype: Any = None) -> np.ndarray:  # type:ignore
     return np.array([0.0, 1.0], dtype=dtype)
 
 
-@parameters_as_numpy_arrays("mat")  # type:ignore
-def create_from_matrix33_translation(mat: Any, dtype: Any = None) -> np.ndarray:  # type:ignore
+@parameters_as_numpy_arrays("mat")
+def create_from_matrix33_translation(mat: Any, dtype: Any = None) -> np.ndarray:
     """
     Create a Vector2 from a 3x3 Matrix.
 

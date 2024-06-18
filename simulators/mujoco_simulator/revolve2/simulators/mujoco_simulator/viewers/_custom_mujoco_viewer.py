@@ -8,8 +8,7 @@ import glfw
 import mujoco
 import mujoco_viewer
 from revolve2.simulation.simulator import Viewer
-
-from mujoco_simulator._render_backend import RenderBackend
+from revolve2.simulators.mujoco_simulator._render_backend import RenderBackend
 
 
 class CustomMujocoViewerMode(Enum):
@@ -24,7 +23,7 @@ class CustomMujocoViewerMode(Enum):
     MANUAL = "manual"
 
 
-class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
+class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):
     """
     Custom Viewer Object that allows for additional keyboard inputs.
 

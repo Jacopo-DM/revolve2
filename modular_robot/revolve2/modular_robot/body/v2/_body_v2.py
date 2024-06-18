@@ -1,4 +1,4 @@
-from modular_robot.body.base import Body
+from revolve2.modular_robot.body.base import Body
 
 from ._core_v2 import CoreV2
 

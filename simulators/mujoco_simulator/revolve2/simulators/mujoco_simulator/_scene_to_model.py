@@ -5,6 +5,9 @@ from itertools import product
 from typing import Any
 
 import mujoco
+
+# TODO(jmdm): necessary? -> logging.basicConfig(level=logging.DEBUG)
+from dm_control import mjcf
 from revolve2.simulation.scene import (
     JointHinge,
     RigidBody,
@@ -25,9 +28,6 @@ from ._abstraction_to_mujoco_mapping import (
     JointHingeMujoco,
     MultiBodySystemMujoco,
 )
-
-logging.basicConfig(level=logging.DEBUG)
-from dm_control import mjcf
 
 
 def scene_to_model(
@@ -392,15 +392,15 @@ def _set_colors_and_materials(
     """
     for geom, name in geoms_and_names:
         if fast_sim:
-            multi_body_system_mjcf.find(
-                "geom", name
-            ).rgba = geom.texture.primary_color.to_normalized_rgba_list()
+            multi_body_system_mjcf.find("geom", name).rgba = (
+                geom.texture.primary_color.to_normalized_rgba_list()
+            )
         else:
             m_name = f"geom_{name}"
             __make_material(multi_body_system_mjcf, name=m_name, element=geom)
-            multi_body_system_mjcf.find(
-                "geom", name
-            ).material = f"{m_name}_material"
+            multi_body_system_mjcf.find("geom", name).material = (
+                f"{m_name}_material"
+            )
 
 
 def _set_heightmap_values(

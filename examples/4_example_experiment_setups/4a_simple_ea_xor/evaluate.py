@@ -3,12 +3,9 @@
 import numpy as np
 import numpy.typing as npt
 from genotype import Genotype
-from revolve2.experimentation.evolution.abstract_elements import (
-    Evaluator as Eval,
-)
 
 
-class Evaluator(Eval):
+class Evaluator:
     """Here we make an evaluator object, based on the abstract evaluator defined in Revolve2."""
 
     @staticmethod
@@ -46,10 +43,12 @@ class Evaluator(Eval):
             expected_outputs = np.array([0, 1, 1, 0])
 
             # Evaluate the provided network parameters
-            outputs = np.array([
-                self.evaluate_network(genotype.parameters, input)
-                for input in inputs
-            ])
+            outputs = np.array(
+                [
+                    self.evaluate_network(genotype.parameters, input)
+                    for input in inputs
+                ]
+            )
 
             # Calculate the difference between the network outputs and the expect outputs
             errors = outputs - expected_outputs

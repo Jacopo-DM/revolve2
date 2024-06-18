@@ -6,8 +6,7 @@ import numpy as np
 import pigpio
 from numpy.typing import NDArray
 from pyrr import Vector3
-
-from modular_robot_physical.physical_interfaces._physical_interface import (
+from revolve2.modular_robot_physical.physical_interfaces._physical_interface import (
     PhysicalInterface,
 )
 

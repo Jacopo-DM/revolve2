@@ -27,7 +27,7 @@ def test_2b_brain_with_feedback(mocker: Mock) -> None:
 
     try:
         # This type ignore is required since mypy cant resolve this import.
-        import main  # type: ignore
+        import main
 
         main.main()
     finally:

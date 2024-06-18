@@ -11,11 +11,6 @@ import numpy.typing as npt
 from evaluator import Evaluator
 from genotype import Genotype
 from individual import Individual
-from revolve2.experimentation.evolution import ModularRobotEvolution
-from revolve2.experimentation.evolution.abstract_elements import (
-    Reproducer,
-    Selector,
-)
 from revolve2.experimentation.logging import setup_logging
 from revolve2.experimentation.optimization.ea import (
     population_management,
@@ -24,7 +19,7 @@ from revolve2.experimentation.optimization.ea import (
 from revolve2.experimentation.rng import make_rng_time_seed
 
 
-class ParentSelector(Selector):
+class ParentSelector:
     """Selector class for parent selection."""
 
     rng: np.random.Generator
@@ -58,8 +53,7 @@ class ParentSelector(Selector):
                         individual.genotype for individual in population
                     ],
                     fitnesses=[individual.fitness for individual in population],
-                    selection_function=lambda _,
-                    fitnesses: selection.tournament(
+                    selection_function=lambda _, fitnesses: selection.tournament(
                         rng=self.rng, fitnesses=fitnesses, k=1
                     ),
                 )
@@ -106,9 +100,7 @@ class SurvivorSelector(Selector):
             old_fitnesses=[i.fitness for i in population],
             new_genotypes=offspring,
             new_fitnesses=offspring_fitness,
-            selection_function=lambda n,
-            genotypes,
-            fitnesses: selection.multiple_unique(
+            selection_function=lambda n, genotypes, fitnesses: selection.multiple_unique(
                 selection_size=n,
                 population=genotypes,
                 fitnesses=fitnesses,

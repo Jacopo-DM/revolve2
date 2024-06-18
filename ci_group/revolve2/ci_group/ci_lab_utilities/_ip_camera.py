@@ -62,18 +62,22 @@ class IPCamera:
         :param fps: The FPS of the camera.
         """
         if distortion_coefficients is None:
-            distortion_coefficients = np.array([
-                [-0.2976428547328032],
-                [3.2508343621538445],
-                [-17.38410840159056],
-                [30.01965021834286],
-            ])
+            distortion_coefficients = np.array(
+                [
+                    [-0.2976428547328032],
+                    [3.2508343621538445],
+                    [-17.38410840159056],
+                    [30.01965021834286],
+                ]
+            )
         if camera_matrix is None:
-            camera_matrix = np.array([
-                [1490.4374643604199, 0.0, 990.6557248821284],
-                [0.0, 1490.6535480621505, 544.6243597123726],
-                [0.0, 0.0, 1.0],
-            ])
+            camera_matrix = np.array(
+                [
+                    [1490.4374643604199, 0.0, 990.6557248821284],
+                    [0.0, 1490.6535480621505, 544.6243597123726],
+                    [0.0, 0.0, 1.0],
+                ]
+            )
         self._camera_location = camera_location
         self._recording_path = recording_path or f"{time.time()}_output.mp4"
 

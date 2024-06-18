@@ -11,7 +11,7 @@ from pyrr.objects.base import BaseMatrix33, BaseVector, NpProxy
 from . import vector2aux as vector2
 
 
-class Vector2(BaseVector):  # type:ignore
+class Vector2(BaseVector):
     """Represents a 2-dimensional Vector. The Vector2 class is based on the pyrr implementation of vectors."""
 
     _module = vector2
@@ -40,10 +40,12 @@ class Vector2(BaseVector):  # type:ignore
                 obj = np.array(value, dtype=dtype)
 
             # matrix33
-            if obj.shape in ((
-                3,
-                3,
-            )) or isinstance(obj, BaseMatrix33):
+            if obj.shape in (
+                (
+                    3,
+                    3,
+                )
+            ) or isinstance(obj, BaseMatrix33):
                 obj = vector2.create_from_matrix33_translation(obj, dtype=dtype)
         else:
             obj = np.zeros(cls._shape, dtype=dtype)
@@ -55,7 +57,7 @@ class Vector2(BaseVector):  # type:ignore
     __NMB = [Number, np.number]
     __VCT = ["Vector2", np.ndarray, list]
 
-    def __add__(self, other: Any) -> Vector2:  # type:ignore
+    def __add__(self, other: Any) -> Vector2:
         """
         Add to the existing Vector2.
 
@@ -67,7 +69,7 @@ class Vector2(BaseVector):  # type:ignore
         self._unsupported_type("add", other)
         return None
 
-    def __sub__(self, other: Any) -> Vector2:  # type:ignore
+    def __sub__(self, other: Any) -> Vector2:
         """
         Subtract from the existing Vector2.
 
@@ -79,7 +81,7 @@ class Vector2(BaseVector):  # type:ignore
         self._unsupported_type("subtract", other)
         return None
 
-    def __mul__(self, other: Any) -> Vector2:  # type:ignore
+    def __mul__(self, other: Any) -> Vector2:
         """
         Multiply the existing Vector2.
 
@@ -115,7 +117,7 @@ class Vector2(BaseVector):  # type:ignore
         self._unsupported_type("OR", other)
         return None
 
-    def __ne__(self, other: object) -> bool:  # type:ignore
+    def __ne__(self, other: object) -> bool:
         """
         Not equal to the existing Vector2.
 
@@ -127,7 +129,7 @@ class Vector2(BaseVector):  # type:ignore
         self._unsupported_type("NE", other)
         return None
 
-    def __eq__(self, other: object) -> bool:  # type:ignore
+    def __eq__(self, other: object) -> bool:
         """
         Equal to the existing Vector2.
 

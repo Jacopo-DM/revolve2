@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from modular_robot.body.sensors import (
+from revolve2.modular_robot.body.sensors import (
     ActiveHingeSensor,
     CameraSensor,
     IMUSensor,

@@ -9,10 +9,6 @@ from evaluate import Evaluator
 from genotype import Genotype
 from individual import Individual
 from numpy.typing import NDArray
-from revolve2.experimentation.evolution.abstract_elements import (
-    Reproducer,
-    Selector,
-)
 from revolve2.experimentation.logging import setup_logging
 from revolve2.experimentation.optimization.ea import (
     population_management,
@@ -21,7 +17,7 @@ from revolve2.experimentation.optimization.ea import (
 from revolve2.experimentation.rng import make_rng_time_seed
 
 
-class ParentSelector(Selector):
+class ParentSelector:
     """Here we create a selector object that helps us select the parents for reproduction."""
 
     _rng: np.random.Generator
@@ -46,22 +42,24 @@ class ParentSelector(Selector):
         :param kwargs: Additional kwargs that are not used in this example.
         :returns: Pairs of indices of selected parents. offspring_size x 2 ints, and the parent population in the KWArgs dict.
         """
-        final_selection = np.asarray([
-            selection.multiple_unique(
-                2,
-                [individual.genotype for individual in population],
-                [individual.fitness for individual in population],
-                lambda _, fitnesses: selection.tournament(
-                    self._rng, fitnesses, k=1
-                ),
-            )
-            for _ in range(self._offspring_size)
-        ])
+        final_selection = np.asarray(
+            [
+                selection.multiple_unique(
+                    2,
+                    [individual.genotype for individual in population],
+                    [individual.fitness for individual in population],
+                    lambda _, fitnesses: selection.tournament(
+                        self._rng, fitnesses, k=1
+                    ),
+                )
+                for _ in range(self._offspring_size)
+            ]
+        )
         """We select not the parents directly, but their respective indices for the reproduction step."""
         return final_selection, {"parent_population": population}
 
 
-class SurvivorSelector(Selector):
+class SurvivorSelector:
     """Here we make a selector object that allows us to select survivor after evaluation."""
 
     _rng: np.random.Generator
@@ -124,7 +122,7 @@ class SurvivorSelector(Selector):
         ], {}
 
 
-class CrossoverReproducer(Reproducer):
+class CrossoverReproducer:
     """We make a reproducer object to facilitate crossover operations."""
 
     _rng: np.random.Generator

@@ -9,12 +9,11 @@ from typing import (
 )
 
 import sqlalchemy
-from sqlalchemy import orm
-
-from experimentation._util.init_subclass_get_generic_args import (
+from revolve2.experimentation._util.init_subclass_get_generic_args import (
     init_subclass_get_generic_args,
 )
-from experimentation.database import HasId
+from revolve2.experimentation.database import HasId
+from sqlalchemy import orm
 
 TPopulation = TypeVar("TPopulation")
 
@@ -55,18 +54,18 @@ class Generation(HasId, orm.MappedAsDataclass, Generic[TPopulation]):
     else:
 
         @orm.declared_attr
-        def generation_index(cls) -> orm.Mapped[int]:  # noqa
-            return cls.__generation_index_impl()
+        def generation_index(self) -> orm.Mapped[int]:
+            return self.__generation_index_impl()
 
         @orm.declared_attr
         def _population_id(self) -> orm.Mapped[int]:
             return self.__population_id_impl()
 
         @orm.declared_attr
-        def population(cls) -> orm.Mapped[TPopulation]:  # noqa
-            return cls.__population_impl()
+        def population(self) -> orm.Mapped[TPopulation]:
+            return self.__population_impl()
 
-    __type_tpopulation: ClassVar[type[TPopulation]]  # type: ignore[misc]
+    __type_tpopulation: ClassVar[type[TPopulation]]
 
     def __init_subclass__(cls: type[Self], /, **kwargs: dict[str, Any]) -> None:
         """
@@ -76,13 +75,15 @@ class Generation(HasId, orm.MappedAsDataclass, Generic[TPopulation]):
         :param kwargs: Remaining arguments passed to super.
         """
         generic_types = init_subclass_get_generic_args(cls, Generation)
-        assert len(generic_types) == 1
+        if len(generic_types) != 1:
+            msg = "Generation must have exactly one generic argument."
+            raise ValueError(msg)
         cls.__type_tpopulation = generic_types[0]
-        assert not isinstance(
-            cls.__type_tpopulation, ForwardRef
-        ), "TPopulation generic argument cannot be a forward reference."
+        if not isinstance(cls.__type_tpopulation, ForwardRef):
+            msg = "TPopulation generic argument cannot be a forward reference."
+            raise TypeError(msg)
 
-        super().__init_subclass__(**kwargs)  # type: ignore[arg-type]
+        super().__init_subclass__(**kwargs)
 
     @classmethod
     def __generation_index_impl(cls) -> orm.Mapped[int]:

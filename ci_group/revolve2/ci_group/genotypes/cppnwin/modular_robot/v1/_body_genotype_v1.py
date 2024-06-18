@@ -1,28 +1,28 @@
-from __future__ import annotations
+# from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import TYPE_CHECKING, Self
+# from dataclasses import dataclass
+from typing import Self
 
 import multineat
+import numpy as np
 
-from ci_group.genotypes.cppnwin._multineat_genotype_pickle_wrapper import (
-    MultineatGenotypePickleWrapper,
-)
-from ci_group.genotypes.cppnwin._multineat_rng_from_random import (
-    multineat_rng_from_random,
-)
-from ci_group.genotypes.cppnwin._random_multineat_genotype import (
-    random_multineat_genotype,
-)
-from ci_group.genotypes.cppnwin.modular_robot._multineat_params import (
-    get_multineat_params,
-)
+# from revolve2.ci_group.genotypes.cppnwin._multineat_genotype_pickle_wrapper import (
+#     MultineatGenotypePickleWrapper,
+# )
+# from revolve2.ci_group.genotypes.cppnwin._multineat_rng_from_random import (
+#     multineat_rng_from_random,
+# )
+# from revolve2.ci_group.genotypes.cppnwin._random_multineat_genotype import (
+#     random_multineat_genotype,
+# )
+# from revolve2.ci_group.genotypes.cppnwin.modular_robot import (
+#     get_multineat_params,
+# )
 
-from ._body_develop import develop
+# from ._body_develop import develop as develop_body_v1
 
-if TYPE_CHECKING:
-    import numpy as np
-    from revolve2.modular_robot.body.v1 import BodyV1
+
+# from revolve2.modular_robot.body.v1 import BodyV1
 
 
 @dataclass
@@ -125,4 +125,4 @@ class BodyGenotypeV1:
 
         :returns: The created robot.
         """
-        return develop(self.body.genotype)
+        return develop_body_v1(self.body.genotype)
