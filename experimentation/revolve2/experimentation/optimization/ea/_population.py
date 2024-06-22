@@ -1,11 +1,4 @@
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    ForwardRef,
-    Generic,
-    Self,
-    TypeVar,
-)
+from typing import TYPE_CHECKING, Any, ForwardRef, Generic, Self, TypeVar
 
 import sqlalchemy.ext.orderinglist
 from sqlalchemy import orm

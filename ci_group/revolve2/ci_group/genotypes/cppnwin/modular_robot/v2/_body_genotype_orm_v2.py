@@ -9,12 +9,8 @@ from ci_group.genotypes.cppnwin import (
     multineat_rng_from_random,
     random_multineat_genotype,
 )
-from ci_group.genotypes.cppnwin.modular_robot import (
-    get_multineat_params,
-)
-from ci_group.genotypes.cppnwin.modular_robot.v2 import (
-    develop_body_v2,
-)
+from ci_group.genotypes.cppnwin.modular_robot import get_multineat_params
+from ci_group.genotypes.cppnwin.modular_robot.v2 import develop_body_v2
 
 if TYPE_CHECKING:
     import numpy as np

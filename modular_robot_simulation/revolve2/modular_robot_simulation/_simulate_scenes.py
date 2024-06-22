@@ -6,10 +6,7 @@ from revolve2.simulation.simulator import (
     Simulator,
 )
 
-from modular_robot_simulation import (
-    ModularRobotScene,
-    SceneSimulationState,
-)
+from modular_robot_simulation import ModularRobotScene, SceneSimulationState
 from modular_robot_simulation._to_batch import to_batch
 
 

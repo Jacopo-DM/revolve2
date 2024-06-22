@@ -11,9 +11,7 @@ from revolve2.simulation.scene import Color, Pose
 from revolve2.simulation.scene.geometry import GeometryHeightmap, GeometryPlane
 from revolve2.simulation.scene.geometry.textures import MapType
 from revolve2.simulation.scene.vector2 import Vector2
-from revolve2.simulators.mujoco_simulator.textures import (
-    Checker,
-)
+from revolve2.simulators.mujoco_simulator.textures import Checker
 
 
 def flat(size: Vector2 | None = None) -> Terrain:

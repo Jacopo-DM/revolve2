@@ -1,11 +1,4 @@
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    ForwardRef,
-    Generic,
-    Self,
-    TypeVar,
-)
+from typing import TYPE_CHECKING, Any, ForwardRef, Generic, Self, TypeVar
 
 import sqlalchemy
 from sqlalchemy import orm
