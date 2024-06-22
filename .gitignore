@@ -190,3 +190,6 @@ cpg_test.py
 
 # Ignore physical robot stuff
 **/modular_robot_physical
+
+# Ignore robohat
+robohat/**
