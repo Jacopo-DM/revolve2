@@ -3,7 +3,7 @@
 platform_independent_packages:
   - experimentation
   - modular_robot
-  # - modular_robot_physical
+  - modular_robot_physical
   - modular_robot_simulation
   - simulation
   - simulators/mujoco_simulator
