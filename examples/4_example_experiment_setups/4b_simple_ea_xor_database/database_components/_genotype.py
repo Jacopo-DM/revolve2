@@ -11,13 +11,14 @@ from revolve2.experimentation.optimization.ea import (
 from ._base import Base
 
 
-class Genotype(Base, HasId, GenericParameters):
+class Genotype(Base, HasId, GenericParameters):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """
     ORM definition for our genotype that is a list of parameters.
 
     In SQLAlchemy we can inherit from multiple classes that each define seperate table columns.
     Revolve2's 'GenericParameters' class defines our 'parameters' field.
-    Take a short look at the class to see that it writes the parameters to the database as a string of semicolon concatened floats.
+    Take a short look at the class to see that it writes the parameters to the database as a string of semicolon concatenated floats.
 
     Besides the removed dataclass decorator(identical behavior is provided by SQLAlchemy),
     the rest of this class is exactly the same as the original example!
@@ -38,7 +39,7 @@ class Genotype(Base, HasId, GenericParameters):
         :param num_parameters: Number of parameters for genotype.
         :returns: The created genotype.
         """
-        return Genotype(rng.random(size=num_parameters) * 2 - 1)
+        return Genotype(parameters=rng.random(size=num_parameters) * 2 - 1)
 
     def mutate(
         self,
@@ -57,7 +58,10 @@ class Genotype(Base, HasId, GenericParameters):
         :returns: A mutated copy of the provided genotype.
         """
         return Genotype(
-            rng.normal(scale=mutate_std, size=num_parameters) + self.parameters
+            parameters=(
+                rng.normal(scale=mutate_std, size=num_parameters)
+                + self.parameters
+            )
         )
 
     @classmethod
@@ -78,4 +82,6 @@ class Genotype(Base, HasId, GenericParameters):
         :returns: A newly created genotype.
         """
         mask = rng.random(num_parameters)
-        return Genotype(np.where(mask, parent1.parameters, parent2.parameters))
+        return Genotype(
+            parameters=(np.where(mask, parent1.parameters, parent2.parameters))
+        )

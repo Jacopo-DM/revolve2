@@ -1,7 +1,6 @@
 from typing import (
     TYPE_CHECKING,
     Any,
-    ClassVar,
     ForwardRef,
     Generic,
     Self,
@@ -9,11 +8,12 @@ from typing import (
 )
 
 import sqlalchemy
-from revolve2.experimentation._util.init_subclass_get_generic_args import (
+from sqlalchemy import orm
+
+from experimentation._util.init_subclass_get_generic_args import (
     init_subclass_get_generic_args,
 )
-from revolve2.experimentation.database import HasId
-from sqlalchemy import orm
+from experimentation.database import HasId
 
 TPopulation = TypeVar("TPopulation")
 
@@ -65,7 +65,7 @@ class Generation(HasId, orm.MappedAsDataclass, Generic[TPopulation]):
         def population(self) -> orm.Mapped[TPopulation]:
             return self.__population_impl()
 
-    __type_tpopulation: ClassVar[type[TPopulation]]
+    __type_tpopulation: TPopulation
 
     def __init_subclass__(cls: type[Self], /, **kwargs: dict[str, Any]) -> None:
         """
@@ -83,7 +83,8 @@ class Generation(HasId, orm.MappedAsDataclass, Generic[TPopulation]):
             msg = "TPopulation generic argument cannot be a forward reference."
             raise TypeError(msg)
 
-        super().__init_subclass__(**kwargs)
+        # TODO(jmdm): Fix type annotation?
+        super().__init_subclass__(**kwargs)  # type: ignore[arg-type]
 
     @classmethod
     def __generation_index_impl(cls) -> orm.Mapped[int]:

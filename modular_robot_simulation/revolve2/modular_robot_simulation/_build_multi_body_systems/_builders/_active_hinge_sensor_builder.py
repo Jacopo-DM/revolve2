@@ -1,10 +1,4 @@
 from revolve2.modular_robot.body.sensors import ActiveHingeSensor
-from revolve2.modular_robot_simulation._build_multi_body_systems._body_to_multi_body_system_mapping import (
-    BodyToMultiBodySystemMapping,
-)
-from revolve2.modular_robot_simulation._build_multi_body_systems._unbuilt_child import (
-    UnbuiltChild,
-)
 from revolve2.simulation.scene import (
     JointHinge,
     MultiBodySystem,
@@ -12,7 +6,13 @@ from revolve2.simulation.scene import (
     UUIDKey,
 )
 
-from ._builder import Builder
+from modular_robot_simulation._build_multi_body_systems import (
+    BodyToMultiBodySystemMapping,
+)
+from modular_robot_simulation._build_multi_body_systems._builders import Builder
+from modular_robot_simulation._build_multi_body_systems._unbuilt_child import (
+    UnbuiltChild,
+)
 
 
 class ActiveHingeSensorBuilder(Builder):

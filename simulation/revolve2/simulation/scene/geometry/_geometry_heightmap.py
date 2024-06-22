@@ -3,10 +3,10 @@ from dataclasses import dataclass, field
 import numpy as np
 import numpy.typing as npt
 from pyrr import Vector3
-from revolve2.simulation.scene._color import Color
 
-from ._geometry import Geometry
-from .textures import MapType, Texture
+from simulation.scene._color import Color
+from simulation.scene.geometry._geometry import Geometry
+from simulation.scene.geometry.textures import MapType, Texture
 
 
 @dataclass(kw_only=True)

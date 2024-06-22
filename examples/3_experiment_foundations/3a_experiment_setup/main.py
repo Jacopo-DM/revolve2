@@ -15,9 +15,7 @@ def run_experiment(num_samples: int, probability: float) -> None:
     :param num_samples: The number of samples to use for this experiment.
     :param probability: The probablity to use for this experiment.
     """
-    success_ratios = (
-        []
-    )  # Create a list where we will store the success ratio for each repetition.
+    success_ratios = []  # Create a list where we will store the success ratio for each repetition.
 
     for repetition in range(config.NUM_REPETITIONS):
         logging.info(

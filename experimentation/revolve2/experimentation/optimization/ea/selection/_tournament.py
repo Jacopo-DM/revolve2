@@ -16,7 +16,9 @@ def tournament(
     :param k: Amount of individuals to participate in tournament.
     :returns: The index of te individual that won the tournament.
     """
-    assert len(fitnesses) >= k
+    if len(fitnesses) < k:
+        msg = f"Expected at least {k} fitnesses, got {len(fitnesses)}."
+        raise ValueError(msg)
 
     participant_indices = rng.choice(range(len(fitnesses)), size=k)
-    return max(participant_indices, key=lambda i: fitnesses[i])
+    return int(max(participant_indices, key=lambda i: fitnesses[i]))

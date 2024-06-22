@@ -21,7 +21,7 @@ from revolve2.simulation.scene.geometry import (
     GeometryPlane,
 )
 
-from ._abstraction_to_mujoco_mapping import (
+from simulators.mujoco_simulator._abstraction_to_mujoco_mapping import (
     AbstractionToMujocoMapping,
     CameraSensorMujoco,
     IMUSensorMujoco,
@@ -171,7 +171,10 @@ def _create_tmp_file(
     """
     try:
         with tempfile.NamedTemporaryFile(
-            mode="r+", delete=True, suffix="_revolve2_mujoco.mjcf"
+            mode="r+",
+            delete=True,
+            suffix="_revolve2_mujoco.mjcf",
+            encoding="locale",
         ) as mjcf_file:
             mujoco.mj_saveLastXML(mjcf_file.name, multi_body_system_model)
             multi_body_system_mjcf = mjcf.from_file(mjcf_file)
@@ -179,7 +182,10 @@ def _create_tmp_file(
     # since NamedTemporaryFile can't be opened twice when the file is still open.
     except Exception:
         with tempfile.NamedTemporaryFile(
-            mode="r+", delete=False, suffix="_revolve2_mujoco.mjcf"
+            mode="r+",
+            delete=False,
+            suffix="_revolve2_mujoco.mjcf",
+            encoding="locale",
         ) as mjcf_file:
             # to make sure the temp file is always deleted,
             # an error catching is needed, in case the xml saving fails and crashes the program
@@ -392,15 +398,15 @@ def _set_colors_and_materials(
     """
     for geom, name in geoms_and_names:
         if fast_sim:
-            multi_body_system_mjcf.find("geom", name).rgba = (
-                geom.texture.primary_color.to_normalized_rgba_list()
-            )
+            multi_body_system_mjcf.find(
+                "geom", name
+            ).rgba = geom.texture.primary_color.to_normalized_rgba_list()
         else:
             m_name = f"geom_{name}"
             __make_material(multi_body_system_mjcf, name=m_name, element=geom)
-            multi_body_system_mjcf.find("geom", name).material = (
-                f"{m_name}_material"
-            )
+            multi_body_system_mjcf.find(
+                "geom", name
+            ).material = f"{m_name}_material"
 
 
 def _set_heightmap_values(

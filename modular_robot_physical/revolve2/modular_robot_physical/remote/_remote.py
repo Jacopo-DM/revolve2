@@ -9,12 +9,13 @@ from numpy.typing import NDArray
 from pyrr import Vector3
 from revolve2.modular_robot.body.base import ActiveHinge
 from revolve2.modular_robot.body.sensors import CameraSensor, IMUSensor
-from revolve2.modular_robot_physical._config import Config
-from revolve2.modular_robot_physical._hardware_type import HardwareType
-from revolve2.modular_robot_physical._protocol_version import PROTOCOL_VERSION
-from revolve2.modular_robot_physical._standard_port import STANDARD_PORT
-from revolve2.modular_robot_physical._uuid_key import UUIDKey
-from revolve2.modular_robot_physical.robot_daemon_api import (
+
+from modular_robot_physical._config import Config
+from modular_robot_physical._hardware_type import HardwareType
+from modular_robot_physical._protocol_version import PROTOCOL_VERSION
+from modular_robot_physical._standard_port import STANDARD_PORT
+from modular_robot_physical._uuid_key import UUIDKey
+from modular_robot_physical.robot_daemon_api import (
     robot_daemon_protocol_capnp,
 )
 
@@ -294,14 +295,13 @@ def _get_imu_sensor_state(
     """
     if imu_sensor is None:
         return {}
-    else:
-        return {
-            UUIDKey(imu_sensor): IMUSensorStateImpl(
-                _capnp_to_vector3(sensor_readings.imuSpecificForce),
-                _capnp_to_vector3(sensor_readings.imuAngularRate),
-                _capnp_to_vector3(sensor_readings.imuOrientation),
-            )
-        }
+    return {
+        UUIDKey(imu_sensor): IMUSensorStateImpl(
+            _capnp_to_vector3(sensor_readings.imuSpecificForce),
+            _capnp_to_vector3(sensor_readings.imuAngularRate),
+            _capnp_to_vector3(sensor_readings.imuOrientation),
+        )
+    }
 
 
 def _get_camera_sensor_state(
@@ -317,14 +317,13 @@ def _get_camera_sensor_state(
     """
     if camera_sensor is None:
         return {}
-    else:
-        return {
-            UUIDKey(camera_sensor): CameraSensorStateImpl(
-                _capnp_to_camera_view(
-                    sensor_readings.cameraView, camera_sensor.camera_size
-                )
+    return {
+        UUIDKey(camera_sensor): CameraSensorStateImpl(
+            _capnp_to_camera_view(
+                sensor_readings.cameraView, camera_sensor.camera_size
             )
-        }
+        )
+    }
 
 
 def run_remote(

@@ -1,14 +1,5 @@
 from pyrr import Quaternion, Vector3
 from revolve2.modular_robot.body.base import ActiveHinge
-from revolve2.modular_robot_simulation._build_multi_body_systems._body_to_multi_body_system_mapping import (
-    BodyToMultiBodySystemMapping,
-)
-from revolve2.modular_robot_simulation._build_multi_body_systems._convert_color import (
-    convert_color,
-)
-from revolve2.modular_robot_simulation._build_multi_body_systems._unbuilt_child import (
-    UnbuiltChild,
-)
 from revolve2.simulation.scene import (
     AABB,
     JointHinge,
@@ -20,7 +11,18 @@ from revolve2.simulation.scene import (
 from revolve2.simulation.scene.geometry import GeometryBox
 from revolve2.simulation.scene.geometry.textures import Texture
 
-from ._builder import Builder
+from modular_robot_simulation._build_multi_body_systems import (
+    BodyToMultiBodySystemMapping,
+)
+from modular_robot_simulation._build_multi_body_systems._builders import (
+    Builder,
+)
+from modular_robot_simulation._build_multi_body_systems._convert_color import (
+    convert_color,
+)
+from modular_robot_simulation._build_multi_body_systems._unbuilt_child import (
+    UnbuiltChild,
+)
 
 
 class ActiveHingeBuilder(Builder):
@@ -54,14 +56,12 @@ class ActiveHingeBuilder(Builder):
         :param body_to_multi_body_system_mapping: A mapping from body to multi-body system
         :return: The next children to be built.
         """
-        SERVO_BBOX2_POSITION = Vector3(
-            [
-                self._module.servo1_bounding_box[0] / 2.0
-                + self._module.servo2_bounding_box[0] / 2.0,
-                0.0,
-                0.0,
-            ]
-        )
+        servo_bbox2_position = Vector3([
+            self._module.servo1_bounding_box[0] / 2.0
+            + self._module.servo2_bounding_box[0] / 2.0,
+            0.0,
+            0.0,
+        ])
 
         frame_position = (
             self._slot_pose.position
@@ -142,7 +142,7 @@ class ActiveHingeBuilder(Builder):
         )
         next_rigid_body.geometries.append(
             GeometryBox(
-                pose=Pose(SERVO_BBOX2_POSITION, Quaternion()),
+                pose=Pose(servo_bbox2_position, Quaternion()),
                 mass=self._module.servo2_mass,
                 texture=Texture(base_color=convert_color(self._module.color)),
                 aabb=AABB(self._module.servo2_bounding_box),

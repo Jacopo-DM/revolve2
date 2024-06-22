@@ -2,7 +2,9 @@ from collections.abc import Sequence
 from typing import TYPE_CHECKING, TypeVar
 
 if TYPE_CHECKING:
-    from ._supports_lt import SupportsLt
+    from experimentation.optimization.ea.selection._supports_lt import (
+        SupportsLt,
+    )
 
 Item = TypeVar("Item", bound="SupportsLt")
 

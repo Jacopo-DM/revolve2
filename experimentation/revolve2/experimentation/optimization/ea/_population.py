@@ -1,7 +1,6 @@
 from typing import (
     TYPE_CHECKING,
     Any,
-    ClassVar,
     ForwardRef,
     Generic,
     Self,
@@ -9,11 +8,12 @@ from typing import (
 )
 
 import sqlalchemy.ext.orderinglist
-from revolve2.experimentation._util.init_subclass_get_generic_args import (
+from sqlalchemy import orm
+
+from experimentation._util.init_subclass_get_generic_args import (
     init_subclass_get_generic_args,
 )
-from revolve2.experimentation.database import HasId
-from sqlalchemy import orm
+from experimentation.database import HasId
 
 TIndividual = TypeVar("TIndividual")
 
@@ -48,9 +48,11 @@ class Population(HasId, orm.MappedAsDataclass, Generic[TIndividual]):
         def individuals(self) -> orm.Mapped[list[TIndividual]]:
             return self.__individuals_impl()
 
-    __type_tindividual: ClassVar[type[TIndividual]]
+    _type_tindividual: TIndividual
 
-    def __init_subclass__(cls: type[Self], /, **kwargs: dict[str, Any]) -> None:
+    def __init_subclass__(
+        cls: type[Self], /, **kwargs: dict[str, Any | bool]
+    ) -> None:
         """
         Initialize a version of this class when it is subclassed.
 
@@ -63,18 +65,19 @@ class Population(HasId, orm.MappedAsDataclass, Generic[TIndividual]):
             msg = f"Expected exactly one generic argument for {cls.__name__}, got {len(generic_types)}."
             raise ValueError(msg)
 
-        cls.__type_tindividual = generic_types[0]
-        if isinstance(cls.__type_tindividual, ForwardRef):
+        cls._type_tindividual = generic_types[0]
+        if isinstance(cls._type_tindividual, ForwardRef):
             msg = "TIndividual generic argument cannot be a forward reference."
             raise TypeError(msg)
 
-        super().__init_subclass__(**kwargs)
+        # TODO(jmdm): Fix type annotation?
+        super().__init_subclass__(**kwargs)  # type: ignore[arg-type]
 
     @classmethod
     def __individuals_impl(cls) -> orm.Mapped[TIndividual]:
         return orm.relationship(
-            cls.__type_tindividual,
-            order_by=cls.__type_tindividual.population_index,
+            cls._type_tindividual,
+            order_by=cls._type_tindividual.population_index,
             collection_class=sqlalchemy.ext.orderinglist.ordering_list(
                 "population_index"
             ),

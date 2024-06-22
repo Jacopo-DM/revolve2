@@ -12,10 +12,13 @@ from revolve2.simulation.scene import (
 )
 from revolve2.simulation.scene.sensors import CameraSensor, IMUSensor
 
-from ._abstraction_to_mujoco_mapping import AbstractionToMujocoMapping
+from simulators.mujoco_simulator._abstraction_to_mujoco_mapping import (
+    AbstractionToMujocoMapping,
+)
 
 
-class SimulationStateImpl(SimulationState):
+class SimulationStateImpl(SimulationState):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """Implementation of the simulation state interface for MuJoCo."""
 
     _xpos: npt.NDArray[np.float64]

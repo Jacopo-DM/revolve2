@@ -1,8 +1,7 @@
 import uuid
 from dataclasses import dataclass, field
 
-from ._pose import Pose
-from ._rigid_body import RigidBody
+from simulation.scene import Pose, RigidBody
 
 
 @dataclass(kw_only=True)

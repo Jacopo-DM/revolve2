@@ -1,21 +1,22 @@
-# """Genotype class."""
+"""Genotype class."""
 
-# from __future__ import annotations
+from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
-import numpy as np
+from revolve2.ci_group.genotypes.cppnwin.modular_robot import BrainGenotypeCpg
+from revolve2.ci_group.genotypes.cppnwin.modular_robot.v2 import BodyGenotypeV2
+from revolve2.modular_robot import ModularRobot
 
-# from revolve2.ci_group.genotypes.cppnwin.modular_robot import BrainGenotypeCpg
-# from revolve2.ci_group.genotypes.cppnwin.modular_robot.v2 import BodyGenotypeV2
-# from revolve2.modular_robot import ModularRobot
-
-
-# import multineat
+if TYPE_CHECKING:
+    import multineat
+    import numpy as np
 
 
 @dataclass
-class Genotype(BodyGenotypeV2, BrainGenotypeCpg):
+class Genotype(BodyGenotypeV2, BrainGenotypeCpg):  # type: ignore[misc]
+    # TODO(jmdm): Fix type ignore ""↑"
     """A genotype for a body and brain using CPPN."""
 
     @classmethod

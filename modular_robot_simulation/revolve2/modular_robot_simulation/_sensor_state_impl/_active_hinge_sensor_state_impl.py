@@ -2,7 +2,8 @@ from revolve2.modular_robot.sensor_state import ActiveHingeSensorState
 from revolve2.simulation.scene import JointHinge, SimulationState
 
 
-class ActiveHingeSensorStateImpl(ActiveHingeSensorState):
+class ActiveHingeSensorStateImpl(ActiveHingeSensorState):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """Implements the active hinge sensor state."""
 
     _simulation_state: SimulationState
@@ -27,6 +28,6 @@ class ActiveHingeSensorStateImpl(ActiveHingeSensorState):
 
         :returns: The measured position.
         """
-        return self._simulation_state.get_hinge_joint_position(
-            self._hinge_joint
+        return float(
+            self._simulation_state.get_hinge_joint_position(self._hinge_joint)
         )

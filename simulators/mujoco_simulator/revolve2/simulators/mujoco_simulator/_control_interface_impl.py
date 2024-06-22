@@ -2,10 +2,13 @@ import mujoco
 import numpy as np
 from revolve2.simulation.scene import ControlInterface, JointHinge, UUIDKey
 
-from ._abstraction_to_mujoco_mapping import AbstractionToMujocoMapping
+from simulators.mujoco_simulator._abstraction_to_mujoco_mapping import (
+    AbstractionToMujocoMapping,
+)
 
 
-class ControlInterfaceImpl(ControlInterface):
+class ControlInterfaceImpl(ControlInterface):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """Implementation of the control interface for MuJoCo."""
 
     _data: mujoco.MjData

@@ -8,7 +8,8 @@ from revolve2.simulation.scene.geometry.textures import (
 
 
 @dataclass(kw_only=True, frozen=True)
-class Gradient(Texture):
+class Gradient(Texture):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """A color gradient spanning over geometric models."""
 
     reference: TextureReference = field(

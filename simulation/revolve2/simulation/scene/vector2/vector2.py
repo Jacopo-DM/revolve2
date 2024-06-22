@@ -3,15 +3,19 @@
 from __future__ import annotations
 
 from numbers import Number
-from typing import Any
+from typing import Any, ClassVar
 
 import numpy as np
 from pyrr.objects.base import BaseMatrix33, BaseVector, NpProxy
 
-from . import vector2aux as vector2
+from simulation.scene.vector2 import vector2aux as vector2
 
 
-class Vector2(BaseVector):
+class Vector2(BaseVector):  # type: ignore[misc]
+    def __hash__(self) -> int:
+        return hash(tuple(self))
+
+    # TODO(jmdm): fix typing ↑
     """Represents a 2-dimensional Vector. The Vector2 class is based on the pyrr implementation of vectors."""
 
     _module = vector2
@@ -24,7 +28,11 @@ class Vector2(BaseVector):
     ########################
     # Creation
     def __new__(
-        cls, value: Any = None, w: float = 0.0, dtype: Any = None
+        # No solution exists
+        cls,
+        value: Any = None,
+        w: float = 0.0,
+        dtype: Any = None,
     ) -> Any:
         """
         Make a new Vector2.
@@ -40,12 +48,7 @@ class Vector2(BaseVector):
                 obj = np.array(value, dtype=dtype)
 
             # matrix33
-            if obj.shape in (
-                (
-                    3,
-                    3,
-                )
-            ) or isinstance(obj, BaseMatrix33):
+            if obj.shape == 3 or isinstance(obj, BaseMatrix33):
                 obj = vector2.create_from_matrix33_translation(obj, dtype=dtype)
         else:
             obj = np.zeros(cls._shape, dtype=dtype)
@@ -54,10 +57,10 @@ class Vector2(BaseVector):
 
     ########################
     # Operators
-    __NMB = [Number, np.number]
-    __VCT = ["Vector2", np.ndarray, list]
+    __NMB = (Number, np.number)
+    __VCT = ("Vector2", np.ndarray, list)
 
-    def __add__(self, other: Any) -> Vector2:
+    def __add__(self, other: Any) -> Vector2 | None:
         """
         Add to the existing Vector2.
 
@@ -69,7 +72,7 @@ class Vector2(BaseVector):
         self._unsupported_type("add", other)
         return None
 
-    def __sub__(self, other: Any) -> Vector2:
+    def __sub__(self, other: Any) -> Vector2 | None:
         """
         Subtract from the existing Vector2.
 
@@ -81,7 +84,7 @@ class Vector2(BaseVector):
         self._unsupported_type("subtract", other)
         return None
 
-    def __mul__(self, other: Any) -> Vector2:
+    def __mul__(self, other: Any) -> Vector2 | None:
         """
         Multiply the existing Vector2.
 
@@ -127,7 +130,7 @@ class Vector2(BaseVector):
         if type(other) in self.__VCT:
             return bool(np.any(super().__ne__(other)))
         self._unsupported_type("NE", other)
-        return None
+        return False
 
     def __eq__(self, other: object) -> bool:
         """
@@ -139,7 +142,7 @@ class Vector2(BaseVector):
         if type(other) in self.__VCT:
             return bool(np.all(super().__eq__(other)))
         self._unsupported_type("EQ", other)
-        return None
+        return False
 
     ########################
     # Methods and Properties

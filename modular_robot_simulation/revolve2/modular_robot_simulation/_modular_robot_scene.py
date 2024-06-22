@@ -3,10 +3,14 @@ from dataclasses import dataclass, field
 from revolve2.modular_robot import ModularRobot
 from revolve2.simulation.scene import MultiBodySystem, Pose, Scene, UUIDKey
 
-from ._build_multi_body_systems import BodyToMultiBodySystemConverter
-from ._convert_terrain import convert_terrain
-from ._modular_robot_simulation_handler import ModularRobotSimulationHandler
-from ._terrain import Terrain
+from modular_robot_simulation import Terrain
+from modular_robot_simulation._build_multi_body_systems import (
+    BodyToMultiBodySystemConverter,
+)
+from modular_robot_simulation._convert_terrain import convert_terrain
+from modular_robot_simulation._modular_robot_simulation_handler import (
+    ModularRobotSimulationHandler,
+)
 
 
 @dataclass
@@ -38,13 +42,11 @@ class ModularRobotScene:
         :param translate_z_aabb: Whether the robot should be translated upwards so it's T-pose axis-aligned bounding box is exactly on the ground. I.e. if the robot should be placed exactly on the ground. The pose parameters is still added afterwards.
         """
         # Add the robot to the robots list.
-        self._robots.append(
-            (
-                robot,
-                Pose(pose.position.copy(), pose.orientation.copy()),
-                translate_z_aabb,
-            )
-        )
+        self._robots.append((
+            robot,
+            Pose(pose.position.copy(), pose.orientation.copy()),
+            translate_z_aabb,
+        ))
 
     def add_interactive_object(self, objt: MultiBodySystem) -> None:
         """

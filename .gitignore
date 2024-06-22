@@ -143,7 +143,7 @@ cython_debug/
 # VS Code
 **/.vscode
 
-# Mac 
+# Mac
 **/.DS_Store
 
 # Folders
@@ -187,3 +187,6 @@ cpg_test.py
 
 # Aim-stack
 **/**.aim
+
+# Ignore physical robot stuff
+**/modular_robot_physical

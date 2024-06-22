@@ -17,7 +17,8 @@ from revolve2.modular_robot_simulation import ModularRobotScene, simulate_scenes
 from revolve2.simulators.mujoco_simulator import LocalSimulator
 
 
-class ANNBrainInstance(BrainInstance):
+class ANNBrainInstance(BrainInstance):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """ANN brain instance."""
 
     active_hinges: list[ActiveHinge]
@@ -39,7 +40,6 @@ class ANNBrainInstance(BrainInstance):
 
     def control(
         self,
-        dt: float,
         sensor_state: ModularRobotSensorState,
         control_interface: ModularRobotControlInterface,
     ) -> None:
@@ -57,22 +57,22 @@ class ANNBrainInstance(BrainInstance):
             for active_hinge in self.active_hinges
             if active_hinge.sensors.active_hinge_sensor is not None
         ]
-        assert len(sensors) == len(
-            self.active_hinges
-        ), "One of the active hinges does not have a sensor set."
+        if len(sensors) != len(self.active_hinges):
+            msg = "One of the active hinges does not have a sensor set."
+            raise ValueError(msg)
 
         # Get the current angular positions of the active hinges
         current_positions = [
             sensor_state.get_active_hinge_sensor_state(sensor).position
             for sensor in sensors
         ]
-        logging.info(f"current positions: {current_positions}")
+        logging.info("current positions: %d", current_positions)
 
         # Get the imu sensor state
         imu_state = sensor_state.get_imu_sensor_state(self.imu_sensor)
-        logging.info(f"orientation: {imu_state.orientation}")
-        logging.info(f"angular rate: {imu_state.angular_rate}")
-        logging.info(f"specific force: {imu_state.specific_force}")
+        logging.info("orientation: %d ", imu_state.orientation)
+        logging.info("angular rate: %d ", imu_state.angular_rate)
+        logging.info("specific force: %d ", imu_state.specific_force)
 
         # Here you can implement your controller.
         # The current controller does nothing except for always settings the joint positions to 0.5.
@@ -83,7 +83,8 @@ class ANNBrainInstance(BrainInstance):
             control_interface.set_active_hinge_target(active_hinge, target)
 
 
-class ANNBrain(Brain):
+class ANNBrain(Brain):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """The ANN brain."""
 
     active_hinges: list[ActiveHinge]

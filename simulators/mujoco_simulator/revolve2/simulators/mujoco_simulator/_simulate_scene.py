@@ -8,28 +8,37 @@ import numpy.typing as npt
 from revolve2.simulation.scene import Scene, SimulationState
 from revolve2.simulation.simulator import RecordSettings
 
-from ._control_interface_impl import ControlInterfaceImpl
-from ._open_gl_vision import OpenGLVision
-from ._render_backend import RenderBackend
-from ._scene_to_model import scene_to_model
-from ._simulation_state_impl import SimulationStateImpl
-from .viewers import CustomMujocoViewer, NativeMujocoViewer, ViewerType
+from simulators.mujoco_simulator._control_interface_impl import (
+    ControlInterfaceImpl,
+)
+from simulators.mujoco_simulator._open_gl_vision import OpenGLVision
+from simulators.mujoco_simulator._render_backend import RenderBackend
+from simulators.mujoco_simulator._scene_to_model import scene_to_model
+from simulators.mujoco_simulator._simulation_state_impl import (
+    SimulationStateImpl,
+)
+from simulators.mujoco_simulator.viewers import (
+    CustomMujocoViewer,
+    NativeMujocoViewer,
+    ViewerType,
+)
 
 
 def simulate_scene(
+    viewer_type: ViewerType,
     scene_id: int,
     scene: Scene,
-    headless: bool,
     record_settings: RecordSettings | None,
-    start_paused: bool,
     control_step: float,
     sample_step: float | None,
     simulation_time: int | None,
     simulation_timestep: float,
+    render_backend: RenderBackend = RenderBackend.EGL,
+    *,
+    headless: bool,
+    start_paused: bool,
     cast_shadows: bool,
     fast_sim: bool,
-    viewer_type: ViewerType,
-    render_backend: RenderBackend = RenderBackend.EGL,
 ) -> list[SimulationState]:
     """
     Simulate a scene.
@@ -50,9 +59,9 @@ def simulate_scene(
     :returns: The results of simulation. The number of returned states depends on `sample_step`.
     :raises ValueError: If the viewer is not able to record.
     """
-    logging.info(f"Simulating scene {scene_id}")
+    logging.info("Simulating scene %d", scene_id)
 
-    """Define mujoco data and model objects for simuating."""
+    """Define mujoco data and model objects for simulating."""
     model, mapping = scene_to_model(
         scene,
         simulation_timestep,
@@ -81,9 +90,9 @@ def simulate_scene(
     last_sample_time = 0.0
     last_video_time = 0.0  # time at which last video frame was saved
 
-    simulation_states: list[SimulationState] = (
-        []
-    )  # The measured states of the simulation
+    simulation_states: list[
+        SimulationState
+    ] = []  # The measured states of the simulation
 
     """If we dont have cameras and the backend is not set we go to the default GLFW."""
     if len(mapping.camera_sensor.values()) == 0:

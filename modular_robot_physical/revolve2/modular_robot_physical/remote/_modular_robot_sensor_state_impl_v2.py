@@ -11,9 +11,15 @@ from revolve2.modular_robot.sensor_state import (
 )
 from revolve2.modular_robot_physical._uuid_key import UUIDKey
 
-from ._active_hinge_sensor_state_impl import ActiveHingeSensorStateImpl
-from ._camera_sensor_state_impl import CameraSensorStateImpl
-from ._imu_sensor_state_impl import IMUSensorStateImpl
+from modular_robot_physical.remote._active_hinge_sensor_state_impl import (
+    ActiveHingeSensorStateImpl,
+)
+from modular_robot_physical.remote._camera_sensor_state_impl import (
+    CameraSensorStateImpl,
+)
+from modular_robot_physical.remote._imu_sensor_state_impl import (
+    IMUSensorStateImpl,
+)
 
 
 class ModularRobotSensorStateImplV2(ModularRobotSensorState):

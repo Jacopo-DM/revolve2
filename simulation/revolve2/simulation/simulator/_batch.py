@@ -2,10 +2,8 @@
 
 from dataclasses import dataclass, field
 
-from revolve2.simulation.scene import Scene
-
-from ._batch_parameters import BatchParameters
-from ._record_settings import RecordSettings
+from simulation.scene import Scene
+from simulation.simulator import BatchParameters, RecordSettings
 
 
 @dataclass

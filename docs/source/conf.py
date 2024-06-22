@@ -27,7 +27,7 @@ add_module_names = False
 
 # -- Autoapi extension -------------------------------------------------------
 
-with open("../../project.yml") as file:
+with open("../../project.yml", encoding="locale") as file:
     data = yaml.safe_load(file)
     namespace = data["revolve2-namespace"]
     platform_dependent = [

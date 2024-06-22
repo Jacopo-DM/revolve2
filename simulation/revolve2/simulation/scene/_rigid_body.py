@@ -3,9 +3,9 @@ from dataclasses import dataclass, field
 
 from pyrr import Matrix33, Quaternion, Vector3
 
-from ._pose import Pose
-from .geometry import Geometry, GeometryBox, GeometrySphere
-from .sensors import CameraSensor, IMUSensor, Sensor
+from simulation.scene import Pose
+from simulation.scene.geometry import Geometry, GeometryBox, GeometrySphere
+from simulation.scene.sensors import CameraSensor, IMUSensor, Sensor
 
 
 @dataclass
@@ -91,14 +91,13 @@ class RigidBody:
                 geometry.mass * geometry.pose.position
                 for geometry in self.geometries
             ) / len(self.geometries)
-        else:
-            return (
-                sum(
-                    geometry.mass * geometry.pose.position
-                    for geometry in self.geometries
-                )
-                / self.mass()
+        return (
+            sum(
+                geometry.mass * geometry.pose.position
+                for geometry in self.geometries
             )
+            / self.mass()
+        )
 
     def inertia_tensor(self) -> Matrix33:
         """

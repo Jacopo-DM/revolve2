@@ -49,6 +49,10 @@ opencv-contrib-python = "^4.9.0.80"
 opencv-python = "^4.9.0.80"
 # WARN ↓ for MacOS run "brew install pkg-config" first
 pycairo = "^1.20.1"
+# WARN ↓ for MultiNEAT
+progressbar = "^2.5"
+ipyparallel = "^8.8.0"
+networkx = "^3.3"
 
 [tool.poetry.extras]
 dev = []

@@ -8,7 +8,9 @@ import numpy as np
 from pyrr.utils import parameters_as_numpy_arrays
 
 
-def create(x: float = 0.0, y: float = 0.0, dtype: Any = None) -> np.ndarray:
+def create(
+    x: float = 0.0, y: float = 0.0, dtype: np.dtype[Any] | None = None
+) -> np.ndarray[np.dtype[Any], np.dtype[Any]]:
     """
     Create a Vector2 object.
 
@@ -25,7 +27,9 @@ def create(x: float = 0.0, y: float = 0.0, dtype: Any = None) -> np.ndarray:
     return np.array([x, y], dtype=dtype)
 
 
-def create_unit_length_x(dtype: Any = None) -> np.ndarray:
+def create_unit_length_x(
+    dtype: np.dtype[Any] | None = None,
+) -> np.ndarray[np.dtype[Any], np.dtype[Any]]:
     """
     Create a x unit Vector2.
 
@@ -35,7 +39,9 @@ def create_unit_length_x(dtype: Any = None) -> np.ndarray:
     return np.array([1.0, 0.0], dtype=dtype)
 
 
-def create_unit_length_y(dtype: Any = None) -> np.ndarray:
+def create_unit_length_y(
+    dtype: np.dtype[Any] | None = None,
+) -> np.ndarray[np.dtype[Any], np.dtype[Any]]:
     """
     Create a y unit Vector2.
 
@@ -45,8 +51,12 @@ def create_unit_length_y(dtype: Any = None) -> np.ndarray:
     return np.array([0.0, 1.0], dtype=dtype)
 
 
-@parameters_as_numpy_arrays("mat")
-def create_from_matrix33_translation(mat: Any, dtype: Any = None) -> np.ndarray:
+@parameters_as_numpy_arrays("mat")  # type: ignore[misc]
+def create_from_matrix33_translation(
+    mat: np.ndarray[np.dtype[Any], np.dtype[Any]],
+    dtype: np.dtype[Any] | None = None,
+) -> np.ndarray[np.dtype[Any], np.dtype[Any]]:
+    # WARN(jmdm): mypy error in decorator caused by "pyrr"
     """
     Create a Vector2 from a 3x3 Matrix.
 

@@ -1,9 +1,10 @@
 from dataclasses import dataclass, field
 
-from revolve2.simulation.scene._color import Color
-
-from ._map_type import MapType
-from ._texture_reference import TextureReference
+from simulation.scene._color import Color
+from simulation.scene.geometry.textures._map_type import MapType
+from simulation.scene.geometry.textures._texture_reference import (
+    TextureReference,
+)
 
 
 @dataclass(frozen=True, kw_only=True)

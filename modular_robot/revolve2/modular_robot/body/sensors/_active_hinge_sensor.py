@@ -1,6 +1,6 @@
 from pyrr import Quaternion, Vector3
 
-from ._sensor import Sensor
+from modular_robot.body.sensors._sensor import Sensor
 
 
 class ActiveHingeSensor(Sensor):

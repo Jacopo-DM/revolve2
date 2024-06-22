@@ -4,8 +4,12 @@ import numpy as np
 from numpy.typing import NDArray
 from revolve2.modular_robot import ModularRobot
 
-from ._coordinate_operations import coords_from_bodies
-from .calculate_novelty import calculate_novelty
+from ci_group.morphological_novelty_metric._coordinate_operations import (
+    coords_from_bodies,
+)
+from ci_group.morphological_novelty_metric.calculate_novelty import (
+    calculate_novelty,
+)
 
 _INT_CASTER: int = 10_000
 """Casting floats to INT allows to mitigate floating-point issues in the distribution reshaping. The higher the number, the more precision you get."""

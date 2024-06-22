@@ -504,9 +504,7 @@ def penguin_v1() -> BodyV1:
         -np.pi / 2.0
     )
 
-    part2 = (
-        body.core_v1.right.left.attachment.attachment.left.attachment.attachment.attachment
-    )
+    part2 = body.core_v1.right.left.attachment.attachment.left.attachment.attachment.attachment
 
     part2.front = ActiveHingeV1(np.pi / 2.0)
     part2.front.attachment = BrickV1(-np.pi / 2.0)
@@ -824,9 +822,7 @@ def zappa_v1() -> BodyV1:
     body.core_v1.right.attachment.attachment.attachment.attachment.attachment = BrickV1(
         0.0
     )
-    part2 = (
-        body.core_v1.right.attachment.attachment.attachment.attachment.attachment
-    )
+    part2 = body.core_v1.right.attachment.attachment.attachment.attachment.attachment
 
     part2.front = ActiveHingeV1(0.0)
     part2.front.attachment = ActiveHingeV1(0.0)

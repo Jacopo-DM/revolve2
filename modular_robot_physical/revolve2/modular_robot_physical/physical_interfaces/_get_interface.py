@@ -1,6 +1,8 @@
 from revolve2.modular_robot_physical._hardware_type import HardwareType
 
-from ._physical_interface import PhysicalInterface
+from modular_robot_physical.physical_interfaces._physical_interface import (
+    PhysicalInterface,
+)
 
 
 def get_interface(

@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from typing import Any
 
 
 class Viewer(ABC):
@@ -10,7 +9,7 @@ class Viewer(ABC):
         """Close the viewer."""
 
     @abstractmethod
-    def render(self) -> Any | None:
+    def render(self) -> None:
         """
         Render the scene on the viewer.
 
@@ -27,7 +26,7 @@ class Viewer(ABC):
 
     @property
     @abstractmethod
-    def view_port(self) -> Any:
+    def view_port(self) -> None:
         """
         Get the viewport.
 
@@ -36,7 +35,7 @@ class Viewer(ABC):
 
     @property
     @abstractmethod
-    def context(self) -> Any:
+    def context(self) -> None:
         """
         Return the viewer context.
 

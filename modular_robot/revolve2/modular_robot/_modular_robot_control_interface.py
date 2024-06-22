@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from .body.base import ActiveHinge
+from modular_robot.body.base import ActiveHinge
 
 
 class ModularRobotControlInterface(ABC):

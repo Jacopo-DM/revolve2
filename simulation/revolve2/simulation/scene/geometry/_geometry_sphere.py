@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from ._geometry import Geometry
+from simulation.scene.geometry._geometry import Geometry
 
 
 @dataclass(kw_only=True)

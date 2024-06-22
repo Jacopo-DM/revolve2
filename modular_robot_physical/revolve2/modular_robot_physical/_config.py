@@ -7,7 +7,7 @@ if TYPE_CHECKING:
     from revolve2.modular_robot import ModularRobot
     from revolve2.modular_robot.body.base import ActiveHinge
 
-    from ._uuid_key import UUIDKey
+    from modular_robot_physical._uuid_key import UUIDKey
 
 
 @dataclass

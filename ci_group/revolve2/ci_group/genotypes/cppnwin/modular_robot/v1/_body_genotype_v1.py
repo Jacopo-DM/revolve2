@@ -1,28 +1,23 @@
-# from __future__ import annotations
+from __future__ import annotations
 
-# from dataclasses import dataclass
-from typing import Self
+from dataclasses import dataclass
+from typing import TYPE_CHECKING, Self
 
 import multineat
-import numpy as np
 
-# from revolve2.ci_group.genotypes.cppnwin._multineat_genotype_pickle_wrapper import (
-#     MultineatGenotypePickleWrapper,
-# )
-# from revolve2.ci_group.genotypes.cppnwin._multineat_rng_from_random import (
-#     multineat_rng_from_random,
-# )
-# from revolve2.ci_group.genotypes.cppnwin._random_multineat_genotype import (
-#     random_multineat_genotype,
-# )
-# from revolve2.ci_group.genotypes.cppnwin.modular_robot import (
-#     get_multineat_params,
-# )
+from ci_group.genotypes.cppnwin import (
+    MultineatGenotypePickleWrapper,
+    multineat_rng_from_random,
+    random_multineat_genotype,
+)
+from ci_group.genotypes.cppnwin.modular_robot import (
+    get_multineat_params,
+)
+from ci_group.genotypes.cppnwin.modular_robot.v1 import develop_body_v1
 
-# from ._body_develop import develop as develop_body_v1
-
-
-# from revolve2.modular_robot.body.v1 import BodyV1
+if TYPE_CHECKING:
+    import numpy as np
+    from revolve2.modular_robot.body.v1 import BodyV1
 
 
 @dataclass

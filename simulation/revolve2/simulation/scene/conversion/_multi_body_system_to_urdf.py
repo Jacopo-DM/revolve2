@@ -1,15 +1,13 @@
 import uuid
 import warnings
-import xml.etree.ElementTree as xml
-from xml.dom import minidom
 
+import defusedxml
 import scipy.spatial.transform
+from defusedxml import ElementTree as xmlTree
 from pyrr import Quaternion, Vector3
-from revolve2.simulation.scene._joint_hinge import JointHinge
-from revolve2.simulation.scene._multi_body_system import MultiBodySystem
-from revolve2.simulation.scene._pose import Pose
-from revolve2.simulation.scene._rigid_body import RigidBody
-from revolve2.simulation.scene.geometry import (
+
+from simulation.scene import JointHinge, MultiBodySystem, Pose, RigidBody
+from simulation.scene.geometry import (
     Geometry,
     GeometryBox,
     GeometryHeightmap,
@@ -57,7 +55,9 @@ class _URDFConverter:
     planes: list[GeometryPlane]
     heightmaps: list[GeometryHeightmap]
 
-    def build(self, multi_body_system: MultiBodySystem, name: str) -> tuple[
+    def build(
+        self, multi_body_system: MultiBodySystem, name: str
+    ) -> tuple[
         str,
         list[GeometryPlane],
         list[GeometryHeightmap],
@@ -65,7 +65,9 @@ class _URDFConverter:
         list[tuple[Geometry, str]],
         list[tuple[RigidBody, str]],
     ]:
-        assert multi_body_system.has_root()
+        if not multi_body_system.has_root():
+            msg = "Multi-body system has no root."
+            raise ValueError(msg)
 
         self.multi_body_system = multi_body_system
         self.visited_rigid_bodies = set()
@@ -75,7 +77,7 @@ class _URDFConverter:
         self.planes = []
         self.heightmaps = []
 
-        urdf = xml.Element("robot", {"name": name})
+        urdf = xmlTree.Element("robot", {"name": name})
 
         for element in self._make_links_xml_elements(
             multi_body_system.root,
@@ -86,8 +88,10 @@ class _URDFConverter:
             urdf.append(element)
 
         return (
-            minidom.parseString(
-                xml.tostring(urdf, encoding="unicode", method="xml")
+            defusedxml.minidom.parseString(
+                defusedxml.xmlTree.tostring(
+                    urdf, encoding="unicode", method="xml"
+                )
             ).toprettyxml(indent="    "),
             self.planes,
             self.heightmaps,
@@ -102,13 +106,13 @@ class _URDFConverter:
         link_pose: Pose,
         rigid_body_name: str,
         parent_rigid_body: RigidBody | None,
-    ) -> list[xml.Element]:
+    ) -> list[xmlTree.Element]:
         if rigid_body.uuid in self.visited_rigid_bodies:
             msg = "Multi-body system is cyclic."
             raise ValueError(msg)
         self.visited_rigid_bodies.add(rigid_body.uuid)
 
-        link = xml.Element("link", {"name": rigid_body_name})
+        link = xmlTree.Element("link", {"name": rigid_body_name})
         elements = [link]
         self.rigid_bodies_and_names.append((rigid_body, rigid_body_name))
 
@@ -123,8 +127,8 @@ class _URDFConverter:
         if rigid_body.mass() != 0.0:
             inertia = rigid_body.inertia_tensor()
 
-            inertial = xml.SubElement(link, "inertial")
-            xml.SubElement(
+            inertial = xmlTree.SubElement(link, "inertial")
+            xmlTree.SubElement(
                 inertial,
                 "origin",
                 {
@@ -132,10 +136,10 @@ class _URDFConverter:
                     "xyz": f"{com_xyz[0]} {com_xyz[1]} {com_xyz[2]}",
                 },
             )
-            xml.SubElement(
+            xmlTree.SubElement(
                 inertial, "mass", {"value": f"{rigid_body.mass():e}"}
             )
-            xml.SubElement(
+            xmlTree.SubElement(
                 inertial,
                 "inertia",
                 {
@@ -196,20 +200,20 @@ class _URDFConverter:
             # Make sure we don't go back up the joint we came from.
             if parent_rigid_body is not None and (
                 parent_rigid_body.uuid
-                in (joint.rigid_body1.uuid, joint.rigid_body2.uuid)
+                in {joint.rigid_body1.uuid, joint.rigid_body2.uuid}
             ):
                 continue
 
             if not isinstance(joint, JointHinge):
                 msg = "Joints other that hinge joints are not yet supported."
-                raise ValueError(msg)
+                raise TypeError(msg)
 
             child_name = f"{rigid_body_name}_link{joint_index}"
 
             joint_name = f"{rigid_body_name}_joint{joint_index}"
             self.joints_and_names.append((joint, joint_name))
-            el = xml.Element("joint", type="revolute", name=joint_name)
-            xml.SubElement(
+            el = xmlTree.Element("joint", type="revolute", name=joint_name)
+            xmlTree.SubElement(
                 el,
                 "parent",
                 {
@@ -220,7 +224,7 @@ class _URDFConverter:
                     )
                 },
             )
-            xml.SubElement(
+            xmlTree.SubElement(
                 el,
                 "child",
                 {
@@ -237,7 +241,7 @@ class _URDFConverter:
             rpy = _quaternion_to_euler(
                 link_pose.orientation.inverse * joint.pose.orientation
             )
-            xml.SubElement(
+            xmlTree.SubElement(
                 el,
                 "origin",
                 {
@@ -245,8 +249,8 @@ class _URDFConverter:
                     "xyz": f"{xyz[0]} {xyz[1]} {xyz[2]}",
                 },
             )
-            xml.SubElement(el, "axis", {"xyz": "0 1 0"})
-            xml.SubElement(
+            xmlTree.SubElement(el, "axis", {"xyz": "0 1 0"})
+            xmlTree.SubElement(
                 el,
                 "limit",
                 {
@@ -268,15 +272,15 @@ class _URDFConverter:
 
     @staticmethod
     def _add_geometry_box(
-        link: xml.Element,
+        link: xmlTree.Element,
         name: str,
         geometry: GeometryBox,
         link_pose: Pose,
         rigid_body: RigidBody,
     ) -> None:
-        el = xml.SubElement(link, "collision", {"name": name})
-        geometry_xml = xml.SubElement(el, "geometry")
-        xml.SubElement(
+        el = xmlTree.SubElement(link, "collision", {"name": name})
+        geometry_xml = xmlTree.SubElement(el, "geometry")
+        xmlTree.SubElement(
             geometry_xml,
             "box",
             {
@@ -293,7 +297,7 @@ class _URDFConverter:
             * rigid_body.initial_pose.orientation
             * geometry.pose.orientation
         )
-        xml.SubElement(
+        xmlTree.SubElement(
             el,
             "origin",
             {
@@ -304,15 +308,15 @@ class _URDFConverter:
 
     @staticmethod
     def _add_geometry_sphere(
-        link: xml.Element,
+        link: xmlTree.Element,
         name: str,
         geometry: GeometrySphere,
         link_pose: Pose,
         rigid_body: RigidBody,
     ) -> None:
-        el = xml.SubElement(link, "collision", {"name": name})
-        geometry_xml = xml.SubElement(el, "geometry")
-        xml.SubElement(
+        el = xmlTree.SubElement(link, "collision", {"name": name})
+        geometry_xml = xmlTree.SubElement(el, "geometry")
+        xmlTree.SubElement(
             geometry_xml,
             "sphere",
             {"radius": str(geometry.radius)},
@@ -327,7 +331,7 @@ class _URDFConverter:
             * rigid_body.initial_pose.orientation
             * geometry.pose.orientation
         )
-        xml.SubElement(
+        xmlTree.SubElement(
             el,
             "origin",
             {
@@ -338,20 +342,22 @@ class _URDFConverter:
 
     @staticmethod
     def _add_geometry_plane(
-        link: xml.Element,
+        link: xmlTree.Element,
         name: str,
         geometry: GeometryPlane,
         link_pose: Pose,
         rigid_body: RigidBody,
     ) -> None:
-        PLANE_BOX_HEIGHT = 0.1
+        _plane_box_height = 0.1
 
-        el = xml.SubElement(link, "collision", {"name": name})
-        geometry_xml = xml.SubElement(el, "geometry")
-        xml.SubElement(
+        el = xmlTree.SubElement(link, "collision", {"name": name})
+        geometry_xml = xmlTree.SubElement(el, "geometry")
+        xmlTree.SubElement(
             geometry_xml,
             "box",
-            {"size": f"{geometry.size.x} {geometry.size.y} {PLANE_BOX_HEIGHT}"},
+            {
+                "size": f"{geometry.size.x} {geometry.size.y} {_plane_box_height}"
+            },
         )
         xyz = link_pose.orientation.inverse * (
             rigid_body.initial_pose.position
@@ -359,7 +365,7 @@ class _URDFConverter:
             + rigid_body.initial_pose.orientation
             * (
                 geometry.pose.position
-                + Vector3([0.0, 0.0, -PLANE_BOX_HEIGHT / 2.0])
+                + Vector3([0.0, 0.0, -_plane_box_height / 2.0])
             )
         )
         rpy = _quaternion_to_euler(
@@ -367,7 +373,7 @@ class _URDFConverter:
             * rigid_body.initial_pose.orientation
             * geometry.pose.orientation
         )
-        xml.SubElement(
+        xmlTree.SubElement(
             el,
             "origin",
             {
@@ -379,9 +385,8 @@ class _URDFConverter:
 
 def _quaternion_to_euler(quaternion: Quaternion) -> Vector3:
     with warnings.catch_warnings():
-        warnings.simplefilter(
-            "ignore", UserWarning
-        )  # ignore gimbal lock warning. it is irrelevant for us.
+        # ignore gimbal lock warning. it is irrelevant for us.
+        warnings.simplefilter("ignore", UserWarning)
         euler = scipy.spatial.transform.Rotation.from_quat(
             [
                 quaternion.x,

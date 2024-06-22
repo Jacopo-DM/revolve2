@@ -8,7 +8,8 @@ from ._base import Base
 from ._individual import Individual
 
 
-class Population(Base, HasId, kw_only=True):
+class Population(Base, HasId, kw_only=True):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """
     A population of individuals.
 

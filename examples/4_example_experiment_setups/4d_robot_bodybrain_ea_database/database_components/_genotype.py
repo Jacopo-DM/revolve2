@@ -20,7 +20,8 @@ if TYPE_CHECKING:
     import numpy as np
 
 
-class Genotype(Base, HasId, BodyGenotypeOrmV2, BrainGenotypeCpgOrm):
+class Genotype(Base, HasId, BodyGenotypeOrmV2, BrainGenotypeCpgOrm):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """SQLAlchemy model for a genotype for a modular robot body and brain."""
 
     __tablename__ = "genotype"

@@ -1,6 +1,7 @@
 """Main script for the example."""
 
 import logging
+from itertools import starmap
 
 from pyrr import Vector3
 from revolve2.ci_group import fitness_functions, modular_robots_v2, terrains
@@ -32,10 +33,7 @@ def main() -> None:
         modular_robots_v2.spider_v2(),
     ]
     brains = [BrainCpgNetworkNeighborRandom(body, rng) for body in bodies]
-    robots = [
-        ModularRobot(body, brain)
-        for body, brain in zip(bodies, brains, strict=False)
-    ]
+    robots = list(starmap(ModularRobot, zip(bodies, brains, strict=False)))
 
     """
     Contrary to the previous examples, we now create a single scene and put all robots in it.

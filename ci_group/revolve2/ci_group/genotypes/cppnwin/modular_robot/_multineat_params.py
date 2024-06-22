@@ -1,349 +1,344 @@
+from __future__ import annotations
+
 import faulthandler
-import sys
-from dataclasses import dataclass
+import logging
+import typing as t
+from copy import deepcopy
+from sys import stdout
 from typing import ClassVar
 
 import multineat
-from multineat._multineat import Parameters as multiNEATParamType
+
+from ci_group.genotypes.cppnwin.modular_robot._multineat_collection import (
+    CollectionOfDefaultValues,
+)
+
+if t.TYPE_CHECKING:
+    from multineat._multineat import Parameters as multiNEATParamType
 
 # Enable faulthandler to dump tracebacks on segfault.
 faulthandler.enable()
 
 
-@dataclass
-class CollectionOfDefaultValues:
-    Default: ClassVar[dict[str, float | int | bool]] = {}
+def pretty_print(func: t.Callable[..., None]) -> t.Callable[..., None]:
+    def wrapper(*args: list[t.Any], **kwargs: dict[str, t.Any]) -> None:
+        size = 80
+        stdout.write(f"{'=' * size}\n")
+        stdout.write(f"{func.__name__:^80}\n")
+        stdout.write(f"{'=' * size}\n")
+        func(*args, **kwargs)
+        stdout.write(f"{'-' * size}\n")
+        stdout.write(f"{' ' * size}\n")
+        stdout.flush()
 
-    GenericOld: ClassVar[dict[str, float | int | bool]] = {
-        "OldAgePenalty": 1.0,  # def: 0.5
-        "CrossoverRate": 0.75,  # def: 0.7
-        "MutateAddLinkProb": 0.07,  # def: 0.03
-        "MutateRemLinkProb": 0.01,  # def: 0.0
-        "LinkTries": 128,  # def: 32
-        "MutateWeightsProb": 0.75,  # def: 0.9
-        "ActivationFunction_UnsignedSigmoid_Prob": 0.0,  # def: 1.0
-        "ActivationFunction_Tanh_Prob": 1.0,  # def: 0.0
-        "WeightDiffCoeff": 1.5,  # def: 0.5
-        "CompatTresholdModifier": 0.2,  # def: 0.3
+    return wrapper
+
+
+class ParamAnalyzer:
+    def __init__(self, *, params: bool | multiNEATParamType = None) -> None:
+        # Create an instance of multineat.Parameters
+        if params is None:
+            params = multineat.Parameters()
+
+        # Initialize states
+        self._analyse_parameters(params)
+
+    def _analyse_parameters(self, params: multiNEATParamType) -> None:
+        # Initialize empty lists to store values and keys
+        safe_keys: dict[str, tuple[float | int | bool | str, str]] = {
+            key: ("na", "na") for key in dir(params) if not key.startswith("__")
+        }
+        unsafe_keys: set[str] = {
+            key for key in dir(params) if key.startswith("__")
+        }
+
+        # Iterate over all keys in params
+        for key in dir(params):
+            if key.startswith("__"):
+                continue
+
+            # Retrieve the value of the key (ensure it causes no errors)
+            try:
+                value = getattr(params, key)
+            except TypeError:
+                unsafe_keys.update(key)
+                safe_keys.pop(key)
+                continue
+
+            # Check if the value is valid
+            if not isinstance(value, float | int | bool | str):
+                unsafe_keys.update(key)
+                safe_keys.pop(key)
+                continue
+
+            # Append the value to the values list
+            safe_keys[key] = (value, value.__class__.__name__)
+
+        # Store the values and keys
+        self.safe_keys: dict[str, tuple[float | int | bool | str, str]] = (
+            safe_keys
+        )
+        self.unsafe_keys: set[str] = unsafe_keys
+
+    def get_keys(self) -> dict[str, tuple[float | int | bool | str, str]]:
+        return self.safe_keys
+
+    def get_unsafe_keys(self) -> set[str]:
+        return self.unsafe_keys
+
+    def __sub__(
+        self, other: ParamAnalyzer, *, verbose: bool = True
+    ) -> tuple[
+        dict[str, tuple[float | int | bool | str, str]],
+        dict[str, tuple[float | int | bool | str, str]],
+    ]:
+        # Find the differences in the values (from self to other)
+        diff_from: dict[str, tuple[float | int | bool | str, str]] = {
+            key: value
+            for key, value in self.safe_keys.items()
+            if value != other.safe_keys[key]
+        }
+
+        diff_to: dict[str, tuple[float | int | bool | str, str]] = {
+            key: value
+            for key, value in other.safe_keys.items()
+            if value != self.safe_keys[key]
+        }
+
+        if verbose:
+            # Print the differences
+            self.print_sub(diff_from, diff_to)
+
+        # Return the differences
+        return diff_from, diff_to
+
+    @classmethod
+    @pretty_print
+    def print_sub(
+        cls,
+        diff_from: dict[str, tuple[float | int | bool | str, str]],
+        diff_to: dict[str, tuple[float | int | bool | str, str]],
+    ) -> None:
+        for key, value in diff_from.items():
+            stdout.write(f"{key:<50}: {value[0]:>7} -> {diff_to[key][0]:<7}\n")
+
+    @pretty_print
+    def print_multineat_params_full(self) -> None:
+        # Print the header
+        tab = "    "
+        stdout.write(f"{' ' * 40}\n")
+        header = "DefaultGenome: dict[str, float | int | bool] = {"
+        stdout.write(f"{header}\n")
+
+        # Print the values
+        current_type = None
+        for key, (value, _type) in sorted(
+            self.safe_keys.items(),
+            # sort by _type and then by key
+            key=lambda x: (x[1][1], x[0]),
+        ):
+            if current_type != _type:
+                stdout.write(f"{tab}# -- > {_type}\n")
+                current_type = _type
+
+            # Print the key and value
+            stdout.write(f"{tab}'{key}': {value},\n")
+
+        # Close the dictionary
+        stdout.write("}\n")
+
+    @pretty_print
+    def print_multineat_params_with_ref(
+        self,
+        other: ParamAnalyzer,
+        name: str = "Valid",
+    ) -> None:
+        # Print the header
+        stdout.write(f"{' ' * 40}\n")
+        tab = "    "
+        header = f"{tab}{name}: ClassVar[dict[str, float | int | bool]] = {'{'}"
+        stdout.write(f"{header}\n")
+
+        for key, value in sorted(
+            self.safe_keys.items(),
+            # sort by _type and then by key
+            key=lambda x: (x[1][1], x[0]),
+        ):
+            if value != other.safe_keys[key]:
+                stdout.write(
+                    f"{tab * 2}'{key}': {value[0]}, # -> {other.safe_keys[key][0]}\n"
+                )
+
+        # Close the dictionary
+        stdout.write(f"{tab}{'}'}\n")
+
+
+class MultiNEATParamsWriter:
+    __safe_keys__: ClassVar[set[str]] = {
+        "ActivationADiffCoeff",
+        "ActivationAMutationMaxPower",
+        "ActivationBDiffCoeff",
+        "ActivationBMutationMaxPower",
+        "ActivationFunctionDiffCoeff",
+        "ActivationFunction_Abs_Prob",
+        "ActivationFunction_Linear_Prob",
+        "ActivationFunction_SignedGauss_Prob",
+        "ActivationFunction_SignedSigmoid_Prob",
+        "ActivationFunction_SignedSine_Prob",
+        "ActivationFunction_SignedStep_Prob",
+        "ActivationFunction_TanhCubic_Prob",
+        "ActivationFunction_Tanh_Prob",
+        "ActivationFunction_UnsignedGauss_Prob",
+        "ActivationFunction_UnsignedSigmoid_Prob",
+        "ActivationFunction_UnsignedSine_Prob",
+        "ActivationFunction_UnsignedStep_Prob",
+        "AllowClones",
+        "AllowLoops",
+        "ArchiveEnforcement",
+        "BandThreshold",
+        "BiasDiffCoeff",
+        "BiasMutationMaxPower",
+        "CPPN_Bias",
+        "ClearLinkTraitParameters",
+        "CompatTreshChangeInterval_Evaluations",
+        "CompatTreshChangeInterval_Generations",
+        "CompatTreshold",
+        "CompatTresholdModifier",
+        "ComplexityFloorGenerations",
+        "CrossoverRate",
+        "DeltaCoding",
+        "DetectCompetetiveCoevolutionStagnation",
+        "DisjointCoeff",
+        "DivisionThreshold",
+        "DontUseBiasNeuron",
+        "DynamicCompatibility",
+        "EliteFraction",
+        "ExcessCoeff",
+        "GeometrySeed",
+        "GetLinkTraitParameters",
+        "Height",
+        "InitialDepth",
+        "InnovationsForever",
+        "InterspeciesCrossoverRate",
+        "KillWorstAge",
+        "KillWorstSpeciesEach",
+        "Leo",
+        "LeoSeed",
+        "LeoThreshold",
+        "LinkTries",
+        "ListLinkTraitParameters",
+        "Load",
+        "MaxActivationA",
+        "MaxActivationB",
+        "MaxDepth",
+        "MaxNeuronBias",
+        "MaxNeuronTimeConstant",
+        "MaxSpecies",
+        "MaxWeight",
+        "MinActivationA",
+        "MinActivationB",
+        "MinCompatTreshold",
+        "MinNeuronBias",
+        "MinNeuronTimeConstant",
+        "MinSpecies",
+        "MultipointCrossoverRate",
+        "MutateActivationAProb",
+        "MutateActivationBProb",
+        "MutateAddLinkFromBiasProb",
+        "MutateAddLinkProb",
+        "MutateAddNeuronProb",
+        "MutateLinkTraitsProb",
+        "MutateNeuronActivationTypeProb",
+        "MutateNeuronBiasesProb",
+        "MutateNeuronTimeConstantsProb",
+        "MutateNeuronTraitsProb",
+        "MutateOutputActivationFunction",
+        "MutateRemLinkProb",
+        "MutateRemSimpleNeuronProb",
+        "MutateWeightsProb",
+        "MutateWeightsSevereProb",
+        "NeuronRecursionLimit",
+        "NormalizeGenomeSize",
+        "NoveltySearch_Dynamic_Pmin",
+        "NoveltySearch_K",
+        "NoveltySearch_No_Archiving_Stagnation_Treshold",
+        "NoveltySearch_P_min",
+        "NoveltySearch_Pmin_lowering_multiplier",
+        "NoveltySearch_Pmin_min",
+        "NoveltySearch_Pmin_raising_multiplier",
+        "NoveltySearch_Quick_Archiving_Min_Evaluations",
+        "NoveltySearch_Recompute_Sparseness_Each",
+        "OldAgePenalty",
+        "OldAgeTreshold",
+        "OverallMutationRate",
+        "PhasedSearching",
+        "PopulationSize",
+        "Qtree_X",
+        "Qtree_Y",
+        "RecurrentLoopProb",
+        "RecurrentProb",
+        "RouletteWheelSelection",
+        "SetGenomeTraitParameters",
+        "SetNeuronTraitParameters",
+        "SimplifyingPhaseMPCTreshold",
+        "SimplifyingPhaseStagnationTreshold",
+        "SpeciesDropoffAge",
+        "SplitLoopedRecurrent",
+        "SplitRecurrent",
+        "StagnationDelta",
+        "SurvivalRate",
+        "TimeConstantDiffCoeff",
+        "TimeConstantMutationMaxPower",
+        "TournamentSize",
+        "VarianceThreshold",
+        "WeightDiffCoeff",
+        "WeightMutationMaxPower",
+        "WeightMutationRate",
+        "WeightReplacementMaxPower",
+        "WeightReplacementRate",
+        "Width",
+        "YoungAgeFitnessBoost",
+        "YoungAgeTreshold",
     }
 
-    gym_lunar_lander: ClassVar[dict[str, float | int | bool]] = {
-        "MinSpecies": 2,  # def: 5
-        "MaxSpecies": 4,  # def: 10
-        "YoungAgeTreshold": 15,  # def: 5
-        "SpeciesDropoffAge": 15,  # def: 50
-        "OldAgeTreshold": 35,  # def: 30
-        "SurvivalRate": 0.2,  # def: 0.25
-        "CrossoverRate": 0.75,  # def: 0.7
-        "OverallMutationRate": 0.2,  # def: 0.25
-        "MultipointCrossoverRate": 0.4,  # def: 0.75
-        "MutateAddNeuronProb": 0.1,  # def: 0.01
-        "MutateAddLinkProb": 0.2,  # def: 0.03
-        "MutateWeightsProb": 0.8,  # def: 0.9
-        "MutateWeightsSevereProb": 0.5,  # def: 0.25
-        "WeightMutationRate": 0.25,  # def: 1.0
-        "WeightMutationMaxPower": 0.5,  # def: 1.0
-        "MaxActivationA": 6.0,  # def: 1.0
-        "TimeConstantMutationMaxPower": 0.1,  # def: 0.0
-        "BiasMutationMaxPower": 0.5,  # def: 1.0
-        "MutateNeuronTimeConstantsProb": 0.1,  # def: 0.0
-        "MutateNeuronBiasesProb": 0.1,  # def: 0.0
-        "MinNeuronTimeConstant": 0.04,  # def: 0.0
-        "MaxNeuronTimeConstant": 0.24,  # def: 0.0
-        "MinNeuronBias": -8.0,  # def: 0.0
-        "MaxNeuronBias": 8.0,  # def: 0.0
-        "ActivationFunction_UnsignedSigmoid_Prob": 0.0,  # def: 1.0
-        "ActivationFunction_Tanh_Prob": 1.0,  # def: 0.0
-        "MutateNeuronTraitsProb": 0.0,  # def: 1.0
-        "MutateLinkTraitsProb": 0.0,  # def: 1.0
-        "WeightDiffCoeff": 1.0,  # def: 0.5
-        "CompatTreshold": 2.0,  # def: 5.0
-        "EliteFraction": 1.0,  # def: 0.01
+    __unsafe_keys__: ClassVar[set[str]] = {
+        "__class__",
+        "__delattr__",
+        "__dir__",
+        "__doc__",
+        "__eq__",
+        "__format__",
+        "__ge__",
+        "__getattribute__",
+        "__getstate__",
+        "__gt__",
+        "__hash__",
+        "__init__",
+        "__init_subclass__",
+        "__le__",
+        "__lt__",
+        "__module__",
+        "__ne__",
+        "__new__",
+        "__reduce__",
+        "__reduce_ex__",
+        "__repr__",
+        "__setattr__",
+        "__setstate__",
+        "__sizeof__",
+        "__str__",
+        "__subclasshook__",
+        "ClearGenomeTraitParameters",
+        "ClearNeuronTraitParameters",
+        "CustomConstraints",
+        "GetGenomeTraitParameters",
+        "GetNeuronTraitParameters",
+        "ListGenomeTraitParameters",
+        "ListNeuronTraitParameters",
+        "Reset",
+        "Save",
+        "SetLinkTraitParameters",
     }
-
-    gym_pole_balancing: ClassVar[dict[str, float | int | bool]] = {
-        "MinSpecies": 3,  # def: 5
-        "AllowClones": False,  # def: True
-        "YoungAgeTreshold": 15,  # def: 5
-        "SpeciesDropoffAge": 100,  # def: 50
-        "OldAgeTreshold": 35,  # def: 30
-        "CrossoverRate": 0.5,  # def: 0.7
-        "OverallMutationRate": 0.02,  # def: 0.25
-        "MutateAddLinkProb": 0.02,  # def: 0.03
-        "MutateWeightsSevereProb": 0.01,  # def: 0.25
-        "WeightMutationRate": 0.75,  # def: 1.0
-        "WeightReplacementMaxPower": 5.0,  # def: 1.0
-        "MaxWeight": 20.0,  # def: 8.0
-        "MutateNeuronTraitsProb": 0.0,  # def: 1.0
-        "MutateLinkTraitsProb": 0.0,  # def: 1.0
-    }
-
-    gym_swing: ClassVar[dict[str, float | int | bool]] = {
-        "YoungAgeTreshold": 15,  # def: 5
-        "SpeciesDropoffAge": 15,  # def: 50
-        "OldAgeTreshold": 35,  # def: 30
-        "SurvivalRate": 0.2,  # def: 0.25
-        "CrossoverRate": 0.75,  # def: 0.7
-        "OverallMutationRate": 0.2,  # def: 0.25
-        "MultipointCrossoverRate": 0.4,  # def: 0.75
-        "MutateAddNeuronProb": 0.1,  # def: 0.01
-        "MutateAddLinkProb": 0.2,  # def: 0.03
-        "MutateWeightsProb": 0.8,  # def: 0.9
-        "MutateWeightsSevereProb": 0.15,  # def: 0.25
-        "WeightMutationRate": 0.25,  # def: 1.0
-        "WeightMutationMaxPower": 0.5,  # def: 1.0
-        "MaxActivationA": 6.2,  # def: 1.0
-        "TimeConstantMutationMaxPower": 0.1,  # def: 0.0
-        "BiasMutationMaxPower": 0.5,  # def: 1.0
-        "MutateNeuronTimeConstantsProb": 0.1,  # def: 0.0
-        "MutateNeuronBiasesProb": 0.1,  # def: 0.0
-        "MinNeuronTimeConstant": 0.04,  # def: 0.0
-        "MaxNeuronTimeConstant": 0.09,  # def: 0.0
-        "MinNeuronBias": -8.0,  # def: 0.0
-        "MaxNeuronBias": 8.0,  # def: 0.0
-        "ActivationFunction_UnsignedSigmoid_Prob": 0.0,  # def: 1.0
-        "ActivationFunction_Tanh_Prob": 1.0,  # def: 0.0
-        "MutateNeuronTraitsProb": 0.0,  # def: 1.0
-        "MutateLinkTraitsProb": 0.0,  # def: 1.0
-        "WeightDiffCoeff": 1.0,  # def: 0.5
-        "CompatTreshold": 2.0,  # def: 5.0
-    }
-
-    gym_walker: ClassVar[dict[str, float | int | bool]] = {
-        "YoungAgeTreshold": 15,  # def: 5
-        "SpeciesDropoffAge": 15,  # def: 50
-        "OldAgeTreshold": 35,  # def: 30
-        "SurvivalRate": 0.2,  # def: 0.25
-        "CrossoverRate": 0.75,  # def: 0.7
-        "OverallMutationRate": 0.2,  # def: 0.25
-        "MultipointCrossoverRate": 0.4,  # def: 0.75
-        "MutateAddNeuronProb": 0.1,  # def: 0.01
-        "MutateAddLinkProb": 0.2,  # def: 0.03
-        "MutateWeightsProb": 0.8,  # def: 0.9
-        "MutateWeightsSevereProb": 0.5,  # def: 0.25
-        "WeightMutationRate": 0.25,  # def: 1.0
-        "WeightMutationMaxPower": 0.5,  # def: 1.0
-        "ActivationAMutationMaxPower": 0.5,  # def: 0.0
-        "MinActivationA": 1.1,  # def: 1.0
-        "MaxActivationA": 6.9,  # def: 1.0
-        "TimeConstantMutationMaxPower": 0.1,  # def: 0.0
-        "BiasMutationMaxPower": 0.5,  # def: 1.0
-        "MinNeuronTimeConstant": 0.04,  # def: 0.0
-        "MaxNeuronTimeConstant": 0.24,  # def: 0.0
-        "MinNeuronBias": -8.0,  # def: 0.0
-        "MaxNeuronBias": 8.0,  # def: 0.0
-        "ActivationFunction_UnsignedSigmoid_Prob": 0.0,  # def: 1.0
-        "ActivationFunction_Tanh_Prob": 1.0,  # def: 0.0
-        "MutateNeuronTraitsProb": 0.0,  # def: 1.0
-        "MutateLinkTraitsProb": 0.0,  # def: 1.0
-        "WeightDiffCoeff": 1.0,  # def: 0.5
-        "CompatTreshold": 2.0,  # def: 5.0
-        "EliteFraction": 1.0,  # def: 0.01
-    }
-
-    PythonObjectTraits: ClassVar[dict[str, float | int | bool]] = {
-        "DynamicCompatibility": False,  # def: True
-        "MinSpecies": 1,  # def: 5
-        "YoungAgeTreshold": 15,  # def: 5
-        "SpeciesDropoffAge": 15,  # def: 50
-        "OldAgeTreshold": 50,  # def: 30
-        "SurvivalRate": 0.05,  # def: 0.25
-        "CrossoverRate": 0.5,  # def: 0.7
-        "OverallMutationRate": 0.5,  # def: 0.25
-        "MultipointCrossoverRate": 0.5,  # def: 0.75
-        "MutateAddNeuronProb": 0.0,  # def: 0.01
-        "MutateAddLinkProb": 0.0,  # def: 0.03
-        "MutateWeightsProb": 0.0,  # def: 0.9
-        "MutateNeuronTraitsProb": 0.0,  # def: 1.0
-        "MutateLinkTraitsProb": 0.0,  # def: 1.0
-        "DisjointCoeff": 8.0,  # def: 1.0
-        "ExcessCoeff": 8.0,  # def: 1.0
-        "WeightDiffCoeff": 0.0,  # def: 0.5
-        "CompatTreshold": 1200000.5,  # def: 5.0
-        "EliteFraction": 1.0,  # def: 0.01
-    }
-
-    ball_keeper: ClassVar[dict[str, float | int | bool]] = {
-        "MinSpecies": 3,  # def: 5
-        "AllowClones": False,  # def: True
-        "YoungAgeTreshold": 15,  # def: 5
-        "SpeciesDropoffAge": 100,  # def: 50
-        "OldAgeTreshold": 35,  # def: 30
-        "CrossoverRate": 0.5,  # def: 0.7
-        "OverallMutationRate": 0.02,  # def: 0.25
-        "RouletteWheelSelection": True,  # def: False
-        "MutateAddLinkProb": 0.02,  # def: 0.03
-        "MutateWeightsSevereProb": 0.01,  # def: 0.25
-        "WeightMutationRate": 0.75,  # def: 1.0
-        "WeightReplacementMaxPower": 5.0,  # def: 1.0
-        "MaxWeight": 20.0,  # def: 8.0
-        "MutateNeuronTraitsProb": 0.0,  # def: 1.0
-        "MutateLinkTraitsProb": 0.0,  # def: 1.0
-        "DivisionThreshold": 0.5,  # def: 0.03
-        "MaxDepth": 4,  # def: 3
-        "CPPN_Bias": -3.0,  # def: 1.0
-        "Width": 1.0,  # def: 2.0
-        "Height": 1.0,  # def: 2.0
-        "Leo": True,  # def: False
-        "LeoThreshold": 0.3,  # def: 0.1
-        "LeoSeed": True,  # def: False
-        "GeometrySeed": True,  # def: False
-        "EliteFraction": 0.1,  # def: 0.01
-    }
-
-    NoveltySearch: ClassVar[dict[str, float | int | bool]] = {
-        "MinSpecies": 3,  # def: 5
-        "AllowClones": False,  # def: True
-        "YoungAgeTreshold": 15,  # def: 5
-        "SpeciesDropoffAge": 100,  # def: 50
-        "OldAgeTreshold": 35,  # def: 30
-        "CrossoverRate": 0.5,  # def: 0.7
-        "OverallMutationRate": 0.02,  # def: 0.25
-        "RouletteWheelSelection": True,  # def: False
-        "MutateAddLinkProb": 0.02,  # def: 0.03
-        "MutateWeightsSevereProb": 0.01,  # def: 0.25
-        "WeightMutationRate": 0.75,  # def: 1.0
-        "WeightReplacementMaxPower": 5.0,  # def: 1.0
-        "MutateNeuronTraitsProb": 0.0,  # def: 1.0
-        "MutateLinkTraitsProb": 0.0,  # def: 1.0
-        "EliteFraction": 0.1,  # def: 0.01
-    }
-
-    TestCondTraits: ClassVar[dict[str, float | int | bool]] = {
-        "YoungAgeTreshold": 15,  # def: 5
-        "SpeciesDropoffAge": 15,  # def: 50
-        "OldAgeTreshold": 35,  # def: 30
-        "SurvivalRate": 0.2,  # def: 0.25
-        "CrossoverRate": 0.75,  # def: 0.7
-        "OverallMutationRate": 0.8,  # def: 0.25
-        "MultipointCrossoverRate": 0.4,  # def: 0.75
-        "MutateAddNeuronProb": 0.001,  # def: 0.01
-        "MutateAddLinkProb": 0.01,  # def: 0.03
-        "MutateWeightsProb": 0.0,  # def: 0.9
-        "MutateWeightsSevereProb": 0.0,  # def: 0.25
-        "WeightMutationRate": 0.0,  # def: 1.0
-        "WeightMutationMaxPower": 0.0,  # def: 1.0
-        "WeightReplacementMaxPower": 0.0,  # def: 1.0
-        "MaxWeight": 0.0,  # def: 8.0
-        "MutateNeuronTraitsProb": 0.8,  # def: 1.0
-        "MutateLinkTraitsProb": 0.8,  # def: 1.0
-        "WeightDiffCoeff": 0.0,  # def: 0.5
-        "CompatTreshold": 3.0,  # def: 5.0
-    }
-
-    TestESHyperNEAT_xor_3d: ClassVar[dict[str, float | int | bool]] = {
-        "YoungAgeTreshold": 15,  # def: 5
-        "SpeciesDropoffAge": 100,  # def: 50
-        "OldAgeTreshold": 35,  # def: 30
-        "OverallMutationRate": 0.15,  # def: 0.25
-        "MutateAddLinkProb": 0.08,  # def: 0.03
-        "MutateRemLinkProb": 0.02,  # def: 0.0
-        "WeightMutationMaxPower": 0.2,  # def: 1.0
-        "ActivationAMutationMaxPower": 0.5,  # def: 0.0
-        "MinActivationA": 0.05,  # def: 1.0
-        "MaxActivationA": 6.0,  # def: 1.0
-        "MutateNeuronActivationTypeProb": 0.03,  # def: 0.0
-        "ActivationFunction_UnsignedSigmoid_Prob": 0.0,  # def: 1.0
-        "ActivationFunction_Tanh_Prob": 1.0,  # def: 0.0
-        "ActivationFunction_SignedStep_Prob": 1.0,  # def: 0.0
-        "ActivationFunction_SignedGauss_Prob": 1.0,  # def: 0.0
-        "ActivationFunction_SignedSine_Prob": 1.0,  # def: 0.0
-        "ActivationFunction_Linear_Prob": 1.0,  # def: 0.0
-        "MutateNeuronTraitsProb": 0.0,  # def: 1.0
-        "MutateLinkTraitsProb": 0.0,  # def: 1.0
-        "CompatTreshold": 2.0,  # def: 5.0
-        "DivisionThreshold": 0.5,  # def: 0.03
-        "InitialDepth": 2,  # def: 3
-        "CPPN_Bias": -1.0,  # def: 1.0
-        "Width": 1.0,  # def: 2.0
-        "Height": 1.0,  # def: 2.0
-        "LeoThreshold": 0.3,  # def: 0.1
-        "EliteFraction": 0.1,  # def: 0.01
-    }
-
-    TestHyperNEAT_xor: ClassVar[dict[str, float | int | bool]] = {
-        "YoungAgeTreshold": 15,  # def: 5
-        "SpeciesDropoffAge": 100,  # def: 50
-        "OldAgeTreshold": 35,  # def: 30
-        "OverallMutationRate": 0.15,  # def: 0.25
-        "MutateAddLinkProb": 0.08,  # def: 0.03
-        "MutateRemLinkProb": 0.02,  # def: 0.0
-        "WeightMutationMaxPower": 0.2,  # def: 1.0
-        "ActivationAMutationMaxPower": 0.5,  # def: 0.0
-        "MinActivationA": 0.05,  # def: 1.0
-        "MaxActivationA": 6.0,  # def: 1.0
-        "MutateNeuronActivationTypeProb": 0.03,  # def: 0.0
-        "ActivationFunction_UnsignedSigmoid_Prob": 0.0,  # def: 1.0
-        "ActivationFunction_Tanh_Prob": 1.0,  # def: 0.0
-        "ActivationFunction_SignedStep_Prob": 1.0,  # def: 0.0
-        "ActivationFunction_SignedGauss_Prob": 1.0,  # def: 0.0
-        "ActivationFunction_SignedSine_Prob": 1.0,  # def: 0.0
-        "ActivationFunction_Linear_Prob": 1.0,  # def: 0.0
-        "MutateNeuronTraitsProb": 0.0,  # def: 1.0
-        "MutateLinkTraitsProb": 0.0,  # def: 1.0
-        "CompatTreshold": 2.0,  # def: 5.0
-    }
-
-    TestNEAT_xor: ClassVar[dict[str, float | int | bool]] = {
-        "MinSpecies": 2,  # def: 5
-        "YoungAgeTreshold": 15,  # def: 5
-        "SpeciesDropoffAge": 15,  # def: 50
-        "OldAgeTreshold": 35,  # def: 30
-        "SurvivalRate": 0.2,  # def: 0.25
-        "CrossoverRate": 0.0,  # def: 0.7
-        "OverallMutationRate": 1.0,  # def: 0.25
-        "MultipointCrossoverRate": 0.0,  # def: 0.75
-        "MutateAddNeuronProb": 0.001,  # def: 0.01
-        "MutateAddLinkProb": 0.3,  # def: 0.03
-        "MutateWeightsProb": 0.05,  # def: 0.9
-        "MutateWeightsSevereProb": 0.0,  # def: 0.25
-        "WeightMutationRate": 0.25,  # def: 1.0
-        "WeightMutationMaxPower": 0.5,  # def: 1.0
-        "WeightReplacementRate": 0.9,  # def: 0.2
-        "WeightReplacementMaxPower": 8.0,  # def: 1.0
-        "MinActivationA": 4.9,  # def: 1.0
-        "MaxActivationA": 4.9,  # def: 1.0
-        "MutateNeuronTraitsProb": 0.0,  # def: 1.0
-        "MutateLinkTraitsProb": 0.0,  # def: 1.0
-        "WeightDiffCoeff": 0.1,  # def: 0.5
-        "CompatTreshold": 2.0,  # def: 5.0
-    }
-
-    TestTraits: ClassVar[dict[str, float | int | bool]] = {
-        "YoungAgeTreshold": 15,  # def: 5
-        "SpeciesDropoffAge": 15,  # def: 50
-        "OldAgeTreshold": 35,  # def: 30
-        "SurvivalRate": 0.2,  # def: 0.25
-        "CrossoverRate": 0.75,  # def: 0.7
-        "OverallMutationRate": 0.8,  # def: 0.25
-        "MultipointCrossoverRate": 0.4,  # def: 0.75
-        "MutateAddNeuronProb": 0.001,  # def: 0.01
-        "MutateAddLinkProb": 0.01,  # def: 0.03
-        "MutateWeightsProb": 0.0,  # def: 0.9
-        "MutateWeightsSevereProb": 0.0,  # def: 0.25
-        "WeightMutationRate": 0.0,  # def: 1.0
-        "WeightMutationMaxPower": 0.0,  # def: 1.0
-        "WeightReplacementMaxPower": 0.0,  # def: 1.0
-        "MaxWeight": 0.0,  # def: 8.0
-        "MutateNeuronTraitsProb": 0.8,  # def: 1.0
-        "MutateLinkTraitsProb": 0.8,  # def: 1.0
-        "WeightDiffCoeff": 0.0,  # def: 0.5
-        "CompatTreshold": 3.0,  # def: 5.0
-    }
-
-    MadeBreaker: ClassVar[dict[str, float | int | bool]] = {
-        # [ ] Complete experimentation around seg-faulting
-    }
-
-    DefaultConfig: ClassVar[dict[str, float | int | bool]] = {
-        # [ ] Transfer values from examples/DefaultConfig.NEAT
-    }
-
-    __seg_fault_prone__: frozenset[str] = frozenset(
-        [
-            # [ ] Verify which of value dicts cause seg-faults
-        ]
-    )
 
     __inject_override__: ClassVar[dict[str, float | int | bool]] = {
         # NOTE - These field-values are enforced in every case
@@ -366,12 +361,64 @@ class CollectionOfDefaultValues:
         "MutateGenomeTraitsProb": None,
     }
 
-    def set_params(self, source: dict[str, float | bool]) -> multiNEATParamType:
+    def _check_validity(self, source: dict[str, float | int | bool]) -> None:
+        # Make set of keys and check if source is empty
+        source_keys = set(source.keys())
+        if not source_keys:
+            logging.warning("Empty source provided, this may be an error.")
+
+        # Make sure no unsafe keys are present
+        if from_unsafe := source_keys.intersection(self.__unsafe_keys__):
+            msg = f"Unsafe keys found: {from_unsafe}"
+            raise ValueError(msg)
+
+        # Make sure every key is known
+        if len(from_safe := source_keys - self.__safe_keys__) != 0:
+            msg = f"Found unkown keys: {from_safe}"
+            raise ValueError(msg)
+
+        # Replace any rejected keys with the correct ones
+        for old_key, new_key in self.__rejection__.items():
+            if old_key in source:
+                new_value = source.pop(old_key)
+                if new_key is not None:
+                    source[new_key] = new_value
+
+    def strip_params(
+        self,
+        source: multiNEATParamType,
+        to_remove: dict[str, float | int | bool] | None = None,
+    ) -> multiNEATParamType:
+        # Check if to_remove is None
+        if to_remove is None:
+            to_remove = self.__inject_override__
+
+        # Load the original values
+        org = deepcopy(multineat.Parameters())
+
+        # Replace the source values
+        for key in to_remove:
+            setattr(source, key, getattr(org, key))
+
+        # Return the target
+        return source
+
+    def set_params(
+        self,
+        target: dict[str, float | int | bool],
+        *,
+        prevalidated: bool = False,
+    ) -> multiNEATParamType:
+        # Check validity of target
+        if not prevalidated:
+            logging.warning("Source not prevalidated, this may cause crashes.")
+            self._check_validity(target)
+
         # Create the parameters
-        params = multineat.Parameters()
+        params = deepcopy(multineat.Parameters())
 
         # Load params from dict
-        for key, value in source.items():
+        for key, value in target.items():
             setattr(params, key, value)
 
         # Override parameters
@@ -381,156 +428,8 @@ class CollectionOfDefaultValues:
         # Return the parameters
         return params
 
-    def _clean_source(self, params_dict: dict[str, float | bool]) -> list[str]:
-        # Ignore fields
-        ignore_fields = {
-            "Reset",
-            "Load",
-            "Save",
-            "ListNeuronTraitParameters",
-            "ListLinkTraitParameters",
-            "ListGenomeTraitParameters",
-            "SetNeuronTraitParameters",
-            "SetLinkTraitParameters",
-            "SetGenomeTraitParameters",
-            "GetNeuronTraitParameters",
-            "GetLinkTraitParameters",
-            "GetGenomeTraitParameters",
-            "ClearNeuronTraitParameters",
-            "ClearLinkTraitParameters",
-            "ClearGenomeTraitParameters",
-            "CustomConstraints",
-        }
 
-        # Remove unwanted fields
-        return [
-            key
-            for key in params_dict
-            if key not in ignore_fields and not key.startswith("_")
-        ]
-
-    def _extract_source(
-        self, source: dict[str, float | bool]
-    ) -> dict[str, float | bool]:
-        # Check if source has reject fields
-        for old_key, new_key in self.__rejection__.items():
-            if old_key in source:
-                value = source.pop(old_key)
-                if new_key is not None:
-                    source[new_key] = value
-
-        # Extract params
-        params = self.set_params(source)
-
-        # Extract dictionary
-        params_dict = params.__dir__()
-
-        # Get clean sources
-        clean_source_keys = self._clean_source(params_dict)
-
-        # Get values
-        return {key: getattr(params, key) for key in clean_source_keys}
-
-    def diff_source_vals(
-        self,
-        source_1: dict[str, float | bool],
-        source_2: dict[str, float | bool],
-    ) -> dict[str, list[float | bool]]:
-        # Get values
-        clean_source_1 = self._extract_source(source_1)
-        clean_source_2 = self._extract_source(source_2)
-
-        # Get differences
-        return {
-            key_1: [value_1, clean_source_2[key_1]]
-            for key_1, value_1 in clean_source_1.items()
-        }
-
-    def print_diff(
-        self, differences: dict[str, list[float | bool]], mode: str = "diff"
-    ) -> None:
-        sys.stdout.write("\n")
-        allowed_modes = {"all", "same", "diff"}
-        for key, (new_value, old_value) in differences.items():
-            are_same = new_value == old_value
-            if are_same and mode in {"all", "same"}:
-                self.__print_diff_generic__(key, old_value, " == ", new_value)
-            elif not are_same and mode in {"all", "diff"}:
-                self.__print_diff_generic__(key, old_value, " -> ", new_value)
-            elif mode not in allowed_modes:
-                msg = f"Invalid mode: {mode}"
-                raise ValueError(msg)
-
-    def __print_diff_generic__(
-        self,
-        key: str,
-        old_value: float | bool,
-        symbol: str,
-        new_value: float | bool,
-    ) -> None:
-        sys.stdout.write(f"{key}\n")
-        sys.stdout.write(f"\t{old_value}{symbol}{new_value}\n")
-        sys.stdout.write("\n")
-
-    def print_diff_dict(
-        self,
-        differences: dict[str, list[float | int | bool]],
-        name: str,
-        ref: str = "def:",
-        mode: str = "diff",
-    ) -> None:
-        sys.stdout.write("\n")
-        allowed_modes = {"all", "same", "diff"}
-
-        indent = " " * 4
-        sys.stdout.write(
-            f"\n{indent}{name}: ClassVar[dict[str, float | int | bool]]"
-            + " = {\n"
-        )
-
-        for key, value_list in differences.items():
-            new_value, old_value = value_list[:1]
-            are_same = new_value == old_value
-            if are_same and mode in {"all", "same"}:
-                self.__print_diff_dict__(key, new_value)
-            elif not are_same and mode in {"all", "diff"}:
-                self.__print_diff_dict__(
-                    key, new_value, f"  # {ref} ", old_value
-                )
-            elif mode not in allowed_modes:
-                msg = f"Invalid mode: {mode}"
-                raise ValueError(msg)
-        sys.stdout.write(f"{indent}" + "}\n")
-
-    def __print_diff_dict__(
-        self,
-        key: str,
-        new_value: float | bool,
-        symbol: str = "",
-        old_value: str | float | bool = "",
-    ) -> None:
-        indent = " " * 8
-        sys.stdout.write(f'{indent}"{key}": {new_value},{symbol}{old_value}\n')
-
-
-def get_multineat_params(
-    source_name: str = "TestESHyperNEAT_xor",
-) -> multiNEATParamType:
-    # Get source
-    def_vals = CollectionOfDefaultValues()
-    source = getattr(def_vals, source_name)
-    params = def_vals.set_params(source)
-
-    # Return the parameters
-    del def_vals, source
-    return params
-
-
-if __name__ == "__main__":
-    collection_obj = CollectionOfDefaultValues()
-    target_name = "TestTraits"
-    target = getattr(collection_obj, target_name)
-    default = collection_obj.Default
-    diff = collection_obj.diff_source_vals(target, default)
-    collection_obj.print_diff(diff)
-    collection_obj.print_diff_dict(diff, target_name)
+def get_multineat_params(name: str = "NoveltySearch") -> multiNEATParamType:
+    param_writer = MultiNEATParamsWriter()
+    target = getattr(CollectionOfDefaultValues, name)
+    return param_writer.set_params(target, prevalidated=True)

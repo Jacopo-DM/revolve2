@@ -4,12 +4,8 @@ from dataclasses import dataclass, field
 import pyrr.aabb
 from pyrr import Vector3
 
-from ._aabb import AABB
-from ._joint import Joint
-from ._pose import Pose
-from ._rigid_body import RigidBody
-from ._uuid_key import UUIDKey
-from .geometry import GeometryBox
+from simulation.scene import AABB, Joint, Pose, RigidBody, UUIDKey
+from simulation.scene.geometry import GeometryBox
 
 
 @dataclass(kw_only=True)

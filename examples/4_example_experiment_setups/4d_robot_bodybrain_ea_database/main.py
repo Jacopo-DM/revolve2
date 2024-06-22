@@ -65,7 +65,8 @@ class ParentSelector(Selector):
                         individual.fitness
                         for individual in population.individuals
                     ],
-                    selection_function=lambda _, fitnesses: selection.tournament(
+                    selection_function=lambda _,
+                    fitnesses: selection.tournament(
                         rng=self.rng, fitnesses=fitnesses, k=2
                     ),
                 )
@@ -112,7 +113,9 @@ class SurvivorSelector(Selector):
             old_fitnesses=[i.fitness for i in population.individuals],
             new_genotypes=offspring,
             new_fitnesses=offspring_fitness,
-            selection_function=lambda n, genotypes, fitnesses: selection.multiple_unique(
+            selection_function=lambda n,
+            genotypes,
+            fitnesses: selection.multiple_unique(
                 selection_size=n,
                 population=genotypes,
                 fitnesses=fitnesses,
@@ -143,7 +146,7 @@ class SurvivorSelector(Selector):
         )
 
 
-class CrossoverReproducer(Reproducer):
+class CrossoverReproducer:
     """A simple crossover reproducer using multineat."""
 
     rng: np.random.Generator

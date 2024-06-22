@@ -10,8 +10,9 @@ from ._base import Base
 from ._genotype import Genotype
 
 
-@dataclass
-class Individual(Base, HasId, kw_only=True):
+# @dataclass
+class Individual(Base, HasId, kw_only=True):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """
     An individual in a population.
 

@@ -3,16 +3,18 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Self
 
 import multineat
-from revolve2.ci_group.genotypes.cppnwin import (
+from sqlalchemy import event, orm
+
+from ci_group.genotypes.cppnwin import (
     multineat_rng_from_random,
     random_multineat_genotype,
 )
-from revolve2.ci_group.genotypes.cppnwin.modular_robot import (
+from ci_group.genotypes.cppnwin.modular_robot import (
     get_multineat_params,
 )
-from sqlalchemy import event, orm
-
-from ._body_develop import develop_body_v2
+from ci_group.genotypes.cppnwin.modular_robot.v2 import (
+    develop_body_v2,
+)
 
 if TYPE_CHECKING:
     import numpy as np

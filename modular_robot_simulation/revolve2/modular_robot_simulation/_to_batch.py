@@ -6,7 +6,7 @@ from revolve2.simulation.simulator import (
     RecordSettings,
 )
 
-from ._modular_robot_scene import ModularRobotScene
+from modular_robot_simulation import ModularRobotScene
 
 
 def to_batch(

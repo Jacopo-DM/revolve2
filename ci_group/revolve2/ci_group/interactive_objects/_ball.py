@@ -3,7 +3,8 @@ from revolve2.simulation.scene.geometry import GeometrySphere
 from revolve2.simulation.scene.geometry.textures import Texture
 
 
-class Ball(MultiBodySystem):
+class Ball(MultiBodySystem):  # type: ignore[misc]
+    # TODO(jmdm): Fix type ignore"↑"
     """An interactive ball."""
 
     def __init__(

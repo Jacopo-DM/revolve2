@@ -1,6 +1,6 @@
 from revolve2.simulation.scene import MultiBodySystem, Pose, RigidBody
 
-from ._terrain import Terrain
+from modular_robot_simulation import Terrain
 
 
 def convert_terrain(terrain: Terrain) -> MultiBodySystem:

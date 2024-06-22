@@ -1,10 +1,9 @@
 from dataclasses import dataclass, field
 
-from revolve2.simulation.scene._color import Color
-from revolve2.simulation.scene.vector2 import Vector2
-
-from ._geometry import Geometry
-from .textures import MapType, Texture
+from simulation.scene._color import Color
+from simulation.scene.geometry._geometry import Geometry
+from simulation.scene.geometry.textures import MapType, Texture
+from simulation.scene.vector2 import Vector2
 
 
 @dataclass(kw_only=True)

@@ -26,7 +26,9 @@ class Genotype:
         :param rng: Random number generator.
         :returns: The created genotype.
         """
-        return Genotype(rng.random(size=config.NUM_PARAMETERS) * 2 - 1)
+        return Genotype(
+            parameters=(rng.random(size=config.NUM_PARAMETERS) * 2 - 1)
+        )
 
     def mutate(
         self,

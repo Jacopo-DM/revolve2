@@ -1,6 +1,7 @@
 """Main script for the example."""
 
 import logging
+from itertools import starmap
 from typing import Any
 
 import config
@@ -42,19 +43,17 @@ class ParentSelector:
         :param kwargs: Additional kwargs that are not used in this example.
         :returns: Pairs of indices of selected parents. offspring_size x 2 ints, and the parent population in the KWArgs dict.
         """
-        final_selection = np.asarray(
-            [
-                selection.multiple_unique(
-                    2,
-                    [individual.genotype for individual in population],
-                    [individual.fitness for individual in population],
-                    lambda _, fitnesses: selection.tournament(
-                        self._rng, fitnesses, k=1
-                    ),
-                )
-                for _ in range(self._offspring_size)
-            ]
-        )
+        final_selection = np.asarray([
+            selection.multiple_unique(
+                2,
+                [individual.genotype for individual in population],
+                [individual.fitness for individual in population],
+                lambda _, fitnesses: selection.tournament(
+                    self._rng, fitnesses, k=1
+                ),
+            )
+            for _ in range(self._offspring_size)
+        ])
         """We select not the parents directly, but their respective indices for the reproduction step."""
         return final_selection, {"parent_population": population}
 
@@ -186,12 +185,11 @@ def main() -> None:
     initial_fitnesses = evaluator.evaluate(initial_genotypes)
 
     # Create a population of individuals, combining genotype with fitness.
-    population = [
-        Individual(genotype, fitness)
-        for genotype, fitness in zip(
-            initial_genotypes, initial_fitnesses, strict=False
+    population = list(
+        starmap(
+            Individual, zip(initial_genotypes, initial_fitnesses, strict=False)
         )
-    ]
+    )
 
     # Set the current generation to 0.
     generation_index = 0
@@ -215,12 +213,12 @@ def main() -> None:
         logging.info(f"Max fitness: {max(offspring_fitnesses)}")
 
         # Make an intermediate offspring population.
-        offspring_population = [
-            Individual(genotype, fitness)
-            for genotype, fitness in zip(
-                offspring_genotypes, offspring_fitnesses, strict=False
+        offspring_population = list(
+            starmap(
+                Individual,
+                zip(offspring_genotypes, offspring_fitnesses, strict=False),
             )
-        ]
+        )
 
         # Create the next generation by selecting survivors between original population and offspring.
         population, _ = survivor_selector.select(

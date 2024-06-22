@@ -8,7 +8,8 @@ from mujoco.viewer import Handle
 from revolve2.simulation.simulator import Viewer
 
 
-class NativeMujocoViewer(Viewer):
+class NativeMujocoViewer(Viewer):  # type: ignore[misc]
+    # TODO(jmdm): Fix type ignore"↑"
     """Native Viewer Object."""
 
     _viewer: Handle

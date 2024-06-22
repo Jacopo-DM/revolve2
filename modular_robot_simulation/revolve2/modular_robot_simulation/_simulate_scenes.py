@@ -6,9 +6,11 @@ from revolve2.simulation.simulator import (
     Simulator,
 )
 
-from ._modular_robot_scene import ModularRobotScene
-from ._scene_simulation_state import SceneSimulationState
-from ._to_batch import to_batch
+from modular_robot_simulation import (
+    ModularRobotScene,
+    SceneSimulationState,
+)
+from modular_robot_simulation._to_batch import to_batch
 
 
 @overload

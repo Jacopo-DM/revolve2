@@ -1,6 +1,7 @@
 """Main script for the example."""
 
 import logging
+from itertools import starmap
 
 from revolve2.ci_group import fitness_functions, modular_robots_v1, terrains
 from revolve2.ci_group.simulation_parameters import (
@@ -30,10 +31,7 @@ def main() -> None:
         modular_robots_v1.spider_v1(),
     ]
     brains = [BrainCpgNetworkNeighborRandom(body, rng) for body in bodies]
-    robots = [
-        ModularRobot(body, brain)
-        for body, brain in zip(bodies, brains, strict=False)
-    ]
+    robots = list(starmap(ModularRobot, zip(bodies, brains, strict=False)))
 
     # Create a flat terrain
     terrain = terrains.flat()

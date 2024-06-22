@@ -11,6 +11,11 @@ import numpy.typing as npt
 from evaluator import Evaluator
 from genotype import Genotype
 from individual import Individual
+from revolve2.experimentation. import ModularRobotEvolution
+from revolve2.experimentation.evolution.abstract_elements import (
+    Reproducer,
+    Selector,
+)
 from revolve2.experimentation.logging import setup_logging
 from revolve2.experimentation.optimization.ea import (
     population_management,
@@ -19,7 +24,7 @@ from revolve2.experimentation.optimization.ea import (
 from revolve2.experimentation.rng import make_rng_time_seed
 
 
-class ParentSelector:
+class ParentSelector(Selector):
     """Selector class for parent selection."""
 
     rng: np.random.Generator
@@ -53,7 +58,8 @@ class ParentSelector:
                         individual.genotype for individual in population
                     ],
                     fitnesses=[individual.fitness for individual in population],
-                    selection_function=lambda _, fitnesses: selection.tournament(
+                    selection_function=lambda _,
+                    fitnesses: selection.tournament(
                         rng=self.rng, fitnesses=fitnesses, k=1
                     ),
                 )
@@ -89,25 +95,28 @@ class SurvivorSelector(Selector):
         offspring = kwargs.get("children")
         offspring_fitness = kwargs.get("child_task_performance")
         if offspring is None or offspring_fitness is None:
-            msg = "No offspring was passed with positional argument 'children' and / or 'child_task_performance'."
-            raise ValueError(msg)
+            raise ValueError(
+                "No offspring was passed with positional argument 'children' and / or 'child_task_performance'."
+            )
 
-        (
-            original_survivors,
-            offspring_survivors,
-        ) = population_management.steady_state(
-            old_genotypes=[i.genotype for i in population],
-            old_fitnesses=[i.fitness for i in population],
-            new_genotypes=offspring,
-            new_fitnesses=offspring_fitness,
-            selection_function=lambda n, genotypes, fitnesses: selection.multiple_unique(
-                selection_size=n,
-                population=genotypes,
-                fitnesses=fitnesses,
-                selection_function=lambda _, fitnesses: selection.tournament(
-                    rng=self.rng, fitnesses=fitnesses, k=2
+        original_survivors, offspring_survivors = (
+            population_management.steady_state(
+                old_genotypes=[i.genotype for i in population],
+                old_fitnesses=[i.fitness for i in population],
+                new_genotypes=offspring,
+                new_fitnesses=offspring_fitness,
+                selection_function=lambda n,
+                genotypes,
+                fitnesses: selection.multiple_unique(
+                    selection_size=n,
+                    population=genotypes,
+                    fitnesses=fitnesses,
+                    selection_function=lambda _,
+                    fitnesses: selection.tournament(
+                        rng=self.rng, fitnesses=fitnesses, k=2
+                    ),
                 ),
-            ),
+            )
         )
 
         return [
@@ -137,7 +146,7 @@ class CrossoverReproducer(Reproducer):
         rng: np.random.Generator,
         innov_db_body: multineat.InnovationDatabase,
         innov_db_brain: multineat.InnovationDatabase,
-    ) -> None:
+    ):
         """
         Initialize the reproducer.
 
@@ -164,10 +173,9 @@ class CrossoverReproducer(Reproducer):
             "parent_population"
         )
         if parent_population is None:
-            msg = "No parent population given."
-            raise ValueError(msg)
+            raise ValueError("No parent population given.")
 
-        return [
+        offspring_genotypes = [
             Genotype.crossover(
                 parent_population[parent1_i].genotype,
                 parent_population[parent2_i].genotype,
@@ -175,6 +183,7 @@ class CrossoverReproducer(Reproducer):
             ).mutate(self.innov_db_body, self.innov_db_brain, self.rng)
             for parent1_i, parent2_i in population
         ]
+        return offspring_genotypes
 
 
 def find_best_robot(
@@ -188,7 +197,7 @@ def find_best_robot(
     :returns: The best individual.
     """
     return max(
-        population if current_best is None else [current_best, *population],
+        population if current_best is None else [current_best] + population,
         key=lambda x: x.fitness,
     )
 

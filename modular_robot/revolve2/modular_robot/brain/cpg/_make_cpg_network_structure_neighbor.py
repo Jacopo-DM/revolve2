@@ -1,6 +1,8 @@
-from revolve2.modular_robot.body.base import ActiveHinge
-
-from ._cpg_network_structure import CpgNetworkStructure, CpgPair
+from modular_robot.body.base import ActiveHinge
+from modular_robot.brain.cpg._cpg_network_structure import (
+    CpgNetworkStructure,
+    CpgPair,
+)
 
 
 def active_hinges_to_cpg_network_structure_neighbor(
@@ -27,12 +29,10 @@ def active_hinges_to_cpg_network_structure_neighbor(
             for n in active_hinge.neighbours(within_range=2)
             if isinstance(n, ActiveHinge)
         ]
-        connections = connections.union(
-            [
-                CpgPair(cpg, active_hinge_to_cpg[neighbour])
-                for neighbour in neighbours
-            ]
-        )
+        connections = connections.union([
+            CpgPair(cpg, active_hinge_to_cpg[neighbour])
+            for neighbour in neighbours
+        ])
 
     cpg_network_structure = CpgNetworkStructure(cpgs, connections)
 

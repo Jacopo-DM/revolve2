@@ -3,17 +3,25 @@
 import logging
 
 import mujoco
-from revolve2.ci_group.simulation_parameters import (
-    STANDARD_CONTROL_FREQUENCY,
-    STANDARD_SIMULATION_TIMESTEP,
-)
 from revolve2.simulation.scene import Scene
 
-from ._control_interface_impl import ControlInterfaceImpl
-from ._render_backend import RenderBackend
-from ._scene_to_model import scene_to_model
-from ._simulation_state_impl import SimulationStateImpl
-from .viewers import CustomMujocoViewer, CustomMujocoViewerMode
+from simulators.mujoco_simulator._control_interface_impl import (
+    ControlInterfaceImpl,
+)
+from simulators.mujoco_simulator._render_backend import RenderBackend
+from simulators.mujoco_simulator._scene_to_model import scene_to_model
+from simulators.mujoco_simulator._simulation_state_impl import (
+    SimulationStateImpl,
+)
+from simulators.mujoco_simulator.viewers import (
+    CustomMujocoViewer,
+    CustomMujocoViewerMode,
+)
+
+STANDARD_SIMULATION_TIME = 60
+STANDARD_SAMPLING_FREQUENCY = 5
+STANDARD_SIMULATION_TIMESTEP = 0.01
+STANDARD_CONTROL_FREQUENCY = 20
 
 
 def simulate_manual_scene(
@@ -45,21 +53,18 @@ def simulate_manual_scene(
     )
 
     """Here we set our values for cycling different positions."""
-    # This is the initial idle position for all hinges (index of the positions).
-    prev_position: int | str = 0
-    # Those are the possible cycle positions we want.
+    prev_position: int = 0  # This is the initial idle position for all hinges (index of the positions).
     positions: list[float] = [
         0.0,
         0.5,
         1.0,
         -0.5,
         -1.0,
-    ]
-    # Here we can check whether we are currently on the correct position.
+    ]  # Those are the possible cycle positions we want.
     target, current = (
         0.0,
         0.0,
-    )
+    )  # Here we can check whether we are currently on the correct position.
     try:
         while True:
             simulation_state = SimulationStateImpl(
@@ -89,7 +94,7 @@ def simulate_manual_scene(
 
             position = viewer.render()
             if position is not None and prev_position != position:
-                prev_position = position
+                prev_position = int(position)
                 target = positions[prev_position]
 
     except KeyboardInterrupt:

@@ -9,10 +9,26 @@ import numpy as np
 from numpy.typing import NDArray
 from revolve2.modular_robot import ModularRobot
 from revolve2.modular_robot.body import Module
-from revolve2.modular_robot.body.base import ActiveHinge, Body, Brick, Core
 
 if TYPE_CHECKING:
+    # TODO(jmdm): Fix cleaner solution for type hinting error
     from pyrr import Vector3
+
+    class Core:
+        pass
+
+    class ActiveHinge:
+        orientation: Any
+
+    class Brick:
+        pass
+
+    class Body:
+        pass
+
+else:
+    from revolve2.modular_robot.body.base import ActiveHinge, Body, Brick, Core
+
 
 from pathlib import Path
 
@@ -118,11 +134,11 @@ def _draw_module(
         case Core():
             context.set_source_rgb(255, 255, 0)  # Yellow
         case ActiveHinge():
-            context.set_source_rgb(1, 0, 0)  # Red
+            context.set_source_rgb(red=255, green=0, blue=0)  # Red
             if np.isclose(module.orientation.angle, 0.0):
                 context.set_source_rgb(1.0, 0.4, 0.4)  # Flesh Color
         case Brick():
-            context.set_source_rgb(0, 0, 1)  # Blue
+            context.set_source_rgb(0, 0, 255)  # Blue
         case _:
             msg = f"Module of type {type(module)} has no defined structure for drawing."
             raise ValueError(msg)

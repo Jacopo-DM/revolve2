@@ -8,7 +8,8 @@ import glfw
 import mujoco
 import mujoco_viewer
 from revolve2.simulation.simulator import Viewer
-from revolve2.simulators.mujoco_simulator._render_backend import RenderBackend
+
+from simulators.mujoco_simulator._render_backend import RenderBackend
 
 
 class CustomMujocoViewerMode(Enum):
@@ -23,7 +24,8 @@ class CustomMujocoViewerMode(Enum):
     MANUAL = "manual"
 
 
-class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):
+class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore[misc]
+    # TODO(jmdm): Fix type ignore"↑"
     """
     Custom Viewer Object that allows for additional keyboard inputs.
 
@@ -280,7 +282,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):
         # Catch the case where the window is closed.
         if self._return_code == "QUIT":
             return self._return_code
-        elif not self.is_alive:
+        if not self.is_alive:
             self._return_code = "QUIT"
             return self._return_code
 

@@ -1,16 +1,19 @@
 import concurrent.futures
 import logging
-import os
+from pathlib import Path
 
 from revolve2.simulation.scene import SimulationState
 from revolve2.simulation.simulator import Batch, Simulator
 
-from ._simulate_manual_scene import simulate_manual_scene
-from ._simulate_scene import simulate_scene
-from .viewers import ViewerType
+from simulators.mujoco_simulator._simulate_manual_scene import (
+    simulate_manual_scene,
+)
+from simulators.mujoco_simulator._simulate_scene import simulate_scene
+from simulators.mujoco_simulator.viewers import ViewerType
 
 
-class LocalSimulator(Simulator):
+class LocalSimulator(Simulator):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """Simulator using MuJoCo."""
 
     _headless: bool
@@ -23,13 +26,14 @@ class LocalSimulator(Simulator):
 
     def __init__(
         self,
+        viewer_type: ViewerType | str = ViewerType.CUSTOM,
+        num_simulators: int = 1,
+        *,
         headless: bool = False,
         start_paused: bool = False,
-        num_simulators: int = 1,
         cast_shadows: bool = True,
         fast_sim: bool = False,
         manual_control: bool = False,
-        viewer_type: ViewerType | str = ViewerType.CUSTOM,
     ) -> None:
         """
         Initialize this object.
@@ -42,13 +46,13 @@ class LocalSimulator(Simulator):
         :param manual_control: Whether the simulation should be controlled manually.
         :param viewer_type: The viewer-implementation to use in the local simulator.
         """
-        assert (
-            headless or num_simulators == 1
-        ), "Cannot have parallel simulators when visualizing."
+        if not (headless or num_simulators == 1):
+            msg = "Cannot have parallel simulators when visualizing."
+            raise ValueError(msg)
 
-        assert not (
-            headless and start_paused
-        ), "Cannot start simulation paused in headless mode."
+        if headless and start_paused:
+            msg = "Cannot start simulation paused in headless mode."
+            raise ValueError(msg)
 
         self._headless = headless
         self._start_paused = start_paused
@@ -80,15 +84,15 @@ class LocalSimulator(Simulator):
         )
 
         if batch.record_settings is not None:
-            os.makedirs(
+            Path.mkdir(
                 batch.record_settings.video_directory,
                 exist_ok=batch.record_settings.overwrite,
             )
 
         if self._manual_control:
             if self._headless:
-                msg = "Manual control only works with rendered simulations."
-                raise Exception(msg)
+                msg = "Manual control only works with rendered simulations. Please disable headless mode."
+                raise ValueError(msg)
             for scene in batch.scenes:
                 simulate_manual_scene(scene=scene)
             return [[]]
@@ -101,18 +105,18 @@ class LocalSimulator(Simulator):
                     executor.submit(
                         # This is the function to call, followed by the parameters of the function
                         simulate_scene,
-                        scene_index,
-                        scene,
-                        self._headless,
-                        batch.record_settings,
-                        self._start_paused,
-                        control_step,
-                        sample_step,
-                        batch.parameters.simulation_time,
-                        batch.parameters.simulation_timestep,
-                        self._cast_shadows,
-                        self._fast_sim,
-                        self._viewer_type,
+                        viewer_type=self._viewer_type,
+                        scene_id=scene_index,
+                        scene=scene,
+                        record_settings=batch.record_settings,
+                        control_step=control_step,
+                        sample_step=sample_step,
+                        simulation_time=batch.parameters.simulation_time,
+                        simulation_timestep=batch.parameters.simulation_timestep,
+                        headless=self._headless,
+                        start_paused=self._start_paused,
+                        cast_shadows=self._cast_shadows,
+                        fast_sim=self._fast_sim,
                     )
                     for scene_index, scene in enumerate(batch.scenes)
                 ]
@@ -120,19 +124,18 @@ class LocalSimulator(Simulator):
         else:
             results = [
                 simulate_scene(
-                    # This is the function to call, followed by the parameters of the function
-                    scene_index,
-                    scene,
-                    self._headless,
-                    batch.record_settings,
-                    self._start_paused,
-                    control_step,
-                    sample_step,
-                    batch.parameters.simulation_time,
-                    batch.parameters.simulation_timestep,
-                    self._cast_shadows,
-                    self._fast_sim,
-                    self._viewer_type,
+                    viewer_type=self._viewer_type,
+                    scene_id=scene_index,
+                    scene=scene,
+                    record_settings=batch.record_settings,
+                    control_step=control_step,
+                    sample_step=sample_step,
+                    simulation_time=batch.parameters.simulation_time,
+                    simulation_timestep=batch.parameters.simulation_timestep,
+                    headless=self._headless,
+                    start_paused=self._start_paused,
+                    cast_shadows=self._cast_shadows,
+                    fast_sim=self._fast_sim,
                 )
                 for scene_index, scene in enumerate(batch.scenes)
             ]

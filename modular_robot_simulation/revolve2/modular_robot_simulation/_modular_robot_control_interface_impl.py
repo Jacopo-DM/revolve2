@@ -3,10 +3,13 @@ from revolve2.modular_robot import ModularRobotControlInterface
 from revolve2.modular_robot.body.base import ActiveHinge
 from revolve2.simulation.scene import ControlInterface, UUIDKey
 
-from ._build_multi_body_systems import BodyToMultiBodySystemMapping
+from modular_robot_simulation._build_multi_body_systems import (
+    BodyToMultiBodySystemMapping,
+)
 
 
-class ModularRobotControlInterfaceImpl(ModularRobotControlInterface):
+class ModularRobotControlInterfaceImpl(ModularRobotControlInterface):  # type: ignore[misc]
+    # TODO(jdmd): Fix "Any" type ignore"↑"
     """Implementation for ModularRobotControlInterface."""
 
     _simulation_control: ControlInterface

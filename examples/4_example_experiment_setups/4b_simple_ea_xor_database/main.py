@@ -76,7 +76,7 @@ class ParentSelector:
         ), {"parent_population": population}
 
 
-class SurvivorSelector(Selector):
+class SurvivorSelector:
     """Here we make a selector object that allows us to select survivor after evaluation."""
 
     _rng: np.random.Generator
@@ -139,7 +139,7 @@ class SurvivorSelector(Selector):
         )
 
 
-class CrossoverReproducer(Reproducer):
+class CrossoverReproducer:
     """We make a reproducer object to facilitate crossover operations."""
 
     _rng: np.random.Generator
@@ -184,7 +184,7 @@ def run_experiment(dbengine: Engine) -> None:
     """
     Run an experiment.
 
-    :param dbengine: An openened database with matching initialize database structure.
+    :param dbengine: An opened database with matching initialize database structure.
     """
     logging.info("----------------")
     logging.info("Start experiment")
@@ -250,7 +250,9 @@ def run_experiment(dbengine: Engine) -> None:
     logging.info("Start optimization process.")
     while generation.generation_index < config.NUM_GENERATIONS:
         logging.info(
-            f"Generation {generation.generation_index + 1} / {config.NUM_GENERATIONS}."
+            "Generation %s / %s.",
+            generation.generation_index + 1,
+            config.NUM_GENERATIONS,
         )
 
         # Create offspring.

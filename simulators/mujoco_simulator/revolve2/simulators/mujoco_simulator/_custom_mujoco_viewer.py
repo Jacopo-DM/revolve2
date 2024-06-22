@@ -2,7 +2,7 @@
 
 import sys
 from enum import Enum
-from typing import Any
+from typing import Any, Optional
 
 import glfw
 import mujoco
@@ -21,7 +21,8 @@ class CustomMujocoViewerMode(Enum):
     MANUAL = "manual"
 
 
-class CustomMujocoViewer(mujoco_viewer.MujocoViewer):
+class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """
     Custom Viewer Object that allows for additional keyboard inputs.
 
@@ -45,6 +46,7 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):
         self,
         model: mujoco.MjModel,
         data: mujoco.MjData,
+        *,
         start_paused: bool,
         render_every_frame: bool = False,
         mode: CustomMujocoViewerMode = CustomMujocoViewerMode.CLASSIC,
@@ -90,9 +92,7 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):
     def _create_overlay(self) -> None:
         """Create a Custom Overlay."""
         topleft = mujoco.mjtGridPos.mjGRID_TOPLEFT
-        # topright = mujoco.mjtGridPos.mjGRID_TOPRIGHT
         bottomleft = mujoco.mjtGridPos.mjGRID_BOTTOMLEFT
-        # bottomright = mujoco.mjtGridPos.mjGRID_BOTTOMRIGHT
 
         match self._viewer_mode.value:
             case "manual":
@@ -210,7 +210,12 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):
         )
 
     def _key_callback(
-        self, window: Any, key: Any, scancode: Any, action: Any, mods: Any
+        self,
+        window: int | None,
+        key: int | None,
+        scancode: int | None,
+        action: int | None,
+        mods: int | None,
     ) -> None:
         """
         Add custom Key Callback.
@@ -242,7 +247,7 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):
         # Catch the case where the window is closed.
         if self._return_code == "QUIT":
             return self._return_code
-        elif not self.is_alive:
+        if not self.is_alive:
             self._return_code = "QUIT"
             return self._return_code
         super().render()

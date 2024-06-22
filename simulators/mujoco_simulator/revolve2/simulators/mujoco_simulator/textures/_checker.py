@@ -8,7 +8,8 @@ from revolve2.simulation.scene.geometry.textures import (
 
 
 @dataclass(kw_only=True, frozen=True)
-class Checker(Texture):
+class Checker(Texture):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """A checker texture for geometric models."""
 
     reference: TextureReference = field(

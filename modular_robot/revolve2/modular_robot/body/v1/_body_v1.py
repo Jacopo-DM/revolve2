@@ -1,6 +1,5 @@
-from revolve2.modular_robot.body.base import Body
-
-from ._core_v1 import CoreV1
+from modular_robot.body.base import Body
+from modular_robot.body.v1._core_v1 import CoreV1
 
 
 class BodyV1(Body):

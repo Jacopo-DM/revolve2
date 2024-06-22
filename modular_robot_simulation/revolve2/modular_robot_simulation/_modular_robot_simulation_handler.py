@@ -5,14 +5,19 @@ from revolve2.simulation.scene import (
     SimulationState,
 )
 
-from ._build_multi_body_systems import BodyToMultiBodySystemMapping
-from ._modular_robot_control_interface_impl import (
+from modular_robot_simulation._build_multi_body_systems import (
+    BodyToMultiBodySystemMapping,
+)
+from modular_robot_simulation._modular_robot_control_interface_impl import (
     ModularRobotControlInterfaceImpl,
 )
-from ._sensor_state_impl import ModularRobotSensorStateImpl
+from modular_robot_simulation._sensor_state_impl import (
+    ModularRobotSensorStateImpl,
+)
 
 
-class ModularRobotSimulationHandler(SimulationHandler):
+class ModularRobotSimulationHandler(SimulationHandler):  # type: ignore[misc]
+    # TODO(jmdm): Fix type ignore"↑"
     """Implements the simulation handler for a modular robot scene."""
 
     _brains: list[tuple[BrainInstance, BodyToMultiBodySystemMapping]]
