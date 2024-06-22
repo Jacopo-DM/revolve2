@@ -2,7 +2,6 @@
 
 import sys
 from enum import Enum
-from typing import Any, Optional
 
 import glfw
 import mujoco

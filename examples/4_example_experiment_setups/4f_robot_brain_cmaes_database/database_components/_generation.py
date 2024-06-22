@@ -9,7 +9,8 @@ from ._experiment import Experiment
 from ._population import Population
 
 
-class Generation(Base, HasId):
+class Generation(Base, HasId):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """A single finished iteration of CMA-ES."""
 
     __tablename__ = "generation"

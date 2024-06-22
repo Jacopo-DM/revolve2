@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from numbers import Number
-from typing import Any, ClassVar
+from typing import Any
 
 import numpy as np
 from pyrr.objects.base import BaseMatrix33, BaseVector, NpProxy

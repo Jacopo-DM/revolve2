@@ -40,25 +40,25 @@ def main() -> None:
         .agg({"fitness": ["max", "mean"]})
         .reset_index()
     )
-    agg_per_experiment_per_generation.columns = [
+    agg_per_experiment_per_generation.columns = pd.Index([
         "experiment_id",
         "generation_index",
         "max_fitness",
         "mean_fitness",
-    ]
+    ])
 
     agg_per_generation = (
         agg_per_experiment_per_generation.groupby("generation_index")
         .agg({"max_fitness": ["mean", "std"], "mean_fitness": ["mean", "std"]})
         .reset_index()
     )
-    agg_per_generation.columns = [
+    agg_per_generation.columns = pd.Index([
         "generation_index",
         "max_fitness_mean",
         "max_fitness_std",
         "mean_fitness_mean",
         "mean_fitness_std",
-    ]
+    ])
 
     plt.figure()
 

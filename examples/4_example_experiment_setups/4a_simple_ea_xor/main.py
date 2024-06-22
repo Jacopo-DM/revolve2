@@ -10,6 +10,10 @@ from evaluate import Evaluator
 from genotype import Genotype
 from individual import Individual
 from numpy.typing import NDArray
+from revolve2.experimentation.evolution.abstract_elements import (
+    Reproducer,
+    Selector,
+)
 from revolve2.experimentation.logging import setup_logging
 from revolve2.experimentation.optimization.ea import (
     population_management,
@@ -18,7 +22,8 @@ from revolve2.experimentation.optimization.ea import (
 from revolve2.experimentation.rng import make_rng_time_seed
 
 
-class ParentSelector:
+class ParentSelector(Selector):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """Here we create a selector object that helps us select the parents for reproduction."""
 
     _rng: np.random.Generator
@@ -58,7 +63,8 @@ class ParentSelector:
         return final_selection, {"parent_population": population}
 
 
-class SurvivorSelector:
+class SurvivorSelector(Selector):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """Here we make a selector object that allows us to select survivor after evaluation."""
 
     _rng: np.random.Generator
@@ -88,22 +94,21 @@ class SurvivorSelector:
         We determine the survivors by using a tournament, in which to random robots 'compete' against each other.
         This competition is based on the fitness value and the fitter robot will survive.
         """
-        (
-            original_survivors,
-            offspring_survivors,
-        ) = population_management.steady_state(
-            [i.genotype for i in population],
-            [i.fitness for i in population],
-            [i.genotype for i in offspring],
-            [i.fitness for i in offspring],
-            lambda n, genotypes, fitnesses: selection.multiple_unique(
-                n,
-                genotypes,
-                fitnesses,
-                lambda _, fitnesses: selection.tournament(
-                    self._rng, fitnesses, k=2
+        original_survivors, offspring_survivors = (
+            population_management.steady_state(
+                [i.genotype for i in population],
+                [i.fitness for i in population],
+                [i.genotype for i in offspring],
+                [i.fitness for i in offspring],
+                lambda n, genotypes, fitnesses: selection.multiple_unique(
+                    n,
+                    genotypes,
+                    fitnesses,
+                    lambda _, fitnesses: selection.tournament(
+                        self._rng, fitnesses, k=2
+                    ),
                 ),
-            ),
+            )
         )
 
         return [
@@ -121,7 +126,8 @@ class SurvivorSelector:
         ], {}
 
 
-class CrossoverReproducer:
+class CrossoverReproducer(Reproducer):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """We make a reproducer object to facilitate crossover operations."""
 
     _rng: np.random.Generator

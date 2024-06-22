@@ -3,9 +3,13 @@
 import numpy as np
 import numpy.typing as npt
 from database_components import Genotype
+from revolve2.experimentation.evolution.abstract_elements import (
+    Evaluator as Eval,
+)
 
 
-class Evaluator:
+class Evaluator(Eval):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """Here we make an evaluator object, based on the abstract evaluator defined in Revolve2."""
 
     @staticmethod

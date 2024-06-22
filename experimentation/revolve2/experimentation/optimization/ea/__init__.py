@@ -1,4 +1,4 @@
-"""Everything related to Evolutionary Algorithms."""
+"""Standardized building blocks related to Evolutionary Algorithms."""
 
 from experimentation.optimization.ea._generation import Generation
 from experimentation.optimization.ea._individual import Individual

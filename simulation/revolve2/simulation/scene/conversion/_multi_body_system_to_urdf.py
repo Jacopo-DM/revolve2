@@ -387,13 +387,11 @@ def _quaternion_to_euler(quaternion: Quaternion) -> Vector3:
     with warnings.catch_warnings():
         # ignore gimbal lock warning. it is irrelevant for us.
         warnings.simplefilter("ignore", UserWarning)
-        euler = scipy.spatial.transform.Rotation.from_quat(
-            [
-                quaternion.x,
-                quaternion.y,
-                quaternion.z,
-                quaternion.w,
-            ]
-        ).as_euler("xyz")
+        euler = scipy.spatial.transform.Rotation.from_quat([
+            quaternion.x,
+            quaternion.y,
+            quaternion.z,
+            quaternion.w,
+        ]).as_euler("xyz")
 
     return Vector3(euler)

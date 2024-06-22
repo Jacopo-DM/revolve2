@@ -2,6 +2,7 @@
 
 import logging
 import pickle
+from itertools import starmap
 from typing import Any
 
 import config
@@ -11,7 +12,7 @@ import numpy.typing as npt
 from evaluator import Evaluator
 from genotype import Genotype
 from individual import Individual
-from revolve2.experimentation. import ModularRobotEvolution
+from revolve2.experimentation.evolution import ModularRobotEvolution
 from revolve2.experimentation.evolution.abstract_elements import (
     Reproducer,
     Selector,
@@ -24,7 +25,8 @@ from revolve2.experimentation.optimization.ea import (
 from revolve2.experimentation.rng import make_rng_time_seed
 
 
-class ParentSelector(Selector):
+class ParentSelector(Selector):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """Selector class for parent selection."""
 
     rng: np.random.Generator
@@ -68,7 +70,8 @@ class ParentSelector(Selector):
         ), {"parent_population": population}
 
 
-class SurvivorSelector(Selector):
+class SurvivorSelector(Selector):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """Selector class for survivor selection."""
 
     rng: np.random.Generator
@@ -95,9 +98,8 @@ class SurvivorSelector(Selector):
         offspring = kwargs.get("children")
         offspring_fitness = kwargs.get("child_task_performance")
         if offspring is None or offspring_fitness is None:
-            raise ValueError(
-                "No offspring was passed with positional argument 'children' and / or 'child_task_performance'."
-            )
+            msg = "No offspring was passed with positional argument 'children' and / or 'child_task_performance'."
+            raise ValueError(msg)
 
         original_survivors, offspring_survivors = (
             population_management.steady_state(
@@ -134,7 +136,8 @@ class SurvivorSelector(Selector):
         ], {}
 
 
-class CrossoverReproducer(Reproducer):
+class CrossoverReproducer(Reproducer):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """A simple crossover reproducer using multineat."""
 
     rng: np.random.Generator
@@ -146,11 +149,11 @@ class CrossoverReproducer(Reproducer):
         rng: np.random.Generator,
         innov_db_body: multineat.InnovationDatabase,
         innov_db_brain: multineat.InnovationDatabase,
-    ):
+    ) -> None:
         """
         Initialize the reproducer.
 
-        :param rng: The ranfom generator.
+        :param rng: The random generator.
         :param innov_db_body: The innovation database for the body.
         :param innov_db_brain: The innovation database for the brain.
         """
@@ -173,9 +176,10 @@ class CrossoverReproducer(Reproducer):
             "parent_population"
         )
         if parent_population is None:
-            raise ValueError("No parent population given.")
+            msg = "No parent population given."
+            raise ValueError(msg)
 
-        offspring_genotypes = [
+        return [
             Genotype.crossover(
                 parent_population[parent1_i].genotype,
                 parent_population[parent2_i].genotype,
@@ -183,7 +187,6 @@ class CrossoverReproducer(Reproducer):
             ).mutate(self.innov_db_body, self.innov_db_brain, self.rng)
             for parent1_i, parent2_i in population
         ]
-        return offspring_genotypes
 
 
 def find_best_robot(
@@ -197,7 +200,7 @@ def find_best_robot(
     :returns: The best individual.
     """
     return max(
-        population if current_best is None else [current_best] + population,
+        population if current_best is None else [current_best, *population],
         key=lambda x: x.fitness,
     )
 
@@ -257,12 +260,11 @@ def main() -> None:
     initial_fitnesses = evaluator.evaluate(initial_genotypes)
 
     # Create a population of individuals, combining genotype with fitness.
-    population = [
-        Individual(genotype, fitness)
-        for genotype, fitness in zip(
-            initial_genotypes, initial_fitnesses, strict=True
+    population = list(
+        starmap(
+            Individual, zip(initial_genotypes, initial_fitnesses, strict=True)
         )
-    ]
+    )
 
     # Save the best robot
     best_robot = find_best_robot(None, population)

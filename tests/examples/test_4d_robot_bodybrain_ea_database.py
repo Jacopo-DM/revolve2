@@ -38,7 +38,7 @@ def test_4d_robot_bodybrain_ea_database(mocker: Mock, tmpdir: str) -> None:
     # Import the example main and run it.
     try:
         # This type ignore is required since mypy cant resolve this import."
-        import main
+        import main  # type: ignore[import]
 
         main.main()
     finally:

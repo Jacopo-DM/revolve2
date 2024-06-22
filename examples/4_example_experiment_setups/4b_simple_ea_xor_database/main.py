@@ -16,6 +16,10 @@ from database_components import (
 from evaluate import Evaluator
 from numpy.typing import NDArray
 from revolve2.experimentation.database import OpenMethod, open_database_sqlite
+from revolve2.experimentation.evolution.abstract_elements import (
+    Reproducer,
+    Selector,
+)
 from revolve2.experimentation.logging import setup_logging
 from revolve2.experimentation.optimization.ea import (
     population_management,
@@ -30,7 +34,8 @@ from sqlalchemy.engine import Engine
 from sqlalchemy.orm import Session
 
 
-class ParentSelector:
+class ParentSelector(Selector):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """Here we create a selector object that helps us select the parents for reproduction."""
 
     _rng: np.random.Generator
@@ -55,28 +60,21 @@ class ParentSelector:
         :param kwargs: Additional kwargs that are not used in this example.
         :returns: Pairs of indices of selected parents. offspring_size x 2 ints, and the parent population in the KWArgs dict.
         """
-        return np.asarray(
-            [
-                selection.multiple_unique(
-                    2,
-                    [
-                        individual.genotype
-                        for individual in population.individuals
-                    ],
-                    [
-                        individual.fitness
-                        for individual in population.individuals
-                    ],
-                    lambda _, fitnesses: selection.tournament(
-                        self._rng, fitnesses, k=1
-                    ),
-                )
-                for _ in range(self._offspring_size)
-            ]
-        ), {"parent_population": population}
+        return np.asarray([
+            selection.multiple_unique(
+                2,
+                [individual.genotype for individual in population.individuals],
+                [individual.fitness for individual in population.individuals],
+                lambda _, fitnesses: selection.tournament(
+                    self._rng, fitnesses, k=1
+                ),
+            )
+            for _ in range(self._offspring_size)
+        ]), {"parent_population": population}
 
 
-class SurvivorSelector:
+class SurvivorSelector(Selector):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """Here we make a selector object that allows us to select survivor after evaluation."""
 
     _rng: np.random.Generator
@@ -100,22 +98,21 @@ class SurvivorSelector:
         if offspring is None:
             msg = "No children passed."
             raise KeyError(msg)
-        (
-            original_survivors,
-            offspring_survivors,
-        ) = population_management.steady_state(
-            [i.genotype for i in population.individuals],
-            [i.fitness for i in population.individuals],
-            [i.genotype for i in offspring],
-            [i.fitness for i in offspring],
-            lambda n, genotypes, fitnesses: selection.multiple_unique(
-                n,
-                genotypes,
-                fitnesses,
-                lambda _, fitnesses: selection.tournament(
-                    self._rng, fitnesses, k=2
+        original_survivors, offspring_survivors = (
+            population_management.steady_state(
+                [i.genotype for i in population.individuals],
+                [i.fitness for i in population.individuals],
+                [i.genotype for i in offspring],
+                [i.fitness for i in offspring],
+                lambda n, genotypes, fitnesses: selection.multiple_unique(
+                    n,
+                    genotypes,
+                    fitnesses,
+                    lambda _, fitnesses: selection.tournament(
+                        self._rng, fitnesses, k=2
+                    ),
                 ),
-            ),
+            )
         )
 
         return (
@@ -139,7 +136,8 @@ class SurvivorSelector:
         )
 
 
-class CrossoverReproducer:
+class CrossoverReproducer(Reproducer):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """We make a reproducer object to facilitate crossover operations."""
 
     _rng: np.random.Generator
@@ -250,9 +248,7 @@ def run_experiment(dbengine: Engine) -> None:
     logging.info("Start optimization process.")
     while generation.generation_index < config.NUM_GENERATIONS:
         logging.info(
-            "Generation %s / %s.",
-            generation.generation_index + 1,
-            config.NUM_GENERATIONS,
+            f"Generation {generation.generation_index + 1} / {config.NUM_GENERATIONS}."
         )
 
         # Create offspring.

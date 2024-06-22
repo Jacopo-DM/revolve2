@@ -17,6 +17,11 @@ from database_components import (
 )
 from evaluator import Evaluator
 from revolve2.experimentation.database import OpenMethod, open_database_sqlite
+from revolve2.experimentation.evolution import ModularRobotEvolution
+from revolve2.experimentation.evolution.abstract_elements import (
+    Reproducer,
+    Selector,
+)
 from revolve2.experimentation.logging import setup_logging
 from revolve2.experimentation.optimization.ea import (
     population_management,
@@ -27,7 +32,8 @@ from sqlalchemy.engine import Engine
 from sqlalchemy.orm import Session
 
 
-class ParentSelector(Selector):
+class ParentSelector(Selector):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """Selector class for parent selection."""
 
     rng: np.random.Generator
@@ -75,7 +81,8 @@ class ParentSelector(Selector):
         ), {"parent_population": population}
 
 
-class SurvivorSelector(Selector):
+class SurvivorSelector(Selector):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """Selector class for survivor selection."""
 
     rng: np.random.Generator
@@ -105,24 +112,24 @@ class SurvivorSelector(Selector):
             msg = "No offspring was passed with positional argument 'children' and / or 'child_task_performance'."
             raise ValueError(msg)
 
-        (
-            original_survivors,
-            offspring_survivors,
-        ) = population_management.steady_state(
-            old_genotypes=[i.genotype for i in population.individuals],
-            old_fitnesses=[i.fitness for i in population.individuals],
-            new_genotypes=offspring,
-            new_fitnesses=offspring_fitness,
-            selection_function=lambda n,
-            genotypes,
-            fitnesses: selection.multiple_unique(
-                selection_size=n,
-                population=genotypes,
-                fitnesses=fitnesses,
-                selection_function=lambda _, fitnesses: selection.tournament(
-                    rng=self.rng, fitnesses=fitnesses, k=2
+        original_survivors, offspring_survivors = (
+            population_management.steady_state(
+                old_genotypes=[i.genotype for i in population.individuals],
+                old_fitnesses=[i.fitness for i in population.individuals],
+                new_genotypes=offspring,
+                new_fitnesses=offspring_fitness,
+                selection_function=lambda n,
+                genotypes,
+                fitnesses: selection.multiple_unique(
+                    selection_size=n,
+                    population=genotypes,
+                    fitnesses=fitnesses,
+                    selection_function=lambda _,
+                    fitnesses: selection.tournament(
+                        rng=self.rng, fitnesses=fitnesses, k=2
+                    ),
                 ),
-            ),
+            )
         )
 
         return (
@@ -146,7 +153,8 @@ class SurvivorSelector(Selector):
         )
 
 
-class CrossoverReproducer:
+class CrossoverReproducer(Reproducer):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """A simple crossover reproducer using multineat."""
 
     rng: np.random.Generator
@@ -162,7 +170,7 @@ class CrossoverReproducer:
         """
         Initialize the reproducer.
 
-        :param rng: The ranfom generator.
+        :param rng: The random generator.
         :param innov_db_body: The innovation database for the body.
         :param innov_db_brain: The innovation database for the brain.
         """
@@ -200,7 +208,7 @@ def run_experiment(dbengine: Engine) -> None:
     """
     Run an experiment.
 
-    :param dbengine: An openened database with matching initialize database structure.
+    :param dbengine: An opened database with matching initialize database structure.
     """
     logging.info("----------------")
     logging.info("Start experiment")

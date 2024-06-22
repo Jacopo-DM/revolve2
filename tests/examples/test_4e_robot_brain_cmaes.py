@@ -29,7 +29,7 @@ def test_4e_robot_brain_cmaes(mocker: Mock) -> None:
     # Import the example main and run it.
     try:
         # This type ignore is required since mypy cant resolve this import.
-        import main
+        import main  # type: ignore[import]
 
         main.main()
     finally:

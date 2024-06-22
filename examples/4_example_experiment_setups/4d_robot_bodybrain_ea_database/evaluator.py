@@ -5,6 +5,9 @@ from revolve2.ci_group import fitness_functions, terrains
 from revolve2.ci_group.simulation_parameters import (
     make_standard_batch_parameters,
 )
+from revolve2.experimentation.evolution.abstract_elements import (
+    Evaluator as Eval,
+)
 from revolve2.modular_robot_simulation import (
     ModularRobotScene,
     Terrain,
@@ -13,7 +16,8 @@ from revolve2.modular_robot_simulation import (
 from revolve2.simulators.mujoco_simulator import LocalSimulator
 
 
-class Evaluator:
+class Evaluator(Eval):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """Provides evaluation of robots."""
 
     _simulator: LocalSimulator

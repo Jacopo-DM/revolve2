@@ -13,7 +13,8 @@ from ._genotype import Genotype
 @dataclass
 class Individual(
     Base,
-    GenericIndividual[Genotype],
+    GenericIndividual[Genotype],  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     population_table="population",
     kw_only=True,
 ):

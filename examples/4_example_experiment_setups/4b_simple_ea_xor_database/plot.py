@@ -38,7 +38,7 @@ def main() -> None:
         dbengine,
     )
 
-    # Calculate the max and mean fitness within in generation, for each experiment seperately.
+    # Calculate the max and mean fitness within in generation, for each experiment separately.
     agg_per_experiment_per_generation = (
         df.groupby(["experiment_id", "generation_index"])
         .agg({"fitness": ["max", "mean"]})
@@ -46,12 +46,12 @@ def main() -> None:
     )
 
     # Give specific names to the new max and mean columns
-    agg_per_experiment_per_generation.columns = [
+    agg_per_experiment_per_generation.columns = pd.Index([
         "experiment_id",
         "generation_index",
         "max_fitness",
         "mean_fitness",
-    ]
+    ])
 
     # For the mean and max fitnesses, calculate the mean and standard deviation with respect to the seperate experiments.
     agg_per_generation = (
@@ -61,13 +61,13 @@ def main() -> None:
     )
 
     # Give these proper names as well.
-    agg_per_generation.columns = [
+    agg_per_generation.columns = pd.Index([
         "generation_index",
         "max_fitness_mean",
         "max_fitness_std",
         "mean_fitness_mean",
         "mean_fitness_std",
-    ]
+    ])
 
     # Next, create a plot.
     plt.figure()

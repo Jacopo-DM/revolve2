@@ -10,7 +10,8 @@ from revolve2.experimentation.optimization.ea import (
 from ._base import Base
 
 
-class Genotype(Base, HasId, GenericParameters):
+class Genotype(Base, HasId, GenericParameters):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """A genotype that is an array of parameters."""
 
     __tablename__ = "genotype"

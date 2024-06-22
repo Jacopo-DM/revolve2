@@ -13,7 +13,7 @@ def run_experiment(num_samples: int, probability: float) -> None:
     Run all runs of an experiment using the provided parameters.
 
     :param num_samples: The number of samples to use for this experiment.
-    :param probability: The probablity to use for this experiment.
+    :param probability: The probability to use for this experiment.
     """
     success_ratios = []  # Create a list where we will store the success ratio for each repetition.
 
@@ -42,7 +42,7 @@ def run_experiment(num_samples: int, probability: float) -> None:
 
         samples = rng.binomial(
             n=1, p=probability, size=num_samples
-        )  # Perform the experiment, sampling from a binomial distribution using the given paramaters.
+        )  # Perform the experiment, sampling from a binomial distribution using the given parameters.
         success_ratios.append(
             np.sum(samples == 1) / num_samples
         )  # Calculate the ratio of success and save it.

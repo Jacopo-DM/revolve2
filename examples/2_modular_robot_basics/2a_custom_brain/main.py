@@ -9,6 +9,7 @@ from revolve2.modular_robot import ModularRobot, ModularRobotControlInterface
 from revolve2.modular_robot.body import RightAngles
 from revolve2.modular_robot.body.v2 import ActiveHingeV2, BodyV2, BrickV2
 from revolve2.modular_robot.brain import Brain, BrainInstance
+from revolve2.modular_robot.sensor_state import ModularRobotSensorState
 from revolve2.modular_robot_simulation import ModularRobotScene, simulate_scenes
 from revolve2.simulators.mujoco_simulator import LocalSimulator
 
@@ -76,6 +77,8 @@ class CustomBrainInstance(BrainInstance):  # type: ignore[misc]
 
     def control(
         self,
+        dt: float,
+        sensor_state: ModularRobotSensorState,
         control_interface: ModularRobotControlInterface,
     ) -> None:
         """

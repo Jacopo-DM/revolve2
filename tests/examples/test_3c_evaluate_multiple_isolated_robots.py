@@ -31,7 +31,7 @@ def test_3c_evaluate_multiple_isolated_robots(mocker: Mock) -> None:
 
     try:
         # This type ignore is required since mypy cant resolve this import.
-        import main
+        import main  # type: ignore[import]
 
         main.main()
     finally:

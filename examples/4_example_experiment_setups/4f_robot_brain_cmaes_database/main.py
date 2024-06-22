@@ -28,7 +28,7 @@ def run_experiment(dbengine: Engine) -> None:
     """
     Run an experiment.
 
-    :param dbengine: An openened database with matching initialize database structure.
+    :param dbengine: An opened database with matching initialize database structure.
     """
     logging.info("----------------")
     logging.info("Start experiment")
@@ -53,7 +53,7 @@ def run_experiment(dbengine: Engine) -> None:
         output_mapping,
     ) = active_hinges_to_cpg_network_structure_neighbor(active_hinges)
 
-    # Intialize the evaluator that will be used to evaluate robots.
+    # Initialize the evaluator that will be used to evaluate robots.
     evaluator = Evaluator(
         headless=True,
         num_simulators=config.NUM_SIMULATORS,
@@ -91,7 +91,9 @@ def run_experiment(dbengine: Engine) -> None:
         # From the samples and fitnesses, create a population that we can save.
         population = Population(
             individuals=[
-                Individual(genotype=Genotype(parameters), fitness=fitness)
+                Individual(
+                    genotype=Genotype(parameters=parameters), fitness=fitness
+                )
                 for parameters, fitness in zip(
                     solutions, fitnesses, strict=False
                 )

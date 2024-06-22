@@ -39,7 +39,7 @@ class Genotype(Base, HasId, GenericParameters):  # type: ignore[misc]
         :param num_parameters: Number of parameters for genotype.
         :returns: The created genotype.
         """
-        return Genotype(parameters=rng.random(size=num_parameters) * 2 - 1)
+        return Genotype(parameters=(rng.random(size=num_parameters) * 2 - 1))
 
     def mutate(
         self,
