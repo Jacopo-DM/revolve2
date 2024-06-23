@@ -12,8 +12,7 @@ def random_multineat_genotype(
     search_mode: multineat.SearchMode = multineat.SearchMode.BLENDED,
     hidden_act_f: multineat.ActivationFunction = multineat.ActivationFunction.UNSIGNED_SIGMOID,
 ) -> multineat.Genome:
-    """
-    Create a random multineat genotype.
+    """Create a random multineat genotype.
 
     A CPPNWIN network starts empty.
     A random network is created by mutating `num_initial_mutations` times.

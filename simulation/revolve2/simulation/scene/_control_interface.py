@@ -10,8 +10,7 @@ class ControlInterface(ABC):
     def set_joint_hinge_position_target(
         self, joint_hinge: JointHinge, position: float
     ) -> None:
-        """
-        Set the position target of a hinge joint.
+        """Set the position target of a hinge joint.
 
         :param joint_hinge: The hinge to set the position target for.
         :param position: The position target.

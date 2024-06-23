@@ -1,5 +1,4 @@
-"""
-Calculate Morphological Novelty across a Population.
+"""Calculate Morphological Novelty across a Population.
 
 Using the MorphologicalNoveltyMetric for evaluating a population of robots can be done as shown in the code below.
 

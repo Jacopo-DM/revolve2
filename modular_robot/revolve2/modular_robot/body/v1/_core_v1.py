@@ -8,8 +8,7 @@ class CoreV1(Core):
     """The core module of a v1 modular robot."""
 
     def __init__(self, rotation: float | RightAngles) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param rotation: The modules' rotation.
         """

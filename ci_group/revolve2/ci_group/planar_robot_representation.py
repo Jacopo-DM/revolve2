@@ -47,8 +47,7 @@ def draw_robots(
     scale: int = 100,
     path: str | None = None,
 ) -> None:
-    """
-    Draw multiple robots at once.
+    """Draw multiple robots at once.
 
     How to use:
     >>> robots: (
@@ -71,8 +70,7 @@ def draw_robots(
 def draw_robot(
     robot: ModularRobot | Body, scale: int = 100, path: str | None = None
 ) -> None:
-    """
-    Draw a 2D representation for a modular robots body.
+    """Draw a 2D representation for a modular robots body.
 
     How to use:
     >>> robot: (
@@ -116,8 +114,7 @@ def _draw_module(
     *,
     print_id: bool = False,
 ) -> None:
-    """
-    Draw a module onto the canvas.
+    """Draw a module onto the canvas.
 
     :param module: The module.
     :param position: The position on the canvas.
@@ -196,8 +193,7 @@ def _draw_module(
 
 
 def _make_rot_mat(theta: float) -> NDArray[np.int_]:
-    """
-    Make a rotation matrix from angle in 2D.
+    """Make a rotation matrix from angle in 2D.
 
     This function casts angles to iterations of 90°, since we plot on a grid.
 
@@ -209,8 +205,7 @@ def _make_rot_mat(theta: float) -> NDArray[np.int_]:
 
 
 def _save_png(image: cairo.ImageSurface, path: str) -> None:
-    """
-    Save the image representation of a robot as png.
+    """Save the image representation of a robot as png.
 
     :param image: The image.
     :param path: The path to save the image to.

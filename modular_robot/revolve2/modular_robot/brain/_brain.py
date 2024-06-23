@@ -4,8 +4,7 @@ from modular_robot.brain._brain_instance import BrainInstance
 
 
 class Brain(ABC):
-    """
-    The brain of a modular robot.
+    """The brain of a modular robot.
 
     Inherit from this to implement your own brain.
     Each brain implements the `make_instance` function,
@@ -16,8 +15,7 @@ class Brain(ABC):
 
     @abstractmethod
     def make_instance(self) -> BrainInstance:
-        """
-        Create an instance of this brain.
+        """Create an instance of this brain.
 
         :returns: The created instance.
         """

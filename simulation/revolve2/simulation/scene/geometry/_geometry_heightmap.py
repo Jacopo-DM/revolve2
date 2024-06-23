@@ -11,8 +11,7 @@ from simulation.scene.geometry.textures import MapType, Texture
 
 @dataclass(kw_only=True)
 class GeometryHeightmap(Geometry):
-    """
-    A heightmap geometry.
+    """A heightmap geometry.
 
     Similarly to the `Plane` geometry, x and y of `size` define the space the heightmap encompasses.
     The z-coordinate defines the height of a heightmap edge when it's value is maximum.

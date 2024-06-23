@@ -12,8 +12,7 @@ class Sensor(ABC):
     _position: Vector3
 
     def __init__(self, orientation: Quaternion, position: Vector3) -> None:
-        """
-        Initialize the sensor.
+        """Initialize the sensor.
 
         :param orientation: The rotation of the sensor.
         :param position: The position of the sensor.
@@ -24,8 +23,7 @@ class Sensor(ABC):
 
     @property
     def uuid(self) -> uuid.UUID:
-        """
-        Get the uuid of the sensor.
+        """Get the uuid of the sensor.
 
         :return: The uuid.
         """
@@ -33,8 +31,7 @@ class Sensor(ABC):
 
     @property
     def orientation(self) -> Quaternion:
-        """
-        Return the orientation of the sensor.
+        """Return the orientation of the sensor.
 
         :return: The orientation.
         """
@@ -42,8 +39,7 @@ class Sensor(ABC):
 
     @property
     def position(self) -> Vector3:
-        """
-        Get the relative position of the sensor on a module.
+        """Get the relative position of the sensor on a module.
 
         :return: The position.
         """

@@ -34,8 +34,7 @@ class Vector2(BaseVector):  # type: ignore[misc]
         w: float = 0.0,
         dtype: Any = None,
     ) -> Any:
-        """
-        Make a new Vector2.
+        """Make a new Vector2.
 
         :param value: The value of the Vector2.
         :param w: unused rest.
@@ -61,8 +60,7 @@ class Vector2(BaseVector):  # type: ignore[misc]
     __VCT = ("Vector2", np.ndarray, list)
 
     def __add__(self, other: Any) -> Vector2 | None:
-        """
-        Add to the existing Vector2.
+        """Add to the existing Vector2.
 
         :param other: The other Vector2.
         :return: The added Vector2.
@@ -73,8 +71,7 @@ class Vector2(BaseVector):  # type: ignore[misc]
         return None
 
     def __sub__(self, other: Any) -> Vector2 | None:
-        """
-        Subtract from the existing Vector2.
+        """Subtract from the existing Vector2.
 
         :param other: The other Vector2.
         :return: The subtracted Vector2.
@@ -85,8 +82,7 @@ class Vector2(BaseVector):  # type: ignore[misc]
         return None
 
     def __mul__(self, other: Any) -> Vector2 | None:
-        """
-        Multiply the existing Vector2.
+        """Multiply the existing Vector2.
 
         :param other: The other Vector2.
         :return: the multiplied Vector2.
@@ -97,8 +93,7 @@ class Vector2(BaseVector):  # type: ignore[misc]
         return None
 
     def __xor__(self, other: Any) -> Any:
-        """
-        Calculate the cross-product.
+        """Calculate the cross-product.
 
         :param other: The other Vector2.
         :return: The cross-product.
@@ -109,8 +104,7 @@ class Vector2(BaseVector):  # type: ignore[misc]
         return None
 
     def __or__(self, other: Any) -> Any:
-        """
-        Calculate the dot-product.
+        """Calculate the dot-product.
 
         :param other: The other Vector2.
         :return: The dot-product.
@@ -121,8 +115,7 @@ class Vector2(BaseVector):  # type: ignore[misc]
         return None
 
     def __ne__(self, other: object) -> bool:
-        """
-        Not equal to the existing Vector2.
+        """Not equal to the existing Vector2.
 
         :param other: The other Vector2.
         :return: whether they are unequal.
@@ -133,8 +126,7 @@ class Vector2(BaseVector):  # type: ignore[misc]
         return False
 
     def __eq__(self, other: object) -> bool:
-        """
-        Equal to the existing Vector2.
+        """Equal to the existing Vector2.
 
         :param other: The other Vector2.
         :return: whether they are equal.

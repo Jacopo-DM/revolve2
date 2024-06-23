@@ -10,8 +10,7 @@ from modular_robot.sensor_state import ModularRobotSensorState
 
 
 class BrainCpgInstance(BrainInstance):
-    """
-    CPG network brain.
+    """CPG network brain.
 
     A state array that is integrated over time following the differential equation `X'=WX`.
     W is a weight matrix that is multiplied by the state array.
@@ -29,8 +28,7 @@ class BrainCpgInstance(BrainInstance):
         weight_matrix: npt.NDArray[np.float64],
         output_mapping: list[tuple[int, ActiveHinge]],
     ) -> None:
-        """
-        Initialize this CPG Brain Instance.
+        """Initialize this CPG Brain Instance.
 
         :param initial_state: The initial state of the neural network.
         :param weight_matrix: The weight matrix used during integration.
@@ -60,8 +58,7 @@ class BrainCpgInstance(BrainInstance):
         a_mat: npt.NDArray[np.float64],
         dt: float,
     ) -> tuple[npt.NDArray[np.float64], npt.NDArray[np.float64]]:
-        """
-        Calculate the next state using the RK45 method.
+        """Calculate the next state using the RK45 method.
 
         This implementation of the Runge–Kutta–Fehlberg method allows us to improve accuracy of state calculations by comparing solutions at different step sizes.
         For more info see: See https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta%E2%80%93Fehlberg_method.
@@ -98,8 +95,7 @@ class BrainCpgInstance(BrainInstance):
         sensor_state: ModularRobotSensorState,
         control_interface: ModularRobotControlInterface,
     ) -> None:
-        """
-        Control the modular robot.
+        """Control the modular robot.
 
         Sets the active hinge targets to the values in the state array as defined by the mapping provided in the constructor.
 

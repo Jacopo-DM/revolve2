@@ -11,8 +11,7 @@ EXT_KEY = 27
 
 
 class IPCamera:
-    """
-    A general class to steam and record from IP cameras via opencv.
+    """A general class to steam and record from IP cameras via opencv.
 
     How to use:
     >>> address = "rtsp://<user>:<password>@<ip>:<port (554)>/..."
@@ -51,8 +50,7 @@ class IPCamera:
         camera_matrix: NDArray[np.float64] | None = None,
         fps: int = 30,
     ) -> None:
-        """
-        Initialize the ip camera.
+        """Initialize the ip camera.
 
         :param camera_location: The location of the camera.
         :param recording_path: The path to store the recording.
@@ -150,8 +148,7 @@ class IPCamera:
                 self._d_q.get()
 
     def _unfish(self, image: cv2.typing.MatLike) -> cv2.typing.MatLike:
-        """
-        Remove fisheye effect from the camera.
+        """Remove fisheye effect from the camera.
 
         :param image: The image
         :return: The undistorted image.
@@ -165,8 +162,7 @@ class IPCamera:
         )
 
     def start(self, *, record: bool = False, display: bool = True) -> None:
-        """
-        Start the camera.
+        """Start the camera.
 
         :param record: Whether to record.
         :param display: Whether to display the video stream.

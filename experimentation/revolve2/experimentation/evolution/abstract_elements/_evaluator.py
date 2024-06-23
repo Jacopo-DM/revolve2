@@ -9,8 +9,7 @@ class Evaluator(ABC):
 
     @abstractmethod
     def evaluate(self, population: TPopulation) -> list[float]:
-        """
-        Evaluate individuals from a population.
+        """Evaluate individuals from a population.
 
         :param population: The population for evaluation.
         :return: The results of the evaluation.

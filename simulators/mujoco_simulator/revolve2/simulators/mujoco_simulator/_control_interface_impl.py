@@ -19,8 +19,7 @@ class ControlInterfaceImpl(ControlInterface):  # type: ignore[misc]
         data: mujoco.MjData,
         abstraction_to_mujoco_mapping: AbstractionToMujocoMapping,
     ) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param data: The MuJoCo data to alter during control.
         :param abstraction_to_mujoco_mapping: A mapping between simulation abstraction and mujoco.
@@ -31,8 +30,7 @@ class ControlInterfaceImpl(ControlInterface):  # type: ignore[misc]
     def set_joint_hinge_position_target(
         self, joint_hinge: JointHinge, position_delta: float
     ) -> None:
-        """
-        Set the position target of a hinge joint.
+        """Set the position target of a hinge joint.
 
         :param joint_hinge: The hinge to set the position target for.
         :param position: The position target.

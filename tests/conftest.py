@@ -1,5 +1,4 @@
-"""
-This file configures pytest.
+"""This file configures pytest.
 
 The name `conftest.py` is pytest's default name and should not be changed.
 """
@@ -15,8 +14,7 @@ EXAMPLES_DIR = os.path.join(ROOT_DIR, "examples")
 
 
 def assert_command_succeeds(cmd: list[str]) -> None:
-    """
-    Assert if a given command succeeds.
+    """Assert if a given command succeeds.
 
     :param cmd: Slices of the command.
     """

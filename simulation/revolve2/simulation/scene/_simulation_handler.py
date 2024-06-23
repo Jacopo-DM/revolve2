@@ -11,8 +11,7 @@ class SimulationHandler(ABC):
     def handle(
         self, state: SimulationState, control: ControlInterface, dt: float
     ) -> None:
-        """
-        Handle a simulation frame.
+        """Handle a simulation frame.
 
         :param state: The current state of the simulation.
         :param control: Interface for setting control targets.

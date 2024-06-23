@@ -9,12 +9,8 @@ from pyrr import Vector3
 
 from modular_robot_physical._hardware_type import HardwareType
 from modular_robot_physical._protocol_version import PROTOCOL_VERSION
-from modular_robot_physical.physical_interfaces import (
-    PhysicalInterface,
-)
-from modular_robot_physical.robot_daemon_api import (
-    robot_daemon_protocol_capnp,
-)
+from modular_robot_physical.physical_interfaces import PhysicalInterface
+from modular_robot_physical.robot_daemon_api import robot_daemon_protocol_capnp
 from modular_robot_physical.robot_daemon_api.robot_daemon_protocol_capnp import (
     Image as capnpImage,
 )
@@ -25,7 +21,7 @@ from modular_robot_physical.robot_daemon_api.robot_daemon_protocol_capnp import 
 Pin = int
 
 
-class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):
+class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ignore
     """Implements the Cap'n Proto interface, run on the physical modular robot."""
 
     _CAREFUL_STEP = 0.1
@@ -64,6 +60,9 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):
         self._physical_interface = physical_interface
 
         self._active_pins = None
+
+        if self._debug:
+            pass
 
         self._physical_interface.enable()
 
@@ -150,6 +149,11 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):
 
     def cleanup(self) -> None:
         """Stop the server and sets everything to low power."""
+        if self._debug:
+            pass
+
+        if self._debug:
+            pass
         self._enabled = False
         self._update_loop_thread.join()
 
@@ -166,6 +170,9 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):
         :param args: Arguments to the setup process.
         :returns: Whether the setup was successful.
         """
+        if self._debug:
+            pass
+
         with self._lock:
             self._active_pins = list(args.activePins)
 
@@ -194,6 +201,9 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):
 
         :param args: Args to the function.
         """
+        if self._debug:
+            pass
+
         self._queue_servo_targets(
             [pin_control.pin for pin_control in args.setPins],
             [pin_control.target for pin_control in args.setPins],
@@ -212,6 +222,9 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):
         :param args: Args to the function.
         :returns: The readings.
         """
+        if self._debug:
+            pass
+
         return self._get_sensor_readings(args.readPins)
 
     async def controlAndReadSensors(
@@ -225,6 +238,9 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):
         :param args: Args to the function.
         :returns: The readings.
         """
+        if self._debug:
+            pass
+
         self._queue_servo_targets(
             [pin_control.pin for pin_control in args.setPins],
             [pin_control.target for pin_control in args.setPins],

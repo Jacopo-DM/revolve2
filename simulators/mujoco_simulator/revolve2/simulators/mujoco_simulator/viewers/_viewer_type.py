@@ -11,8 +11,7 @@ class ViewerType(Enum):
 
     @staticmethod
     def from_string(value: str) -> ViewerType:
-        """
-        Get viewer type from string.
+        """Get viewer type from string.
 
         :param value: The value.
         :returns: The viewer type.

@@ -1,7 +1,18 @@
-from collections.abc import Iterator, Sequence
+"""
+This is an automatically generated stub for `robot_daemon_protocol.capnp`.
+
+This file was manually edited to work better with the code tools.
+Added __init__ functions
+Made `dict` into `dict[Any,Any]`
+Formatted file with black
+RoboServer
+"""
+
+from __future__ import annotations
+
 from contextlib import contextmanager
 from io import BufferedWriter
-from typing import Any, Literal, TypeAlias
+from typing import Any, Iterator, Literal, Sequence
 
 class SetupArgs:
     version: str
@@ -44,7 +55,7 @@ class SetupArgsBuilder(SetupArgs):
     @staticmethod
     def write_packed(file: BufferedWriter) -> None: ...
 
-HardwareType: TypeAlias = Literal["v1", "v2"]
+HardwareType = Literal["v1", "v2"]
 
 class SetupResponse:
     versionOk: bool
@@ -368,4 +379,4 @@ class SensorReadingsBuilder(SensorReadings):
     def write_packed(file: BufferedWriter) -> None: ...
 
 # Defining the interface as any. The stub generator does not generate for interfaces yet.
-RoboServer: TypeAlias = Any
+RoboServer = Any

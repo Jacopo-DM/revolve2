@@ -13,8 +13,7 @@ class BodyV2(Body):
 
     @property
     def core_v2(self) -> CoreV2:
-        """
-        Get the specific v2 core of the body.
+        """Get the specific v2 core of the body.
 
         This function is usd since the base core has fewer attributes than a V2 core.
         Using this, allows us to specify the return type without overwriting functions of the base module.

@@ -11,8 +11,7 @@ from experimentation.database._open_method import OpenMethod
 def open_async_database_sqlite(
     db_file: str, open_method: OpenMethod = OpenMethod.OPEN_IF_EXISTS
 ) -> AsyncEngine:
-    """
-    Open an SQLAlchemy SQLite async database.
+    """Open an SQLAlchemy SQLite async database.
 
     :param db_file: File for the database.
     :param open_method: The way the database should be opened.
@@ -25,8 +24,7 @@ def open_async_database_sqlite(
 def open_database_sqlite(
     db_file: str, open_method: OpenMethod = OpenMethod.OPEN_IF_EXISTS
 ) -> Engine:
-    """
-    Open an SQLAlchemy SQLite database.
+    """Open an SQLAlchemy SQLite database.
 
     :param db_file: File for the database.
     :param open_method: The way the database should be opened.

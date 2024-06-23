@@ -12,8 +12,7 @@ class Joint:
 
     @property
     def uuid(self) -> uuid.UUID:
-        """
-        Get the uuid.
+        """Get the uuid.
 
         :returns: The uuid.
         """

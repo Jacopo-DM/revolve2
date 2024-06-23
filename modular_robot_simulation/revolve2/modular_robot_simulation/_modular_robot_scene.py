@@ -34,8 +34,7 @@ class ModularRobotScene:
         pose: Pose = Pose(),
         translate_z_aabb: bool = True,
     ) -> None:
-        """
-        Add a robot to the scene.
+        """Add a robot to the scene.
 
         :param robot: The robot to add.
         :param pose: The pose of the robot.
@@ -49,8 +48,7 @@ class ModularRobotScene:
         ))
 
     def add_interactive_object(self, objt: MultiBodySystem) -> None:
-        """
-        Add an intractable object to the scene.
+        """Add an intractable object to the scene.
 
         :param objt: The object as a multi body system.
         """
@@ -59,8 +57,7 @@ class ModularRobotScene:
     def to_simulation_scene(
         self,
     ) -> tuple[Scene, dict[UUIDKey[ModularRobot], MultiBodySystem]]:
-        """
-        Convert this to a simulation scene.
+        """Convert this to a simulation scene.
 
         :returns: The created scene.
         """

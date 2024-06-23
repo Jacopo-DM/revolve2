@@ -8,8 +8,7 @@ import numpy as np
 
 
 def seed_from_time(log_seed: bool = True) -> int:
-    """
-    Create a seed from the current time in microseconds.
+    """Create a seed from the current time in microseconds.
 
     :param log_seed: If the seed should be logged. It probably should.
     :returns: The created seed.
@@ -21,8 +20,7 @@ def seed_from_time(log_seed: bool = True) -> int:
 
 
 def seed_from_string(text: str) -> int:
-    """
-    Convert a string seed to an integer seed.
+    """Convert a string seed to an integer seed.
 
     :param text: The seed as string.
     :returns: The seed as integer.
@@ -34,8 +32,7 @@ def seed_from_string(text: str) -> int:
 
 
 def make_rng(seed: int) -> np.random.Generator:
-    """
-    Create a numpy random number generator from a seed.
+    """Create a numpy random number generator from a seed.
 
     :param seed: The seed to use.
     :returns: The random number generator.
@@ -44,8 +41,7 @@ def make_rng(seed: int) -> np.random.Generator:
 
 
 def make_rng_time_seed(log_seed: bool = True) -> np.random.Generator:
-    """
-    Create a numpy random number generator from a seed.
+    """Create a numpy random number generator from a seed.
 
     :param log_seed: If the automatically created seed should be logged. It probably should.
     :returns: The random number generator.

@@ -34,8 +34,7 @@ class SimulationStateImpl(SimulationState):  # type: ignore[misc]
         abstraction_to_mujoco_mapping: AbstractionToMujocoMapping,
         camera_views: dict[int, npt.NDArray[np.uint8]],
     ) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         The copies required information from the provided data.
         As such the data can be modified after this constructor without causing problems.
@@ -52,8 +51,7 @@ class SimulationStateImpl(SimulationState):  # type: ignore[misc]
         self._camera_views = camera_views
 
     def get_rigid_body_relative_pose(self, rigid_body: RigidBody) -> Pose:
-        """
-        Get the pose of a rigid body, relative to its parent multi-body system's reference frame.
+        """Get the pose of a rigid body, relative to its parent multi-body system's reference frame.
 
         :param rigid_body: The rigid body to get the pose for.
         :returns: The relative pose.
@@ -62,8 +60,7 @@ class SimulationStateImpl(SimulationState):  # type: ignore[misc]
         raise NotImplementedError
 
     def get_rigid_body_absolute_pose(self, rigid_body: RigidBody) -> Pose:
-        """
-        Get the pose of a rigid body, relative the global reference frame.
+        """Get the pose of a rigid body, relative the global reference frame.
 
         :param rigid_body: The rigid body to get the pose for.
         :returns: The absolute pose.
@@ -74,8 +71,7 @@ class SimulationStateImpl(SimulationState):  # type: ignore[misc]
     def get_multi_body_system_pose(
         self, multi_body_system: MultiBodySystem
     ) -> Pose:
-        """
-        Get the pose of a multi-body system, relative to the global reference frame.
+        """Get the pose of a multi-body system, relative to the global reference frame.
 
         :param multi_body_system: The multi-body system to get the pose for.
         :returns: The relative pose.
@@ -89,8 +85,7 @@ class SimulationStateImpl(SimulationState):  # type: ignore[misc]
         )
 
     def get_hinge_joint_position(self, joint: JointHinge) -> float:
-        """
-        Get the rotational position of a hinge joint.
+        """Get the rotational position of a hinge joint.
 
         :param joint: The joint to get the rotational position for.
         :returns: The rotational position.
@@ -101,8 +96,7 @@ class SimulationStateImpl(SimulationState):  # type: ignore[misc]
         return float(self._qpos[joint_mujoco.id])
 
     def get_imu_specific_force(self, imu_sensor: IMUSensor) -> Vector3:
-        """
-        Get the specific force measured an IMU.
+        """Get the specific force measured an IMU.
 
         :param imu_sensor: The IMU.
         :returns: The specific force.
@@ -116,8 +110,7 @@ class SimulationStateImpl(SimulationState):  # type: ignore[misc]
         return Vector3(specific_force)
 
     def get_imu_angular_rate(self, imu_sensor: IMUSensor) -> Vector3:
-        """
-        Get the angular rate measured by am IMU.
+        """Get the angular rate measured by am IMU.
 
         :param imu_sensor: The IMU.
         :returns: The angular rate.
@@ -131,8 +124,7 @@ class SimulationStateImpl(SimulationState):  # type: ignore[misc]
     def get_camera_view(
         self, camera_sensor: CameraSensor
     ) -> npt.NDArray[np.uint8]:
-        """
-        Get the current view of the camera.
+        """Get the current view of the camera.
 
         :param camera_sensor: The camera.
         :return: The image (RGB).

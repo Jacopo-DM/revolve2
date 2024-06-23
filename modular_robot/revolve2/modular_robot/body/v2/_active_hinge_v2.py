@@ -6,15 +6,13 @@ from modular_robot.body.sensors import ActiveHingeSensor
 
 
 class ActiveHingeV2(ActiveHinge):
-    """
-    An active hinge v2 module for a modular robot.
+    """An active hinge v2 module for a modular robot.
 
     This is a rotary joint.
     """
 
     def __init__(self, rotation: float | RightAngles) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param rotation: The Modules rotation.
         """

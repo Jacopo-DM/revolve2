@@ -16,8 +16,7 @@ class Ball(MultiBodySystem):  # type: ignore[misc]
         *,
         is_static: bool = False,
     ) -> None:
-        """
-        Initialize the ball.
+        """Initialize the ball.
 
         :param radius: The radius of the ball.
         :param mass: The mass of the ball.

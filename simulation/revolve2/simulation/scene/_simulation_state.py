@@ -13,8 +13,7 @@ class SimulationState(ABC):
 
     @abstractmethod
     def get_rigid_body_relative_pose(self, rigid_body: RigidBody) -> Pose:
-        """
-        Get the pose of a rigid body, relative to its parent multi-body system's reference frame.
+        """Get the pose of a rigid body, relative to its parent multi-body system's reference frame.
 
         :param rigid_body: The rigid body to get the pose for.
         :returns: The relative pose.
@@ -22,8 +21,7 @@ class SimulationState(ABC):
 
     @abstractmethod
     def get_rigid_body_absolute_pose(self, rigid_body: RigidBody) -> Pose:
-        """
-        Get the pose of a rigid body, relative the global reference frame.
+        """Get the pose of a rigid body, relative the global reference frame.
 
         :param rigid_body: The rigid body to get the pose for.
         :returns: The absolute pose.
@@ -33,8 +31,7 @@ class SimulationState(ABC):
     def get_multi_body_system_pose(
         self, multi_body_system: MultiBodySystem
     ) -> Pose:
-        """
-        Get the pose of a multi-body system, relative to the global reference frame.
+        """Get the pose of a multi-body system, relative to the global reference frame.
 
         :param multi_body_system: The multi-body system to get the pose for.
         :returns: The relative pose.
@@ -42,8 +39,7 @@ class SimulationState(ABC):
 
     @abstractmethod
     def get_hinge_joint_position(self, joint: JointHinge) -> float:
-        """
-        Get the rotational position of a hinge joint.
+        """Get the rotational position of a hinge joint.
 
         :param joint: The joint to get the rotational position for.
         :returns: The rotational position.
@@ -51,8 +47,7 @@ class SimulationState(ABC):
 
     @abstractmethod
     def get_imu_specific_force(self, imu_sensor: IMUSensor) -> Vector3:
-        """
-        Get the specific force measured an IMU.
+        """Get the specific force measured an IMU.
 
         :param imu_sensor: The IMU.
         :returns: The specific force.
@@ -60,8 +55,7 @@ class SimulationState(ABC):
 
     @abstractmethod
     def get_imu_angular_rate(self, imu_sensor: IMUSensor) -> Vector3:
-        """
-        Get the angular rate measured by am IMU.
+        """Get the angular rate measured by am IMU.
 
         :param imu_sensor: The IMU.
         :returns: The angular rate.
@@ -69,8 +63,7 @@ class SimulationState(ABC):
 
     @abstractmethod
     def get_camera_view(self, camera_sensor: CameraSensor) -> NDArray[np.uint8]:
-        """
-        Get the camera view.
+        """Get the camera view.
 
         :param camera_sensor: The camera.
         :return: The view.

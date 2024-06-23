@@ -14,8 +14,7 @@ def make_standard_batch_parameters(
     simulation_timestep: float = STANDARD_SIMULATION_TIMESTEP,
     control_frequency: float = STANDARD_CONTROL_FREQUENCY,
 ) -> BatchParameters:
-    """
-    Create batch parameters as standardized within the CI Group.
+    """Create batch parameters as standardized within the CI Group.
 
     :param simulation_time: As defined in the `BatchParameters` class.
     :param sampling_frequency: As defined in the `BatchParameters` class.

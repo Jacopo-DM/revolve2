@@ -12,8 +12,7 @@ TIndividual = TypeVar("TIndividual")
 
 
 class Population(HasId, orm.MappedAsDataclass, Generic[TIndividual]):
-    """
-    Generic SQLAlchemy model for a population.
+    """Generic SQLAlchemy model for a population.
 
     Inherit from this to create your own population type.
 
@@ -46,8 +45,7 @@ class Population(HasId, orm.MappedAsDataclass, Generic[TIndividual]):
     def __init_subclass__(
         cls: type[Self], /, **kwargs: dict[str, Any | bool]
     ) -> None:
-        """
-        Initialize a version of this class when it is subclassed.
+        """Initialize a version of this class when it is subclassed.
 
         Gets the actual type of `TIndividual` and stores it for later use.
 

@@ -13,8 +13,7 @@ def pareto_frontier(
     frontier_order: list[bool],
     to_take: int,
 ) -> list[int]:
-    """
-    Return individuals based on their respective frontier values and their domination order.
+    """Return individuals based on their respective frontier values and their domination order.
 
     For mor information on the pareto frontier check: https://en.wikipedia.org/wiki/Pareto_front.
 
@@ -48,8 +47,7 @@ def pareto_frontier(
 def _get_domination_orders(
     value_array: NDArray[np.float64], frontier_order: list[bool]
 ) -> list[int]:
-    """
-    Find the pareto domination order for each point.
+    """Find the pareto domination order for each point.
 
     :param value_array: A (*value) array.
     :param frontier_order: The order of a specific value.

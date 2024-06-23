@@ -28,8 +28,7 @@ class Evaluator(Eval):  # type: ignore[misc]
         headless: bool,
         num_simulators: int,
     ) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param headless: `headless` parameter for the physics simulator.
         :param num_simulators: `num_simulators` parameter for the physics simulator.
@@ -43,8 +42,7 @@ class Evaluator(Eval):  # type: ignore[misc]
         self,
         population: list[Genotype],
     ) -> list[float]:
-        """
-        Evaluate multiple robots.
+        """Evaluate multiple robots.
 
         Fitness is the distance traveled on the xy plane.
 

@@ -9,8 +9,7 @@ import mujoco_viewer
 
 
 class CustomMujocoViewerMode(Enum):
-    """
-    Enumerate different viewer modes for the CustomMujocoViewer.
+    """Enumerate different viewer modes for the CustomMujocoViewer.
 
     - CLASSIC mode gives an informative interface for regular simulations.
     - MANUAL mode gives a cut down interface, specific for targeting robot movement manually.
@@ -22,8 +21,7 @@ class CustomMujocoViewerMode(Enum):
 
 class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore[misc]
     # TODO(jmdm): Fix type error"↑"
-    """
-    Custom Viewer Object that allows for additional keyboard inputs.
+    """Custom Viewer Object that allows for additional keyboard inputs.
 
     We need the type ignore since the mujoco_viewer library is not typed properly and therefor the MujocoViewer class cant be resolved.
     """
@@ -50,8 +48,7 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore[misc]
         render_every_frame: bool = False,
         mode: CustomMujocoViewerMode = CustomMujocoViewerMode.CLASSIC,
     ) -> None:
-        """
-        Initialize the Viewer.
+        """Initialize the Viewer.
 
         :param model: The mujoco models.
         :param data: The mujoco data.
@@ -76,8 +73,7 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore[misc]
         self._return_code: None | str = None
 
     def _add_overlay(self, gridpos: int, text1: str, text2: str) -> None:
-        """
-        Add overlays.
+        """Add overlays.
 
         :param gridpos: The position on the grid.
         :param text1: Some text.
@@ -216,8 +212,7 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore[misc]
         action: int | None,
         mods: int | None,
     ) -> None:
-        """
-        Add custom Key Callback.
+        """Add custom Key Callback.
 
         :param window: The window.
         :param key: The key pressed.
@@ -238,8 +233,7 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore[misc]
             self._return_code = "QUIT"
 
     def render(self) -> int | None | str:
-        """
-        Render the scene.
+        """Render the scene.
 
         :return: A cycle position if applicable.
         """

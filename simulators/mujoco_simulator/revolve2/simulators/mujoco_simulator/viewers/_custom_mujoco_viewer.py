@@ -13,8 +13,7 @@ from simulators.mujoco_simulator._render_backend import RenderBackend
 
 
 class CustomMujocoViewerMode(Enum):
-    """
-    Enumerate different viewer modes for the CustomMujocoViewer.
+    """Enumerate different viewer modes for the CustomMujocoViewer.
 
     - CLASSIC mode gives an informative interface for regular simulations.
     - MANUAL mode gives a cut down interface, specific for targeting robot movement manually.
@@ -26,8 +25,7 @@ class CustomMujocoViewerMode(Enum):
 
 class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore[misc]
     # TODO(jmdm): Fix type ignore"↑"
-    """
-    Custom Viewer Object that allows for additional keyboard inputs.
+    """Custom Viewer Object that allows for additional keyboard inputs.
 
     We need the type ignore since the mujoco_viewer library is not typed properly and therefor the MujocoViewer class cant be resolved.
     """
@@ -59,8 +57,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore[mi
         mode: CustomMujocoViewerMode = CustomMujocoViewerMode.CLASSIC,
         **_: Any,
     ) -> None:
-        """
-        Initialize the Viewer.
+        """Initialize the Viewer.
 
         :param model: The mujoco models.
         :param data: The mujoco data.
@@ -103,8 +100,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore[mi
         self._return_code: None | str = None
 
     def _add_overlay(self, gridpos: int, text1: str, text2: str) -> None:
-        """
-        Add overlays.
+        """Add overlays.
 
         :param gridpos: The position on the grid.
         :param text1: Some text.
@@ -240,8 +236,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore[mi
     def _key_callback(
         self, window: Any, key: Any, scancode: Any, action: Any, mods: Any
     ) -> None:
-        """
-        Add custom Key Callback.
+        """Add custom Key Callback.
 
         :param window: The window.
         :param key: The key pressed.
@@ -263,8 +258,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore[mi
             self._return_code = "QUIT"
 
     def current_viewport_size(self) -> tuple[int, int]:
-        """
-        Grabs the *current* viewport size (and updates the cached values).
+        """Grabs the *current* viewport size (and updates the cached values).
 
         :return: the viewport size
         """
@@ -274,8 +268,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore[mi
         return self.viewport.width, self.viewport.height
 
     def render(self) -> int | None | str:
-        """
-        Render the scene.
+        """Render the scene.
 
         :return: A cycle position if applicable.
         """
@@ -304,8 +297,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore[mi
 
     @property
     def context(self) -> mujoco.MjrContext:
-        """
-        Get the context.
+        """Get the context.
 
         :returns: The context.
         """
@@ -313,8 +305,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore[mi
 
     @property
     def view_port(self) -> mujoco.MjrRect:
-        """
-        Get the view_port.
+        """Get the view_port.
 
         :returns: The viewport.
         """
@@ -322,8 +313,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore[mi
 
     @property
     def can_record(self) -> bool:
-        """
-        Return True.
+        """Return True.
 
         :returns: True.
         """

@@ -1,6 +1,5 @@
-"""
-DefaultGenome: genome parameters as found in the MultiNEAT documentation
-GivenGenome: genome parameters when initializing a new genome with multineat.Parameters()
+"""DefaultGenome: genome parameters as found in the MultiNEAT documentation
+GivenGenome: genome parameters when initializing a new genome with multineat.Parameters().
 """
 
 DefaultGenome: dict[str, float | int | bool] = {

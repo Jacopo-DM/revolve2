@@ -18,8 +18,7 @@ from revolve2.simulators.mujoco_simulator import LocalSimulator
 
 
 def make_body() -> BodyV2:
-    """
-    Create a body for the robot.
+    """Create a body for the robot.
 
     :returns: The created body.
     """

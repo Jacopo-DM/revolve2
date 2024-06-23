@@ -5,15 +5,14 @@ import cv2
 import numpy as np
 from numpy.typing import NDArray
 from pyrr import Vector3
-from revolve2.modular_robot_physical.physical_interfaces._physical_interface import (
-    PhysicalInterface,
-)
 from robohatlib.hal.assemblyboard.PwmPlug import PwmPlug
 from robohatlib.hal.assemblyboard.servo.ServoData import ServoData
-from robohatlib.hal.assemblyboard.ServoAssemblyConfig import (
-    ServoAssemblyConfig,
-)
+from robohatlib.hal.assemblyboard.ServoAssemblyConfig import ServoAssemblyConfig
 from robohatlib.Robohat import Robohat
+
+from modular_robot_physical.physical_interfaces._physical_interface import (
+    PhysicalInterface,
+)
 
 
 class V2PhysicalInterface(PhysicalInterface):
@@ -97,6 +96,10 @@ class V2PhysicalInterface(PhysicalInterface):
         :param pins: The GPIO pin numbers.
         :param targets: The target angles.
         """
+        for pin, _target in zip(pins, targets, strict=False):
+            if self._debug:
+                pass
+
         if not self._dry:
             all_angles = [90.0] * 32
             angles = [
@@ -108,6 +111,8 @@ class V2PhysicalInterface(PhysicalInterface):
 
     def enable(self) -> None:
         """Start the robot."""
+        if self._debug:
+            pass
         if not self._dry:
             self._robohat.wakeup_servo()
 
@@ -117,6 +122,8 @@ class V2PhysicalInterface(PhysicalInterface):
 
         This disables all active modules and sensors.
         """
+        if self._debug:
+            pass
         if not self._dry:
             self._robohat.put_servo_to_sleep()
 

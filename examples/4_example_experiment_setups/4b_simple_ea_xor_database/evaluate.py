@@ -16,8 +16,7 @@ class Evaluator(Eval):  # type: ignore[misc]
     def evaluate_network(
         params: npt.NDArray[np.float64], inputs: npt.NDArray[np.float64]
     ) -> np.float64:
-        """
-        Pass two inputs through a fully connected relu network.
+        """Pass two inputs through a fully connected relu network.
 
         :param params: The parameters to evaluate.
         :param inputs: Inputs for network. 2x1 floats.
@@ -34,8 +33,7 @@ class Evaluator(Eval):  # type: ignore[misc]
         return output
 
     def evaluate(self, population: list[Genotype]) -> list[float]:
-        """
-        Measure one set of parameters.
+        """Measure one set of parameters.
 
         :param population: The population of parameters to measure.
         :returns: Negative sum of squared errors and each individual error. 5x1 floats.

@@ -21,8 +21,7 @@ class SceneSimulationState:
             UUIDKey[ModularRobot], MultiBodySystem
         ],
     ) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param simulation_state: The simulation state corresponding to this modular robot scene state.
         :param modular_robot_to_multi_body_system_mapping: A mapping from modular robots to multi-body systems.
@@ -35,8 +34,7 @@ class SceneSimulationState:
     def get_modular_robot_simulation_state(
         self, modular_robot: ModularRobot
     ) -> ModularRobotSimulationState:
-        """
-        Get the simulation state for one of the modular robots in the scene.
+        """Get the simulation state for one of the modular robots in the scene.
 
         :param modular_robot: The modular robot to get the state for.
         :returns: The retrieved state.

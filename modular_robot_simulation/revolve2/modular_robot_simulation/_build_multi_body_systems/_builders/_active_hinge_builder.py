@@ -31,8 +31,7 @@ class ActiveHingeBuilder(Builder):
     def __init__(
         self, module: ActiveHinge, rigid_body: RigidBody, slot_pose: Pose
     ) -> None:
-        """
-        Initialize the Active Hinge Builder.
+        """Initialize the Active Hinge Builder.
 
         :param module: The module to be built.
         :param rigid_body: The rigid body for the module to be built on.
@@ -47,8 +46,7 @@ class ActiveHingeBuilder(Builder):
         multi_body_system: MultiBodySystem,
         body_to_multi_body_system_mapping: BodyToMultiBodySystemMapping,
     ) -> list[UnbuiltChild]:
-        """
-        Build a module onto the Robot.
+        """Build a module onto the Robot.
 
         :param multi_body_system: The multi body system of the robot.
         :param body_to_multi_body_system_mapping: A mapping from body to multi-body system

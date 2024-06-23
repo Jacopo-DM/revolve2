@@ -40,8 +40,7 @@ def simulate_scene(
     cast_shadows: bool,
     fast_sim: bool,
 ) -> list[SimulationState]:
-    """
-    Simulate a scene.
+    """Simulate a scene.
 
     :param scene_id: An id for this scene, unique between all scenes ran in parallel.
     :param scene: The scene to simulate.

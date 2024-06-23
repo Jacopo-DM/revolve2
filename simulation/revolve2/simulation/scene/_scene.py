@@ -19,8 +19,7 @@ class Scene:
     """
 
     def add_multi_body_system(self, multi_body_system: MultiBodySystem) -> None:
-        """
-        Add a multi-body system to the scene.
+        """Add a multi-body system to the scene.
 
         :param multi_body_system: The multi-body system to add.
         """
@@ -28,8 +27,7 @@ class Scene:
 
     @property
     def multi_body_systems(self) -> list[MultiBodySystem]:
-        """
-        Get the multi-body systems in scene.
+        """Get the multi-body systems in scene.
 
         Do not make changes to this list.
 

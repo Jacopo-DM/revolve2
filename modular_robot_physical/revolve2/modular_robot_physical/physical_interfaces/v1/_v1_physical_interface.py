@@ -6,7 +6,8 @@ import numpy as np
 import pigpio
 from numpy.typing import NDArray
 from pyrr import Vector3
-from revolve2.modular_robot_physical.physical_interfaces._physical_interface import (
+
+from modular_robot_physical.physical_interfaces._physical_interface import (
     PhysicalInterface,
 )
 
@@ -48,6 +49,9 @@ class V1PhysicalInterface(PhysicalInterface):
         else:
             self._gpio = None
 
+        if self._debug:
+            pass
+
     def set_servo_targets(self, pins: list[int], targets: list[float]) -> None:
         """
         Set the target for multiple servos.
@@ -72,6 +76,8 @@ class V1PhysicalInterface(PhysicalInterface):
             assert self._gpio is not None
             for pin in self._PINS:
                 self._gpio.set_PWM_dutycycle(pin, self._CENTER)
+                if self._debug:
+                    pass
                 time.sleep(0.1)
 
     def disable(self) -> None:
@@ -80,6 +86,8 @@ class V1PhysicalInterface(PhysicalInterface):
 
         This disables all active modules and sensors.
         """
+        if self._debug:
+            pass
         if not self._dry:
             assert self._gpio is not None
 

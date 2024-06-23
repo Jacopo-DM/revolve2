@@ -17,8 +17,7 @@ if TYPE_CHECKING:
 
 
 class BrainCpgNetworkStatic(Brain):
-    """
-    A CPG (central pattern generator) brain with CPGs and connections defined by the user.
+    """A CPG (central pattern generator) brain with CPGs and connections defined by the user.
 
     A state vector is integrated over time using a weight matrix which multiplication with the state vector sum defines the derivative of the state vector.
     I.e X' = WX
@@ -36,8 +35,7 @@ class BrainCpgNetworkStatic(Brain):
         weight_matrix: npt.NDArray[np.float64],
         output_mapping: list[tuple[int, ActiveHinge]],
     ) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param initial_state: The initial state of the neural network.
         :param weight_matrix: The weight matrix used during integration.
@@ -55,8 +53,7 @@ class BrainCpgNetworkStatic(Brain):
         initial_state_uniform: float,
         output_mapping: list[tuple[int, ActiveHinge]],
     ) -> BrainCpgNetworkStatic:
-        """
-        Create and initialize an instance of this brain from the provided parameters, assuming uniform initial state.
+        """Create and initialize an instance of this brain from the provided parameters, assuming uniform initial state.
 
         :param params: Parameters for the weight matrix to be created.
         :param cpg_network_structure: The cpg network structure.
@@ -79,8 +76,7 @@ class BrainCpgNetworkStatic(Brain):
         )
 
     def make_instance(self) -> BrainInstance:
-        """
-        Create an instance of this brain.
+        """Create an instance of this brain.
 
         :returns: The created instance.
         """

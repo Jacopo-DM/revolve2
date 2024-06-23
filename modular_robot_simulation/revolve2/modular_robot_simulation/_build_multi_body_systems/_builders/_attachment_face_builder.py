@@ -18,8 +18,7 @@ class AttachmentFaceBuilder(Builder):
     def __init__(
         self, module: AttachmentFace, rigid_body: RigidBody, slot_pose: Pose
     ) -> None:
-        """
-        Initialize the Attachment Face Builder.
+        """Initialize the Attachment Face Builder.
 
         :param module: The module to be built.
         :param rigid_body: The rigid body for the module to be built on.
@@ -34,8 +33,7 @@ class AttachmentFaceBuilder(Builder):
         multi_body_system: MultiBodySystem,
         body_to_multi_body_system_mapping: BodyToMultiBodySystemMapping,
     ) -> list[UnbuiltChild]:
-        """
-        Build a module onto the Robot.
+        """Build a module onto the Robot.
 
         :param multi_body_system: The multi body system of the robot.
         :param body_to_multi_body_system_mapping: A mapping from body to multi-body system

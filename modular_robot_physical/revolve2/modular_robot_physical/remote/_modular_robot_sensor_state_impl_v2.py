@@ -9,8 +9,8 @@ from revolve2.modular_robot.sensor_state import (
     IMUSensorState,
     ModularRobotSensorState,
 )
-from revolve2.modular_robot_physical._uuid_key import UUIDKey
 
+from modular_robot_physical._uuid_key import UUIDKey
 from modular_robot_physical.remote._active_hinge_sensor_state_impl import (
     ActiveHingeSensorStateImpl,
 )
@@ -22,7 +22,8 @@ from modular_robot_physical.remote._imu_sensor_state_impl import (
 )
 
 
-class ModularRobotSensorStateImplV2(ModularRobotSensorState):
+class ModularRobotSensorStateImplV2(ModularRobotSensorState):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """Implementation of ModularRobotSensorState for v2 robots."""
 
     _hinge_sensor_mapping: dict[UUIDKey[ActiveHingeSensor], int]

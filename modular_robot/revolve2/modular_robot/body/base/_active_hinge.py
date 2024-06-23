@@ -54,8 +54,7 @@ class ActiveHinge(Module):
         child_offset: float,
         sensors: list[Sensor],
     ) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param rotation: The Modules rotation.
         :param servo1_bounding_box: The bounding box of servo 1. Vector3 with sizes of bbox in x,y,z dimension (m). Sizes are total length, not half length from origin.
@@ -120,8 +119,7 @@ class ActiveHinge(Module):
 
     @property
     def attachment(self) -> Module | None:
-        """
-        Get the module attached to this hinge.
+        """Get the module attached to this hinge.
 
         :returns: The attachment points module.
         """
@@ -129,8 +127,7 @@ class ActiveHinge(Module):
 
     @attachment.setter
     def attachment(self, module: Module) -> None:
-        """
-        Set a module to the attachment point.
+        """Set a module to the attachment point.
 
         :param module: The Module.
         """
@@ -138,8 +135,7 @@ class ActiveHinge(Module):
 
     @property
     def static_friction(self) -> float:
-        """
-        Get the static friction.
+        """Get the static friction.
 
         :return: The value.
         """
@@ -147,8 +143,7 @@ class ActiveHinge(Module):
 
     @property
     def dynamic_friction(self) -> float:
-        """
-        Get the dynamic friction.
+        """Get the dynamic friction.
 
         :return: The value.
         """
@@ -156,8 +151,7 @@ class ActiveHinge(Module):
 
     @property
     def range(self) -> float:
-        """
-        Get the range of the servo.
+        """Get the range of the servo.
 
         :return: The value.
         """
@@ -165,8 +159,7 @@ class ActiveHinge(Module):
 
     @property
     def effort(self) -> float:
-        """
-        Get the effort of the servo.
+        """Get the effort of the servo.
 
         :return: The value.
         """
@@ -174,8 +167,7 @@ class ActiveHinge(Module):
 
     @property
     def velocity(self) -> float:
-        """
-        Get the velocity of the servo.
+        """Get the velocity of the servo.
 
         :return: The value.
         """
@@ -183,8 +175,7 @@ class ActiveHinge(Module):
 
     @property
     def servo1_bounding_box(self) -> Vector3:
-        """
-        Get the bounding box of the first servo part.
+        """Get the bounding box of the first servo part.
 
         Sizes are total length, not half-length from origin.
         :return: Vector3 with sizes of bbox in x,y,z dimension (m).
@@ -193,8 +184,7 @@ class ActiveHinge(Module):
 
     @property
     def servo2_bounding_box(self) -> Vector3:
-        """
-        Get the bounding box of the second servo part.
+        """Get the bounding box of the second servo part.
 
         Sizes are total length, not half-length from origin.
         :return: Vector3 with sizes of bbox in x,y,z dimension (m).
@@ -203,8 +193,7 @@ class ActiveHinge(Module):
 
     @property
     def frame_bounding_box(self) -> Vector3:
-        """
-        Get the bounding box of the frame.
+        """Get the bounding box of the frame.
 
         Sizes are total length, not half-length from origin.
         :return: Vector3 with sizes of bbox in x,y,z dimension (m).
@@ -213,8 +202,7 @@ class ActiveHinge(Module):
 
     @property
     def frame_offset(self) -> float:
-        """
-        Get the offset of the frame (in m).
+        """Get the offset of the frame (in m).
 
         :return: The value.
         """
@@ -222,8 +210,7 @@ class ActiveHinge(Module):
 
     @property
     def servo_offset(self) -> float:
-        """
-        Get the servo offset (in m).
+        """Get the servo offset (in m).
 
         :return: The value.
         """
@@ -231,8 +218,7 @@ class ActiveHinge(Module):
 
     @property
     def frame_mass(self) -> float:
-        """
-        Get the frame mass (in kg).
+        """Get the frame mass (in kg).
 
         :return: The value.
         """
@@ -240,8 +226,7 @@ class ActiveHinge(Module):
 
     @property
     def servo1_mass(self) -> float:
-        """
-        Get the mass of the first servo part (in kg).
+        """Get the mass of the first servo part (in kg).
 
         :return: The value.
         """
@@ -249,8 +234,7 @@ class ActiveHinge(Module):
 
     @property
     def servo2_mass(self) -> float:
-        """
-        Get the mass of the second servo part (in kg).
+        """Get the mass of the second servo part (in kg).
 
         :return: The value.
         """
@@ -258,8 +242,7 @@ class ActiveHinge(Module):
 
     @property
     def joint_offset(self) -> float:
-        """
-        Get the joint offset (in m).
+        """Get the joint offset (in m).
 
         :return: The value.
         """
@@ -267,8 +250,7 @@ class ActiveHinge(Module):
 
     @property
     def armature(self) -> float:
-        """
-        Get the armature of the joint.
+        """Get the armature of the joint.
 
         This represents the inertia of the motor itself when nothing is attached.
 
@@ -278,8 +260,7 @@ class ActiveHinge(Module):
 
     @property
     def pid_gain_p(self) -> float:
-        """
-        Get the proportional gain of the pid position controller.
+        """Get the proportional gain of the pid position controller.
 
         :return: The value.
         """
@@ -287,8 +268,7 @@ class ActiveHinge(Module):
 
     @property
     def pid_gain_d(self) -> float:
-        """
-        Get the derivative gain of the pid position controller.
+        """Get the derivative gain of the pid position controller.
 
         :return: The value.
         """

@@ -13,8 +13,7 @@ class BodyV1(Body):
 
     @property
     def core_v1(self) -> CoreV1:
-        """
-        Get the specific v1 core of the body.
+        """Get the specific v1 core of the body.
 
         :return: The v1 core.
         """

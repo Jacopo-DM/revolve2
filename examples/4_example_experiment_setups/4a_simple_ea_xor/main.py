@@ -30,8 +30,7 @@ class ParentSelector(Selector):  # type: ignore[misc]
     _offspring_size: int
 
     def __init__(self, offspring_size: int) -> None:
-        """
-        Initialize the ParentSelector object.
+        """Initialize the ParentSelector object.
 
         :param offspring_size: The size of the offspring for selection.
         """
@@ -41,8 +40,7 @@ class ParentSelector(Selector):  # type: ignore[misc]
     def select(
         self, population: list[Individual], **kwargs: Any
     ) -> tuple[NDArray[np.int_], dict[str, list[Individual]]]:
-        """
-        Select pairs of parents using a tournament.selection procedure.
+        """Select pairs of parents using a tournament.selection procedure.
 
         :param population: The population to select from.
         :param kwargs: Additional kwargs that are not used in this example.
@@ -76,8 +74,7 @@ class SurvivorSelector(Selector):  # type: ignore[misc]
     def select(
         self, population: list[Individual], **kwargs: Any
     ) -> tuple[list[Individual], dict[Any, Any]]:
-        """
-        Select survivors using a tournament selection.
+        """Select survivors using a tournament selection.
 
         :param population: The initial population.
         :param kwargs: Additional kwargs that contain the children to do selection with.
@@ -139,8 +136,7 @@ class CrossoverReproducer(Reproducer):  # type: ignore[misc]
     def reproduce(
         self, population: NDArray[np.int_], **kwargs: Any
     ) -> list[Genotype]:
-        """
-        Make Individuals Reproduce.
+        """Make Individuals Reproduce.
 
         :param population: The population.
         :param kwargs: Additional arguments.

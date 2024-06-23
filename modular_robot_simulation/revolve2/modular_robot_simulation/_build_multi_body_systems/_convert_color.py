@@ -3,8 +3,7 @@ from revolve2.simulation.scene import Color as SimulationColor
 
 
 def convert_color(color: Color) -> SimulationColor:
-    """
-    Convert ModularRobot Color to Simulator Color.
+    """Convert ModularRobot Color to Simulator Color.
 
     :param color: The ModularRobot color.
     :return: The Simulator color.

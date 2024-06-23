@@ -10,16 +10,14 @@ class Viewer(ABC):
 
     @abstractmethod
     def render(self) -> None:
-        """
-        Render the scene on the viewer.
+        """Render the scene on the viewer.
 
         :returns: Nothing or feedback.
         """
 
     @abstractmethod
     def current_viewport_size(self) -> tuple[int, int]:
-        """
-        Get the current viewport size.
+        """Get the current viewport size.
 
         :returns: The size as a tuple.
         """
@@ -27,8 +25,7 @@ class Viewer(ABC):
     @property
     @abstractmethod
     def view_port(self) -> None:
-        """
-        Get the viewport.
+        """Get the viewport.
 
         :returns: The viewport object.
         """
@@ -36,8 +33,7 @@ class Viewer(ABC):
     @property
     @abstractmethod
     def context(self) -> None:
-        """
-        Return the viewer context.
+        """Return the viewer context.
 
         :returns: The context object.
         """
@@ -45,8 +41,7 @@ class Viewer(ABC):
     @property
     @abstractmethod
     def can_record(self) -> bool:
-        """
-        Check if this viewer can record.
+        """Check if this viewer can record.
 
         :returns: The truth.
         """

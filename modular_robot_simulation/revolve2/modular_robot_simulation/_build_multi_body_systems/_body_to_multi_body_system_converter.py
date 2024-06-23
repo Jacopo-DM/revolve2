@@ -25,8 +25,7 @@ class BodyToMultiBodySystemConverter:
     def convert_robot_body(
         self, body: Body, pose: Pose, translate_z_aabb: bool
     ) -> tuple[MultiBodySystem, BodyToMultiBodySystemMapping]:
-        """
-        Convert a modular robot body to a multi-body system.
+        """Convert a modular robot body to a multi-body system.
 
         :param body: The body to convert.
         :param pose: The pose to put the multi-body system in. Ownership will be taken of the pose object and it should not be reused after passing it to this function.

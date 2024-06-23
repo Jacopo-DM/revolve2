@@ -6,8 +6,7 @@ from simulation.scene.sensors._sensor import Sensor
 
 @dataclass
 class IMUSensor(Sensor):
-    """
-    An inertial measurement unit.
+    """An inertial measurement unit.
 
     Reports specific force(closely related to acceleration), angular rate(closely related to angularvelocity), and orientation.
     """

@@ -17,8 +17,7 @@ def simulate_scenes(
     scenes: ModularRobotScene,
     record_settings: RecordSettings | None = None,
 ) -> list[SceneSimulationState]:
-    """
-    Simulate a scene.
+    """Simulate a scene.
 
     :param simulator: The simulator to use for simulation.
     :param batch_parameters: The batch parameters to use for simulation.
@@ -38,8 +37,7 @@ def simulate_scenes(
     scenes: list[ModularRobotScene],
     record_settings: RecordSettings | None = None,
 ) -> list[list[SceneSimulationState]]:
-    """
-    Simulate multiple scenes.
+    """Simulate multiple scenes.
 
     :param simulator: The simulator to use for simulation.
     :param batch_parameters: The batch parameters to use for simulation.
@@ -58,8 +56,7 @@ def simulate_scenes(
     scenes: ModularRobotScene | list[ModularRobotScene],
     record_settings: RecordSettings | None = None,
 ) -> list[SceneSimulationState] | list[list[SceneSimulationState]]:
-    """
-    Simulate one or more scenes.
+    """Simulate one or more scenes.
 
     :param simulator: The simulator to use for simulation.
     :param batch_parameters: The batch parameters to use for simulation.

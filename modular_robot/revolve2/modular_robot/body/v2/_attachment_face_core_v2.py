@@ -35,8 +35,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
         horizontal_offset: float,
         vertical_offset: float,
     ) -> None:
-        """
-        Initialize the attachment face for the V2 Core.
+        """Initialize the attachment face for the V2 Core.
 
         :param face_rotation: The rotation of the face and the attachment points on the module.
         :param horizontal_offset: The horizontal offset for module placement.
@@ -78,8 +77,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
         super().__init__(rotation=0.0, attachment_points=attachment_points)
 
     def set_child(self, module: Module, child_index: int) -> None:
-        """
-        Attach a module to a slot.
+        """Attach a module to a slot.
 
         :param module: The module to attach.
         :param child_index: The slot to attach it to.
@@ -98,8 +96,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
             raise KeyError(msg)
 
     def can_set_child(self, child_index: int) -> bool:
-        """
-        Check if a child can be set on the module.
+        """Check if a child can be set on the module.
 
         :param child_index: The child index.
         :return: The boolean value.
@@ -117,8 +114,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
 
     @property
     def top_left(self) -> Module | None:
-        """
-        Get the top_left attachment points module.
+        """Get the top_left attachment points module.
 
         :return: The attachment points module.
         """
@@ -126,8 +122,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
 
     @top_left.setter
     def top_left(self, module: Module) -> None:
-        """
-        Set a module to the top_left attachment point.
+        """Set a module to the top_left attachment point.
 
         :param module: The module.
         """
@@ -135,8 +130,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
 
     @property
     def top(self) -> Module | None:
-        """
-        Get the top attachment points module.
+        """Get the top attachment points module.
 
         :return: The attachment points module.
         """
@@ -144,8 +138,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
 
     @top.setter
     def top(self, module: Module) -> None:
-        """
-        Set a module to the top attachment point.
+        """Set a module to the top attachment point.
 
         :param module: The module.
         """
@@ -153,8 +146,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
 
     @property
     def top_right(self) -> Module | None:
-        """
-        Get the top_right attachment points module.
+        """Get the top_right attachment points module.
 
         :return: The attachment points module.
         """
@@ -162,8 +154,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
 
     @top_right.setter
     def top_right(self, module: Module) -> None:
-        """
-        Set a module to the top_right attachment point.
+        """Set a module to the top_right attachment point.
 
         :param module: The module.
         """
@@ -171,8 +162,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
 
     @property
     def middle_left(self) -> Module | None:
-        """
-        Get the middle_left attachment points module.
+        """Get the middle_left attachment points module.
 
         :return: The attachment points module.
         """
@@ -180,8 +170,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
 
     @middle_left.setter
     def middle_left(self, module: Module) -> None:
-        """
-        Set a module to the middle_left attachment point.
+        """Set a module to the middle_left attachment point.
 
         :param module: The module.
         """
@@ -189,8 +178,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
 
     @property
     def middle(self) -> Module | None:
-        """
-        Get the middle attachment points module.
+        """Get the middle attachment points module.
 
         :return: The attachment points module.
         """
@@ -198,8 +186,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
 
     @middle.setter
     def middle(self, module: Module) -> None:
-        """
-        Set a module to the middle attachment point.
+        """Set a module to the middle attachment point.
 
         :param module: The module.
         """
@@ -207,8 +194,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
 
     @property
     def middle_right(self) -> Module | None:
-        """
-        Get the middle_right attachment points module.
+        """Get the middle_right attachment points module.
 
         :return: The attachment points module.
         """
@@ -216,8 +202,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
 
     @middle_right.setter
     def middle_right(self, module: Module) -> None:
-        """
-        Set a module to the middle_right attachment point.
+        """Set a module to the middle_right attachment point.
 
         :param module: The module.
         """
@@ -225,8 +210,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
 
     @property
     def bottom_left(self) -> Module | None:
-        """
-        Get the bottom_left attachment points module.
+        """Get the bottom_left attachment points module.
 
         :return: The attachment points module.
         """
@@ -234,8 +218,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
 
     @bottom_left.setter
     def bottom_left(self, module: Module) -> None:
-        """
-        Set a module to the bottom_left attachment point.
+        """Set a module to the bottom_left attachment point.
 
         :param module: The module.
         """
@@ -243,8 +226,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
 
     @property
     def bottom(self) -> Module | None:
-        """
-        Get the bottom attachment points module.
+        """Get the bottom attachment points module.
 
         :return: The attachment points module.
         """
@@ -252,8 +234,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
 
     @bottom.setter
     def bottom(self, module: Module) -> None:
-        """
-        Set a module to the bottom attachment point.
+        """Set a module to the bottom attachment point.
 
         :param module: The module.
         """
@@ -261,8 +242,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
 
     @property
     def bottom_right(self) -> Module | None:
-        """
-        Get the bottom_right attachment points module.
+        """Get the bottom_right attachment points module.
 
         :return: The attachment points module.
         """
@@ -270,8 +250,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
 
     @bottom_right.setter
     def bottom_right(self, module: Module) -> None:
-        """
-        Set a module to the bottom_right attachment point.
+        """Set a module to the bottom_right attachment point.
 
         :param module: The module.
         """

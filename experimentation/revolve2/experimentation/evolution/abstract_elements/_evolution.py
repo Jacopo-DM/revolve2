@@ -9,8 +9,7 @@ class Evolution(ABC):
 
     @abstractmethod
     def step(self, population: TPopulation, **kwargs: Any) -> TPopulation:
-        """
-        Step the current evolution by one iteration..
+        """Step the current evolution by one iteration..
 
         :param population: The current population.
         :param kwargs: Additional keyword arguments to use in the step.

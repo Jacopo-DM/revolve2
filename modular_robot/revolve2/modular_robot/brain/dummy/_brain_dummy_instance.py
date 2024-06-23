@@ -14,8 +14,7 @@ class BrainDummyInstance(BrainInstance):
         sensor_state: ModularRobotSensorState,
         control_interface: ModularRobotControlInterface,
     ) -> None:
-        """
-        Control nothing.
+        """Control nothing.
 
         This brain does not do anything for control, as it is an empty box.
 

@@ -32,8 +32,7 @@ def scene_to_model(
     cast_shadows: bool,
     fast_sim: bool,
 ) -> tuple[mujoco.MjModel, AbstractionToMujocoMapping]:
-    """
-    Convert a scene to a MuJoCo model.
+    """Convert a scene to a MuJoCo model.
 
     :param cast_shadows: Whether shadows are cast by the light.
     :param scene: The scene to convert.
@@ -156,8 +155,7 @@ def scene_to_model(
 def _create_tmp_file(
     multi_body_system_model: mujoco.MjModel,
 ) -> mjcf.RootElement:
-    """
-    Create a temporary file.
+    """Create a temporary file.
 
     MuJoCo can only save to a file, not directly to string,
 
@@ -205,8 +203,7 @@ def _add_planes(
     fast_sim: bool,
     env_mjcf: mjcf.RootElement,
 ) -> None:
-    """
-    Add plane objects to the mujoco simulation.
+    """Add plane objects to the mujoco simulation.
 
     :param plane_geometries: The plane geometries.
     :param fast_sim: Whether fast sim is used.
@@ -238,8 +235,7 @@ def _add_heightmaps(
     fast_sim: bool,
     env_mjcf: mjcf.RootElement,
 ) -> list[GeometryHeightmap]:
-    """
-    Add heightmap geometries to the model.
+    """Add heightmap geometries to the model.
 
     :param heightmap_geometries: The heightmap geometries.
     :param fast_sim: If fast sim is used.
@@ -289,8 +285,7 @@ def _add_sensors(
     multi_body_system_mjcf: mjcf.RootElement,
     env_mjcf: mjcf.RootElement,
 ) -> None:
-    """
-    Add sensors to the model.
+    """Add sensors to the model.
 
     :param rigid_bodies_and_names: The rigid bodies and names.
     :param mbs_i: The current index of the multi body system.
@@ -348,8 +343,7 @@ def _add_joint_actuators(
     joints_and_names: list[tuple[JointHinge, str]],
     multi_body_system_mjcf: mjcf.RootElement,
 ) -> None:
-    """
-    Add actuation to the joints.
+    """Add actuation to the joints.
 
     :param joints_and_names: The joints.
     :param multi_body_system_mjcf: The multi body system.
@@ -384,8 +378,7 @@ def _set_colors_and_materials(
     multi_body_system_mjcf: mjcf.RootElement,
     fast_sim: bool,
 ) -> None:
-    """
-    Set the colors and materials for the geometries contained in the model.
+    """Set the colors and materials for the geometries contained in the model.
 
     :param geoms_and_names: The geometries with their respective names in the model.
     :param multi_body_system_mjcf: The mujoco model.
@@ -407,8 +400,7 @@ def _set_colors_and_materials(
 def _set_heightmap_values(
     heightmaps: list[GeometryHeightmap], model: mujoco.MjModel
 ) -> None:
-    """
-    Set the values for the heightmaps.
+    """Set the values for the heightmaps.
 
     :param heightmaps: The heightmaps.
     :param model: The mujoco model.
@@ -430,8 +422,7 @@ def _create_sensor_maps(
     mapping: AbstractionToMujocoMapping,
     model: mujoco.MjModel,
 ) -> None:
-    """
-    Create mappings of the imu sensors to the gyro and accelerator sensors in mujoco.
+    """Create mappings of the imu sensors to the gyro and accelerator sensors in mujoco.
 
     :param all_rigid_bodies_and_names: The rigid bodies and their respective name in the model.
     :param mapping: The mapping of revolve2 components to Mujoco components.

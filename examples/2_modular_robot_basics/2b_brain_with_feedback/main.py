@@ -29,8 +29,7 @@ class ANNBrainInstance(BrainInstance):  # type: ignore[misc]
         active_hinges: list[ActiveHinge],
         imu_sensor: IMUSensor,
     ) -> None:
-        """
-        Initialize the Object.
+        """Initialize the Object.
 
         :param active_hinges: The active hinges to control.
         :param imu_sensor: The IMU sensor.
@@ -44,8 +43,7 @@ class ANNBrainInstance(BrainInstance):  # type: ignore[misc]
         sensor_state: ModularRobotSensorState,
         control_interface: ModularRobotControlInterface,
     ) -> None:
-        """
-        Control the modular robot.
+        """Control the modular robot.
 
         :param dt: Elapsed seconds since last call to this function.
         :param sensor_state: Interface for reading the current sensor state.
@@ -96,8 +94,7 @@ class ANNBrain(Brain):  # type: ignore[misc]
         active_hinges: list[ActiveHinge],
         imu_sensor: IMUSensor,
     ) -> None:
-        """
-        Initialize the Object.
+        """Initialize the Object.
 
         :param active_hinges: The active hinges to control.
         :param imu_sensor: The IMU sensor.
@@ -106,8 +103,7 @@ class ANNBrain(Brain):  # type: ignore[misc]
         self.imu_sensor = imu_sensor
 
     def make_instance(self) -> BrainInstance:
-        """
-        Create an instance of this brain.
+        """Create an instance of this brain.
 
         :returns: The created instance.
         """

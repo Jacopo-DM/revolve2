@@ -15,17 +15,22 @@ from modular_robot_physical._hardware_type import HardwareType
 from modular_robot_physical._protocol_version import PROTOCOL_VERSION
 from modular_robot_physical._standard_port import STANDARD_PORT
 from modular_robot_physical._uuid_key import UUIDKey
-from modular_robot_physical.robot_daemon_api import (
-    robot_daemon_protocol_capnp,
+from modular_robot_physical.remote._camera_sensor_state_impl import (
+    CameraSensorStateImpl,
 )
-
-from ._camera_sensor_state_impl import CameraSensorStateImpl
-from ._imu_sensor_state_impl import IMUSensorStateImpl
-from ._modular_robot_control_interface_impl import (
+from modular_robot_physical.remote._imu_sensor_state_impl import (
+    IMUSensorStateImpl,
+)
+from modular_robot_physical.remote._modular_robot_control_interface_impl import (
     ModularRobotControlInterfaceImpl,
 )
-from ._modular_robot_sensor_state_impl_v1 import ModularRobotSensorStateImplV1
-from ._modular_robot_sensor_state_impl_v2 import ModularRobotSensorStateImplV2
+from modular_robot_physical.remote._modular_robot_sensor_state_impl_v1 import (
+    ModularRobotSensorStateImplV1,
+)
+from modular_robot_physical.remote._modular_robot_sensor_state_impl_v2 import (
+    ModularRobotSensorStateImplV2,
+)
+from modular_robot_physical.robot_daemon_api import robot_daemon_protocol_capnp
 
 if TYPE_CHECKING:
     from revolve2.modular_robot.sensor_state import ModularRobotSensorState
@@ -79,9 +84,9 @@ async def _run_remote_impl(
         service = client.bootstrap().cast_as(
             robot_daemon_protocol_capnp.RoboServer
         )
-    except ConnectionRefusedError as e:
+    except ConnectionRefusedError:
         msg = "Could not connect to robot."
-        raise ConnectionRefusedError(msg) from e
+        raise ConnectionRefusedError(msg)
 
     # Setup the robot and check protocol version
     setup_response: robot_daemon_protocol_capnp.SetupResponse = (

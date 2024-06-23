@@ -1,5 +1,4 @@
-"""
-This module defines the base class for a module in a modular robot.
+"""This module defines the base class for a module in a modular robot.
 
 A module represents a basic building block of a modular robot. It can have attachment points to connect with other modules, and it can have child modules attached to it.
 
@@ -34,8 +33,7 @@ class _AttachedSensors:
     _imu_sensor: IMUSensor | None
 
     def __init__(self) -> None:
-        """
-        Initialize the AttachedSensors.
+        """Initialize the AttachedSensors.
 
         By default, we do not have sensors on base modules.
         """
@@ -44,8 +42,7 @@ class _AttachedSensors:
         self._active_hinge_sensor = None
 
     def add_sensor(self, sensor: Sensor) -> None:
-        """
-        Add a sensor to the attached Sensors of the module.
+        """Add a sensor to the attached Sensors of the module.
 
         :param sensor: The sensor.
         :raises KeyError: If something went wrong with attaching the sensor.
@@ -74,8 +71,7 @@ class _AttachedSensors:
                 raise KeyError(msg)
 
     def get_all_sensors(self) -> list[Sensor]:
-        """
-        Get all sensors attached to the Module.
+        """Get all sensors attached to the Module.
 
         Sensors that are None will not be included in the list.
 
@@ -90,8 +86,7 @@ class _AttachedSensors:
 
     @property
     def imu_sensor(self) -> IMUSensor | None:
-        """
-        Get the potential IMU Sensor.
+        """Get the potential IMU Sensor.
 
         :returns: The IMU Sensor or None.
         """
@@ -99,8 +94,7 @@ class _AttachedSensors:
 
     @property
     def active_hinge_sensor(self) -> ActiveHingeSensor | None:
-        """
-        Get the potential Active Hinge Sensor.
+        """Get the potential Active Hinge Sensor.
 
         :returns: The ActiveHinge Sensor or None.
         """
@@ -108,8 +102,7 @@ class _AttachedSensors:
 
     @property
     def camera_sensor(self) -> CameraSensor | None:
-        """
-        Get the potential Camera Sensor.
+        """Get the potential Camera Sensor.
 
         :returns: The Camera Sensor or None.
         """
@@ -149,8 +142,7 @@ class Module:
         attachment_points: dict[int, AttachmentPoint],
         sensors: list[Sensor],
     ) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param orientation: Orientation of this model relative to its parent.
         :param color: The color of the module.
@@ -173,8 +165,7 @@ class Module:
 
     @property
     def uuid(self) -> uuid.UUID:
-        """
-        Get the uuid.
+        """Get the uuid.
 
         :returns: The uuid.
         """
@@ -182,8 +173,7 @@ class Module:
 
     @property
     def orientation(self) -> Quaternion:
-        """
-        Get the orientation of this model relative to its parent.
+        """Get the orientation of this model relative to its parent.
 
         :returns: The orientation.
         """
@@ -191,8 +181,7 @@ class Module:
 
     @property
     def parent(self) -> Module | None:
-        """
-        Get the parent module of this module.
+        """Get the parent module of this module.
 
         None if this module has not yet been added to a body or is the origin of the body.
 
@@ -202,8 +191,7 @@ class Module:
 
     @property
     def parent_child_index(self) -> int | None:
-        """
-        Index of this module in the parent modules child list.
+        """Index of this module in the parent modules child list.
 
         None if this module has not yet been added to a body.
 
@@ -213,16 +201,14 @@ class Module:
 
     @property
     def children(self) -> dict[int, Module]:
-        """
-        Get all children on this module.
+        """Get all children on this module.
 
         :return: The children and their respective attachment point index.
         """
         return self._children
 
     def set_child(self, module: Module, child_index: int) -> None:
-        """
-        Attach a module to certain AttachmentPoint.
+        """Attach a module to certain AttachmentPoint.
 
         :param module: The module to attach.
         :param child_index: The index of the AttachmentPoint to attach it to.
@@ -240,8 +226,7 @@ class Module:
             raise KeyError(msg)
 
     def can_set_child(self, child_index: int) -> bool:
-        """
-        Check if a child can be set on a specific attachment point on the module.
+        """Check if a child can be set on a specific attachment point on the module.
 
         :param child_index: The child index.
         :return: The boolean value.
@@ -249,8 +234,7 @@ class Module:
         return bool(self._children.get(child_index, True))
 
     def neighbours(self, within_range: int) -> list[Module]:
-        """
-        Get the neighbours of this module with a certain range of the module tree.
+        """Get the neighbours of this module with a certain range of the module tree.
 
         :param within_range: The range in which modules are considered a neighbour. Minimum is 1.
         :returns: The neighbouring modules.
@@ -284,8 +268,7 @@ class Module:
 
     @property
     def color(self) -> Color:
-        """
-        Get the color of this module.
+        """Get the color of this module.
 
         :returns: The color.
         """
@@ -293,8 +276,7 @@ class Module:
 
     @color.setter
     def color(self, color: Color) -> None:
-        """
-        Set the color of a module.
+        """Set the color of a module.
 
         :param color: The color
         """
@@ -302,8 +284,7 @@ class Module:
 
     @property
     def attachment_points(self) -> dict[int, AttachmentPoint]:
-        """
-        Get all attachment points of this module.
+        """Get all attachment points of this module.
 
         :return: The attachment points.
         """
@@ -311,16 +292,14 @@ class Module:
 
     @property
     def sensors(self) -> _AttachedSensors:
-        """
-        Get the sensors.
+        """Get the sensors.
 
         :return: The value.
         """
         return self._sensors
 
     def add_sensor(self, sensor: Sensor) -> None:
-        """
-        Add a sensor to the module.
+        """Add a sensor to the module.
 
         :param sensor: The sensor.
         """

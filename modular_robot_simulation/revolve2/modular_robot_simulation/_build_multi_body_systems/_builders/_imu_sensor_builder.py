@@ -28,8 +28,7 @@ class IMUSensorBuilder(Builder):
         pose: Pose,
         imu_location: Vector3,
     ) -> None:
-        """
-        Initialize the IMU-Sensor Builder.
+        """Initialize the IMU-Sensor Builder.
 
         :param sensor: The sensor to be built.
         :param rigid_body: The rigid body for the module to be built on.
@@ -46,8 +45,7 @@ class IMUSensorBuilder(Builder):
         multi_body_system: MultiBodySystem,
         body_to_multi_body_system_mapping: BodyToMultiBodySystemMapping,
     ) -> list[UnbuiltChild]:
-        """
-        Build a module onto the Robot.
+        """Build a module onto the Robot.
 
         :param multi_body_system: The multi body system of the robot.
         :param body_to_multi_body_system_mapping: A mapping from body to multi-body system

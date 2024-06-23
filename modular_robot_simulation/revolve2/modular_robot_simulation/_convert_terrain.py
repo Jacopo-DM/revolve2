@@ -4,8 +4,7 @@ from modular_robot_simulation import Terrain
 
 
 def convert_terrain(terrain: Terrain) -> MultiBodySystem:
-    """
-    Convert a terrain to a multi-body system.
+    """Convert a terrain to a multi-body system.
 
     :param terrain: The terrain to convert.
     :returns: The created multi-body system.

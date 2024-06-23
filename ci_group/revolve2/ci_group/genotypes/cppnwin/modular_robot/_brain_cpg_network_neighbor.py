@@ -9,8 +9,7 @@ from revolve2.modular_robot.brain.cpg import (
 
 class BrainCpgNetworkNeighbor(ModularRobotBrainCpgNetworkNeighbor):  # type: ignore[misc]
     # TODO(jmdm): Fix type error"↑"
-    """
-    A CPG brain based on `ModularRobotBrainCpgNetworkNeighbor` that creates weights from a CPPNWIN network.
+    """A CPG brain based on `ModularRobotBrainCpgNetworkNeighbor` that creates weights from a CPPNWIN network.
 
     Weights are determined by querying the CPPN network with inputs:
     (hinge1_posx, hinge1_posy, hinge1_posz, hinge2_posx, hinge2_posy, hinge3_posz)
@@ -20,8 +19,7 @@ class BrainCpgNetworkNeighbor(ModularRobotBrainCpgNetworkNeighbor):  # type: ign
     _genotype: multineat.Genome
 
     def __init__(self, genotype: multineat.Genome, body: Body) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param genotype: A multineat genome used for determining weights.
         :param body: The body of the robot.

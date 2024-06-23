@@ -12,8 +12,7 @@ TPopulation = TypeVar("TPopulation")
 
 
 class Generation(HasId, orm.MappedAsDataclass, Generic[TPopulation]):
-    """
-    Generic SQLAlchemy model for a generation.
+    """Generic SQLAlchemy model for a generation.
 
     Inherit from this to create your own generation type and table.
 
@@ -61,8 +60,7 @@ class Generation(HasId, orm.MappedAsDataclass, Generic[TPopulation]):
     __type_tpopulation: TPopulation
 
     def __init_subclass__(cls: type[Self], /, **kwargs: dict[str, Any]) -> None:
-        """
-        Initialize a version of this class when it is subclassed.
+        """Initialize a version of this class when it is subclassed.
 
         Gets the actual type of `TPopulation` and stores it for later use.
         :param kwargs: Remaining arguments passed to super.

@@ -42,8 +42,7 @@ class ParentSelector(Selector):  # type: ignore[misc]
     _offspring_size: int
 
     def __init__(self, offspring_size: int) -> None:
-        """
-        Initialize the ParentSelector object.
+        """Initialize the ParentSelector object.
 
         :param offspring_size: The size of the offspring for selection.
         """
@@ -53,8 +52,7 @@ class ParentSelector(Selector):  # type: ignore[misc]
     def select(
         self, population: Population, **kwargs: Any
     ) -> tuple[NDArray[np.int_], dict[str, Population]]:
-        """
-        Select pairs of parents using a tournament.
+        """Select pairs of parents using a tournament.
 
         :param population: The population to select from.
         :param kwargs: Additional kwargs that are not used in this example.
@@ -86,8 +84,7 @@ class SurvivorSelector(Selector):  # type: ignore[misc]
     def select(
         self, population: Population, **kwargs: Any
     ) -> tuple[Population, dict[Any, Any]]:
-        """
-        Select survivors using a tournament.
+        """Select survivors using a tournament.
 
         :param population: The initial population.
         :param kwargs: Additional kwargs that contain the children to do selection with.
@@ -149,8 +146,7 @@ class CrossoverReproducer(Reproducer):  # type: ignore[misc]
     def reproduce(
         self, population: NDArray[np.int_], **kwargs: Any
     ) -> list[Genotype]:
-        """
-        Make Individuals Reproduce.
+        """Make Individuals Reproduce.
 
         :param population: The population.
         :param kwargs: Additional arguments.
@@ -179,8 +175,7 @@ class CrossoverReproducer(Reproducer):  # type: ignore[misc]
 
 
 def run_experiment(dbengine: Engine) -> None:
-    """
-    Run an experiment.
+    """Run an experiment.
 
     :param dbengine: An opened database with matching initialize database structure.
     """

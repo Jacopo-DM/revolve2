@@ -31,8 +31,7 @@ class ModularRobotSimulationHandler(SimulationHandler):  # type: ignore[misc]
         brain_instance: BrainInstance,
         body_to_multi_body_system_mapping: BodyToMultiBodySystemMapping,
     ) -> None:
-        """
-        Add a brain that will control a robot during simulation.
+        """Add a brain that will control a robot during simulation.
 
         :param brain_instance: The brain.
         :param body_to_multi_body_system_mapping: A mapping from body to multi-body system
@@ -45,8 +44,7 @@ class ModularRobotSimulationHandler(SimulationHandler):  # type: ignore[misc]
         simulation_control: ControlInterface,
         dt: float,
     ) -> None:
-        """
-        Handle a simulation frame.
+        """Handle a simulation frame.
 
         :param simulation_state: The current state of the simulation.
         :param simulation_control: Interface for setting control targets.

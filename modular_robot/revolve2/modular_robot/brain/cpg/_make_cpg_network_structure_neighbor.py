@@ -8,8 +8,7 @@ from modular_robot.brain.cpg._cpg_network_structure import (
 def active_hinges_to_cpg_network_structure_neighbor(
     active_hinges: list[ActiveHinge],
 ) -> tuple[CpgNetworkStructure, list[tuple[int, ActiveHinge]]]:
-    """
-    Create the structure of a CPG network based on a list of active hinges.
+    """Create the structure of a CPG network based on a list of active hinges.
 
     The order of the active hinges matches the order of the CPGs.
     I.e. every active hinges has a corresponding CPG,

@@ -28,8 +28,7 @@ class ModularRobotEvolution(Evolution):
         reproducer: Reproducer,
         learner: Learner | None = None,
     ) -> None:
-        """
-        Initialize the ModularRobotEvolution object to make robots evolve.
+        """Initialize the ModularRobotEvolution object to make robots evolve.
 
         :param parent_selection: Selector object for the parents for reproduction.
         :param survivor_selection: Selector object for the survivor selection.
@@ -44,8 +43,7 @@ class ModularRobotEvolution(Evolution):
         self._reproducer = reproducer
 
     def step(self, population: TPopulation, **kwargs: Any) -> TPopulation:
-        """
-        Step the current evolution by one iteration.
+        """Step the current evolution by one iteration.
 
         This implementation follows the following schedule:
 

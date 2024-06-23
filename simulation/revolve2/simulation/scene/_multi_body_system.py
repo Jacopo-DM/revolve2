@@ -10,8 +10,7 @@ from simulation.scene.geometry import GeometryBox
 
 @dataclass(kw_only=True)
 class MultiBodySystem:
-    """
-    A (possibly cyclic) graph of interconnected rigid bodies, joints, and other objects, such as cameras.
+    """A (possibly cyclic) graph of interconnected rigid bodies, joints, and other objects, such as cameras.
 
     The first rigid body added is considered the root of the system.
     That is, if the system is static, that rigid body will be static.
@@ -21,8 +20,7 @@ class MultiBodySystem:
 
     @property
     def uuid(self) -> uuid.UUID:
-        """
-        Get the uuid.
+        """Get the uuid.
 
         :returns: The uuid.
         """
@@ -78,8 +76,7 @@ class MultiBodySystem:
         return base_index - smallest_index
 
     def add_rigid_body(self, rigid_body: RigidBody) -> None:
-        """
-        Add a rigid body to the system.
+        """Add a rigid body to the system.
 
         :param rigid_body: The rigid body to add.
         """
@@ -95,8 +92,7 @@ class MultiBodySystem:
         self._rigid_bodies.append(rigid_body)
 
     def add_joint(self, joint: Joint) -> None:
-        """
-        Add a joint between two rigid bodies.
+        """Add a joint between two rigid bodies.
 
         :param joint: The joint to add.
         """
@@ -129,8 +125,7 @@ class MultiBodySystem:
         self._half_adjacency_matrix[half_matrix_index] = joint
 
     def has_root(self) -> bool:
-        """
-        Check whether a root has been added.
+        """Check whether a root has been added.
 
         The root rigid body is the first rigid body that has been added,
         so this is only false if there are zero rigid bodies in this multi-body system.
@@ -141,8 +136,7 @@ class MultiBodySystem:
 
     @property
     def root(self) -> RigidBody:
-        """
-        Get the root rigid body of this multi-body system.
+        """Get the root rigid body of this multi-body system.
 
         The root rigid body is the first rigid body that has been added.
 
@@ -152,8 +146,7 @@ class MultiBodySystem:
         return self._rigid_bodies[0]
 
     def get_joints_for_rigid_body(self, rigid_body: RigidBody) -> list[Joint]:
-        """
-        Get all joints attached to the provided rigid body.
+        """Get all joints attached to the provided rigid body.
 
         :param rigid_body: A previously added rigid body.
         :returns: The attached joints.
@@ -175,8 +168,7 @@ class MultiBodySystem:
         return [joint for joint in maybe_joints if joint is not None]
 
     def calculate_aabb(self) -> tuple[Vector3, AABB]:
-        """
-        Calculate the axis-aligned bounding box of this multi-body system when it is in T-pose.
+        """Calculate the axis-aligned bounding box of this multi-body system when it is in T-pose.
 
         That is, when all joints are at position 0.
         Only box geometries are currently supported.

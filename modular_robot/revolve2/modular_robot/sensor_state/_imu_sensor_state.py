@@ -9,8 +9,7 @@ class IMUSensorState(ABC):
     @property
     @abstractmethod
     def specific_force(self) -> Vector3:
-        """
-        Get the measured specific force.
+        """Get the measured specific force.
 
         :returns: The measured specific force.
         """
@@ -18,8 +17,7 @@ class IMUSensorState(ABC):
     @property
     @abstractmethod
     def angular_rate(self) -> Vector3:
-        """
-        Get the measured angular rate.
+        """Get the measured angular rate.
 
         :returns: The measured angular rate.
         """
@@ -27,8 +25,7 @@ class IMUSensorState(ABC):
     @property
     @abstractmethod
     def orientation(self) -> Vector3:
-        """
-        Get the measured orientation.
+        """Get the measured orientation.
 
         :returns: The measured orientation.
         """

@@ -14,8 +14,7 @@ class ModularRobotSimulationState:
         simulation_state: SimulationState,
         multi_body_system: MultiBodySystem,
     ) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param simulation_state: The simulation state corresponding to this modular robot state.
         :param multi_body_system: The multi-body system this modular robot corresponds to.
@@ -24,8 +23,7 @@ class ModularRobotSimulationState:
         self._multi_body_system = multi_body_system
 
     def get_pose(self) -> Pose:
-        """
-        Get the pose of the modular robot.
+        """Get the pose of the modular robot.
 
         :returns: The retrieved pose.
         """
@@ -34,8 +32,7 @@ class ModularRobotSimulationState:
         )
 
     def get_module_relative_pose(self, module: Module) -> Pose:
-        """
-        Get the pose of a module, relative to its parent module's reference frame.
+        """Get the pose of a module, relative to its parent module's reference frame.
 
         In case there is no parent(the core), this is equal to getting the absolute pose.
 
@@ -46,8 +43,7 @@ class ModularRobotSimulationState:
         raise NotImplementedError
 
     def get_module_absolute_pose(self, module: Module) -> Pose:
-        """
-        Get the pose of this module, relative the global reference frame.
+        """Get the pose of this module, relative the global reference frame.
 
         :param module: The module to get the pose for.
         :returns: The absolute pose.

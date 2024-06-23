@@ -28,8 +28,7 @@ from revolve2.simulators.mujoco_simulator.textures import (
 
 
 def make_custom_terrain() -> Terrain:
-    """
-    Create a custom terrain.
+    """Create a custom terrain.
 
     :returns: The created terrain.
     """

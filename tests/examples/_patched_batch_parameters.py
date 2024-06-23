@@ -4,8 +4,7 @@ from revolve2.simulation.simulator import BatchParameters
 
 
 def make_patched_batch_parameters() -> BatchParameters:
-    """
-    Create batch parameters for unit-tests.
+    """Create batch parameters for unit-tests.
 
     :returns: The create batch parameters.
     """

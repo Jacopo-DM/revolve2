@@ -27,8 +27,7 @@ class Brick(Module):
         child_offset: float,
         sensors: list[Sensor],
     ) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param rotation: The Modules rotation.
         :param mass: The Modules mass (in kg).
@@ -73,8 +72,7 @@ class Brick(Module):
 
     @property
     def front(self) -> Module | None:
-        """
-        Get the front module of the brick.
+        """Get the front module of the brick.
 
         :returns: The attachment points module.
         """
@@ -82,8 +80,7 @@ class Brick(Module):
 
     @front.setter
     def front(self, module: Module) -> None:
-        """
-        Set a module onto the attachment point.
+        """Set a module onto the attachment point.
 
         :param module: The Module.
         """
@@ -91,8 +88,7 @@ class Brick(Module):
 
     @property
     def right(self) -> Module | None:
-        """
-        Get right module of the brick.
+        """Get right module of the brick.
 
         :returns: The attachment points module.
         """
@@ -100,8 +96,7 @@ class Brick(Module):
 
     @right.setter
     def right(self, module: Module) -> None:
-        """
-        Set a module onto the attachment point.
+        """Set a module onto the attachment point.
 
         :param module: The Module.
         """
@@ -109,8 +104,7 @@ class Brick(Module):
 
     @property
     def left(self) -> Module | None:
-        """
-        Get the left module of the brick.
+        """Get the left module of the brick.
 
         :returns: The attachment points module.
         """
@@ -118,8 +112,7 @@ class Brick(Module):
 
     @left.setter
     def left(self, module: Module) -> None:
-        """
-        Set a module onto the attachment point.
+        """Set a module onto the attachment point.
 
         :param module: The Module.
         """
@@ -127,8 +120,7 @@ class Brick(Module):
 
     @property
     def mass(self) -> float:
-        """
-        Get the mass of the brick (in kg).
+        """Get the mass of the brick (in kg).
 
         :return: The value.
         """
@@ -136,8 +128,7 @@ class Brick(Module):
 
     @property
     def bounding_box(self) -> Vector3:
-        """
-        Get the bounding box size.
+        """Get the bounding box size.
 
         Sizes are total length, not half-length from origin.
         :return: Vector3 with sizes of bbox in x,y,z dimension (in m).

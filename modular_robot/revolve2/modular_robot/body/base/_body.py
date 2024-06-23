@@ -18,8 +18,7 @@ class Body:
     _core: Core
 
     def __init__(self, core: Core) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param core: The core of the body.
         """
@@ -27,8 +26,7 @@ class Body:
 
     @classmethod
     def grid_position(cls, module: Module) -> Vector3:
-        """
-        Calculate the position of this module in a 3d grid with the core as center.
+        """Calculate the position of this module in a 3d grid with the core as center.
 
         The distance between all modules is assumed to be one grid cell.
         All module angles must be multiples of 90 degrees.
@@ -82,8 +80,7 @@ class Body:
         module_type: type[TModule],
         exclude: list[type[TModule]] | None = None,
     ) -> list[TModule]:
-        """
-        Find all Modules of a certain type in the robot.
+        """Find all Modules of a certain type in the robot.
 
         :param module_type: The type.
         :param exclude: Module types to be excluded in search.
@@ -94,8 +91,7 @@ class Body:
         )
 
     def to_grid(self) -> tuple[NDArray[TModuleNP], Vector3[np.int_]]:
-        """
-        Convert the tree structure to a grid.
+        """Convert the tree structure to a grid.
 
         The distance between all modules is assumed to be one grid cell.
         All module angles must be multiples of 90 degrees.
@@ -108,8 +104,7 @@ class Body:
 
     @property
     def core(self) -> Core:
-        """
-        Get the core of the Body.
+        """Get the core of the Body.
 
         :return: The core.
         """

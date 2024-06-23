@@ -26,8 +26,7 @@ class Genotype(BodyGenotypeV2, BrainGenotypeCpg):  # type: ignore[misc]
         innov_db_brain: multineat.InnovationDatabase,
         rng: np.random.Generator,
     ) -> Genotype:
-        """
-        Create a random genotype.
+        """Create a random genotype.
 
         :param innov_db_body: Multineat innovation database for the body. See Multineat library.
         :param innov_db_brain: Multineat innovation database for the brain. See Multineat library.
@@ -45,8 +44,7 @@ class Genotype(BodyGenotypeV2, BrainGenotypeCpg):  # type: ignore[misc]
         innov_db_brain: multineat.InnovationDatabase,
         rng: np.random.Generator,
     ) -> Genotype:
-        """
-        Mutate this genotype.
+        """Mutate this genotype.
 
         This genotype will not be changed; a mutated copy will be returned.
 
@@ -67,8 +65,7 @@ class Genotype(BodyGenotypeV2, BrainGenotypeCpg):  # type: ignore[misc]
         parent2: Genotype,
         rng: np.random.Generator,
     ) -> Genotype:
-        """
-        Perform crossover between two genotypes.
+        """Perform crossover between two genotypes.
 
         :param parent1: The first genotype.
         :param parent2: The second genotype.
@@ -81,8 +78,7 @@ class Genotype(BodyGenotypeV2, BrainGenotypeCpg):  # type: ignore[misc]
         return Genotype(body=body.body, brain=brain.brain)
 
     def develop(self) -> ModularRobot:
-        """
-        Develop the genotype into a modular robot.
+        """Develop the genotype into a modular robot.
 
         :returns: The created robot.
         """

@@ -5,8 +5,7 @@ from revolve2.modular_robot.body.v1 import ActiveHingeV1, BodyV1, BrickV1
 
 
 def all() -> list[BodyV1]:
-    """
-    Get a list of all standard module robots.
+    """Get a list of all standard module robots.
 
     :returns: The list of robots.
     """
@@ -37,8 +36,7 @@ def all() -> list[BodyV1]:
 
 
 def spider_v1() -> BodyV1:
-    """
-    Get the spider modular robot.
+    """Get the spider modular robot.
 
     :returns: the robot.
     """
@@ -68,8 +66,7 @@ def spider_v1() -> BodyV1:
 
 
 def gecko_v1() -> BodyV1:
-    """
-    Get the gecko modular robot.
+    """Get the gecko modular robot.
 
     :returns: the robot.
     """
@@ -96,8 +93,7 @@ def gecko_v1() -> BodyV1:
 
 
 def babya_v1() -> BodyV1:
-    """
-    Get the babya modular robot.
+    """Get the babya modular robot.
 
     :returns: the robot.
     """
@@ -127,8 +123,7 @@ def babya_v1() -> BodyV1:
 
 
 def ant_v1() -> BodyV1:
-    """
-    Get the ant modular robot.
+    """Get the ant modular robot.
 
     :returns: the robot.
     """
@@ -160,8 +155,7 @@ def ant_v1() -> BodyV1:
 
 
 def salamander_v1() -> BodyV1:
-    """
-    Get the salamander modular robot.
+    """Get the salamander modular robot.
 
     :returns: the robot.
     """
@@ -226,8 +220,7 @@ def salamander_v1() -> BodyV1:
 
 
 def blokky_v1() -> BodyV1:
-    """
-    Get the blokky modular robot.
+    """Get the blokky modular robot.
 
     :returns: the robot.
     """
@@ -260,8 +253,7 @@ def blokky_v1() -> BodyV1:
 
 
 def park_v1() -> BodyV1:
-    """
-    Get the park modular robot.
+    """Get the park modular robot.
 
     :returns: the robot.
     """
@@ -298,8 +290,7 @@ def park_v1() -> BodyV1:
 
 
 def babyb_v1() -> BodyV1:
-    """
-    Get the babyb modular robot.
+    """Get the babyb modular robot.
 
     :returns: the robot.
     """
@@ -345,8 +336,7 @@ def babyb_v1() -> BodyV1:
 
 
 def garrix_v1() -> BodyV1:
-    """
-    Get the garrix modular robot.
+    """Get the garrix modular robot.
 
     :returns: the robot.
     """
@@ -375,8 +365,7 @@ def garrix_v1() -> BodyV1:
 
 
 def insect_v1() -> BodyV1:
-    """
-    Get the insect modular robot.
+    """Get the insect modular robot.
 
     :returns: the robot.
     """
@@ -408,8 +397,7 @@ def insect_v1() -> BodyV1:
 
 
 def linkin_v1() -> BodyV1:
-    """
-    Get the linkin modular robot.
+    """Get the linkin modular robot.
 
     :returns: the robot.
     """
@@ -443,8 +431,7 @@ def linkin_v1() -> BodyV1:
 
 
 def longleg_v1() -> BodyV1:
-    """
-    Get the longleg modular robot.
+    """Get the longleg modular robot.
 
     :returns: the robot.
     """
@@ -479,8 +466,7 @@ def longleg_v1() -> BodyV1:
 
 
 def penguin_v1() -> BodyV1:
-    """
-    Get the penguin modular robot.
+    """Get the penguin modular robot.
 
     :returns: the robot.
     """
@@ -527,8 +513,7 @@ def penguin_v1() -> BodyV1:
 
 
 def pentapod_v1() -> BodyV1:
-    """
-    Get the pentapod modular robot.
+    """Get the pentapod modular robot.
 
     :returns: the robot.
     """
@@ -559,8 +544,7 @@ def pentapod_v1() -> BodyV1:
 
 
 def queen_v1() -> BodyV1:
-    """
-    Get the queen modular robot.
+    """Get the queen modular robot.
 
     :returns: the robot.
     """
@@ -587,8 +571,7 @@ def queen_v1() -> BodyV1:
 
 
 def squarish_v1() -> BodyV1:
-    """
-    Get the squarish modular robot.
+    """Get the squarish modular robot.
 
     :returns: the robot.
     """
@@ -613,8 +596,7 @@ def squarish_v1() -> BodyV1:
 
 
 def snake_v1() -> BodyV1:
-    """
-    Get the snake modular robot.
+    """Get the snake modular robot.
 
     :returns: the robot.
     """
@@ -660,8 +642,7 @@ def snake_v1() -> BodyV1:
 
 
 def stingray_v1() -> BodyV1:
-    """
-    Get the stingray modular robot.
+    """Get the stingray modular robot.
 
     :returns: the robot.
     """
@@ -698,8 +679,7 @@ def stingray_v1() -> BodyV1:
 
 
 def tinlicker_v1() -> BodyV1:
-    """
-    Get the tinlicker modular robot.
+    """Get the tinlicker modular robot.
 
     :returns: the robot.
     """
@@ -730,8 +710,7 @@ def tinlicker_v1() -> BodyV1:
 
 
 def turtle_v1() -> BodyV1:
-    """
-    Get the turtle modular robot.
+    """Get the turtle modular robot.
 
     :returns: the robot.
     """
@@ -768,8 +747,7 @@ def turtle_v1() -> BodyV1:
 
 
 def ww_v1() -> BodyV1:
-    """
-    Get the ww modular robot.
+    """Get the ww modular robot.
 
     :returns: the robot.
     """
@@ -802,8 +780,7 @@ def ww_v1() -> BodyV1:
 
 
 def zappa_v1() -> BodyV1:
-    """
-    Get the zappa modular robot.
+    """Get the zappa modular robot.
 
     :returns: the robot.
     """
@@ -836,8 +813,7 @@ def zappa_v1() -> BodyV1:
 
 
 def get(name: str) -> BodyV1:
-    """
-    Get a robot by name.
+    """Get a robot by name.
 
     :param name: The name of the robot to get.
     :returns: The robot with that name.

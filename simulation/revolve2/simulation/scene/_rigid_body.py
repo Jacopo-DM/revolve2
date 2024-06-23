@@ -14,8 +14,7 @@ class _AttachedSensors:
     camera_sensors: list[CameraSensor] = field(default_factory=list)
 
     def add_sensor(self, sensor: Sensor) -> None:
-        """
-        Add sensor to the AttachedSensors object.
+        """Add sensor to the AttachedSensors object.
 
         :param sensor: The sensor
         :raises ValueError: If the sensor type is unknown.
@@ -47,8 +46,7 @@ class RigidBody:
         dynamic_friction: float,
         geometries: list[Geometry],
     ) -> None:
-        """
-        Initialize the rigid body object.
+        """Initialize the rigid body object.
 
         :param initial_pose: The Initial pose of the rigid body. Relative to its parent multi-body system.
         :param static_friction: Static friction of the body.
@@ -64,8 +62,7 @@ class RigidBody:
 
     @property
     def uuid(self) -> uuid.UUID:
-        """
-        Get the uuid.
+        """Get the uuid.
 
         :returns: The uuid.
         """
@@ -79,8 +76,7 @@ class RigidBody:
         return sum(geometry.mass for geometry in self.geometries)
 
     def center_of_mass(self) -> Vector3:
-        """
-        Calculate the center of mass in the local reference frame of this rigid body.
+        """Calculate the center of mass in the local reference frame of this rigid body.
 
         If no geometry has mass, the average position of all geometries is returned, unweighted.
 
@@ -100,8 +96,7 @@ class RigidBody:
         )
 
     def inertia_tensor(self) -> Matrix33:
-        """
-        Calculate the inertia tensor in the local reference frame of this rigid body.
+        """Calculate the inertia tensor in the local reference frame of this rigid body.
 
         For more details on the inertia calculations, see https://en.wikipedia.org/wiki/List_of_moments_of_inertia.
 
@@ -150,8 +145,7 @@ class RigidBody:
 
     @staticmethod
     def _calculate_box_inertia(geometry: GeometryBox) -> Matrix33:
-        """
-        Calculate the moment of inertia for a box geometry.
+        """Calculate the moment of inertia for a box geometry.
 
         :param geometry: The geometry.
         :return: The local inertia.
@@ -177,8 +171,7 @@ class RigidBody:
 
     @staticmethod
     def _calculate_sphere_inertia(geometry: GeometrySphere) -> Matrix33:
-        """
-        Calculate the moment of inertia for a sphere geometry.
+        """Calculate the moment of inertia for a sphere geometry.
 
         :param geometry: The geometry.
         :return: The local inertia.

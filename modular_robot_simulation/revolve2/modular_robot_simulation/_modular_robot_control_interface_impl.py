@@ -20,8 +20,7 @@ class ModularRobotControlInterfaceImpl(ModularRobotControlInterface):  # type: i
         simulation_control: ControlInterface,
         body_to_multi_body_system_mapping: BodyToMultiBodySystemMapping,
     ) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param simulation_control: Control interface of the actual simulation.
         :param body_to_multi_body_system_mapping: A mapping from body to multi-body system
@@ -34,8 +33,7 @@ class ModularRobotControlInterfaceImpl(ModularRobotControlInterface):  # type: i
     def set_active_hinge_target(
         self, active_hinge: ActiveHinge, target: float
     ) -> None:
-        """
-        Set the position target for an active hinge.
+        """Set the position target for an active hinge.
 
         :param active_hinge: The active hinge to set the target for.
         :param target: The target to set.

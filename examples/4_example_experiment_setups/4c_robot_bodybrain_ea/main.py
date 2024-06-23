@@ -33,8 +33,7 @@ class ParentSelector(Selector):  # type: ignore[misc]
     offspring_size: int
 
     def __init__(self, offspring_size: int, rng: np.random.Generator) -> None:
-        """
-        Initialize the parent selector.
+        """Initialize the parent selector.
 
         :param offspring_size: The offspring size.
         :param rng: The rng generator.
@@ -45,8 +44,7 @@ class ParentSelector(Selector):  # type: ignore[misc]
     def select(
         self, population: list[Individual], **kwargs: Any
     ) -> tuple[npt.NDArray[np.int_], dict[str, list[Individual]]]:
-        """
-        Select the parents.
+        """Select the parents.
 
         :param population: The population of robots.
         :param kwargs: Other parameters.
@@ -77,8 +75,7 @@ class SurvivorSelector(Selector):  # type: ignore[misc]
     rng: np.random.Generator
 
     def __init__(self, rng: np.random.Generator) -> None:
-        """
-        Initialize the parent selector.
+        """Initialize the parent selector.
 
         :param rng: The rng generator.
         """
@@ -87,8 +84,7 @@ class SurvivorSelector(Selector):  # type: ignore[misc]
     def select(
         self, population: list[Individual], **kwargs: Any
     ) -> tuple[list[Individual], dict[str, Any]]:
-        """
-        Select survivors using a tournament.
+        """Select survivors using a tournament.
 
         :param population: The population the parents come from.
         :param kwargs: The offspring, with key 'offspring_population'.
@@ -150,8 +146,7 @@ class CrossoverReproducer(Reproducer):  # type: ignore[misc]
         innov_db_body: multineat.InnovationDatabase,
         innov_db_brain: multineat.InnovationDatabase,
     ) -> None:
-        """
-        Initialize the reproducer.
+        """Initialize the reproducer.
 
         :param rng: The random generator.
         :param innov_db_body: The innovation database for the body.
@@ -164,8 +159,7 @@ class CrossoverReproducer(Reproducer):  # type: ignore[misc]
     def reproduce(
         self, population: npt.NDArray[np.int_], **kwargs: Any
     ) -> list[Genotype]:
-        """
-        Reproduce the population by crossover.
+        """Reproduce the population by crossover.
 
         :param population: The parent pairs.
         :param kwargs: Additional keyword arguments.
@@ -192,8 +186,7 @@ class CrossoverReproducer(Reproducer):  # type: ignore[misc]
 def find_best_robot(
     current_best: Individual | None, population: list[Individual]
 ) -> Individual:
-    """
-    Return the best robot between the population and the current best individual.
+    """Return the best robot between the population and the current best individual.
 
     :param current_best: The current best individual.
     :param population: The population.

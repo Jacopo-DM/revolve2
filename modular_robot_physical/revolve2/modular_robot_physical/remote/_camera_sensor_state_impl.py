@@ -3,7 +3,8 @@ from numpy.typing import NDArray
 from revolve2.modular_robot.sensor_state import CameraSensorState
 
 
-class CameraSensorStateImpl(CameraSensorState):
+class CameraSensorStateImpl(CameraSensorState):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """CameraSensorState implementation for physical robots."""
 
     _image: NDArray[np.uint8]

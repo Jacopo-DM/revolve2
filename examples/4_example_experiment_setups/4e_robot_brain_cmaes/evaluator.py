@@ -39,8 +39,7 @@ class Evaluator:
         body: Body,
         output_mapping: list[tuple[int, ActiveHinge]],
     ) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param headless: `headless` parameter for the physics simulator.
         :param num_simulators: `num_simulators` parameter for the physics simulator.
@@ -60,8 +59,7 @@ class Evaluator:
         self,
         solutions: list[npt.NDArray[np.float64]],
     ) -> npt.NDArray[np.float64]:
-        """
-        Evaluate multiple robots.
+        """Evaluate multiple robots.
 
         Fitness is the distance traveled on the xy plane.
 

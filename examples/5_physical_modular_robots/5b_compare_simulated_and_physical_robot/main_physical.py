@@ -10,8 +10,7 @@ from revolve2.modular_robot_physical.remote import test_physical_robot
 def make_body() -> (
     tuple[BodyV2, tuple[ActiveHinge, ActiveHinge, ActiveHinge, ActiveHinge]]
 ):
-    """
-    Create a body for the robot.
+    """Create a body for the robot.
 
     :returns: The created body and a tuple of all ActiveHinge objects for mapping later on.
     """

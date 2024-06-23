@@ -5,8 +5,7 @@ from dataclasses import dataclass, field
 
 @dataclass
 class Sensor(ABC):
-    """
-    An inertial measurement unit.
+    """An inertial measurement unit.
 
     Reports specific force(closely related to acceleration), angular rate(closely related to angularvelocity), and orientation.
     """
@@ -15,8 +14,7 @@ class Sensor(ABC):
 
     @property
     def uuid(self) -> uuid.UUID:
-        """
-        Get the uuid.
+        """Get the uuid.
 
         :returns: The uuid.
         """

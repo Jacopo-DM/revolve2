@@ -20,8 +20,7 @@ class Genotype:
         cls,
         rng: np.random.Generator,
     ) -> Genotype:
-        """
-        Create a random genotype.
+        """Create a random genotype.
 
         :param rng: Random number generator.
         :returns: The created genotype.
@@ -32,8 +31,7 @@ class Genotype:
         self,
         rng: np.random.Generator,
     ) -> Genotype:
-        """
-        Mutate this genotype.
+        """Mutate this genotype.
 
         This genotype will not be changed; a mutated copy will be returned.
 
@@ -52,8 +50,7 @@ class Genotype:
         parent2: Genotype,
         rng: np.random.Generator,
     ) -> Genotype:
-        """
-        Perform uniform crossover between two genotypes.
+        """Perform uniform crossover between two genotypes.
 
         :param parent1: The first genotype.
         :param parent2: The second genotype.

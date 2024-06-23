@@ -2,8 +2,7 @@ from enum import Enum, auto
 
 
 class MapType(Enum):
-    """
-    Enumerate different map types for textures.
+    """Enumerate different map types for textures.
 
     - "MAP2D": Maps the texture to a 2d surface.
     - "CUBE": Wraps the texture around a cube object.

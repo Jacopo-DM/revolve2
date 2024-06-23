@@ -14,8 +14,7 @@ from modular_robot.brain.cpg._make_cpg_network_structure_neighbor import (
 
 
 class BrainCpgNetworkNeighbor(Brain):
-    """
-    A CPG brain with active hinges that are connected if they are within 2 jumps in the modular robot tree structure.
+    """A CPG brain with active hinges that are connected if they are within 2 jumps in the modular robot tree structure.
 
     That means, NOT grid coordinates, but tree distance.
     """
@@ -26,8 +25,7 @@ class BrainCpgNetworkNeighbor(Brain):
     _output_mapping: list[tuple[int, ActiveHinge]]
 
     def __init__(self, body: Body) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param body: The body to create the cpg network and brain for.
         """
@@ -72,8 +70,7 @@ class BrainCpgNetworkNeighbor(Brain):
         )
 
     def make_instance(self) -> BrainInstance:
-        """
-        Create an instance of this brain.
+        """Create an instance of this brain.
 
         :returns: The created instance.
         """
@@ -90,8 +87,7 @@ class BrainCpgNetworkNeighbor(Brain):
         connections: list[tuple[ActiveHinge, ActiveHinge]],
         body: Body,
     ) -> tuple[list[float], list[float]]:
-        """
-        Define the weights between neurons.
+        """Define the weights between neurons.
 
         :param active_hinges: The active hinges corresponding to each cpg.
         :param connections: Pairs of active hinges corresponding to pairs of cpgs that are connected.

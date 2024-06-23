@@ -7,8 +7,7 @@ from simulation.scene._joint import Joint
 
 @dataclass
 class JointHinge(Joint):
-    """
-    A hinge joint, also known as revolute joint.
+    """A hinge joint, also known as revolute joint.
 
     Rotates around a single axis.
     """

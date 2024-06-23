@@ -17,8 +17,7 @@ def steady_state(
         [int, list[Genotype], list[Fitness]], npt.NDArray[np.float64]
     ],
 ) -> tuple[list[int], list[int]]:
-    """
-    Select `len(old_genotypes)` individuals using the provided selection function from combined set of old and new individuals.
+    """Select `len(old_genotypes)` individuals using the provided selection function from combined set of old and new individuals.
 
     :param old_genotypes: Genotypes of the individuals in the parent population.
     :param old_fitnesses: Fitnesses of the individuals in the parent population.

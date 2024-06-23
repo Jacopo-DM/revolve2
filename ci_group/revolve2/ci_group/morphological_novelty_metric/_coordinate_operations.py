@@ -13,8 +13,7 @@ if TYPE_CHECKING:
 def coords_from_bodies(
     bodies: list[Body], *, cob_heuristics: bool
 ) -> list[NDArray[np.float64]]:
-    """
-    Extract coordinates of modules from a body.
+    """Extract coordinates of modules from a body.
 
     :param bodies: The bodies.
     :param cob_heuristics: If change of basis heuristic approximation is used.
@@ -31,8 +30,7 @@ def coords_from_bodies(
 def _body_to_adjusted_coordinates(
     bodies: list[Body],
 ) -> list[NDArray[np.float64]]:
-    """
-    Extract coordinates of modules in a body and adjusts them with the core position.
+    """Extract coordinates of modules in a body and adjusts them with the core position.
 
     :param bodies: The body.
     :return: The coordinates for each body.
@@ -55,8 +53,7 @@ def _body_to_adjusted_coordinates(
 def _coordinates_pca_change_basis(
     coordinates: list[NDArray[np.float64]],
 ) -> None:
-    """
-    Transform the coordinate distribution by the magnitude of variance of the respective basis.
+    """Transform the coordinate distribution by the magnitude of variance of the respective basis.
 
     The detailed steps of the transformation are discussed in the paper.
 
@@ -94,8 +91,7 @@ def _coordinates_pca_change_basis(
 
 
 def _coordinates_pca_heuristic(crds: list[NDArray[np.float64]]) -> None:
-    """
-    Transform the coordinate distribution by the magnitude of variance of the respective basis.
+    """Transform the coordinate distribution by the magnitude of variance of the respective basis.
 
     The heuristic approximation of the transformation by simply switching axes.
 

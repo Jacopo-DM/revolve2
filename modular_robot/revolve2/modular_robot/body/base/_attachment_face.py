@@ -7,8 +7,7 @@ from modular_robot.body._right_angles import RightAngles
 
 
 class AttachmentFace(Module):
-    """
-    Collect AttachmentPoints on a modules face.
+    """Collect AttachmentPoints on a modules face.
 
     This face can be thought of as a pseudo-module which usually does not have a body on its own.
     """
@@ -18,8 +17,7 @@ class AttachmentFace(Module):
         rotation: float | RightAngles,
         attachment_points: dict[int, AttachmentPoint],
     ) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param rotation: Orientation of this model relative to its parent.
         :param attachment_points: The attachment points available on a module.

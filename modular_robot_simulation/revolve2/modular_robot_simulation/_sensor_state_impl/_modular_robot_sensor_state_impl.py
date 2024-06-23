@@ -33,8 +33,7 @@ class ModularRobotSensorStateImpl(ModularRobotSensorState):  # type: ignore[misc
         simulation_state: SimulationState,
         body_to_multi_body_system_mapping: BodyToMultiBodySystemMapping,
     ) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param simulation_state: The state of the simulation.
         :param body_to_multi_body_system_mapping: A mapping from body to multi-body system
@@ -47,8 +46,7 @@ class ModularRobotSensorStateImpl(ModularRobotSensorState):  # type: ignore[misc
     def get_active_hinge_sensor_state(
         self, sensor: ActiveHingeSensor
     ) -> ActiveHingeSensorState:
-        """
-        Get the state of the provided active hinge sensor.
+        """Get the state of the provided active hinge sensor.
 
         :param sensor: The sensor.
         :returns: The state.
@@ -63,8 +61,7 @@ class ModularRobotSensorStateImpl(ModularRobotSensorState):  # type: ignore[misc
         )
 
     def get_imu_sensor_state(self, sensor: IMUSensor) -> IMUSensorState:
-        """
-        Get the state of the provided IMU sensor.
+        """Get the state of the provided IMU sensor.
 
         :param sensor: The IMU sensor.
         :returns: The IMU sensor state.
@@ -83,8 +80,7 @@ class ModularRobotSensorStateImpl(ModularRobotSensorState):  # type: ignore[misc
     def get_camera_sensor_state(
         self, sensor: CameraSensor
     ) -> CameraSensorState:
-        """
-        Get the state of the camera sensor.
+        """Get the state of the camera sensor.
 
         :param sensor: The camera sensor.
         :returns: The camera sensor state.

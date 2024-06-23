@@ -9,8 +9,7 @@ class Simulator(ABC):
 
     @abstractmethod
     def simulate_batch(self, batch: Batch) -> list[list[SimulationState]]:
-        """
-        Simulate the provided batch by simulating each contained scene.
+        """Simulate the provided batch by simulating each contained scene.
 
         :param batch: The batch to run.
         :returns: List of simulation states in ascending order of time.

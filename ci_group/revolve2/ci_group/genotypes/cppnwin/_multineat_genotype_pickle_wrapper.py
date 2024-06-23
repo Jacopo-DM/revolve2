@@ -11,16 +11,14 @@ class MultineatGenotypePickleWrapper:
     genotype: multineat.Genome
 
     def __getstate__(self) -> str:
-        """
-        Convert the genotype to a string, serializing it.
+        """Convert the genotype to a string, serializing it.
 
         :returns: The string.
         """
         return cast(str, self.genotype.Serialize()).replace(" ", "")
 
     def __setstate__(self, serialized_genotype: str) -> None:
-        """
-        Convert a string obtained through __getstate__ to a genotype and set it as the genotype.
+        """Convert a string obtained through __getstate__ to a genotype and set it as the genotype.
 
         :param serialized_genotype: The string to convert.
         """

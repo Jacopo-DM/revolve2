@@ -26,8 +26,7 @@ class CoreV2(Core):
         rotation: float | RightAngles,
         num_batteries: int = 1,
     ) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param rotation: The modules rotation.
         :param num_batteries: The amount of batteries in the robot.
@@ -75,8 +74,7 @@ class CoreV2(Core):
 
     @property
     def front_face(self) -> AttachmentFaceCoreV2:
-        """
-        Get the face attached to the front of the core.
+        """Get the face attached to the front of the core.
 
         :returns: The attached module.
         """
@@ -84,8 +82,7 @@ class CoreV2(Core):
 
     @property
     def right_face(self) -> AttachmentFaceCoreV2:
-        """
-        Get the face attached to the right of the core.
+        """Get the face attached to the right of the core.
 
         :returns: The attached module.
         """
@@ -93,8 +90,7 @@ class CoreV2(Core):
 
     @property
     def back_face(self) -> AttachmentFaceCoreV2:
-        """
-        Get the face attached to the back of the core.
+        """Get the face attached to the back of the core.
 
         :returns: The attached module.
         """
@@ -102,8 +98,7 @@ class CoreV2(Core):
 
     @property
     def left_face(self) -> AttachmentFaceCoreV2:
-        """
-        Get the face attached to the left of the core.
+        """Get the face attached to the left of the core.
 
         :returns: The attached module.
         """
@@ -111,8 +106,7 @@ class CoreV2(Core):
 
     @property
     def horizontal_offset(self) -> float:
-        """
-        Get the horizontal offset for attachment positions (in m).
+        """Get the horizontal offset for attachment positions (in m).
 
         :return: The value.
         """
@@ -120,8 +114,7 @@ class CoreV2(Core):
 
     @property
     def vertical_offset(self) -> float:
-        """
-        Get the vertical offset for attachment positions (in m).
+        """Get the vertical offset for attachment positions (in m).
 
         :return: The value.
         """
@@ -129,8 +122,7 @@ class CoreV2(Core):
 
     @property
     def attachment_faces(self) -> dict[int, AttachmentFaceCoreV2]:
-        """
-        Get all attachment faces for the Core.
+        """Get all attachment faces for the Core.
 
         :return: The attachment faces.
         """

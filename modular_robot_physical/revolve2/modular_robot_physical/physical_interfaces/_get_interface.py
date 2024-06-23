@@ -1,5 +1,4 @@
-from revolve2.modular_robot_physical._hardware_type import HardwareType
-
+from modular_robot_physical._hardware_type import HardwareType
 from modular_robot_physical.physical_interfaces._physical_interface import (
     PhysicalInterface,
 )
@@ -21,13 +20,13 @@ def get_interface(
     try:
         match hardware_type:
             case HardwareType.v1:
-                from revolve2.modular_robot_physical.physical_interfaces.v1 import (
+                from modular_robot_physical.physical_interfaces.v1 import (
                     V1PhysicalInterface,
                 )
 
                 return V1PhysicalInterface(debug=debug, dry=dry)
             case HardwareType.v2:
-                from revolve2.modular_robot_physical.physical_interfaces.v2 import (
+                from modular_robot_physical.physical_interfaces.v2 import (
                     V2PhysicalInterface,
                 )
 

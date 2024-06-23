@@ -26,8 +26,7 @@ def multi_body_system_to_urdf(
     list[tuple[Geometry, str]],
     list[tuple[RigidBody, str]],
 ]:
-    """
-    Convert a multi-body system to URDF.
+    """Convert a multi-body system to URDF.
 
     It must be acyclic and the root body must also be the tree root.
     Furthermore, for each joint, the first body will be considered the parent, and as such must be the parent in the tree.

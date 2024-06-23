@@ -3,8 +3,7 @@ import numpy as np
 
 
 def multineat_rng_from_random(rng: np.random.Generator) -> multineat.RNG:
-    """
-    Create a multineat rng object from a numpy rng state.
+    """Create a multineat rng object from a numpy rng state.
 
     :param rng: The numpy rng.
     :returns: The multineat rng.

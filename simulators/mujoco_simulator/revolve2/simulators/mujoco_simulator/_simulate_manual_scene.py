@@ -28,8 +28,7 @@ def simulate_manual_scene(
     scene: Scene,
     render_backend: RenderBackend = RenderBackend.GLFW,
 ) -> None:
-    """
-    Simulate a scene for checking if a robot was built correctly.
+    """Simulate a scene for checking if a robot was built correctly.
 
     :param scene: The scene to simulate.
     :param render_backend: The render backend.

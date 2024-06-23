@@ -4,8 +4,7 @@ from sqlalchemy import orm
 
 
 class Base(orm.MappedAsDataclass, orm.DeclarativeBase):
-    """
-    Base class for all SQLAlchemy models in this example.
+    """Base class for all SQLAlchemy models in this example.
 
     All ORM classes should inherit from this.
     This is simply how SQLAlchemy is designed.

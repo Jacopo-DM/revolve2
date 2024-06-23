@@ -14,8 +14,7 @@ class CameraSensor(Sensor):
         orientation: Quaternion = Quaternion(),
         camera_size: tuple[int, int] = (50, 50),
     ) -> None:
-        """
-        Initialize the Camera Sensor.
+        """Initialize the Camera Sensor.
 
         Note that the camera_size can have a significant impact on performance.
         For evolution related work stick to 10x10 for fast results.
@@ -29,8 +28,7 @@ class CameraSensor(Sensor):
 
     @property
     def camera_size(self) -> tuple[int, int]:
-        """
-        Get the size of the camera.
+        """Get the size of the camera.
 
         :return: The camera size.
         """

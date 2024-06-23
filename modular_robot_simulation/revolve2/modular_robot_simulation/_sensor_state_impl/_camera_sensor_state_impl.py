@@ -19,8 +19,7 @@ class CameraSensorStateImpl(CameraSensorState):  # type: ignore[misc]
         multi_body_system: MultiBodySystem,
         camera: CameraSensor,
     ) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param simulation_state: The state of the simulation.
         :param multi_body_system: The multi body system this imu is attached to.
@@ -32,8 +31,7 @@ class CameraSensorStateImpl(CameraSensorState):  # type: ignore[misc]
 
     @property
     def image(self) -> NDArray[np.uint8]:
-        """
-        Get the current image.
+        """Get the current image.
 
         :returns: The image.
         """

@@ -40,8 +40,7 @@ class ParentSelector(Selector):  # type: ignore[misc]
     offspring_size: int
 
     def __init__(self, offspring_size: int, rng: np.random.Generator) -> None:
-        """
-        Initialize the parent selector.
+        """Initialize the parent selector.
 
         :param offspring_size: The offspring size.
         :param rng: The rng generator.
@@ -52,8 +51,7 @@ class ParentSelector(Selector):  # type: ignore[misc]
     def select(
         self, population: Population, **kwargs: Any
     ) -> tuple[npt.NDArray[np.int_], dict[str, Population]]:
-        """
-        Select the parents.
+        """Select the parents.
 
         :param population: The population of robots.
         :param kwargs: Other parameters.
@@ -88,8 +86,7 @@ class SurvivorSelector(Selector):  # type: ignore[misc]
     rng: np.random.Generator
 
     def __init__(self, rng: np.random.Generator) -> None:
-        """
-        Initialize the parent selector.
+        """Initialize the parent selector.
 
         :param rng: The rng generator.
         """
@@ -98,8 +95,7 @@ class SurvivorSelector(Selector):  # type: ignore[misc]
     def select(
         self, population: Population, **kwargs: Any
     ) -> tuple[Population, dict[str, Any]]:
-        """
-        Select survivors using a tournament.
+        """Select survivors using a tournament.
 
         :param population: The population the parents come from.
         :param kwargs: The offspring, with key 'offspring_population'.
@@ -167,8 +163,7 @@ class CrossoverReproducer(Reproducer):  # type: ignore[misc]
         innov_db_body: multineat.InnovationDatabase,
         innov_db_brain: multineat.InnovationDatabase,
     ) -> None:
-        """
-        Initialize the reproducer.
+        """Initialize the reproducer.
 
         :param rng: The random generator.
         :param innov_db_body: The innovation database for the body.
@@ -181,8 +176,7 @@ class CrossoverReproducer(Reproducer):  # type: ignore[misc]
     def reproduce(
         self, population: npt.NDArray[np.int_], **kwargs: Any
     ) -> list[Genotype]:
-        """
-        Reproduce the population by crossover.
+        """Reproduce the population by crossover.
 
         :param population: The parent pairs.
         :param kwargs: Additional keyword arguments.
@@ -205,8 +199,7 @@ class CrossoverReproducer(Reproducer):  # type: ignore[misc]
 
 
 def run_experiment(dbengine: Engine) -> None:
-    """
-    Run an experiment.
+    """Run an experiment.
 
     :param dbengine: An opened database with matching initialize database structure.
     """
@@ -321,8 +314,7 @@ def main() -> None:
 
 
 def save_to_db(dbengine: Engine, generation: Generation) -> None:
-    """
-    Save the current generation to the database.
+    """Save the current generation to the database.
 
     :param dbengine: The database engine.
     :param generation: The current generation.

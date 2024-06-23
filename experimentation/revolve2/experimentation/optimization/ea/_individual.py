@@ -20,8 +20,7 @@ TGenotype = TypeVar("TGenotype")
 
 
 class Individual(HasId, orm.MappedAsDataclass, Generic[TGenotype]):
-    """
-    Generic SQLAlchemy model for an individual.
+    """Generic SQLAlchemy model for an individual.
 
     Inherit from this to create your own individual type.
 
@@ -87,8 +86,7 @@ class Individual(HasId, orm.MappedAsDataclass, Generic[TGenotype]):
     def __init_subclass__(
         cls: type[Self], population_table: str, **kwargs: dict[str, Any]
     ) -> None:
-        """
-        Initialize a version of this class when it is subclassed.
+        """Initialize a version of this class when it is subclassed.
 
         Gets the actual type of `TGenotype` and value of `population_table` and stores them for later use.
 

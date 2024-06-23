@@ -10,8 +10,7 @@ Item = TypeVar("Item", bound="SupportsLt")
 
 
 def argsort(seq: Sequence[Item]) -> list[int]:
-    """
-    Get the indices of the sequence sorted by value.
+    """Get the indices of the sequence sorted by value.
 
     :param seq: The sequence.
     :returns: The indices.

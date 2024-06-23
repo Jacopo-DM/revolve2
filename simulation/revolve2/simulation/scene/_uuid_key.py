@@ -7,8 +7,7 @@ class HasUUID(Protocol):
 
     @property
     def uuid(self) -> UUID:
-        """
-        Get the uuid.
+        """Get the uuid.
 
         :returns: The uuid.
 
@@ -25,8 +24,7 @@ class UUIDKey(Generic[_T]):
     _value: _T
 
     def __init__(self, value: _T) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param value: The value to wrap.
         """
@@ -34,16 +32,14 @@ class UUIDKey(Generic[_T]):
 
     @property
     def value(self) -> _T:
-        """
-        Get the wrapped value.
+        """Get the wrapped value.
 
         :returns: The value.
         """
         return self._value
 
     def __eq__(self, other: object) -> bool:
-        """
-        Compare with another wrapped value using their ids.
+        """Compare with another wrapped value using their ids.
 
         :param other: The object to compare with.
         :returns: Whether their ids are equal.
@@ -56,8 +52,7 @@ class UUIDKey(Generic[_T]):
         return self._value.uuid == other._value.uuid
 
     def __hash__(self) -> int:
-        """
-        Hash this object using its id only.
+        """Hash this object using its id only.
 
         :returns: The hash.
         """

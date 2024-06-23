@@ -7,8 +7,7 @@ from modular_robot.brain.cpg._brain_cpg_network_neighbor import (
 
 
 class BrainCpgNetworkNeighborRandom(BrainCpgNetworkNeighbor):
-    """
-    A cpg brain with random weights between neurons.
+    """A cpg brain with random weights between neurons.
 
     The weights are randomly generated when this object is created,
     so they will be the same for every controller instance.
@@ -17,8 +16,7 @@ class BrainCpgNetworkNeighborRandom(BrainCpgNetworkNeighbor):
     _rng: np.random.Generator
 
     def __init__(self, body: Body, rng: np.random.Generator) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param body: The body to create the cpg network and brain for.
         :param rng: Random number generator used for generating the weights.

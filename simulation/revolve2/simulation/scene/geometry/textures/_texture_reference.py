@@ -16,8 +16,7 @@ class TextureReference(ABC):
     """Specify the layout of the texture to be mapped onto an object. This depends on the simulator used. Please check the simulators documentation for supported grid layouts."""
 
     def __post_init__(self) -> None:
-        """
-        Check for potential conflicts due to missing arguments.
+        """Check for potential conflicts due to missing arguments.
 
         :raises NotImplementedError: If not sufficient arguments are given.
         """

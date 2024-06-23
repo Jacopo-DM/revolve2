@@ -7,8 +7,7 @@ class BrainDummy(Brain):
     """A brain that does nothing."""
 
     def make_instance(self) -> BrainInstance:
-        """
-        Create an instance of this brain.
+        """Create an instance of this brain.
 
         :returns: The created instance.
         """

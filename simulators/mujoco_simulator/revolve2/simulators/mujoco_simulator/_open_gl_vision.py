@@ -14,8 +14,7 @@ from simulators.mujoco_simulator._render_backend import RenderBackend
 
 
 class OpenGLVision:
-    """
-    A class to enable vision / camera sensors using OpenGl.
+    """A class to enable vision / camera sensors using OpenGl.
 
     This Class is based on an implementation of Kevin Godin-Dubois <k.j.m.godin-dubois@vu.nl>.
     Thank you very much for this big contribution!
@@ -40,8 +39,7 @@ class OpenGLVision:
         open_gl_lib: RenderBackend,
         max_geometries: int = 10_000,
     ) -> None:
-        """
-        Initialize the vision object.
+        """Initialize the vision object.
 
         Keep the following limitations in mind:
         - GLFW cannot work in a headless/ multithreaded environment.
@@ -78,8 +76,7 @@ class OpenGLVision:
         )  # Create an empty RGB-image.
 
     def process(self, model: MjModel, data: MjData) -> NDArray[np.uint8]:
-        """
-        Process the current state of the simulation and render it.
+        """Process the current state of the simulation and render it.
 
         :param model: The mujoco model.
         :param data: The mujoco data.
@@ -107,8 +104,7 @@ class OpenGLVision:
 
     @staticmethod
     def get_context(open_gl_lib: RenderBackend) -> Any:
-        """
-        Get the context to be used.
+        """Get the context to be used.
 
         :param open_gl_lib: The render backend to use.
         :return: The context type.

@@ -8,8 +8,7 @@ Fitness = TypeVar("Fitness")
 def tournament(
     rng: np.random.Generator, fitnesses: list[Fitness], k: int
 ) -> int:
-    """
-    Perform tournament selection and return the index of the best individual.
+    """Perform tournament selection and return the index of the best individual.
 
     :param rng: Random number generator.
     :param fitnesses: List of finesses of individuals that joint the tournament.

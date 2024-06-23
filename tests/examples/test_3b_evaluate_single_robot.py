@@ -4,13 +4,16 @@ from unittest.mock import Mock
 
 from tests.conftest import EXAMPLES_DIR
 
-from ._clear_example_modules_from_cache import clear_exp_modules_from_cache
-from ._patched_batch_parameters import make_patched_batch_parameters
+from tests.examples._clear_example_modules_from_cache import (
+    clear_exp_modules_from_cache,
+)
+from tests.examples._patched_batch_parameters import (
+    make_patched_batch_parameters,
+)
 
 
 def test_3b_evaluate_single_robot(mocker: Mock) -> None:
-    """
-    Test 3b_evaluate_single_robot example can complete.
+    """Test 3b_evaluate_single_robot example can complete.
 
     :param mocker: The mock object.
     """

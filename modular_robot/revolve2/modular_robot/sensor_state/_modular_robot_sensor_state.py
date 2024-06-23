@@ -19,8 +19,7 @@ class ModularRobotSensorState(ABC):
     def get_active_hinge_sensor_state(
         self, sensor: ActiveHingeSensor
     ) -> ActiveHingeSensorState:
-        """
-        Get the state of the provided active hinge sensor.
+        """Get the state of the provided active hinge sensor.
 
         :param sensor: The sensor.
         :returns: The state.
@@ -28,8 +27,7 @@ class ModularRobotSensorState(ABC):
 
     @abstractmethod
     def get_imu_sensor_state(self, sensor: IMUSensor) -> IMUSensorState:
-        """
-        Get the state of the provided IMU sensor.
+        """Get the state of the provided IMU sensor.
 
         :param sensor: The sensor.
         :returns: The state.
@@ -39,8 +37,7 @@ class ModularRobotSensorState(ABC):
     def get_camera_sensor_state(
         self, sensor: CameraSensor
     ) -> CameraSensorState:
-        """
-        Get the state of the provided camera sensor.
+        """Get the state of the provided camera sensor.
 
         :param sensor: The sensor.
         :returns: The state.

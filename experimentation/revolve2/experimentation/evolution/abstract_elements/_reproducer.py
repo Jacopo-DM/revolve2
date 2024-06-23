@@ -9,8 +9,7 @@ class Reproducer(ABC):
 
     @abstractmethod
     def reproduce(self, population: TPopulation, **kwargs: Any) -> TPopulation:
-        """
-        Make Individuals Reproduce.
+        """Make Individuals Reproduce.
 
         :param population: The population.
         :param kwargs: Additional arguments.

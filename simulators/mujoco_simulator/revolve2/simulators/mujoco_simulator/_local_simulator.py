@@ -35,8 +35,7 @@ class LocalSimulator(Simulator):  # type: ignore[misc]
         fast_sim: bool = False,
         manual_control: bool = False,
     ) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param headless: If True, the simulation will not be rendered. This drastically improves performance.
         :param start_paused: If True, start the simulation paused. Only possible when not in headless mode.
@@ -67,8 +66,7 @@ class LocalSimulator(Simulator):  # type: ignore[misc]
         )
 
     def simulate_batch(self, batch: Batch) -> list[list[SimulationState]]:
-        """
-        Simulate the provided batch by simulating each contained scene.
+        """Simulate the provided batch by simulating each contained scene.
 
         :param batch: The batch to run.
         :returns: List of simulation states in ascending order of time.

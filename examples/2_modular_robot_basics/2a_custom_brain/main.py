@@ -17,8 +17,7 @@ from revolve2.simulators.mujoco_simulator import LocalSimulator
 def make_body() -> (
     tuple[BodyV2, ActiveHingeV2, ActiveHingeV2, ActiveHingeV2, ActiveHingeV2]
 ):
-    """
-    Create a body for the robot.
+    """Create a body for the robot.
 
     :returns: The created body and references to each hinge: first_left_active_hinge, second_left_active_hinge, first_right_active_hinge, second_right_active_hinge.
     """
@@ -44,8 +43,7 @@ def make_body() -> (
 
 class CustomBrainInstance(BrainInstance):  # type: ignore[misc]
     # TODO(jmdm): Fix type error"↑"
-    """
-    The actual object that controls the robot.
+    """The actual object that controls the robot.
 
     Created by the `CustomBrain` class.
     """
@@ -62,8 +60,7 @@ class CustomBrainInstance(BrainInstance):  # type: ignore[misc]
         first_right_active_hinge: ActiveHingeV2,
         second_right_active_hinge: ActiveHingeV2,
     ) -> None:
-        """
-        Initialize the Custom Brain Instance.
+        """Initialize the Custom Brain Instance.
 
         :param first_left_active_hinge: First left active Hinge.
         :param second_left_active_hinge: Second left active Hinge.
@@ -81,8 +78,7 @@ class CustomBrainInstance(BrainInstance):  # type: ignore[misc]
         sensor_state: ModularRobotSensorState,
         control_interface: ModularRobotControlInterface,
     ) -> None:
-        """
-        Control the modular robot using our custom brain.
+        """Control the modular robot using our custom brain.
 
         :param dt: Elapsed seconds since last call to this function.
         :param sensor_state: Interface for reading the current sensor state.
@@ -104,8 +100,7 @@ class CustomBrainInstance(BrainInstance):  # type: ignore[misc]
 
 class CustomBrain(Brain):  # type: ignore[misc]
     # TODO(jmdm): Fix type error"↑"
-    """
-    This is our custom brain.
+    """This is our custom brain.
 
     It stores references to each hinge of the robot body so they can be controlled individually.
     A brain has a function `make_instance`, which creates the actual object that controls a robot.
@@ -123,8 +118,7 @@ class CustomBrain(Brain):  # type: ignore[misc]
         first_right_active_hinge: ActiveHingeV2,
         second_right_active_hinge: ActiveHingeV2,
     ) -> None:
-        """
-        Initialize the Custom Brain.
+        """Initialize the Custom Brain.
 
         :param first_left_active_hinge: First left active Hinge.
         :param second_left_active_hinge: Second left active Hinge.
@@ -137,8 +131,7 @@ class CustomBrain(Brain):  # type: ignore[misc]
         self.second_right_active_hinge = second_right_active_hinge
 
     def make_instance(self) -> BrainInstance:
-        """
-        Create an instance of this brain.
+        """Create an instance of this brain.
 
         :returns: The created instance.
         """

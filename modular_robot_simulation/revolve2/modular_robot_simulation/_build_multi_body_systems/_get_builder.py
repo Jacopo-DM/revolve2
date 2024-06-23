@@ -56,8 +56,7 @@ else:
 
 
 def get_builder(unbuilt_child: UnbuiltChild) -> Builder:
-    """
-    Get and initialize the corresponding Builder for the module.
+    """Get and initialize the corresponding Builder for the module.
 
     :param unbuilt_child: The target child to be built.
     :return: The initialized Builder.

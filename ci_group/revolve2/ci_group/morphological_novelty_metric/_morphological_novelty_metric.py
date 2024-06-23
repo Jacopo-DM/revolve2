@@ -24,8 +24,7 @@ def get_novelty_from_population(
     *,
     cob_heuristic: bool = False,
 ) -> NDArray[np.float64]:
-    """
-    Get the morphological novelty score for individuals in a population.
+    """Get the morphological novelty score for individuals in a population.
 
     This metric for Morphological Novelty considers robots a distribution in space, which can be reshaped into any other distribution.
     The work that has to be done to reshape distribution 1 to distribution 2 is used for the final novelty calculation.
@@ -56,8 +55,7 @@ def get_novelty_from_population(
 def _coordinates_to_magnitudes_orientation(
     coordinates: list[NDArray[np.float64]],
 ) -> tuple[Magnitudes, Orientations]:
-    """
-    Calculate the magnitude and orientation for the coordinates supplied.
+    """Calculate the magnitude and orientation for the coordinates supplied.
 
     :param coordinates: The coordinates for calculating the magnitudes and orientations.
     :return: The magnitudes and orientations.
@@ -85,8 +83,7 @@ def _gen_gradient_histogram(
     magnitudes: Magnitudes,
     num_bins: int,
 ) -> NDArray[np.float64]:
-    """
-    Generate the gradient histograms for the respective histogram index.
+    """Generate the gradient histograms for the respective histogram index.
 
     :param orientations: The orientations of points in the bodies.
     :param magnitudes: The magnitudes of points in the bodies.
@@ -111,8 +108,7 @@ def _gen_gradient_histogram(
 
 
 def _normalize_cast_int(histograms: NDArray[np.float64]) -> NDArray[np.int64]:
-    """
-    Normalize a matrix (array), making its sum = _INT_CASTER.
+    """Normalize a matrix (array), making its sum = _INT_CASTER.
 
     :param histograms: The histograms to cast and normalize.
     :return: The normalized and cast histograms.

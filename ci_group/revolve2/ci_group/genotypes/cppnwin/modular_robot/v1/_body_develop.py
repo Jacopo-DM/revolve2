@@ -22,8 +22,7 @@ class __Module:
 def develop(
     genotype: multineat.Genome,
 ) -> BodyV1:
-    """
-    Develop a CPPNWIN genotype into a modular robot body.
+    """Develop a CPPNWIN genotype into a modular robot body.
 
     It is important that the genotype was created using a compatible function.
 
@@ -79,8 +78,7 @@ def __evaluate_cppn(
     position: Vector3[np.int_],
     chain_length: int,
 ) -> tuple[Any, int]:
-    """
-    Get module type and orientation from a multineat CPPN network.
+    """Get module type and orientation from a multineat CPPN network.
 
     :param body_net: The CPPN network.
     :param position: Position of the module.
@@ -148,8 +146,7 @@ def __add_child(
 
 
 def __rotate(a: Vector3, b: Vector3, rotation: Quaternion) -> Vector3:
-    """
-    Rotates vector a a given angle around b.
+    """Rotates vector a a given angle around b.
 
     :param a: Vector a.
     :param b: Vector b.
@@ -166,8 +163,7 @@ def __rotate(a: Vector3, b: Vector3, rotation: Quaternion) -> Vector3:
 
 
 def __vec3_int(vector: Vector3) -> Vector3[np.int_]:
-    """
-    Cast a Vector3 object to an integer only Vector3.
+    """Cast a Vector3 object to an integer only Vector3.
 
     :param vector: The vector.
     :return: The integer vector.

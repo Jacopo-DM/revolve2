@@ -7,8 +7,7 @@ class ActiveHingeSensorState(ABC):
     @property
     @abstractmethod
     def position(self) -> float:
-        """
-        Get the measured position of the active hinge.
+        """Get the measured position of the active hinge.
 
         :returns: The measured position.
         """

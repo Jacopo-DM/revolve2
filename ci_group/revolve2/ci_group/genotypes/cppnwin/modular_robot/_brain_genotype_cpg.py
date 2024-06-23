@@ -39,8 +39,7 @@ class BrainGenotypeCpg:
         innov_db: multineat.InnovationDatabase,
         rng: np.random.Generator,
     ) -> BrainGenotypeCpg:
-        """
-        Create a random genotype.
+        """Create a random genotype.
 
         :param innov_db: Multineat innovation database. See Multineat library.
         :param rng: Random number generator.
@@ -68,8 +67,7 @@ class BrainGenotypeCpg:
         innov_db: multineat.InnovationDatabase,
         rng: np.random.Generator,
     ) -> BrainGenotypeCpg:
-        """
-        Mutate this genotype.
+        """Mutate this genotype.
 
         This genotype will not be changed; a mutated copy will be returned.
 
@@ -98,8 +96,7 @@ class BrainGenotypeCpg:
         parent2: Self,
         rng: np.random.Generator,
     ) -> BrainGenotypeCpg:
-        """
-        Perform crossover between two genotypes.
+        """Perform crossover between two genotypes.
 
         :param parent1: The first genotype.
         :param parent2: The second genotype.
@@ -121,8 +118,7 @@ class BrainGenotypeCpg:
         )
 
     def develop_brain(self, body: Body) -> BrainCpgNetworkNeighbor:
-        """
-        Develop the genotype into a modular robot.
+        """Develop the genotype into a modular robot.
 
         :param body: The body to develop the brain for.
         :returns: The created robot.

@@ -28,8 +28,7 @@ class Core(Module):
         child_offset: float,
         sensors: list[Sensor],
     ) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param rotation: The Modules rotation.
         :param mass: The Modules mass (in kg).
@@ -79,8 +78,7 @@ class Core(Module):
 
     @property
     def mass(self) -> float:
-        """
-        Get the mass of the Core (in kg).
+        """Get the mass of the Core (in kg).
 
         :return: The value.
         """
@@ -88,8 +86,7 @@ class Core(Module):
 
     @property
     def bounding_box(self) -> Vector3:
-        """
-        Get the bounding box.
+        """Get the bounding box.
 
         Sizes are total length, not half length from origin.
         :return: Vector3 with sizes of bbox in x,y,z dimension (m).
@@ -98,8 +95,7 @@ class Core(Module):
 
     @property
     def front(self) -> Module | None:
-        """
-        Get the front module of the core.
+        """Get the front module of the core.
 
         :returns: The attachment points module.
         """
@@ -107,8 +103,7 @@ class Core(Module):
 
     @front.setter
     def front(self, module: Module) -> None:
-        """
-        Set a module onto the attachment point.
+        """Set a module onto the attachment point.
 
         :param module: The Module.
         """
@@ -116,8 +111,7 @@ class Core(Module):
 
     @property
     def right(self) -> Module | None:
-        """
-        Get the right module of the core.
+        """Get the right module of the core.
 
         :returns: The attachment points module.
         """
@@ -125,8 +119,7 @@ class Core(Module):
 
     @right.setter
     def right(self, module: Module) -> None:
-        """
-        Set a module onto the attachment point.
+        """Set a module onto the attachment point.
 
         :param module: The Module.
         """
@@ -134,8 +127,7 @@ class Core(Module):
 
     @property
     def back(self) -> Module | None:
-        """
-        Get the back module of the core.
+        """Get the back module of the core.
 
         :returns: The attachment points module.
         """
@@ -143,8 +135,7 @@ class Core(Module):
 
     @back.setter
     def back(self, module: Module) -> None:
-        """
-        Set a module onto the attachment point.
+        """Set a module onto the attachment point.
 
         :param module: The Module.
         """
@@ -152,8 +143,7 @@ class Core(Module):
 
     @property
     def left(self) -> Module | None:
-        """
-        Get the left module of the core.
+        """Get the left module of the core.
 
         :returns: The attachment points module.
         """
@@ -161,8 +151,7 @@ class Core(Module):
 
     @left.setter
     def left(self, module: Module) -> None:
-        """
-        Set a module onto the attachment point.
+        """Set a module onto the attachment point.
 
         :param module: The Module.
         """

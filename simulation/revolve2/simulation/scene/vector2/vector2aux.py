@@ -11,8 +11,7 @@ from pyrr.utils import parameters_as_numpy_arrays
 def create(
     x: float = 0.0, y: float = 0.0, dtype: np.dtype[Any] | None = None
 ) -> np.ndarray[np.dtype[Any], np.dtype[Any]]:
-    """
-    Create a Vector2 object.
+    """Create a Vector2 object.
 
     # noqa: DAR401
 
@@ -30,8 +29,7 @@ def create(
 def create_unit_length_x(
     dtype: np.dtype[Any] | None = None,
 ) -> np.ndarray[np.dtype[Any], np.dtype[Any]]:
-    """
-    Create a x unit Vector2.
+    """Create a x unit Vector2.
 
     :param dtype: data-type.
     :return: The Vector.
@@ -42,8 +40,7 @@ def create_unit_length_x(
 def create_unit_length_y(
     dtype: np.dtype[Any] | None = None,
 ) -> np.ndarray[np.dtype[Any], np.dtype[Any]]:
-    """
-    Create a y unit Vector2.
+    """Create a y unit Vector2.
 
     :param dtype: data-type.
     :return: The Vector.
@@ -57,8 +54,7 @@ def create_from_matrix33_translation(
     dtype: np.dtype[Any] | None = None,
 ) -> np.ndarray[np.dtype[Any], np.dtype[Any]]:
     # WARN(jmdm): mypy error in decorator caused by "pyrr"
-    """
-    Create a Vector2 from a 3x3 Matrix.
+    """Create a Vector2 from a 3x3 Matrix.
 
     :param mat: The 3x3 Matrix.
     :param dtype: The data-type.

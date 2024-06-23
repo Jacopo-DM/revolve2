@@ -11,7 +11,8 @@ from revolve2.modular_robot.sensor_state import (
 )
 
 
-class ModularRobotSensorStateImplV1(ModularRobotSensorState):
+class ModularRobotSensorStateImplV1(ModularRobotSensorState):  # type: ignore[misc]
+    # TODO(jmdm): Fix type error"↑"
     """Implementation of ModularRobotSensorState for v1 robots."""
 
     def get_active_hinge_sensor_state(

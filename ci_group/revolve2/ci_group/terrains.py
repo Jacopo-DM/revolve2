@@ -15,8 +15,7 @@ from revolve2.simulators.mujoco_simulator.textures import Checker
 
 
 def flat(size: Vector2 | None = None) -> Terrain:
-    """
-    Create a flat plane terrain.
+    """Create a flat plane terrain.
 
     :param size: Size of the plane.
     :returns: The created terrain.
@@ -45,8 +44,7 @@ def crater(
     curviness: float,
     granularity_multiplier: float = 1.0,
 ) -> Terrain:
-    r"""
-    Create a crater-like terrain with rugged floor using a heightmap.
+    r"""Create a crater-like terrain with rugged floor using a heightmap.
 
     It will look like::
 
@@ -104,8 +102,7 @@ def rugged_heightmap(
     num_edges: tuple[int, int],
     density: float = 1.0,
 ) -> npt.NDArray[np.float64]:
-    """
-    Create a rugged terrain heightmap.
+    """Create a rugged terrain heightmap.
 
     It will look like::
 
@@ -139,8 +136,7 @@ def rugged_heightmap(
 def bowl_heightmap(
     num_edges: tuple[int, int],
 ) -> npt.NDArray[np.float64]:
-    r"""
-    Create a terrain heightmap in the shape of a bowl.
+    r"""Create a terrain heightmap in the shape of a bowl.
 
     It will look like::
 

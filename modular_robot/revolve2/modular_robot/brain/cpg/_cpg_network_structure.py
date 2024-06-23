@@ -20,8 +20,7 @@ class CpgPair:
     cpg_index_highest: Cpg
 
     def __init__(self, cpg_1: Cpg, cpg_2: Cpg) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         The order of the provided CPGs is irrelevant.
 
@@ -39,8 +38,7 @@ class CpgPair:
 
 
 class CpgNetworkStructure:
-    """
-    Describes the structure of a CPG network.
+    """Describes the structure of a CPG network.
 
     Can generate parameters for a CPG network, such as the initial state and connection weights matrix.
     """
@@ -49,8 +47,7 @@ class CpgNetworkStructure:
     connections: set[CpgPair]
 
     def __init__(self, cpgs: list[Cpg], connections: set[CpgPair]) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param cpgs: The CPGs used in the structure.
         :param connections: The connections between CPGs.
@@ -62,8 +59,7 @@ class CpgNetworkStructure:
 
     @staticmethod
     def make_cpgs(num_cpgs: int) -> list[Cpg]:
-        """
-        Create a list of CPGs.
+        """Create a list of CPGs.
 
         :param num_cpgs: The number of CPGs to create.
         :returns: The created list of CPGs.
@@ -75,8 +71,7 @@ class CpgNetworkStructure:
         internal_connection_weights: dict[Cpg, float],
         external_connection_weights: dict[CpgPair, float],
     ) -> npt.NDArray[np.float64]:
-        """
-        Create a weight matrix from internal and external weights.
+        """Create a weight matrix from internal and external weights.
 
         :param internal_connection_weights: The internal weights.
         :param external_connection_weights: The external weights.
@@ -105,8 +100,7 @@ class CpgNetworkStructure:
 
     @property
     def num_connections(self) -> int:
-        """
-        Get the number of connections in the structure.
+        """Get the number of connections in the structure.
 
         :returns: The number of connections.
         """
@@ -115,8 +109,7 @@ class CpgNetworkStructure:
     def make_connection_weights_matrix_from_params(
         self, params: list[float]
     ) -> npt.NDArray[np.float64]:
-        """
-        Create a connection weights matrix from a list if connections.
+        """Create a connection weights matrix from a list if connections.
 
         :param params: The connections to create the matrix from.
         :returns: The created matrix.
@@ -140,8 +133,7 @@ class CpgNetworkStructure:
 
     @property
     def num_states(self) -> int:
-        """
-        Get the number of states in a cpg network of this structure.
+        """Get the number of states in a cpg network of this structure.
 
         This would be twice the number of CPGs.
 
@@ -152,8 +144,7 @@ class CpgNetworkStructure:
     def make_uniform_state(
         self, value: float, balanced: bool = True
     ) -> npt.NDArray[np.float64]:
-        """
-        Make a state array by repeating the same value.
+        """Make a state array by repeating the same value.
 
         Will match the required number of states in this structure.
 
@@ -171,8 +162,7 @@ class CpgNetworkStructure:
 
     @property
     def num_cpgs(self) -> int:
-        """
-        Get the number of CPGs in the structure.
+        """Get the number of CPGs in the structure.
 
         :returns: The number of CPGs.
         """
@@ -180,8 +170,7 @@ class CpgNetworkStructure:
 
     @property
     def output_indices(self) -> list[int]:
-        """
-        Get the index in the state array for each cpg, matching the order the CPGs were provided in.
+        """Get the index in the state array for each cpg, matching the order the CPGs were provided in.
 
         :returns: The indices.
         """

@@ -9,8 +9,7 @@ def calibrate_camera(
     calibration_images_paths: list[str],
     checkerboard_size: tuple[int, int] = (9, 9),
 ) -> tuple[tuple[int, ...], NDArray[np.float64], NDArray[np.float64]]:
-    """
-    Calibrate cameras for distortion and fisheye effects.
+    """Calibrate cameras for distortion and fisheye effects.
 
     In order to use this function effectively please use at least 5 valid calibration images, with differently places checkerboards.
     The checkerboard has to be fully visible with no occlusion, but it does mot have to lie flat on the ground.

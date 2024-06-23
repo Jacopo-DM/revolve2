@@ -12,8 +12,7 @@ class Selector(ABC):
     def select(
         self, population: TPopulation, **kwargs: Any
     ) -> tuple[TPopulation, KWArgs]:
-        """
-        Select individuals from a population.
+        """Select individuals from a population.
 
         :param population: The population for selection.
         :param kwargs: Possible metrics for selection.

@@ -7,8 +7,7 @@ TParent = TypeVar("TParent")
 def init_subclass_get_generic_args(
     child: type[TChild], parent: type[TParent]
 ) -> tuple[Any, ...]:
-    """
-    Get the generic arguments from a class within the __init_subclass__ function.
+    """Get the generic arguments from a class within the __init_subclass__ function.
 
     :param child: The type passed to the __init_subclass__ function.
     :param parent: The type of the parent class, which is the class __init_subclass__ is implemented for.

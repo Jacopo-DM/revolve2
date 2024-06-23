@@ -12,8 +12,7 @@ def test_robot(
     simulator: Simulator,
     batch_parameters: BatchParameters,
 ) -> None:
-    """
-    Test a robot with a manual brain.
+    """Test a robot with a manual brain.
 
     :param robot: The ModularRobot or Body instance.
     :param terrain: The terrain to test on.

@@ -8,8 +8,7 @@ class BrickV2(Brick):
     """A brick module for a modular robot."""
 
     def __init__(self, rotation: float | RightAngles) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param rotation: The modules' rotation.
         """
