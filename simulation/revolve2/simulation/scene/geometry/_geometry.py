@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from simulation.scene import Pose
+from simulation.scene._pose import Pose
 from simulation.scene.geometry.textures import Texture
 
 

@@ -6,7 +6,7 @@ Using the MorphologicalNoveltyMetric for evaluating a population of robots can b
     >>> novelties = get_novelty_from_population(robots)
 """
 
-from ci_group.morphological_novelty_metric._morphological_novelty_metric import (
+from ._morphological_novelty_metric import (
     get_novelty_from_population,
 )
 

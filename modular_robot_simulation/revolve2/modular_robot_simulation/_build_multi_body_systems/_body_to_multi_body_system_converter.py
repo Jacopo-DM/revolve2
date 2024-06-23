@@ -5,13 +5,13 @@ from pyrr import Quaternion, Vector3
 from revolve2.modular_robot.body.base import Body
 from revolve2.simulation.scene import MultiBodySystem, Pose, RigidBody
 
-from modular_robot_simulation._build_multi_body_systems import (
+from ._body_to_multi_body_system_mapping import (
     BodyToMultiBodySystemMapping,
 )
-from modular_robot_simulation._build_multi_body_systems._get_builder import (
+from ._get_builder import (
     get_builder,
 )
-from modular_robot_simulation._build_multi_body_systems._unbuilt_child import (
+from ._unbuilt_child import (
     UnbuiltChild,
 )
 

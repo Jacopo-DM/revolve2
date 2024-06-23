@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
 
-from simulation.scene import SimulationState
-from simulation.simulator._batch import Batch
+from simulation.scene._simulation_state import SimulationState
+
+from ._batch import Batch
 
 
 class Simulator(ABC):

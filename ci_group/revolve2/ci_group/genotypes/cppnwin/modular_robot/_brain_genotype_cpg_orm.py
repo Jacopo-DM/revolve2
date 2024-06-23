@@ -3,12 +3,11 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Self
 
 import multineat
-from sqlalchemy import event, orm
-
-from ci_group.genotypes.cppnwin import (
+from revolve2.ci_group.genotypes.cppnwin import (
     multineat_rng_from_random,
     random_multineat_genotype,
 )
+from sqlalchemy import event, orm
 
 from ._brain_cpg_network_neighbor import (
     BrainCpgNetworkNeighbor,

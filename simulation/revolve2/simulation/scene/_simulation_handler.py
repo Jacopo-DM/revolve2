@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-from simulation.scene._control_interface import ControlInterface
-from simulation.scene._simulation_state import SimulationState
+from ._control_interface import ControlInterface
+from ._simulation_state import SimulationState
 
 
 class SimulationHandler(ABC):

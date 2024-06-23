@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 from pyrr import Vector3
 
-from simulation.scene._joint import Joint
+from ._joint import Joint
 
 
 @dataclass

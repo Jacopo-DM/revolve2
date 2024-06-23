@@ -1,8 +1,9 @@
 from dataclasses import dataclass, field
 
 from simulation.scene._color import Color
-from simulation.scene.geometry.textures._map_type import MapType
-from simulation.scene.geometry.textures._texture_reference import (
+
+from ._map_type import MapType
+from ._texture_reference import (
     TextureReference,
 )
 

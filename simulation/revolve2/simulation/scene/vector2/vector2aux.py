@@ -7,6 +7,8 @@ import numpy as np
 # import common vector operations
 from pyrr.utils import parameters_as_numpy_arrays
 
+from .vector2aux import unit
+
 
 def create(
     x: float = 0.0, y: float = 0.0, dtype: np.dtype[Any] | None = None

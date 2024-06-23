@@ -9,7 +9,7 @@ from typing import ClassVar
 
 import multineat
 
-from ci_group.genotypes.cppnwin.modular_robot._multineat_collection import (
+from ._multineat_collection import (
     CollectionOfDefaultValues,
 )
 

@@ -3,9 +3,10 @@ from dataclasses import dataclass, field
 
 from pyrr import Matrix33, Quaternion, Vector3
 
-from simulation.scene import Pose
 from simulation.scene.geometry import Geometry, GeometryBox, GeometrySphere
 from simulation.scene.sensors import CameraSensor, IMUSensor, Sensor
+
+from ._pose import Pose
 
 
 @dataclass

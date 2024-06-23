@@ -10,6 +10,8 @@ from pyrr.objects.base import BaseMatrix33, BaseVector, NpProxy
 
 from simulation.scene.vector2 import vector2aux as vector2
 
+from .vector2 import Vector2
+
 
 class Vector2(BaseVector):  # type: ignore[misc]
     def __hash__(self) -> int:

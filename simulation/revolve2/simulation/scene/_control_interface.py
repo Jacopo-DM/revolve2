@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from simulation.scene._joint_hinge import JointHinge
+from ._joint_hinge import JointHinge
 
 
 class ControlInterface(ABC):

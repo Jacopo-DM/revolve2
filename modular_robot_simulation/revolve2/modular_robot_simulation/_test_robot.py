@@ -3,7 +3,9 @@ from revolve2.modular_robot.body.base import Body
 from revolve2.modular_robot.brain.dummy import BrainDummy
 from revolve2.simulation.simulator import BatchParameters, Simulator
 
-from modular_robot_simulation import ModularRobotScene, Terrain, simulate_scenes
+from ._modular_robot_scene import ModularRobotScene
+from ._simulate_scenes import simulate_scenes
+from ._terrain import Terrain
 
 
 def test_robot(

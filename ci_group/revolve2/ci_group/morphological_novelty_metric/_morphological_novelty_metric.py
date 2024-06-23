@@ -4,10 +4,10 @@ import numpy as np
 from numpy.typing import NDArray
 from revolve2.modular_robot import ModularRobot
 
-from ci_group.morphological_novelty_metric._coordinate_operations import (
+from ._coordinate_operations import (
     coords_from_bodies,
 )
-from ci_group.morphological_novelty_metric.calculate_novelty import (
+from .calculate_novelty import (
     calculate_novelty,
 )
 

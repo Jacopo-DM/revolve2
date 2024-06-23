@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 
-from simulation.scene._multi_body_system import MultiBodySystem
-from simulation.scene._simulation_handler import SimulationHandler
+from ._multi_body_system import MultiBodySystem
+from ._simulation_handler import SimulationHandler
 
 
 @dataclass(kw_only=True)

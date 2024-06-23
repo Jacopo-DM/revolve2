@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from simulation.scene._joint import Joint
+from ._joint import Joint
 
 
 @dataclass

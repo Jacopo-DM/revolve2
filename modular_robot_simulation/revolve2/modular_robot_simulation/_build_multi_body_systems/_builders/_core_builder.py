@@ -3,15 +3,18 @@ from revolve2.simulation.scene import AABB, MultiBodySystem, Pose, RigidBody
 from revolve2.simulation.scene.geometry import GeometryBox
 from revolve2.simulation.scene.geometry.textures import Texture
 
-from modular_robot_simulation._build_multi_body_systems import (
+from modular_robot_simulation._build_multi_body_systems._body_to_multi_body_system_mapping import (
     BodyToMultiBodySystemMapping,
 )
-from modular_robot_simulation._build_multi_body_systems._builders import Builder
 from modular_robot_simulation._build_multi_body_systems._convert_color import (
     convert_color,
 )
 from modular_robot_simulation._build_multi_body_systems._unbuilt_child import (
     UnbuiltChild,
+)
+
+from ._builder import (
+    Builder,
 )
 
 
