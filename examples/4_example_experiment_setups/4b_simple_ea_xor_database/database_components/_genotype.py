@@ -13,8 +13,7 @@ from ._base import Base
 
 class Genotype(Base, HasId, GenericParameters):  # type: ignore[misc]
     # TODO(jmdm): Fix type error"↑"
-    """
-    ORM definition for our genotype that is a list of parameters.
+    """ORM definition for our genotype that is a list of parameters.
 
     In SQLAlchemy we can inherit from multiple classes that each define seperate table columns.
     Revolve2's 'GenericParameters' class defines our 'parameters' field.
@@ -32,8 +31,7 @@ class Genotype(Base, HasId, GenericParameters):  # type: ignore[misc]
         rng: np.random.Generator,
         num_parameters: int,
     ) -> Genotype:
-        """
-        Create a random genotype.
+        """Create a random genotype.
 
         :param rng: Random number generator.
         :param num_parameters: Number of parameters for genotype.
@@ -47,8 +45,7 @@ class Genotype(Base, HasId, GenericParameters):  # type: ignore[misc]
         mutate_std: float,
         num_parameters: int,
     ) -> Genotype:
-        """
-        Mutate this genotype.
+        """Mutate this genotype.
 
         This genotype will not be changed; a mutated copy will be returned.
 
@@ -72,8 +69,7 @@ class Genotype(Base, HasId, GenericParameters):  # type: ignore[misc]
         rng: np.random.Generator,
         num_parameters: int,
     ) -> Genotype:
-        """
-        Perform uniform crossover between two genotypes.
+        """Perform uniform crossover between two genotypes.
 
         :param parent1: The first genotype.
         :param parent2: The second genotype.

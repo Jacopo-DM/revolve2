@@ -9,10 +9,11 @@ from ci_group.genotypes.cppnwin import (
     multineat_rng_from_random,
     random_multineat_genotype,
 )
-from ci_group.genotypes.cppnwin.modular_robot import (
+
+from ._brain_cpg_network_neighbor import (
     BrainCpgNetworkNeighbor,
-    get_multineat_params,
 )
+from ._multineat_params import get_multineat_params
 
 if TYPE_CHECKING:
     import numpy as np

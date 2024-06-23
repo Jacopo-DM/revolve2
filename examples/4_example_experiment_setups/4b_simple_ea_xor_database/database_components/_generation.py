@@ -11,8 +11,7 @@ from ._population import Population
 
 class Generation(Base, HasId):  # type: ignore[misc]
     # TODO(jmdm): Fix type error"↑"
-    """
-    A single finished iteration of the EA.
+    """A single finished iteration of the EA.
 
     We reference the experiment so we know which experiment this generation is part of.
     In addition every generation has a corresponding population.

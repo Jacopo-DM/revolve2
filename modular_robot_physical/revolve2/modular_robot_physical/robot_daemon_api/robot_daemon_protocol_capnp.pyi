@@ -1,5 +1,4 @@
-"""
-This is an automatically generated stub for `robot_daemon_protocol.capnp`.
+"""This is an automatically generated stub for `robot_daemon_protocol.capnp`.
 
 This file was manually edited to work better with the code tools.
 Added __init__ functions
@@ -10,9 +9,10 @@ RoboServer
 
 from __future__ import annotations
 
+from collections.abc import Iterator, Sequence
 from contextlib import contextmanager
 from io import BufferedWriter
-from typing import Any, Iterator, Literal, Sequence
+from typing import Any, Literal, TypeAlias
 
 class SetupArgs:
     version: str
@@ -55,7 +55,7 @@ class SetupArgsBuilder(SetupArgs):
     @staticmethod
     def write_packed(file: BufferedWriter) -> None: ...
 
-HardwareType = Literal["v1", "v2"]
+HardwareType: TypeAlias = Literal["v1", "v2"]
 
 class SetupResponse:
     versionOk: bool
@@ -379,4 +379,4 @@ class SensorReadingsBuilder(SensorReadings):
     def write_packed(file: BufferedWriter) -> None: ...
 
 # Defining the interface as any. The stub generator does not generate for interfaces yet.
-RoboServer = Any
+RoboServer: TypeAlias = Any

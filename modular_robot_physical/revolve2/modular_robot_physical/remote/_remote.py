@@ -273,8 +273,7 @@ def _capnp_to_vector3(vector: robot_daemon_protocol_capnp.Vector3) -> Vector3:
 def _capnp_to_camera_view(
     image: robot_daemon_protocol_capnp.Image, camera_size: tuple[int, int]
 ) -> NDArray[np.uint8]:
-    """
-    Convert a capnp compatible Image into an NDArray.
+    """Convert a capnp compatible Image into an NDArray.
 
     :param image: The capnp Image.
     :param camera_size: The camera size to reconstruct the image.
@@ -291,8 +290,7 @@ def _get_imu_sensor_state(
     imu_sensor: IMUSensor | None,
     sensor_readings: robot_daemon_protocol_capnp.SensorReadings,
 ) -> dict[UUIDKey[IMUSensor], IMUSensorStateImpl]:
-    """
-    Get the IMU sensor state.
+    """Get the IMU sensor state.
 
     :param imu_sensor: The sensor in question.
     :param sensor_readings: The sensor readings.
@@ -313,8 +311,7 @@ def _get_camera_sensor_state(
     camera_sensor: CameraSensor | None,
     sensor_readings: robot_daemon_protocol_capnp.SensorReadings,
 ) -> dict[UUIDKey[CameraSensor], CameraSensorStateImpl]:
-    """
-    Get the camera sensor state.
+    """Get the camera sensor state.
 
     :param camera_sensor: The sensor in question.
     :param sensor_readings: The sensor readings.
@@ -339,8 +336,7 @@ def run_remote(
     debug: bool = False,
     manual_mode: bool = False,
 ) -> None:
-    """
-    Control a robot remotely, running the controller on your local machine.
+    """Control a robot remotely, running the controller on your local machine.
 
     :param config: The robot configuration.
     :param hostname: Hostname or IP of the robot.

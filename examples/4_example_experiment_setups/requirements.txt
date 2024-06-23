@@ -1,6 +1,6 @@
-cma~=3.3.0
-matplotlib~=3.9.0
-multineat~=0.12
-numpy~=2.0.0
-pandas~=2.2.2
-SQLAlchemy~=2.0.30
+cma
+matplotlib
+multineat
+numpy
+pandas
+SQLAlchemy

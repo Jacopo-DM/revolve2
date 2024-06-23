@@ -7,8 +7,7 @@ from modular_robot_physical.physical_interfaces._physical_interface import (
 def get_interface(
     hardware_type: HardwareType, debug: bool, dry: bool
 ) -> PhysicalInterface:
-    """
-    Get the interface for the given hardware type.
+    """Get the interface for the given hardware type.
 
     :param hardware_type: The type of hardware.
     :param debug: If debugging messages are activated.

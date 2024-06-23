@@ -26,8 +26,7 @@ class V1PhysicalInterface(PhysicalInterface):
     _gpio: pigpio.pi | None
 
     def __init__(self, debug: bool, dry: bool) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param debug: If debugging messages are activated.
         :param dry: If servo outputs are not propagated to the physical servos.
@@ -53,8 +52,7 @@ class V1PhysicalInterface(PhysicalInterface):
             pass
 
     def set_servo_targets(self, pins: list[int], targets: list[float]) -> None:
-        """
-        Set the target for multiple servos.
+        """Set the target for multiple servos.
 
         This can be a fairly slow operation.
 
@@ -81,8 +79,7 @@ class V1PhysicalInterface(PhysicalInterface):
                 time.sleep(0.1)
 
     def disable(self) -> None:
-        """
-        Set the robot to low power mode.
+        """Set the robot to low power mode.
 
         This disables all active modules and sensors.
         """
@@ -95,8 +92,7 @@ class V1PhysicalInterface(PhysicalInterface):
                 self._gpio.set_PWM_dutycycle(pin, 0)
 
     def get_battery_level(self) -> float:
-        """
-        Get the battery level.
+        """Get the battery level.
 
         :raises NotImplementedError: If getting the battery level is not supported on this hardware.
         """
@@ -104,8 +100,7 @@ class V1PhysicalInterface(PhysicalInterface):
         raise NotImplementedError(msg)
 
     def get_multiple_servo_positions(self, pins: Sequence[int]) -> list[float]:
-        """
-        Get the current position of multiple servos.
+        """Get the current position of multiple servos.
 
         :param pins: The GPIO pins.
         :raises NotImplementedError: If getting the servo position is not supported on this hardware.
@@ -114,32 +109,28 @@ class V1PhysicalInterface(PhysicalInterface):
         raise NotImplementedError(msg)
 
     def get_imu_angular_rate(self) -> Vector3:
-        """
-        Get the angular rate from the IMU.
+        """Get the angular rate from the IMU.
 
         :raises NotImplementedError: Always.
         """
         raise NotImplementedError
 
     def get_imu_orientation(self) -> Vector3:
-        """
-        Get the orientation from the IMU.
+        """Get the orientation from the IMU.
 
         :raises NotImplementedError: Always.
         """
         raise NotImplementedError
 
     def get_imu_specific_force(self) -> Vector3:
-        """
-        Get the specific force from the IMU.
+        """Get the specific force from the IMU.
 
         :raises NotImplementedError: Always.
         """
         raise NotImplementedError
 
     def get_camera_view(self) -> NDArray[np.uint8]:
-        """
-        Get the current view from the camera.
+        """Get the current view from the camera.
 
         :raises NotImplementedError: If the Camera is not supported on this hardware.
         """

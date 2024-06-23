@@ -1,5 +1,4 @@
-"""
-API for the physical modular robot daemon.
+"""API for the physical modular robot daemon.
 
 For developers:
 This API uses Cap'n Proto. Take a look at its documentation

@@ -42,10 +42,12 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: install_tools
         run: pip install -r ./codetools/requirements.txt
-      - name: black
-        run: ./codetools/black/check.sh
-      - name: isort
-        run: ./codetools/isort/check.sh
+      # - name: black
+        # run: ./codetools/black/check.sh
+      # - name: isort
+        # run: ./codetools/isort/check.sh
+      - name: ruff
+        run: ./codetools/ruff/check.sh
       - name: pydocstyle
         run: ./codetools/pydocstyle/check.sh
       - name: darglint

@@ -13,8 +13,7 @@ from ._genotype import Genotype
 @dataclass
 class Individual(Base, HasId, kw_only=True):  # type: ignore[misc]
     # TODO(jmdm): Fix type error"↑"
-    """
-    An individual in a population.
+    """An individual in a population.
 
     Stores a reference to its population.
     In SQLAlchemy this can be done with an 'id' field, which refers to the id of the population here.

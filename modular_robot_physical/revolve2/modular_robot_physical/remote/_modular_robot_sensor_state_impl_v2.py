@@ -41,8 +41,7 @@ class ModularRobotSensorStateImplV2(ModularRobotSensorState):  # type: ignore[mi
             UUIDKey[CameraSensor], CameraSensorStateImpl
         ],
     ) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param hinge_sensor_mapping: Mapping from active hinge sensors to pin ids.
         :param hinge_positions: Position of hinges accessed by pin id.
@@ -57,8 +56,7 @@ class ModularRobotSensorStateImplV2(ModularRobotSensorState):  # type: ignore[mi
     def get_active_hinge_sensor_state(
         self, sensor: ActiveHingeSensor
     ) -> ActiveHingeSensorState:
-        """
-        Get sensor states for Hinges.
+        """Get sensor states for Hinges.
 
         :param sensor: The sensor to query.
         :returns: The Sensor State.
@@ -68,8 +66,7 @@ class ModularRobotSensorStateImplV2(ModularRobotSensorState):  # type: ignore[mi
         )
 
     def get_imu_sensor_state(self, sensor: IMUSensor) -> IMUSensorState:
-        """
-        Get the state of the provided IMU sensor.
+        """Get the state of the provided IMU sensor.
 
         :param sensor: The sensor.
         :raises ValueError: If IMU sensors is not part of the robot.
@@ -84,8 +81,7 @@ class ModularRobotSensorStateImplV2(ModularRobotSensorState):  # type: ignore[mi
     def get_camera_sensor_state(
         self, sensor: CameraSensor
     ) -> CameraSensorState:
-        """
-        Get the state of the provided camera sensor.
+        """Get the state of the provided camera sensor.
 
         :param sensor: The sensor.
         :raises ValueError: If sensor is not found on the robot.

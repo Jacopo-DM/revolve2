@@ -13,8 +13,7 @@ def test_physical_robot(
     hinge_mapping: dict[UUIDKey[ActiveHinge], int],
     inverse_servos: dict[int, bool],
 ) -> None:
-    """
-    Remotely connect to a physical robot and provide manual controls to test it.
+    """Remotely connect to a physical robot and provide manual controls to test it.
 
     :param robot: Body of the robot.
     :param hostname: Hostname of the robot.

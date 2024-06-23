@@ -10,8 +10,7 @@ class CameraSensorStateImpl(CameraSensorState):  # type: ignore[misc]
     _image: NDArray[np.uint8]
 
     def __init__(self, image: NDArray[np.uint8]) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param image: The current image.
         """
@@ -19,8 +18,7 @@ class CameraSensorStateImpl(CameraSensorState):  # type: ignore[misc]
 
     @property
     def image(self) -> NDArray[np.uint8]:
-        """
-        Get the current image.
+        """Get the current image.
 
         :returns: The image.
         """

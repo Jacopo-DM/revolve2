@@ -8,8 +8,7 @@ class ActiveHingeSensorStateImpl(ActiveHingeSensorState):  # type: ignore[misc]
     _position: float
 
     def __init__(self, position: float) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param position: The position of the active hinge.
         """
@@ -17,8 +16,7 @@ class ActiveHingeSensorStateImpl(ActiveHingeSensorState):  # type: ignore[misc]
 
     @property
     def position(self) -> float:
-        """
-        Get the measured position of the active hinge.
+        """Get the measured position of the active hinge.
 
         :returns: The measured position.
         """

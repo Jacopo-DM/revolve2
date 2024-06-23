@@ -4,37 +4,26 @@ set -e
 
 cd "$(dirname "$0")"
 
-echo "--------------"
-echo "mypy"
-echo "--------------"
-./mypy/check_all.sh
+START_DIR="$(pwd)"
 
-echo "--------------"
-echo "pyflakes"
-echo "--------------"
-./pyflakes/check.sh
+PIPELINE=(
+    './mypy/check_all.sh'
+    # './black/fix.sh'
+    # './isort/fix.sh'
+    # './sort_all/fix.sh'
+    './ruff/fix.sh'
+    './pyflakes/check.sh'
+    './pydocstyle/check.sh'
+    './darglint/check.sh'
+)
 
-echo "--------------"
-echo "sort-all"
-echo "--------------"
-./sort_all/fix.sh
+for var in ${PIPELINE[@]}
+    do
+        echo "--------------"
+        echo "${var}"
+        echo "--------------"
+        eval $var
+        echo
+    done
 
-echo "--------------"
-echo "black"
-echo "--------------"
-./black/fix.sh
-
-echo "--------------"
-echo "isort"
-echo "--------------"
-./isort/fix.sh
-
-echo "--------------"
-echo "pydocstyle"
-echo "--------------"
-./pydocstyle/check.sh
-
-echo "--------------"
-echo "darglint"
-echo "--------------"
-./darglint/check.sh
+cd $START_DIR

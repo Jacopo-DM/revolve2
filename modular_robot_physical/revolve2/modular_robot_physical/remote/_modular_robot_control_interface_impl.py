@@ -17,8 +17,7 @@ class ModularRobotControlInterfaceImpl(ModularRobotControlInterface):  # type: i
     def set_active_hinge_target(
         self, active_hinge: ActiveHinge, target: float
     ) -> None:
-        """
-        Set the position target for an active hinge.
+        """Set the position target for an active hinge.
 
         Target is clamped within the active hinges range.
 

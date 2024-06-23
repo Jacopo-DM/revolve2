@@ -12,8 +12,5 @@ pip install pipreqs
 for dir in $(find . -type d)
 do
     # Run the command in each of the directories
-    pipreqs $dir --mode compat --force
+    pipreqs $dir --mode no-pin --force
 done
-
-# Run the command in the current directory (leave current dir as the last)
-pipreqs . --mode no-pin --force

@@ -25,8 +25,7 @@ class _Program:
     def __init__(
         self, debug: bool, dry: bool, hardware_type: HardwareType
     ) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param debug: Enable debug messages.
         :param dry: Run in dry mode, not writing/reading hardware.
@@ -38,8 +37,7 @@ class _Program:
         self._hardware_type = hardware_type
 
     async def _new_connection(self, stream: Any) -> None:
-        """
-        Handle a new connection.
+        """Handle a new connection.
 
         :param stream: Connection stream.
         """
@@ -76,8 +74,7 @@ class _Program:
 def run_robot_daemon(
     debug: bool, dry: bool, hardware_type: HardwareType
 ) -> None:
-    """
-    Run the server.
+    """Run the server.
 
     :param debug: Enable debug messages.
     :param dry: Run in dry mode, not writing/reading hardware.

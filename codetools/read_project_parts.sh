@@ -4,6 +4,8 @@ set -e
 
 cd "$(dirname "$0")"
 
+# git ls-files | grep -E '\.py$' | xargs dirname | sort | uniq |
+
 python3 -c "
 import yaml
 

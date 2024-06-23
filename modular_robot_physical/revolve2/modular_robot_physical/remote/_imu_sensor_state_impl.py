@@ -16,8 +16,7 @@ class IMUSensorStateImpl(IMUSensorState):  # type: ignore[misc]
         angular_rate: Vector3,
         orientation: Vector3,
     ) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param specific_force: Specific force.
         :param angular_rate: Angular rate.
@@ -29,8 +28,7 @@ class IMUSensorStateImpl(IMUSensorState):  # type: ignore[misc]
 
     @property
     def specific_force(self) -> Vector3:
-        """
-        Get the measured specific force.
+        """Get the measured specific force.
 
         :returns: The measured specific force.
         """
@@ -38,8 +36,7 @@ class IMUSensorStateImpl(IMUSensorState):  # type: ignore[misc]
 
     @property
     def angular_rate(self) -> Vector3:
-        """
-        Get the measured angular rate.
+        """Get the measured angular rate.
 
         :returns: The measured angular rate.
         """
@@ -47,8 +44,7 @@ class IMUSensorStateImpl(IMUSensorState):  # type: ignore[misc]
 
     @property
     def orientation(self) -> Vector3:
-        """
-        Get the measured orientation.
+        """Get the measured orientation.
 
         :returns: The measured orientation.
         """

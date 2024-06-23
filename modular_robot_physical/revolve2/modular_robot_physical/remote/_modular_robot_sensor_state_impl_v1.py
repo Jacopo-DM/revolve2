@@ -18,8 +18,7 @@ class ModularRobotSensorStateImplV1(ModularRobotSensorState):  # type: ignore[mi
     def get_active_hinge_sensor_state(
         self, sensor: ActiveHingeSensor
     ) -> ActiveHingeSensorState:
-        """
-        Get sensor states for Hinges.
+        """Get sensor states for Hinges.
 
         :param sensor: The sensor to query.
         :raises NotImplementedError: Always.
@@ -28,8 +27,7 @@ class ModularRobotSensorStateImplV1(ModularRobotSensorState):  # type: ignore[mi
         raise NotImplementedError(msg)
 
     def get_imu_sensor_state(self, sensor: IMUSensor) -> IMUSensorState:
-        """
-        Get the state of the provided IMU sensor.
+        """Get the state of the provided IMU sensor.
 
         :param sensor: The sensor.
         :raises NotImplementedError: Always.
@@ -39,8 +37,7 @@ class ModularRobotSensorStateImplV1(ModularRobotSensorState):  # type: ignore[mi
     def get_camera_sensor_state(
         self, sensor: CameraSensor
     ) -> CameraSensorState:
-        """
-        Get the state of the provided camera sensor.
+        """Get the state of the provided camera sensor.
 
         :param sensor: The sensor.
         :raises NotImplementedError: Always.

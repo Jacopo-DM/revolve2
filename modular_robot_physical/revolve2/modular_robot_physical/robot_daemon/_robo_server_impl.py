@@ -48,8 +48,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
         hardware_type: HardwareType,
         physical_interface: PhysicalInterface,
     ) -> None:
-        """
-        Initialize this object.
+        """Initialize this object.
 
         :param debug: Enable debug messages.
         :param hardware_type: The type of hardware this runs on.
@@ -164,8 +163,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
         args: robot_daemon_protocol_capnp.SetupArgs,
         _context: Any,
     ) -> robot_daemon_protocol_capnp.SetupResponse:
-        """
-        Handle a setup command.
+        """Handle a setup command.
 
         :param args: Arguments to the setup process.
         :returns: Whether the setup was successful.
@@ -196,8 +194,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
         args: robot_daemon_protocol_capnp.ControlArgsReader,
         _context: Any,
     ) -> None:
-        """
-        Handle control commands.
+        """Handle control commands.
 
         :param args: Args to the function.
         """
@@ -214,8 +211,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
         args: robot_daemon_protocol_capnp.ReadSensorsArgsReader,
         _context: Any,
     ) -> robot_daemon_protocol_capnp.SensorReadings:
-        """
-        Handle readSensors.
+        """Handle readSensors.
 
         Stub that currently does reads nothing.
 
@@ -232,8 +228,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
         args: robot_daemon_protocol_capnp.ControlAndReadSensorsArgsReader,
         _context: Any,
     ) -> robot_daemon_protocol_capnp.SensorReadings:
-        """
-        Handle controlAndReadSensors.
+        """Handle controlAndReadSensors.
 
         :param args: Args to the function.
         :returns: The readings.
@@ -286,8 +281,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
 
     @staticmethod
     def _vector3_to_capnp(vector: Vector3) -> capnpVector3:
-        """
-        Convert a pyrr Vector3 object into a capnp compatible Vector3.
+        """Convert a pyrr Vector3 object into a capnp compatible Vector3.
 
         :param vector: The pyrr Vector3.
         :return: The capnp Vector3.
@@ -298,8 +292,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
 
     @staticmethod
     def _camera_view_to_capnp(image: NDArray[np.uint8]) -> capnpImage:
-        """
-        Convert an image as an NDArray into an capnp compatible Image.
+        """Convert an image as an NDArray into an capnp compatible Image.
 
         Not that we flatten the channels so they have to be reconstructed later on.
 
