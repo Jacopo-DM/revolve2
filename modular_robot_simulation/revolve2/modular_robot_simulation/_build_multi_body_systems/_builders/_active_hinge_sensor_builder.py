@@ -1,16 +1,15 @@
+from modular_robot_simulation._build_multi_body_systems._body_to_multi_body_system_mapping import (
+    BodyToMultiBodySystemMapping,
+)
+from modular_robot_simulation._build_multi_body_systems._unbuilt_child import (
+    UnbuiltChild,
+)
 from revolve2.modular_robot.body.sensors import ActiveHingeSensor
 from revolve2.simulation.scene import (
     JointHinge,
     MultiBodySystem,
     RigidBody,
     UUIDKey,
-)
-
-from modular_robot_simulation._build_multi_body_systems._body_to_multi_body_system_mapping import (
-    BodyToMultiBodySystemMapping,
-)
-from modular_robot_simulation._build_multi_body_systems._unbuilt_child import (
-    UnbuiltChild,
 )
 
 from ._builder import (

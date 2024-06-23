@@ -1,10 +1,3 @@
-from revolve2.modular_robot.brain import BrainInstance
-from revolve2.simulation.scene import (
-    ControlInterface,
-    SimulationHandler,
-    SimulationState,
-)
-
 from modular_robot_simulation._build_multi_body_systems import (
     BodyToMultiBodySystemMapping,
 )
@@ -13,6 +6,12 @@ from modular_robot_simulation._modular_robot_control_interface_impl import (
 )
 from modular_robot_simulation._sensor_state_impl import (
     ModularRobotSensorStateImpl,
+)
+from revolve2.modular_robot.brain import BrainInstance
+from revolve2.simulation.scene import (
+    ControlInterface,
+    SimulationHandler,
+    SimulationState,
 )
 
 

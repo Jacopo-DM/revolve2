@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING, Any
 import cairo
 import numpy as np
 from numpy.typing import NDArray
+
 from revolve2.modular_robot import ModularRobot
 from revolve2.modular_robot.body import Module
 

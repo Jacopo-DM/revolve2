@@ -7,8 +7,6 @@ import capnp
 import numpy as np
 from numpy.typing import NDArray
 from pyrr import Vector3
-from revolve2.modular_robot.body.base import ActiveHinge
-from revolve2.modular_robot.body.sensors import CameraSensor, IMUSensor
 
 from modular_robot_physical._config import Config
 from modular_robot_physical._hardware_type import HardwareType
@@ -31,6 +29,8 @@ from modular_robot_physical.remote._modular_robot_sensor_state_impl_v2 import (
     ModularRobotSensorStateImplV2,
 )
 from modular_robot_physical.robot_daemon_api import robot_daemon_protocol_capnp
+from revolve2.modular_robot.body.base import ActiveHinge
+from revolve2.modular_robot.body.sensors import CameraSensor, IMUSensor
 
 if TYPE_CHECKING:
     from revolve2.modular_robot.sensor_state import ModularRobotSensorState

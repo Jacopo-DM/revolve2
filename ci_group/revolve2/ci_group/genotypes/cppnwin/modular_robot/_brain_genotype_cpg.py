@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Self
 
 import multineat
+
 from revolve2.ci_group.genotypes.cppnwin import (
     MultineatGenotypePickleWrapper,
     multineat_rng_from_random,
@@ -17,6 +18,7 @@ from ._multineat_params import get_multineat_params
 
 if TYPE_CHECKING:
     import numpy as np
+
     from revolve2.modular_robot.body.base import Body
 
 MULTINEAT_PARAMS = get_multineat_params()

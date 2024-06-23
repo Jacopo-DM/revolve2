@@ -4,10 +4,9 @@ from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
+    from modular_robot_physical._uuid_key import UUIDKey
     from revolve2.modular_robot import ModularRobot
     from revolve2.modular_robot.body.base import ActiveHinge
-
-    from modular_robot_physical._uuid_key import UUIDKey
 
 
 @dataclass
