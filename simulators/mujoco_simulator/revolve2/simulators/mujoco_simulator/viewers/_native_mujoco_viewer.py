@@ -5,6 +5,7 @@ from typing import Any
 
 import mujoco.viewer
 from mujoco.viewer import Handle
+
 from revolve2.simulation.simulator import Viewer
 
 

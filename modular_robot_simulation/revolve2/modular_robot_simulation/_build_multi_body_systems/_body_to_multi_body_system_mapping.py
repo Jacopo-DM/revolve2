@@ -7,7 +7,6 @@ from revolve2.modular_robot.body.sensors import (
     IMUSensor,
 )
 from revolve2.simulation.scene import (
-    Joint,
     JointHinge,
     MultiBodySystem,
     UUIDKey,

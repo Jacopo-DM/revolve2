@@ -9,7 +9,7 @@ class Viewer(ABC):
         """Close the viewer."""
 
     @abstractmethod
-    def render(self) -> None:
+    def render(self) -> None | int:
         """Render the scene on the viewer.
 
         :returns: Nothing or feedback.

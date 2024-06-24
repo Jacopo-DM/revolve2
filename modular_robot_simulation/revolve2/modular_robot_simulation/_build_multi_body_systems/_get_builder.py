@@ -1,5 +1,3 @@
-from typing import TYPE_CHECKING, Any
-
 from revolve2.modular_robot.body.base import (
     ActiveHinge,
     AttachmentFace,

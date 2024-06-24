@@ -81,8 +81,8 @@ class LocalSimulator(Simulator):
         )
 
         if batch.record_settings is not None:
-            Path.mkdir(
-                batch.record_settings.video_directory,
+            path_to_video = Path(batch.record_settings.video_directory)
+            path_to_video.mkdir(
                 exist_ok=batch.record_settings.overwrite,
             )
 

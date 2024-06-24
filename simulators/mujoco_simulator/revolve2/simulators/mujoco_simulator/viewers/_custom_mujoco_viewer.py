@@ -8,13 +8,11 @@ import mujoco
 import mujoco_viewer
 
 from revolve2.simulation.simulator import Viewer
-
-from .._render_backend import RenderBackend
+from revolve2.simulators.mujoco_simulator._render_backend import RenderBackend
 
 
 class CustomMujocoViewerMode(Enum):
-    """
-    Enumerate different viewer modes for the CustomMujocoViewer.
+    """Enumerate different viewer modes for the CustomMujocoViewer.
 
     - CLASSIC mode gives an informative interface for regular simulations.
     - MANUAL mode gives a cut down interface, specific for targeting robot movement manually.
@@ -25,8 +23,7 @@ class CustomMujocoViewerMode(Enum):
 
 
 class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
-    """
-    Custom Viewer Object that allows for additional keyboard inputs.
+    """Custom Viewer Object that allows for additional keyboard inputs.
 
     We need the type ignore since the mujoco_viewer library is not typed properly and therefor the MujocoViewer class cant be resolved.
     """
@@ -57,9 +54,8 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
         hide_menus: bool = False,
         mode: CustomMujocoViewerMode = CustomMujocoViewerMode.CLASSIC,
         **_: Any,
-    ):
-        """
-        Initialize the Viewer.
+    ) -> None:
+        """Initialize the Viewer.
 
         :param model: The mujoco models.
         :param data: The mujoco data.
@@ -101,8 +97,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
         self._render_every_frame = render_every_frame
 
     def _add_overlay(self, gridpos: int, text1: str, text2: str) -> None:
-        """
-        Add overlays.
+        """Add overlays.
 
         :param gridpos: The position on the grid.
         :param text1: Some text.
@@ -147,9 +142,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
                     topleft, "Center of [M]ass", "On" if self._com else "Off"
                 )
             case _:
-                print(
-                    "Didnt reach anything with mode: " + self._viewer_mode.value
-                )
+                pass
 
         """These are default overlays, only change if you know what you are doing."""
         if self._render_every_frame:
@@ -157,7 +150,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
         else:
             self._add_overlay(
                 topleft,
-                "Run speed = %.3f x real time" % self._run_speed,
+                f"Run speed = {self._run_speed:.3f} x real time",
                 "[S]lower, [F]aster",
             )
         self._add_overlay(
@@ -199,14 +192,12 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
             ",".join(["On" if g else "Off" for g in self.vopt.geomgroup]),
         )
         self._add_overlay(
-            topleft,
-            "Referenc[e] frames",
-            mujoco.mjtFrame(self.vopt.frame).name,
+            topleft, "Referenc[e] frames", mujoco.mjtFrame(self.vopt.frame).name
         )
         self._add_overlay(topleft, "[H]ide Menus", "")
         if self._image_idx > 0:
             fname = self._image_path % (self._image_idx - 1)
-            self._add_overlay(topleft, "Cap[t]ure frame", "Saved as %s" % fname)
+            self._add_overlay(topleft, "Cap[t]ure frame", f"Saved as {fname}")
         else:
             self._add_overlay(topleft, "Cap[t]ure frame", "")
 
@@ -231,14 +222,13 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
             str(round(self.data.time / self.model.opt.timestep)),
         )
         self._add_overlay(
-            bottomleft, "timestep", "%.5f" % self.model.opt.timestep
+            bottomleft, "timestep", f"{self.model.opt.timestep:.5f}"
         )
 
     def _key_callback(
         self, window: Any, key: Any, scancode: Any, action: Any, mods: Any
     ) -> None:
-        """
-        Add custom Key Callback.
+        """Add custom Key Callback.
 
         :param window: The window.
         :param key: The key pressed.
@@ -247,19 +237,18 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
         :param mods: The Mods.
         """
         super()._key_callback(window, key, scancode, action, mods)
-        if action != glfw.RELEASE:
-            if key == glfw.KEY_LEFT_ALT:
-                self._hide_menus = False
-        else:
+        if action == glfw.RELEASE:
             match key:
                 case glfw.KEY_K:  # Increment cycle position
                     self._increment_position()
                 case _:
                     pass
 
+        elif key == glfw.KEY_LEFT_ALT:
+            self._hide_menus = False
+
     def current_viewport_size(self) -> tuple[int, int]:
-        """
-        Grabs the *current* viewport size (and updates the cached values).
+        """Grabs the *current* viewport size (and updates the cached values).
 
         :return: the viewport size
         """
@@ -269,8 +258,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
         return self.viewport.width, self.viewport.height
 
     def render(self) -> int | None:
-        """
-        Render the scene.
+        """Render the scene.
 
         :return: A cycle position if applicable.
         """
@@ -289,8 +277,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
 
     @property
     def context(self) -> mujoco.MjrContext:
-        """
-        Get the context.
+        """Get the context.
 
         :returns: The context.
         """
@@ -298,8 +285,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
 
     @property
     def view_port(self) -> mujoco.MjrRect:
-        """
-        Get the view_port.
+        """Get the view_port.
 
         :returns: The viewport.
         """
@@ -307,8 +293,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
 
     @property
     def can_record(self) -> bool:
-        """
-        Return True.
+        """Return True.
 
         :returns: True.
         """

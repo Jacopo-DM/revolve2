@@ -80,7 +80,7 @@ class Individual(HasId, orm.MappedAsDataclass, Generic[TGenotype]):
         def fitness(self) -> orm.Mapped[float]:
             return self.__fitness_impl()
 
-    _type_tgenotype: TGenotype
+    __type_tgenotype: TGenotype
     __population_table: ClassVar[str]
 
     def __init_subclass__(
@@ -98,8 +98,8 @@ class Individual(HasId, orm.MappedAsDataclass, Generic[TGenotype]):
             msg = "Individual must have exactly one generic argument."
             raise ValueError(msg)
 
-        cls._type_tgenotype = generic_types[0]
-        if isinstance(cls._type_tgenotype, ForwardRef):
+        cls.__type_tgenotype = generic_types[0]
+        if isinstance(cls.__type_tgenotype, ForwardRef):
             msg = "TGenotype generic argument cannot be a forward reference."
             raise TypeError(msg)
 
@@ -126,14 +126,14 @@ class Individual(HasId, orm.MappedAsDataclass, Generic[TGenotype]):
     @classmethod
     def __genotype_id_impl(cls) -> orm.Mapped[int]:
         return orm.mapped_column(
-            sqlalchemy.ForeignKey(f"{cls._type_tgenotype.__tablename__}.id"),
+            sqlalchemy.ForeignKey(f"{cls.__type_tgenotype.__tablename__}.id"),
             nullable=False,
             init=False,
         )
 
     @classmethod
     def __genotype_impl(cls) -> orm.Mapped[TGenotype]:
-        return orm.relationship(cls._type_tgenotype)
+        return orm.relationship(cls.__type_tgenotype)
 
     @classmethod
     def __fitness_impl(cls) -> orm.Mapped[float]:
