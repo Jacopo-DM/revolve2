@@ -50,7 +50,7 @@ class ControlInterfaceImpl(ControlInterface):
 
         # Set position target
         idx_pos = maybe_hinge_joint_mujoco.ctrl_index_position
-        # TODO should be position be added (+=) or set (=) ?
+        # TODO(jmdm) should be position be added (+=) or set (=) ?
         self._data.ctrl[idx_pos] += position_delta
 
         self._data.ctrl[idx_pos] = np.clip(

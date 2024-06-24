@@ -10,7 +10,7 @@ class Learner(ABC):
     """A Learner object that enables learning for individuals in an
     evolutionary process.
 
-    TODO: use link for explanation
+    TODO(oliver): use link for explanation
 
 
     """

@@ -1,6 +1,7 @@
 """Standard terrains."""
 
 import math
+from dataclasses import field
 
 import numpy as np
 import numpy.typing as npt
@@ -14,7 +15,7 @@ from revolve2.simulation.scene.vector2 import Vector2
 from revolve2.simulators.mujoco_simulator.textures import Checker
 
 
-def flat(size: Vector2 | None = None) -> Terrain:
+def flat(size: Vector2 = Vector2([20.0, 20.0])) -> Terrain:
     """Create a flat plane terrain.
 
     :param size: Size of the plane. (Default value = None)
@@ -23,8 +24,6 @@ def flat(size: Vector2 | None = None) -> Terrain:
     :rtype: Terrain
 
     """
-    if size is None:
-        size = Vector2([20.0, 20.0])
     return Terrain(
         static_geometry=[
             GeometryPlane(
@@ -36,7 +35,7 @@ def flat(size: Vector2 | None = None) -> Terrain:
                     secondary_color=Color(51, 76, 102, 255),
                     map_type=MapType.MAP2D,
                 ),
-            )
+            ),
         ]
     )
 

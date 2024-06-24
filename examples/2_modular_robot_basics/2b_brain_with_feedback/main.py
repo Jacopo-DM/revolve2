@@ -149,7 +149,11 @@ def main() -> None:
     scene.add_robot(robot)
 
     # Simulate the scene.
-    simulator = LocalSimulator(viewer_type="native")
+    simulator = LocalSimulator(
+        viewer_type="native",  # TODO(jmdm): this breaks on mac, requires to run as mjpython
+        headless=False,
+        start_paused=True,
+    )
     simulate_scenes(
         simulator=simulator,
         batch_parameters=make_standard_batch_parameters(),

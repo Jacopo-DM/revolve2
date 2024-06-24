@@ -34,7 +34,8 @@ class Evaluator(Eval):
             physics simulator.
         """
         self._simulator = LocalSimulator(
-            headless=headless, num_simulators=num_simulators
+            headless=headless,
+            num_simulators=num_simulators,
         )
         self._terrain = terrains.flat()
 

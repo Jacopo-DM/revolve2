@@ -55,10 +55,11 @@ class ActiveHingeSensorBuilder(Builder):
         )[0]
 
         # Check if the target is a hinge
-        if isinstance(target, Joint):
-            msg = "Active Hinge Sensor must be attached to a hinge."
+        if not isinstance(target, JointHinge):
+            msg = f"Active Hinge Sensor must be attached to a hinge. Found type: {target.__class__.__name__}"
             raise TypeError(msg)
-        joint: JointHinge = target[0]
+
+        joint: JointHinge = target
 
         body_to_multi_body_system_mapping.active_hinge_sensor_to_joint_hinge[
             UUIDKey(self._sensor)

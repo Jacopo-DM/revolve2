@@ -1,4 +1,4 @@
-from enum import Enum, auto
+from enum import Enum
 
 
 class MapType(Enum):
@@ -11,6 +11,6 @@ class MapType(Enum):
 
     """
 
-    MAP2D = auto()
-    CUBE = auto()
-    SKYBOX = auto()
+    MAP2D = "2d"
+    CUBE = "cube"
+    SKYBOX = "skybox"

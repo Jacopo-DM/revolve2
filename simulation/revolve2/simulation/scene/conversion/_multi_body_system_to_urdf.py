@@ -1,9 +1,9 @@
 import uuid
 import warnings
+import xml.dom.minidom as xmlMinidom  # defusedxml
+import xml.etree.cElementTree as xmlTree  # defusedxml
 
-import defusedxml
 import scipy.spatial.transform
-from defusedxml import ElementTree as xmlTree
 from pyrr import Quaternion, Vector3
 
 from .._joint_hinge import JointHinge
@@ -107,10 +107,8 @@ class _URDFConverter:
             urdf.append(element)
 
         return (
-            defusedxml.minidom.parseString(
-                defusedxml.xmlTree.tostring(
-                    urdf, encoding="unicode", method="xml"
-                )
+            xmlMinidom.parseString(
+                xmlTree.tostring(urdf, encoding="unicode", method="xml")
             ).toprettyxml(indent="    "),
             self.planes,
             self.heightmaps,

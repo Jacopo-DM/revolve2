@@ -42,7 +42,7 @@ class BrainCpgNetworkNeighborRandom(BrainCpgNetworkNeighbor):
         :rtype: tuple[list[float],list[float]]
 
         """
-        # TODO ideal initial state?
+        # TODO(jmdm) ideal initial state?
         multiplier = 0.001
         recenter = -multiplier / 2.0
         return (

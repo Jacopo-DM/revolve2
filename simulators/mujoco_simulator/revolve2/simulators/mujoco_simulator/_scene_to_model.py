@@ -72,10 +72,11 @@ def scene_to_model(
 
     conversions = [
         multi_body_system_to_urdf(
-            multi_body_system, f"mbs{multi_body_system_index}"
+            multi_body_system=multi_body_system,
+            name=f"mbs{multi_body_system_index}",
         )
         for multi_body_system_index, multi_body_system in enumerate(
-            scene.multi_body_systems
+            iterable=scene.multi_body_systems
         )
     ]
     all_joints_and_names = [c[3] for c in conversions]
@@ -109,28 +110,44 @@ def scene_to_model(
             attachment_frame.add("freejoint")
 
         # Add actuation to joints
-        _add_joint_actuators(joints_and_names, multi_body_system_mjcf)
+        _add_joint_actuators(
+            joints_and_names=joints_and_names,
+            multi_body_system_mjcf=multi_body_system_mjcf,
+        )
 
         # Add Sensors
         _add_sensors(
-            rigid_bodies_and_names, mbs_i, multi_body_system_mjcf, env_mjcf
+            rigid_bodies_and_names=rigid_bodies_and_names,
+            mbs_i=mbs_i,
+            multi_body_system_mjcf=multi_body_system_mjcf,
+            env_mjcf=env_mjcf,
         )
 
         # Add plane geometries
-        _add_planes(plane_geometries, fast_sim, env_mjcf)
+        _add_planes(
+            plane_geometries=plane_geometries,
+            fast_sim=fast_sim,
+            env_mjcf=env_mjcf,
+        )
 
         # Add heightmap geometries
-        hmps = _add_heightmaps(heightmap_geometries, fast_sim, env_mjcf)
+        hmps = _add_heightmaps(
+            heightmap_geometries=heightmap_geometries,
+            fast_sim=fast_sim,
+            env_mjcf=env_mjcf,
+        )
         heightmaps.extend(hmps)
 
         # Set colors of geometries
         _set_colors_and_materials(
-            geoms_and_names, multi_body_system_mjcf, fast_sim=fast_sim
+            geoms_and_names=geoms_and_names,
+            multi_body_system_mjcf=multi_body_system_mjcf,
+            fast_sim=fast_sim,
         )
 
     xml = env_mjcf.to_xml_string()
-    if isinstance(xml, str):
-        msg = "XML string is empty."
+    if not isinstance(xml, str):
+        msg = f"Expected XML string, got {type(xml)}"
         raise TypeError(msg)
 
     model = mujoco.MjModel.from_xml_string(xml)
@@ -236,7 +253,7 @@ def _add_planes(
             )
         else:
             plane_kwargs["material"] = f"{name}_material"
-            __make_material(env_mjcf, name=name, element=plane)
+            __make_material(env=env_mjcf, name=name, element=plane)
 
         env_mjcf.worldbody.add(
             "geom",
@@ -287,7 +304,7 @@ def _add_heightmaps(
             )
         else:
             hm_kwargs["material"] = f"{name}_material"
-            __make_material(env_mjcf, name=name, element=heightmap)
+            __make_material(env=env_mjcf, name=name, element=heightmap)
 
         env_mjcf.worldbody.add(
             "geom",

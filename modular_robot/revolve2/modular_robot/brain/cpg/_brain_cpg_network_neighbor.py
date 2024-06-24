@@ -65,7 +65,7 @@ class BrainCpgNetworkNeighbor(Brain):
                 ),
             )
         )
-        # TODO value??
+        # TODO(jmdm) value??
         value = 0.5 * math.sqrt(2)
         # value = 1
         self._initial_state = cpg_network_structure.make_uniform_state(

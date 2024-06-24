@@ -194,3 +194,6 @@ cpg_test.py
 # Ignore robohat
 robohat
 robohat/**
+
+# Performance stats
+**/*.pstats
