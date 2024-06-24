@@ -72,7 +72,7 @@ def simulate_scene(
         user to manually view and manually interact with the simulation.
     :type headless: bool
     :param start_paused: If true, the simulation will start in a paused
-        state. Only makessense when headless is False.
+        state. Only makes sense when headless is False.
     :type start_paused: bool
     :param cast_shadows: If shadows are cast.
     :type cast_shadows: bool
@@ -87,8 +87,8 @@ def simulate_scene(
     logging.info("Simulating scene %d", scene_id)
     """Define mujoco data and model objects for simulating."""
     model, mapping = scene_to_model(
-        scene,
-        simulation_timestep,
+        scene=scene,
+        simulation_timestep=simulation_timestep,
         cast_shadows=cast_shadows,
         fast_sim=fast_sim,
     )
@@ -131,8 +131,8 @@ def simulate_scene(
                 raise ValueError(msg)
 
         viewer = viewer(
-            model,
-            data,
+            model=model,
+            data=data,
             width=None if record_settings is None else record_settings.width,
             height=None if record_settings is None else record_settings.height,
             backend=render_backend,
