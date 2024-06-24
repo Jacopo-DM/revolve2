@@ -3,7 +3,6 @@
 import logging
 
 import mujoco
-
 from revolve2.simulation.scene import Scene
 
 from ._control_interface_impl import (

@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
-from revolve2.simulation.scene._pose import Pose
-from revolve2.simulation.scene.geometry.textures import Texture
+from simulation.scene._pose import Pose
+from simulation.scene.geometry.textures import Texture
 
 
 @dataclass(kw_only=True)

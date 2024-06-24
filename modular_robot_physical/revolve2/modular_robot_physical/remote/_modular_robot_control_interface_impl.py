@@ -1,6 +1,7 @@
 from revolve2.modular_robot import ModularRobotControlInterface
 from revolve2.modular_robot.body.base import ActiveHinge
-from revolve2.modular_robot_physical._uuid_key import UUIDKey
+
+from modular_robot_physical._uuid_key import UUIDKey
 
 
 class ModularRobotControlInterfaceImpl(ModularRobotControlInterface):

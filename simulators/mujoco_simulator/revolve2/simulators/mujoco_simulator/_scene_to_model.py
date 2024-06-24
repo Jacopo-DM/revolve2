@@ -8,7 +8,6 @@ import mujoco
 
 # TODO(jmdm): necessary? -> logging.basicConfig(level=logging.DEBUG)
 from dm_control import mjcf
-
 from revolve2.simulation.scene import JointHinge, RigidBody, Scene, UUIDKey
 from revolve2.simulation.scene.conversion import multi_body_system_to_urdf
 from revolve2.simulation.scene.geometry import (

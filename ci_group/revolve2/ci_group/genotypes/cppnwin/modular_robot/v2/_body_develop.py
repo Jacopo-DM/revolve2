@@ -7,7 +7,6 @@ import numpy as np
 import numpy.typing as npt
 from numpy.typing import NDArray
 from pyrr import Quaternion, Vector3
-
 from revolve2.modular_robot.body import AttachmentPoint, Module
 from revolve2.modular_robot.body.v2 import ActiveHingeV2, BodyV2, BrickV2
 

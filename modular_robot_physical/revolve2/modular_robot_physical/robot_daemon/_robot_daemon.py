@@ -3,13 +3,13 @@ from typing import Any
 
 import capnp
 
-from revolve2.modular_robot_physical._hardware_type import HardwareType
-from revolve2.modular_robot_physical._standard_port import STANDARD_PORT
-from revolve2.modular_robot_physical.physical_interfaces import (
+from modular_robot_physical._hardware_type import HardwareType
+from modular_robot_physical._standard_port import STANDARD_PORT
+from modular_robot_physical.physical_interfaces import (
     PhysicalInterface,
     get_interface,
 )
-from revolve2.modular_robot_physical.robot_daemon._robo_server_impl import (
+from modular_robot_physical.robot_daemon._robo_server_impl import (
     RoboServerImpl,
 )
 

@@ -1,4 +1,4 @@
-from revolve2.modular_robot.body.base import ActiveHinge
+from modular_robot.body.base import ActiveHinge
 
 from ._cpg_network_structure import (
     CpgNetworkStructure,

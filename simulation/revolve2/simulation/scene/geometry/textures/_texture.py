@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 
-from revolve2.simulation.scene._color import Color
+from simulation.scene._color import Color
 
 from ._map_type import MapType
 from ._texture_reference import (

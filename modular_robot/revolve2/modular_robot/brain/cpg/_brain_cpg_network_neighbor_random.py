@@ -1,6 +1,6 @@
 import numpy as np
 
-from revolve2.modular_robot.body.base import ActiveHinge, Body
+from modular_robot.body.base import ActiveHinge, Body
 
 from ._brain_cpg_network_neighbor import (
     BrainCpgNetworkNeighbor,

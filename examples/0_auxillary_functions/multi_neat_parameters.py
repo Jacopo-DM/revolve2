@@ -16,8 +16,8 @@ if __name__ == "__main__":
     params = param_writer.strip_params(params)
 
     # Analyze the parameters
-    a1 = ParamAnalyzer(deepcopy(multineat.Parameters()))
-    a2 = ParamAnalyzer(params)
+    a1 = ParamAnalyzer(params=deepcopy(multineat.Parameters()))
+    a2 = ParamAnalyzer(params=params)
     a2.print_multineat_params_full()
     a2.print_multineat_params_with_ref(a1)
     a2 - a1

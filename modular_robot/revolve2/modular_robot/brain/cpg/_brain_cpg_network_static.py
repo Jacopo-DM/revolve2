@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from revolve2.modular_robot.brain._brain import Brain
+from modular_robot.brain._brain import Brain
 
 from ._brain_cpg_instance import BrainCpgInstance
 
@@ -10,8 +10,8 @@ if TYPE_CHECKING:
     import numpy as np
     import numpy.typing as npt
 
-    from revolve2.modular_robot.body.base import ActiveHinge
-    from revolve2.modular_robot.brain._brain_instance import BrainInstance
+    from modular_robot.body.base import ActiveHinge
+    from modular_robot.brain._brain_instance import BrainInstance
 
     from ._cpg_network_structure import (
         CpgNetworkStructure,

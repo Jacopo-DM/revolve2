@@ -21,8 +21,8 @@ from .sensors import (
 if TYPE_CHECKING:
     from pyrr import Quaternion
 
-    from revolve2.modular_robot.body._attachment_point import AttachmentPoint
-    from revolve2.modular_robot.body._color import Color
+    from modular_robot.body._attachment_point import AttachmentPoint
+    from modular_robot.body._color import Color
 
 
 class _AttachedSensors:

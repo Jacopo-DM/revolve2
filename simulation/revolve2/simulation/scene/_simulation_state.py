@@ -4,7 +4,7 @@ import numpy as np
 from numpy.typing import NDArray
 from pyrr import Vector3
 
-from revolve2.simulation.scene.sensors import CameraSensor, IMUSensor
+from simulation.scene.sensors import CameraSensor, IMUSensor
 
 from ._joint_hinge import JointHinge
 from ._multi_body_system import MultiBodySystem

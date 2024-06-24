@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 
-from revolve2.simulation.scene._pose import Pose
+from simulation.scene._pose import Pose
 
 from ._sensor import Sensor
 

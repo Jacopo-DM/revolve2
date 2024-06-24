@@ -3,12 +3,12 @@ from dataclasses import dataclass, field
 
 from pyrr import Matrix33, Quaternion, Vector3
 
-from revolve2.simulation.scene.geometry import (
+from simulation.scene.geometry import (
     Geometry,
     GeometryBox,
     GeometrySphere,
 )
-from revolve2.simulation.scene.sensors import CameraSensor, IMUSensor, Sensor
+from simulation.scene.sensors import CameraSensor, IMUSensor, Sensor
 
 from ._pose import Pose
 

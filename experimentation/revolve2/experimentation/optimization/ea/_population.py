@@ -11,10 +11,10 @@ from typing import (
 import sqlalchemy.ext.orderinglist
 from sqlalchemy import orm
 
-from revolve2.experimentation._util.init_subclass_get_generic_args import (
+from experimentation._util.init_subclass_get_generic_args import (
     init_subclass_get_generic_args,
 )
-from revolve2.experimentation.database import HasId
+from experimentation.database import HasId
 
 TIndividual = TypeVar("TIndividual")
 

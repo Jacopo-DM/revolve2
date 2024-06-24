@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 import pyrr.aabb
 from pyrr import Vector3
 
-from revolve2.simulation.scene.geometry import GeometryBox
+from simulation.scene.geometry import GeometryBox
 
 from ._aabb import AABB
 from ._joint import Joint

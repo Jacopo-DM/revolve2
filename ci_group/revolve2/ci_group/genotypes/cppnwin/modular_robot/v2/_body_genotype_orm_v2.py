@@ -5,11 +5,11 @@ from typing import TYPE_CHECKING, Self
 import multineat
 from sqlalchemy import event, orm
 
-from revolve2.ci_group.genotypes.cppnwin import (
+from ci_group.genotypes.cppnwin import (
     multineat_rng_from_random,
     random_multineat_genotype,
 )
-from revolve2.ci_group.genotypes.cppnwin.modular_robot import (
+from ci_group.genotypes.cppnwin.modular_robot import (
     get_multineat_params,
 )
 
@@ -19,7 +19,6 @@ from ._body_develop import (
 
 if TYPE_CHECKING:
     import numpy as np
-
     from revolve2.modular_robot.body.v2 import BodyV2
 
 

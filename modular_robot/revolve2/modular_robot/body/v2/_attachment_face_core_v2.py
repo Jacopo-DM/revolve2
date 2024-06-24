@@ -4,9 +4,9 @@ import numpy as np
 from numpy.typing import NDArray
 from pyrr import Quaternion, Vector3
 
-from revolve2.modular_robot.body import Module
-from revolve2.modular_robot.body._attachment_point import AttachmentPoint
-from revolve2.modular_robot.body.base import AttachmentFace
+from modular_robot.body import Module
+from modular_robot.body._attachment_point import AttachmentPoint
+from modular_robot.body.base import AttachmentFace
 
 
 class AttachmentFaceCoreV2(AttachmentFace):

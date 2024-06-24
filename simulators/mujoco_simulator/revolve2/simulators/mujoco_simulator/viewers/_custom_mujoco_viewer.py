@@ -6,9 +6,9 @@ from typing import Any
 import glfw
 import mujoco
 import mujoco_viewer
-
 from revolve2.simulation.simulator import Viewer
-from revolve2.simulators.mujoco_simulator._render_backend import RenderBackend
+
+from simulators.mujoco_simulator._render_backend import RenderBackend
 
 
 class CustomMujocoViewerMode(Enum):
