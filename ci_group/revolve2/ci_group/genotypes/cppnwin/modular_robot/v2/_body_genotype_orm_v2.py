@@ -49,8 +49,11 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
 
         :param innov_db: Multineat innovation database. See Multineat
             library.
+        :type innov_db: multineat.InnovationDatabase
         :param rng: Random number generator.
+        :type rng: np.random.Generator
         :returns: The created genotype.
+        :rtype: BodyGenotypeOrmV2
         """
         multineat_rng = multineat_rng_from_random(rng)
 
@@ -79,8 +82,11 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
 
         :param innov_db: Multineat innovation database. See Multineat
             library.
+        :type innov_db: multineat.InnovationDatabase
         :param rng: Random number generator.
+        :type rng: np.random.Generator
         :returns: A mutated copy of the provided genotype.
+        :rtype: BodyGenotypeOrmV2
         """
         multineat_rng = multineat_rng_from_random(rng)
 
@@ -104,9 +110,13 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
         """Perform crossover between two genotypes.
 
         :param parent1: The first genotype.
+        :type parent1: Self
         :param parent2: The second genotype.
+        :type parent2: Self
         :param rng: Random number generator.
+        :type rng: np.random.Generator
         :returns: A newly created genotype.
+        :rtype: BodyGenotypeOrmV2
         """
         multineat_rng = multineat_rng_from_random(rng)
 
@@ -124,6 +134,7 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
         """Develop the genotype into a modular robot.
 
         :returns: The created robot.
+        :rtype: BodyV2
         """
         return develop_body_v2(self.body)
 
@@ -133,11 +144,19 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
 def _update_serialized_body(
     target: BodyGenotypeOrmV2,
 ) -> None:
+    """:param target:
+    :type target: BodyGenotypeOrmV2
+    :rtype: None
+    """
     target.serialized_body = target.body.Serialize()
 
 
 @event.listens_for(BodyGenotypeOrmV2, "load", propagate=True)
 def _deserialize_body(target: BodyGenotypeOrmV2) -> None:
+    """:param target:
+    :type target: BodyGenotypeOrmV2
+    :rtype: None
+    """
     body = multineat.Genome()
     body.Deserialize(target.serialized_body)
     target.body = body

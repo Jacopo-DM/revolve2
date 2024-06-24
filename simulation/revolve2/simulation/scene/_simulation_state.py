@@ -16,10 +16,14 @@ class SimulationState(ABC):
 
     @abstractmethod
     def get_rigid_body_relative_pose(self, rigid_body: RigidBody) -> Pose:
-        """Get the pose of a rigid body, relative to its parent multi-body system's reference frame.
+        """Get the pose of a rigid body, relative to its parent multi-body
+        system's reference frame.
 
         :param rigid_body: The rigid body to get the pose for.
+        :type rigid_body: RigidBody
         :returns: The relative pose.
+        :rtype: Pose
+
         """
 
     @abstractmethod
@@ -27,18 +31,25 @@ class SimulationState(ABC):
         """Get the pose of a rigid body, relative the global reference frame.
 
         :param rigid_body: The rigid body to get the pose for.
+        :type rigid_body: RigidBody
         :returns: The absolute pose.
+        :rtype: Pose
+
         """
 
     @abstractmethod
     def get_multi_body_system_pose(
         self, multi_body_system: MultiBodySystem
     ) -> Pose:
-        """Get the pose of a multi-body system, relative to the global reference frame.
+        """Get the pose of a multi-body system, relative to the global
+        reference frame.
 
         :param multi_body_system: The multi-body system to get the pose
             for.
+        :type multi_body_system: MultiBodySystem
         :returns: The relative pose.
+        :rtype: Pose
+
         """
 
     @abstractmethod
@@ -46,7 +57,10 @@ class SimulationState(ABC):
         """Get the rotational position of a hinge joint.
 
         :param joint: The joint to get the rotational position for.
+        :type joint: JointHinge
         :returns: The rotational position.
+        :rtype: float
+
         """
 
     @abstractmethod
@@ -54,7 +68,10 @@ class SimulationState(ABC):
         """Get the specific force measured an IMU.
 
         :param imu_sensor: The IMU.
+        :type imu_sensor: IMUSensor
         :returns: The specific force.
+        :rtype: Vector3
+
         """
 
     @abstractmethod
@@ -62,7 +79,10 @@ class SimulationState(ABC):
         """Get the angular rate measured by am IMU.
 
         :param imu_sensor: The IMU.
+        :type imu_sensor: IMUSensor
         :returns: The angular rate.
+        :rtype: Vector3
+
         """
 
     @abstractmethod
@@ -70,5 +90,8 @@ class SimulationState(ABC):
         """Get the camera view.
 
         :param camera_sensor: The camera.
+        :type camera_sensor: CameraSensor
         :returns: The view.
+        :rtype: NDArray[np.uint8]
+
         """

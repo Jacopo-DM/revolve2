@@ -10,4 +10,7 @@ class ActiveHingeSensorState(ABC):
         """Get the measured position of the active hinge.
 
         :returns: The measured position.
+
+        :rtype: float
+
         """

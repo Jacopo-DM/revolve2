@@ -13,7 +13,11 @@ class Cpg:
 
 @dataclass(frozen=True, init=False)
 class CpgPair:
-    """A pair of CPGs that assures that the first cpg always has the lowest index."""
+    """A pair of CPGs that assures that the first cpg always has the lowest
+    index.
+
+
+    """
 
     # lowest is automatically set to be the lowest state index of the two
     cpg_index_lowest: Cpg
@@ -40,7 +44,10 @@ class CpgPair:
 class CpgNetworkStructure:
     """Describes the structure of a CPG network.
 
-    Can generate parameters for a CPG network, such as the initial state and connection weights matrix.
+    Can generate parameters for a CPG network, such as the initial state
+    and connection weights matrix.
+
+
     """
 
     cpgs: list[Cpg]
@@ -62,7 +69,10 @@ class CpgNetworkStructure:
         """Create a list of CPGs.
 
         :param num_cpgs: The number of CPGs to create.
+        :type num_cpgs: int
         :returns: The created list of CPGs.
+        :rtype: list[Cpg]
+
         """
         return [Cpg(index) for index in range(num_cpgs)]
 
@@ -74,8 +84,12 @@ class CpgNetworkStructure:
         """Create a weight matrix from internal and external weights.
 
         :param internal_connection_weights: The internal weights.
+        :type internal_connection_weights: dict[Cpg, float]
         :param external_connection_weights: The external weights.
+        :type external_connection_weights: dict[CpgPair, float]
         :returns: The created matrix.
+        :rtype: npt.NDArray[np.float64]
+
         """
         state_size = self.num_cpgs * 2
 
@@ -103,6 +117,9 @@ class CpgNetworkStructure:
         """Get the number of connections in the structure.
 
         :returns: The number of connections.
+
+        :rtype: int
+
         """
         return len(self.cpgs) + len(self.connections)
 
@@ -112,7 +129,10 @@ class CpgNetworkStructure:
         """Create a connection weights matrix from a list if connections.
 
         :param params: The connections to create the matrix from.
+        :type params: list[float]
         :returns: The created matrix.
+        :rtype: npt.NDArray[np.float64]
+
         """
         assert len(params) == self.num_connections, (
             f"Expected {self.num_connections} parameters, "
@@ -137,7 +157,11 @@ class CpgNetworkStructure:
 
         This would be twice the number of CPGs.
 
+
         :returns: The number of states.
+
+        :rtype: int
+
         """
         return len(self.cpgs) * 2
 
@@ -149,7 +173,12 @@ class CpgNetworkStructure:
         Will match the required number of states in this structure.
 
         :param value: The value to use for all states
+        :type value: float
+        :param balanced:  (Default value = True)
+        :type balanced: bool
         :returns: The array of states.
+        :rtype: npt.NDArray[np.float64]
+
         """
         if not balanced:
             return np.full(self.num_states, value)
@@ -165,13 +194,21 @@ class CpgNetworkStructure:
         """Get the number of CPGs in the structure.
 
         :returns: The number of CPGs.
+
+        :rtype: int
+
         """
         return len(self.cpgs)
 
     @property
     def output_indices(self) -> list[int]:
-        """Get the index in the state array for each cpg, matching the order the CPGs were provided in.
+        """Get the index in the state array for each cpg, matching the order
+        the CPGs were provided in.
+
 
         :returns: The indices.
+
+        :rtype: list[int]
+
         """
         return list(range(self.num_cpgs))

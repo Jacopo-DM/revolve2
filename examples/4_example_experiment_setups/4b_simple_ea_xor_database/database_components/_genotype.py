@@ -14,12 +14,17 @@ from ._base import Base
 class Genotype(Base, HasId, GenericParameters):
     """ORM definition for our genotype that is a list of parameters.
 
-    In SQLAlchemy we can inherit from multiple classes that each define seperate table columns.
-    Revolve2's 'GenericParameters' class defines our 'parameters' field.
-    Take a short look at the class to see that it writes the parameters to the database as a string of semicolon concatenated floats.
+    In SQLAlchemy we can inherit from multiple classes that each define
+    seperate table columns. Revolve2's 'GenericParameters' class defines
+    our 'parameters' field. Take a short look at the class to see that
+    it writes the parameters to the database as a string of semicolon
+    concatenated floats.
 
-    Besides the removed dataclass decorator(identical behavior is provided by SQLAlchemy),
-    the rest of this class is exactly the same as the original example!
+    Besides the removed dataclass decorator(identical behavior is
+    provided by SQLAlchemy), the rest of this class is exactly the same
+    as the original example!
+
+
     """
 
     __tablename__ = "genotype"
@@ -33,8 +38,12 @@ class Genotype(Base, HasId, GenericParameters):
         """Create a random genotype.
 
         :param rng: Random number generator.
+        :type rng: np.random.Generator
         :param num_parameters: Number of parameters for genotype.
+        :type num_parameters: int
         :returns: The created genotype.
+        :rtype: Genotype
+
         """
         return Genotype(parameters=(rng.random(size=num_parameters) * 2 - 1))
 
@@ -46,12 +55,18 @@ class Genotype(Base, HasId, GenericParameters):
     ) -> Genotype:
         """Mutate this genotype.
 
-        This genotype will not be changed; a mutated copy will be returned.
+        This genotype will not be changed; a mutated copy will be
+        returned.
 
         :param rng: Random number generator.
+        :type rng: np.random.Generator
         :param mutate_std: The mutation probability.
+        :type mutate_std: float
         :param num_parameters: Number of parameters for genotype.
+        :type num_parameters: int
         :returns: A mutated copy of the provided genotype.
+        :rtype: Genotype
+
         """
         return Genotype(
             parameters=(
@@ -71,11 +86,17 @@ class Genotype(Base, HasId, GenericParameters):
         """Perform uniform crossover between two genotypes.
 
         :param parent1: The first genotype.
+        :type parent1: Genotype
         :param parent2: The second genotype.
+        :type parent2: Genotype
         :param rng: Random number generator.
+        :type rng: np.random.Generator
         :param num_parameters: The number of parameters for the
             genotype.
+        :type num_parameters: int
         :returns: A newly created genotype.
+        :rtype: Genotype
+
         """
         mask = rng.random(num_parameters)
         return Genotype(

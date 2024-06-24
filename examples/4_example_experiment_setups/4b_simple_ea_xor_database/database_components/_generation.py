@@ -12,11 +12,14 @@ from ._population import Population
 class Generation(Base, HasId):
     """A single finished iteration of the EA.
 
-    We reference the experiment so we know which experiment this generation is part of.
-    In addition every generation has a corresponding population.
-    This is all done in a similar way to the genotype, individual, and population classes.
+    We reference the experiment so we know which experiment this
+    generation is part of. In addition every generation has a
+    corresponding population. This is all done in a similar way to the
+    genotype, individual, and population classes.
 
     Finally, we save the number of the current generation.
+
+
     """
 
     __tablename__ = "generation"

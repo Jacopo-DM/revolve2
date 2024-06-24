@@ -29,6 +29,9 @@ def run_experiment(dbengine: Engine) -> None:
 
     :param dbengine: An opened database with matching initialize
         database structure.
+    :type dbengine: Engine
+    :rtype: None
+
     """
     logging.info("----------------")
     logging.info("Start experiment")
@@ -115,7 +118,11 @@ def run_experiment(dbengine: Engine) -> None:
 
 
 def main() -> None:
-    """Run the program."""
+    """Run the program.
+
+    :rtype: None
+
+    """
     # Set up logging.
     setup_logging(file_name="log.txt")
 

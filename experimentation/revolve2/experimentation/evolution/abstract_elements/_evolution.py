@@ -12,6 +12,10 @@ class Evolution(ABC):
         """Step the current evolution by one iteration..
 
         :param population: The current population.
-        :param kwargs: Additional keyword arguments to use in the step.
-        :return: The population resulting from the step
+        :type population: TPopulation
+        :param **kwargs:
+        :type **kwargs: Any
+        :returns: The population resulting from the step
+        :rtype: TPopulation
+
         """

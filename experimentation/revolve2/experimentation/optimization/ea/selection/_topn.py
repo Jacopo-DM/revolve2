@@ -13,10 +13,15 @@ def topn(
     """Get indices of the top n genotypes sorted by their fitness.
 
     :param n: The number of genotypes to select.
+    :type n: int
     :param genotypes: The genotypes. Ignored, but argument kept for
         function signature compatibility with other selection functions/
+    :type genotypes: list[Genotype]
     :param fitnesses: Fitnesses of the genotypes.
+    :type fitnesses: list[Fitness]
     :returns: Indices of the selected genotypes.
+    :rtype: list[int]
+
     """
     assert len(fitnesses) >= n
 

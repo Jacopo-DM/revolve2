@@ -24,6 +24,9 @@ class ActiveHingeSensorStateImpl(ActiveHingeSensorState):
         """Get the measured position of the active hinge.
 
         :returns: The measured position.
+
+        :rtype: float
+
         """
         return float(
             self._simulation_state.get_hinge_joint_position(self._hinge_joint)

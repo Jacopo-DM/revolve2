@@ -74,9 +74,12 @@ class LocalSimulator(Simulator):
         """Simulate the provided batch by simulating each contained scene.
 
         :param batch: The batch to run.
+        :type batch: Batch
         :returns: List of simulation states in ascending order of time.
+        :rtype: list[list[SimulationState]]
         :raises Exception: If manual control is selected, but headless
             is enabled.
+
         """
         logging.info("Starting simulation batch with MuJoCo.")
 

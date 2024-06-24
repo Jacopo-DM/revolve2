@@ -46,8 +46,12 @@ class ParentSelector(Selector):
         """Select the parents.
 
         :param population: The population of robots.
-        :param kwargs: Other parameters.
+        :type population: list[Individual]
+        :param **kwargs:
+        :type **kwargs: Any
         :returns: The parent pairs.
+        :rtype: tuple[npt.NDArray[np.int_],dict[str,list[Individual]]]
+
         """
         return np.array(
             [
@@ -85,9 +89,13 @@ class SurvivorSelector(Selector):
         """Select survivors using a tournament.
 
         :param population: The population the parents come from.
-        :param kwargs: The offspring, with key 'offspring_population'.
+        :type population: list[Individual]
+        :param **kwargs:
+        :type **kwargs: Any
         :returns: A newly created population.
+        :rtype: tuple[list[Individual],dict[str,Any]]
         :raises ValueError: If the population is empty.
+
         """
         offspring = kwargs.get("children")
         offspring_fitness = kwargs.get("child_task_performance")
@@ -159,10 +167,14 @@ class CrossoverReproducer(Reproducer):
         """Reproduce the population by crossover.
 
         :param population: The parent pairs.
-        :param kwargs: Additional keyword arguments.
+        :type population: npt.NDArray[np.int_]
+        :param **kwargs:
+        :type **kwargs: Any
         :returns: The genotypes of the children.
+        :rtype: list[Genotype]
         :raises ValueError: If the parent population is not passed as a
             kwarg `parent_population`.
+
         """
         parent_population: list[Individual] | None = kwargs.get(
             "parent_population"
@@ -184,11 +196,16 @@ class CrossoverReproducer(Reproducer):
 def find_best_robot(
     current_best: Individual | None, population: list[Individual]
 ) -> Individual:
-    """Return the best robot between the population and the current best individual.
+    """Return the best robot between the population and the current best
+    individual.
 
     :param current_best: The current best individual.
+    :type current_best: Individual | None
     :param population: The population.
+    :type population: list[Individual]
     :returns: The best individual.
+    :rtype: Individual
+
     """
     return max(
         population if current_best is None else [current_best, *population],
@@ -197,7 +214,11 @@ def find_best_robot(
 
 
 def main() -> None:
-    """Run the program."""
+    """Run the program.
+
+    :rtype: None
+
+    """
     # Set up logging.
     setup_logging(file_name="log.txt")
 
@@ -209,7 +230,6 @@ def main() -> None:
     # One for body, and one for brain.
     innov_db_body = multineat.InnovationDatabase()
     innov_db_brain = multineat.InnovationDatabase()
-
     """Here we initialize the components used for the evolutionary process.
 
     - evaluator: Allows us to evaluate a population of modular robots.
@@ -268,7 +288,6 @@ def main() -> None:
         logging.info(
             f"Generation {generation_index + 1} / {config.NUM_GENERATIONS}."
         )
-
         """
         In contrast to the previous example we do not explicitly stat the order of operations here, but let the ModularRobotEvolution object do the scheduling.
         This does not give a performance boost, but is more readable and less prone to errors due to mixing up the order.

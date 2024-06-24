@@ -42,18 +42,28 @@ class NativeMujocoViewer(Viewer):
         """Render the scene.
 
         :returns: A cycle position if applicable.
+
+        :rtype: int|None
+
         """
         self._viewer.sync()
         return None
 
     def close_viewer(self) -> None:
-        """Close the viewer."""
+        """Close the viewer.
+
+        :rtype: None
+
+        """
         self._viewer.close()
 
     def current_viewport_size(self) -> tuple[int, int]:
         """Grabs the *current* viewport size (and updates the cached values).
 
+        :rtype: tuple[int,int]
+
         :raises NotImplementedError: As it is not implemented.
+
         """
         msg = "current_viewport_size is not implemented for the native mujoco viewer yet."
         raise NotImplementedError(msg)
@@ -63,6 +73,9 @@ class NativeMujocoViewer(Viewer):
         """Get the context.
 
         :returns: The context.
+
+        :rtype: mujoco.MjrContext
+
         """
         return mujoco.MjrContext(
             self._model, mujoco.mjtFontScale.mjFONTSCALE_150.value
@@ -72,7 +85,10 @@ class NativeMujocoViewer(Viewer):
     def view_port(self) -> mujoco.MjrRect:
         """Get the view port.
 
+        :rtype: mujoco.MjrRect
+
         :raises NotImplementedError: As it is not implemented.
+
         """
         msg = "view_port is not implemented for the native mujoco viewer yet."
         raise NotImplementedError(msg)
@@ -82,5 +98,8 @@ class NativeMujocoViewer(Viewer):
         """Return False.
 
         :returns: False.
+
+        :rtype: bool
+
         """
         return False

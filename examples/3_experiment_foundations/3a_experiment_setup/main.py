@@ -13,7 +13,11 @@ def run_experiment(num_samples: int, probability: float) -> None:
 
     :param num_samples: The number of samples to use for this
         experiment.
+    :type num_samples: int
     :param probability: The probability to use for this experiment.
+    :type probability: float
+    :rtype: None
+
     """
     success_ratios = []  # Create a list where we will store the success ratio for each repetition.
 
@@ -21,7 +25,6 @@ def run_experiment(num_samples: int, probability: float) -> None:
         logging.info(
             f"Running experiment ( repetition {repetition} num_samples {num_samples} probability {probability} )"
         )
-
         """
         First, we set up a random number generator, or 'rng'.
         A rng is not actually random; it is an algorithm creating semi-randomness from a given starting number (the 'seed'), defined by you.
@@ -54,15 +57,19 @@ def run_experiment(num_samples: int, probability: float) -> None:
 
 
 def main() -> None:
-    """Run the simulation."""
-    """
-    First we set up the logging.
+    """Run the simulation.
 
-    This decides the level of severity of logged messages we want to display.
-    By default this is 'INFO' or more severe, and 'DEBUG' is excluded.
-    Furthermore, a standard message layout is set up.
-    If logging is not set up, important messages can be missed.
-    We also provide a file name, so the log will be written to both the console and that file.
+    :rtype: None
+
+    """
+    """First we set up the logging.
+
+    This decides the level of severity of logged messages we want to
+    display. By default this is 'INFO' or more severe, and 'DEBUG' is
+    excluded. Furthermore, a standard message layout is set up. If
+    logging is not set up, important messages can be missed. We also
+    provide a file name, so the log will be written to both the console
+    and that file.
     """
     setup_logging(file_name="log.txt")
 
@@ -73,7 +80,6 @@ def main() -> None:
     logging.debug(
         "This debug message is invisible, because we set our visible severity to 'INFO' and higher."
     )
-
     """
     Our experiment will be very trivial; sample a number of times with a certain probability and determine the ratio of success.
     Several probabilities and number of samples will be observed, and each experiment will be repeated a few times.
@@ -90,12 +96,14 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    """
-    This clause is a very important idiom in python that you should understand as a programmer.
+    """This clause is a very important idiom in python that you should
+    understand as a programmer.
+
     __name__ is only set to __main__ if it is directly ran as a script.
-    If the file is imported from another file the main function is not called.
-    If you do not perform this check the main function is ALWAYS called.
-    This leads to all kinds of unintended behaviour that is hard to debug.
-    See also various articles, such as https://stackoverflow.com/questions/419163/what-does-if-name-main-do
+    If the file is imported from another file the main function is not
+    called. If you do not perform this check the main function is ALWAYS
+    called. This leads to all kinds of unintended behaviour that is hard
+    to debug. See also various articles, such as
+    https://stackoverflow.com/questions/419163/what-does-if-name-main-do
     """
     main()

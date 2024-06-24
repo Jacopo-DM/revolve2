@@ -15,10 +15,13 @@ from .geometry import GeometryBox
 
 @dataclass(kw_only=True)
 class MultiBodySystem:
-    """A (possibly cyclic) graph of interconnected rigid bodies, joints, and other objects, such as cameras.
+    """A (possibly cyclic) graph of interconnected rigid bodies, joints, and
+    other objects, such as cameras.
 
     The first rigid body added is considered the root of the system.
     That is, if the system is static, that rigid body will be static.
+
+
     """
 
     _uuid: uuid.UUID = field(init=False, default_factory=uuid.uuid1)
@@ -28,6 +31,9 @@ class MultiBodySystem:
         """Get the uuid.
 
         :returns: The uuid.
+
+        :rtype: uuid.UUID
+
         """
         return self._uuid
 
@@ -35,10 +41,10 @@ class MultiBodySystem:
     """Pose of the system."""
 
     is_static: bool
-    """
-    Whether the root rigid body is static.
+    """Whether the root rigid body is static.
 
-    I.e. its root (the first rigid body) is attached to the world and will not move or rotate.
+    I.e. its root (the first rigid body) is attached to the world and
+    will not move or rotate.
     """
 
     _rigid_bodies: list[RigidBody] = field(default_factory=list, init=False)
@@ -52,8 +58,7 @@ class MultiBodySystem:
     _half_adjacency_matrix: list[Joint | None] = field(
         default_factory=list, init=False
     )
-    """
-    Adjacency matrix, defining joints between rigid bodies.
+    """Adjacency matrix, defining joints between rigid bodies.
 
     The the indices of the list match the following indices in the adjacency matrix:
 
@@ -69,6 +74,13 @@ class MultiBodySystem:
     def _half_matrix_index(
         self, rigid_body1_list_index: int, rigid_body2_list_index: int
     ) -> int:
+        """:param rigid_body1_list_index:
+        :type rigid_body1_list_index: int
+        :param rigid_body2_list_index:
+        :type rigid_body2_list_index: int
+        :rtype: int
+
+        """
         assert rigid_body1_list_index != rigid_body2_list_index
         smallest_index = min(rigid_body1_list_index, rigid_body2_list_index)
         assert smallest_index >= 0
@@ -84,6 +96,9 @@ class MultiBodySystem:
         """Add a rigid body to the system.
 
         :param rigid_body: The rigid body to add.
+        :type rigid_body: RigidBody
+        :rtype: None
+
         """
         assert (
             UUIDKey(rigid_body) not in self._rigid_body_to_index
@@ -100,6 +115,9 @@ class MultiBodySystem:
         """Add a joint between two rigid bodies.
 
         :param joint: The joint to add.
+        :type joint: Joint
+        :rtype: None
+
         """
         maybe_rigid_body_index1 = self._rigid_body_to_index.get(
             UUIDKey(joint.rigid_body1)
@@ -133,9 +151,14 @@ class MultiBodySystem:
         """Check whether a root has been added.
 
         The root rigid body is the first rigid body that has been added,
-        so this is only false if there are zero rigid bodies in this multi-body system.
+        so this is only false if there are zero rigid bodies in this
+        multi-body system.
+
 
         :returns: Whether there is a root joint.
+
+        :rtype: bool
+
         """
         return len(self._rigid_bodies) != 0
 
@@ -145,7 +168,11 @@ class MultiBodySystem:
 
         The root rigid body is the first rigid body that has been added.
 
+
         :returns: The root rigid body.
+
+        :rtype: RigidBody
+
         """
         assert len(self._rigid_bodies) != 0, "Root has not been added yet."
         return self._rigid_bodies[0]
@@ -156,7 +183,10 @@ class MultiBodySystem:
         """Get all joints attached to the provided rigid body.
 
         :param rigid_body: A previously added rigid body.
+        :type rigid_body: RigidBody
         :returns: The attached joints.
+        :rtype: list[Joint|JointHinge]
+
         """
         maybe_index = self._rigid_body_to_index.get(UUIDKey(rigid_body))
         assert (
@@ -175,13 +205,18 @@ class MultiBodySystem:
         return [joint for joint in maybe_joints if joint is not None]
 
     def calculate_aabb(self) -> tuple[Vector3, AABB]:
-        """Calculate the axis-aligned bounding box of this multi-body system when it is in T-pose.
+        """Calculate the axis-aligned bounding box of this multi-body system
+        when it is in T-pose.
 
-        That is, when all joints are at position 0.
-        Only box geometries are currently supported.
+        That is, when all joints are at position 0. Only box geometries
+        are currently supported.
+
 
         :returns: Position, AABB
+
+        :rtype: tuple[Vector3,AABB]
         :raises ValueError: If one of the geometries is not a box.
+
         """
         # Create list of all edges of geometry boxes.
         # We don't support anything but GeometryBox at this point.

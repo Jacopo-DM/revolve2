@@ -28,15 +28,20 @@ class BodyToMultiBodySystemConverter:
         """Convert a modular robot body to a multi-body system.
 
         :param body: The body to convert.
+        :type body: Body
         :param pose: The pose to put the multi-body system in. Ownership
             will be taken of the pose object and it should not be reused
             after passing it to this function.
+        :type pose: Pose
         :param translate_z_aabb: Whether the robot should be translated
             upwards so it's T-pose axis-aligned bounding box is exactly
             on the ground. I.e. if the robot should be placed exactly on
             the ground. The pose parameters is still added afterwards.
+        :type translate_z_aabb: bool
         :returns: The created multi-body system, and a mapping from body
             to multi-body system.
+        :rtype: tuple[MultiBodySystem,BodyToMultiBodySystemMapping]
+
         """
         multi_body_system = MultiBodySystem(pose=pose, is_static=False)
 

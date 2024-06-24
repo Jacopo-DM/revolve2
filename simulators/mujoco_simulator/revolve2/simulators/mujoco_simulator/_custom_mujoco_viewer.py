@@ -13,6 +13,8 @@ class CustomMujocoViewerMode(Enum):
 
     - CLASSIC mode gives an informative interface for regular simulations.
     - MANUAL mode gives a cut down interface, specific for targeting robot movement manually.
+
+
     """
 
     CLASSIC = "classic"
@@ -20,10 +22,13 @@ class CustomMujocoViewerMode(Enum):
 
 
 class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
+    """ """
+
     # TODO(jmdm): ↑ gives some typing error
     """Custom Viewer Object that allows for additional keyboard inputs.
 
-    We need the type ignore since the mujoco_viewer library is not typed properly and therefor the MujocoViewer class cant be resolved.
+    We need the type ignore since the mujoco_viewer library is not typed
+    properly and therefor the MujocoViewer class cant be resolved.
     """
 
     _convex_hull_rendering: bool
@@ -76,8 +81,13 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
         """Add overlays.
 
         :param gridpos: The position on the grid.
+        :type gridpos: int
         :param text1: Some text.
+        :type text1: str
         :param text2: Additional text.
+        :type text2: str
+        :rtype: None
+
         """
         if gridpos not in self._overlay:
             self._overlay[gridpos] = ["", ""]
@@ -85,7 +95,11 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
         self._overlay[gridpos][1] += text2 + "\n"
 
     def _create_overlay(self) -> None:
-        """Create a Custom Overlay."""
+        """Create a Custom Overlay.
+
+        :rtype: None
+
+        """
         topleft = mujoco.mjtGridPos.mjGRID_TOPLEFT
         bottomleft = mujoco.mjtGridPos.mjGRID_BOTTOMLEFT
 
@@ -215,10 +229,17 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
         """Add custom Key Callback.
 
         :param window: The window.
+        :type window: int | None
         :param key: The key pressed.
+        :type key: int | None
         :param scancode: The Scancode.
+        :type scancode: int | None
         :param action: The Action.
+        :type action: int | None
         :param mods: The Mods.
+        :type mods: int | None
+        :rtype: None
+
         """
         super()._key_callback(window, key, scancode, action, mods)
         if action == glfw.RELEASE:
@@ -236,6 +257,9 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
         """Render the scene.
 
         :returns: A cycle position if applicable.
+
+        :rtype: int|None|str
+
         """
         # Catch the case where the window is closed.
         if self._return_code == "QUIT":
@@ -251,5 +275,9 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
         )
 
     def _increment_position(self) -> None:
-        """Increment our cycle position."""
+        """Increment our cycle position.
+
+        :rtype: None
+
+        """
         self._position = (self._position + 1) % 5

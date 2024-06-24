@@ -8,6 +8,8 @@ class ActiveHingeV1(ActiveHinge):
     """An active hinge module for a modular robot.
 
     This is a rotary joint.
+
+
     """
 
     def __init__(self, rotation: float | RightAngles) -> None:

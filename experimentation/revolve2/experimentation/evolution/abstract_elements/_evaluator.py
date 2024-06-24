@@ -5,12 +5,19 @@ TPopulation = Any  # An alias for Any signifying that a population can vary depe
 
 
 class Evaluator(ABC):
-    """An Evaluator object that enables evaluation of individuals in an evolutionary process."""
+    """An Evaluator object that enables evaluation of individuals in an
+    evolutionary process.
+
+
+    """
 
     @abstractmethod
     def evaluate(self, population: TPopulation) -> list[float]:
         """Evaluate individuals from a population.
 
         :param population: The population for evaluation.
-        :return: The results of the evaluation.
+        :type population: TPopulation
+        :returns: The results of the evaluation.
+        :rtype: list[float]
+
         """

@@ -42,6 +42,9 @@ class _Program:
         """Handle a new connection.
 
         :param stream: Connection stream.
+        :type stream: Any
+        :rtype: None
+
         """
         if self._has_client:
             if self._debug:
@@ -61,7 +64,12 @@ class _Program:
             self._has_client = False
 
     async def run(self) -> None:
-        """Run the program."""
+        """Run the program.
+
+
+        :rtype: None
+
+        """
         self._physical_interface = get_interface(
             hardware_type=self._hardware_type, debug=self._debug, dry=self._dry
         )  # Here we define the interface that controls the physical modular robot.
@@ -79,8 +87,13 @@ def run_robot_daemon(
     """Run the server.
 
     :param debug: Enable debug messages.
+    :type debug: bool
     :param dry: Run in dry mode, not writing/reading hardware.
+    :type dry: bool
     :param hardware_type: The type of hardware this runs on.
+    :type hardware_type: HardwareType
+    :rtype: None
+
     """
     asyncio.run(
         capnp.run(

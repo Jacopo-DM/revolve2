@@ -10,17 +10,18 @@ class JointHinge(Joint):
     """A hinge joint, also known as revolute joint.
 
     Rotates around a single axis.
+
+
     """
 
     axis: Vector3
     """Directional vector the joint rotates about."""
 
     range: float
-    """
-    Rotation range of the joint in radians.
+    """Rotation range of the joint in radians.
 
-    How much it can rotate to each side, in radians.
-    So double this is the complete range of motion.
+    How much it can rotate to each side, in radians. So double this is
+    the complete range of motion.
     """
 
     effort: float
@@ -30,10 +31,10 @@ class JointHinge(Joint):
     """Maximum velocity of the joint, in radian per second."""
 
     armature: float
-    """
-    Armature of the joint.
+    """Armature of the joint.
 
-    This represents the inertia of the motor itself when nothing is attached.
+    This represents the inertia of the motor itself when nothing is
+    attached.
     """
 
     pid_gain_p: float

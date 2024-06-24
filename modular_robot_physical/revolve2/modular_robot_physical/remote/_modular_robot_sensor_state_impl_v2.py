@@ -59,7 +59,10 @@ class ModularRobotSensorStateImplV2(ModularRobotSensorState):
         """Get sensor states for Hinges.
 
         :param sensor: The sensor to query.
+        :type sensor: ActiveHingeSensor
         :returns: The Sensor State.
+        :rtype: ActiveHingeSensorState
+
         """
         return ActiveHingeSensorStateImpl(
             self._hinge_positions[self._hinge_sensor_mapping[UUIDKey(sensor)]]
@@ -69,8 +72,11 @@ class ModularRobotSensorStateImplV2(ModularRobotSensorState):
         """Get the state of the provided IMU sensor.
 
         :param sensor: The sensor.
-        :raises ValueError: If IMU sensors is not part of the robot.
+        :type sensor: IMUSensor
         :returns: The state.
+        :rtype: IMUSensorState
+        :raises ValueError: If IMU sensors is not part of the robot.
+
         """
         state = self._imu_sensor_states.get(UUIDKey(sensor))
         if state is None:
@@ -84,8 +90,11 @@ class ModularRobotSensorStateImplV2(ModularRobotSensorState):
         """Get the state of the provided camera sensor.
 
         :param sensor: The sensor.
-        :raises ValueError: If sensor is not found on the robot.
+        :type sensor: CameraSensor
         :returns: The camera sensor state.
+        :rtype: CameraSensorState
+        :raises ValueError: If sensor is not found on the robot.
+
         """
         state = self._camera_sensor_states.get(UUIDKey(sensor))
         if state is None:

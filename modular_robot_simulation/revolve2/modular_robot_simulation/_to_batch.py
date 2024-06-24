@@ -10,14 +10,20 @@ def to_batch(
     batch_parameters: BatchParameters,
     record_settings: RecordSettings | None = None,
 ) -> tuple[Batch, list[dict[UUIDKey[ModularRobot], MultiBodySystem]]]:
-    """Convert one or more modular robot scenes to a batch of simulation scenes.
+    """Convert one or more modular robot scenes to a batch of simulation
+    scenes.
 
     :param scenes: The modular robot scene(s) to make the batch from.
+    :type scenes: ModularRobotScene | list[ModularRobotScene]
     :param batch_parameters: Parameters for the batch that are not
         contained in the modular robot scenes.
-    :param record_settings: Setting for recording the simulations.
+    :type batch_parameters: BatchParameters
+    :param record_settings: Setting for recording the simulations. (Default value = None)
+    :type record_settings: RecordSettings | None
     :returns: The created batch and a mapping from modular robots to
         multi-body systems for each scene.
+    :rtype: tuple[Batch,list[dict[UUIDKey[ModularRobot],MultiBodySystem]]]
+
     """
     if isinstance(scenes, ModularRobotScene):
         scenes = [scenes]

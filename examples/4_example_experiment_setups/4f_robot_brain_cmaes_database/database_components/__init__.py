@@ -1,4 +1,6 @@
-"""A collection of components used to record the experiments in the Database."""
+"""A collection of components used to record the experiments in the
+Database.
+"""
 
 from ._base import Base
 from ._experiment import Experiment

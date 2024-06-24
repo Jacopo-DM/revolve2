@@ -35,7 +35,11 @@ from sqlalchemy.orm import Session
 
 
 class ParentSelector(Selector):
-    """Here we create a selector object that helps us select the parents for reproduction."""
+    """Here we create a selector object that helps us select the parents for
+    reproduction.
+
+
+    """
 
     _rng: np.random.Generator
     _offspring_size: int
@@ -54,10 +58,13 @@ class ParentSelector(Selector):
         """Select pairs of parents using a tournament.
 
         :param population: The population to select from.
-        :param kwargs: Additional kwargs that are not used in this
-            example.
+        :type population: Population
+        :param **kwargs:
+        :type **kwargs: Any
         :returns: Pairs of indices of selected parents. offspring_size x
             2 ints, and the parent population in the KWArgs dict.
+        :rtype: tuple[NDArray[np.int_],dict[str,Population]]
+
         """
         return np.asarray([
             selection.multiple_unique(
@@ -73,7 +80,11 @@ class ParentSelector(Selector):
 
 
 class SurvivorSelector(Selector):
-    """Here we make a selector object that allows us to select survivor after evaluation."""
+    """Here we make a selector object that allows us to select survivor after
+    evaluation.
+
+
+    """
 
     _rng: np.random.Generator
 
@@ -87,11 +98,14 @@ class SurvivorSelector(Selector):
         """Select survivors using a tournament.
 
         :param population: The initial population.
-        :param kwargs: Additional kwargs that contain the children to do
-            selection with.
+        :type population: Population
+        :param **kwargs:
+        :type **kwargs: Any
         :returns: The selected population and empty kwargs in this
             implementation.
+        :rtype: tuple[Population,dict[Any,Any]]
         :raises KeyError: If no children got passed.
+
         """
         offspring: list[Individual] | None = kwargs.get("children")
         if offspring is None:
@@ -150,9 +164,13 @@ class CrossoverReproducer(Reproducer):
         """Make Individuals Reproduce.
 
         :param population: The population.
-        :param kwargs: Additional arguments.
+        :type population: NDArray[np.int_]
+        :param **kwargs:
+        :type **kwargs: Any
         :returns: The reproduced population.
+        :rtype: list[Genotype]
         :raises KeyError: If the parents are not passed.
+
         """
         parents: list[Individual] | None = kwargs.get(
             "parent_population"
@@ -180,6 +198,9 @@ def run_experiment(dbengine: Engine) -> None:
 
     :param dbengine: An opened database with matching initialize
         database structure.
+    :type dbengine: Engine
+    :rtype: None
+
     """
     logging.info("----------------")
     logging.info("Start experiment")
@@ -191,7 +212,6 @@ def run_experiment(dbengine: Engine) -> None:
 
     # Create a new experiment instance.
     experiment = Experiment(rng_seed=rng_seed)
-
     """Now we save it to the database.
     A session manages multiple changes to a database, which then can either be committed(accepted) or a rolled back(aborted) in case something bad happens in our code.
     We add the experiment and commit as nothing can go wrong.
@@ -285,10 +305,13 @@ def run_experiment(dbengine: Engine) -> None:
 
 
 def main() -> None:
-    """Run the program."""
+    """Run the program.
+
+    :rtype: None
+
+    """
     # Set up logging.
     setup_logging(file_name="log.txt")
-
     """
     We open the database, only if it does not already exist.
     If it did something when wrong in a previous run of this program, and we must manually figure out what to do with the existing database.

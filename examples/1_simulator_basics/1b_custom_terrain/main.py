@@ -31,6 +31,9 @@ def make_custom_terrain() -> Terrain:
     """Create a custom terrain.
 
     :returns: The created terrain.
+
+    :rtype: Terrain
+
     """
     # A terrain is a collection of static geometries.
     # Here we create a simple terrain uses some boxes.
@@ -95,7 +98,11 @@ def make_custom_terrain() -> Terrain:
 
 
 def main() -> None:
-    """Run the simulation."""
+    """Run the simulation.
+
+    :rtype: None
+
+    """
     # Set up logging.
     setup_logging()
 

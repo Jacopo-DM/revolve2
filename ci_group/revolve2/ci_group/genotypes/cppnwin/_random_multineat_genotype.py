@@ -19,16 +19,30 @@ def random_multineat_genotype(
 
     :param innov_db: Multineat innovation database. See Multineat
         library.
+    :type innov_db: multineat.InnovationDatabase
     :param rng: Random number generator.
+    :type rng: multineat.RNG
     :param multineat_params: Multineat parameters. See Multineat
         library.
+    :type multineat_params: multineat.Parameters
     :param output_activation_func: Activation function for the output
         layer. See Multineat library.
+    :type output_activation_func: multineat.ActivationFunction
     :param num_inputs: Number of input for the network.
+    :type num_inputs: int
     :param num_outputs: Number fo outputs for the network.
+    :type num_outputs: int
     :param num_initial_mutations: The number of times to mutate to
         create a random network.
+    :type num_initial_mutations: int
+    :param search_mode: (Default value = multineat.SearchMode.BLENDED)
+    :type search_mode: multineat.SearchMode
+    :param hidden_act_f: (Default value =
+        multineat.ActivationFunction.UNSIGNED_SIGMOID)
+    :type hidden_act_f: multineat.ActivationFunction
     :returns: The created genotype.
+    :rtype: multineat.Genome
+
     """
     genotype = multineat.Genome(
         0,  # ID

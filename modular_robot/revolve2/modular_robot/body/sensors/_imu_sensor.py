@@ -6,7 +6,10 @@ from ._sensor import Sensor
 class IMUSensor(Sensor):
     """An inertial measurement unit (IMU).
 
-    Reports specific force(closely related to acceleration), angular rate(closely related to angular velocity), and orientation.
+    Reports specific force(closely related to acceleration), angular
+    rate(closely related to angular velocity), and orientation.
+
+
     """
 
     def __init__(

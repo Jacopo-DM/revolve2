@@ -25,19 +25,17 @@ def pretty_print(func: t.Callable[..., None]) -> t.Callable[..., None]:
     decorated function.
 
     :param func: The function to be decorated.
-    :type func: Callable[..., None]
+    :type func: t.Callable[..., None]
     :returns: The decorated function.
-    :rtype: Callable[..., None]
+    :rtype: t.Callable[...,None]
     """
 
     def wrapper(*args: list[t.Any], **kwargs: dict[str, t.Any]) -> None:
         """Wrap function to add the "pretty print" functionality.
 
-        :param args: Positional arguments passed to the decorated
-            function.
+        :param args:
         :type args: list[t.Any]
-        :param kwargs: Keyword arguments passed to the decorated
-            function.
+        :param kwargs:
         :type kwargs: dict[str, t.Any]
         :returns: None
         :rtype: None
@@ -76,7 +74,9 @@ class ParamAnalyzer:
         """Analyzes the parameters and stores the safe and unsafe keys.
 
         Args:
-            params (multiNEATParamType): The parameters to analyze.
+        :param params:
+        :type params: multiNEATParamType
+        :rtype: None
         """
         # Initialize empty lists to store values and keys
         safe_keys: dict[str, tuple[float | int | bool | str, str]] = {
@@ -117,16 +117,17 @@ class ParamAnalyzer:
     def get_keys(self) -> dict[str, tuple[float | int | bool | str, str]]:
         """Return the dictionary of safe keys.
 
-        Returns:
-            dict[str, tuple[float | int | bool | str, str]]: The dictionary of safe keys.
+        :returns: dict[str, tuple[float | int | bool | str, str]]: The
+            dictionary of safe keys.
+        :rtype: dict[str,tuple[float|int|bool|str,str]]
         """
         return self.safe_keys
 
     def get_unsafe_keys(self) -> set[str]:
         """Return the set of unsafe keys.
 
-        Returns:
-            A set of strings representing the unsafe keys.
+        :returns: A set of strings representing the unsafe keys.
+        :rtype: set[str]
         """
         return self.unsafe_keys
 
@@ -178,16 +179,21 @@ class ParamAnalyzer:
     ) -> None:
         """Print the differences in parameters.
 
-        Args:
-            diff_from (dict[str, tuple[float | int | bool | str, str]]): The differences from self to other.
-            diff_to (dict[str, tuple[float | int | bool | str, str]]): The differences from other to self.
+        :param diff_from: The differences from self to other.
+        :type diff_from: dict[str, tuple[float | int | bool | str, str]]
+        :param diff_to: The differences from other to self.
+        :type diff_to: dict[str, tuple[float | int | bool | str, str]]
+        :rtype: None
         """
         for key, value in diff_from.items():
             stdout.write(f"{key:<50}: {value[0]:>7} -> {diff_to[key][0]:<7}\n")
 
     @pretty_print
     def print_multineat_params_full(self) -> None:
-        """Print the full multineat parameters."""
+        """Print the full multineat parameters.
+
+        :rtype: None
+        """
         # Print the header
         tab = "    "
         stdout.write(f"{' ' * 40}\n")
@@ -220,9 +226,11 @@ class ParamAnalyzer:
         """Print the multineat parameters with reference to another
         ParamAnalyzer object.
 
-        Args:
-            other (ParamAnalyzer): The ParamAnalyzer object to compare with.
-            name (str, optional): The name of the reference. Defaults to "Valid".
+        :param other: The ParamAnalyzer object to compare with.
+        :type other: ParamAnalyzer
+        :param name: The name of the reference. Defaults to "Valid".
+        :type name: str
+        :rtype: None
         """
         # Print the header
         stdout.write(f"{' ' * 40}\n")
@@ -245,27 +253,7 @@ class ParamAnalyzer:
 
 
 class MultiNEATParamsWriter:
-    """A class that provides methods for manipulating MultiNEAT parameters.
-
-    Attributes:
-        __safe_keys__ (ClassVar[set[str]]): A set of safe parameter keys that can be modified.
-        __unsafe_keys__ (ClassVar[set[str]]): A set of unsafe parameter keys that should not be modified.
-        __inject_override__ (ClassVar[dict[str, float | int | bool]]): A dictionary of parameter keys and their default values.
-        __rejection__ (ClassVar[dict[str, str | None]]): A dictionary of rejected parameter keys and their corresponding replacement keys.
-
-    Methods:
-        _check_validity(self, source: dict[str, float | int | bool]) -> None:
-            Check the validity of the source dictionary by ensuring that it does not contain any unsafe keys and that all keys are known.
-            Replaces any rejected keys with the correct ones.
-
-        strip_params(self, source: multiNEATParamType, to_remove: dict[str, float | int | bool] | None = None) -> multiNEATParamType:
-            Strip the specified parameters from the source object and returns the modified object.
-            If no parameters are specified, the default parameters defined in __inject_override__ will be stripped.
-
-        set_params(self, target: dict[str, float | int | bool], *, prevalidated: bool = False) -> multiNEATParamType:
-            Set the specified parameters in the target dictionary and returns a multiNEATParamType object.
-            If prevalidated is False, the method will check the validity of the target dictionary before setting the parameters.
-    """
+    """A class that provides methods for manipulating MultiNEAT parameters."""
 
     __safe_keys__: ClassVar[set[str]] = {
         "ActivationADiffCoeff",
@@ -457,14 +445,12 @@ class MultiNEATParamsWriter:
     def _check_validity(self, source: dict[str, float | int | bool]) -> None:
         """Check the validity of the provided source dictionary.
 
-        Args:
-            source (dict[str, float | int | bool]): The dictionary to be checked.
-
-        Raises:
-            ValueError: If unsafe keys are found or unknown keys are found.
-
-        Return:
-            None
+        :param source: dict
+        :type source: dict[str, float | int | bool]
+        :returns: None
+        :rtype: None
+        :raises ValueError: If unsafe keys are found or unknown keys are
+            found
         """
         # Make set of keys and check if source is empty
         source_keys = set(source.keys())
@@ -496,13 +482,13 @@ class MultiNEATParamsWriter:
         """Strip the specified parameters from the given source object and
         returns the modified object.
 
-        Args:
-            source (multiNEATParamType): The source object from which parameters will be stripped.
-            to_remove (dict[str, float | int | bool] | None): A dictionary specifying the parameters to be removed.
-                If None, the parameters specified in `self.__inject_override__` will be used.
-
-        Return:
-            multiNEATParamType: The modified source object with the specified parameters stripped.
+        :param source: multiNEATParamType
+        :type source: multiNEATParamType
+        :param to_remove: dict (Default value = None)
+        :type to_remove: dict[str, float | int | bool] | None
+        :returns: multiNEATParamType: The modified source object with
+            the specified parameters stripped.
+        :rtype: multiNEATParamType
         """
         # Check if to_remove is None
         if to_remove is None:
@@ -527,15 +513,14 @@ class MultiNEATParamsWriter:
         """Set the parameters for the multiNEAT algorithm based on the given
         target dictionary.
 
-        Args:
-            target (dict[str, float | int | bool]): The target dictionary containing the parameter values.
-            prevalidated (bool, optional): Indicates whether the source has been prevalidated. Defaults to False.
-
-        Return:
-            multiNEATParamType: The multiNEAT parameters object.
-
-        Raises:
-            ValueError: If the target dictionary is invalid.
+        :param target: dict
+        :type target: dict[str, float | int | bool]
+        :param prevalidated: bool (Default value = False)
+        :type prevalidated: bool
+        :param :
+        :returns: multiNEATParamType: The multiNEAT parameters object.
+        :rtype: multiNEATParamType
+        :raises ValueError: If the target dictionary is invalid
         """
         # Check validity of target
         if not prevalidated:
@@ -560,11 +545,11 @@ class MultiNEATParamsWriter:
 def get_multineat_params(name: str = "NoveltySearch") -> multiNEATParamType:
     """Retrieve the multiNEAT parameters for the specified name.
 
-    Args:
-        name (str): The name of the multiNEAT parameter set to retrieve.
-
-    Return:
-        multiNEATParamType: The multiNEAT parameters for the specified name.
+    :param name: str (Default value = "NoveltySearch")
+    :type name: str
+    :returns: multiNEATParamType: The multiNEAT parameters for the
+        specified name.
+    :rtype: multiNEATParamType
     """
     param_writer = MultiNEATParamsWriter()
     target = getattr(CollectionOfDefaultValues, name)

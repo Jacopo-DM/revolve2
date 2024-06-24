@@ -28,7 +28,10 @@ def develop(
     function.
 
     :param genotype: The genotype to create the body from.
+    :type genotype: multineat.Genome
     :returns: The created body.
+    :rtype: BodyV1
+
     """
     max_parts = 10
 

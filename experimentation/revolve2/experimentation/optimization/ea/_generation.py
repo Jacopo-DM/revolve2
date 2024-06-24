@@ -23,6 +23,8 @@ class Generation(HasId, orm.MappedAsDataclass, Generic[TPopulation]):
 
         class MyGeneration(Base, Generation[MyPopulation]):
             __tablename__ = "my_generation"
+
+
     """
 
     # -------------------------------------
@@ -47,25 +49,28 @@ class Generation(HasId, orm.MappedAsDataclass, Generic[TPopulation]):
 
         @orm.declared_attr
         def generation_index(self) -> orm.Mapped[int]:
-            """Return the index of the current generation.
+            """:returns: :return: The index of the current generation.
 
-            :return: The index of the current generation.
+            :rtype: orm.Mapped[int]
+
             """
             return self.__generation_index_impl()
 
         @orm.declared_attr
         def _population_id(self) -> orm.Mapped[int]:
-            """Return the population ID associated with this instance.
+            """:returns: :return: The population ID.
 
-            :return: The population ID.
+            :rtype: orm.Mapped[int]
+
             """
             return self.__population_id_impl()
 
         @orm.declared_attr
         def population(self) -> orm.Mapped[TPopulation]:
-            """Return the population of the generation.
+            """:returns: :return: The population of the generation.
 
-            :return: The population of the generation.
+            :rtype: orm.Mapped[TPopulation]
+
             """
             return self.__population_impl()
 

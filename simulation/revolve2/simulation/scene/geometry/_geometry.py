@@ -12,10 +12,10 @@ class Geometry:
     """Pose of the geometry."""
 
     mass: float
-    """
-    Mass of the geometry.
+    """Mass of the geometry.
 
-    This the absolute mass, irrespective of the size of the bounding box.
+    This the absolute mass, irrespective of the size of the bounding
+    box.
     """
 
     texture: Texture

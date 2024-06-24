@@ -12,6 +12,9 @@ class IMUSensorState(ABC):
         """Get the measured specific force.
 
         :returns: The measured specific force.
+
+        :rtype: Vector3
+
         """
 
     @property
@@ -20,6 +23,9 @@ class IMUSensorState(ABC):
         """Get the measured angular rate.
 
         :returns: The measured angular rate.
+
+        :rtype: Vector3
+
         """
 
     @property
@@ -28,4 +34,7 @@ class IMUSensorState(ABC):
         """Get the measured orientation.
 
         :returns: The measured orientation.
+
+        :rtype: Vector3
+
         """

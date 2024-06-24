@@ -33,7 +33,11 @@ class ControlInterfaceImpl(ControlInterface):
         """Set the position target of a hinge joint.
 
         :param joint_hinge: The hinge to set the position target for.
-        :param position: The position target.
+        :type joint_hinge: JointHinge
+        :param position_delta:
+        :type position_delta: float
+        :rtype: None
+
         """
         maybe_hinge_joint_mujoco = (
             self._abstraction_to_mujoco_mapping.hinge_joint.get(

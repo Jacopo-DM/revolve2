@@ -17,10 +17,15 @@ def calibrate_camera(
     mot have to lie flat on the ground.
 
     :param calibration_images_paths: The calibration images.
+    :type calibration_images_paths: list[str]
     :param checkerboard_size: The checkerboard size. Note if you have a
-        10 x 10 checkerboard the size should be (9, 9).
+        10 x 10 checkerboard the size should be (9, 9). (Default value =
+        (9, 9))
+    :type checkerboard_size: tuple[int, int]
     :returns: The dimension of the calibration images, the camera matrix
         and the distortion coefficient.
+    :rtype: tuple[tuple[int,...],NDArray[np.float64],NDArray[np.float64]]
+
     """
     subpix_criteria = (
         cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER,

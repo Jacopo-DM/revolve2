@@ -14,9 +14,12 @@ class ViewerType(Enum):
         """Get viewer type from string.
 
         :param value: The value.
+        :type value: str
         :returns: The viewer type.
+        :rtype: ViewerType
         :raises ValueError: If the passed value has no viewer type
             defined.
+
         """
         match value.lower():
             case "native":

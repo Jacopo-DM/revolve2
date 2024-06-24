@@ -29,10 +29,15 @@ class Genotype(BodyGenotypeV2, BrainGenotypeCpg):
 
         :param innov_db_body: Multineat innovation database for the
             body. See Multineat library.
+        :type innov_db_body: multineat.InnovationDatabase
         :param innov_db_brain: Multineat innovation database for the
             brain. See Multineat library.
+        :type innov_db_brain: multineat.InnovationDatabase
         :param rng: Random number generator.
+        :type rng: np.random.Generator
         :returns: The created genotype.
+        :rtype: Genotype
+
         """
         body = cls.random_body(innov_db_body, rng)
         brain = cls.random_brain(innov_db_brain, rng)
@@ -47,14 +52,20 @@ class Genotype(BodyGenotypeV2, BrainGenotypeCpg):
     ) -> Genotype:
         """Mutate this genotype.
 
-        This genotype will not be changed; a mutated copy will be returned.
+        This genotype will not be changed; a mutated copy will be
+        returned.
 
         :param innov_db_body: Multineat innovation database for the
             body. See Multineat library.
+        :type innov_db_body: multineat.InnovationDatabase
         :param innov_db_brain: Multineat innovation database for the
             brain. See Multineat library.
+        :type innov_db_brain: multineat.InnovationDatabase
         :param rng: Random number generator.
+        :type rng: np.random.Generator
         :returns: A mutated copy of the provided genotype.
+        :rtype: Genotype
+
         """
         body = self.mutate_body(innov_db_body, rng)
         brain = self.mutate_brain(innov_db_brain, rng)
@@ -71,9 +82,14 @@ class Genotype(BodyGenotypeV2, BrainGenotypeCpg):
         """Perform crossover between two genotypes.
 
         :param parent1: The first genotype.
+        :type parent1: Genotype
         :param parent2: The second genotype.
+        :type parent2: Genotype
         :param rng: Random number generator.
+        :type rng: np.random.Generator
         :returns: A newly created genotype.
+        :rtype: Genotype
+
         """
         body = cls.crossover_body(parent1, parent2, rng)
         brain = cls.crossover_brain(parent1, parent2, rng)
@@ -84,6 +100,9 @@ class Genotype(BodyGenotypeV2, BrainGenotypeCpg):
         """Develop the genotype into a modular robot.
 
         :returns: The created robot.
+
+        :rtype: ModularRobot
+
         """
         body = self.develop_body()
         brain = self.develop_brain(body=body)

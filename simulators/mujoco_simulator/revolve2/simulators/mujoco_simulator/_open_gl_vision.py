@@ -16,8 +16,11 @@ from ._render_backend import RenderBackend
 class OpenGLVision:
     """A class to enable vision / camera sensors using OpenGl.
 
-    This Class is based on an implementation of Kevin Godin-Dubois <k.j.m.godin-dubois@vu.nl>.
-    Thank you very much for this big contribution!
+    This Class is based on an implementation of Kevin Godin-Dubois
+    <k.j.m.godin-dubois@vu.nl>. Thank you very much for this big
+    contribution!
+
+
     """
 
     _open_gl_context: Any
@@ -81,8 +84,12 @@ class OpenGLVision:
         """Process the current state of the simulation and render it.
 
         :param model: The mujoco model.
+        :type model: MjModel
         :param data: The mujoco data.
+        :type data: MjData
         :returns: The rendered image (RGB format).
+        :rtype: NDArray[np.uint8]
+
         """
         mujoco.mjv_updateScene(
             model,
@@ -109,8 +116,11 @@ class OpenGLVision:
         """Get the context to be used.
 
         :param open_gl_lib: The render backend to use.
+        :type open_gl_lib: RenderBackend
         :returns: The context type.
+        :rtype: Any
         :raises ValueError: If the backend for OpenGL is not known.
+
         """
         match open_gl_lib:
             case RenderBackend.GLFW:  # Does not work in multithread

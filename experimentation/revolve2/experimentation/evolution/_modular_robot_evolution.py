@@ -12,7 +12,11 @@ TPopulation = Any  # An alias for Any signifying that a population can vary depe
 
 
 class ModularRobotEvolution(Evolution):
-    """An object to encapsulate the general functionality of an evolutionary process for modular robots."""
+    """An object to encapsulate the general functionality of an evolutionary
+    process for modular robots.
+
+
+    """
 
     _parent_selection: Selector
     _survivor_selection: Selector
@@ -30,8 +34,10 @@ class ModularRobotEvolution(Evolution):
     ) -> None:
         """Initialize the ModularRobotEvolution object to make robots evolve.
 
-        :param parent_selection: Selector object for the parents for reproduction.
-        :param survivor_selection: Selector object for the survivor selection.
+        :param parent_selection: Selector object for the parents for
+            reproduction.
+        :param survivor_selection: Selector object for the survivor
+            selection.
         :param evaluator: Evaluator object for evaluation.
         :param reproducer: The reproducer object.
         :param learner: Learning object for learning.
@@ -58,8 +64,12 @@ class ModularRobotEvolution(Evolution):
         The schedule can be easily adapted and reorganized for your needs.
 
         :param population: The current population.
-        :param kwargs: Additional keyword arguments to use in the step.
-        :return: The population resulting from the step
+        :type population: TPopulation
+        :param **kwargs:
+        :type **kwargs: Any
+        :returns: The population resulting from the step
+        :rtype: TPopulation
+
         """
         parents, parent_kwargs = self._parent_selection.select(
             population, **kwargs

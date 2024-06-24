@@ -7,12 +7,17 @@ TParent = TypeVar("TParent")
 def init_subclass_get_generic_args(
     child: type[TChild], parent: type[TParent]
 ) -> tuple[Any, ...]:
-    """Get the generic arguments from a class within the __init_subclass__ function.
+    """Get the generic arguments from a class within the __init_subclass__
+    function.
 
     :param child: The type passed to the __init_subclass__ function.
+    :type child: type[TChild]
     :param parent: The type of the parent class, which is the class
         __init_subclass__ is implemented for.
+    :type parent: type[TParent]
     :returns: The types. Keep in mind these can be `ForwardRef`.
+    :rtype: tuple[Any,...]
+
     """
     # find parent and its type annotations in the list of base classes of child
     orig_bases: list[type[TParent]] = [

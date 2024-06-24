@@ -6,6 +6,8 @@ class Color:
     """Represents a color in RGBA format.
 
     All values should from 0 to 255.
+
+
     """
 
     red: int
@@ -17,6 +19,9 @@ class Color:
         """Convert to rgba list where each value is between 0 and 1.
 
         :returns: The list.
+
+        :rtype: list[float]
+
         """
         return [
             self.red / 255,

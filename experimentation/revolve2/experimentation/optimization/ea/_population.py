@@ -32,9 +32,7 @@ class Population(HasId, orm.MappedAsDataclass, Generic[TIndividual]):
         class MyPopulation(Base, Population[MyIndividual]):
             __tablename__ = "my_population"
 
-    Attributes:
-        individuals (orm.Mapped[list[TIndividual]]): A mapped relationship to the individuals in the population.
-            This attribute is interesting to the user and can be accessed directly.
+
     """
 
     # -------------------------------------
@@ -50,9 +48,10 @@ class Population(HasId, orm.MappedAsDataclass, Generic[TIndividual]):
 
         @orm.declared_attr
         def individuals(self) -> orm.Mapped[list[TIndividual]]:
-            """Return a list of individuals in the population.
+            """:returns: :return: A list of individuals.
 
-            :return: A list of individuals.
+            :rtype: orm.Mapped[list[TIndividual]]
+
             """
             return self.__individuals_impl()
 
@@ -82,11 +81,13 @@ class Population(HasId, orm.MappedAsDataclass, Generic[TIndividual]):
     def __individuals_impl(cls) -> orm.Mapped[TIndividual]:
         """Return the relationship to the individuals in the population.
 
-        This method defines the relationship between the population and its individuals.
-        It returns a relationship object that represents the mapping between the population
-        and the individuals.
+        This method defines the relationship between the population and
+        its individuals. It returns a relationship object that
+        represents the mapping between the population and the
+        individuals.
 
-        :return: The relationship object representing the individuals in the population.
+        :return: The relationship object representing the individuals in
+            the population.
         :rtype: orm.Mapped[TIndividual]
         """
         return orm.relationship(

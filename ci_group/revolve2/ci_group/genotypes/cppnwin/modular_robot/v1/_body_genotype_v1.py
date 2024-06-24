@@ -38,8 +38,12 @@ class BodyGenotypeV1:
 
         :param innov_db: Multineat innovation database. See Multineat
             library.
+        :type innov_db: multineat.InnovationDatabase
         :param rng: Random number generator.
+        :type rng: np.random.Generator
         :returns: The created genotype.
+        :rtype: BodyGenotypeV1
+
         """
         multineat_rng = multineat_rng_from_random(rng)
 
@@ -69,8 +73,12 @@ class BodyGenotypeV1:
 
         :param innov_db: Multineat innovation database. See Multineat
             library.
+        :type innov_db: multineat.InnovationDatabase
         :param rng: Random number generator.
+        :type rng: np.random.Generator
         :returns: A mutated copy of the provided genotype.
+        :rtype: BodyGenotypeV1
+
         """
         multineat_rng = multineat_rng_from_random(rng)
 
@@ -96,9 +104,14 @@ class BodyGenotypeV1:
         """Perform crossover between two genotypes.
 
         :param parent1: The first genotype.
+        :type parent1: Self
         :param parent2: The second genotype.
+        :type parent2: Self
         :param rng: Random number generator.
+        :type rng: np.random.Generator
         :returns: A newly created genotype.
+        :rtype: BodyGenotypeV1
+
         """
         multineat_rng = multineat_rng_from_random(rng)
 
@@ -118,5 +131,8 @@ class BodyGenotypeV1:
         """Develop the genotype into a modular robot.
 
         :returns: The created robot.
+
+        :rtype: BodyV1
+
         """
         return develop_body_v1(self.body.genotype)

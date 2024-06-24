@@ -36,15 +36,22 @@ def draw_robots(
     """Draw multiple robots at once.
 
     How to use:
+
+    :param robots: The robots.
+    :type robots: list[ModularRobot] | list[Body]
+    :param scale: The scale for the robots to be drawn. (Default value =
+        100)
+    :type scale: int
+    :param path: The path for the output files. (Default value = None)
+    :rtype: None
+    :type path: str | None
+    :rtype: None
+
     >>> robots: (
     ...     list[revolve2.modular_robot.ModularRobot]
     ...     | list[revolve2.modular_robot.body.base.Body]
     ... )
     >>> draw_robots(robots, path="<your desired path to save the image to>")
-
-    :param robots: The robots.
-    :param scale: The scale for the robots to be drawn.
-    :param path: The path for the output files.
     """
     if not path:
         path = __mk_path()
@@ -59,15 +66,22 @@ def draw_robot(
     """Draw a 2D representation for a modular robots body.
 
     How to use:
+
+    :param robot: Supply the robot as a ModularRobot object, or the body
+        directly as a Body object.
+    :type robot: ModularRobot | Body
+    :param scale: Allows to set the size of the drawing. (Default value
+        = 100)
+    :type scale: int
+    :param path: The path to save images to. (Default value = None)
+    :rtype: None
+    :type path: str | None
+    :rtype: None
+
     >>> robot: (
     ...     revolve2.modular_robot.ModularRobot | revolve2.modular_robot.body.base.Body
     ... )
     >>> draw_robot(robot, path="<your desired path to save the image to>")
-
-    :param robot: Supply the robot as a ModularRobot object, or the body
-        directly as a Body object.
-    :param scale: Allows to set the size of the drawing.
-    :param path: The path to save images to.
     """
     if not path:
         path = __mk_path()
@@ -104,12 +118,23 @@ def _draw_module(
     """Draw a module onto the canvas.
 
     :param module: The module.
+    :type module: Module
     :param position: The position on the canvas.
+    :type position: tuple[int, int]
     :param previous_position: The position of the previous module.
+    :type previous_position: tuple[int, int]
     :param orientation: The orientation to draw in.
+    :type orientation: NDArray[np.int_]
     :param context: The context to draw it on.
-    :param print_id: If the modules id should be drawn as well.
+    :type context: "cairo.Context[cairo.ImageSurface]"
+    :param *:
+    :param print_id: If the modules id should be drawn as well. (Default
+        value = False)
+    :rtype: None
+    :type print_id: bool
+    :rtype: None
     :raises Exception: If the module cant be drawn.
+
     """
     x, y = position
     context.rectangle(x, y, 1, 1)  # draw module object
@@ -186,7 +211,10 @@ def _make_rot_mat(theta: float) -> NDArray[np.int_]:
     grid.
 
     :param theta: The angle.
+    :type theta: float
     :returns: The matrix.
+    :rtype: NDArray[np.int_]
+
     """
     c, s = int(round(np.cos(theta))), int(round(np.sin(theta)))
     return np.array(((c, -s), (s, c)))
@@ -196,6 +224,11 @@ def _save_png(image: cairo.ImageSurface, path: str) -> None:
     """Save the image representation of a robot as png.
 
     :param image: The image.
+    :type image: cairo.ImageSurface
     :param path: The path to save the image to.
+    :rtype: None
+    :type path: str
+    :rtype: None
+
     """
     image.write_to_png(f"{path}/robot_2d_{hash(image)}.png")

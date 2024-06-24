@@ -29,8 +29,11 @@ def get_builder(unbuilt_child: UnbuiltChild) -> Builder:
     """Get and initialize the corresponding Builder for the module.
 
     :param unbuilt_child: The target child to be built.
+    :type unbuilt_child: UnbuiltChild
     :returns: The initialized Builder.
+    :rtype: Builder
     :raises KeyError: If no Builder available for the Module type.
+
     """
     match unbuilt_child.child_object:
         case Core():

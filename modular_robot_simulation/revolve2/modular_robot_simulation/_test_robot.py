@@ -17,9 +17,15 @@ def test_robot(
     """Test a robot with a manual brain.
 
     :param robot: The ModularRobot or Body instance.
+    :type robot: ModularRobot | Body
     :param terrain: The terrain to test on.
+    :type terrain: Terrain
     :param simulator: The simulator.
+    :type simulator: Simulator
     :param batch_parameters: The batch parameters.
+    :type batch_parameters: BatchParameters
+    :rtype: None
+
     """
     if isinstance(robot, Body):
         body = robot

@@ -11,10 +11,15 @@ from tests.examples._clear_example_modules_from_cache import (
 def test_4d_robot_bodybrain_ea_database(mocker: Mock, tmpdir: str) -> None:
     """Test if 4d_robot_bodybrain_ea_database example can complete.
 
-    The database file is written to a temporary directory, which is automatically deleted after the test.
+    The database file is written to a temporary directory, which is
+    automatically deleted after the test.
 
     :param mocker: The mock object.
+    :type mocker: Mock
     :param tmpdir: Temporary directory for spawning database file.
+    :type tmpdir: str
+    :rtype: None
+
     """
     exp_dir = os.path.join(
         EXAMPLES_DIR,

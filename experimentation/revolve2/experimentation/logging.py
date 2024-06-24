@@ -55,8 +55,12 @@ def setup_logging(
 ) -> None:
     """Set up logging.
 
-    :param level: The log level to use.
-    :param file_name: If not None, also writes to this file.
+    :param level: The log level to use. (Default value = logging.INFO)
+    :type level: int
+    :param file_name: If not None, also writes to this file. (Default value = None)
+    :type file_name: str | None
+    :rtype: None
+
     """
     # Set up logging.
     # Each message has an associated 'level'.

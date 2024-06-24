@@ -9,8 +9,10 @@ from ._brain_cpg_network_neighbor import (
 class BrainCpgNetworkNeighborRandom(BrainCpgNetworkNeighbor):
     """A cpg brain with random weights between neurons.
 
-    The weights are randomly generated when this object is created,
-    so they will be the same for every controller instance.
+    The weights are randomly generated when this object is created, so
+    they will be the same for every controller instance.
+
+
     """
 
     _rng: np.random.Generator
@@ -31,6 +33,15 @@ class BrainCpgNetworkNeighborRandom(BrainCpgNetworkNeighbor):
         connections: list[tuple[ActiveHinge, ActiveHinge]],
         body: Body,
     ) -> tuple[list[float], list[float]]:
+        """:param active_hinges:
+        :type active_hinges: list[ActiveHinge]
+        :param connections:
+        :type connections: list[tuple[ActiveHinge, ActiveHinge]]
+        :param body:
+        :type body: Body
+        :rtype: tuple[list[float],list[float]]
+
+        """
         # TODO ideal initial state?
         multiplier = 0.001
         recenter = -multiplier / 2.0

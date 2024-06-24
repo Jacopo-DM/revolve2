@@ -16,7 +16,11 @@ from sqlalchemy.orm import Session
 
 
 def main() -> None:
-    """Perform the rerun."""
+    """Perform the rerun.
+
+    :rtype: None
+
+    """
     setup_logging()
 
     # Load the best individual from the database.

@@ -6,4 +6,4 @@ packages=$(../read_project_parts.sh)
 
 cd ../..
 
-ruff check $packages --dif
+ruff check $packages --diff

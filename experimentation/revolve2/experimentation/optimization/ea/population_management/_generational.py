@@ -14,7 +14,8 @@ def generational(
         [int, list[Genotype], list[Fitness]], list[int]
     ],
 ) -> tuple[list[int], list[int]]:
-    """Select `len(old_genotypes)` individuals using the provided selection function from only the offspring(`new_genotypes`).
+    """Select `len(old_genotypes)` individuals using the provided selection
+    function from only the offspring(`new_genotypes`).
 
     :param old_genotypes: Genotypes of the individuals in the parent
         population. Ignored and only here for function signature

@@ -16,10 +16,16 @@ class BrainDummyInstance(BrainInstance):
     ) -> None:
         """Control nothing.
 
-        This brain does not do anything for control, as it is an empty box.
+        This brain does not do anything for control, as it is an empty
+        box.
 
         :param dt: Elapsed seconds since last call to this function.
+        :type dt: float
         :param sensor_state: Interface for reading the current sensor
             state.
+        :type sensor_state: ModularRobotSensorState
         :param control_interface: Interface for controlling the robot.
+        :type control_interface: ModularRobotControlInterface
+        :rtype: None
+
         """

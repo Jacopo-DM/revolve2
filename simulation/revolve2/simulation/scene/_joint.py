@@ -16,6 +16,9 @@ class Joint:
         """Get the uuid.
 
         :returns: The uuid.
+
+        :rtype: uuid.UUID
+
         """
         return self._uuid
 

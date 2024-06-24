@@ -16,9 +16,14 @@ def coords_from_bodies(
     """Extract coordinates of modules from a body.
 
     :param bodies: The bodies.
+    :type bodies: list[Body]
+    :param *:
     :param cob_heuristics: If change of basis heuristic approximation is
         used.
+    :type cob_heuristics: bool
     :returns: The array of coordinates.
+    :rtype: list[NDArray[np.float64]]
+
     """
     crds = _body_to_adjusted_coordinates(bodies)
     if cob_heuristics:
@@ -35,7 +40,10 @@ def _body_to_adjusted_coordinates(
     position.
 
     :param bodies: The body.
+    :type bodies: list[Body]
     :returns: The coordinates for each body.
+    :rtype: list[NDArray[np.float64]]
+
     """
     crds = [np.empty(shape=0, dtype=np.float64)] * len(bodies)
     for i, body in enumerate(bodies):
@@ -61,6 +69,10 @@ def _coordinates_pca_change_basis(
     The detailed steps of the transformation are discussed in the paper.
 
     :param coordinates: The coordinates.
+    :rtype: None
+    :type coordinates: list[NDArray[np.float64]]
+    :rtype: None
+
     """
     for i, target_coordinates in enumerate(coordinates):
         if len(target_coordinates) > 1:
@@ -101,6 +113,10 @@ def _coordinates_pca_heuristic(crds: list[NDArray[np.float64]]) -> None:
     switching axes.
 
     :param crds: The coordinates.
+    :rtype: None
+    :type crds: list[NDArray[np.float64]]
+    :rtype: None
+
     """
     for i, target_coords in enumerate(crds):
         if len(target_coords) > 1:

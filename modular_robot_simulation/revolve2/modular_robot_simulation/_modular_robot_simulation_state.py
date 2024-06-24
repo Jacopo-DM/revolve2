@@ -28,19 +28,27 @@ class ModularRobotSimulationState:
         """Get the pose of the modular robot.
 
         :returns: The retrieved pose.
+
+        :rtype: Pose
+
         """
         return self._simulation_state.get_multi_body_system_pose(
             self._multi_body_system
         )
 
     def get_module_relative_pose(self, module: Module) -> Pose:
-        """Get the pose of a module, relative to its parent module's reference frame.
+        """Get the pose of a module, relative to its parent module's reference
+        frame.
 
-        In case there is no parent(the core), this is equal to getting the absolute pose.
+        In case there is no parent(the core), this is equal to getting
+        the absolute pose.
 
         :param module: The module to get the pose for.
+        :type module: Module
         :returns: The relative pose.
+        :rtype: Pose
         :raises NotImplementedError: Always.
+
         """
         raise NotImplementedError
 
@@ -48,7 +56,10 @@ class ModularRobotSimulationState:
         """Get the pose of this module, relative the global reference frame.
 
         :param module: The module to get the pose for.
+        :type module: Module
         :returns: The absolute pose.
+        :rtype: Pose
         :raises NotImplementedError: Always.
+
         """
         raise NotImplementedError

@@ -34,6 +34,14 @@ class BrainCpgNetworkNeighbor(ModularRobotBrainCpgNetworkNeighbor):
         connections: list[tuple[ActiveHinge, ActiveHinge]],
         body: Body,
     ) -> tuple[list[float], list[float]]:
+        """:param active_hinges:
+        :type active_hinges: list[ActiveHinge]
+        :param connections:
+        :type connections: list[tuple[ActiveHinge, ActiveHinge]]
+        :param body:
+        :type body: Body
+        :rtype: tuple[list[float],list[float]]
+        """
         # [ ] Understand this code and check for bugs
 
         brain_net = multineat.NeuralNetwork()
@@ -86,6 +94,12 @@ class BrainCpgNetworkNeighbor(ModularRobotBrainCpgNetworkNeighbor):
     def _evaluate_network(
         network: multineat.NeuralNetwork, inputs: list[float]
     ) -> float:
+        """:param network:
+        :type network: multineat.NeuralNetwork
+        :param inputs:
+        :type inputs: list[float]
+        :rtype: float
+        """
         network.Input(inputs)
         network.ActivateAllLayers()
         return cast(float, network.Output()[0])

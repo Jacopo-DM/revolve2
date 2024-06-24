@@ -12,31 +12,48 @@ class PhysicalInterface(ABC):
     @abstractmethod
     def set_servo_targets(self, pins: list[int], targets: list[float]) -> None:
         """Set the target for multiple servos.
-
+        
         This can be a fairly slow operation.
 
         :param pins: The GPIO pins.
+        :type pins: list[int]
         :param targets: The target angles.
+        :type targets: list[float]
+        :rtype: None
+
         """
 
     @abstractmethod
     def enable(self) -> None:
-        """Start the robot."""
+        """Start the robot.
+
+
+        :rtype: None
+
+        """
 
     @abstractmethod
     def disable(self) -> None:
         """Set the robot to low power mode.
-
+        
         This disables all active modules and sensors.
+
+
+        :rtype: None
+
         """
 
     @abstractmethod
     def get_battery_level(self) -> float:
         """Get the battery level.
 
+
         :returns: The battery level as a number between 0.0 and 1.0.
+
+        :rtype: float
         :raises NotImplementedError: If getting the battery level is not
             supported on this hardware.
+
         """
 
     @abstractmethod
@@ -44,43 +61,62 @@ class PhysicalInterface(ABC):
         """Get the current position of multiple servos.
 
         :param pins: The GPIO pins.
+        :type pins: Sequence[int]
         :returns: The current positions.
+        :rtype: list[float]
         :raises NotImplementedError: If getting the servo position is
             not supported on this hardware.
+
         """
 
     @abstractmethod
     def get_imu_angular_rate(self) -> Vector3:
         """Get the angular rate from the IMU.
 
+
         :returns: The angular rate.
+
+        :rtype: Vector3
         :raises NotImplementedError: If the IMU is not supported on this
             hardware.
+
         """
 
     @abstractmethod
     def get_imu_orientation(self) -> Vector3:
         """Get the orientation from the IMU.
 
+
         :returns: The orientation.
+
+        :rtype: Vector3
         :raises NotImplementedError: If the IMU is not supported on this
             hardware.
+
         """
 
     @abstractmethod
     def get_imu_specific_force(self) -> Vector3:
         """Get the specific force from the IMU.
 
+
         :returns: The specific force.
+
+        :rtype: Vector3
         :raises NotImplementedError: If the IMU is not supported on this
             hardware.
+
         """
 
     @abstractmethod
     def get_camera_view(self) -> NDArray[np.uint8]:
         """Get the current view from the camera.
 
+
         :returns: The camera view.
+
+        :rtype: NDArray[np.uint8]
         :raises NotImplementedError: If the Camera is not supported on
             this hardware.
+
         """

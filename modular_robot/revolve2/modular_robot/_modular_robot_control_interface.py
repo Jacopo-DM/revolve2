@@ -14,5 +14,9 @@ class ModularRobotControlInterface(ABC):
 
         :param active_hinge: The active hinge object to set the target
             for.
+        :type active_hinge: ActiveHinge
         :param target: The target value to set.
+        :type target: float
+        :rtype: None
+
         """

@@ -17,12 +17,15 @@ if TYPE_CHECKING:
 
 
 class BrainCpgNetworkStatic(Brain):
-    """A CPG (central pattern generator) brain with CPGs and connections defined by the user.
+    """A CPG (central pattern generator) brain with CPGs and connections
+    defined by the user.
 
     A state vector is integrated over time using a weight matrix which multiplication with the state vector sum defines the derivative of the state vector.
     I.e X' = WX
 
     The first `num_output_neurons` in the state vector are the outputs for the controller created by this brain.
+
+
     """
 
     _initial_state: npt.NDArray[np.float64]
@@ -54,15 +57,22 @@ class BrainCpgNetworkStatic(Brain):
         initial_state_uniform: float,
         output_mapping: list[tuple[int, ActiveHinge]],
     ) -> BrainCpgNetworkStatic:
-        """Create and initialize an instance of this brain from the provided parameters, assuming uniform initial state.
+        """Create and initialize an instance of this brain from the provided
+        parameters, assuming uniform initial state.
 
         :param params: Parameters for the weight matrix to be created.
+        :type params: npt.NDArray[np.float64]
         :param cpg_network_structure: The cpg network structure.
+        :type cpg_network_structure: CpgNetworkStructure
         :param initial_state_uniform: Initial state to use for all
             neurons.
+        :type initial_state_uniform: float
         :param output_mapping: Marks neurons as controller outputs and
             map them to the correct active hinge.
+        :type output_mapping: list[tuple[int, ActiveHinge]]
         :returns: The created brain.
+        :rtype: BrainCpgNetworkStatic
+
         """
         initial_state = cpg_network_structure.make_uniform_state(
             initial_state_uniform
@@ -82,6 +92,9 @@ class BrainCpgNetworkStatic(Brain):
         """Create an instance of this brain.
 
         :returns: The created instance.
+
+        :rtype: BrainInstance
+
         """
         return BrainCpgInstance(
             initial_state=self._initial_state,

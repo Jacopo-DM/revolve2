@@ -22,7 +22,11 @@ class Builder(ABC):
         """Build a module onto the Robot.
 
         :param multi_body_system: The multi body system of the robot.
+        :type multi_body_system: MultiBodySystem
         :param body_to_multi_body_system_mapping: A mapping from body to
             multi-body system
+        :type body_to_multi_body_system_mapping: BodyToMultiBodySystemMapping
         :returns: The next children to be built.
+        :rtype: list[UnbuiltChild]
+
         """

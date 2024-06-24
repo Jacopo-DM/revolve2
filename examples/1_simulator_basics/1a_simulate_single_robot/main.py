@@ -21,6 +21,9 @@ def make_body() -> BodyV2:
     """Create a body for the robot.
 
     :returns: The created body.
+
+    :rtype: BodyV2
+
     """
     # A modular robot body follows a 'tree' structure.
     # The 'Body' class automatically creates a center 'core'.
@@ -42,7 +45,11 @@ def make_body() -> BodyV2:
 
 
 def main() -> None:
-    """Run the simulation."""
+    """Run the simulation.
+
+    :rtype: None
+
+    """
     # Set up logging to give output of your simulation into the command line interface (CLI).
     setup_logging()
 
@@ -51,17 +58,14 @@ def main() -> None:
 
     # Create a body for the robot.
     body = make_body()
-
     """
     Here we create a brain for the robot.
     We choose a 'CPG' brain with random parameters.
     If you want to know more about CPGs checkout the Methods section in: https://doi.org/10.1038/s41598-023-48338-4.
     """
     brain = BrainCpgNetworkNeighborRandom(body=body, rng=rng)
-
     """Once we have a body and a brain we combine it into a ModularRobot."""
     robot = ModularRobot(body, brain)
-
     """To simulate our newly created robot, we create a modular robot scene.
     This scene is a combination of one or more modular robots positioned in a given terrain.
     """
@@ -72,7 +76,6 @@ def main() -> None:
     scene.add_interactive_object(
         Ball(radius=0.1, mass=0.1, pose=Pose(Vector3([-0.5, 0.5, 0])))
     )
-
     """
     After we have the scene ready we create a simulator that will perform the simulation.
     This tutorial chooses to use Mujoco, but your version of revolve might contain other simulators as well.

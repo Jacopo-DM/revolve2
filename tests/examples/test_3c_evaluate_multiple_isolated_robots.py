@@ -17,6 +17,9 @@ def test_3c_evaluate_multiple_isolated_robots(mocker: Mock) -> None:
     """Test 3c_evaluate_multiple_isolated_robots example can complete.
 
     :param mocker: The mock object.
+    :type mocker: Mock
+    :rtype: None
+
     """
     exp_dir = os.path.join(
         EXAMPLES_DIR,

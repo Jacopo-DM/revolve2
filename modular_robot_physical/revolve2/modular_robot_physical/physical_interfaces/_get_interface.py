@@ -10,15 +10,20 @@ def get_interface(
     """Get the interface for the given hardware type.
 
     :param hardware_type: The type of hardware.
+    :type hardware_type: HardwareType
     :param debug: If debugging messages are activated.
+    :type debug: bool
     :param dry: If servo outputs are not propagated to the physical
         servos.:
+    :type dry: bool
     :returns: The interface.
+    :rtype: PhysicalInterface
     :raises NotImplementedError: If the hardware type is not supported
         or if careful is enabled and not supported for the hardware
         type.
     :raises ModuleNotFoundError: If some required package are not
         installed.
+
     """
     try:
         match hardware_type:

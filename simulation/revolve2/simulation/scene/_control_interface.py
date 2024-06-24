@@ -13,5 +13,9 @@ class ControlInterface(ABC):
         """Set the position target of a hinge joint.
 
         :param joint_hinge: The hinge to set the position target for.
+        :type joint_hinge: JointHinge
         :param position: The position target.
+        :type position: float
+        :rtype: None
+
         """

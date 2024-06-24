@@ -7,7 +7,10 @@ from dataclasses import dataclass, field
 class Sensor(ABC):
     """An inertial measurement unit.
 
-    Reports specific force(closely related to acceleration), angular rate(closely related to angularvelocity), and orientation.
+    Reports specific force(closely related to acceleration), angular
+    rate(closely related to angularvelocity), and orientation.
+
+
     """
 
     _uuid: uuid.UUID = field(init=False, default_factory=uuid.uuid1)
@@ -17,5 +20,8 @@ class Sensor(ABC):
         """Get the uuid.
 
         :returns: The uuid.
+
+        :rtype: uuid.UUID
+
         """
         return self._uuid

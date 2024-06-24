@@ -10,5 +10,8 @@ class BrainDummy(Brain):
         """Create an instance of this brain.
 
         :returns: The created instance.
+
+        :rtype: BrainInstance
+
         """
         return BrainDummyInstance()

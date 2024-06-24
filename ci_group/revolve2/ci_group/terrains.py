@@ -17,8 +17,11 @@ from revolve2.simulators.mujoco_simulator.textures import Checker
 def flat(size: Vector2 | None = None) -> Terrain:
     """Create a flat plane terrain.
 
-    :param size: Size of the plane.
+    :param size: Size of the plane. (Default value = None)
+    :type size: Vector2 | None
     :returns: The created terrain.
+    :rtype: Terrain
+
     """
     if size is None:
         size = Vector2([20.0, 20.0])
@@ -55,11 +58,17 @@ def crater(
     A combination of the rugged and bowl heightmaps.
 
     :param size: Size of the crater.
+    :type size: tuple[float, float]
     :param ruggedness: How coarse the ground is.
+    :type ruggedness: float
     :param curviness: Height of the edges of the crater.
+    :type curviness: float
     :param granularity_multiplier: Multiplier for how many edges are
-        used in the heightmap.
+        used in the heightmap. (Default value = 1.0)
+    :type granularity_multiplier: float
     :returns: The created terrain.
+    :rtype: Terrain
+
     """
     # arbitrary constant to get a nice number of edges
     num_edges_int = 100
@@ -103,7 +112,7 @@ def rugged_heightmap(
     num_edges: tuple[int, int],
     density: float = 1.0,
 ) -> npt.NDArray[np.float64]:
-    """Create a rugged terrain heightmap.
+    r"""Create a rugged terrain heightmap.
 
     It will look like::
 
@@ -113,9 +122,14 @@ def rugged_heightmap(
     It is around [-1,1] but not exactly.
 
     :param size: Size of the heightmap.
+    :type size: tuple[float, float]
     :param num_edges: How many edges to use for the heightmap.
-    :param density: How coarse the ruggedness is.
+    :type num_edges: tuple[int, int]
+    :param density: How coarse the ruggedness is. (Default value = 1.0)
+    :type density: float
     :returns: The created heightmap as a 2 dimensional array.
+    :rtype: npt.NDArray[np.float64]
+
     """
     octave = 10
     c1 = 4.0  # arbitrary constant to get nice noise
@@ -148,7 +162,10 @@ def bowl_heightmap(
     The height of the edges of the bowl is 1.0 and the center is 0.0.
 
     :param num_edges: How many edges to use for the heightmap.
+    :type num_edges: tuple[int, int]
     :returns: The created heightmap as a 2 dimensional array.
+    :rtype: npt.NDArray[np.float64]
+
     """
     return np.fromfunction(
         np.vectorize(

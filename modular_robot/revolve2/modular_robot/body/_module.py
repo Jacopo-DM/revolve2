@@ -45,8 +45,11 @@ class _AttachedSensors:
         """Add a sensor to the attached Sensors of the module.
 
         :param sensor: The sensor.
+        :type sensor: Sensor
+        :rtype: None
         :raises KeyError: If something went wrong with attaching the
             sensor.
+
         """
         match sensor:
             case CameraSensor():
@@ -76,7 +79,11 @@ class _AttachedSensors:
 
         Sensors that are None will not be included in the list.
 
+
         :returns: The sensors.
+
+        :rtype: list[Sensor]
+
         """
         sensors = [
             self._active_hinge_sensor,
@@ -90,6 +97,9 @@ class _AttachedSensors:
         """Get the potential IMU Sensor.
 
         :returns: The IMU Sensor or None.
+
+        :rtype: IMUSensor|None
+
         """
         return self._imu_sensor
 
@@ -98,6 +108,9 @@ class _AttachedSensors:
         """Get the potential Active Hinge Sensor.
 
         :returns: The ActiveHinge Sensor or None.
+
+        :rtype: ActiveHingeSensor|None
+
         """
         return self._active_hinge_sensor
 
@@ -106,6 +119,9 @@ class _AttachedSensors:
         """Get the potential Camera Sensor.
 
         :returns: The Camera Sensor or None.
+
+        :rtype: CameraSensor|None
+
         """
         return self._camera_sensor
 
@@ -120,15 +136,14 @@ class Module:
     _orientation: Quaternion
 
     _parent: Module | None
-    """
-    The parent module of this module.
+    """The parent module of this module.
 
-    None if this module has not yet been added to a body or is the origin of the body.
+    None if this module has not yet been added to a body or is the
+    origin of the body.
     """
 
     _parent_child_index: int | None
-    """
-    Index of this module in the parent modules child list.
+    """Index of this module in the parent modules child list.
 
     None if this module has not yet been added to a body.
     """
@@ -157,7 +172,6 @@ class Module:
         self._parent_child_index = None
         self._children = {}
         self._uuid = uuid.uuid1()
-
         """Set parsed arguments."""
         self._sensors = _AttachedSensors()  # Initialize the attached sensors.
         for sensor in sensors:  # Add all desired sensors to the module.
@@ -171,6 +185,9 @@ class Module:
         """Get the uuid.
 
         :returns: The uuid.
+
+        :rtype: uuid.UUID
+
         """
         return self._uuid
 
@@ -179,6 +196,9 @@ class Module:
         """Get the orientation of this model relative to its parent.
 
         :returns: The orientation.
+
+        :rtype: Quaternion
+
         """
         return self._orientation
 
@@ -186,10 +206,15 @@ class Module:
     def parent(self) -> Module | None:
         """Get the parent module of this module.
 
-        None if this module has not yet been added to a body or is the origin of the body.
+        None if this module has not yet been added to a body or is the
+        origin of the body.
+
 
         :returns: The parent module of this module, or None if this
             module has not yet been added to a body.
+
+        :rtype: Module|None
+
         """
         return self._parent
 
@@ -199,9 +224,13 @@ class Module:
 
         None if this module has not yet been added to a body.
 
+
         :returns: The index of this module in the parent modules child
             list, or None if this module has not yet been added to a
             body.
+
+        :rtype: int|None
+
         """
         return self._parent_child_index
 
@@ -211,6 +240,9 @@ class Module:
 
         :returns: The children and their respective attachment point
             index.
+
+        :rtype: dict[int,Module]
+
         """
         return self._children
 
@@ -218,9 +250,13 @@ class Module:
         """Attach a module to certain AttachmentPoint.
 
         :param module: The module to attach.
+        :type module: Module
         :param child_index: The index of the AttachmentPoint to attach
             it to.
+        :type child_index: int
+        :rtype: None
         :raises KeyError: If attachment point is already populated.
+
         """
         assert (
             module._parent is None
@@ -234,19 +270,27 @@ class Module:
             raise KeyError(msg)
 
     def can_set_child(self, child_index: int) -> bool:
-        """Check if a child can be set on a specific attachment point on the module.
+        """Check if a child can be set on a specific attachment point on the
+        module.
 
         :param child_index: The child index.
+        :type child_index: int
         :returns: The boolean value.
+        :rtype: bool
+
         """
         return bool(self._children.get(child_index, True))
 
     def neighbours(self, within_range: int) -> list[Module]:
-        """Get the neighbours of this module with a certain range of the module tree.
+        """Get the neighbours of this module with a certain range of the module
+        tree.
 
         :param within_range: The range in which modules are considered a
             neighbour. Minimum is 1.
+        :type within_range: int
         :returns: The neighbouring modules.
+        :rtype: list[Module]
+
         """
         out_neighbours: list[Module] = []
 
@@ -280,6 +324,9 @@ class Module:
         """Get the color of this module.
 
         :returns: The color.
+
+        :rtype: Color
+
         """
         return self._color
 
@@ -288,6 +335,9 @@ class Module:
         """Set the color of a module.
 
         :param color: The color
+        :type color: Color
+        :rtype: None
+
         """
         self._color = color
 
@@ -296,6 +346,9 @@ class Module:
         """Get all attachment points of this module.
 
         :returns: The attachment points.
+
+        :rtype: dict[int,AttachmentPoint]
+
         """
         return self._attachment_points
 
@@ -304,6 +357,9 @@ class Module:
         """Get the sensors.
 
         :returns: The value.
+
+        :rtype: _AttachedSensors
+
         """
         return self._sensors
 
@@ -311,5 +367,8 @@ class Module:
         """Add a sensor to the module.
 
         :param sensor: The sensor.
+        :type sensor: Sensor
+        :rtype: None
+
         """
         self._sensors.add_sensor(sensor)

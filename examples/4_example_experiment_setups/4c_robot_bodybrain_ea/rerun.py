@@ -16,7 +16,11 @@ PICKLED_GENOTYPE = b'\x80\x04\x95\x13\x1c\x00\x00\x00\x00\x00\x00\x8c\nindividua
 
 
 def main() -> None:
-    """Perform the rerun."""
+    """Perform the rerun.
+
+    :rtype: None
+
+    """
     setup_logging()
 
     individual: Individual = pickle.loads(PICKLED_GENOTYPE)

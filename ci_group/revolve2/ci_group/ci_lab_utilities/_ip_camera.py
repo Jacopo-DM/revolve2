@@ -14,11 +14,14 @@ class IPCamera:
     """A general class to steam and record from IP cameras via opencv.
 
     How to use:
+
+    If you are experiencing XDG_SESSION_TYPE error messages because of wayland use the following code before you start the recording:
+
+
     >>> address = "rtsp://<user>:<password>@<ip>:<port (554)>/..."
     >>> camera = IPCamera(camera_location=address, recording_path="<example_path>")
     >>> camera.start(display=True, record=True)
 
-    If you are experiencing XDG_SESSION_TYPE error messages because of wayland use the following code before you start the recording:
     >>> import os
     >>> os.environ["XDG_SESSION_TYPE"] = "xcb"
     >>> os.environ["OPENCV_FFMPEG_CAPTURE_OPTIONS"] = "rtsp_transport;udp"
@@ -91,7 +94,11 @@ class IPCamera:
         )
 
     def _receive(self) -> None:
-        """Receive data from the camera."""
+        """Receive data from the camera.
+
+        :rtype: None
+
+        """
         capture = cv2.VideoCapture(self._camera_location, cv2.CAP_FFMPEG)
         capture.set(cv2.CAP_PROP_FRAME_WIDTH, self._image_dimensions[0])
         capture.set(cv2.CAP_PROP_FRAME_HEIGHT, self._image_dimensions[1])
@@ -109,7 +116,11 @@ class IPCamera:
         capture.release()
 
     def _display(self) -> None:
-        """Display the data from the camera."""
+        """Display the data from the camera.
+
+        :rtype: None
+
+        """
         while self._is_running:
             if not self._d_q.empty():
                 frame = self._d_q.get()
@@ -120,7 +131,11 @@ class IPCamera:
         cv2.destroyAllWindows()
 
     def _record(self) -> None:
-        """Record the data from the camera."""
+        """Record the data from the camera.
+
+        :rtype: None
+
+        """
         out = cv2.VideoWriter(
             self._recording_path,
             cv2.VideoWriter.fourcc(*"mp4v"),
@@ -136,13 +151,21 @@ class IPCamera:
         out.release()
 
     def _dump_record(self) -> None:
-        """Dump record queue if not used."""
+        """Dump record queue if not used.
+
+        :rtype: None
+
+        """
         while self._is_running:
             if not self._r_q.empty():
                 self._r_q.get()
 
     def _dump_display(self) -> None:
-        """Dump display queue if not used."""
+        """Dump display queue if not used.
+
+        :rtype: None
+
+        """
         while self._is_running:
             if not self._d_q.empty():
                 self._d_q.get()
@@ -151,7 +174,10 @@ class IPCamera:
         """Remove fisheye effect from the camera.
 
         :param image: The image
-        :return: The undistorted image.
+        :type image: cv2.typing.MatLike
+        :returns: The undistorted image.
+        :rtype: cv2.typing.MatLike
+
         """
         return cv2.remap(
             image,
@@ -164,8 +190,16 @@ class IPCamera:
     def start(self, *, record: bool = False, display: bool = True) -> None:
         """Start the camera.
 
-        :param record: Whether to record.
-        :param display: Whether to display the video stream.
+        :param *:
+        :param record: Whether to record. (Default value = False)
+        :type record: bool
+        :param display: Whether to display the video stream. (Default
+            value = True)
+        :rtype: None
+        :rtype: None
+        :type display: bool
+        :rtype: None
+
         """
         if not record and not display:
             msg = "The camera is neither recording or displaying, are you sure you are using it?"

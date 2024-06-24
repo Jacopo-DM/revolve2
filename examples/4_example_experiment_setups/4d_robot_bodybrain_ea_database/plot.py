@@ -10,7 +10,12 @@ from sqlalchemy import select
 
 
 def main() -> None:
-    """Run the program."""
+    """Run the program.
+
+
+    :rtype: None
+
+    """
     setup_logging()
 
     dbengine = open_database_sqlite(

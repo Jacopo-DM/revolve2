@@ -20,8 +20,12 @@ class UnbuiltChild:
         """Make the pose of the unbuilt child.
 
         :param position: The position argument from the parent.
+        :type position: Vector3
         :param orientation: The orientation of the attachment on the
-            parent.
+            parent. (Default value = Quaternion())
+        :type orientation: Quaternion
+        :rtype: None
+
         """
         self.pose = Pose(
             position,

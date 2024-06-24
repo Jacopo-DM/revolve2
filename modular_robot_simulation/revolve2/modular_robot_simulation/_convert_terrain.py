@@ -7,7 +7,10 @@ def convert_terrain(terrain: Terrain) -> MultiBodySystem:
     """Convert a terrain to a multi-body system.
 
     :param terrain: The terrain to convert.
+    :type terrain: Terrain
     :returns: The created multi-body system.
+    :rtype: MultiBodySystem
+
     """
     multi_body_system = MultiBodySystem(pose=Pose(), is_static=True)
     rigid_body = RigidBody(

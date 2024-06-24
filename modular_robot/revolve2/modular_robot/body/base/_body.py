@@ -26,14 +26,18 @@ class Body:
 
     @classmethod
     def grid_position(cls, module: Module) -> Vector3:
-        """Calculate the position of this module in a 3d grid with the core as center.
+        """Calculate the position of this module in a 3d grid with the core as
+        center.
 
         The distance between all modules is assumed to be one grid cell.
         All module angles must be multiples of 90 degrees.
 
         :param module: The module to calculate the position for.
+        :type module: Module
         :returns: The calculated position.
+        :rtype: Vector3
         :raises KeyError: In case an attachment point is not found.
+
         """
         position = Vector3()
 
@@ -83,8 +87,12 @@ class Body:
         """Find all Modules of a certain type in the robot.
 
         :param module_type: The type.
-        :param exclude: Module types to be excluded in search.
+        :type module_type: type[TModule]
+        :param exclude: Module types to be excluded in search. (Default value = None)
+        :type exclude: list[type[TModule]] | None
         :returns: The list of Modules.
+        :rtype: list[TModule]
+
         """
         return self.__find_recur(
             self._core, module_type, [] if exclude is None else exclude
@@ -98,9 +106,13 @@ class Body:
 
         The grid is indexed depth, width, height, or x, y, z, from the perspective of the core.
 
+
         :returns: The created grid with cells set to either a Module or
             None and a position vector of the core. The position Vector3
             is dtype: int.
+
+        :rtype: tuple[NDArray[TModuleNP],Vector3[np.int_]]
+
         """
         return _GridMaker().make_grid(self)
 
@@ -109,11 +121,16 @@ class Body:
         """Get the core of the Body.
 
         :returns: The core.
+
+        :rtype: Core
+
         """
         return self._core
 
 
 class _GridMaker(Generic[TModuleNP]):
+    """ """
+
     _x: ClassVar[list[int]] = []
     _y: ClassVar[list[int]] = []
     _z: ClassVar[list[int]] = []
@@ -122,6 +139,11 @@ class _GridMaker(Generic[TModuleNP]):
     def make_grid(
         self, body: Body
     ) -> tuple[NDArray[TModuleNP], Vector3[np.int_]]:
+        """:param body:
+        :type body: Body
+        :rtype: tuple[NDArray[TModuleNP],Vector3[np.int_]]
+
+        """
         self._make_grid_recur(body._core, Vector3(), Quaternion())
 
         minx, maxx = min(self._x), max(self._x)
@@ -144,6 +166,15 @@ class _GridMaker(Generic[TModuleNP]):
     def _make_grid_recur(
         self, module: Module, position: Vector3, orientation: Quaternion
     ) -> None:
+        """:param module:
+        :type module: Module
+        :param position:
+        :type position: Vector3
+        :param orientation:
+        :type orientation: Quaternion
+        :rtype: None
+
+        """
         self._add(position, module)
 
         for child_index, attachment_point in module.attachment_points.items():
@@ -164,6 +195,13 @@ class _GridMaker(Generic[TModuleNP]):
                 )
 
     def _add(self, position: Vector3, module: Module) -> None:
+        """:param position:
+        :type position: Vector3
+        :param module:
+        :type module: Module
+        :rtype: None
+
+        """
         self._modules.append(module)
         x, y, z = position
         self._x.append(int(round(x)))

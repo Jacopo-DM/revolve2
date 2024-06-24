@@ -37,7 +37,11 @@ class ModularRobotControlInterfaceImpl(ModularRobotControlInterface):
         """Set the position target for an active hinge.
 
         :param active_hinge: The active hinge to set the target for.
+        :type active_hinge: ActiveHinge
         :param target: The target to set.
+        :type target: float
+        :rtype: None
+
         """
         self._simulation_control.set_joint_hinge_position_target(
             self._body_to_multi_body_system_mapping.active_hinge_to_joint_hinge[

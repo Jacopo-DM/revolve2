@@ -5,7 +5,11 @@ from ._simulation_state import SimulationState
 
 
 class SimulationHandler(ABC):
-    """Base class for handling a simulation, which includes, for example, controlling robots."""
+    """Base class for handling a simulation, which includes, for example,
+    controlling robots.
+
+
+    """
 
     @abstractmethod
     def handle(
@@ -14,6 +18,11 @@ class SimulationHandler(ABC):
         """Handle a simulation frame.
 
         :param state: The current state of the simulation.
+        :type state: SimulationState
         :param control: Interface for setting control targets.
+        :type control: ControlInterface
         :param dt: The time since the last call to this function.
+        :type dt: float
+        :rtype: None
+
         """

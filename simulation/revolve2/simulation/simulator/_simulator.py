@@ -12,5 +12,8 @@ class Simulator(ABC):
         """Simulate the provided batch by simulating each contained scene.
 
         :param batch: The batch to run.
+        :type batch: Batch
         :returns: List of simulation states in ascending order of time.
+        :rtype: list[list[SimulationState]]
+
         """

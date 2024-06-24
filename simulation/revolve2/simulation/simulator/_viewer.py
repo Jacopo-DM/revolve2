@@ -6,13 +6,20 @@ class Viewer(ABC):
 
     @abstractmethod
     def close_viewer(self) -> None:
-        """Close the viewer."""
+        """Close the viewer.
+
+        :rtype: None
+
+        """
 
     @abstractmethod
     def render(self) -> None | int:
         """Render the scene on the viewer.
 
         :returns: Nothing or feedback.
+
+        :rtype: None|int
+
         """
 
     @abstractmethod
@@ -20,6 +27,9 @@ class Viewer(ABC):
         """Get the current viewport size.
 
         :returns: The size as a tuple.
+
+        :rtype: tuple[int,int]
+
         """
 
     @property
@@ -28,6 +38,9 @@ class Viewer(ABC):
         """Get the viewport.
 
         :returns: The viewport object.
+
+        :rtype: None
+
         """
 
     @property
@@ -36,6 +49,9 @@ class Viewer(ABC):
         """Return the viewer context.
 
         :returns: The context object.
+
+        :rtype: None
+
         """
 
     @property
@@ -44,4 +60,7 @@ class Viewer(ABC):
         """Check if this viewer can record.
 
         :returns: The truth.
+
+        :rtype: bool
+
         """

@@ -33,6 +33,9 @@ class IMUSensorStateImpl(IMUSensorState):
         """Get the measured specific force.
 
         :returns: The measured specific force.
+
+        :rtype: Vector3
+
         """
         return self._simulation_state.get_imu_specific_force(self._imu)
 
@@ -41,6 +44,9 @@ class IMUSensorStateImpl(IMUSensorState):
         """Get the measured angular rate.
 
         :returns: The measured angular rate.
+
+        :rtype: Vector3
+
         """
         return self._simulation_state.get_imu_angular_rate(self._imu)
 
@@ -49,6 +55,9 @@ class IMUSensorStateImpl(IMUSensorState):
         """Get the measured orientation.
 
         :returns: The measured position.
+
+        :rtype: Quaternion
+
         """
         return self._simulation_state.get_multi_body_system_pose(
             self._multi_body_system

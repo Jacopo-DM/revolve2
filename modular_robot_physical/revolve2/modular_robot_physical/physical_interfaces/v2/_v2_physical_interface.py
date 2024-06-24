@@ -89,11 +89,15 @@ class V2PhysicalInterface(PhysicalInterface):
 
     def set_servo_targets(self, pins: list[int], targets: list[float]) -> None:
         """Set the target for multiple servos.
-
+        
         This can be a fairly slow operation.
 
         :param pins: The GPIO pin numbers.
+        :type pins: list[int]
         :param targets: The target angles.
+        :type targets: list[float]
+        :rtype: None
+
         """
         for pin, _target in zip(pins, targets, strict=False):
             if self._debug:
@@ -109,7 +113,12 @@ class V2PhysicalInterface(PhysicalInterface):
             self._robohat.update_servo_data_direct(all_angles)
 
     def enable(self) -> None:
-        """Start the robot."""
+        """Start the robot.
+
+
+        :rtype: None
+
+        """
         if self._debug:
             pass
         if not self._dry:
@@ -117,8 +126,12 @@ class V2PhysicalInterface(PhysicalInterface):
 
     def disable(self) -> None:
         """Set the robot to low power mode.
-
+        
         This disables all active modules and sensors.
+
+
+        :rtype: None
+
         """
         if self._debug:
             pass
@@ -128,7 +141,11 @@ class V2PhysicalInterface(PhysicalInterface):
     def get_battery_level(self) -> float:
         """Get the battery level.
 
+
         :returns: The battery level as a number between 0.0 and 1.0.
+
+        :rtype: float
+
         """
         return self._robohat.get_battery_percentage_capacity() / 100.0
 
@@ -136,7 +153,10 @@ class V2PhysicalInterface(PhysicalInterface):
         """Get the current position of multiple servos.
 
         :param pins: The GPIO pin numbers.
+        :type pins: Sequence[int]
         :returns: The current positions.
+        :rtype: list[float]
+
         """
         angles = self._robohat.get_servo_multiple_angles()
         return [(angles[pin] - 90) / 360.0 * math.pi * 2.0 for pin in pins]
@@ -144,8 +164,12 @@ class V2PhysicalInterface(PhysicalInterface):
     def get_imu_angular_rate(self) -> Vector3:
         """Get the angular rate from the IMU.
 
+
         :returns: The angular rate.
+
+        :rtype: Vector3
         :raises RuntimeError: When imu could not be read.
+
         """
         gyro = self._robohat.get_imu_gyro()
         if gyro is None:
@@ -156,8 +180,12 @@ class V2PhysicalInterface(PhysicalInterface):
     def get_imu_orientation(self) -> Vector3:
         """Get the orientation from the IMU.
 
+
         :returns: The orientation.
+
+        :rtype: Vector3
         :raises RuntimeError: When imu could not be read.
+
         """
         orientation = self._robohat.get_imu_magnetic_fields()
         if orientation is None:
@@ -168,8 +196,12 @@ class V2PhysicalInterface(PhysicalInterface):
     def get_imu_specific_force(self) -> Vector3:
         """Get the specific force from the IMU.
 
+
         :returns: The specific force.
+
+        :rtype: Vector3
         :raises RuntimeError: When imu could not be read.
+
         """
         accel = self._robohat.get_imu_acceleration()
         if accel is None:
@@ -180,7 +212,11 @@ class V2PhysicalInterface(PhysicalInterface):
     def get_camera_view(self) -> NDArray[np.uint8]:
         """Get the current view from the camera.
 
+
         :returns: A dummy image until robohatlib has camera support.
+
+        :rtype: NDArray[np.uint8]
+
         """
         image = np.zeros((3, 100, 100), dtype=int)
         cv2.putText(

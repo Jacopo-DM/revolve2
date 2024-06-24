@@ -53,8 +53,10 @@ class ParentSelector(Selector):
         """Select the parents.
 
         :param population: The population of robots.
-        :param kwargs: Other parameters.
+        :type population: Population :param **kwargs: :type **kwargs:
+            Any
         :returns: The parent pairs.
+        :rtype: tuple[npt.NDArray[np.int_],dict[str,Population]]
         """
         return np.array(
             [
@@ -96,8 +98,10 @@ class SurvivorSelector(Selector):
         """Select survivors using a tournament.
 
         :param population: The population the parents come from.
-        :param kwargs: The offspring, with key 'offspring_population'.
+        :type population: Population :param **kwargs: :type **kwargs:
+            Any
         :returns: A newly created population.
+        :rtype: tuple[Population,dict[str,Any]]
         :raises ValueError: If the population is empty.
         """
         offspring = kwargs.get("children")
@@ -178,8 +182,11 @@ class CrossoverReproducer(Reproducer):
         """Reproduce the population by crossover.
 
         :param population: The parent pairs.
-        :param kwargs: Additional keyword arguments.
+        :type population: npt.NDArray[np.int_]
+        :param **kwargs:
+        :type **kwargs: Any
         :returns: The genotypes of the children.
+        :rtype: list[Genotype]
         :raises ValueError: If the parent population is not passed as a
             kwarg `parent_population`.
         """
@@ -203,6 +210,9 @@ def run_experiment(dbengine: Engine) -> None:
 
     :param dbengine: An openened database with matching initialize
         database structure.
+    :rtype: None
+    :type dbengine: Engine
+    :rtype: None
     """
     logging.info("----------------")
     logging.info("Start experiment")
@@ -221,9 +231,7 @@ def run_experiment(dbengine: Engine) -> None:
     # CPPN innovation databases.
     innov_db_body = multineat.InnovationDatabase()
     innov_db_brain = multineat.InnovationDatabase()
-
-    """
-    Here we initialize the components used for the evolutionary process.
+    """Here we initialize the components used for the evolutionary process.
 
     - evaluator: Allows us to evaluate a population of modular robots.
     - parent_selector: Allows us to select parents from a population of modular robots.
@@ -301,7 +309,10 @@ def run_experiment(dbengine: Engine) -> None:
 
 
 def main() -> None:
-    """Run the program."""
+    """Run the program.
+
+    :rtype: None
+    """
     # Set up logging.
     setup_logging(file_name="log.txt")
 
@@ -321,7 +332,11 @@ def save_to_db(dbengine: Engine, generation: Generation) -> None:
     """Save the current generation to the database.
 
     :param dbengine: The database engine.
+    :type dbengine: Engine
     :param generation: The current generation.
+    :rtype: None
+    :type generation: Generation
+    :rtype: None
     """
     logging.info("Saving generation.")
     with Session(dbengine, expire_on_commit=False) as session:

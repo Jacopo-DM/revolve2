@@ -9,7 +9,10 @@ from setuptools import Extension, setup
 def build() -> None:
     """Build the morphological novelty shared object.
 
+    :rtype: None
+
     :raises OSError: If the users OS is not Windows or UNIX-based.
+
     """
     file_path = Path(__file__).resolve()
     directory_path = file_path.parent

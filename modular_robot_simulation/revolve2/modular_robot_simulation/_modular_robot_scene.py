@@ -21,9 +21,10 @@ class ModularRobotScene:
     """The terrain of the scene."""
 
     _robots: list[tuple[ModularRobot, Pose, bool]] = field(default_factory=list)
-    """
-    The robots in the scene.
-    This is an owning collection; the robots are assigned ids when they are added, equal to their index in this list.
+    """The robots in the scene.
+
+    This is an owning collection; the robots are assigned ids when they
+    are added, equal to their index in this list.
     """
     _interactive_objects: list[MultiBodySystem] = field(default_factory=list)
     """Interactive objects in the scene, that are not robots themselves."""
@@ -37,11 +38,16 @@ class ModularRobotScene:
         """Add a robot to the scene.
 
         :param robot: The robot to add.
-        :param pose: The pose of the robot.
+        :type robot: ModularRobot
+        :param pose: The pose of the robot. (Default value = Pose())
+        :type pose: Pose
         :param translate_z_aabb: Whether the robot should be translated
             upwards so it's T-pose axis-aligned bounding box is exactly
             on the ground. I.e. if the robot should be placed exactly on
-            the ground. The pose parameters is still added afterwards.
+            the ground. The pose parameters is still added afterwards. (Default value = True)
+        :type translate_z_aabb: bool
+        :rtype: None
+
         """
         # Add the robot to the robots list.
         self._robots.append((
@@ -54,6 +60,9 @@ class ModularRobotScene:
         """Add an intractable object to the scene.
 
         :param objt: The object as a multi body system.
+        :type objt: MultiBodySystem
+        :rtype: None
+
         """
         self._interactive_objects.append(objt)
 
@@ -63,6 +72,9 @@ class ModularRobotScene:
         """Convert this to a simulation scene.
 
         :returns: The created scene.
+
+        :rtype: tuple[Scene,dict[UUIDKey[ModularRobot],MultiBodySystem]]
+
         """
         handler = ModularRobotSimulationHandler()
         scene = Scene(handler=handler)

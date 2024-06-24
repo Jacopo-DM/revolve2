@@ -8,8 +8,7 @@ class AABB:
     """An axis aligned bounding box."""
 
     size: Vector3
-    """
-    Sizes of the length of the bounding box.
+    """Sizes of the length of the bounding box.
 
     Not half of the box.
     """

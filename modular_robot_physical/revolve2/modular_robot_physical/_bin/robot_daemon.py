@@ -1,4 +1,5 @@
-"""Physical modular robot daemon that provides a network interface to use the robot."""
+"""Physical modular robot daemon that provides a network interface to use the
+robot."""
 
 import typed_argparse as tap
 
@@ -7,7 +8,7 @@ from ..robot_daemon import run_robot_daemon
 
 
 class Args(tap.TypedArgs):
-    """Arguments for the program."""
+    """ """
 
     debug: bool = tap.arg(help="Print debug messages.", default=False)
     hardware: HardwareType = tap.arg(
@@ -23,6 +24,9 @@ def main_with_args(args: Args) -> None:
     """Run the program from the point where arguments were parsed.
 
     :param args: The parsed program arguments.
+    :type args: Args
+    :rtype: None
+
     """
     run_robot_daemon(
         debug=args.debug, dry=args.dry, hardware_type=args.hardware
@@ -30,5 +34,10 @@ def main_with_args(args: Args) -> None:
 
 
 def main() -> None:
-    """Run the script."""
+    """Run the script.
+
+
+    :rtype: None
+
+    """
     tap.Parser(Args).bind(main_with_args).run()

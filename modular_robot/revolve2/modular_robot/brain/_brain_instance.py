@@ -10,6 +10,8 @@ class BrainInstance(ABC):
     """An instance of a brain that perform the control of a robot.
 
     Instances of this class can be stateful.
+
+
     """
 
     @abstractmethod
@@ -22,7 +24,12 @@ class BrainInstance(ABC):
         """Control the modular robot.
 
         :param dt: Elapsed seconds since last call to this function.
+        :type dt: float
         :param sensor_state: Interface for reading the current sensor
             state.
+        :type sensor_state: ModularRobotSensorState
         :param control_interface: Interface for controlling the robot.
+        :type control_interface: ModularRobotControlInterface
+        :rtype: None
+
         """

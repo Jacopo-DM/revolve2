@@ -11,6 +11,8 @@ class Brain(ABC):
     which create the actual brain instance that control the robot.
     The instance contains all the state associated with the control strategy;
     this class must be stateless.
+
+
     """
 
     @abstractmethod
@@ -18,4 +20,7 @@ class Brain(ABC):
         """Create an instance of this brain.
 
         :returns: The created instance.
+
+        :rtype: BrainInstance
+
         """

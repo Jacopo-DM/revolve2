@@ -14,8 +14,12 @@ def open_async_database_sqlite(
     """Open an SQLAlchemy SQLite async database.
 
     :param db_file: File for the database.
-    :param open_method: The way the database should be opened.
+    :type db_file: str
+    :param open_method: The way the database should be opened. (Default value = OpenMethod.OPEN_IF_EXISTS)
+    :type open_method: OpenMethod
     :returns: The opened database.
+    :rtype: AsyncEngine
+
     """
     __common(db_file, open_method)
     return create_async_engine(f"sqlite+aiosqlite:///{db_file}")
@@ -27,8 +31,12 @@ def open_database_sqlite(
     """Open an SQLAlchemy SQLite database.
 
     :param db_file: File for the database.
-    :param open_method: The way the database should be opened.
+    :type db_file: str
+    :param open_method: The way the database should be opened. (Default value = OpenMethod.OPEN_IF_EXISTS)
+    :type open_method: OpenMethod
     :returns: The opened database.
+    :rtype: Engine
+
     """
     __common(db_file, open_method)
     return create_engine(f"sqlite:///{db_file}")

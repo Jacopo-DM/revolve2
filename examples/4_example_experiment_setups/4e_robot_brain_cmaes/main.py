@@ -14,7 +14,11 @@ from revolve2.modular_robot.brain.cpg import (
 
 
 def main() -> None:
-    """Run the experiment."""
+    """Run the experiment.
+
+    :rtype: None
+
+    """
     setup_logging(file_name="log.txt")
 
     # Find all active hinges in the body

@@ -12,6 +12,9 @@ def test_4e_robot_brain_cmaes(mocker: Mock) -> None:
     """Test 4e_robot_brain_cmaes example can complete.
 
     :param mocker: The mock object.
+    :type mocker: Mock
+    :rtype: None
+
     """
     exp_dir = os.path.join(
         EXAMPLES_DIR, "4_example_experiment_setups/4e_robot_brain_cmaes"

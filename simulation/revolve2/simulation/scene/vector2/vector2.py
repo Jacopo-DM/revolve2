@@ -15,6 +15,8 @@ class Vector2(BaseVector):  # type: ignore[misc]
     """Represents a 2-dimensional Vector.
 
     The Vector2 class is based on the pyrr implementation of vectors.
+
+
     """
 
     def __hash__(self) -> int:
@@ -151,5 +153,9 @@ class Vector2(BaseVector):  # type: ignore[misc]
     # Methods and Properties
     @property
     def inverse(self) -> Vector2:
-        """:return: the inverted Vector2."""
+        """:return: the inverted Vector2.
+
+        :rtype: Vector2
+
+        """
         return Vector2(-self)

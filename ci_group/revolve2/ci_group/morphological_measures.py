@@ -24,6 +24,8 @@ class MorphologicalMeasures(Generic[TModule]):
     In: Sim, K., Kaufmann, P. (eds) Applications of Evolutionary Computation.
     EvoApplications 2018. Lecture Notes in Computer Science(), vol 10784. Springer, Cham.
     https://doi.org/10.1007/978-3-319-77538-8_47
+
+
     """
 
     """Represents the modules of a body in a 3D tensor."""
@@ -270,7 +272,11 @@ class MorphologicalMeasures(Generic[TModule]):
 
         Forward/backward axis for the core module.
 
+
         :returns: The depth.
+
+        :rtype: int
+
         """
         return self.grid.shape[0]
 
@@ -280,7 +286,11 @@ class MorphologicalMeasures(Generic[TModule]):
 
         Right/left axis for the core module.
 
+
         :returns: The width.
+
+        :rtype: int
+
         """
         return self.grid.shape[1]
 
@@ -290,7 +300,11 @@ class MorphologicalMeasures(Generic[TModule]):
 
         Up/down axis for the core module.
 
+
         :returns: The height.
+
+        :rtype: int
+
         """
         return self.grid.shape[2]
 
@@ -299,6 +313,9 @@ class MorphologicalMeasures(Generic[TModule]):
         """Get the number of modules.
 
         :returns: The number of modules.
+
+        :rtype: int
+
         """
         return 1 + len(self.modules)
 
@@ -307,6 +324,9 @@ class MorphologicalMeasures(Generic[TModule]):
         """Get the number of bricks.
 
         :returns: The number of bricks.
+
+        :rtype: int
+
         """
         return len(self.bricks)
 
@@ -315,6 +335,9 @@ class MorphologicalMeasures(Generic[TModule]):
         """Get the number of active hinges.
 
         :returns: The number of active hinges.
+
+        :rtype: int
+
         """
         return len(self.active_hinges)
 
@@ -323,7 +346,11 @@ class MorphologicalMeasures(Generic[TModule]):
         """Get the number of bricks which have all slots filled with other
         modules.
 
+
         :returns: The number of bricks.
+
+        :rtype: int
+
         """
         return len(self.filled_bricks)
 
@@ -332,7 +359,11 @@ class MorphologicalMeasures(Generic[TModule]):
         """Get the number of bricks which have all slots filled with other
         modules.
 
+
         :returns: The number of bricks.
+
+        :rtype: int
+
         """
         return len(self.filled_active_hinges)
 
@@ -341,7 +372,11 @@ class MorphologicalMeasures(Generic[TModule]):
         """Get the number of modules which have all slots filled with other
         modules, including the core.
 
+
         :returns: The number of modules.
+
+        :rtype: int
+
         """
         return (
             self.num_filled_bricks
@@ -356,7 +391,11 @@ class MorphologicalMeasures(Generic[TModule]):
 
         This calculates 'b_max' from the paper.
 
+
         :returns: The calculated number.
+
+        :rtype: int
+
         """
         # Snake-like is an optimal arrangement.
         #
@@ -386,7 +425,11 @@ class MorphologicalMeasures(Generic[TModule]):
 
         This calculates 'branching' from the paper.
 
+
         :returns: The proportion.
+
+        :rtype: float
+
         """
         if self.max_potentionally_filled_core_and_bricks == 0:
             return 0.0
@@ -402,7 +445,11 @@ class MorphologicalMeasures(Generic[TModule]):
 
         Both children and parent are counted.
 
+
         :returns: The number of bricks.
+
+        :rtype: int
+
         """
         return len(self.single_neighbour_modules)
 
@@ -413,7 +460,11 @@ class MorphologicalMeasures(Generic[TModule]):
 
         This calculates "l_max" from the paper.
 
+
         :returns: The calculated number.
+
+        :rtype: int
+
         """
         # Snake-like is an optimal arrangement.
         #
@@ -436,7 +487,11 @@ class MorphologicalMeasures(Generic[TModule]):
 
         Both children and parent are counted.
 
+
         :returns: The number of bricks.
+
+        :rtype: int
+
         """
         return len(self.double_neighbour_bricks)
 
@@ -447,7 +502,11 @@ class MorphologicalMeasures(Generic[TModule]):
 
         Both children and parent are counted.
 
+
         :returns: The number of active hinges.
+
+        :rtype: int
+
         """
         return len(self.double_neighbour_active_hinges)
 
@@ -459,7 +518,11 @@ class MorphologicalMeasures(Generic[TModule]):
 
         This calculates e_max from the paper.
 
+
         :returns: The calculated number.
+
+        :rtype: int
+
         """
         #
         # C-M-M-M-M-M
@@ -479,7 +542,11 @@ class MorphologicalMeasures(Generic[TModule]):
         This calculate length of limbs proportion(extensiveness) from
         the paper.
 
+
         :returns: The proportion.
+
+        :rtype: float
+
         """
         if self.potential_double_neighbour_bricks_and_active_hinges == 0:
             return 0.0
@@ -495,7 +562,11 @@ class MorphologicalMeasures(Generic[TModule]):
 
         This calculates m_area from the paper.
 
+
         :returns: The volume.
+
+        :rtype: int
+
         """
         return (
             self.bounding_box_width
@@ -509,7 +580,11 @@ class MorphologicalMeasures(Generic[TModule]):
 
         This calculates 'coverage' from the paper.
 
+
         :returns: The proportion.
+
+        :rtype: float
+
         """
         return self.num_modules / self.bounding_box_volume
 
@@ -519,7 +594,11 @@ class MorphologicalMeasures(Generic[TModule]):
 
         Alias for filled_core_and_bricks_proportion.
 
+
         :returns: Branching measurement.
+
+        :rtype: float
+
         """
         return self.filled_core_and_bricks_proportion
 
@@ -529,7 +608,11 @@ class MorphologicalMeasures(Generic[TModule]):
 
         Alias for single_neighbour_brick_proportion.
 
+
         :returns: Limbs measurement.
+
+        :rtype: float
+
         """
         if self.max_potential_single_neighbour_modules == 0:
             return 0.0
@@ -544,7 +627,11 @@ class MorphologicalMeasures(Generic[TModule]):
 
         Alias for double_neighbour_brick_and_active_hinge_proportion.
 
+
         :returns: Length of limbs measurement.
+
+        :rtype: float
+
         """
         return self.double_neighbour_brick_and_active_hinge_proportion
 
@@ -554,7 +641,11 @@ class MorphologicalMeasures(Generic[TModule]):
 
         Alias for bounding_box_volume_coverage.
 
+
         :returns: Coverage measurement.
+
+        :rtype: float
+
         """
         return self.bounding_box_volume_coverage
 
@@ -564,7 +655,11 @@ class MorphologicalMeasures(Generic[TModule]):
 
         Only for 2d robots.
 
+
         :returns: Proportion measurement.
+
+        :rtype: float
+
         """
         # assert self.is_2d
         if not self.is_2d:
@@ -580,5 +675,8 @@ class MorphologicalMeasures(Generic[TModule]):
         """Get the 'symmetry' measurement from the paper, but extended to 3d.
 
         :returns: Symmetry measurement.
+
+        :rtype: float
+
         """
         return max(self.xy_symmetry, self.xz_symmetry, self.yz_symmetry)

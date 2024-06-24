@@ -54,11 +54,15 @@ class V1PhysicalInterface(PhysicalInterface):
 
     def set_servo_targets(self, pins: list[int], targets: list[float]) -> None:
         """Set the target for multiple servos.
-
+        
         This can be a fairly slow operation.
 
         :param pins: The GPIO pins.
+        :type pins: list[int]
         :param targets: The target angles.
+        :type targets: list[float]
+        :rtype: None
+
         """
         if not self._dry:
             assert self._gpio is not None
@@ -70,7 +74,12 @@ class V1PhysicalInterface(PhysicalInterface):
                 self._gpio.set_PWM_dutycycle(pin, angle)
 
     def enable(self) -> None:
-        """Start the robot."""
+        """Start the robot.
+
+
+        :rtype: None
+
+        """
         if not self._dry:
             assert self._gpio is not None
             for pin in self._PINS:
@@ -81,8 +90,12 @@ class V1PhysicalInterface(PhysicalInterface):
 
     def disable(self) -> None:
         """Set the robot to low power mode.
-
+        
         This disables all active modules and sensors.
+
+
+        :rtype: None
+
         """
         if self._debug:
             pass
@@ -95,8 +108,12 @@ class V1PhysicalInterface(PhysicalInterface):
     def get_battery_level(self) -> float:
         """Get the battery level.
 
+
+        :rtype: float
+
         :raises NotImplementedError: If getting the battery level is not
             supported on this hardware.
+
         """
         msg = "Getting battery level not supported on v1 harware."
         raise NotImplementedError(msg)
@@ -105,8 +122,11 @@ class V1PhysicalInterface(PhysicalInterface):
         """Get the current position of multiple servos.
 
         :param pins: The GPIO pins.
+        :type pins: Sequence[int]
+        :rtype: list[float]
         :raises NotImplementedError: If getting the servo position is
             not supported on this hardware.
+
         """
         msg = "Getting servo position not supported on v1 harware."
         raise NotImplementedError(msg)
@@ -114,28 +134,44 @@ class V1PhysicalInterface(PhysicalInterface):
     def get_imu_angular_rate(self) -> Vector3:
         """Get the angular rate from the IMU.
 
+
+        :rtype: Vector3
+
         :raises NotImplementedError: Always.
+
         """
         raise NotImplementedError
 
     def get_imu_orientation(self) -> Vector3:
         """Get the orientation from the IMU.
 
+
+        :rtype: Vector3
+
         :raises NotImplementedError: Always.
+
         """
         raise NotImplementedError
 
     def get_imu_specific_force(self) -> Vector3:
         """Get the specific force from the IMU.
 
+
+        :rtype: Vector3
+
         :raises NotImplementedError: Always.
+
         """
         raise NotImplementedError
 
     def get_camera_view(self) -> NDArray[np.uint8]:
         """Get the current view from the camera.
 
+
+        :rtype: NDArray[np.uint8]
+
         :raises NotImplementedError: If the Camera is not supported on
             this hardware.
+
         """
         raise NotImplementedError

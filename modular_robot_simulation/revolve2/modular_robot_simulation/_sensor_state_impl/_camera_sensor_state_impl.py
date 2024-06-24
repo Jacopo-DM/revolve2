@@ -34,5 +34,8 @@ class CameraSensorStateImpl(CameraSensorState):
         """Get the current image.
 
         :returns: The image.
+
+        :rtype: NDArray[np.uint8]
+
         """
         return self._simulation_state.get_camera_view(self._camera)

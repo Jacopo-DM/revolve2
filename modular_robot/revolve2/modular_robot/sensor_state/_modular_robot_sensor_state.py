@@ -22,7 +22,10 @@ class ModularRobotSensorState(ABC):
         """Get the state of the provided active hinge sensor.
 
         :param sensor: The sensor.
+        :type sensor: ActiveHingeSensor
         :returns: The state.
+        :rtype: ActiveHingeSensorState
+
         """
 
     @abstractmethod
@@ -30,7 +33,10 @@ class ModularRobotSensorState(ABC):
         """Get the state of the provided IMU sensor.
 
         :param sensor: The sensor.
+        :type sensor: IMUSensor
         :returns: The state.
+        :rtype: IMUSensorState
+
         """
 
     @abstractmethod
@@ -40,5 +46,8 @@ class ModularRobotSensorState(ABC):
         """Get the state of the provided camera sensor.
 
         :param sensor: The sensor.
+        :type sensor: CameraSensor
         :returns: The state.
+        :rtype: CameraSensorState
+
         """

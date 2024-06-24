@@ -15,7 +15,10 @@ def test_1a_simulate_single_robot(mocker: Mock) -> None:
     """Test 1a_simulate_single_robot example can complete.
 
     :param mocker: The mock object.
+    :type mocker: Mock
     :returns: None
+    :rtype: None
+
     """
     exp_dir = os.path.join(
         EXAMPLES_DIR, "1_simulator_basics/1a_simulate_single_robot"

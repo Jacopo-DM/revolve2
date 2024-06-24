@@ -7,9 +7,12 @@ TPopulation = Any  # An alias for Any signifying that a population can vary depe
 
 
 class Learner(ABC):
-    """A Learner object that enables learning for individuals in an evolutionary process.
+    """A Learner object that enables learning for individuals in an
+    evolutionary process.
 
     TODO: use link for explanation
+
+
     """
 
     _reward_function: Evaluator
@@ -19,5 +22,8 @@ class Learner(ABC):
         """Make Individuals from a population learn.
 
         :param population: The population.
-        :return: The learned population.
+        :type population: TPopulation
+        :returns: The learned population.
+        :rtype: TPopulation
+
         """

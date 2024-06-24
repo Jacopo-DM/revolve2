@@ -7,7 +7,11 @@ from ._modular_robot_simulation_state import (
 
 
 class SceneSimulationState:
-    """An interface for reading a certain state of a modular robot simulation."""
+    """An interface for reading a certain state of a modular robot
+    simulation.
+
+
+    """
 
     _simulation_state: SimulationState
     _modular_robot_to_multi_body_system_mapping: dict[
@@ -39,8 +43,11 @@ class SceneSimulationState:
         """Get the simulation state for one of the modular robots in the scene.
 
         :param modular_robot: The modular robot to get the state for.
+        :type modular_robot: ModularRobot
         :returns: The retrieved state.
+        :rtype: ModularRobotSimulationState
         :raises ValueError: If the robot is not in the scene.
+
         """
         maybe_multi_body_system = (
             self._modular_robot_to_multi_body_system_mapping.get(

@@ -47,7 +47,10 @@ class Evaluator(Eval):
         Fitness is the distance traveled on the xy plane.
 
         :param population: The robots to simulate.
+        :type population: list[Genotype]
         :returns: Fitnesses of the robots.
+        :rtype: list[float]
+
         """
         robots = [genotype.develop() for genotype in population]
         # Create the scenes.

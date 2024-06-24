@@ -8,6 +8,9 @@ def all() -> list[BodyV2]:
     """Get a list of all standard module robots.
 
     :returns: The list of robots.
+
+    :rtype: list[BodyV2]
+
     """
     return [gecko_v2(), ant_v2(), spider_v2(), snake_v2()]
 
@@ -16,8 +19,11 @@ def get(name: str) -> BodyV2:
     """Get a robot by name.
 
     :param name: The name of the robot to get.
+    :type name: str
     :returns: The robot with that name.
+    :rtype: BodyV2
     :raises ValueError: When a robot with that name does not exist.
+
     """
     match name:
         case "gecko":
@@ -41,6 +47,9 @@ def runner_v2() -> BodyV2:
     """Sample robot with new HW config.
 
     :returns: the robot
+
+    :rtype: BodyV2
+
     """
     body = BodyV2()
 
@@ -79,6 +88,9 @@ def gecko_v2() -> BodyV2:
     """Sample robot with new HW config.
 
     :returns: the robot
+
+    :rtype: BodyV2
+
     """
     body = BodyV2()
 
@@ -114,6 +126,9 @@ def gecko_plus_v2() -> BodyV2:
     """Sample robot with new HW config.
 
     :returns: the robot
+
+    :rtype: BodyV2
+
     """
     body = BodyV2()
 
@@ -159,6 +174,9 @@ def spider_v2() -> BodyV2:
     """Get the spider modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV2
+
     """
     body = BodyV2()
 
@@ -189,6 +207,9 @@ def ant_v2() -> BodyV2:
     """Get the ant modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV2
+
     """
     body = BodyV2()
 
@@ -229,6 +250,9 @@ def snake_v2() -> BodyV2:
     """Get the snake modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV2
+
     """
     body = BodyV2()
 

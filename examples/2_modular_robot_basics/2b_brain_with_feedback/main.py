@@ -45,9 +45,14 @@ class ANNBrainInstance(BrainInstance):
         """Control the modular robot.
 
         :param dt: Elapsed seconds since last call to this function.
+        :type dt: float
         :param sensor_state: Interface for reading the current sensor
             state.
+        :type sensor_state: ModularRobotSensorState
         :param control_interface: Interface for controlling the robot.
+        :type control_interface: ModularRobotControlInterface
+        :rtype: None
+
         """
         # To get data from you sensors you need the sensor itself, with which you can query the sensor stare from the ModularRobotSensorState object.
         # Get the sensors from the active hinges
@@ -105,6 +110,9 @@ class ANNBrain(Brain):
         """Create an instance of this brain.
 
         :returns: The created instance.
+
+        :rtype: BrainInstance
+
         """
         return ANNBrainInstance(
             active_hinges=self.active_hinges,
@@ -113,13 +121,16 @@ class ANNBrain(Brain):
 
 
 def main() -> None:
-    """Run the simulation."""
+    """Run the simulation.
+
+    :rtype: None
+
+    """
     # Set up logging.
     setup_logging()
 
     # Create a body for the robot.
     body = modular_robots_v2.gecko_v2()
-
     """Every module on the robot can have sensors, to add them you do the following:"""
     # Add an IMU Sensor to the core.
     body.core.add_sensor(

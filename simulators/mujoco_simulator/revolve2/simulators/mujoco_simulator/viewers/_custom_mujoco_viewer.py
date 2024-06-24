@@ -16,6 +16,8 @@ class CustomMujocoViewerMode(Enum):
 
     - CLASSIC mode gives an informative interface for regular simulations.
     - MANUAL mode gives a cut down interface, specific for targeting robot movement manually.
+
+
     """
 
     CLASSIC = "classic"
@@ -25,7 +27,10 @@ class CustomMujocoViewerMode(Enum):
 class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
     """Custom Viewer Object that allows for additional keyboard inputs.
 
-    We need the type ignore since the mujoco_viewer library is not typed properly and therefor the MujocoViewer class cant be resolved.
+    We need the type ignore since the mujoco_viewer library is not typed
+    properly and therefor the MujocoViewer class cant be resolved.
+
+
     """
 
     _convex_hull_rendering: bool
@@ -102,8 +107,13 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
         """Add overlays.
 
         :param gridpos: The position on the grid.
+        :type gridpos: int
         :param text1: Some text.
+        :type text1: str
         :param text2: Additional text.
+        :type text2: str
+        :rtype: None
+
         """
         if gridpos not in self._overlay:
             self._overlay[gridpos] = ["", ""]
@@ -111,7 +121,11 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
         self._overlay[gridpos][1] += text2 + "\n"
 
     def _create_overlay(self) -> None:
-        """Create a Custom Overlay."""
+        """Create a Custom Overlay.
+
+        :rtype: None
+
+        """
         topleft = mujoco.mjtGridPos.mjGRID_TOPLEFT
         # topright = mujoco.mjtGridPos.mjGRID_TOPRIGHT
         bottomleft = mujoco.mjtGridPos.mjGRID_BOTTOMLEFT
@@ -233,10 +247,17 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
         """Add custom Key Callback.
 
         :param window: The window.
+        :type window: Any
         :param key: The key pressed.
+        :type key: Any
         :param scancode: The Scancode.
+        :type scancode: Any
         :param action: The Action.
+        :type action: Any
         :param mods: The Mods.
+        :type mods: Any
+        :rtype: None
+
         """
         super()._key_callback(window, key, scancode, action, mods)
         if action == glfw.RELEASE:
@@ -253,6 +274,9 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
         """Grabs the *current* viewport size (and updates the cached values).
 
         :returns: the viewport size
+
+        :rtype: tuple[int,int]
+
         """
         self.viewport.width, self.viewport.height = glfw.get_framebuffer_size(
             self.window
@@ -263,6 +287,9 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
         """Render the scene.
 
         :returns: A cycle position if applicable.
+
+        :rtype: int|None
+
         """
         super().render()
         if self._viewer_mode == CustomMujocoViewerMode.MANUAL:
@@ -270,11 +297,19 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
         return None
 
     def _increment_position(self) -> None:
-        """Increment our cycle position."""
+        """Increment our cycle position.
+
+        :rtype: None
+
+        """
         self._position = (self._position + 1) % 5
 
     def close_viewer(self) -> None:
-        """Close the viewer."""
+        """Close the viewer.
+
+        :rtype: None
+
+        """
         self.close()
 
     @property
@@ -282,6 +317,9 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
         """Get the context.
 
         :returns: The context.
+
+        :rtype: mujoco.MjrContext
+
         """
         return self.ctx
 
@@ -290,6 +328,9 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
         """Get the view_port.
 
         :returns: The viewport.
+
+        :rtype: mujoco.MjrRect
+
         """
         return self.viewport
 
@@ -298,5 +339,8 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
         """Return True.
 
         :returns: True.
+
+        :rtype: bool
+
         """
         return True

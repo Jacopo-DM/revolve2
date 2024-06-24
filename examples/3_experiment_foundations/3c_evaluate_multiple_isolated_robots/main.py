@@ -16,7 +16,11 @@ from revolve2.simulators.mujoco_simulator import LocalSimulator
 
 
 def main() -> None:
-    """Run the simulation."""
+    """Run the simulation.
+
+    :rtype: None
+
+    """
     # Set up logging.
     setup_logging()
 

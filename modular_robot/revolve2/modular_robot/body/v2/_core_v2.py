@@ -36,7 +36,6 @@ class CoreV2(Core):
         mass = (
             num_batteries * self._BATTERY_MASS + self._FRAME_MASS
         )  # adjust if multiple batteries are installed
-
         """Here we produce the attachment faces, with the advanced logic behind conflict checking."""
         self._attachment_faces = {
             self.FRONT: AttachmentFaceCoreV2(
@@ -67,7 +66,6 @@ class CoreV2(Core):
             child_offset=0.0,
             sensors=[],
         )
-
         """Now we set the attachment faces as the children of the V2 Core."""
         self.front = self.attachment_faces[self.FRONT]
         self.back = self.attachment_faces[self.BACK]
@@ -79,6 +77,9 @@ class CoreV2(Core):
         """Get the face attached to the front of the core.
 
         :returns: The attached module.
+
+        :rtype: AttachmentFaceCoreV2
+
         """
         return self._attachment_faces[self.FRONT]
 
@@ -87,6 +88,9 @@ class CoreV2(Core):
         """Get the face attached to the right of the core.
 
         :returns: The attached module.
+
+        :rtype: AttachmentFaceCoreV2
+
         """
         return self._attachment_faces[self.RIGHT]
 
@@ -95,6 +99,9 @@ class CoreV2(Core):
         """Get the face attached to the back of the core.
 
         :returns: The attached module.
+
+        :rtype: AttachmentFaceCoreV2
+
         """
         return self._attachment_faces[self.BACK]
 
@@ -103,6 +110,9 @@ class CoreV2(Core):
         """Get the face attached to the left of the core.
 
         :returns: The attached module.
+
+        :rtype: AttachmentFaceCoreV2
+
         """
         return self._attachment_faces[self.LEFT]
 
@@ -111,6 +121,9 @@ class CoreV2(Core):
         """Get the horizontal offset for attachment positions (in m).
 
         :returns: The value.
+
+        :rtype: float
+
         """
         return self._horizontal_offset
 
@@ -119,6 +132,9 @@ class CoreV2(Core):
         """Get the vertical offset for attachment positions (in m).
 
         :returns: The value.
+
+        :rtype: float
+
         """
         return self._vertical_offset
 
@@ -127,5 +143,8 @@ class CoreV2(Core):
         """Get all attachment faces for the Core.
 
         :returns: The attachment faces.
+
+        :rtype: dict[int,AttachmentFaceCoreV2]
+
         """
         return self._attachment_faces

@@ -14,9 +14,12 @@ from ._make_cpg_network_structure_neighbor import (
 
 
 class BrainCpgNetworkNeighbor(Brain):
-    """A CPG brain with active hinges that are connected if they are within 2 jumps in the modular robot tree structure.
+    """A CPG brain with active hinges that are connected if they are within 2
+    jumps in the modular robot tree structure.
 
     That means, NOT grid coordinates, but tree distance.
+
+
     """
 
     _initial_state: npt.NDArray[np.float64]
@@ -73,6 +76,9 @@ class BrainCpgNetworkNeighbor(Brain):
         """Create an instance of this brain.
 
         :returns: The created instance.
+
+        :rtype: BrainInstance
+
         """
         return BrainCpgInstance(
             initial_state=self._initial_state,
@@ -91,14 +97,19 @@ class BrainCpgNetworkNeighbor(Brain):
 
         :param active_hinges: The active hinges corresponding to each
             cpg.
+        :type active_hinges: list[ActiveHinge]
         :param connections: Pairs of active hinges corresponding to
             pairs of cpgs that are connected. Connection is from hinge 0
             to hinge 1. Opposite connection is not provided as weights
             are assumed to be negative.
+        :type connections: list[tuple[ActiveHinge, ActiveHinge]]
         :param body: The body that matches this brain.
+        :type body: Body
         :returns: Two lists. The first list contains the internal
             weights in cpgs, corresponding to `active_hinges` The second
             list contains the weights between connected cpgs,
             corresponding to `connections` The lists should match the
             order of the input parameters.
+        :rtype: tuple[list[float],list[float]]
+
         """

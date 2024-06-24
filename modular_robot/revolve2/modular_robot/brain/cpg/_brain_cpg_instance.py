@@ -15,6 +15,8 @@ class BrainCpgInstance(BrainInstance):
     A state array that is integrated over time following the differential equation `X'=WX`.
     W is a weight matrix that is multiplied by the state array.
     The outputs of the controller are defined by the `outputs`, a list of indices for the state array.
+
+
     """
 
     _initial_state: npt.NDArray[np.float64]
@@ -66,9 +68,14 @@ class BrainCpgInstance(BrainInstance):
         RK45 is a method of order 4 with an error estimator of order 5 (Fehlberg, E. (1969). Low-order classical Runge-Kutta formulas with stepsize control. NASA Technical Report R-315.).
 
         :param state: The current state of the network.
-        :param A: The weights matrix of the network.
+        :type state: npt.NDArray[np.float64]
+        :param a_mat:
+        :type a_mat: npt.NDArray[np.float64]
         :param dt: The step size (elapsed simulation time).
+        :type dt: float
         :returns: The new state.
+        :rtype: tuple[npt.NDArray[np.float64],npt.NDArray[np.float64]]
+
         """
         a_mat_1: npt.NDArray[np.float64] = np.matmul(a_mat, state)
         a_mat_2: npt.NDArray[np.float64] = np.matmul(
@@ -87,6 +94,15 @@ class BrainCpgInstance(BrainInstance):
     def _newtown_raphson(
         state: npt.NDArray[np.float64], a: npt.NDArray[np.float64], dt: float
     ) -> tuple[npt.NDArray[np.float64], npt.NDArray[np.float64]]:
+        """:param state:
+        :type state: npt.NDArray[np.float64]
+        :param a:
+        :type a: npt.NDArray[np.float64]
+        :param dt:
+        :type dt: float
+        :rtype: tuple[npt.NDArray[np.float64],npt.NDArray[np.float64]]
+
+        """
         delta = np.matmul(a, state) * dt
         return np.clip(state + delta, -1, 1), delta
 
@@ -98,12 +114,18 @@ class BrainCpgInstance(BrainInstance):
     ) -> None:
         """Control the modular robot.
 
-        Set the active hinge targets to the values in the state array as defined by the mapping provided in the constructor.
+        Set the active hinge targets to the values in the state array as
+        defined by the mapping provided in the constructor.
 
         :param dt: Elapsed seconds since last call to this function.
+        :type dt: float
         :param sensor_state: Interface for reading the current sensor
             state.
+        :type sensor_state: ModularRobotSensorState
         :param control_interface: Interface for controlling the robot.
+        :type control_interface: ModularRobotControlInterface
+        :rtype: None
+
         """
         # Integrate ODE to obtain new state.
         # self._state, delta = self._rk45(self._state, self._weight_matrix, dt)

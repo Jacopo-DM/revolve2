@@ -16,8 +16,9 @@ class CameraSensor(Sensor):
     ) -> None:
         """Initialize the Camera Sensor.
 
-        Note that the camera_size can have a significant impact on performance.
-        For evolution related work stick to 10x10 for fast results.
+        Note that the camera_size can have a significant impact on
+        performance. For evolution related work stick to 10x10 for fast
+        results.
 
         :param position: The position of the camera.
         :param orientation: The rotation of the camera.
@@ -31,5 +32,8 @@ class CameraSensor(Sensor):
         """Get the size of the camera.
 
         :returns: The camera size.
+
+        :rtype: tuple[int,int]
+
         """
         return self._camera_size

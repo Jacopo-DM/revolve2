@@ -23,7 +23,11 @@ from revolve2.experimentation.rng import make_rng_time_seed
 
 
 class ParentSelector(Selector):
-    """Here we create a selector object that helps us select the parents for reproduction."""
+    """Here we create a selector object that helps us select the parents for
+    reproduction.
+
+
+    """
 
     _rng: np.random.Generator
     _offspring_size: int
@@ -42,10 +46,13 @@ class ParentSelector(Selector):
         """Select pairs of parents using a tournament.selection procedure.
 
         :param population: The population to select from.
-        :param kwargs: Additional kwargs that are not used in this
-            example.
+        :type population: list[Individual]
+        :param **kwargs:
+        :type **kwargs: Any
         :returns: Pairs of indices of selected parents. offspring_size x
             2 ints, and the parent population in the KWArgs dict.
+        :rtype: tuple[NDArray[np.int_],dict[str,list[Individual]]]
+
         """
         final_selection = np.asarray([
             selection.multiple_unique(
@@ -58,12 +65,17 @@ class ParentSelector(Selector):
             )
             for _ in range(self._offspring_size)
         ])
-        """We select not the parents directly, but their respective indices for the reproduction step."""
+        """We select not the parents directly, but their respective indices for
+        the reproduction step."""
         return final_selection, {"parent_population": population}
 
 
 class SurvivorSelector(Selector):
-    """Here we make a selector object that allows us to select survivor after evaluation."""
+    """Here we make a selector object that allows us to select survivor after
+    evaluation.
+
+
+    """
 
     _rng: np.random.Generator
 
@@ -77,10 +89,13 @@ class SurvivorSelector(Selector):
         """Select survivors using a tournament selection.
 
         :param population: The initial population.
-        :param kwargs: Additional kwargs that contain the children to do
-            selection with.
+        :type population: list[Individual]
+        :param **kwargs:
+        :type **kwargs: Any
         :returns: A newly created population.
+        :rtype: tuple[list[Individual],dict[Any,Any]]
         :raises KeyError: If no children got passed.
+
         """
         offspring: list[Individual] | None = kwargs.get("children")
         if offspring is None:
@@ -139,9 +154,13 @@ class CrossoverReproducer(Reproducer):
         """Make Individuals Reproduce.
 
         :param population: The population.
-        :param kwargs: Additional arguments.
+        :type population: NDArray[np.int_]
+        :param **kwargs:
+        :type **kwargs: Any
         :returns: The children.
+        :rtype: list[Genotype]
         :raises KeyError: If the parents are not passed.
+
         """
         parents: list[Individual] | None = kwargs.get(
             "parent_population"
@@ -160,7 +179,11 @@ class CrossoverReproducer(Reproducer):
 
 
 def main() -> None:
-    """Run the program."""
+    """Run the program.
+
+    :rtype: None
+
+    """
     # Set up logging.
     setup_logging()
     rng = make_rng_time_seed()

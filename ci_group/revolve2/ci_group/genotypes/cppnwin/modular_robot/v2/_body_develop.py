@@ -33,7 +33,10 @@ def develop(
     function.
 
     :param genotype: The genotype to create the body from.
+    :type genotype: multineat.Genome
     :returns: The created body.
+    :rtype: BodyV2
+
     """
     # Instantiate the CPPN network for body construction.
     body_net = multineat.NeuralNetwork()
@@ -86,7 +89,10 @@ def softmax(x: npt.NDArray[np.float64]) -> npt.NDArray[np.float64]:
     """Compute softmax values for each sets of scores in x.
 
     :param x: The input array.
+    :type x: npt.NDArray[np.float64]
     :returns: The softmax array.
+    :rtype: npt.NDArray[np.float64]
+
     """
     e_x = np.exp(x - np.max(x))
     return np.array(e_x / e_x.sum(axis=0))
@@ -163,19 +169,18 @@ def __add_child(
     grid: NDArray[np.uint8],
 ) -> __Module | None:
     attachment_index, attachment_point = attachment_point_tuple
-    """Here we adjust the forward facing direction, and the position for the new
-    potential module.
-    """
+    """Here we adjust the forward facing direction, and the position for the
+    new potential module."""
     forward = __rotate(module.forward, module.up, attachment_point.orientation)
     position = __vec3_int(module.position + forward)
     chain_length = module.chain_length + 1
     """If grid cell is occupied, we don't make a child.
-    else, set cell as occupied
-    ERROR this is MAJOR bug!
-      The core has 4 faces with 8 attachment points each,
-          however, all 8 share share the same 'position + forward' !
-      This means that the core will always attach to the first position
-          when the cppn returns 'not None' -> aka 'top'
+
+    else, set cell as occupied ERROR this is MAJOR bug!   The core has 4
+    faces with 8 attachment points each,       however, all 8 share
+    share the same 'position + forward' !   This means that the core
+    will always attach to the first position       when the cppn returns
+    'not None' -> aka 'top'
     """
     if grid[tuple(position)] > 0:
         # No module will be placed.

@@ -42,34 +42,49 @@ def simulate_scene(
 ) -> list[SimulationState]:
     """Simulate a scene.
 
-    :param scene_id: An id for this scene, unique between all scenes ran
-        in parallel.
-    :param scene: The scene to simulate.
-    :param headless: If False, a viewer will be opened that allows a
-        user to manually view and manually interact with the simulation.
-    :param record_settings: If not None, recording will be done
-        according to these settings.
-    :param start_paused: If true, the simulation will start in a paused
-        state. Only makessense when headless is False.
-    :param control_step: The time between each call to the handle
-        function of the scene handler. In seconds.
-    :param sample_step: The time between each state sample of the
-        simulation. In seconds.
-    :param simulation_time: How long to simulate for. In seconds.
-    :param simulation_timestep: The duration to integrate over during
-        each step of the simulation. In seconds.
-    :param cast_shadows: If shadows are cast.
-    :param fast_sim: If fancy rendering is disabled.
     :param viewer_type: The type of viewer used for the rendering in a
         window.
+    :type viewer_type: ViewerType
+    :param scene_id: An id for this scene, unique between all scenes ran
+        in parallel.
+    :type scene_id: int
+    :param scene: The scene to simulate.
+    :type scene: Scene
+    :param record_settings: If not None, recording will be done
+        according to these settings.
+    :type record_settings: RecordSettings | None
+    :param control_step: The time between each call to the handle
+        function of the scene handler. In seconds.
+    :type control_step: float
+    :param sample_step: The time between each state sample of the
+        simulation. In seconds.
+    :type sample_step: float | None
+    :param simulation_time: How long to simulate for. In seconds.
+    :type simulation_time: int | None
+    :param simulation_timestep: The duration to integrate over during
+        each step of the simulation. In seconds.
+    :type simulation_timestep: float
     :param render_backend: The backend to be used for rendering (EGL by
         default and switches to GLFW if no cameras are on the robot).
+    :type render_backend: RenderBackend
+    :param *:
+    :param headless: If False, a viewer will be opened that allows a
+        user to manually view and manually interact with the simulation.
+    :type headless: bool
+    :param start_paused: If true, the simulation will start in a paused
+        state. Only makessense when headless is False.
+    :type start_paused: bool
+    :param cast_shadows: If shadows are cast.
+    :type cast_shadows: bool
+    :param fast_sim: If fancy rendering is disabled.
+    :type fast_sim: bool
     :returns: The results of simulation. The number of returned states
         depends on `sample_step`.
+    :rtype: list[SimulationState]
     :raises ValueError: If the viewer is not able to record.
+
     """
     logging.info("Simulating scene %d", scene_id)
-
     """Define mujoco data and model objects for simulating."""
     model, mapping = scene_to_model(
         scene,
@@ -78,7 +93,6 @@ def simulate_scene(
         fast_sim=fast_sim,
     )
     data = mujoco.MjData(model)
-
     """Define a control interface for the mujoco simulation (used to control robots)."""
     control_interface = ControlInterfaceImpl(
         data=data, abstraction_to_mujoco_mapping=mapping
@@ -93,7 +107,6 @@ def simulate_scene(
         )
         for camera in mapping.camera_sensor.values()
     }
-
     """Define some additional control variables."""
     last_control_time = 0.0
     last_sample_time = 0.0
@@ -102,7 +115,6 @@ def simulate_scene(
     simulation_states: list[
         SimulationState
     ] = []  # The measured states of the simulation
-
     """If we dont have cameras and the backend is not set we go to the default GLFW."""
     if len(mapping.camera_sensor.values()) == 0:
         render_backend = RenderBackend.GLFW

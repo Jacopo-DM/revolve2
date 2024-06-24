@@ -11,10 +11,13 @@ from ._individual import Individual
 class Population(Base, HasId, kw_only=True):
     """A population of individuals.
 
-    Contain a list of individuals.
-    First take a look at the Individual class.
-    SQLAlchemy automatically uses the individuals 'population_id' and 'population_index' to
-    create a table of individuals referring to populations, while retaining the individuals original order in the population.
+    Contain a list of individuals. First take a look at the Individual
+    class. SQLAlchemy automatically uses the individuals 'population_id'
+    and 'population_index' to create a table of individuals referring to
+    populations, while retaining the individuals original order in the
+    population.
+
+
     """
 
     __tablename__ = "population"

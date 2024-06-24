@@ -27,5 +27,8 @@ class ModularRobot:
         """Get the uuid, used for identification.
 
         :returns: The uuid.
+
+        :rtype: uuid.UUID
+
         """
         return self._uuid

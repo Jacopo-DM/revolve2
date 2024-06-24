@@ -9,7 +9,10 @@ from .._right_angles import RightAngles
 class AttachmentFace(Module):
     """Collect AttachmentPoints on a modules face.
 
-    This face can be thought of as a pseudo-module which usually does not have a body on its own.
+    This face can be thought of as a pseudo-module which usually does
+    not have a body on its own.
+
+
     """
 
     def __init__(
@@ -24,10 +27,11 @@ class AttachmentFace(Module):
         :param attachment_points: The attachment points available on a
             module.
         """
-        """
-        The base module only has orientation as its parameter since not all modules are square.
+        """The base module only has orientation as its parameter since not all
+        modules are square.
 
-        Here we covert the angle of the module to its orientation in space.
+        Here we covert the angle of the module to its orientation in
+        space.
         """
         orientation = Quaternion.from_eulers([
             rotation if isinstance(rotation, float) else rotation.value,

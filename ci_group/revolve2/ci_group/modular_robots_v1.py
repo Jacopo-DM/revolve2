@@ -8,6 +8,9 @@ def all() -> list[BodyV1]:
     """Get a list of all standard module robots.
 
     :returns: The list of robots.
+
+    :rtype: list[BodyV1]
+
     """
     return [
         babya_v1(),
@@ -39,6 +42,9 @@ def spider_v1() -> BodyV1:
     """Get the spider modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV1
+
     """
     body = BodyV1()
 
@@ -69,6 +75,9 @@ def gecko_v1() -> BodyV1:
     """Get the gecko modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV1
+
     """
     body = BodyV1()
 
@@ -96,6 +105,9 @@ def babya_v1() -> BodyV1:
     """Get the babya modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV1
+
     """
     body = BodyV1()
 
@@ -126,6 +138,9 @@ def ant_v1() -> BodyV1:
     """Get the ant modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV1
+
     """
     body = BodyV1()
 
@@ -158,6 +173,9 @@ def salamander_v1() -> BodyV1:
     """Get the salamander modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV1
+
     """
     body = BodyV1()
 
@@ -223,6 +241,9 @@ def blokky_v1() -> BodyV1:
     """Get the blokky modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV1
+
     """
     body = BodyV1()
 
@@ -256,6 +277,9 @@ def park_v1() -> BodyV1:
     """Get the park modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV1
+
     """
     body = BodyV1()
 
@@ -293,6 +317,9 @@ def babyb_v1() -> BodyV1:
     """Get the babyb modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV1
+
     """
     body = BodyV1()
 
@@ -339,6 +366,9 @@ def garrix_v1() -> BodyV1:
     """Get the garrix modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV1
+
     """
     body = BodyV1()
 
@@ -368,6 +398,9 @@ def insect_v1() -> BodyV1:
     """Get the insect modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV1
+
     """
     body = BodyV1()
 
@@ -400,6 +433,9 @@ def linkin_v1() -> BodyV1:
     """Get the linkin modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV1
+
     """
     body = BodyV1()
 
@@ -434,6 +470,9 @@ def longleg_v1() -> BodyV1:
     """Get the longleg modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV1
+
     """
     body = BodyV1()
 
@@ -469,6 +508,9 @@ def penguin_v1() -> BodyV1:
     """Get the penguin modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV1
+
     """
     body = BodyV1()
 
@@ -516,6 +558,9 @@ def pentapod_v1() -> BodyV1:
     """Get the pentapod modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV1
+
     """
     body = BodyV1()
 
@@ -547,6 +592,9 @@ def queen_v1() -> BodyV1:
     """Get the queen modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV1
+
     """
     body = BodyV1()
 
@@ -574,6 +622,9 @@ def squarish_v1() -> BodyV1:
     """Get the squarish modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV1
+
     """
     body = BodyV1()
 
@@ -599,6 +650,9 @@ def snake_v1() -> BodyV1:
     """Get the snake modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV1
+
     """
     body = BodyV1()
 
@@ -645,6 +699,9 @@ def stingray_v1() -> BodyV1:
     """Get the stingray modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV1
+
     """
     body = BodyV1()
 
@@ -682,6 +739,9 @@ def tinlicker_v1() -> BodyV1:
     """Get the tinlicker modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV1
+
     """
     body = BodyV1()
 
@@ -713,6 +773,9 @@ def turtle_v1() -> BodyV1:
     """Get the turtle modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV1
+
     """
     body = BodyV1()
 
@@ -750,6 +813,9 @@ def ww_v1() -> BodyV1:
     """Get the ww modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV1
+
     """
     body = BodyV1()
 
@@ -783,6 +849,9 @@ def zappa_v1() -> BodyV1:
     """Get the zappa modular robot.
 
     :returns: the robot.
+
+    :rtype: BodyV1
+
     """
     body = BodyV1()
 
@@ -816,8 +885,11 @@ def get(name: str) -> BodyV1:
     """Get a robot by name.
 
     :param name: The name of the robot to get.
+    :type name: str
     :returns: The robot with that name.
+    :rtype: BodyV1
     :raises ValueError: When a robot with that name does not exist.
+
     """
     body = None
     match name:

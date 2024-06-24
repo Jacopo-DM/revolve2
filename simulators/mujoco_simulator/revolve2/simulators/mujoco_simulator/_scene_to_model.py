@@ -34,14 +34,21 @@ def scene_to_model(
 ) -> tuple[mujoco.MjModel, AbstractionToMujocoMapping]:
     """Convert a scene to a MuJoCo model.
 
-    :param cast_shadows: Whether shadows are cast by the light.
     :param scene: The scene to convert.
+    :type scene: Scene
     :param simulation_timestep: The duration to integrate over during
         each step of the simulation. In seconds.
+    :type simulation_timestep: float
+    :param *:
+    :param cast_shadows: Whether shadows are cast by the light.
+    :type cast_shadows: bool
     :param fast_sim: If simulations have to be fast, unnecessary stuff
         will be turned off.
+    :type fast_sim: bool
     :returns: The created MuJoCo model and mapping from the simulation
         abstraction to the model.
+    :rtype: tuple[mujoco.MjModel,AbstractionToMujocoMapping]
+
     """
     mapping = AbstractionToMujocoMapping()
 
@@ -163,7 +170,10 @@ def _create_tmp_file(
     MuJoCo can only save to a file, not directly to string,
 
     :param multi_body_system_model: The multi-body-system model.
+    :type multi_body_system_model: mujoco.MjModel
     :returns: The root element for the mujoco viewer.
+    :rtype: mjcf.RootElement
+
     """
     try:
         with tempfile.NamedTemporaryFile(
@@ -209,8 +219,13 @@ def _add_planes(
     """Add plane objects to the mujoco simulation.
 
     :param plane_geometries: The plane geometries.
+    :type plane_geometries: list[GeometryPlane]
     :param fast_sim: Whether fast sim is used.
+    :type fast_sim: bool
     :param env_mjcf: The mujoco environment to simulate.
+    :type env_mjcf: mjcf.RootElement
+    :rtype: None
+
     """
     for i_plane, plane in enumerate(plane_geometries):
         name = f"heightmap_{i_plane}"
@@ -241,9 +256,14 @@ def _add_heightmaps(
     """Add heightmap geometries to the model.
 
     :param heightmap_geometries: The heightmap geometries.
+    :type heightmap_geometries: list[GeometryHeightmap]
     :param fast_sim: If fast sim is used.
+    :type fast_sim: bool
     :param env_mjcf: The mujoco root object.
+    :type env_mjcf: mjcf.RootElement
     :returns: A list of heightmap geometries.
+    :rtype: list[GeometryHeightmap]
+
     """
     heightmaps: list[GeometryHeightmap] = []
 
@@ -291,9 +311,15 @@ def _add_sensors(
     """Add sensors to the model.
 
     :param rigid_bodies_and_names: The rigid bodies and names.
+    :type rigid_bodies_and_names: list[tuple[RigidBody, str]]
     :param mbs_i: The current index of the multi body system.
+    :type mbs_i: int
     :param multi_body_system_mjcf: The MBS in mujoco format.
+    :type multi_body_system_mjcf: mjcf.RootElement
     :param env_mjcf: The environment in mujoco format.
+    :type env_mjcf: mjcf.RootElement
+    :rtype: None
+
     """
     for rigid_body, name in rigid_bodies_and_names:
         if name == f"mbs{mbs_i}":
@@ -349,7 +375,11 @@ def _add_joint_actuators(
     """Add actuation to the joints.
 
     :param joints_and_names: The joints.
+    :type joints_and_names: list[tuple[JointHinge, str]]
     :param multi_body_system_mjcf: The multi body system.
+    :type multi_body_system_mjcf: mjcf.RootElement
+    :rtype: None
+
     """
     for joint, name in joints_and_names:
         # Add rotor inertia to joints. This value is arbitrarily chosen and appears stable enough.
@@ -385,8 +415,13 @@ def _set_colors_and_materials(
 
     :param geoms_and_names: The geometries with their respective names
         in the model.
+    :type geoms_and_names: list[tuple[Geometry, str]]
     :param multi_body_system_mjcf: The mujoco model.
+    :type multi_body_system_mjcf: mjcf.RootElement
     :param fast_sim: Whether fast sim is used.
+    :type fast_sim: bool
+    :rtype: None
+
     """
     for geom, name in geoms_and_names:
         if fast_sim:
@@ -407,7 +442,11 @@ def _set_heightmap_values(
     """Set the values for the heightmaps.
 
     :param heightmaps: The heightmaps.
+    :type heightmaps: list[GeometryHeightmap]
     :param model: The mujoco model.
+    :type model: mujoco.MjModel
+    :rtype: None
+
     """
     heightmap_offset = 0
 
@@ -426,13 +465,19 @@ def _create_sensor_maps(
     mapping: AbstractionToMujocoMapping,
     model: mujoco.MjModel,
 ) -> None:
-    """Create mappings of the imu sensors to the gyro and accelerator sensors in mujoco.
+    """Create mappings of the imu sensors to the gyro and accelerator sensors
+    in mujoco.
 
     :param all_rigid_bodies_and_names: The rigid bodies and their
         respective name in the model.
+    :type all_rigid_bodies_and_names: list[list[tuple[RigidBody, str]]]
     :param mapping: The mapping of revolve2 components to Mujoco
         components.
+    :type mapping: AbstractionToMujocoMapping
     :param model: The mujoco model.
+    :type model: mujoco.MjModel
+    :rtype: None
+
     """
     for mbs_i, rigid_bodies_and_names in enumerate(all_rigid_bodies_and_names):
         for rigid_body, name in rigid_bodies_and_names:

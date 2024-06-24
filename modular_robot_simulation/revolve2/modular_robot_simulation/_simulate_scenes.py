@@ -23,14 +23,19 @@ def simulate_scenes(
     """Simulate a scene.
 
     :param simulator: The simulator to use for simulation.
+    :type simulator: Simulator
     :param batch_parameters: The batch parameters to use for simulation.
+    :type batch_parameters: BatchParameters
     :param scenes: Te scene to simulate.
+    :type scenes: ModularRobotScene
     :param record_settings: The optional record settings to use during
-        simulation.
-    :returns: A list of simulation states.
+        simulation. (Default value = None)
+    :type record_settings: RecordSettings | None
+    :returns: A list of simulation states. # noqa: DAR202 # Darglint
+        complains about no return statement, but this is an overload
+        stub so we can safely ignore that.
+    :rtype: list[SceneSimulationState]
 
-    # noqa: DAR202
-    # Darglint complains about no return statement, but this is an overload stub so we can safely ignore that.
     """
 
 
@@ -44,15 +49,20 @@ def simulate_scenes(
     """Simulate multiple scenes.
 
     :param simulator: The simulator to use for simulation.
+    :type simulator: Simulator
     :param batch_parameters: The batch parameters to use for simulation.
+    :type batch_parameters: BatchParameters
     :param scenes: The scenes to simulate.
+    :type scenes: list[ModularRobotScene]
     :param record_settings: The optional record settings to use during
-        simulation.
+        simulation. (Default value = None)
+    :type record_settings: RecordSettings | None
     :returns: A list of simulation states for each scene in the provided
-        batch.
+        batch. # noqa: DAR202 # Darglint complains about no return
+        statement, but this is an overload stub so we can safely ignore
+        that.
+    :rtype: list[list[SceneSimulationState]]
 
-    # noqa: DAR202
-    # Darglint complains about no return statement, but this is an overload stub so we can safely ignore that.
     """
 
 
@@ -65,12 +75,18 @@ def simulate_scenes(
     """Simulate one or more scenes.
 
     :param simulator: The simulator to use for simulation.
+    :type simulator: Simulator
     :param batch_parameters: The batch parameters to use for simulation.
+    :type batch_parameters: BatchParameters
     :param scenes: One or more scenes to simulate.
+    :type scenes: ModularRobotScene | list[ModularRobotScene]
     :param record_settings: The optional record settings to use during
-        simulation.
+        simulation. (Default value = None)
+    :type record_settings: RecordSettings | None
     :returns: A list of simulation states for each scene in the provided
         batch.
+    :rtype: list[SceneSimulationState]|list[list[SceneSimulationState]]
+
     """
     if isinstance(scenes, ModularRobotScene):
         return_scalar_result = True

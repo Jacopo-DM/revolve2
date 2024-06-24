@@ -13,7 +13,11 @@ from tests.examples._patched_batch_parameters import (
 
 def test_2b_brain_with_feedback(mocker: Mock) -> None:
     """Test 2b_brain_with_feedback example can complete.
+
     :param mocker: The mock object.
+    :type mocker: Mock
+    :rtype: None
+
     """
     exp_dir = os.path.join(
         EXAMPLES_DIR, "2_modular_robot_basics/2b_brain_with_feedback"

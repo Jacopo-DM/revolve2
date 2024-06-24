@@ -17,6 +17,8 @@ class GeometryHeightmap(Geometry):
     The z-coordinate defines the height of a heightmap edge when it's value is maximum.
     `heights` defines the edge of the heightmap. Values much lie between 0.0 and 1.0, inclusive.
     `base_thickness` defines the thickness of the box below the heightmap, which is requires for proper collision detection in some simulators.
+
+
     """
 
     size: Vector3

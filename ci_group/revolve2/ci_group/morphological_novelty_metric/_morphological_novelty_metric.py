@@ -36,12 +36,18 @@ def get_novelty_from_population(
     Oliver Weissl, and A.E. Eiben. "Morphological-Novelty in Modular Robot Evolution". 2023 IEEE Symposium Series on Computational Intelligence (SSCI)(pp. 1066-1071). IEEE, 2023.
 
     :param population: The population of robots.
-    :param cob_heuristic: Whether the heuristic approximation for change
-        of basis is used.
+    :type population: list[ModularRobot]
     :param num_bins: The amount of bins in the histogram. Increasing
         this allows for more detail, but risks sparseness, while lower
-        values generalize more.
+        values generalize more. (Default value = 20)
+    :type num_bins: int
+    :param *:
+    :param cob_heuristic: Whether the heuristic approximation for change
+        of basis is used. (Default value = False)
+    :type cob_heuristic: bool
     :returns: The novelty scores.
+    :rtype: NDArray[np.float64]
+
     """
     bodies = [robot.body for robot in population]
 
@@ -66,7 +72,10 @@ def _coordinates_to_magnitudes_orientation(
 
     :param coordinates: The coordinates for calculating the magnitudes
         and orientations.
+    :type coordinates: list[NDArray[np.float64]]
     :returns: The magnitudes and orientations.
+    :rtype: tuple[Magnitudes,Orientations]
+
     """
     instances = len(coordinates)
     magnitudes = [[0.0]] * instances
@@ -94,10 +103,15 @@ def _gen_gradient_histogram(
     """Generate the gradient histograms for the respective histogram index.
 
     :param orientations: The orientations of points in the bodies.
+    :type orientations: Orientations
     :param magnitudes: The magnitudes of points in the bodies.
+    :type magnitudes: Magnitudes
     :param num_bins: The number of bins in the histogram.
+    :type num_bins: int
     :returns: The gradient histograms. Shape = (instances x num_bins x
         num_bins).
+    :rtype: NDArray[np.float64]
+
     """
     bin_size = 360 / num_bins
     instances = len(orientations)
@@ -120,7 +134,10 @@ def _normalize_cast_int(histograms: NDArray[np.float64]) -> NDArray[np.int64]:
     """Normalize a matrix (array), making its sum = _INT_CASTER.
 
     :param histograms: The histograms to cast and normalize.
+    :type histograms: NDArray[np.float64]
     :returns: The normalized and cast histograms.
+    :rtype: NDArray[np.int64]
+
     """
     int_histograms = np.zeros(histograms.shape, dtype=np.int64)
 

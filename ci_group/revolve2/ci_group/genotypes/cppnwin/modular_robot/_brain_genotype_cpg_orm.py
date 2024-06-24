@@ -47,8 +47,11 @@ class BrainGenotypeCpgOrm(orm.MappedAsDataclass, kw_only=True):
 
         :param innov_db: Multineat innovation database. See Multineat
             library.
+        :type innov_db: multineat.InnovationDatabase
         :param rng: Random number generator.
+        :type rng: np.random.Generator
         :returns: The created genotype.
+        :rtype: BrainGenotypeCpgOrm
         """
         multineat_rng = multineat_rng_from_random(rng)
 
@@ -77,8 +80,11 @@ class BrainGenotypeCpgOrm(orm.MappedAsDataclass, kw_only=True):
 
         :param innov_db: Multineat innovation database. See Multineat
             library.
+        :type innov_db: multineat.InnovationDatabase
         :param rng: Random number generator.
+        :type rng: np.random.Generator
         :returns: A mutated copy of the provided genotype.
+        :rtype: BrainGenotypeCpgOrm
         """
         multineat_rng = multineat_rng_from_random(rng)
 
@@ -102,9 +108,13 @@ class BrainGenotypeCpgOrm(orm.MappedAsDataclass, kw_only=True):
         """Perform crossover between two genotypes.
 
         :param parent1: The first genotype.
+        :type parent1: Self
         :param parent2: The second genotype.
+        :type parent2: Self
         :param rng: Random number generator.
+        :type rng: np.random.Generator
         :returns: A newly created genotype.
+        :rtype: BrainGenotypeCpgOrm
         """
         multineat_rng = multineat_rng_from_random(rng)
 
@@ -122,7 +132,9 @@ class BrainGenotypeCpgOrm(orm.MappedAsDataclass, kw_only=True):
         """Develop the genotype into a modular robot.
 
         :param body: The body to develop the brain for.
+        :type body: Body
         :returns: The created robot.
+        :rtype: BrainCpgNetworkNeighbor
         """
         return BrainCpgNetworkNeighbor(genotype=self.brain, body=body)
 
@@ -132,11 +144,19 @@ class BrainGenotypeCpgOrm(orm.MappedAsDataclass, kw_only=True):
 def _serialize_brain(
     target: BrainGenotypeCpgOrm,
 ) -> None:
+    """:param target:
+    :type target: BrainGenotypeCpgOrm
+    :rtype: None
+    """
     target.serialized_brain = target.brain.Serialize()
 
 
 @event.listens_for(BrainGenotypeCpgOrm, "load", propagate=True)
 def _deserialize_brain(target: BrainGenotypeCpgOrm) -> None:
+    """:param target:
+    :type target: BrainGenotypeCpgOrm
+    :rtype: None
+    """
     brain = multineat.Genome()
     brain.Deserialize(target.serialized_brain)
     target.brain = brain

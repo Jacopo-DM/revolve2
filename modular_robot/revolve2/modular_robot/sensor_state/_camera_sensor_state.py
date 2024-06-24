@@ -13,4 +13,7 @@ class CameraSensorState(ABC):
         """Get the current image.
 
         :returns: The image.
+
+        :rtype: NDArray[np.uint8]
+
         """

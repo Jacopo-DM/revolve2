@@ -4,9 +4,11 @@ from sqlalchemy import event, orm
 
 
 class Parameters(orm.MappedAsDataclass):
-    """An SQLAlchemy mixing that provides a parameters column that is a tuple of floats.
+    """An SQLAlchemy mixing that provides a parameters column that is a tuple
+    of floats.
 
-    The parameters are saved in the database as string of semicolon separated floats.
+    The parameters are saved in the database as string of semicolon
+    separated floats.
     """
 
     parameters: npt.NDArray[np.float64]

@@ -29,7 +29,11 @@ PARAMS = np.array([
 
 
 def main() -> None:
-    """Perform the rerun."""
+    """Perform the rerun.
+
+    :rtype: None
+
+    """
     setup_logging()
 
     # Find all active hinges in the body

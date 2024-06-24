@@ -13,8 +13,12 @@ def xy_displacement(
     robot.
 
     :param begin_state: Begin state of the robot.
+    :type begin_state: ModularRobotSimulationState
     :param end_state: End state of the robot.
+    :type end_state: ModularRobotSimulationState
     :returns: The calculated fitness.
+    :rtype: float
+
     """
     begin_position = begin_state.get_pose().position
     end_position = end_state.get_pose().position

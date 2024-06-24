@@ -9,9 +9,11 @@ class HasUUID(Protocol):
     def uuid(self) -> UUID:
         """Get the uuid.
 
-        :returns: The uuid.
 
-        # noqa: DAR202
+        :returns: The uuid.  # noqa: DAR202
+
+        :rtype: UUID
+
         """
 
 
@@ -19,7 +21,11 @@ _T = TypeVar("_T", bound=HasUUID)
 
 
 class UUIDKey(Generic[_T]):
-    """Wraps a value and implements __eq__ and __hash__ based purely on id(value)."""
+    """Wraps a value and implements __eq__ and __hash__ based purely on
+    id(value).
+
+
+    """
 
     _value: _T
 
@@ -34,7 +40,11 @@ class UUIDKey(Generic[_T]):
     def value(self) -> _T:
         """Get the wrapped value.
 
+
         :returns: The value.
+
+        :rtype: _T
+
         """
         return self._value
 

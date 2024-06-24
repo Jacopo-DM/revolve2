@@ -9,7 +9,11 @@ from revolve2.experimentation.evolution.abstract_elements import (
 
 
 class Evaluator(Eval):
-    """Here we make an evaluator object, based on the abstract evaluator defined in Revolve2."""
+    """Here we make an evaluator object, based on the abstract evaluator
+    defined in Revolve2.
+
+
+    """
 
     @staticmethod
     def evaluate_network(
@@ -18,8 +22,12 @@ class Evaluator(Eval):
         """Pass two inputs through a fully connected relu network.
 
         :param params: The parameters to evaluate.
+        :type params: npt.NDArray[np.float64]
         :param inputs: Inputs for network. 2x1 floats.
+        :type inputs: npt.NDArray[np.float64]
         :returns: The output of the network.
+        :rtype: np.float64
+
         """
         # First layer
         n0 = np.maximum(0, np.dot(params[:2], inputs) + params[2])
@@ -35,8 +43,11 @@ class Evaluator(Eval):
         """Measure one set of parameters.
 
         :param population: The population of parameters to measure.
+        :type population: list[Genotype]
         :returns: Negative sum of squared errors and each individual
             error. 5x1 floats.
+        :rtype: list[float]
+
         """
         results = []
         for genotype in population:
@@ -52,7 +63,6 @@ class Evaluator(Eval):
 
             # Calculate the difference between the network outputs and the expect outputs
             errors = outputs - expected_outputs
-
             """
             Now we add the sum of squared errors to the results.
             In our case 0 would be an optimal result.

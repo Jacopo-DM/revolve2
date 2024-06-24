@@ -26,6 +26,9 @@ class Sensor(ABC):
         """Get the uuid of the sensor.
 
         :returns: The uuid.
+
+        :rtype: uuid.UUID
+
         """
         return self._uuid
 
@@ -34,6 +37,9 @@ class Sensor(ABC):
         """Return the orientation of the sensor.
 
         :returns: The orientation.
+
+        :rtype: Quaternion
+
         """
         return self._orientation
 
@@ -42,5 +48,8 @@ class Sensor(ABC):
         """Get the relative position of the sensor on a module.
 
         :returns: The position.
+
+        :rtype: Vector3
+
         """
         return self._position

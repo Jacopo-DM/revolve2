@@ -20,7 +20,10 @@ class ModularRobotSensorStateImplV1(ModularRobotSensorState):
         """Get sensor states for Hinges.
 
         :param sensor: The sensor to query.
+        :type sensor: ActiveHingeSensor
+        :rtype: ActiveHingeSensorState
         :raises NotImplementedError: Always.
+
         """
         msg = "V1 hardware does not support sensor reading."
         raise NotImplementedError(msg)
@@ -29,7 +32,10 @@ class ModularRobotSensorStateImplV1(ModularRobotSensorState):
         """Get the state of the provided IMU sensor.
 
         :param sensor: The sensor.
+        :type sensor: IMUSensor
+        :rtype: IMUSensorState
         :raises NotImplementedError: Always.
+
         """
         raise NotImplementedError
 
@@ -39,6 +45,9 @@ class ModularRobotSensorStateImplV1(ModularRobotSensorState):
         """Get the state of the provided camera sensor.
 
         :param sensor: The sensor.
+        :type sensor: CameraSensor
+        :rtype: CameraSensorState
         :raises NotImplementedError: Always.
+
         """
         raise NotImplementedError

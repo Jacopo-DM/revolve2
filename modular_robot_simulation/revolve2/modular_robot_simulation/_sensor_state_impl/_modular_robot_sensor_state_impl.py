@@ -53,7 +53,10 @@ class ModularRobotSensorStateImpl(ModularRobotSensorState):
         """Get the state of the provided active hinge sensor.
 
         :param sensor: The sensor.
+        :type sensor: ActiveHingeSensor
         :returns: The state.
+        :rtype: ActiveHingeSensorState
+
         """
         maybe_joint = self._body_to_multi_body_system_mapping.active_hinge_sensor_to_joint_hinge.get(
             UUIDKey(sensor)
@@ -68,7 +71,10 @@ class ModularRobotSensorStateImpl(ModularRobotSensorState):
         """Get the state of the provided IMU sensor.
 
         :param sensor: The IMU sensor.
+        :type sensor: IMUSensor
         :returns: The IMU sensor state.
+        :rtype: IMUSensorState
+
         """
         maybe_imu = self._body_to_multi_body_system_mapping.imu_to_sim_imu.get(
             UUIDKey(sensor)
@@ -87,7 +93,10 @@ class ModularRobotSensorStateImpl(ModularRobotSensorState):
         """Get the state of the camera sensor.
 
         :param sensor: The camera sensor.
+        :type sensor: CameraSensor
         :returns: The camera sensor state.
+        :rtype: CameraSensorState
+
         """
         maybe_camera = (
             self._body_to_multi_body_system_mapping.camera_to_sim_camera.get(

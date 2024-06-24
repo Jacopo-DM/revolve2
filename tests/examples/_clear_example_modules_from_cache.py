@@ -4,7 +4,13 @@ from tests.conftest import EXAMPLES_DIR
 
 
 def clear_exp_modules_from_cache() -> None:
-    """Clear any module from the sys.modules cache that is part of the temporary directory."""
+    """Clear any module from the sys.modules cache that is part of the
+    temporary directory.
+
+
+    :rtype: None
+
+    """
     modules_to_delete = [
         name
         for name, mod in sys.modules.items()

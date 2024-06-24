@@ -12,8 +12,7 @@ class Scene:
     _multi_body_systems: list[MultiBodySystem] = field(
         default_factory=list, init=False
     )
-    """
-    Multi-body system in this scene.
+    """Multi-body system in this scene.
 
     Don't add to this directly, but use `add_multi_body_system` instead.
     """
@@ -22,6 +21,9 @@ class Scene:
         """Add a multi-body system to the scene.
 
         :param multi_body_system: The multi-body system to add.
+        :type multi_body_system: MultiBodySystem
+        :rtype: None
+
         """
         self._multi_body_systems.append(multi_body_system)
 
@@ -31,6 +33,10 @@ class Scene:
 
         Do not make changes to this list.
 
+
         :returns: The multi-body systems in the scene.
+
+        :rtype: list[MultiBodySystem]
+
         """
         return self._multi_body_systems[:]

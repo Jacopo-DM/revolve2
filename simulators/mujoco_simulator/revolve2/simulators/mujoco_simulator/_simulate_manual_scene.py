@@ -31,7 +31,11 @@ def simulate_manual_scene(
     """Simulate a scene for checking if a robot was built correctly.
 
     :param scene: The scene to simulate.
-    :param render_backend: The render backend.
+    :type scene: Scene
+    :param render_backend: The render backend. (Default value = RenderBackend.GLFW)
+    :type render_backend: RenderBackend
+    :rtype: None
+
     """
     logging.info("Simulating scene")
 
@@ -50,7 +54,6 @@ def simulate_manual_scene(
         data=data,
         abstraction_to_mujoco_mapping=mapping,
     )
-
     """Here we set our values for cycling different positions."""
     prev_position: int = 0  # This is the initial idle position for all hinges (index of the positions).
     positions: list[float] = [
@@ -76,11 +79,14 @@ def simulate_manual_scene(
             )
             # step simulation
             if target != current:
-                """
-                If we are not on the target we adjust our hinges accordingly.
+                """If we are not on the target we adjust our hinges
+                accordingly.
 
-                The stepsize of 0.0025 allows us to approximate the real robots movement better.
-                If the simulated hinges are forced to the target location directly with big angles, the simulation detects instabilities and wont render, therefore we choose smaller steps.
+                The stepsize of 0.0025 allows us to approximate the real
+                robots movement better. If the simulated hinges are
+                forced to the target location directly with big angles,
+                the simulation detects instabilities and wont render,
+                therefore we choose smaller steps.
                 """
                 step = 0.0025 if target > current else -0.0025
                 for hinge in mapping.hinge_joint:

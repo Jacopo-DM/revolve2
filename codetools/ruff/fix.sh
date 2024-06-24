@@ -11,6 +11,6 @@ cd ../..
 if [ -n "$packages" ]; then
     echo "$packages" | xargs
 	ruff clean
-    ruff check $packages --fix --unsafe-fixes --preview --silent
+    ruff check $packages --fix --unsafe-fixes --preview --silent || true
     ruff format $packages --preview
 fi

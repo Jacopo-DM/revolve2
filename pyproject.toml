@@ -110,6 +110,7 @@ ignore = [
     # "ERA001",  # Found commented-out code
     "FBT003", # Found "bool" in function argument
     "TID252", # relative imports
+    "D205",   # blank line between summary and description
 ]
 
 fixable = ["ALL"]
@@ -134,7 +135,7 @@ convention = "google"
 [tool.pydoclint]
 style = 'sphinx'
 exclude = '\.git|.?venv|\.tox|tests/data|unparser\.py'
-require-return-section-when-returning-nothing = true
-check-class-attributes = false
-arg-type-hints-in-docstring = false
-check-return-types = false
+# require-return-section-when-returning-nothing = true
+# check-class-attributes = false
+# arg-type-hints-in-docstring = true
+# check-return-types = true

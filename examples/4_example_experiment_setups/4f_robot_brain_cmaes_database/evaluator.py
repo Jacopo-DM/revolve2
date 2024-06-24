@@ -67,7 +67,10 @@ class Evaluator:
         Fitness is the distance traveled on the xy plane.
 
         :param solutions: Solutions to evaluate.
+        :type solutions: list[npt.NDArray[np.float64]]
         :returns: Fitnesses of the solutions.
+        :rtype: npt.NDArray[np.float64]
+
         """
         # Create robots from the brain parameters.
         robots = [

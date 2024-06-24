@@ -63,7 +63,6 @@ class Core(Module):
                 ]),
             ),
         }
-
         """The base module only has orientation as its parameter since not all modules are square.
 
         Here we covert the angle of the module to its orientation in space.
@@ -82,6 +81,9 @@ class Core(Module):
         """Get the mass of the Core (in kg).
 
         :returns: The value.
+
+        :rtype: float
+
         """
         return self._mass
 
@@ -90,7 +92,12 @@ class Core(Module):
         """Get the bounding box.
 
         Sizes are total length, not half length from origin.
+
+
         :returns: Vector3 with sizes of bbox in x,y,z dimension (m).
+
+        :rtype: Vector3
+
         """
         return self._bounding_box
 
@@ -99,6 +106,9 @@ class Core(Module):
         """Get the front module of the core.
 
         :returns: The attachment points module.
+
+        :rtype: Module|None
+
         """
         return self._children.get(self.FRONT)
 
@@ -107,6 +117,9 @@ class Core(Module):
         """Set a module onto the attachment point.
 
         :param module: The Module.
+        :type module: Module
+        :rtype: None
+
         """
         self.set_child(module, self.FRONT)
 
@@ -115,6 +128,9 @@ class Core(Module):
         """Get the right module of the core.
 
         :returns: The attachment points module.
+
+        :rtype: Module|None
+
         """
         return self._children.get(self.RIGHT)
 
@@ -123,6 +139,9 @@ class Core(Module):
         """Set a module onto the attachment point.
 
         :param module: The Module.
+        :type module: Module
+        :rtype: None
+
         """
         self.set_child(module, self.RIGHT)
 
@@ -131,6 +150,9 @@ class Core(Module):
         """Get the back module of the core.
 
         :returns: The attachment points module.
+
+        :rtype: Module|None
+
         """
         return self._children.get(self.BACK)
 
@@ -139,6 +161,9 @@ class Core(Module):
         """Set a module onto the attachment point.
 
         :param module: The Module.
+        :type module: Module
+        :rtype: None
+
         """
         self.set_child(module, self.BACK)
 
@@ -147,6 +172,9 @@ class Core(Module):
         """Get the left module of the core.
 
         :returns: The attachment points module.
+
+        :rtype: Module|None
+
         """
         return self._children.get(self.LEFT)
 
@@ -155,5 +183,8 @@ class Core(Module):
         """Set a module onto the attachment point.
 
         :param module: The Module.
+        :type module: Module
+        :rtype: None
+
         """
         self.set_child(module, self.LEFT)

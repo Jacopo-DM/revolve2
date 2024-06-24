@@ -15,6 +15,9 @@ def test_3b_evaluate_single_robot(mocker: Mock) -> None:
     """Test 3b_evaluate_single_robot example can complete.
 
     :param mocker: The mock object.
+    :type mocker: Mock
+    :rtype: None
+
     """
     exp_dir = os.path.join(
         EXAMPLES_DIR, "3_experiment_foundations/3b_evaluate_single_robot"

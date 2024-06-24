@@ -6,7 +6,11 @@ KWArgs = dict[str, Any]
 
 
 class Selector(ABC):
-    """A Selector object that enables selection of individuals in an evolutionary process."""
+    """A Selector object that enables selection of individuals in an
+    evolutionary process.
+
+
+    """
 
     @abstractmethod
     def select(
@@ -15,7 +19,11 @@ class Selector(ABC):
         """Select individuals from a population.
 
         :param population: The population for selection.
-        :param kwargs: Possible metrics for selection.
+        :type population: TPopulation
+        :param **kwargs:
+        :type **kwargs: Any
         :returns: The selected subset of the population and additional
             kwargs.
+        :rtype: tuple[TPopulation,KWArgs]
+
         """

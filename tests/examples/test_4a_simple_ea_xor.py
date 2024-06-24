@@ -4,7 +4,11 @@ from tests.conftest import EXAMPLES_DIR, assert_command_succeeds
 
 
 def test_4a_simple_ea_xor() -> None:
-    """Test 4a_simple_ea_xor example can complete."""
+    """Test 4a_simple_ea_xor example can complete.
+
+    :rtype: None
+
+    """
     exp_dir = os.path.join(
         EXAMPLES_DIR, "4_example_experiment_setups/4a_simple_ea_xor"
     )

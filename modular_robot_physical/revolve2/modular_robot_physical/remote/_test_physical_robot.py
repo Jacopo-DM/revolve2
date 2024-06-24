@@ -13,16 +13,24 @@ def test_physical_robot(
     hinge_mapping: dict[UUIDKey[ActiveHinge], int],
     inverse_servos: dict[int, bool],
 ) -> None:
-    """Remotely connect to a physical robot and provide manual controls to test it.
+    """Remotely connect to a physical robot and provide manual controls to test
+    it.
 
     :param robot: Body of the robot.
+    :type robot: ModularRobot | Body
     :param hostname: Hostname of the robot.
+    :type hostname: str
     :param hinge_mapping: map each active hinge object to a specific
         Servo with its ID (int).
+    :type hinge_mapping: dict[UUIDKey[ActiveHinge]
+    :param int]: 
     :param inverse_servos: If a servo is mounted in the wrong direction
         on the body one can fix it by inversing the action.
         inverse_servos allows you to inverse specific servos with their
         gpio number as key.
+    :type inverse_servos: dict[int, bool]
+    :rtype: None
+
     """
     if isinstance(robot, Body):
         body = robot

@@ -17,10 +17,14 @@ class ModularRobotControlInterfaceImpl(ModularRobotControlInterface):
         self, active_hinge: ActiveHinge, target: float
     ) -> None:
         """Set the position target for an active hinge.
-
+        
         Target is clamped within the active hinges range.
 
         :param active_hinge: The active hinge to set the target for.
+        :type active_hinge: ActiveHinge
         :param target: The target to set.
+        :type target: float
+        :rtype: None
+
         """
         self._set_active_hinges.append((UUIDKey(active_hinge), target))

@@ -58,7 +58,6 @@ class Brick(Module):
         }
         self._mass = mass
         self._bounding_box = bounding_box
-
         """The base module only has orientation as its parameter since not all modules are square.
 
         Here we covert the angle of the module to its orientation in space.
@@ -77,6 +76,9 @@ class Brick(Module):
         """Get the front module of the brick.
 
         :returns: The attachment points module.
+
+        :rtype: Module|None
+
         """
         return self._children.get(self.FRONT)
 
@@ -85,6 +87,9 @@ class Brick(Module):
         """Set a module onto the attachment point.
 
         :param module: The Module.
+        :type module: Module
+        :rtype: None
+
         """
         self.set_child(module, self.FRONT)
 
@@ -93,6 +98,9 @@ class Brick(Module):
         """Get right module of the brick.
 
         :returns: The attachment points module.
+
+        :rtype: Module|None
+
         """
         return self._children.get(self.RIGHT)
 
@@ -101,6 +109,9 @@ class Brick(Module):
         """Set a module onto the attachment point.
 
         :param module: The Module.
+        :type module: Module
+        :rtype: None
+
         """
         self.set_child(module, self.RIGHT)
 
@@ -109,6 +120,9 @@ class Brick(Module):
         """Get the left module of the brick.
 
         :returns: The attachment points module.
+
+        :rtype: Module|None
+
         """
         return self._children.get(self.LEFT)
 
@@ -117,6 +131,9 @@ class Brick(Module):
         """Set a module onto the attachment point.
 
         :param module: The Module.
+        :type module: Module
+        :rtype: None
+
         """
         self.set_child(module, self.LEFT)
 
@@ -125,6 +142,9 @@ class Brick(Module):
         """Get the mass of the brick (in kg).
 
         :returns: The value.
+
+        :rtype: float
+
         """
         return self._mass
 
@@ -133,6 +153,11 @@ class Brick(Module):
         """Get the bounding box size.
 
         Sizes are total length, not half-length from origin.
+
+
         :returns: Vector3 with sizes of bbox in x,y,z dimension (in m).
+
+        :rtype: Vector3
+
         """
         return self._bounding_box

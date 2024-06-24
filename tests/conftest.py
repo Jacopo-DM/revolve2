@@ -17,6 +17,9 @@ def assert_command_succeeds(cmd: list[str]) -> None:
     """Assert if a given command succeeds.
 
     :param cmd: Slices of the command.
+    :type cmd: list[str]
+    :rtype: None
+
     """
     sys.stdout.write("running command:\n" + " ".join(cmd))
     sys.stdout.flush()
