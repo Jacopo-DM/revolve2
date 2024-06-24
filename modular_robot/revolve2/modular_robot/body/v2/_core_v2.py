@@ -2,9 +2,12 @@ import math
 
 from pyrr import Vector3
 
-from modular_robot.body._right_angles import RightAngles
-from modular_robot.body.base import Core
-from modular_robot.body.v2._attachment_face_core_v2 import AttachmentFaceCoreV2
+from revolve2.modular_robot.body._right_angles import RightAngles
+from revolve2.modular_robot.body.base import Core
+
+from ._attachment_face_core_v2 import (
+    AttachmentFaceCoreV2,
+)
 
 
 class CoreV2(Core):

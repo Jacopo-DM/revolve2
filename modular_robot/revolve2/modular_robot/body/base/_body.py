@@ -5,8 +5,9 @@ import numpy as np
 from numpy.typing import NDArray
 from pyrr import Quaternion, Vector3
 
-from modular_robot.body._module import Module
-from modular_robot.body.base._core import Core
+from revolve2.modular_robot.body._module import Module
+
+from ._core import Core
 
 TModule = TypeVar("TModule", bound=Module)
 TModuleNP = TypeVar("TModuleNP", bound=np.generic)

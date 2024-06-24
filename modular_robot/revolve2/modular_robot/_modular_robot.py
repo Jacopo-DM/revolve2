@@ -1,7 +1,7 @@
 import uuid
 
-from modular_robot.body.base import Body
-from modular_robot.brain import Brain
+from .body.base import Body
+from .brain import Brain
 
 
 class ModularRobot:

@@ -2,11 +2,11 @@ import math
 
 from pyrr import Quaternion, Vector3
 
-from modular_robot.body._attachment_point import AttachmentPoint
-from modular_robot.body._color import Color
-from modular_robot.body._module import Module
-from modular_robot.body._right_angles import RightAngles
-from modular_robot.body.sensors import Sensor
+from revolve2.modular_robot.body._attachment_point import AttachmentPoint
+from revolve2.modular_robot.body._color import Color
+from revolve2.modular_robot.body._module import Module
+from revolve2.modular_robot.body._right_angles import RightAngles
+from revolve2.modular_robot.body.sensors import Sensor
 
 
 class Core(Module):

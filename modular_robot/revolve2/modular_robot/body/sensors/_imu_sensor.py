@@ -1,6 +1,6 @@
 from pyrr import Quaternion, Vector3
 
-from modular_robot.body.sensors._sensor import Sensor
+from ._sensor import Sensor
 
 
 class IMUSensor(Sensor):

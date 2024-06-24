@@ -11,7 +11,7 @@ from __future__ import annotations
 import uuid
 from typing import TYPE_CHECKING
 
-from modular_robot.body.sensors import (
+from .sensors import (
     ActiveHingeSensor,
     CameraSensor,
     IMUSensor,
@@ -21,8 +21,8 @@ from modular_robot.body.sensors import (
 if TYPE_CHECKING:
     from pyrr import Quaternion
 
-    from modular_robot.body._attachment_point import AttachmentPoint
-    from modular_robot.body._color import Color
+    from revolve2.modular_robot.body._attachment_point import AttachmentPoint
+    from revolve2.modular_robot.body._color import Color
 
 
 class _AttachedSensors:
