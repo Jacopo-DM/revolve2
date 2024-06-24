@@ -10,7 +10,7 @@ PIPELINE=(
     './mypy/check_all.sh'
     './ruff/fix.sh'
     './pyflakes/check.sh'
-    # './pydoclint/check.sh'
+    './pydoclint/check.sh'
 )
 
 for var in ${PIPELINE[@]}
