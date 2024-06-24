@@ -91,7 +91,9 @@ def run_experiment(dbengine: Engine) -> None:
         population = Population(
             individuals=[
                 Individual(
-                    genotype=Genotype(parameters=parameters), fitness=fitness
+                    __type_tgenotype=Genotype(parameters=parameters),
+                    genotype=Genotype(parameters=parameters),
+                    fitness=fitness,
                 )
                 for parameters, fitness in zip(
                     solutions, fitnesses, strict=False

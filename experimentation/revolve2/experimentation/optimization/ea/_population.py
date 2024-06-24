@@ -45,8 +45,8 @@ class Population(HasId, orm.MappedAsDataclass, Generic[TIndividual]):
     else:
 
         @orm.declared_attr
-        def individuals(cls) -> orm.Mapped[list[TIndividual]]:
-            return cls.__individuals_impl()
+        def individuals(self) -> orm.Mapped[list[TIndividual]]:
+            return self.__individuals_impl()
 
     __type_tindividual: ClassVar[type[TIndividual]]  # type: ignore[misc]
 

@@ -130,6 +130,7 @@ class SurvivorSelector(Selector):
             Population(
                 individuals=[
                     Individual(
+                        __type_tgenotype=population.individuals[i].genotype,
                         genotype=population.individuals[i].genotype,
                         fitness=population.individuals[i].fitness,
                     )
@@ -137,6 +138,7 @@ class SurvivorSelector(Selector):
                 ]
                 + [
                     Individual(
+                        __type_tgenotype=offspring[i],
                         genotype=offspring[i],
                         fitness=offspring_fitness[i],
                     )
@@ -162,7 +164,7 @@ class CrossoverReproducer(Reproducer):
     ) -> None:
         """Initialize the reproducer.
 
-        :param rng: The random generator.
+        :param rng: The ranfom generator.
         :param innov_db_body: The innovation database for the body.
         :param innov_db_brain: The innovation database for the brain.
         """
@@ -198,7 +200,7 @@ class CrossoverReproducer(Reproducer):
 def run_experiment(dbengine: Engine) -> None:
     """Run an experiment.
 
-    :param dbengine: An opened database with matching initialize database structure.
+    :param dbengine: An openened database with matching initialize database structure.
     """
     logging.info("----------------")
     logging.info("Start experiment")
@@ -261,7 +263,9 @@ def run_experiment(dbengine: Engine) -> None:
     # Create a population of individuals, combining genotype with fitness.
     population = Population(
         individuals=[
-            Individual(genotype=genotype, fitness=fitness)
+            Individual(
+                __type_tgenotype=genotype, genotype=genotype, fitness=fitness
+            )
             for genotype, fitness in zip(
                 initial_genotypes, initial_fitnesses, strict=True
             )
@@ -278,7 +282,8 @@ def run_experiment(dbengine: Engine) -> None:
     logging.info("Start optimization process.")
     while generation.generation_index < config.NUM_GENERATIONS:
         logging.info(
-            f"Generation {generation.generation_index + 1} / {config.NUM_GENERATIONS}."
+            "Generation %d / %d."
+            % (generation.generation_index + 1, config.NUM_GENERATIONS)
         )
 
         # Here we iterate the evolutionary process using the step.
