@@ -1,15 +1,16 @@
 from abc import ABC, abstractmethod
 
-from modular_robot.body.sensors import (
+from revolve2.modular_robot.body.sensors import (
     ActiveHingeSensor,
     CameraSensor,
     IMUSensor,
 )
-from modular_robot.sensor_state._active_hinge_sensor_state import (
+
+from ._active_hinge_sensor_state import (
     ActiveHingeSensorState,
 )
-from modular_robot.sensor_state._camera_sensor_state import CameraSensorState
-from modular_robot.sensor_state._imu_sensor_state import IMUSensorState
+from ._camera_sensor_state import CameraSensorState
+from ._imu_sensor_state import IMUSensorState
 
 
 class ModularRobotSensorState(ABC):

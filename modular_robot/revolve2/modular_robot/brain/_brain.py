@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from modular_robot.brain._brain_instance import BrainInstance
+from ._brain_instance import BrainInstance
 
 
 class Brain(ABC):
