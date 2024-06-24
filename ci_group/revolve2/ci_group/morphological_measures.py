@@ -31,73 +31,56 @@ class MorphologicalMeasures(Generic[TModule]):
     symmetry_grid: NDArray[TModule]
     """Position of the core in 'body_as_grid'."""
     core_grid_position: Vector3[np.int_]
-
-    """If the robot is two dimensional, i.e. all module rotations are 0 degrees."""
+    """If the robot is two dimensional, i.e. all module rotations are 0
+    degrees."""
     is_2d: bool
 
     core: Core
     modules: list[Module]
     bricks: list[Brick]
     active_hinges: list[ActiveHinge]
-
     """If all slots of the core are filled with other modules."""
     core_is_filled: bool
-
     """Bricks which have all slots filled with other modules."""
     filled_bricks: list[Brick]
-
     """Active hinges which have all slots filled with other modules."""
     filled_active_hinges: list[ActiveHinge]
-
-    """
-    Modules that only connect to one other module.
+    """Modules that only connect to one other module.
 
     This includes children and parents.
     """
     single_neighbour_modules: list[Module]
-
-    """
-    Bricks that are only connected to one other module.
+    """Bricks that are only connected to one other module.
 
     Both children and parent are counted.
     """
     single_neighbour_bricks: list[Brick]
-
-    """
-    Bricks that are connected to exactly two other modules.
+    """Bricks that are connected to exactly two other modules.
 
     Both children and parent are counted.
     """
     double_neighbour_bricks: list[Brick]
-
-    """
-    Active hinges that are connected to exactly two other modules.
+    """Active hinges that are connected to exactly two other modules.
 
     Both children and parent are counted.
     """
     double_neighbour_active_hinges: list[ActiveHinge]
+    """X/Y-plane symmetry according to the paper but in 3D.
 
-    """
-    X/Y-plane symmetry according to the paper but in 3D.
-
-    X-axis is defined as forward/backward for the core module
-    Y-axis is defined as left/right for the core module.
+    X-axis is defined as forward/backward for the core module Y-axis is
+    defined as left/right for the core module.
     """
     xy_symmetry: float
+    """X/Z-plane symmetry according to the paper but in 3D.
 
-    """
-    X/Z-plane symmetry according to the paper but in 3D.
-
-    X-axis is defined as forward/backward for the core module
-    Z-axis is defined as up/down for the core module.
+    X-axis is defined as forward/backward for the core module Z-axis is
+    defined as up/down for the core module.
     """
     xz_symmetry: float
+    """Y/Z-plane symmetry according to the paper but in 3D.
 
-    """
-    Y/Z-plane symmetry according to the paper but in 3D.
-
-    Y-axis is defined as left/right for the core module.
-    Z-axis is defined as up/down for the core module.
+    Y-axis is defined as left/right for the core module. Z-axis is
+    defined as up/down for the core module.
     """
     yz_symmetry: float
 
@@ -337,7 +320,8 @@ class MorphologicalMeasures(Generic[TModule]):
 
     @property
     def num_filled_bricks(self) -> int:
-        """Get the number of bricks which have all slots filled with other modules.
+        """Get the number of bricks which have all slots filled with other
+        modules.
 
         :returns: The number of bricks.
         """
@@ -345,7 +329,8 @@ class MorphologicalMeasures(Generic[TModule]):
 
     @property
     def num_filled_active_hinges(self) -> int:
-        """Get the number of bricks which have all slots filled with other modules.
+        """Get the number of bricks which have all slots filled with other
+        modules.
 
         :returns: The number of bricks.
         """
@@ -353,7 +338,8 @@ class MorphologicalMeasures(Generic[TModule]):
 
     @property
     def num_filled_modules(self) -> int:
-        """Get the number of modules which have all slots filled with other modules, including the core.
+        """Get the number of modules which have all slots filled with other
+        modules, including the core.
 
         :returns: The number of modules.
         """
@@ -365,7 +351,8 @@ class MorphologicalMeasures(Generic[TModule]):
 
     @property
     def max_potentionally_filled_core_and_bricks(self) -> int:
-        """Get the maximum number of core and bricks that could potentially be filled with this set of modules if rearranged in an optimal way.
+        """Get the maximum number of core and bricks that could potentially be
+        filled with this set of modules if rearranged in an optimal way.
 
         This calculates 'b_max' from the paper.
 
@@ -393,7 +380,9 @@ class MorphologicalMeasures(Generic[TModule]):
 
     @property
     def filled_core_and_bricks_proportion(self) -> float:
-        """Get the ratio between filled cores and bricks and how many that potentially could have been if this set of modules was rearranged in an optimal way.
+        """Get the ratio between filled cores and bricks and how many that
+        potentially could have been if this set of modules was rearranged in an
+        optimal way.
 
         This calculates 'branching' from the paper.
 
@@ -408,7 +397,8 @@ class MorphologicalMeasures(Generic[TModule]):
 
     @property
     def num_single_neighbour_modules(self) -> int:
-        """Get the number of bricks that are only connected to one other module.
+        """Get the number of bricks that are only connected to one other
+        module.
 
         Both children and parent are counted.
 
@@ -418,7 +408,8 @@ class MorphologicalMeasures(Generic[TModule]):
 
     @property
     def max_potential_single_neighbour_modules(self) -> int:
-        """Get the maximum number of bricks that could potentially have only one neighbour if this set of modules was rearranged in an optimal way.
+        """Get the maximum number of bricks that could potentially have only
+        one neighbour if this set of modules was rearranged in an optimal way.
 
         This calculates "l_max" from the paper.
 
@@ -440,7 +431,8 @@ class MorphologicalMeasures(Generic[TModule]):
 
     @property
     def num_double_neighbour_bricks(self) -> int:
-        """Get the number of bricks that are connected to exactly two other modules.
+        """Get the number of bricks that are connected to exactly two other
+        modules.
 
         Both children and parent are counted.
 
@@ -450,7 +442,8 @@ class MorphologicalMeasures(Generic[TModule]):
 
     @property
     def num_double_neighbour_active_hinges(self) -> int:
-        """Get the number of active hinges that are connected to exactly two other modules.
+        """Get the number of active hinges that are connected to exactly two
+        other modules.
 
         Both children and parent are counted.
 
@@ -460,7 +453,9 @@ class MorphologicalMeasures(Generic[TModule]):
 
     @property
     def potential_double_neighbour_bricks_and_active_hinges(self) -> int:
-        """Get the maximum number of bricks and active hinges that could potentially have exactly two neighbours if this set of modules was rearranged in an optimal way.
+        """Get the maximum number of bricks and active hinges that could
+        potentially have exactly two neighbours if this set of modules was
+        rearranged in an optimal way.
 
         This calculates e_max from the paper.
 
@@ -477,9 +472,12 @@ class MorphologicalMeasures(Generic[TModule]):
 
     @property
     def double_neighbour_brick_and_active_hinge_proportion(self) -> float:
-        """Get the ratio between the number of bricks and active hinges with exactly two neighbours and how many that could potentially have been if this set of modules was rearranged in an optimal way.
+        """Get the ratio between the number of bricks and active hinges with
+        exactly two neighbours and how many that could potentially have been if
+        this set of modules was rearranged in an optimal way.
 
-        This calculate length of limbs proportion(extensiveness) from the paper.
+        This calculate length of limbs proportion(extensiveness) from
+        the paper.
 
         :returns: The proportion.
         """

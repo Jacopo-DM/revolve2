@@ -24,7 +24,8 @@ def develop(
 ) -> BodyV1:
     """Develop a CPPNWIN genotype into a modular robot body.
 
-    It is important that the genotype was created using a compatible function.
+    It is important that the genotype was created using a compatible
+    function.
 
     :param genotype: The genotype to create the body from.
     :returns: The created body.

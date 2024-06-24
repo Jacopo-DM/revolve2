@@ -70,7 +70,8 @@ class BrainGenotypeCpg:
     ) -> BrainGenotypeCpg:
         """Mutate this genotype.
 
-        This genotype will not be changed; a mutated copy will be returned.
+        This genotype will not be changed; a mutated copy will be
+        returned.
 
         :param innov_db: Multineat innovation database. See Multineat
             library.

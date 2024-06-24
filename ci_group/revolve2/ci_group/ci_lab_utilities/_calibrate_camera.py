@@ -11,8 +11,10 @@ def calibrate_camera(
 ) -> tuple[tuple[int, ...], NDArray[np.float64], NDArray[np.float64]]:
     """Calibrate cameras for distortion and fisheye effects.
 
-    In order to use this function effectively please use at least 5 valid calibration images, with differently places checkerboards.
-    The checkerboard has to be fully visible with no occlusion, but it does mot have to lie flat on the ground.
+    In order to use this function effectively please use at least 5
+    valid calibration images, with differently places checkerboards. The
+    checkerboard has to be fully visible with no occlusion, but it does
+    mot have to lie flat on the ground.
 
     :param calibration_images_paths: The calibration images.
     :param checkerboard_size: The checkerboard size. Note if you have a

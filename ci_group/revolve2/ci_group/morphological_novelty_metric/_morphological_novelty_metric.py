@@ -12,7 +12,11 @@ from .calculate_novelty import (
 )
 
 _INT_CASTER: int = 10_000
-"""Casting floats to INT allows to mitigate floating-point issues in the distribution reshaping. The higher the number, the more precision you get."""
+"""Casting floats to INT allows to mitigate floating-point issues in the
+distribution reshaping.
+
+The higher the number, the more precision you get.
+"""
 
 Orientations = list[list[tuple[float, float]]]
 Magnitudes = list[list[float]]

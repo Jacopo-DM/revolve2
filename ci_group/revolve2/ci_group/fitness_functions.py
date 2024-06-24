@@ -9,7 +9,8 @@ def xy_displacement(
     begin_state: ModularRobotSimulationState,
     end_state: ModularRobotSimulationState,
 ) -> float:
-    """Calculate the distance traveled on the xy-plane by a single modular robot.
+    """Calculate the distance traveled on the xy-plane by a single modular
+    robot.
 
     :param begin_state: Begin state of the robot.
     :param end_state: End state of the robot.

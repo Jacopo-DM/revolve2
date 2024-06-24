@@ -26,7 +26,6 @@ class IPCamera:
 
     _d_q: queue.Queue[cv2.typing.MatLike]  # Display queue
     _r_q: queue.Queue[cv2.typing.MatLike]  # Record queue
-
     """Threads for camera functionality."""
     _receive_thread: threading.Thread
     _display_thread: threading.Thread
@@ -36,8 +35,7 @@ class IPCamera:
     _is_running: bool  # Allows to break threads
     _image_dimensions: tuple[int, int]
     _fps: int
-
-    """Maps to straightening the camera image"""
+    """Maps to straightening the camera image."""
     _map1: cv2.typing.MatLike
     _map2: cv2.typing.MatLike
 
@@ -54,8 +52,10 @@ class IPCamera:
 
         :param camera_location: The location of the camera.
         :param recording_path: The path to store the recording.
-        :param image_dimensions: The dimensions of the image produced by the camera and used for calibration.
-        :param distortion_coefficients: The distortion coefficients for the camera.
+        :param image_dimensions: The dimensions of the image produced by
+            the camera and used for calibration.
+        :param distortion_coefficients: The distortion coefficients for
+            the camera.
         :param camera_matrix: The camera matrix for calibration.
         :param fps: The FPS of the camera.
         """

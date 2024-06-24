@@ -29,7 +29,8 @@ def develop(
 ) -> BodyV2:
     """Develop a CPPNWIN genotype into a modular robot body.
 
-    It is important that the genotype was created using a compatible function.
+    It is important that the genotype was created using a compatible
+    function.
 
     :param genotype: The genotype to create the body from.
     :returns: The created body.
@@ -162,14 +163,12 @@ def __add_child(
     grid: NDArray[np.uint8],
 ) -> __Module | None:
     attachment_index, attachment_point = attachment_point_tuple
-
     """Here we adjust the forward facing direction, and the position for the new
     potential module.
     """
     forward = __rotate(module.forward, module.up, attachment_point.orientation)
     position = __vec3_int(module.position + forward)
     chain_length = module.chain_length + 1
-
     """If grid cell is occupied, we don't make a child.
     else, set cell as occupied
     ERROR this is MAJOR bug!
@@ -189,7 +188,6 @@ def __add_child(
         np.round(position + attachment_point.offset), dtype=np.int64
     )
     child_type, angle = __evaluate_cppn(body_net, new_pos, chain_length)
-
     """Here we check whether the CPPN evaluated to place a module and if the
     module can be set on the parent."""
     can_set = module.module_reference.can_set_child(attachment_index)

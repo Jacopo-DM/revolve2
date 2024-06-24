@@ -8,7 +8,8 @@ from revolve2.modular_robot.brain.cpg import (
 
 
 class BrainCpgNetworkNeighbor(ModularRobotBrainCpgNetworkNeighbor):
-    """A CPG brain based on `ModularRobotBrainCpgNetworkNeighbor` that creates weights from a CPPNWIN network.
+    """A CPG brain based on `ModularRobotBrainCpgNetworkNeighbor` that creates
+    weights from a CPPNWIN network.
 
     Weights are determined by querying the CPPN network with inputs:
     (hinge1_posx, hinge1_posy, hinge1_posz, hinge2_posx, hinge2_posy, hinge3_posz)

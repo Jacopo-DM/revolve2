@@ -1,4 +1,7 @@
-"""Draw 2D representations of Modular Robots. Based on Karine Miras` Method."""
+"""Draw 2D representations of Modular Robots.
+
+Based on Karine Miras` Method.
+"""
 
 import logging
 import time
@@ -179,7 +182,8 @@ def _draw_module(
 def _make_rot_mat(theta: float) -> NDArray[np.int_]:
     """Make a rotation matrix from angle in 2D.
 
-    This function casts angles to iterations of 90°, since we plot on a grid.
+    This function casts angles to iterations of 90°, since we plot on a
+    grid.
 
     :param theta: The angle.
     :returns: The matrix.

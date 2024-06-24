@@ -1,6 +1,7 @@
 """CPPNWIN genotype.
 
-That is, Compositional Pattern-Producing Network With Innovation Numbers.
+That is, Compositional Pattern-Producing Network With Innovation
+Numbers.
 """
 
 from ._multineat_genotype_pickle_wrapper import (

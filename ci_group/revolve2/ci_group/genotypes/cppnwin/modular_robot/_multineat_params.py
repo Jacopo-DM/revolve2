@@ -21,7 +21,8 @@ faulthandler.enable()
 
 
 def pretty_print(func: t.Callable[..., None]) -> t.Callable[..., None]:
-    """Decorate a function to "pretty print" a header and footer around the decorated function.
+    """Decorate a function to "pretty print" a header and footer around the
+    decorated function.
 
     :param func: The function to be decorated.
     :type func: Callable[..., None]
@@ -54,7 +55,9 @@ def pretty_print(func: t.Callable[..., None]) -> t.Callable[..., None]:
 
 
 class ParamAnalyzer:
-    """Class for analyzing and comparing parameters of multineat.Parameters objects."""
+    """Class for analyzing and comparing parameters of multineat.Parameters
+    objects.
+    """
 
     def __init__(self, *, params: bool | multiNEATParamType = None) -> None:
         """Initialize a ParamAnalyzer object.
@@ -133,7 +136,8 @@ class ParamAnalyzer:
         dict[str, tuple[float | int | bool | str, str]],
         dict[str, tuple[float | int | bool | str, str]],
     ]:
-        """Subtract two ParamAnalyzer objects and return the differences in their values.
+        """Subtract two ParamAnalyzer objects and return the differences in
+        their values.
 
         Parameters:
         - other (ParamAnalyzer): The ParamAnalyzer object to subtract from self.
@@ -213,7 +217,8 @@ class ParamAnalyzer:
         other: ParamAnalyzer,
         name: str = "Valid",
     ) -> None:
-        """Print the multineat parameters with reference to another ParamAnalyzer object.
+        """Print the multineat parameters with reference to another
+        ParamAnalyzer object.
 
         Args:
             other (ParamAnalyzer): The ParamAnalyzer object to compare with.
@@ -488,7 +493,8 @@ class MultiNEATParamsWriter:
         source: multiNEATParamType,
         to_remove: dict[str, float | int | bool] | None = None,
     ) -> multiNEATParamType:
-        """Strip the specified parameters from the given source object and returns the modified object.
+        """Strip the specified parameters from the given source object and
+        returns the modified object.
 
         Args:
             source (multiNEATParamType): The source object from which parameters will be stripped.
@@ -497,7 +503,6 @@ class MultiNEATParamsWriter:
 
         Return:
             multiNEATParamType: The modified source object with the specified parameters stripped.
-
         """
         # Check if to_remove is None
         if to_remove is None:
@@ -519,7 +524,8 @@ class MultiNEATParamsWriter:
         *,
         prevalidated: bool = False,
     ) -> multiNEATParamType:
-        """Set the parameters for the multiNEAT algorithm based on the given target dictionary.
+        """Set the parameters for the multiNEAT algorithm based on the given
+        target dictionary.
 
         Args:
             target (dict[str, float | int | bool]): The target dictionary containing the parameter values.
@@ -530,7 +536,6 @@ class MultiNEATParamsWriter:
 
         Raises:
             ValueError: If the target dictionary is invalid.
-
         """
         # Check validity of target
         if not prevalidated:
