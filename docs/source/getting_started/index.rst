@@ -32,8 +32,8 @@ You will find a more thorough explanation of the examples in their respective re
      - Contents
      - Prerequisite examples
    * - **1 Simulator Basics**
-     -
-     -
+     - 
+     - 
    * - 1a simulate single robot
      - Simulate and visualize a single modular robot.
      - \-
