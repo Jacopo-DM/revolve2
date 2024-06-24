@@ -97,7 +97,7 @@ class BrainCpgInstance(BrainInstance):
     ) -> None:
         """Control the modular robot.
 
-        Sets the active hinge targets to the values in the state array as defined by the mapping provided in the constructor.
+        Set the active hinge targets to the values in the state array as defined by the mapping provided in the constructor.
 
         :param dt: Elapsed seconds since last call to this function.
         :param sensor_state: Interface for reading the current sensor state.

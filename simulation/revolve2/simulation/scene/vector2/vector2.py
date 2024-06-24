@@ -12,11 +12,22 @@ from revolve2.simulation.scene.vector2 import vector2aux as vector2
 
 
 class Vector2(BaseVector):  # type: ignore[misc]
+    """Represents a 2-dimensional Vector.
+
+    The Vector2 class is based on the pyrr implementation of vectors.
+    """
+
     def __hash__(self) -> int:
+        """Return the hash value of the Vector2 object.
+
+        The hash value is computed based on the tuple representation of the Vector2 object.
+
+        Return:
+            int: The hash value of the Vector2 object.
+        """
         return hash(tuple(self))
 
     # TODO(jmdm): fix typing ↑
-    """Represents a 2-dimensional Vector. The Vector2 class is based on the pyrr implementation of vectors."""
 
     _module = vector2
     _shape = (2,)

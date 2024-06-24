@@ -129,3 +129,11 @@ docstring-code-line-length = "dynamic"
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
+[tool.pydoclint]
+style = 'sphinx'
+exclude = '\.git|.?venv|\.tox|tests/data|unparser\.py'
+require-return-section-when-returning-nothing = true
+check-class-attributes = false
+arg-type-hints-in-docstring = false
+check-return-types = false

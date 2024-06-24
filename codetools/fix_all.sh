@@ -8,13 +8,9 @@ START_DIR="$(pwd)"
 
 PIPELINE=(
     './mypy/check_all.sh'
-    # './black/fix.sh'
-    # './isort/fix.sh'
-    # './sort_all/fix.sh'
-    # './ruff/fix.sh'
-    # './pyflakes/check.sh'
-    # './pydocstyle/check.sh'
-    # './darglint/check.sh'
+    './ruff/fix.sh'
+    './pyflakes/check.sh'
+    # './pydoclint/check.sh'
 )
 
 for var in ${PIPELINE[@]}

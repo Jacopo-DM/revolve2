@@ -6,4 +6,4 @@ packages=$(../read_project_parts.sh)
 
 cd ../..
 
-black --diff --check $packages
+pydoclint --style sphinx $packages --check-return-types=False

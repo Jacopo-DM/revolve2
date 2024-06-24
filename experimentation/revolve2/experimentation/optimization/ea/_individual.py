@@ -62,22 +62,43 @@ class Individual(HasId, orm.MappedAsDataclass, Generic[TGenotype]):
 
         @orm.declared_attr
         def population_id(self) -> orm.Mapped[int]:
+            """Return the population ID of the individual.
+
+            :return: The population ID.
+            """
             return self.__population_id_impl()
 
         @orm.declared_attr
         def population_index(self) -> orm.Mapped[int]:
+            """Return the population index of the individual.
+
+            :return: The population index of the individual.
+            """
             return self.__population_index_impl()
 
         @orm.declared_attr
         def genotype_id(self) -> orm.Mapped[int]:
+            """Return the genotype ID of the individual.
+
+            :return: The genotype ID.
+            """
             return self.__genotype_id_impl()
 
         @orm.declared_attr
         def genotype(self) -> orm.Mapped[TGenotype]:
+            """Return the genotype of the individual.
+
+            :return: The genotype of the individual.
+            """
             return self.__genotype_impl()
 
         @orm.declared_attr
         def fitness(self) -> orm.Mapped[float]:
+            """Calculate and return the fitness value of the individual.
+
+            Return:
+                The fitness value of the individual.
+            """
             return self.__fitness_impl()
 
     __type_tgenotype: TGenotype

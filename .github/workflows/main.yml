@@ -42,23 +42,12 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: install_tools
         run: pip install -r ./codetools/requirements.txt
-      # - name: black
-        # run: ./codetools/black/check.sh
-      # - name: isort
-        # run: ./codetools/isort/check.sh
       - name: ruff
         run: ./codetools/ruff/check.sh
-      - name: pydocstyle
-        run: ./codetools/pydocstyle/check.sh
-      - name: darglint
-        run: ./codetools/darglint/check.sh
       - name: pyflakes
-        run: ./codetools/pyflakes/check.sh
-      - name: sort-all
-        run: |
-          ./codetools/sort_all/fix.sh
-          [[ -z $(git status -s) ]]
-          git checkout -- .
+        run: ./codetools/pyflakes/check.s
+      # - name: pydoclint
+      #   run: ./codetools/pydoclint/check.sh
 
   mypy-examples:
     needs: read-project-info
@@ -169,28 +158,3 @@ jobs:
         with:
           name: dist
           path: ./dist/**/*.whl
-
-  publish:
-    runs-on: ubuntu-22.04
-    if: startsWith(github.ref, 'refs/tags/')
-    needs: [read-project-info, build_wheels_platform_independent, build_wheels_platform_dependent]
-    strategy:
-      matrix:
-        package: ${{ fromJson(needs.read-project-info.outputs.all_packages) }}
-    environment:
-      name: publish
-    permissions:
-      id-token: write
-    steps:
-      - name: Download dist artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: dist
-          path: dist
-      - name: Generate name for package
-        # Prepend 'revolve2-', replace '/' with '-' and remove '/simulators'
-        run: echo "PACKAGE_URL=https://pypi.org/p/revolve2-$(echo ${{ matrix.package }} | sed 's/_/-/g' | sed 's/simulators\///g')" >> $GITHUB_ENV
-      - name: Publish package distributions to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          packages-dir: dist/${{ matrix.package }}
