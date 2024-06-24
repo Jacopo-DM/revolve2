@@ -1,7 +1,7 @@
 from pyrr import Vector3
 
-from modular_robot.body._right_angles import RightAngles
-from modular_robot.body.base import Brick
+from .._right_angles import RightAngles
+from ..base import Brick
 
 
 class BrickV2(Brick):

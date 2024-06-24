@@ -1,5 +1,4 @@
-from modular_robot.body.base import ActiveHinge
-
+from ...body.base import ActiveHinge
 from ._cpg_network_structure import (
     CpgNetworkStructure,
     CpgPair,

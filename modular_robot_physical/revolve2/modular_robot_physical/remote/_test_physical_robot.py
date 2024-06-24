@@ -2,9 +2,8 @@ from revolve2.modular_robot import ModularRobot
 from revolve2.modular_robot.body.base import ActiveHinge, Body
 from revolve2.modular_robot.brain.dummy import BrainDummy
 
-from modular_robot_physical._config import Config
-from modular_robot_physical._uuid_key import UUIDKey
-
+from .._config import Config
+from .._uuid_key import UUIDKey
 from ._remote import run_remote
 
 

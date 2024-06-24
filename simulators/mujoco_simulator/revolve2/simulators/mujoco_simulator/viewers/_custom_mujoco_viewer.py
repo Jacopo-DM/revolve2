@@ -8,7 +8,7 @@ import mujoco
 import mujoco_viewer
 from revolve2.simulation.simulator import Viewer
 
-from simulators.mujoco_simulator._render_backend import RenderBackend
+from .._render_backend import RenderBackend
 
 
 class CustomMujocoViewerMode(Enum):

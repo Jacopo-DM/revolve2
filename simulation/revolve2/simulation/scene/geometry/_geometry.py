@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
-from simulation.scene._pose import Pose
-from simulation.scene.geometry.textures import Texture
+from .._pose import Pose
+from ..geometry.textures import Texture
 
 
 @dataclass(kw_only=True)

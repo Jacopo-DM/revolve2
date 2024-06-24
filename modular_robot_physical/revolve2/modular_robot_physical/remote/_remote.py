@@ -10,15 +10,14 @@ from pyrr import Vector3
 from revolve2.modular_robot.body.base import ActiveHinge
 from revolve2.modular_robot.body.sensors import CameraSensor, IMUSensor
 
-from modular_robot_physical._config import Config
-from modular_robot_physical._hardware_type import HardwareType
-from modular_robot_physical._protocol_version import PROTOCOL_VERSION
-from modular_robot_physical._standard_port import STANDARD_PORT
-from modular_robot_physical._uuid_key import UUIDKey
-from modular_robot_physical.robot_daemon_api import (
+from .._config import Config
+from .._hardware_type import HardwareType
+from .._protocol_version import PROTOCOL_VERSION
+from .._standard_port import STANDARD_PORT
+from .._uuid_key import UUIDKey
+from ..robot_daemon_api import (
     robot_daemon_protocol_capnp,
 )
-
 from ._camera_sensor_state_impl import (
     CameraSensorStateImpl,
 )

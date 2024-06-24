@@ -4,12 +4,11 @@ import numpy as np
 from numpy.typing import NDArray
 from pyrr import Vector3
 
-from simulation.scene.sensors import CameraSensor, IMUSensor
-
 from ._joint_hinge import JointHinge
 from ._multi_body_system import MultiBodySystem
 from ._pose import Pose
 from ._rigid_body import RigidBody
+from .sensors import CameraSensor, IMUSensor
 
 
 class SimulationState(ABC):

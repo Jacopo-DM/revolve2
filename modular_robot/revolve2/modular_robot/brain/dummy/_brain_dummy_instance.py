@@ -1,8 +1,8 @@
-from modular_robot._modular_robot_control_interface import (
+from ..._modular_robot_control_interface import (
     ModularRobotControlInterface,
 )
-from modular_robot.brain._brain_instance import BrainInstance
-from modular_robot.sensor_state import ModularRobotSensorState
+from ...brain._brain_instance import BrainInstance
+from ...sensor_state import ModularRobotSensorState
 
 
 class BrainDummyInstance(BrainInstance):

@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod
 
-from modular_robot._modular_robot_control_interface import (
+from .._modular_robot_control_interface import (
     ModularRobotControlInterface,
 )
-from modular_robot.sensor_state import ModularRobotSensorState
+from ..sensor_state import ModularRobotSensorState
 
 
 class BrainInstance(ABC):

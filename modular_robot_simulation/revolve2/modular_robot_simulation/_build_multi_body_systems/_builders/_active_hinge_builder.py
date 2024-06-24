@@ -11,16 +11,15 @@ from revolve2.simulation.scene import (
 from revolve2.simulation.scene.geometry import GeometryBox
 from revolve2.simulation.scene.geometry.textures import Texture
 
-from modular_robot_simulation._build_multi_body_systems._body_to_multi_body_system_mapping import (
+from .._body_to_multi_body_system_mapping import (
     BodyToMultiBodySystemMapping,
 )
-from modular_robot_simulation._build_multi_body_systems._convert_color import (
+from .._convert_color import (
     convert_color,
 )
-from modular_robot_simulation._build_multi_body_systems._unbuilt_child import (
+from .._unbuilt_child import (
     UnbuiltChild,
 )
-
 from ._builder import (
     Builder,
 )

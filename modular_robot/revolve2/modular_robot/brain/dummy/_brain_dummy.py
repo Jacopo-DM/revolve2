@@ -1,6 +1,5 @@
-from modular_robot.brain._brain import Brain
-from modular_robot.brain._brain_instance import BrainInstance
-
+from .._brain import Brain
+from .._brain_instance import BrainInstance
 from ._brain_dummy_instance import BrainDummyInstance
 
 

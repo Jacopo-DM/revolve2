@@ -7,18 +7,18 @@ import numpy as np
 from numpy.typing import NDArray
 from pyrr import Vector3
 
-from modular_robot_physical._hardware_type import HardwareType
-from modular_robot_physical._protocol_version import PROTOCOL_VERSION
-from modular_robot_physical.physical_interfaces import (
+from .._hardware_type import HardwareType
+from .._protocol_version import PROTOCOL_VERSION
+from ..physical_interfaces import (
     PhysicalInterface,
 )
-from modular_robot_physical.robot_daemon_api import (
+from ..robot_daemon_api import (
     robot_daemon_protocol_capnp,
 )
-from modular_robot_physical.robot_daemon_api.robot_daemon_protocol_capnp import (
+from ..robot_daemon_api.robot_daemon_protocol_capnp import (
     Image as capnpImage,
 )
-from modular_robot_physical.robot_daemon_api.robot_daemon_protocol_capnp import (
+from ..robot_daemon_api.robot_daemon_protocol_capnp import (
     Vector3 as capnpVector3,
 )
 

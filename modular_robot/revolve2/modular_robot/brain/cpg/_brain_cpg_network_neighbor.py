@@ -4,10 +4,9 @@ from abc import abstractmethod
 import numpy as np
 import numpy.typing as npt
 
-from modular_robot.body.base import ActiveHinge, Body
-from modular_robot.brain._brain import Brain
-from modular_robot.brain._brain_instance import BrainInstance
-
+from ...body.base import ActiveHinge, Body
+from .._brain import Brain
+from .._brain_instance import BrainInstance
 from ._brain_cpg_instance import BrainCpgInstance
 from ._make_cpg_network_structure_neighbor import (
     active_hinges_to_cpg_network_structure_neighbor,

@@ -2,8 +2,7 @@
 
 from dataclasses import dataclass, field
 
-from simulation.scene._scene import Scene
-
+from ..scene._scene import Scene
 from ._batch_parameters import BatchParameters
 from ._record_settings import RecordSettings
 

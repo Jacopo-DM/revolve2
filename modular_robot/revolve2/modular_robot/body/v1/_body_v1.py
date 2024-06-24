@@ -1,5 +1,4 @@
-from modular_robot.body.base import Body
-
+from ..base import Body
 from ._core_v1 import CoreV1
 
 

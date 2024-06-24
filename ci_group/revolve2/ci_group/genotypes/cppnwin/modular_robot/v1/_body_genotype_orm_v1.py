@@ -5,14 +5,9 @@ from typing import TYPE_CHECKING, Self
 import multineat
 from sqlalchemy import event, orm
 
-from ci_group.genotypes.cppnwin import (
-    multineat_rng_from_random,
-    random_multineat_genotype,
-)
-from ci_group.genotypes.cppnwin.modular_robot import (
-    get_multineat_params,
-)
-
+from ..._multineat_rng_from_random import multineat_rng_from_random
+from ..._random_multineat_genotype import random_multineat_genotype
+from .._multineat_params import get_multineat_params
 from ._body_develop import develop as develop_body_v1
 
 if TYPE_CHECKING:

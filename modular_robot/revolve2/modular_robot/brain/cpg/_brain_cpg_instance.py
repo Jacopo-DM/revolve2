@@ -1,12 +1,12 @@
 import numpy as np
 import numpy.typing as npt
 
-from modular_robot._modular_robot_control_interface import (
+from ..._modular_robot_control_interface import (
     ModularRobotControlInterface,
 )
-from modular_robot.body.base import ActiveHinge
-from modular_robot.brain._brain_instance import BrainInstance
-from modular_robot.sensor_state import ModularRobotSensorState
+from ...body.base import ActiveHinge
+from ...sensor_state import ModularRobotSensorState
+from .._brain_instance import BrainInstance
 
 
 class BrainCpgInstance(BrainInstance):

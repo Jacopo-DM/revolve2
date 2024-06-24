@@ -5,12 +5,11 @@ from typing import TYPE_CHECKING, Self
 
 import multineat
 
-from ci_group.genotypes.cppnwin import (
+from ...cppnwin import (
     MultineatGenotypePickleWrapper,
     multineat_rng_from_random,
     random_multineat_genotype,
 )
-
 from ._brain_cpg_network_neighbor import (
     BrainCpgNetworkNeighbor,
 )

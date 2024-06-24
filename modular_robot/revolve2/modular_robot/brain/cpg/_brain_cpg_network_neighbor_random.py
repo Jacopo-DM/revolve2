@@ -1,7 +1,6 @@
 import numpy as np
 
-from modular_robot.body.base import ActiveHinge, Body
-
+from ...body.base import ActiveHinge, Body
 from ._brain_cpg_network_neighbor import (
     BrainCpgNetworkNeighbor,
 )

@@ -1,5 +1,4 @@
-from modular_robot_physical._hardware_type import HardwareType
-
+from .._hardware_type import HardwareType
 from ._physical_interface import (
     PhysicalInterface,
 )

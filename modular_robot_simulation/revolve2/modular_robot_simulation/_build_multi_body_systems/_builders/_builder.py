@@ -2,10 +2,10 @@ from abc import ABC, abstractmethod
 
 from revolve2.simulation.scene import MultiBodySystem
 
-from modular_robot_simulation._build_multi_body_systems._body_to_multi_body_system_mapping import (
+from .._body_to_multi_body_system_mapping import (
     BodyToMultiBodySystemMapping,
 )
-from modular_robot_simulation._build_multi_body_systems._unbuilt_child import (
+from .._unbuilt_child import (
     UnbuiltChild,
 )
 

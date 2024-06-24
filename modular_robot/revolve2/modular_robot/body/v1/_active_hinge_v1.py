@@ -1,7 +1,7 @@
 from pyrr import Vector3
 
-from modular_robot.body._right_angles import RightAngles
-from modular_robot.body.base import ActiveHinge
+from .._right_angles import RightAngles
+from ..base import ActiveHinge
 
 
 class ActiveHingeV1(ActiveHinge):

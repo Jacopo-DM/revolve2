@@ -109,6 +109,7 @@ ignore = [
     "TD003",   # link under TODO
     # "ERA001",  # Found commented-out code
     "FBT003", # Found "bool" in function argument
+    "TID252", # relative imports
 ]
 
 fixable = ["ALL"]

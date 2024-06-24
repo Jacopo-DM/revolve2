@@ -1,7 +1,7 @@
 from pyrr import Vector3
 
-from modular_robot.body._right_angles import RightAngles
-from modular_robot.body.base import Core
+from .._right_angles import RightAngles
+from ..base import Core
 
 
 class CoreV1(Core):

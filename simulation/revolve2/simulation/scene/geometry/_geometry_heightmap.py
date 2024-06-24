@@ -4,9 +4,8 @@ import numpy as np
 import numpy.typing as npt
 from pyrr import Vector3
 
-from simulation.scene._color import Color
-from simulation.scene.geometry.textures import MapType, Texture
-
+from .._color import Color
+from ..geometry.textures import MapType, Texture
 from ._geometry import Geometry
 
 

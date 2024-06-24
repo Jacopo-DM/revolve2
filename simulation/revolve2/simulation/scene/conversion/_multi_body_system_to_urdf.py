@@ -6,11 +6,11 @@ import scipy.spatial.transform
 from defusedxml import ElementTree as xmlTree
 from pyrr import Quaternion, Vector3
 
-from simulation.scene._joint_hinge import JointHinge
-from simulation.scene._multi_body_system import MultiBodySystem
-from simulation.scene._pose import Pose
-from simulation.scene._rigid_body import RigidBody
-from simulation.scene.geometry import (
+from .._joint_hinge import JointHinge
+from .._multi_body_system import MultiBodySystem
+from .._pose import Pose
+from .._rigid_body import RigidBody
+from ..geometry import (
     Geometry,
     GeometryBox,
     GeometryHeightmap,
