@@ -54,7 +54,7 @@ class ParentSelector(Selector):
 
         :param population: The population of robots.
         :param kwargs: Other parameters.
-        :return: The parent pairs.
+        :returns: The parent pairs.
         """
         return np.array(
             [
@@ -179,8 +179,9 @@ class CrossoverReproducer(Reproducer):
 
         :param population: The parent pairs.
         :param kwargs: Additional keyword arguments.
-        :return: The genotypes of the children.
-        :raises ValueError: If the parent population is not passed as a kwarg `parent_population`.
+        :returns: The genotypes of the children.
+        :raises ValueError: If the parent population is not passed as a
+            kwarg `parent_population`.
         """
         parent_population: Population | None = kwargs.get("parent_population")
         if parent_population is None:
@@ -200,7 +201,8 @@ class CrossoverReproducer(Reproducer):
 def run_experiment(dbengine: Engine) -> None:
     """Run an experiment.
 
-    :param dbengine: An openened database with matching initialize database structure.
+    :param dbengine: An openened database with matching initialize
+        database structure.
     """
     logging.info("----------------")
     logging.info("Start experiment")

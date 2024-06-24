@@ -39,7 +39,8 @@ class SimulationStateImpl(SimulationState):
         As such the data can be modified after this constructor without causing problems.
 
         :param data: The data to copy from.
-        :param abstraction_to_mujoco_mapping: A mapping between simulation abstraction and mujoco.
+        :param abstraction_to_mujoco_mapping: A mapping between
+            simulation abstraction and mujoco.
         :param camera_views: The camera views.
         """
         self._xpos = data.xpos.copy()
@@ -72,7 +73,8 @@ class SimulationStateImpl(SimulationState):
     ) -> Pose:
         """Get the pose of a multi-body system, relative to the global reference frame.
 
-        :param multi_body_system: The multi-body system to get the pose for.
+        :param multi_body_system: The multi-body system to get the pose
+            for.
         :returns: The relative pose.
         """
         body_mujoco = self._abstraction_to_mujoco_mapping.multi_body_system[
@@ -126,7 +128,7 @@ class SimulationStateImpl(SimulationState):
         """Get the current view of the camera.
 
         :param camera_sensor: The camera.
-        :return: The image (RGB).
+        :returns: The image (RGB).
         """
         camera_id = self._abstraction_to_mujoco_mapping.camera_sensor[
             UUIDKey(camera_sensor)

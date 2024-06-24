@@ -35,7 +35,8 @@ class PhysicalInterface(ABC):
         """Get the battery level.
 
         :returns: The battery level as a number between 0.0 and 1.0.
-        :raises NotImplementedError: If getting the battery level is not supported on this hardware.
+        :raises NotImplementedError: If getting the battery level is not
+            supported on this hardware.
         """
 
     @abstractmethod
@@ -44,7 +45,8 @@ class PhysicalInterface(ABC):
 
         :param pins: The GPIO pins.
         :returns: The current positions.
-        :raises NotImplementedError: If getting the servo position is not supported on this hardware.
+        :raises NotImplementedError: If getting the servo position is
+            not supported on this hardware.
         """
 
     @abstractmethod
@@ -52,7 +54,8 @@ class PhysicalInterface(ABC):
         """Get the angular rate from the IMU.
 
         :returns: The angular rate.
-        :raises NotImplementedError: If the IMU is not supported on this hardware.
+        :raises NotImplementedError: If the IMU is not supported on this
+            hardware.
         """
 
     @abstractmethod
@@ -60,7 +63,8 @@ class PhysicalInterface(ABC):
         """Get the orientation from the IMU.
 
         :returns: The orientation.
-        :raises NotImplementedError: If the IMU is not supported on this hardware.
+        :raises NotImplementedError: If the IMU is not supported on this
+            hardware.
         """
 
     @abstractmethod
@@ -68,13 +72,15 @@ class PhysicalInterface(ABC):
         """Get the specific force from the IMU.
 
         :returns: The specific force.
-        :raises NotImplementedError: If the IMU is not supported on this hardware.
+        :raises NotImplementedError: If the IMU is not supported on this
+            hardware.
         """
 
     @abstractmethod
     def get_camera_view(self) -> NDArray[np.uint8]:
         """Get the current view from the camera.
 
-        :return: The camera view.
-        :raises NotImplementedError: If the Camera is not supported on this hardware.
+        :returns: The camera view.
+        :raises NotImplementedError: If the Camera is not supported on
+            this hardware.
         """

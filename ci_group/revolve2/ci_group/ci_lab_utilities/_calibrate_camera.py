@@ -15,8 +15,10 @@ def calibrate_camera(
     The checkerboard has to be fully visible with no occlusion, but it does mot have to lie flat on the ground.
 
     :param calibration_images_paths: The calibration images.
-    :param checkerboard_size: The checkerboard size. Note if you have a 10 x 10 checkerboard the size should be (9, 9).
-    :return: The dimension of the calibration images, the camera matrix and the distortion coefficient.
+    :param checkerboard_size: The checkerboard size. Note if you have a
+        10 x 10 checkerboard the size should be (9, 9).
+    :returns: The dimension of the calibration images, the camera matrix
+        and the distortion coefficient.
     """
     subpix_criteria = (
         cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER,

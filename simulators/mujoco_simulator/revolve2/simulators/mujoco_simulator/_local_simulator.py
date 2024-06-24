@@ -36,13 +36,19 @@ class LocalSimulator(Simulator):
     ) -> None:
         """Initialize this object.
 
-        :param headless: If True, the simulation will not be rendered. This drastically improves performance.
-        :param start_paused: If True, start the simulation paused. Only possible when not in headless mode.
-        :param num_simulators: The number of simulators to deploy in parallel. They will take one core each but will share space on the main python thread for calculating control.
+        :param headless: If True, the simulation will not be rendered.
+            This drastically improves performance.
+        :param start_paused: If True, start the simulation paused. Only
+            possible when not in headless mode.
+        :param num_simulators: The number of simulators to deploy in
+            parallel. They will take one core each but will share space
+            on the main python thread for calculating control.
         :param cast_shadows: Whether shadows are cast in the simulation.
         :param fast_sim: Whether more complex rendering prohibited.
-        :param manual_control: Whether the simulation should be controlled manually.
-        :param viewer_type: The viewer-implementation to use in the local simulator.
+        :param manual_control: Whether the simulation should be
+            controlled manually.
+        :param viewer_type: The viewer-implementation to use in the
+            local simulator.
         """
         if not (headless or num_simulators == 1):
             msg = "Cannot have parallel simulators when visualizing."
@@ -69,7 +75,8 @@ class LocalSimulator(Simulator):
 
         :param batch: The batch to run.
         :returns: List of simulation states in ascending order of time.
-        :raises Exception: If manual control is selected, but headless is enabled.
+        :raises Exception: If manual control is selected, but headless
+            is enabled.
         """
         logging.info("Starting simulation batch with MuJoCo.")
 

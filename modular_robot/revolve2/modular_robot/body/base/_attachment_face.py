@@ -19,8 +19,10 @@ class AttachmentFace(Module):
     ) -> None:
         """Initialize this object.
 
-        :param rotation: Orientation of this model relative to its parent.
-        :param attachment_points: The attachment points available on a module.
+        :param rotation: Orientation of this model relative to its
+            parent.
+        :param attachment_points: The attachment points available on a
+            module.
         """
         """
         The base module only has orientation as its parameter since not all modules are square.

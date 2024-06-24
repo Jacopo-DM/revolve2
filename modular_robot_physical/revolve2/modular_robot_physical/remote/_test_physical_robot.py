@@ -17,8 +17,12 @@ def test_physical_robot(
 
     :param robot: Body of the robot.
     :param hostname: Hostname of the robot.
-    :param hinge_mapping: map each active hinge object to a specific Servo with its ID (int).
-    :param inverse_servos: If a servo is mounted in the wrong direction on the body one can fix it by inversing the action. inverse_servos allows you to inverse specific servos with their gpio number as key.
+    :param hinge_mapping: map each active hinge object to a specific
+        Servo with its ID (int).
+    :param inverse_servos: If a servo is mounted in the wrong direction
+        on the body one can fix it by inversing the action.
+        inverse_servos allows you to inverse specific servos with their
+        gpio number as key.
     """
     if isinstance(robot, Body):
         body = robot

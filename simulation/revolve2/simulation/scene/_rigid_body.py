@@ -52,7 +52,8 @@ class RigidBody:
     ) -> None:
         """Initialize the rigid body object.
 
-        :param initial_pose: The Initial pose of the rigid body. Relative to its parent multi-body system.
+        :param initial_pose: The Initial pose of the rigid body.
+            Relative to its parent multi-body system.
         :param static_friction: Static friction of the body.
         :param dynamic_friction: Dynamic friction of the body.
         :param geometries: Geometries describing the shape of the body.
@@ -152,7 +153,7 @@ class RigidBody:
         """Calculate the moment of inertia for a box geometry.
 
         :param geometry: The geometry.
-        :return: The local inertia.
+        :returns: The local inertia.
         """
         # calculate inertia in local coordinates
         local_inertia = Matrix33()
@@ -178,7 +179,7 @@ class RigidBody:
         """Calculate the moment of inertia for a sphere geometry.
 
         :param geometry: The geometry.
-        :return: The local inertia.
+        :returns: The local inertia.
         """
         # calculate inertia in local coordinates
         local_inertia = Matrix33()

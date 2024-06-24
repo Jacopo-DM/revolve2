@@ -15,7 +15,8 @@ def make_body() -> (
 ):
     """Create a body for the robot.
 
-    :returns: The created body and a tuple of all ActiveHinge objects for mapping later on.
+    :returns: The created body and a tuple of all ActiveHinge objects
+        for mapping later on.
     """
     """
     A modular robot body follows a 'tree' structure.
@@ -54,16 +55,14 @@ def on_prepared() -> None:
 def main() -> None:
     """Remote control a physical modular robot."""
     rng = make_rng_time_seed()
-    """
-    Create a modular robot, similar to what was done in the 1a_simulate_single_robot example.
+    """Create a modular robot, similar to what was done in the 1a_simulate_single_robot example.
     Of course, you can replace this with your own robot, such as one you have optimized using an evolutionary algorithm.
     """
     body, hinges = make_body()
     brain = BrainCpgNetworkNeighborRandom(body=body, rng=rng)
     robot = ModularRobot(body, brain)
 
-    """
-    Some important notes to understand:
+    """Some important notes to understand:
     - Hinge mappings are specific to each robot, so they have to be created new for each type of body.
     - The pin`s id`s can be found on th physical robots HAT.
     - The order of the pin`s is crucial for a correct translation into the physical robot.
@@ -100,8 +99,7 @@ def main() -> None:
         inverse_servos={},
     )
 
-    """
-    Create a Remote for the physical modular robot.
+    """Create a Remote for the physical modular robot.
     Make sure to target the correct hardware type and fill in the correct IP and credentials.
     The debug flag is turned on. If the remote complains it cannot keep up, turning off debugging might improve performance.
     """

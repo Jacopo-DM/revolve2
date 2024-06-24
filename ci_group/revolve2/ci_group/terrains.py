@@ -57,7 +57,8 @@ def crater(
     :param size: Size of the crater.
     :param ruggedness: How coarse the ground is.
     :param curviness: Height of the edges of the crater.
-    :param granularity_multiplier: Multiplier for how many edges are used in the heightmap.
+    :param granularity_multiplier: Multiplier for how many edges are
+        used in the heightmap.
     :returns: The created terrain.
     """
     # arbitrary constant to get a nice number of edges

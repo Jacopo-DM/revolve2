@@ -39,7 +39,8 @@ class BrainCpgNetworkStatic(Brain):
 
         :param initial_state: The initial state of the neural network.
         :param weight_matrix: The weight matrix used during integration.
-        :param output_mapping: Marks neurons as controller outputs and map them to the correct active hinge.
+        :param output_mapping: Marks neurons as controller outputs and
+            map them to the correct active hinge.
         """
         self._initial_state = initial_state
         self._weight_matrix = weight_matrix
@@ -57,8 +58,10 @@ class BrainCpgNetworkStatic(Brain):
 
         :param params: Parameters for the weight matrix to be created.
         :param cpg_network_structure: The cpg network structure.
-        :param initial_state_uniform: Initial state to use for all neurons.
-        :param output_mapping: Marks neurons as controller outputs and map them to the correct active hinge.
+        :param initial_state_uniform: Initial state to use for all
+            neurons.
+        :param output_mapping: Marks neurons as controller outputs and
+            map them to the correct active hinge.
         :returns: The created brain.
         """
         initial_state = cpg_network_structure.make_uniform_state(

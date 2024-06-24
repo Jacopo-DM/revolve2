@@ -11,7 +11,8 @@ from revolve2.experimentation.logging import setup_logging
 def run_experiment(num_samples: int, probability: float) -> None:
     """Run all runs of an experiment using the provided parameters.
 
-    :param num_samples: The number of samples to use for this experiment.
+    :param num_samples: The number of samples to use for this
+        experiment.
     :param probability: The probability to use for this experiment.
     """
     success_ratios = []  # Create a list where we will store the success ratio for each repetition.

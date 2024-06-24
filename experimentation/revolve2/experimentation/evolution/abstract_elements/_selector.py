@@ -16,5 +16,6 @@ class Selector(ABC):
 
         :param population: The population for selection.
         :param kwargs: Possible metrics for selection.
-        :return: The selected subset of the population and additional kwargs.
+        :returns: The selected subset of the population and additional
+            kwargs.
         """

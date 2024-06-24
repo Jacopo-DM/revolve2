@@ -54,8 +54,10 @@ class ParentSelector(Selector):
         """Select pairs of parents using a tournament.
 
         :param population: The population to select from.
-        :param kwargs: Additional kwargs that are not used in this example.
-        :returns: Pairs of indices of selected parents. offspring_size x 2 ints, and the parent population in the KWArgs dict.
+        :param kwargs: Additional kwargs that are not used in this
+            example.
+        :returns: Pairs of indices of selected parents. offspring_size x
+            2 ints, and the parent population in the KWArgs dict.
         """
         return np.asarray([
             selection.multiple_unique(
@@ -85,8 +87,10 @@ class SurvivorSelector(Selector):
         """Select survivors using a tournament.
 
         :param population: The initial population.
-        :param kwargs: Additional kwargs that contain the children to do selection with.
-        :returns: The selected population and empty kwargs in this implementation.
+        :param kwargs: Additional kwargs that contain the children to do
+            selection with.
+        :returns: The selected population and empty kwargs in this
+            implementation.
         :raises KeyError: If no children got passed.
         """
         offspring: list[Individual] | None = kwargs.get("children")
@@ -174,7 +178,8 @@ class CrossoverReproducer(Reproducer):
 def run_experiment(dbengine: Engine) -> None:
     """Run an experiment.
 
-    :param dbengine: An opened database with matching initialize database structure.
+    :param dbengine: An opened database with matching initialize
+        database structure.
     """
     logging.info("----------------")
     logging.info("Start experiment")
@@ -187,8 +192,7 @@ def run_experiment(dbengine: Engine) -> None:
     # Create a new experiment instance.
     experiment = Experiment(rng_seed=rng_seed)
 
-    """
-    Now we save it to the database.
+    """Now we save it to the database.
     A session manages multiple changes to a database, which then can either be committed(accepted) or a rolled back(aborted) in case something bad happens in our code.
     We add the experiment and commit as nothing can go wrong.
     """

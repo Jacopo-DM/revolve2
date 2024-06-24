@@ -279,7 +279,7 @@ def _capnp_to_camera_view(
 
     :param image: The capnp Image.
     :param camera_size: The camera size to reconstruct the image.
-    :return: The NDArray imag.
+    :returns: The NDArray imag.
     """
     np_image = np.zeros(shape=(3, *camera_size), dtype=np.uint8)
     np_image[0] = np.array(image.r).reshape(camera_size).astype(np.uint8)
@@ -296,7 +296,7 @@ def _get_imu_sensor_state(
 
     :param imu_sensor: The sensor in question.
     :param sensor_readings: The sensor readings.
-    :return: The Sensor state.
+    :returns: The Sensor state.
     """
     if imu_sensor is None:
         return {}
@@ -317,7 +317,7 @@ def _get_camera_sensor_state(
 
     :param camera_sensor: The sensor in question.
     :param sensor_readings: The sensor readings.
-    :return: The Sensor state.
+    :returns: The Sensor state.
     """
     if camera_sensor is None:
         return {}
@@ -342,10 +342,13 @@ def run_remote(
 
     :param config: The robot configuration.
     :param hostname: Hostname or IP of the robot.
-    :param on_prepared: Callback for when everything is prepared, ready to run the actual controller. You can use this for timing when the actual controller starts.
+    :param on_prepared: Callback for when everything is prepared, ready
+        to run the actual controller. You can use this for timing when
+        the actual controller starts.
     :param port: Port the robot daemon uses.
     :param debug: Enable debug messages.
-    :param manual_mode: Enable manual controls for the robot, ignoring the brain.
+    :param manual_mode: Enable manual controls for the robot, ignoring
+        the brain.
     """
     asyncio.run(
         capnp.run(

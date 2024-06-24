@@ -33,7 +33,8 @@ class ModularRobotSimulationHandler(SimulationHandler):
         """Add a brain that will control a robot during simulation.
 
         :param brain_instance: The brain.
-        :param body_to_multi_body_system_mapping: A mapping from body to multi-body system
+        :param body_to_multi_body_system_mapping: A mapping from body to
+            multi-body system
         """
         self._brains.append((brain_instance, body_to_multi_body_system_mapping))
 
@@ -46,7 +47,8 @@ class ModularRobotSimulationHandler(SimulationHandler):
         """Handle a simulation frame.
 
         :param simulation_state: The current state of the simulation.
-        :param simulation_control: Interface for setting control targets.
+        :param simulation_control: Interface for setting control
+            targets.
         :param dt: The time since the last call to this function.
         """
         for brain_instance, body_to_multi_body_system_mapping in self._brains:

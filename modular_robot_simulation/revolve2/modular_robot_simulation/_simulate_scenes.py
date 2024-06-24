@@ -25,7 +25,8 @@ def simulate_scenes(
     :param simulator: The simulator to use for simulation.
     :param batch_parameters: The batch parameters to use for simulation.
     :param scenes: Te scene to simulate.
-    :param record_settings: The optional record settings to use during simulation.
+    :param record_settings: The optional record settings to use during
+        simulation.
     :returns: A list of simulation states.
 
     # noqa: DAR202
@@ -45,8 +46,10 @@ def simulate_scenes(
     :param simulator: The simulator to use for simulation.
     :param batch_parameters: The batch parameters to use for simulation.
     :param scenes: The scenes to simulate.
-    :param record_settings: The optional record settings to use during simulation.
-    :returns: A list of simulation states for each scene in the provided batch.
+    :param record_settings: The optional record settings to use during
+        simulation.
+    :returns: A list of simulation states for each scene in the provided
+        batch.
 
     # noqa: DAR202
     # Darglint complains about no return statement, but this is an overload stub so we can safely ignore that.
@@ -64,8 +67,10 @@ def simulate_scenes(
     :param simulator: The simulator to use for simulation.
     :param batch_parameters: The batch parameters to use for simulation.
     :param scenes: One or more scenes to simulate.
-    :param record_settings: The optional record settings to use during simulation.
-    :returns: A list of simulation states for each scene in the provided batch.
+    :param record_settings: The optional record settings to use during
+        simulation.
+    :returns: A list of simulation states for each scene in the provided
+        batch.
     """
     if isinstance(scenes, ModularRobotScene):
         return_scalar_result = True

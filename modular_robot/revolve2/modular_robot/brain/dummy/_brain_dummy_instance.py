@@ -19,6 +19,7 @@ class BrainDummyInstance(BrainInstance):
         This brain does not do anything for control, as it is an empty box.
 
         :param dt: Elapsed seconds since last call to this function.
-        :param sensor_state: Interface for reading the current sensor state.
+        :param sensor_state: Interface for reading the current sensor
+            state.
         :param control_interface: Interface for controlling the robot.
         """

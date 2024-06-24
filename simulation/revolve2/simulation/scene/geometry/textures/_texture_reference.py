@@ -18,7 +18,8 @@ class TextureReference(ABC):
     def __post_init__(self) -> None:
         """Check for potential conflicts due to missing arguments.
 
-        :raises NotImplementedError: If not sufficient arguments are given.
+        :raises NotImplementedError: If not sufficient arguments are
+            given.
         """
         if self.builtin is None and self.file is None:
             msg = "No texture reference given in form of a file or builtin texture."

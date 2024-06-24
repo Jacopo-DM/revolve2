@@ -38,7 +38,10 @@ class ModularRobotScene:
 
         :param robot: The robot to add.
         :param pose: The pose of the robot.
-        :param translate_z_aabb: Whether the robot should be translated upwards so it's T-pose axis-aligned bounding box is exactly on the ground. I.e. if the robot should be placed exactly on the ground. The pose parameters is still added afterwards.
+        :param translate_z_aabb: Whether the robot should be translated
+            upwards so it's T-pose axis-aligned bounding box is exactly
+            on the ground. I.e. if the robot should be placed exactly on
+            the ground. The pose parameters is still added afterwards.
         """
         # Add the robot to the robots list.
         self._robots.append((

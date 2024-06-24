@@ -16,8 +16,9 @@ def coords_from_bodies(
     """Extract coordinates of modules from a body.
 
     :param bodies: The bodies.
-    :param cob_heuristics: If change of basis heuristic approximation is used.
-    :return: The array of coordinates.
+    :param cob_heuristics: If change of basis heuristic approximation is
+        used.
+    :returns: The array of coordinates.
     """
     crds = _body_to_adjusted_coordinates(bodies)
     if cob_heuristics:
@@ -33,7 +34,7 @@ def _body_to_adjusted_coordinates(
     """Extract coordinates of modules in a body and adjusts them with the core position.
 
     :param bodies: The body.
-    :return: The coordinates for each body.
+    :returns: The coordinates for each body.
     """
     crds = [np.empty(shape=0, dtype=np.float64)] * len(bodies)
     for i, body in enumerate(bodies):

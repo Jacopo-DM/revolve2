@@ -20,7 +20,8 @@ class UnbuiltChild:
         """Make the pose of the unbuilt child.
 
         :param position: The position argument from the parent.
-        :param orientation: The orientation of the attachment on the parent.
+        :param orientation: The orientation of the attachment on the
+            parent.
         """
         self.pose = Pose(
             position,

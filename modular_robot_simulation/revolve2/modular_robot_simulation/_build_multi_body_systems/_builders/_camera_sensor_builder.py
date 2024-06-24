@@ -42,8 +42,9 @@ class CameraSensorBuilder(Builder):
         """Build a module onto the Robot.
 
         :param multi_body_system: The multi body system of the robot.
-        :param body_to_multi_body_system_mapping: A mapping from body to multi-body system
-        :return: The next children to be built.
+        :param body_to_multi_body_system_mapping: A mapping from body to
+            multi-body system
+        :returns: The next children to be built.
         """
         pose = copy.deepcopy(self._pose)
         sensor = CameraSim(pose, self._sensor.camera_size)

@@ -42,8 +42,9 @@ class ActiveHingeSensorBuilder(Builder):
         """Build a module onto the Robot.
 
         :param multi_body_system: The multi body system of the robot.
-        :param body_to_multi_body_system_mapping: A mapping from body to multi-body system
-        :return: The next children to be built.
+        :param body_to_multi_body_system_mapping: A mapping from body to
+            multi-body system
+        :returns: The next children to be built.
         """
         target: Joint | JointHinge = (
             multi_body_system.get_joints_for_rigid_body(self._rigid_body)

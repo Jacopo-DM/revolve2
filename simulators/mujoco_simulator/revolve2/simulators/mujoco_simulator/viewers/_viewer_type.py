@@ -15,7 +15,8 @@ class ViewerType(Enum):
 
         :param value: The value.
         :returns: The viewer type.
-        :raises ValueError: If the passed value has no viewer type defined.
+        :raises ValueError: If the passed value has no viewer type
+            defined.
         """
         match value.lower():
             case "native":

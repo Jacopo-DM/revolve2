@@ -15,7 +15,8 @@ def active_hinges_to_cpg_network_structure_neighbor(
     and these are stored in the order the hinges are provided in.
 
     :param active_hinges: The active hinges to base the structure on.
-    :returns: The created structure and a mapping between state indices and active hinges.
+    :returns: The created structure and a mapping between state indices
+        and active hinges.
     """
     cpgs = CpgNetworkStructure.make_cpgs(len(active_hinges))
     connections: set[CpgPair] = set()

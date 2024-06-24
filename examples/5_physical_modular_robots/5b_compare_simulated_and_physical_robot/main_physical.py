@@ -12,7 +12,8 @@ def make_body() -> (
 ):
     """Create a body for the robot.
 
-    :returns: The created body and a tuple of all ActiveHinge objects for mapping later on.
+    :returns: The created body and a tuple of all ActiveHinge objects
+        for mapping later on.
     """
     body = BodyV2()
     body.core_v2.left_face.bottom = ActiveHingeV2(RightAngles.DEG_0)

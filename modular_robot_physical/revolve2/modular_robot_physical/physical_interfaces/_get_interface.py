@@ -11,10 +11,14 @@ def get_interface(
 
     :param hardware_type: The type of hardware.
     :param debug: If debugging messages are activated.
-    :param dry: If servo outputs are not propagated to the physical servos.:
+    :param dry: If servo outputs are not propagated to the physical
+        servos.:
     :returns: The interface.
-    :raises NotImplementedError: If the hardware type is not supported or if careful is enabled and not supported for the hardware type.
-    :raises ModuleNotFoundError: If some required package are not installed.
+    :raises NotImplementedError: If the hardware type is not supported
+        or if careful is enabled and not supported for the hardware
+        type.
+    :raises ModuleNotFoundError: If some required package are not
+        installed.
     """
     try:
         match hardware_type:

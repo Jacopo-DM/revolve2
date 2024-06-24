@@ -21,8 +21,10 @@ class ModularRobotControlInterfaceImpl(ModularRobotControlInterface):
     ) -> None:
         """Initialize this object.
 
-        :param simulation_control: Control interface of the actual simulation.
-        :param body_to_multi_body_system_mapping: A mapping from body to multi-body system
+        :param simulation_control: Control interface of the actual
+            simulation.
+        :param body_to_multi_body_system_mapping: A mapping from body to
+            multi-body system
         """
         self._simulation_control = simulation_control
         self._body_to_multi_body_system_mapping = (

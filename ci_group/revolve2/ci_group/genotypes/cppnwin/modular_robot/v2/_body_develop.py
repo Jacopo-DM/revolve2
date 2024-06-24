@@ -122,7 +122,8 @@ def __evaluate_cppn(
 
     # ========= Set up ========= #
     """We select the module type for the current position using the first output
-    of the CPPN network."""
+    of the CPPN network.
+    """
     # TODO(jmdm): gotta find a fix
     types = [None, BrickV2, ActiveHingeV2]
     target_idx = max(0, int(outputs[0] * len(types) - 1e-6))
@@ -142,8 +143,7 @@ def __evaluate_cppn(
     # module_type = types[idx]
 
     # ========= get rotation from output probabilities ========= #
-    """
-    Here we get the rotation of the module from the second output of the CPPN network.
+    """Here we get the rotation of the module from the second output of the CPPN network.
     The output ranges between [0,1] and we have 4 rotations available (0, 90, 180, 270).
     """
     angle = max(0, int(outputs[0] * 4 - 1e-6)) * (np.pi / 2.0)
@@ -164,7 +164,8 @@ def __add_child(
     attachment_index, attachment_point = attachment_point_tuple
 
     """Here we adjust the forward facing direction, and the position for the new
-    potential module."""
+    potential module.
+    """
     forward = __rotate(module.forward, module.up, attachment_point.orientation)
     position = __vec3_int(module.position + forward)
     chain_length = module.chain_length + 1
@@ -175,7 +176,8 @@ def __add_child(
       The core has 4 faces with 8 attachment points each,
           however, all 8 share share the same 'position + forward' !
       This means that the core will always attach to the first position
-          when the cppn returns 'not None' -> aka 'top' """
+          when the cppn returns 'not None' -> aka 'top'
+    """
     if grid[tuple(position)] > 0:
         # No module will be placed.
         return None
@@ -232,7 +234,7 @@ def __vec3_int(vector: Vector3) -> Vector3[np.int_]:
     """Cast a Vector3 object to an integer only Vector3.
 
     :param vector: The vector.
-    :return: The integer vector.
+    :returns: The integer vector.
     """
     x, y, z = (int(round(v)) for v in vector)
     return Vector3([x, y, z], dtype=np.int64)

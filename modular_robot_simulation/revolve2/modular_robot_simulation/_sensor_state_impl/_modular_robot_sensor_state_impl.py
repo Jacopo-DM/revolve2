@@ -39,7 +39,8 @@ class ModularRobotSensorStateImpl(ModularRobotSensorState):
         """Initialize this object.
 
         :param simulation_state: The state of the simulation.
-        :param body_to_multi_body_system_mapping: A mapping from body to multi-body system
+        :param body_to_multi_body_system_mapping: A mapping from body to
+            multi-body system
         """
         self._simulation_state = simulation_state
         self._body_to_multi_body_system_mapping = (

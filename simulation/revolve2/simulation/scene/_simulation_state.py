@@ -36,7 +36,8 @@ class SimulationState(ABC):
     ) -> Pose:
         """Get the pose of a multi-body system, relative to the global reference frame.
 
-        :param multi_body_system: The multi-body system to get the pose for.
+        :param multi_body_system: The multi-body system to get the pose
+            for.
         :returns: The relative pose.
         """
 
@@ -69,5 +70,5 @@ class SimulationState(ABC):
         """Get the camera view.
 
         :param camera_sensor: The camera.
-        :return: The view.
+        :returns: The view.
         """

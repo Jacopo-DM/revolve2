@@ -42,7 +42,8 @@ class ModularRobotSensorStateImplV2(ModularRobotSensorState):
     ) -> None:
         """Initialize this object.
 
-        :param hinge_sensor_mapping: Mapping from active hinge sensors to pin ids.
+        :param hinge_sensor_mapping: Mapping from active hinge sensors
+            to pin ids.
         :param hinge_positions: Position of hinges accessed by pin id.
         :param imu_sensor_states: State of the IMU sensors.
         :param camera_sensor_states: The states of the Camera sensors.

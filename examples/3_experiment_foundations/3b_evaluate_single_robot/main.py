@@ -43,8 +43,7 @@ def main() -> None:
         scenes=scene,
     )
 
-    """
-    Using the previously obtained scene_states we can now start to evaluate our robot.
+    """Using the previously obtained scene_states we can now start to evaluate our robot.
     Note in this example we simply use x-y displacement, but you can do any other way of evaluation as long as the required data is in the scene states.
     """
     # Get the state at the beginning and end of the simulation.

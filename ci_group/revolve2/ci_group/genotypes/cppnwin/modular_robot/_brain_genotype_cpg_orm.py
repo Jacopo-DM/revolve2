@@ -45,7 +45,8 @@ class BrainGenotypeCpgOrm(orm.MappedAsDataclass, kw_only=True):
     ) -> BrainGenotypeCpgOrm:
         """Create a random genotype.
 
-        :param innov_db: Multineat innovation database. See Multineat library.
+        :param innov_db: Multineat innovation database. See Multineat
+            library.
         :param rng: Random number generator.
         :returns: The created genotype.
         """
@@ -73,7 +74,8 @@ class BrainGenotypeCpgOrm(orm.MappedAsDataclass, kw_only=True):
 
         This genotype will not be changed; a mutated copy will be returned.
 
-        :param innov_db: Multineat innovation database. See Multineat library.
+        :param innov_db: Multineat innovation database. See Multineat
+            library.
         :param rng: Random number generator.
         :returns: A mutated copy of the provided genotype.
         """

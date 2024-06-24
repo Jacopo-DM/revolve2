@@ -62,8 +62,7 @@ def main() -> None:
     """Once we have a body and a brain we combine it into a ModularRobot."""
     robot = ModularRobot(body, brain)
 
-    """
-    To simulate our newly created robot, we create a modular robot scene.
+    """To simulate our newly created robot, we create a modular robot scene.
     This scene is a combination of one or more modular robots positioned in a given terrain.
     """
     scene = ModularRobotScene(terrain=terrains.flat())

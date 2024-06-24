@@ -17,10 +17,16 @@ def pareto_frontier(
 
     For mor information on the pareto frontier check: https://en.wikipedia.org/wiki/Pareto_front.
 
-    :param frontier_values: Lists of values that are used for the frontier. The order of the list represents the importance of a value in descending order. These values need to be numeric.
-    :param frontier_order: List of orders for the values used in frontier selection. True = ascending, False = descending.
-    :param to_take: The amount of individuals to return from the frontier.
-    :returns: The index of the individuals that were selected. Returned in descending order, wrt. frontier values and domination order (Best is first).
+    :param frontier_values: Lists of values that are used for the
+        frontier. The order of the list represents the importance of a
+        value in descending order. These values need to be numeric.
+    :param frontier_order: List of orders for the values used in
+        frontier selection. True = ascending, False = descending.
+    :param to_take: The amount of individuals to return from the
+        frontier.
+    :returns: The index of the individuals that were selected. Returned
+        in descending order, wrt. frontier values and domination order
+        (Best is first).
     """
     assert all(len(x) == len(y) for x, y in combinations(frontier_values, 2))
     assert len(frontier_values[0]) >= to_take
@@ -51,7 +57,7 @@ def _get_domination_orders(
 
     :param value_array: A (*value) array.
     :param frontier_order: The order of a specific value.
-    :return: A mask for the pareto front.
+    :returns: A mask for the pareto front.
     """
     domination_orders = [0] * value_array.shape[0]
 

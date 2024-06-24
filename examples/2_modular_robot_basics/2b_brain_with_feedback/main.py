@@ -45,7 +45,8 @@ class ANNBrainInstance(BrainInstance):
         """Control the modular robot.
 
         :param dt: Elapsed seconds since last call to this function.
-        :param sensor_state: Interface for reading the current sensor state.
+        :param sensor_state: Interface for reading the current sensor
+            state.
         :param control_interface: Interface for controlling the robot.
         """
         # To get data from you sensors you need the sensor itself, with which you can query the sensor stare from the ModularRobotSensorState object.
@@ -119,7 +120,7 @@ def main() -> None:
     # Create a body for the robot.
     body = modular_robots_v2.gecko_v2()
 
-    """Every module on the robot can have sensors, to add them you do the following: """
+    """Every module on the robot can have sensors, to add them you do the following:"""
     # Add an IMU Sensor to the core.
     body.core.add_sensor(
         imu := IMUSensor(position=Vector3([0.075, 0.075, 0.14]))

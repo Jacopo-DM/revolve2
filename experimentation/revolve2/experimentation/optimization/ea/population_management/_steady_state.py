@@ -19,12 +19,19 @@ def steady_state(
 ) -> tuple[list[int], list[int]]:
     """Select `len(old_genotypes)` individuals using the provided selection function from combined set of old and new individuals.
 
-    :param old_genotypes: Genotypes of the individuals in the parent population.
-    :param old_fitnesses: Fitnesses of the individuals in the parent population.
-    :param new_genotypes: Genotypes of the individuals from the offspring.
-    :param new_fitnesses: Fitnesses of the individuals from the offspring.
-    :param selection_function: Function that selects n individuals from a population based on their genotype and fitness. (n, genotypes, fitnesses) -> indices
-    :returns: (indices of selected individuals from parent population, indices of selected individuals from offspring).
+    :param old_genotypes: Genotypes of the individuals in the parent
+        population.
+    :param old_fitnesses: Fitnesses of the individuals in the parent
+        population.
+    :param new_genotypes: Genotypes of the individuals from the
+        offspring.
+    :param new_fitnesses: Fitnesses of the individuals from the
+        offspring.
+    :param selection_function: Function that selects n individuals from
+        a population based on their genotype and fitness. (n, genotypes,
+        fitnesses) -> indices
+    :returns: (indices of selected individuals from parent population,
+        indices of selected individuals from offspring).
     """
     assert len(old_genotypes) == len(old_fitnesses)
     assert len(new_genotypes) == len(new_fitnesses)

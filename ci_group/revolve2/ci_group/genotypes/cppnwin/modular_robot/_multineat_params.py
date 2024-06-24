@@ -25,18 +25,20 @@ def pretty_print(func: t.Callable[..., None]) -> t.Callable[..., None]:
 
     :param func: The function to be decorated.
     :type func: Callable[..., None]
-    :return: The decorated function.
+    :returns: The decorated function.
     :rtype: Callable[..., None]
     """
 
     def wrapper(*args: list[t.Any], **kwargs: dict[str, t.Any]) -> None:
         """Wrap function to add the "pretty print" functionality.
 
-        :param args: Positional arguments passed to the decorated function.
+        :param args: Positional arguments passed to the decorated
+            function.
         :type args: list[t.Any]
-        :param kwargs: Keyword arguments passed to the decorated function.
+        :param kwargs: Keyword arguments passed to the decorated
+            function.
         :type kwargs: dict[str, t.Any]
-        :return: None
+        :returns: None
         :rtype: None
         """
         size = 80

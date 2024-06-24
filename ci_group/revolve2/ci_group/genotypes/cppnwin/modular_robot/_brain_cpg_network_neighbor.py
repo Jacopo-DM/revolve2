@@ -20,7 +20,8 @@ class BrainCpgNetworkNeighbor(ModularRobotBrainCpgNetworkNeighbor):
     def __init__(self, genotype: multineat.Genome, body: Body) -> None:
         """Initialize this object.
 
-        :param genotype: A multineat genome used for determining weights.
+        :param genotype: A multineat genome used for determining
+            weights.
         :param body: The body of the robot.
         """
         self._genotype = genotype

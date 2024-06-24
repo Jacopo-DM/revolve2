@@ -18,7 +18,7 @@ def create(
     :param x: x size.
     :param y: y size.
     :param dtype: data-type.
-    :return: The Vector.
+    :returns: The Vector.
     """
     if isinstance(x, list | np.ndarray):
         msg = "Function requires non-list arguments"
@@ -32,7 +32,7 @@ def create_unit_length_x(
     """Create a x unit Vector2.
 
     :param dtype: data-type.
-    :return: The Vector.
+    :returns: The Vector.
     """
     return np.array([1.0, 0.0], dtype=dtype)
 
@@ -43,7 +43,7 @@ def create_unit_length_y(
     """Create a y unit Vector2.
 
     :param dtype: data-type.
-    :return: The Vector.
+    :returns: The Vector.
     """
     return np.array([0.0, 1.0], dtype=dtype)
 
@@ -58,7 +58,7 @@ def create_from_matrix33_translation(
 
     :param mat: The 3x3 Matrix.
     :param dtype: The data-type.
-    :return: The Vector2.
+    :returns: The Vector2.
     """
     return np.array(mat[2, :2], dtype=dtype)
 

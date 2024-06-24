@@ -37,9 +37,12 @@ class AttachmentFaceCoreV2(AttachmentFace):
     ) -> None:
         """Initialize the attachment face for the V2 Core.
 
-        :param face_rotation: The rotation of the face and the attachment points on the module.
-        :param horizontal_offset: The horizontal offset for module placement.
-        :param vertical_offset:  The vertical offset for module placement.
+        :param face_rotation: The rotation of the face and the
+            attachment points on the module.
+        :param horizontal_offset: The horizontal offset for module
+            placement.
+        :param vertical_offset: The vertical offset for module
+            placement.
         """
         self._child_offset = Vector3([0.15 / 2.0, 0.0, 0.0])
         self._check_matrix = np.zeros(shape=(3, 3), dtype=np.uint8)
@@ -81,7 +84,8 @@ class AttachmentFaceCoreV2(AttachmentFace):
 
         :param module: The module to attach.
         :param child_index: The slot to attach it to.
-        :raises KeyError: If attachment point is already populated or occluded by other module.
+        :raises KeyError: If attachment point is already populated or
+            occluded by other module.
         """
         assert (
             module._parent is None
@@ -99,7 +103,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
         """Check if a child can be set on the module.
 
         :param child_index: The child index.
-        :return: The boolean value.
+        :returns: The boolean value.
         """
         check_matrix = self._check_matrix.copy()
         check_matrix[child_index // 3, child_index % 3] += 1
@@ -116,7 +120,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
     def top_left(self) -> Module | None:
         """Get the top_left attachment points module.
 
-        :return: The attachment points module.
+        :returns: The attachment points module.
         """
         return self.children.get(0)
 
@@ -132,7 +136,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
     def top(self) -> Module | None:
         """Get the top attachment points module.
 
-        :return: The attachment points module.
+        :returns: The attachment points module.
         """
         return self.children.get(1)
 
@@ -148,7 +152,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
     def top_right(self) -> Module | None:
         """Get the top_right attachment points module.
 
-        :return: The attachment points module.
+        :returns: The attachment points module.
         """
         return self.children.get(2)
 
@@ -164,7 +168,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
     def middle_left(self) -> Module | None:
         """Get the middle_left attachment points module.
 
-        :return: The attachment points module.
+        :returns: The attachment points module.
         """
         return self.children.get(3)
 
@@ -180,7 +184,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
     def middle(self) -> Module | None:
         """Get the middle attachment points module.
 
-        :return: The attachment points module.
+        :returns: The attachment points module.
         """
         return self.children.get(4)
 
@@ -196,7 +200,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
     def middle_right(self) -> Module | None:
         """Get the middle_right attachment points module.
 
-        :return: The attachment points module.
+        :returns: The attachment points module.
         """
         return self.children.get(5)
 
@@ -212,7 +216,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
     def bottom_left(self) -> Module | None:
         """Get the bottom_left attachment points module.
 
-        :return: The attachment points module.
+        :returns: The attachment points module.
         """
         return self.children.get(6)
 
@@ -228,7 +232,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
     def bottom(self) -> Module | None:
         """Get the bottom attachment points module.
 
-        :return: The attachment points module.
+        :returns: The attachment points module.
         """
         return self.children.get(7)
 
@@ -244,7 +248,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
     def bottom_right(self) -> Module | None:
         """Get the bottom_right attachment points module.
 
-        :return: The attachment points module.
+        :returns: The attachment points module.
         """
         return self.children.get(8)
 

@@ -25,7 +25,7 @@ class Sensor(ABC):
     def uuid(self) -> uuid.UUID:
         """Get the uuid of the sensor.
 
-        :return: The uuid.
+        :returns: The uuid.
         """
         return self._uuid
 
@@ -33,7 +33,7 @@ class Sensor(ABC):
     def orientation(self) -> Quaternion:
         """Return the orientation of the sensor.
 
-        :return: The orientation.
+        :returns: The orientation.
         """
         return self._orientation
 
@@ -41,6 +41,6 @@ class Sensor(ABC):
     def position(self) -> Vector3:
         """Get the relative position of the sensor on a module.
 
-        :return: The position.
+        :returns: The position.
         """
         return self._position

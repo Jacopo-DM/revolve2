@@ -19,7 +19,8 @@ class BrainCpgNetworkNeighborRandom(BrainCpgNetworkNeighbor):
         """Initialize this object.
 
         :param body: The body to create the cpg network and brain for.
-        :param rng: Random number generator used for generating the weights.
+        :param rng: Random number generator used for generating the
+            weights.
         """
         self._rng = rng
         super().__init__(body)

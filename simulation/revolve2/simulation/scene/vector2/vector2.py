@@ -74,7 +74,7 @@ class Vector2(BaseVector):  # type: ignore[misc]
         """Add to the existing Vector2.
 
         :param other: The other Vector2.
-        :return: The added Vector2.
+        :returns: The added Vector2.
         """
         if type(other) in self.__NMB or type(other) in self.__VCT:
             return Vector2(super().__add__(other))
@@ -85,7 +85,7 @@ class Vector2(BaseVector):  # type: ignore[misc]
         """Subtract from the existing Vector2.
 
         :param other: The other Vector2.
-        :return: The subtracted Vector2.
+        :returns: The subtracted Vector2.
         """
         if type(other) in self.__NMB or type(other) in self.__VCT:
             return Vector2(super().__sub__(other))
@@ -96,7 +96,7 @@ class Vector2(BaseVector):  # type: ignore[misc]
         """Multiply the existing Vector2.
 
         :param other: The other Vector2.
-        :return: the multiplied Vector2.
+        :returns: the multiplied Vector2.
         """
         if type(other) in self.__NMB:
             return Vector2(super().__mul__(other))
@@ -107,7 +107,7 @@ class Vector2(BaseVector):  # type: ignore[misc]
         """Calculate the cross-product.
 
         :param other: The other Vector2.
-        :return: The cross-product.
+        :returns: The cross-product.
         """
         if type(other) in self.__VCT:
             return self.cross(other)
@@ -118,7 +118,7 @@ class Vector2(BaseVector):  # type: ignore[misc]
         """Calculate the dot-product.
 
         :param other: The other Vector2.
-        :return: The dot-product.
+        :returns: The dot-product.
         """
         if type(other) in self.__VCT:
             return self.dot(other)
@@ -129,7 +129,7 @@ class Vector2(BaseVector):  # type: ignore[misc]
         """Not equal to the existing Vector2.
 
         :param other: The other Vector2.
-        :return: whether they are unequal.
+        :returns: whether they are unequal.
         """
         if type(other) in self.__VCT:
             return bool(np.any(super().__ne__(other)))
@@ -140,7 +140,7 @@ class Vector2(BaseVector):  # type: ignore[misc]
         """Equal to the existing Vector2.
 
         :param other: The other Vector2.
-        :return: whether they are equal.
+        :returns: whether they are equal.
         """
         if type(other) in self.__VCT:
             return bool(np.all(super().__eq__(other)))

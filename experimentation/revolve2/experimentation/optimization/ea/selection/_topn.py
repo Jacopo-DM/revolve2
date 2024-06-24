@@ -13,7 +13,8 @@ def topn(
     """Get indices of the top n genotypes sorted by their fitness.
 
     :param n: The number of genotypes to select.
-    :param genotypes: The genotypes. Ignored, but argument kept for function signature compatibility with other selection functions/
+    :param genotypes: The genotypes. Ignored, but argument kept for
+        function signature compatibility with other selection functions/
     :param fitnesses: Fitnesses of the genotypes.
     :returns: Indices of the selected genotypes.
     """

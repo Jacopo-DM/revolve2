@@ -38,8 +38,11 @@ def multi_body_system_to_urdf(
     It is checked they only exist as part of the root rigid body and for static multi-body systems.
 
     :param multi_body_system: The multi-body system to convert.
-    :param name: The name to using in the URDF. It will be a prefix for every name in the model.
-    :returns: A urdf string, plane geometries, heightmap geometries, joints and their names in the urdf, geometries and their names in the urdf, rigid bodies and their names in the urdf.
+    :param name: The name to using in the URDF. It will be a prefix for
+        every name in the model.
+    :returns: A urdf string, plane geometries, heightmap geometries,
+        joints and their names in the urdf, geometries and their names
+        in the urdf, rigid bodies and their names in the urdf.
     :raises ValueError: In case the graph is cyclic.
 
     # noqa: DAR402 ValueError

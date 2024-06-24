@@ -84,7 +84,7 @@ class Body:
 
         :param module_type: The type.
         :param exclude: Module types to be excluded in search.
-        :return: The list of Modules.
+        :returns: The list of Modules.
         """
         return self.__find_recur(
             self._core, module_type, [] if exclude is None else exclude
@@ -98,7 +98,9 @@ class Body:
 
         The grid is indexed depth, width, height, or x, y, z, from the perspective of the core.
 
-        :returns: The created grid with cells set to either a Module or None and a position vector of the core. The position Vector3 is dtype: int.
+        :returns: The created grid with cells set to either a Module or
+            None and a position vector of the core. The position Vector3
+            is dtype: int.
         """
         return _GridMaker().make_grid(self)
 
@@ -106,7 +108,7 @@ class Body:
     def core(self) -> Core:
         """Get the core of the Body.
 
-        :return: The core.
+        :returns: The core.
         """
         return self._core
 

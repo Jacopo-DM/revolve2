@@ -47,7 +47,8 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
     ) -> BodyGenotypeOrmV2:
         """Create a random genotype.
 
-        :param innov_db: Multineat innovation database. See Multineat library.
+        :param innov_db: Multineat innovation database. See Multineat
+            library.
         :param rng: Random number generator.
         :returns: The created genotype.
         """
@@ -75,7 +76,8 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
 
         This genotype will not be changed; a mutated copy will be returned.
 
-        :param innov_db: Multineat innovation database. See Multineat library.
+        :param innov_db: Multineat innovation database. See Multineat
+            library.
         :param rng: Random number generator.
         :returns: A mutated copy of the provided genotype.
         """

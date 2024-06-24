@@ -21,7 +21,8 @@ class ControlInterfaceImpl(ControlInterface):
         """Initialize this object.
 
         :param data: The MuJoCo data to alter during control.
-        :param abstraction_to_mujoco_mapping: A mapping between simulation abstraction and mujoco.
+        :param abstraction_to_mujoco_mapping: A mapping between
+            simulation abstraction and mujoco.
         """
         self._data = data
         self._abstraction_to_mujoco_mapping = abstraction_to_mujoco_mapping

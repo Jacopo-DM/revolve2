@@ -36,9 +36,12 @@ def scene_to_model(
 
     :param cast_shadows: Whether shadows are cast by the light.
     :param scene: The scene to convert.
-    :param simulation_timestep: The duration to integrate over during each step of the simulation. In seconds.
-    :param fast_sim: If simulations have to be fast, unnecessary stuff will be turned off.
-    :returns: The created MuJoCo model and mapping from the simulation abstraction to the model.
+    :param simulation_timestep: The duration to integrate over during
+        each step of the simulation. In seconds.
+    :param fast_sim: If simulations have to be fast, unnecessary stuff
+        will be turned off.
+    :returns: The created MuJoCo model and mapping from the simulation
+        abstraction to the model.
     """
     mapping = AbstractionToMujocoMapping()
 
@@ -160,7 +163,7 @@ def _create_tmp_file(
     MuJoCo can only save to a file, not directly to string,
 
     :param multi_body_system_model: The multi-body-system model.
-    :return: The root element for the mujoco viewer.
+    :returns: The root element for the mujoco viewer.
     """
     try:
         with tempfile.NamedTemporaryFile(
@@ -240,7 +243,7 @@ def _add_heightmaps(
     :param heightmap_geometries: The heightmap geometries.
     :param fast_sim: If fast sim is used.
     :param env_mjcf: The mujoco root object.
-    :return: A list of heightmap geometries.
+    :returns: A list of heightmap geometries.
     """
     heightmaps: list[GeometryHeightmap] = []
 
@@ -380,7 +383,8 @@ def _set_colors_and_materials(
 ) -> None:
     """Set the colors and materials for the geometries contained in the model.
 
-    :param geoms_and_names: The geometries with their respective names in the model.
+    :param geoms_and_names: The geometries with their respective names
+        in the model.
     :param multi_body_system_mjcf: The mujoco model.
     :param fast_sim: Whether fast sim is used.
     """
@@ -424,8 +428,10 @@ def _create_sensor_maps(
 ) -> None:
     """Create mappings of the imu sensors to the gyro and accelerator sensors in mujoco.
 
-    :param all_rigid_bodies_and_names: The rigid bodies and their respective name in the model.
-    :param mapping: The mapping of revolve2 components to Mujoco components.
+    :param all_rigid_bodies_and_names: The rigid bodies and their
+        respective name in the model.
+    :param mapping: The mapping of revolve2 components to Mujoco
+        components.
     :param model: The mujoco model.
     """
     for mbs_i, rigid_bodies_and_names in enumerate(all_rigid_bodies_and_names):

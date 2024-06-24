@@ -29,7 +29,8 @@ class V1PhysicalInterface(PhysicalInterface):
         """Initialize this object.
 
         :param debug: If debugging messages are activated.
-        :param dry: If servo outputs are not propagated to the physical servos.
+        :param dry: If servo outputs are not propagated to the physical
+            servos.
         :raises RuntimeError: If GPIOs could not initialize.
         """
         self._debug = debug
@@ -94,7 +95,8 @@ class V1PhysicalInterface(PhysicalInterface):
     def get_battery_level(self) -> float:
         """Get the battery level.
 
-        :raises NotImplementedError: If getting the battery level is not supported on this hardware.
+        :raises NotImplementedError: If getting the battery level is not
+            supported on this hardware.
         """
         msg = "Getting battery level not supported on v1 harware."
         raise NotImplementedError(msg)
@@ -103,7 +105,8 @@ class V1PhysicalInterface(PhysicalInterface):
         """Get the current position of multiple servos.
 
         :param pins: The GPIO pins.
-        :raises NotImplementedError: If getting the servo position is not supported on this hardware.
+        :raises NotImplementedError: If getting the servo position is
+            not supported on this hardware.
         """
         msg = "Getting servo position not supported on v1 harware."
         raise NotImplementedError(msg)
@@ -132,6 +135,7 @@ class V1PhysicalInterface(PhysicalInterface):
     def get_camera_view(self) -> NDArray[np.uint8]:
         """Get the current view from the camera.
 
-        :raises NotImplementedError: If the Camera is not supported on this hardware.
+        :raises NotImplementedError: If the Camera is not supported on
+            this hardware.
         """
         raise NotImplementedError

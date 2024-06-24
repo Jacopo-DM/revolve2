@@ -35,7 +35,8 @@ class Evaluator(Eval):
         """Measure one set of parameters.
 
         :param population: The population of parameters to measure.
-        :returns: Negative sum of squared errors and each individual error. 5x1 floats.
+        :returns: Negative sum of squared errors and each individual
+            error. 5x1 floats.
         """
         results = []
         for genotype in population:

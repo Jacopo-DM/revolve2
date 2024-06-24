@@ -23,8 +23,10 @@ class SceneSimulationState:
     ) -> None:
         """Initialize this object.
 
-        :param simulation_state: The simulation state corresponding to this modular robot scene state.
-        :param modular_robot_to_multi_body_system_mapping: A mapping from modular robots to multi-body systems.
+        :param simulation_state: The simulation state corresponding to
+            this modular robot scene state.
+        :param modular_robot_to_multi_body_system_mapping: A mapping
+            from modular robots to multi-body systems.
         """
         self._simulation_state = simulation_state
         self._modular_robot_to_multi_body_system_mapping = (

@@ -47,7 +47,7 @@ class ParentSelector(Selector):
 
         :param population: The population of robots.
         :param kwargs: Other parameters.
-        :return: The parent pairs.
+        :returns: The parent pairs.
         """
         return np.array(
             [
@@ -160,8 +160,9 @@ class CrossoverReproducer(Reproducer):
 
         :param population: The parent pairs.
         :param kwargs: Additional keyword arguments.
-        :return: The genotypes of the children.
-        :raises ValueError: If the parent population is not passed as a kwarg `parent_population`.
+        :returns: The genotypes of the children.
+        :raises ValueError: If the parent population is not passed as a
+            kwarg `parent_population`.
         """
         parent_population: list[Individual] | None = kwargs.get(
             "parent_population"
@@ -209,8 +210,7 @@ def main() -> None:
     innov_db_body = multineat.InnovationDatabase()
     innov_db_brain = multineat.InnovationDatabase()
 
-    """
-    Here we initialize the components used for the evolutionary process.
+    """Here we initialize the components used for the evolutionary process.
 
     - evaluator: Allows us to evaluate a population of modular robots.
     - parent_selector: Allows us to select parents from a population of modular robots.

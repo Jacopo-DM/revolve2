@@ -19,7 +19,9 @@ def make_body() -> (
 ):
     """Create a body for the robot.
 
-    :returns: The created body and references to each hinge: first_left_active_hinge, second_left_active_hinge, first_right_active_hinge, second_right_active_hinge.
+    :returns: The created body and references to each hinge:
+        first_left_active_hinge, second_left_active_hinge,
+        first_right_active_hinge, second_right_active_hinge.
     """
     body = BodyV2()
     first_left_active_hinge = ActiveHingeV2(RightAngles.DEG_0)
@@ -80,7 +82,8 @@ class CustomBrainInstance(BrainInstance):
         """Control the modular robot using our custom brain.
 
         :param dt: Elapsed seconds since last call to this function.
-        :param sensor_state: Interface for reading the current sensor state.
+        :param sensor_state: Interface for reading the current sensor
+            state.
         :param control_interface: Interface for controlling the robot.
         """
         control_interface.set_active_hinge_target(

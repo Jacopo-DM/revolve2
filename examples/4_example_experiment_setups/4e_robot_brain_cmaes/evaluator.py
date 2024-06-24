@@ -42,10 +42,13 @@ class Evaluator:
         """Initialize this object.
 
         :param headless: `headless` parameter for the physics simulator.
-        :param num_simulators: `num_simulators` parameter for the physics simulator.
+        :param num_simulators: `num_simulators` parameter for the
+            physics simulator.
         :param cpg_network_structure: Cpg structure for the brain.
         :param body: Modular body of the robot.
-        :param output_mapping: A mapping between active hinges and the index of their corresponding cpg in the cpg network structure.
+        :param output_mapping: A mapping between active hinges and the
+            index of their corresponding cpg in the cpg network
+            structure.
         """
         self._simulator = LocalSimulator(
             headless=headless, num_simulators=num_simulators

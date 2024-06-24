@@ -61,7 +61,8 @@ def draw_robot(
     ... )
     >>> draw_robot(robot, path="<your desired path to save the image to>")
 
-    :param robot: Supply the robot as a ModularRobot object, or the body directly as a Body object.
+    :param robot: Supply the robot as a ModularRobot object, or the body
+        directly as a Body object.
     :param scale: Allows to set the size of the drawing.
     :param path: The path to save images to.
     """
@@ -181,7 +182,7 @@ def _make_rot_mat(theta: float) -> NDArray[np.int_]:
     This function casts angles to iterations of 90°, since we plot on a grid.
 
     :param theta: The angle.
-    :return: The matrix.
+    :returns: The matrix.
     """
     c, s = int(round(np.cos(theta))), int(round(np.sin(theta)))
     return np.array(((c, -s), (s, c)))

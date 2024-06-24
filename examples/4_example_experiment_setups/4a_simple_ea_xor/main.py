@@ -42,8 +42,10 @@ class ParentSelector(Selector):
         """Select pairs of parents using a tournament.selection procedure.
 
         :param population: The population to select from.
-        :param kwargs: Additional kwargs that are not used in this example.
-        :returns: Pairs of indices of selected parents. offspring_size x 2 ints, and the parent population in the KWArgs dict.
+        :param kwargs: Additional kwargs that are not used in this
+            example.
+        :returns: Pairs of indices of selected parents. offspring_size x
+            2 ints, and the parent population in the KWArgs dict.
         """
         final_selection = np.asarray([
             selection.multiple_unique(
@@ -75,7 +77,8 @@ class SurvivorSelector(Selector):
         """Select survivors using a tournament selection.
 
         :param population: The initial population.
-        :param kwargs: Additional kwargs that contain the children to do selection with.
+        :param kwargs: Additional kwargs that contain the children to do
+            selection with.
         :returns: A newly created population.
         :raises KeyError: If no children got passed.
         """
@@ -137,7 +140,7 @@ class CrossoverReproducer(Reproducer):
 
         :param population: The population.
         :param kwargs: Additional arguments.
-        :return: The children.
+        :returns: The children.
         :raises KeyError: If the parents are not passed.
         """
         parents: list[Individual] | None = kwargs.get(

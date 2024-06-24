@@ -54,8 +54,10 @@ class Genotype(Base, HasId, BodyGenotypeOrmV2, BrainGenotypeCpgOrm):
 
         This genotype will not be changed; a mutated copy will be returned.
 
-        :param innov_db_body: Multineat innovation database for the body. See Multineat library.
-        :param innov_db_brain: Multineat innovation database for the brain. See Multineat library.
+        :param innov_db_body: Multineat innovation database for the
+            body. See Multineat library.
+        :param innov_db_brain: Multineat innovation database for the
+            brain. See Multineat library.
         :param rng: Random number generator.
         :returns: A mutated copy of the provided genotype.
         """

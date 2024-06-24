@@ -235,7 +235,7 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
     def render(self) -> int | None | str:
         """Render the scene.
 
-        :return: A cycle position if applicable.
+        :returns: A cycle position if applicable.
         """
         # Catch the case where the window is closed.
         if self._return_code == "QUIT":

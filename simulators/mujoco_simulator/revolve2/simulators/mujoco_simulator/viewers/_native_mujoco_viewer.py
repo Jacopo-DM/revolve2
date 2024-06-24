@@ -41,7 +41,7 @@ class NativeMujocoViewer(Viewer):
     def render(self) -> int | None:
         """Render the scene.
 
-        :return: A cycle position if applicable.
+        :returns: A cycle position if applicable.
         """
         self._viewer.sync()
         return None

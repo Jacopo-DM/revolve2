@@ -21,7 +21,8 @@ class CameraSensorStateImpl(CameraSensorState):
         """Initialize this object.
 
         :param simulation_state: The state of the simulation.
-        :param multi_body_system: The multi body system this imu is attached to.
+        :param multi_body_system: The multi body system this imu is
+            attached to.
         :param camera: The camera sensor.
         """
         self._simulation_state = simulation_state

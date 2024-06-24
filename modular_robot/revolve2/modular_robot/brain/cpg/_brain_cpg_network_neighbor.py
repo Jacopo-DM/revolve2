@@ -89,12 +89,16 @@ class BrainCpgNetworkNeighbor(Brain):
     ) -> tuple[list[float], list[float]]:
         """Define the weights between neurons.
 
-        :param active_hinges: The active hinges corresponding to each cpg.
-        :param connections: Pairs of active hinges corresponding to pairs of cpgs that are connected.
-                            Connection is from hinge 0 to hinge 1.
-                            Opposite connection is not provided as weights are assumed to be negative.
+        :param active_hinges: The active hinges corresponding to each
+            cpg.
+        :param connections: Pairs of active hinges corresponding to
+            pairs of cpgs that are connected. Connection is from hinge 0
+            to hinge 1. Opposite connection is not provided as weights
+            are assumed to be negative.
         :param body: The body that matches this brain.
-        :returns: Two lists. The first list contains the internal weights in cpgs, corresponding to `active_hinges`
-                 The second list contains the weights between connected cpgs, corresponding to `connections`
-                 The lists should match the order of the input parameters.
+        :returns: Two lists. The first list contains the internal
+            weights in cpgs, corresponding to `active_hinges` The second
+            list contains the weights between connected cpgs,
+            corresponding to `connections` The lists should match the
+            order of the input parameters.
         """

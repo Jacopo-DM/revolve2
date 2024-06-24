@@ -49,8 +49,10 @@ class OpenGLVision:
         :param model: The mujoco model.
         :param camera: The camera object.
         :param headless: Whether the simulation is run in headless mode.
-        :param open_gl_lib: The type of library to use for OpenGL. [GLFW, EGL, OSMESA].
-        :param max_geometries: The maximum amount of geometries allowed in a scene.
+        :param open_gl_lib: The type of library to use for OpenGL.
+            [GLFW, EGL, OSMESA].
+        :param max_geometries: The maximum amount of geometries allowed
+            in a scene.
         """
         context = self.get_context(open_gl_lib)
         if headless:
@@ -80,7 +82,7 @@ class OpenGLVision:
 
         :param model: The mujoco model.
         :param data: The mujoco data.
-        :return: The rendered image (RGB format).
+        :returns: The rendered image (RGB format).
         """
         mujoco.mjv_updateScene(
             model,
@@ -107,7 +109,7 @@ class OpenGLVision:
         """Get the context to be used.
 
         :param open_gl_lib: The render backend to use.
-        :return: The context type.
+        :returns: The context type.
         :raises ValueError: If the backend for OpenGL is not known.
         """
         match open_gl_lib:

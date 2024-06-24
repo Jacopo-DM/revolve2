@@ -110,7 +110,7 @@ class CoreV2(Core):
     def horizontal_offset(self) -> float:
         """Get the horizontal offset for attachment positions (in m).
 
-        :return: The value.
+        :returns: The value.
         """
         return self._horizontal_offset
 
@@ -118,7 +118,7 @@ class CoreV2(Core):
     def vertical_offset(self) -> float:
         """Get the vertical offset for attachment positions (in m).
 
-        :return: The value.
+        :returns: The value.
         """
         return self._vertical_offset
 
@@ -126,6 +126,6 @@ class CoreV2(Core):
     def attachment_faces(self) -> dict[int, AttachmentFaceCoreV2]:
         """Get all attachment faces for the Core.
 
-        :return: The attachment faces.
+        :returns: The attachment faces.
         """
         return self._attachment_faces

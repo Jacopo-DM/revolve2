@@ -16,8 +16,10 @@ class ModularRobotSimulationState:
     ) -> None:
         """Initialize this object.
 
-        :param simulation_state: The simulation state corresponding to this modular robot state.
-        :param multi_body_system: The multi-body system this modular robot corresponds to.
+        :param simulation_state: The simulation state corresponding to
+            this modular robot state.
+        :param multi_body_system: The multi-body system this modular
+            robot corresponds to.
         """
         self._simulation_state = simulation_state
         self._multi_body_system = multi_body_system

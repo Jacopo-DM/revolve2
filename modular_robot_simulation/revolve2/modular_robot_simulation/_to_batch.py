@@ -13,9 +13,11 @@ def to_batch(
     """Convert one or more modular robot scenes to a batch of simulation scenes.
 
     :param scenes: The modular robot scene(s) to make the batch from.
-    :param batch_parameters: Parameters for the batch that are not contained in the modular robot scenes.
+    :param batch_parameters: Parameters for the batch that are not
+        contained in the modular robot scenes.
     :param record_settings: Setting for recording the simulations.
-    :returns: The created batch and a mapping from modular robots to multi-body systems for each scene.
+    :returns: The created batch and a mapping from modular robots to
+        multi-body systems for each scene.
     """
     if isinstance(scenes, ModularRobotScene):
         scenes = [scenes]

@@ -20,7 +20,8 @@ class IMUSensorStateImpl(IMUSensorState):
         """Initialize this object.
 
         :param simulation_state: The state of the simulation.
-        :param multi_body_system: The multi body system this imu is attached to.
+        :param multi_body_system: The multi body system this imu is
+            attached to.
         :param imu: The imu attached to the core.
         """
         self._simulation_state = simulation_state

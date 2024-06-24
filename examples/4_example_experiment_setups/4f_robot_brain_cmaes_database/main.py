@@ -27,7 +27,8 @@ from sqlalchemy.orm import Session
 def run_experiment(dbengine: Engine) -> None:
     """Run an experiment.
 
-    :param dbengine: An opened database with matching initialize database structure.
+    :param dbengine: An opened database with matching initialize
+        database structure.
     """
     logging.info("----------------")
     logging.info("Start experiment")

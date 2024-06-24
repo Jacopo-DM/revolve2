@@ -41,7 +41,8 @@ class V2PhysicalInterface(PhysicalInterface):
         """Initialize this object.
 
         :param debug: If debugging messages are activated.
-        :param dry: If servo outputs are not propagated to the physical servos.
+        :param dry: If servo outputs are not propagated to the physical
+            servos.
         """
         # Parameters for servo angle calculation.
         # These might be runtime parameters coming from some config in the future, so defining them in the init for now.

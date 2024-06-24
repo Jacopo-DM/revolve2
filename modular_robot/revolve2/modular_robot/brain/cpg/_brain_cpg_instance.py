@@ -32,7 +32,8 @@ class BrainCpgInstance(BrainInstance):
 
         :param initial_state: The initial state of the neural network.
         :param weight_matrix: The weight matrix used during integration.
-        :param output_mapping: Marks neurons as controller outputs and map them to the correct active hinge.
+        :param output_mapping: Marks neurons as controller outputs and
+            map them to the correct active hinge.
         """
         assert initial_state.ndim == 1
         assert weight_matrix.ndim == 2
@@ -67,7 +68,7 @@ class BrainCpgInstance(BrainInstance):
         :param state: The current state of the network.
         :param A: The weights matrix of the network.
         :param dt: The step size (elapsed simulation time).
-        :return: The new state.
+        :returns: The new state.
         """
         a_mat_1: npt.NDArray[np.float64] = np.matmul(a_mat, state)
         a_mat_2: npt.NDArray[np.float64] = np.matmul(
@@ -100,7 +101,8 @@ class BrainCpgInstance(BrainInstance):
         Set the active hinge targets to the values in the state array as defined by the mapping provided in the constructor.
 
         :param dt: Elapsed seconds since last call to this function.
-        :param sensor_state: Interface for reading the current sensor state.
+        :param sensor_state: Interface for reading the current sensor
+            state.
         :param control_interface: Interface for controlling the robot.
         """
         # Integrate ODE to obtain new state.

@@ -166,7 +166,7 @@ def __vec3_int(vector: Vector3) -> Vector3[np.int_]:
     """Cast a Vector3 object to an integer only Vector3.
 
     :param vector: The vector.
-    :return: The integer vector.
+    :returns: The integer vector.
     """
     x, y, z = (int(round(v)) for v in vector)
     return Vector3([x, y, z], dtype=np.int64)

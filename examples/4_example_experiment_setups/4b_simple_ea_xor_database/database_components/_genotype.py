@@ -73,7 +73,8 @@ class Genotype(Base, HasId, GenericParameters):
         :param parent1: The first genotype.
         :param parent2: The second genotype.
         :param rng: Random number generator.
-        :param num_parameters: The number of parameters for the genotype.
+        :param num_parameters: The number of parameters for the
+            genotype.
         :returns: A newly created genotype.
         """
         mask = rng.random(num_parameters)

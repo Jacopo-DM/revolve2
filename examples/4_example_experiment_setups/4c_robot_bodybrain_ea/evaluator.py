@@ -30,7 +30,8 @@ class Evaluator(Eval):
         """Initialize this object.
 
         :param headless: `headless` parameter for the physics simulator.
-        :param num_simulators: `num_simulators` parameter for the physics simulator.
+        :param num_simulators: `num_simulators` parameter for the
+            physics simulator.
         """
         self._simulator = LocalSimulator(
             headless=headless, num_simulators=num_simulators

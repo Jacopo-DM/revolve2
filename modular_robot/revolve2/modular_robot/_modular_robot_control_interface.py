@@ -12,6 +12,7 @@ class ModularRobotControlInterface(ABC):
     ) -> None:
         """Set the position target for an active hinge on the modular robot.
 
-        :param active_hinge: The active hinge object to set the target for.
+        :param active_hinge: The active hinge object to set the target
+            for.
         :param target: The target value to set.
         """

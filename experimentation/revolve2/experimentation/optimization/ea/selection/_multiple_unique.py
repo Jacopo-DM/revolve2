@@ -19,7 +19,8 @@ def multiple_unique(
     :param selection_size: Amount of of individuals to select.
     :param population: List of individuals to select from.
     :param fitnesses: Fitnesses of the population.
-    :param selection_function: Function that select a single individual from a population. ([TIndividual], [TFitness]) -> index.
+    :param selection_function: Function that select a single individual
+        from a population. ([TIndividual], [TFitness]) -> index.
     :returns: Indices of the selected individuals.
     """
     assert len(population) == len(fitnesses)

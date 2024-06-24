@@ -42,20 +42,30 @@ def simulate_scene(
 ) -> list[SimulationState]:
     """Simulate a scene.
 
-    :param scene_id: An id for this scene, unique between all scenes ran in parallel.
+    :param scene_id: An id for this scene, unique between all scenes ran
+        in parallel.
     :param scene: The scene to simulate.
-    :param headless: If False, a viewer will be opened that allows a user to manually view and manually interact with the simulation.
-    :param record_settings: If not None, recording will be done according to these settings.
-    :param start_paused: If true, the simulation will start in a paused state. Only makessense when headless is False.
-    :param control_step: The time between each call to the handle function of the scene handler. In seconds.
-    :param sample_step: The time between each state sample of the simulation. In seconds.
+    :param headless: If False, a viewer will be opened that allows a
+        user to manually view and manually interact with the simulation.
+    :param record_settings: If not None, recording will be done
+        according to these settings.
+    :param start_paused: If true, the simulation will start in a paused
+        state. Only makessense when headless is False.
+    :param control_step: The time between each call to the handle
+        function of the scene handler. In seconds.
+    :param sample_step: The time between each state sample of the
+        simulation. In seconds.
     :param simulation_time: How long to simulate for. In seconds.
-    :param simulation_timestep: The duration to integrate over during each step of the simulation. In seconds.
+    :param simulation_timestep: The duration to integrate over during
+        each step of the simulation. In seconds.
     :param cast_shadows: If shadows are cast.
     :param fast_sim: If fancy rendering is disabled.
-    :param viewer_type: The type of viewer used for the rendering in a window.
-    :param render_backend: The backend to be used for rendering (EGL by default and switches to GLFW if no cameras are on the robot).
-    :returns: The results of simulation. The number of returned states depends on `sample_step`.
+    :param viewer_type: The type of viewer used for the rendering in a
+        window.
+    :param render_backend: The backend to be used for rendering (EGL by
+        default and switches to GLFW if no cameras are on the robot).
+    :returns: The results of simulation. The number of returned states
+        depends on `sample_step`.
     :raises ValueError: If the viewer is not able to record.
     """
     logging.info("Simulating scene %d", scene_id)

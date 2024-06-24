@@ -45,7 +45,8 @@ class _AttachedSensors:
         """Add a sensor to the attached Sensors of the module.
 
         :param sensor: The sensor.
-        :raises KeyError: If something went wrong with attaching the sensor.
+        :raises KeyError: If something went wrong with attaching the
+            sensor.
         """
         match sensor:
             case CameraSensor():
@@ -75,7 +76,7 @@ class _AttachedSensors:
 
         Sensors that are None will not be included in the list.
 
-        :return: The sensors.
+        :returns: The sensors.
         """
         sensors = [
             self._active_hinge_sensor,
@@ -144,9 +145,11 @@ class Module:
     ) -> None:
         """Initialize this object.
 
-        :param orientation: Orientation of this model relative to its parent.
+        :param orientation: Orientation of this model relative to its
+            parent.
         :param color: The color of the module.
-        :param attachment_points: The attachment points available on a module.
+        :param attachment_points: The attachment points available on a
+            module.
         :param sensors: The sensors associated with the module.
         """
         """Set default values."""
@@ -185,7 +188,8 @@ class Module:
 
         None if this module has not yet been added to a body or is the origin of the body.
 
-        :returns: The parent module of this module, or None if this module has not yet been added to a body.
+        :returns: The parent module of this module, or None if this
+            module has not yet been added to a body.
         """
         return self._parent
 
@@ -195,7 +199,9 @@ class Module:
 
         None if this module has not yet been added to a body.
 
-        :returns: The index of this module in the parent modules child list, or None if this module has not yet been added to a body.
+        :returns: The index of this module in the parent modules child
+            list, or None if this module has not yet been added to a
+            body.
         """
         return self._parent_child_index
 
@@ -203,7 +209,8 @@ class Module:
     def children(self) -> dict[int, Module]:
         """Get all children on this module.
 
-        :return: The children and their respective attachment point index.
+        :returns: The children and their respective attachment point
+            index.
         """
         return self._children
 
@@ -211,7 +218,8 @@ class Module:
         """Attach a module to certain AttachmentPoint.
 
         :param module: The module to attach.
-        :param child_index: The index of the AttachmentPoint to attach it to.
+        :param child_index: The index of the AttachmentPoint to attach
+            it to.
         :raises KeyError: If attachment point is already populated.
         """
         assert (
@@ -229,14 +237,15 @@ class Module:
         """Check if a child can be set on a specific attachment point on the module.
 
         :param child_index: The child index.
-        :return: The boolean value.
+        :returns: The boolean value.
         """
         return bool(self._children.get(child_index, True))
 
     def neighbours(self, within_range: int) -> list[Module]:
         """Get the neighbours of this module with a certain range of the module tree.
 
-        :param within_range: The range in which modules are considered a neighbour. Minimum is 1.
+        :param within_range: The range in which modules are considered a
+            neighbour. Minimum is 1.
         :returns: The neighbouring modules.
         """
         out_neighbours: list[Module] = []
@@ -286,7 +295,7 @@ class Module:
     def attachment_points(self) -> dict[int, AttachmentPoint]:
         """Get all attachment points of this module.
 
-        :return: The attachment points.
+        :returns: The attachment points.
         """
         return self._attachment_points
 
@@ -294,7 +303,7 @@ class Module:
     def sensors(self) -> _AttachedSensors:
         """Get the sensors.
 
-        :return: The value.
+        :returns: The value.
         """
         return self._sensors
 

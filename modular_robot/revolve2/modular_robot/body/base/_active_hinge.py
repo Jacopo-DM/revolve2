@@ -57,9 +57,15 @@ class ActiveHinge(Module):
         """Initialize this object.
 
         :param rotation: The Modules rotation.
-        :param servo1_bounding_box: The bounding box of servo 1. Vector3 with sizes of bbox in x,y,z dimension (m). Sizes are total length, not half length from origin.
-        :param servo2_bounding_box: The bounding box of servo 2. Vector3 with sizes of bbox in x,y,z dimension (m). Sizes are total length, not half length from origin.
-        :param frame_bounding_box: The bounding box of the frame. Vector3 with sizes of bbox in x,y,z dimension (m). Sizes are total length, not half length from origin.
+        :param servo1_bounding_box: The bounding box of servo 1. Vector3
+            with sizes of bbox in x,y,z dimension (m). Sizes are total
+            length, not half length from origin.
+        :param servo2_bounding_box: The bounding box of servo 2. Vector3
+            with sizes of bbox in x,y,z dimension (m). Sizes are total
+            length, not half length from origin.
+        :param frame_bounding_box: The bounding box of the frame.
+            Vector3 with sizes of bbox in x,y,z dimension (m). Sizes are
+            total length, not half length from origin.
         :param frame_offset: The offset of the frame (m).
         :param servo_offset: The servo offset (m).
         :param frame_mass: The frame mass (kg).
@@ -71,10 +77,14 @@ class ActiveHinge(Module):
         :param range: The range of motion for servos (radiants).
         :param effort: The effort of servos (kgfcm/10).
         :param velocity: The velocity of servos (1/sec/60deg*1/3pi).
-        :param armature: Armature of the joint. This represents the inertia of the motor itself when nothing is attached.
-        :param pid_gain_p: Proportional gain of the pid position controller.
-        :param pid_gain_d: Derivative gain of the pid position controller.
-        :param child_offset: The offset of children on the attachment point.
+        :param armature: Armature of the joint. This represents the
+            inertia of the motor itself when nothing is attached.
+        :param pid_gain_p: Proportional gain of the pid position
+            controller.
+        :param pid_gain_d: Derivative gain of the pid position
+            controller.
+        :param child_offset: The offset of children on the attachment
+            point.
         :param sensors: The sensors associated with this module.
         """
         self._static_friction = static_friction
@@ -137,7 +147,7 @@ class ActiveHinge(Module):
     def static_friction(self) -> float:
         """Get the static friction.
 
-        :return: The value.
+        :returns: The value.
         """
         return self._static_friction
 
@@ -145,7 +155,7 @@ class ActiveHinge(Module):
     def dynamic_friction(self) -> float:
         """Get the dynamic friction.
 
-        :return: The value.
+        :returns: The value.
         """
         return self._dynamic_friction
 
@@ -153,7 +163,7 @@ class ActiveHinge(Module):
     def range(self) -> float:
         """Get the range of the servo.
 
-        :return: The value.
+        :returns: The value.
         """
         return self._range
 
@@ -161,7 +171,7 @@ class ActiveHinge(Module):
     def effort(self) -> float:
         """Get the effort of the servo.
 
-        :return: The value.
+        :returns: The value.
         """
         return self._effort
 
@@ -169,7 +179,7 @@ class ActiveHinge(Module):
     def velocity(self) -> float:
         """Get the velocity of the servo.
 
-        :return: The value.
+        :returns: The value.
         """
         return self._velocity
 
@@ -178,7 +188,7 @@ class ActiveHinge(Module):
         """Get the bounding box of the first servo part.
 
         Sizes are total length, not half-length from origin.
-        :return: Vector3 with sizes of bbox in x,y,z dimension (m).
+        :returns: Vector3 with sizes of bbox in x,y,z dimension (m).
         """
         return self._servo1_bounding_box
 
@@ -187,7 +197,7 @@ class ActiveHinge(Module):
         """Get the bounding box of the second servo part.
 
         Sizes are total length, not half-length from origin.
-        :return: Vector3 with sizes of bbox in x,y,z dimension (m).
+        :returns: Vector3 with sizes of bbox in x,y,z dimension (m).
         """
         return self._servo2_bounding_box
 
@@ -196,7 +206,7 @@ class ActiveHinge(Module):
         """Get the bounding box of the frame.
 
         Sizes are total length, not half-length from origin.
-        :return: Vector3 with sizes of bbox in x,y,z dimension (m).
+        :returns: Vector3 with sizes of bbox in x,y,z dimension (m).
         """
         return self._frame_bounding_box
 
@@ -204,7 +214,7 @@ class ActiveHinge(Module):
     def frame_offset(self) -> float:
         """Get the offset of the frame (in m).
 
-        :return: The value.
+        :returns: The value.
         """
         return self._frame_offset
 
@@ -212,7 +222,7 @@ class ActiveHinge(Module):
     def servo_offset(self) -> float:
         """Get the servo offset (in m).
 
-        :return: The value.
+        :returns: The value.
         """
         return self._servo_offset
 
@@ -220,7 +230,7 @@ class ActiveHinge(Module):
     def frame_mass(self) -> float:
         """Get the frame mass (in kg).
 
-        :return: The value.
+        :returns: The value.
         """
         return self._frame_mass
 
@@ -228,7 +238,7 @@ class ActiveHinge(Module):
     def servo1_mass(self) -> float:
         """Get the mass of the first servo part (in kg).
 
-        :return: The value.
+        :returns: The value.
         """
         return self._servo1_mass
 
@@ -236,7 +246,7 @@ class ActiveHinge(Module):
     def servo2_mass(self) -> float:
         """Get the mass of the second servo part (in kg).
 
-        :return: The value.
+        :returns: The value.
         """
         return self._servo2_mass
 
@@ -244,7 +254,7 @@ class ActiveHinge(Module):
     def joint_offset(self) -> float:
         """Get the joint offset (in m).
 
-        :return: The value.
+        :returns: The value.
         """
         return self._joint_offset
 
@@ -254,7 +264,7 @@ class ActiveHinge(Module):
 
         This represents the inertia of the motor itself when nothing is attached.
 
-        :return: The value.
+        :returns: The value.
         """
         return self._armature
 
@@ -262,7 +272,7 @@ class ActiveHinge(Module):
     def pid_gain_p(self) -> float:
         """Get the proportional gain of the pid position controller.
 
-        :return: The value.
+        :returns: The value.
         """
         return self._pid_gain_p
 
@@ -270,6 +280,6 @@ class ActiveHinge(Module):
     def pid_gain_d(self) -> float:
         """Get the derivative gain of the pid position controller.
 
-        :return: The value.
+        :returns: The value.
         """
         return self._pid_gain_d
