@@ -6,8 +6,7 @@ from sqlalchemy import orm
 from ._base import Base
 
 
-class Experiment(Base, HasId):  # type: ignore[misc]
-    # TODO(jmdm): Fix type error"↑"
+class Experiment(Base, HasId):
     """Experiment description."""
 
     __tablename__ = "experiment"

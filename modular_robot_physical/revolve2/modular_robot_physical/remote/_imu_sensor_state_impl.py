@@ -3,8 +3,7 @@ from pyrr import Vector3
 from revolve2.modular_robot.sensor_state import IMUSensorState
 
 
-class IMUSensorStateImpl(IMUSensorState):  # type: ignore[misc]
-    # TODO(jmdm): Fix type error"↑"
+class IMUSensorStateImpl(IMUSensorState):
     """The state of an IMU sensor."""
 
     _specific_force: Vector3

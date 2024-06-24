@@ -2,6 +2,7 @@
 
 import logging
 import time
+from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 import cairo
@@ -10,28 +11,10 @@ from numpy.typing import NDArray
 
 from revolve2.modular_robot import ModularRobot
 from revolve2.modular_robot.body import Module
+from revolve2.modular_robot.body.base import ActiveHinge, Body, Brick, Core
 
 if TYPE_CHECKING:
-    # TODO(jmdm): Fix cleaner solution for type hinting error
     from pyrr import Vector3
-
-    class Core:
-        pass
-
-    class ActiveHinge:
-        orientation: Any
-
-    class Brick:
-        pass
-
-    class Body:
-        pass
-
-else:
-    from revolve2.modular_robot.body.base import ActiveHinge, Body, Brick, Core
-
-
-from pathlib import Path
 
 
 def __mk_path() -> str:

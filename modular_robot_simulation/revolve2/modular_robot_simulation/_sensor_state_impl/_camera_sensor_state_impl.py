@@ -6,8 +6,7 @@ from revolve2.simulation.scene import MultiBodySystem, SimulationState
 from revolve2.simulation.scene.sensors import CameraSensor
 
 
-class CameraSensorStateImpl(CameraSensorState):  # type: ignore[misc]
-    # TODO(jmdm): Fix type ignore"↑"
+class CameraSensorStateImpl(CameraSensorState):
     """The simulation implementation of the camera sensor state."""
 
     _simulation_state: SimulationState
@@ -36,5 +35,4 @@ class CameraSensorStateImpl(CameraSensorState):  # type: ignore[misc]
 
         :returns: The image.
         """
-        # TODO(jmdm): Fix type ignore"↓"
-        return self._simulation_state.get_camera_view(self._camera)  # type: ignore[no-any-return]
+        return self._simulation_state.get_camera_view(self._camera)

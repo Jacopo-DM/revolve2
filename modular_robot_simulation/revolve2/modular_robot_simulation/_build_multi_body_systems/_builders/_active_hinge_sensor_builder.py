@@ -1,11 +1,12 @@
-from modular_robot_simulation._build_multi_body_systems._body_to_multi_body_system_mapping import (
+from revolve2.modular_robot.body.sensors import ActiveHingeSensor
+from revolve2.modular_robot_simulation._build_multi_body_systems._body_to_multi_body_system_mapping import (
     BodyToMultiBodySystemMapping,
 )
-from modular_robot_simulation._build_multi_body_systems._unbuilt_child import (
+from revolve2.modular_robot_simulation._build_multi_body_systems._unbuilt_child import (
     UnbuiltChild,
 )
-from revolve2.modular_robot.body.sensors import ActiveHingeSensor
 from revolve2.simulation.scene import (
+    Joint,
     JointHinge,
     MultiBodySystem,
     RigidBody,
@@ -44,9 +45,16 @@ class ActiveHingeSensorBuilder(Builder):
         :param body_to_multi_body_system_mapping: A mapping from body to multi-body system
         :return: The next children to be built.
         """
-        joint: JointHinge = multi_body_system.get_joints_for_rigid_body(
-            self._rigid_body
+        target: Joint | JointHinge = (
+            multi_body_system.get_joints_for_rigid_body(self._rigid_body)
         )[0]
+
+        # Check if the target is a hinge
+        if isinstance(target, Joint):
+            msg = "Active Hinge Sensor must be attached to a hinge."
+            raise TypeError(msg)
+        joint: JointHinge = target[0]
+
         body_to_multi_body_system_mapping.active_hinge_sensor_to_joint_hinge[
             UUIDKey(self._sensor)
         ] = joint

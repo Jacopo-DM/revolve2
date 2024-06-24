@@ -5,7 +5,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.engine import Engine
 from sqlalchemy.ext.asyncio import AsyncEngine, create_async_engine
 
-from experimentation.database._open_method import OpenMethod
+from ._open_method import OpenMethod
 
 
 def open_async_database_sqlite(

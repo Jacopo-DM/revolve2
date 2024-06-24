@@ -1,12 +1,12 @@
 import copy
 
-from modular_robot_simulation._build_multi_body_systems._body_to_multi_body_system_mapping import (
+from revolve2.modular_robot.body.sensors import CameraSensor
+from revolve2.modular_robot_simulation._build_multi_body_systems._body_to_multi_body_system_mapping import (
     BodyToMultiBodySystemMapping,
 )
-from modular_robot_simulation._build_multi_body_systems._unbuilt_child import (
+from revolve2.modular_robot_simulation._build_multi_body_systems._unbuilt_child import (
     UnbuiltChild,
 )
-from revolve2.modular_robot.body.sensors import CameraSensor
 from revolve2.simulation.scene import MultiBodySystem, Pose, RigidBody, UUIDKey
 from revolve2.simulation.scene.sensors import CameraSensor as CameraSim
 

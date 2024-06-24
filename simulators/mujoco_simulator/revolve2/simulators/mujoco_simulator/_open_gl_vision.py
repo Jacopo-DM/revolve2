@@ -7,10 +7,10 @@ import numpy as np
 from mujoco import MjData, MjModel
 from numpy.typing import NDArray
 
-from simulators.mujoco_simulator._abstraction_to_mujoco_mapping import (
+from ._abstraction_to_mujoco_mapping import (
     CameraSensorMujoco,
 )
-from simulators.mujoco_simulator._render_backend import RenderBackend
+from ._render_backend import RenderBackend
 
 
 class OpenGLVision:

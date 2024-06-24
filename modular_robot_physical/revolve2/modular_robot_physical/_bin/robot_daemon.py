@@ -2,8 +2,8 @@
 
 import typed_argparse as tap
 
-from modular_robot_physical._hardware_type import HardwareType
-from modular_robot_physical.robot_daemon import run_robot_daemon
+from revolve2.modular_robot_physical._hardware_type import HardwareType
+from revolve2.modular_robot_physical.robot_daemon import run_robot_daemon
 
 
 class Args(tap.TypedArgs):

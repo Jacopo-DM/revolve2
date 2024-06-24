@@ -1,7 +1,7 @@
 from typing import TypeVar
 
-from experimentation.optimization.ea.selection._argsort import argsort
-from experimentation.optimization.ea.selection._supports_lt import SupportsLt
+from ._argsort import argsort
+from ._supports_lt import SupportsLt
 
 Genotype = TypeVar("Genotype")
 Fitness = TypeVar("Fitness", bound=SupportsLt)

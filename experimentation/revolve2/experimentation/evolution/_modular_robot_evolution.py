@@ -1,6 +1,6 @@
 from typing import Any
 
-from experimentation.evolution.abstract_elements import (
+from .abstract_elements import (
     Evaluator,
     Evolution,
     Learner,

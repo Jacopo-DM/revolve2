@@ -8,8 +8,7 @@ from revolve2.simulation.scene.geometry.textures import (
 
 
 @dataclass(kw_only=True, frozen=True)
-class Flat(Texture):  # type: ignore[misc]
-    # TODO(jmdm): Fix type error"↑"
+class Flat(Texture):
     """A flat texture for geometric models."""
 
     reference: TextureReference = field(

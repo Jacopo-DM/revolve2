@@ -8,29 +8,32 @@ import numpy as np
 from numpy.typing import NDArray
 from pyrr import Vector3
 
-from modular_robot_physical._config import Config
-from modular_robot_physical._hardware_type import HardwareType
-from modular_robot_physical._protocol_version import PROTOCOL_VERSION
-from modular_robot_physical._standard_port import STANDARD_PORT
-from modular_robot_physical._uuid_key import UUIDKey
-from modular_robot_physical.remote._camera_sensor_state_impl import (
-    CameraSensorStateImpl,
-)
-from modular_robot_physical.remote._imu_sensor_state_impl import (
-    IMUSensorStateImpl,
-)
-from modular_robot_physical.remote._modular_robot_control_interface_impl import (
-    ModularRobotControlInterfaceImpl,
-)
-from modular_robot_physical.remote._modular_robot_sensor_state_impl_v1 import (
-    ModularRobotSensorStateImplV1,
-)
-from modular_robot_physical.remote._modular_robot_sensor_state_impl_v2 import (
-    ModularRobotSensorStateImplV2,
-)
-from modular_robot_physical.robot_daemon_api import robot_daemon_protocol_capnp
 from revolve2.modular_robot.body.base import ActiveHinge
 from revolve2.modular_robot.body.sensors import CameraSensor, IMUSensor
+from revolve2.modular_robot_physical._config import Config
+from revolve2.modular_robot_physical._hardware_type import HardwareType
+from revolve2.modular_robot_physical._protocol_version import PROTOCOL_VERSION
+from revolve2.modular_robot_physical._standard_port import STANDARD_PORT
+from revolve2.modular_robot_physical._uuid_key import UUIDKey
+from revolve2.modular_robot_physical.robot_daemon_api import (
+    robot_daemon_protocol_capnp,
+)
+
+from ._camera_sensor_state_impl import (
+    CameraSensorStateImpl,
+)
+from ._imu_sensor_state_impl import (
+    IMUSensorStateImpl,
+)
+from ._modular_robot_control_interface_impl import (
+    ModularRobotControlInterfaceImpl,
+)
+from ._modular_robot_sensor_state_impl_v1 import (
+    ModularRobotSensorStateImplV1,
+)
+from ._modular_robot_sensor_state_impl_v2 import (
+    ModularRobotSensorStateImplV2,
+)
 
 if TYPE_CHECKING:
     from revolve2.modular_robot.sensor_state import ModularRobotSensorState

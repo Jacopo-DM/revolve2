@@ -1,8 +1,7 @@
 from revolve2.modular_robot.sensor_state import ActiveHingeSensorState
 
 
-class ActiveHingeSensorStateImpl(ActiveHingeSensorState):  # type: ignore[misc]
-    # TODO(jmdm): Fix type error"↑"
+class ActiveHingeSensorStateImpl(ActiveHingeSensorState):
     """ActiveHingeSensorState implementation for physical robots."""
 
     _position: float

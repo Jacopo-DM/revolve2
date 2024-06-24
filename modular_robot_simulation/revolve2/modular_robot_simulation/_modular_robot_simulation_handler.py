@@ -1,12 +1,3 @@
-from modular_robot_simulation._build_multi_body_systems import (
-    BodyToMultiBodySystemMapping,
-)
-from modular_robot_simulation._modular_robot_control_interface_impl import (
-    ModularRobotControlInterfaceImpl,
-)
-from modular_robot_simulation._sensor_state_impl import (
-    ModularRobotSensorStateImpl,
-)
 from revolve2.modular_robot.brain import BrainInstance
 from revolve2.simulation.scene import (
     ControlInterface,
@@ -14,9 +5,18 @@ from revolve2.simulation.scene import (
     SimulationState,
 )
 
+from ._build_multi_body_systems import (
+    BodyToMultiBodySystemMapping,
+)
+from ._modular_robot_control_interface_impl import (
+    ModularRobotControlInterfaceImpl,
+)
+from ._sensor_state_impl import (
+    ModularRobotSensorStateImpl,
+)
 
-class ModularRobotSimulationHandler(SimulationHandler):  # type: ignore[misc]
-    # TODO(jmdm): Fix type ignore"↑"
+
+class ModularRobotSimulationHandler(SimulationHandler):
     """Implements the simulation handler for a modular robot scene."""
 
     _brains: list[tuple[BrainInstance, BodyToMultiBodySystemMapping]]

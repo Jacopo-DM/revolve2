@@ -15,8 +15,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class Genotype(BodyGenotypeV2, BrainGenotypeCpg):  # type: ignore[misc]
-    # TODO(jmdm): Fix type error"↑"
+class Genotype(BodyGenotypeV2, BrainGenotypeCpg):
     """A genotype for a body and brain using CPPN."""
 
     @classmethod

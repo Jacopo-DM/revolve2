@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from simulation.scene._simulation_state import SimulationState
+from revolve2.simulation.scene._simulation_state import SimulationState
 
 from ._batch import Batch
 

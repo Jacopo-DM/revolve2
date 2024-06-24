@@ -1,9 +1,9 @@
 """Interfaces to the hardware."""
 
-from modular_robot_physical.physical_interfaces._get_interface import (
+from ._get_interface import (
     get_interface,
 )
-from modular_robot_physical.physical_interfaces._physical_interface import (
+from ._physical_interface import (
     PhysicalInterface,
 )
 

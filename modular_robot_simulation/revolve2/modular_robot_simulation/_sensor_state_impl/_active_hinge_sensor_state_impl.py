@@ -2,8 +2,7 @@ from revolve2.modular_robot.sensor_state import ActiveHingeSensorState
 from revolve2.simulation.scene import JointHinge, SimulationState
 
 
-class ActiveHingeSensorStateImpl(ActiveHingeSensorState):  # type: ignore[misc]
-    # TODO(jmdm): Fix type error"↑"
+class ActiveHingeSensorStateImpl(ActiveHingeSensorState):
     """Implements the active hinge sensor state."""
 
     _simulation_state: SimulationState

@@ -5,15 +5,14 @@ from pathlib import Path
 from revolve2.simulation.scene import SimulationState
 from revolve2.simulation.simulator import Batch, Simulator
 
-from simulators.mujoco_simulator._simulate_manual_scene import (
+from ._simulate_manual_scene import (
     simulate_manual_scene,
 )
-from simulators.mujoco_simulator._simulate_scene import simulate_scene
-from simulators.mujoco_simulator.viewers import ViewerType
+from ._simulate_scene import simulate_scene
+from .viewers import ViewerType
 
 
-class LocalSimulator(Simulator):  # type: ignore[misc]
-    # TODO(jmdm): Fix type error"↑"
+class LocalSimulator(Simulator):
     """Simulator using MuJoCo."""
 
     _headless: bool

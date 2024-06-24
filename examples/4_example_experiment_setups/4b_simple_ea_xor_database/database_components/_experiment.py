@@ -6,8 +6,7 @@ from sqlalchemy import orm
 from ._base import Base
 
 
-class Experiment(Base, HasId):  # type: ignore[misc]
-    # TODO(jmdm): Fix type error"↑"
+class Experiment(Base, HasId):
     """This is the ORM class that describes an experiment.
 
     Every experiment run will create an instance of this class and save it to the database.

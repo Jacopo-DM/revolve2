@@ -5,19 +5,20 @@ import cv2
 import mujoco
 import numpy as np
 import numpy.typing as npt
+
 from revolve2.simulation.scene import Scene, SimulationState
 from revolve2.simulation.simulator import RecordSettings
 
-from simulators.mujoco_simulator._control_interface_impl import (
+from ._control_interface_impl import (
     ControlInterfaceImpl,
 )
-from simulators.mujoco_simulator._open_gl_vision import OpenGLVision
-from simulators.mujoco_simulator._render_backend import RenderBackend
-from simulators.mujoco_simulator._scene_to_model import scene_to_model
-from simulators.mujoco_simulator._simulation_state_impl import (
+from ._open_gl_vision import OpenGLVision
+from ._render_backend import RenderBackend
+from ._scene_to_model import scene_to_model
+from ._simulation_state_impl import (
     SimulationStateImpl,
 )
-from simulators.mujoco_simulator.viewers import (
+from .viewers import (
     CustomMujocoViewer,
     NativeMujocoViewer,
     ViewerType,

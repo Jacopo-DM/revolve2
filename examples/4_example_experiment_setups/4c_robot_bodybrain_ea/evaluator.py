@@ -16,8 +16,7 @@ from revolve2.modular_robot_simulation import (
 from revolve2.simulators.mujoco_simulator import LocalSimulator
 
 
-class Evaluator(Eval):  # type: ignore[misc]
-    # TODO(jmdm): Fix type error"↑"
+class Evaluator(Eval):
     """Provides evaluation of robots."""
 
     _simulator: LocalSimulator

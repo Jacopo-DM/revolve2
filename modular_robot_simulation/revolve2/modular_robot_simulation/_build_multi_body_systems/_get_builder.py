@@ -1,6 +1,18 @@
 from typing import TYPE_CHECKING, Any
 
-from modular_robot_simulation._build_multi_body_systems._builders import (
+from revolve2.modular_robot.body.base import (
+    ActiveHinge,
+    AttachmentFace,
+    Brick,
+    Core,
+)
+from revolve2.modular_robot.body.sensors import (
+    ActiveHingeSensor,
+    CameraSensor,
+    IMUSensor,
+)
+
+from ._builders import (
     ActiveHingeBuilder,
     ActiveHingeSensorBuilder,
     AttachmentFaceBuilder,
@@ -10,49 +22,9 @@ from modular_robot_simulation._build_multi_body_systems._builders import (
     CoreBuilder,
     IMUSensorBuilder,
 )
-from modular_robot_simulation._build_multi_body_systems._unbuilt_child import (
+from ._unbuilt_child import (
     UnbuiltChild,
 )
-
-if TYPE_CHECKING:
-    # TODO(jmdm): Fix cleaner solution for type hinting error
-
-    class Core:
-        pass
-
-    class ActiveHinge:
-        orientation: Any
-
-    class Brick:
-        pass
-
-    class Body:
-        pass
-
-    class AttachmentFace:
-        pass
-
-    class ActiveHingeSensor:
-        pass
-
-    class CameraSensor:
-        pass
-
-    class IMUSensor:
-        position: Any
-
-else:
-    from revolve2.modular_robot.body.base import (
-        ActiveHinge,
-        AttachmentFace,
-        Brick,
-        Core,
-    )
-    from revolve2.modular_robot.body.sensors import (
-        ActiveHingeSensor,
-        CameraSensor,
-        IMUSensor,
-    )
 
 
 def get_builder(unbuilt_child: UnbuiltChild) -> Builder:

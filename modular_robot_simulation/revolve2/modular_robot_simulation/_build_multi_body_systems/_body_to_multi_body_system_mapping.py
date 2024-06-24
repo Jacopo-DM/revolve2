@@ -6,7 +6,12 @@ from revolve2.modular_robot.body.sensors import (
     CameraSensor,
     IMUSensor,
 )
-from revolve2.simulation.scene import JointHinge, MultiBodySystem, UUIDKey
+from revolve2.simulation.scene import (
+    Joint,
+    JointHinge,
+    MultiBodySystem,
+    UUIDKey,
+)
 from revolve2.simulation.scene.sensors import CameraSensor as CameraSim
 from revolve2.simulation.scene.sensors import IMUSensor as IMUSim
 

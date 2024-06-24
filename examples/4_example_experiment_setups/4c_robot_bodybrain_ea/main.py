@@ -25,8 +25,7 @@ from revolve2.experimentation.optimization.ea import (
 from revolve2.experimentation.rng import make_rng_time_seed
 
 
-class ParentSelector(Selector):  # type: ignore[misc]
-    # TODO(jmdm): Fix type error"↑"
+class ParentSelector(Selector):
     """Selector class for parent selection."""
 
     rng: np.random.Generator
@@ -68,8 +67,7 @@ class ParentSelector(Selector):  # type: ignore[misc]
         ), {"parent_population": population}
 
 
-class SurvivorSelector(Selector):  # type: ignore[misc]
-    # TODO(jmdm): Fix type error"↑"
+class SurvivorSelector(Selector):
     """Selector class for survivor selection."""
 
     rng: np.random.Generator
@@ -132,8 +130,7 @@ class SurvivorSelector(Selector):  # type: ignore[misc]
         ], {}
 
 
-class CrossoverReproducer(Reproducer):  # type: ignore[misc]
-    # TODO(jmdm): Fix type error"↑"
+class CrossoverReproducer(Reproducer):
     """A simple crossover reproducer using multineat."""
 
     rng: np.random.Generator

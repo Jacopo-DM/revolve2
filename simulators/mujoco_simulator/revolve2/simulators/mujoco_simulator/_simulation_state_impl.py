@@ -2,6 +2,7 @@ import mujoco
 import numpy as np
 import numpy.typing as npt
 from pyrr import Quaternion, Vector3
+
 from revolve2.simulation.scene import (
     JointHinge,
     MultiBodySystem,
@@ -12,13 +13,12 @@ from revolve2.simulation.scene import (
 )
 from revolve2.simulation.scene.sensors import CameraSensor, IMUSensor
 
-from simulators.mujoco_simulator._abstraction_to_mujoco_mapping import (
+from ._abstraction_to_mujoco_mapping import (
     AbstractionToMujocoMapping,
 )
 
 
-class SimulationStateImpl(SimulationState):  # type: ignore[misc]
-    # TODO(jmdm): Fix type error"↑"
+class SimulationStateImpl(SimulationState):
     """Implementation of the simulation state interface for MuJoCo."""
 
     _xpos: npt.NDArray[np.float64]

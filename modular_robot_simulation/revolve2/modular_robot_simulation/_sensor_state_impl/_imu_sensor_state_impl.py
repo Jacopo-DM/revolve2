@@ -5,8 +5,7 @@ from revolve2.simulation.scene import MultiBodySystem, SimulationState
 from revolve2.simulation.scene.sensors import IMUSensor
 
 
-class IMUSensorStateImpl(IMUSensorState):  # type: ignore[misc]
-    # TODO(jmdm): Fix type error"↑"
+class IMUSensorStateImpl(IMUSensorState):
     """Implements the  IMU sensor state."""
 
     _simulation_state: SimulationState

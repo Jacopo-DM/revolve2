@@ -3,17 +3,18 @@
 import logging
 
 import mujoco
+
 from revolve2.simulation.scene import Scene
 
-from simulators.mujoco_simulator._control_interface_impl import (
+from ._control_interface_impl import (
     ControlInterfaceImpl,
 )
-from simulators.mujoco_simulator._render_backend import RenderBackend
-from simulators.mujoco_simulator._scene_to_model import scene_to_model
-from simulators.mujoco_simulator._simulation_state_impl import (
+from ._render_backend import RenderBackend
+from ._scene_to_model import scene_to_model
+from ._simulation_state_impl import (
     SimulationStateImpl,
 )
-from simulators.mujoco_simulator.viewers import (
+from .viewers import (
     CustomMujocoViewer,
     CustomMujocoViewerMode,
 )

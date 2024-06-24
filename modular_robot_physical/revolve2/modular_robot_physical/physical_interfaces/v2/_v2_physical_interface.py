@@ -10,7 +10,7 @@ from robohatlib.hal.assemblyboard.servo.ServoData import ServoData
 from robohatlib.hal.assemblyboard.ServoAssemblyConfig import ServoAssemblyConfig
 from robohatlib.Robohat import Robohat
 
-from modular_robot_physical.physical_interfaces._physical_interface import (
+from revolve2.modular_robot_physical.physical_interfaces._physical_interface import (
     PhysicalInterface,
 )
 

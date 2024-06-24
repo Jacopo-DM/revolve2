@@ -1,6 +1,3 @@
-from modular_robot_simulation._build_multi_body_systems import (
-    BodyToMultiBodySystemMapping,
-)
 from revolve2.modular_robot.body.sensors import (
     ActiveHingeSensor,
     CameraSensor,
@@ -11,6 +8,9 @@ from revolve2.modular_robot.sensor_state import (
     CameraSensorState,
     IMUSensorState,
     ModularRobotSensorState,
+)
+from revolve2.modular_robot_simulation._build_multi_body_systems import (
+    BodyToMultiBodySystemMapping,
 )
 from revolve2.simulation.scene import SimulationState, UUIDKey
 
@@ -25,8 +25,7 @@ from ._imu_sensor_state_impl import (
 )
 
 
-class ModularRobotSensorStateImpl(ModularRobotSensorState):  # type: ignore[misc]
-    # TODO(jmdm): Fix type error"↑"
+class ModularRobotSensorStateImpl(ModularRobotSensorState):
     """Implementation for ModularRobotSensorState."""
 
     _simulation_state: SimulationState

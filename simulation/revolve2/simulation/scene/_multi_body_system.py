@@ -4,10 +4,11 @@ from dataclasses import dataclass, field
 import pyrr.aabb
 from pyrr import Vector3
 
-from simulation.scene.geometry import GeometryBox
+from revolve2.simulation.scene.geometry import GeometryBox
 
 from ._aabb import AABB
 from ._joint import Joint
+from ._joint_hinge import JointHinge
 from ._pose import Pose
 from ._rigid_body import RigidBody
 from ._uuid_key import UUIDKey
@@ -150,7 +151,9 @@ class MultiBodySystem:
         assert len(self._rigid_bodies) != 0, "Root has not been added yet."
         return self._rigid_bodies[0]
 
-    def get_joints_for_rigid_body(self, rigid_body: RigidBody) -> list[Joint]:
+    def get_joints_for_rigid_body(
+        self, rigid_body: RigidBody
+    ) -> list[Joint | JointHinge]:
         """Get all joints attached to the provided rigid body.
 
         :param rigid_body: A previously added rigid body.

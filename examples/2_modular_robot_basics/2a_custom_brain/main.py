@@ -41,8 +41,7 @@ def make_body() -> (
     )
 
 
-class CustomBrainInstance(BrainInstance):  # type: ignore[misc]
-    # TODO(jmdm): Fix type error"↑"
+class CustomBrainInstance(BrainInstance):
     """The actual object that controls the robot.
 
     Created by the `CustomBrain` class.
@@ -98,8 +97,7 @@ class CustomBrainInstance(BrainInstance):  # type: ignore[misc]
         )
 
 
-class CustomBrain(Brain):  # type: ignore[misc]
-    # TODO(jmdm): Fix type error"↑"
+class CustomBrain(Brain):
     """This is our custom brain.
 
     It stores references to each hinge of the robot body so they can be controlled individually.

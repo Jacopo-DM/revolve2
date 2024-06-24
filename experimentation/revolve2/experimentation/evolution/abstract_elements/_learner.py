@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Any
 
-from experimentation.evolution.abstract_elements._evaluator import Evaluator
+from ._evaluator import Evaluator
 
 TPopulation = Any  # An alias for Any signifying that a population can vary depending on use-case.
 

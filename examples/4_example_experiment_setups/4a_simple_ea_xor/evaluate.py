@@ -8,8 +8,7 @@ from revolve2.experimentation.evolution.abstract_elements import (
 )
 
 
-class Evaluator(Eval):  # type: ignore[misc]
-    # TODO(jmdm): Fix type error"↑"
+class Evaluator(Eval):
     """Here we make an evaluator object, based on the abstract evaluator defined in Revolve2."""
 
     @staticmethod

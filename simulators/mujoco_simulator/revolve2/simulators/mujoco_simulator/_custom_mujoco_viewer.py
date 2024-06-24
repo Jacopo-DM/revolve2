@@ -19,8 +19,7 @@ class CustomMujocoViewerMode(Enum):
     MANUAL = "manual"
 
 
-class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore[misc]
-    # TODO(jmdm): Fix type error"↑"
+class CustomMujocoViewer(mujoco_viewer.MujocoViewer):
     """Custom Viewer Object that allows for additional keyboard inputs.
 
     We need the type ignore since the mujoco_viewer library is not typed properly and therefor the MujocoViewer class cant be resolved.

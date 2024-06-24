@@ -17,8 +17,7 @@ from revolve2.modular_robot_simulation import ModularRobotScene, simulate_scenes
 from revolve2.simulators.mujoco_simulator import LocalSimulator
 
 
-class ANNBrainInstance(BrainInstance):  # type: ignore[misc]
-    # TODO(jmdm): Fix type error"↑"
+class ANNBrainInstance(BrainInstance):
     """ANN brain instance."""
 
     active_hinges: list[ActiveHinge]
@@ -82,8 +81,7 @@ class ANNBrainInstance(BrainInstance):  # type: ignore[misc]
             control_interface.set_active_hinge_target(active_hinge, target)
 
 
-class ANNBrain(Brain):  # type: ignore[misc]
-    # TODO(jmdm): Fix type error"↑"
+class ANNBrain(Brain):
     """The ANN brain."""
 
     active_hinges: list[ActiveHinge]

@@ -1,10 +1,9 @@
-from modular_robot_physical._uuid_key import UUIDKey
 from revolve2.modular_robot import ModularRobotControlInterface
 from revolve2.modular_robot.body.base import ActiveHinge
+from revolve2.modular_robot_physical._uuid_key import UUIDKey
 
 
-class ModularRobotControlInterfaceImpl(ModularRobotControlInterface):  # type: ignore[misc]
-    # TODO(jmdm): Fix type error"↑"
+class ModularRobotControlInterfaceImpl(ModularRobotControlInterface):
     """Implementation of ModularRobotControlInterface."""
 
     _set_active_hinges: list[tuple[UUIDKey[ActiveHinge], float]]
