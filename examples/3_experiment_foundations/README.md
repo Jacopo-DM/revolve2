@@ -1,4 +1,5 @@
-## 3) Learn how to properly setup experiments
+# [3] Experiment Foundations
+
 Simulating robots on its own is not that useful, so we actually want to make experiments that show us cool new things we did not know before.
 Here you will learn about a few things that are important in almost all experimental setups.
 

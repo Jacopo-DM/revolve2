@@ -1,8 +1,11 @@
+# [3a] Experiment Setup
+
 In this example you set up a trivial experiment with multiple repetitions.
 We will sample from a distribution given a few parameters and determine the ratio of success
 To change the experiments parameters, adjust the values in `config.py`.
 
 You learn:
+
 - Setting up an experiment.
 - Basic use of logging.
 - Experiment repetitions.

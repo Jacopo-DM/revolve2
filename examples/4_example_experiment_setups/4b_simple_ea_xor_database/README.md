@@ -1,12 +1,16 @@
+# [4b] Simple EA XOR (database)
+
 This example adds a database to the `4a_simple_ea_xor` example.
 
 Naturally, look at that example first.
 
 You learn:
+
 - How to save intermediate and final results to a database using the SQLAlchemy ORM.
 - How to read and plot the results. You could also use this knowledge to recover experiments that have crashed half-way.
 
 Beforehand you should have:
+
 - A basic understanding of relational databases.
 - An understanding of dataclasses is beneficial.
 - Basic knowledge of the Pandas library.
@@ -30,5 +34,6 @@ be aware that it is a third-party library with an extensive documentation availa
 
 Look at all files in the example carefully, and try to understand what each class is responsible for.
 The main files in this tutorial are
+
 - `main.py`, for running the experiment, and
 - `plot.py`, for plotting experiment results.

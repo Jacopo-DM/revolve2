@@ -1,3 +1,5 @@
+# [4e] Robot Brain CMAES
+
 Here you will set up an experiment that optimizes the brain of a given robot body using CMA-ES.
 As the body is static, the genotype of the brain will be a fixed length real-valued vector.
 
@@ -5,6 +7,7 @@ Before starting this tutorial, it is useful to look at the `3a_experiment_setup`
 It is also nice to understand the concept of a cpg brain, although not really needed.
 
 You learn:
+
 - How to optimize the brain of a robot using CMA-ES.
 
 To change the parameters of the experiment use `config.py`.<br/>

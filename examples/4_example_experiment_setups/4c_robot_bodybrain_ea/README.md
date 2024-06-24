@@ -1,3 +1,5 @@
+# [4c] Robot Body \& Brain
+
 In this example you see an experiment that optimizes the bodies and brains of a robots using a simple evolutionary algorithm.
 The genotypes for both body and brain are CPPNWIN.
 
@@ -6,6 +8,7 @@ Before starting this tutorial, it is useful to look at the
 It is also nice to understand the concept of a cpg brain and CPPN, although not really needed.
 
 You learn:
+
 - How to optimize the body and brain of a robot using an EA.
 - How to use the ModularRobotEvolution object for easy evolutionary control.
 

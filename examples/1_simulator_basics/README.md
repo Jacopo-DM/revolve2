@@ -1,4 +1,4 @@
-## 1) Start with the basics.
+# [1] Simulator Basics
 
 In this collection of examples you will learn the basics of the simulator used for Revolve2.
 
