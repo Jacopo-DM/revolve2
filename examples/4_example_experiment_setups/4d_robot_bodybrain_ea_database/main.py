@@ -134,7 +134,6 @@ class SurvivorSelector(Selector):
             Population(
                 individuals=[
                     Individual(
-                        __type_tgenotype=population.individuals[i].genotype,
                         genotype=population.individuals[i].genotype,
                         fitness=population.individuals[i].fitness,
                     )
@@ -142,7 +141,6 @@ class SurvivorSelector(Selector):
                 ]
                 + [
                     Individual(
-                        __type_tgenotype=offspring[i],
                         genotype=offspring[i],
                         fitness=offspring_fitness[i],
                     )
@@ -168,7 +166,7 @@ class CrossoverReproducer(Reproducer):
     ) -> None:
         """Initialize the reproducer.
 
-        :param rng: The ranfom generator.
+        :param rng: The random generator.
         :param innov_db_body: The innovation database for the body.
         :param innov_db_brain: The innovation database for the brain.
         """
@@ -274,7 +272,8 @@ def run_experiment(dbengine: Engine) -> None:
     population = Population(
         individuals=[
             Individual(
-                __type_tgenotype=genotype, genotype=genotype, fitness=fitness
+                genotype=genotype,
+                fitness=fitness,
             )
             for genotype, fitness in zip(
                 initial_genotypes, initial_fitnesses, strict=True
@@ -292,8 +291,9 @@ def run_experiment(dbengine: Engine) -> None:
     logging.info("Start optimization process.")
     while generation.generation_index < config.NUM_GENERATIONS:
         logging.info(
-            "Generation %d / %d."
-            % (generation.generation_index + 1, config.NUM_GENERATIONS)
+            "Generation %d / %d.",
+            generation.generation_index + 1,
+            config.NUM_GENERATIONS,
         )
 
         # Here we iterate the evolutionary process using the step.
@@ -318,7 +318,7 @@ def main() -> None:
 
     # Open the database, only if it does not already exists.
     dbengine = open_database_sqlite(
-        config.DATABASE_FILE, open_method=OpenMethod.NOT_EXISTS_AND_CREATE
+        config.DATABASE_FILE, open_method=OpenMethod.OVERWRITE_IF_EXISTS
     )
     # Create the structure of the database.
     Base.metadata.create_all(dbengine)

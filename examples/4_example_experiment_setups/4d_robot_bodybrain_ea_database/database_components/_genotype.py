@@ -58,7 +58,7 @@ class Genotype(Base, HasId, BodyGenotypeOrmV2, BrainGenotypeCpgOrm):
         rng: np.random.Generator,
     ) -> Genotype:
         """Mutate this genotype.
-        
+
         This genotype will not be changed; a mutated copy will be
         returned.
 

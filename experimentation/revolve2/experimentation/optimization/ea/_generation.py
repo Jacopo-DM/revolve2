@@ -1,4 +1,12 @@
-from typing import TYPE_CHECKING, Any, ForwardRef, Generic, Self, TypeVar
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    ClassVar,
+    ForwardRef,
+    Generic,
+    Self,
+    TypeVar,
+)
 
 import sqlalchemy
 from sqlalchemy import orm
@@ -23,8 +31,6 @@ class Generation(HasId, orm.MappedAsDataclass, Generic[TPopulation]):
 
         class MyGeneration(Base, Generation[MyPopulation]):
             __tablename__ = "my_generation"
-
-
     """
 
     # -------------------------------------
@@ -49,32 +55,17 @@ class Generation(HasId, orm.MappedAsDataclass, Generic[TPopulation]):
 
         @orm.declared_attr
         def generation_index(self) -> orm.Mapped[int]:
-            """:returns: :return: The index of the current generation.
-
-            :rtype: orm.Mapped[int]
-
-            """
             return self.__generation_index_impl()
 
         @orm.declared_attr
         def _population_id(self) -> orm.Mapped[int]:
-            """:returns: :return: The population ID.
-
-            :rtype: orm.Mapped[int]
-
-            """
             return self.__population_id_impl()
 
         @orm.declared_attr
         def population(self) -> orm.Mapped[TPopulation]:
-            """:returns: :return: The population of the generation.
-
-            :rtype: orm.Mapped[TPopulation]
-
-            """
             return self.__population_impl()
 
-    __type_tpopulation: TPopulation
+    __type_tpopulation: ClassVar[type[TPopulation]]  # type: ignore[misc]
 
     def __init_subclass__(cls: type[Self], /, **kwargs: dict[str, Any]) -> None:
         """Initialize a version of this class when it is subclassed.
@@ -83,15 +74,12 @@ class Generation(HasId, orm.MappedAsDataclass, Generic[TPopulation]):
         :param kwargs: Remaining arguments passed to super.
         """
         generic_types = init_subclass_get_generic_args(cls, Generation)
-        if len(generic_types) != 1:
-            msg = "Generation must have exactly one generic argument."
-            raise ValueError(msg)
+        assert len(generic_types) == 1
         cls.__type_tpopulation = generic_types[0]
-        if not isinstance(cls.__type_tpopulation, ForwardRef):
-            msg = "TPopulation generic argument cannot be a forward reference."
-            raise TypeError(msg)
+        assert not isinstance(
+            cls.__type_tpopulation, ForwardRef
+        ), "TPopulation generic argument cannot be a forward reference."
 
-        # TODO(jmdm): Fix type annotation?
         super().__init_subclass__(**kwargs)  # type: ignore[arg-type]
 
     @classmethod

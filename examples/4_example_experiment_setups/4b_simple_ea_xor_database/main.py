@@ -107,16 +107,18 @@ class SurvivorSelector(Selector):
         :raises KeyError: If no children got passed.
 
         """
-        offspring: list[Individual] | None = kwargs.get("children")
+        offspring: Population | None = kwargs.get("children")
+
         if offspring is None:
             msg = "No children passed."
             raise KeyError(msg)
+
         original_survivors, offspring_survivors = (
             population_management.steady_state(
                 [i.genotype for i in population.individuals],
                 [i.fitness for i in population.individuals],
-                [i.genotype for i in offspring],
-                [i.fitness for i in offspring],
+                [i.genotype for i in offspring.individuals],
+                [i.fitness for i in offspring.individuals],
                 lambda n, genotypes, fitnesses: selection.multiple_unique(
                     n,
                     genotypes,
@@ -139,8 +141,8 @@ class SurvivorSelector(Selector):
                 ]
                 + [
                     Individual(
-                        genotype=offspring[i].genotype,
-                        fitness=offspring[i].fitness,
+                        genotype=offspring.individuals[i].genotype,
+                        fitness=offspring.individuals[i].fitness,
                     )
                     for i in offspring_survivors
                 ]
@@ -172,16 +174,17 @@ class CrossoverReproducer(Reproducer):
         :raises KeyError: If the parents are not passed.
 
         """
-        parents: list[Individual] | None = kwargs.get(
-            "parent_population"
-        )  # We select the population of parents that were passed in KWArgs of the parent selector object.
+        parents: Population | None = kwargs.get("parent_population")
+
+        # We select the population of parents that were passed in KWArgs of the parent selector object.
         if parents is None:
             msg = "No children passed."
             raise KeyError(msg)
+
         return [
             Genotype.crossover(
-                parents[parent1_i].genotype,
-                parents[parent2_i].genotype,
+                parents.individuals[parent1_i].genotype,
+                parents.individuals[parent2_i].genotype,
                 self._rng,
                 num_parameters=config.NUM_PARAMETERS,
             ).mutate(
@@ -318,7 +321,7 @@ def main() -> None:
     (maybe throw away?)
     """
     dbengine = open_database_sqlite(
-        config.DATABASE_FILE, open_method=OpenMethod.NOT_EXISTS_AND_CREATE
+        config.DATABASE_FILE, open_method=OpenMethod.OVERWRITE_IF_EXISTS
     )
     # Create the structure of the database.
     # Take a look at the 'Base' class.

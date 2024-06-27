@@ -33,12 +33,8 @@ class Individual(HasId, orm.MappedAsDataclass, Generic[TGenotype]):
 
     For example::
 
-        class MyIndividual(
-            Base, Individual[MyGenotype], population_table="my_population"
-        ):
+        class MyIndividual(Base, Individual[MyGenotype], population_table="my_population"):
             __tablename__ = "my_individual"
-
-
     """
 
     # -------------------------------------
@@ -63,53 +59,26 @@ class Individual(HasId, orm.MappedAsDataclass, Generic[TGenotype]):
     else:
 
         @orm.declared_attr
-        def population_id(self) -> orm.Mapped[int]:
-            """:returns: :return: The population ID.
-
-            :rtype: orm.Mapped[int]
-
-            """
-            return self.__population_id_impl()
+        def population_id(cls) -> orm.Mapped[int]:
+            return cls.__population_id_impl()
 
         @orm.declared_attr
-        def population_index(self) -> orm.Mapped[int]:
-            """:returns: :return: The population index of the individual.
-
-            :rtype: orm.Mapped[int]
-
-            """
-            return self.__population_index_impl()
+        def population_index(cls) -> orm.Mapped[int]:
+            return cls.__population_index_impl()
 
         @orm.declared_attr
-        def genotype_id(self) -> orm.Mapped[int]:
-            """:returns: :return: The genotype ID.
-
-            :rtype: orm.Mapped[int]
-
-            """
-            return self.__genotype_id_impl()
+        def genotype_id(cls) -> orm.Mapped[int]:
+            return cls.__genotype_id_impl()
 
         @orm.declared_attr
-        def genotype(self) -> orm.Mapped[TGenotype]:
-            """:returns: :return: The genotype of the individual.
-
-            :rtype: orm.Mapped[TGenotype]
-
-            """
-            return self.__genotype_impl()
+        def genotype(cls) -> orm.Mapped[TGenotype]:
+            return cls.__genotype_impl()
 
         @orm.declared_attr
-        def fitness(self) -> orm.Mapped[float]:
-            """Calculate and return the fitness value of the individual.
+        def fitness(cls) -> orm.Mapped[float]:
+            return cls.__fitness_impl()
 
-            :returns: The fitness value of the individual.
-
-            :rtype: orm.Mapped[float]
-
-            """
-            return self.__fitness_impl()
-
-    __type_tgenotype: TGenotype
+    __type_tgenotype: ClassVar[type[TGenotype]]  # type: ignore[misc]
     __population_table: ClassVar[str]
 
     def __init_subclass__(
@@ -123,21 +92,17 @@ class Individual(HasId, orm.MappedAsDataclass, Generic[TGenotype]):
         :param kwargs: Remaining arguments passed to super.
         """
         generic_types = init_subclass_get_generic_args(cls, Individual)
-        if len(generic_types) != 1:
-            msg = "Individual must have exactly one generic argument."
-            raise ValueError(msg)
-
+        assert len(generic_types) == 1
         cls.__type_tgenotype = generic_types[0]
-        if isinstance(cls.__type_tgenotype, ForwardRef):
-            msg = "TGenotype generic argument cannot be a forward reference."
-            raise TypeError(msg)
+        assert not isinstance(
+            cls.__type_tgenotype, ForwardRef
+        ), "TGenotype generic argument cannot be a forward reference."
 
         cls.__population_table = population_table
-        if not isinstance(cls.__population_table, str):
-            msg = "population_table argument must be a string."
-            raise TypeError(msg)
+        assert isinstance(
+            cls.__population_table, str
+        ), "population_table argument must be a string."
 
-        # TODO(jmdm): Fix type annotation?
         super().__init_subclass__(**kwargs)  # type: ignore[arg-type]
 
     @classmethod

@@ -3,6 +3,7 @@
 import logging
 import pickle
 from itertools import starmap
+from pathlib import Path
 from typing import Any
 
 import config
@@ -302,7 +303,12 @@ def main() -> None:
         best_robot = find_best_robot(best_robot, population)
 
         logging.info(f"Best robot until now: {best_robot.fitness}")
-        logging.info(f"Genotype pickle: {pickle.dumps(best_robot)!r}")
+
+        with Path("best_robot.pkl").open("wb") as f:
+            pickle.dump(best_robot, f)
+
+        genotype = str(f"{pickle.dumps(best_robot)!r}")
+        logging.info(f"Genotype pickle (partial): {genotype[:15]}...")
 
         # Increase the generation index counter.
         generation_index += 1
