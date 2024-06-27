@@ -112,7 +112,7 @@ def __evaluate_cppn(
     """
     x, y, z = position
 
-    if isinstance(x, np.int_):
+    if not isinstance(x, np.int_):
         msg = f"Error: The position is not of type int. Type: {type(x)}."
         raise TypeError(msg)
 

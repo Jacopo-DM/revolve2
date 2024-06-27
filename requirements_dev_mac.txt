@@ -11,5 +11,11 @@
 -r ./codetools/requirements.txt
 -r ./docs/requirements.txt
 -r ./tests/requirements.txt
+
 # ↓ git pull robot hat
 pip install -e robohat
+
+# pip install ruff
+# pip install docconvert
+# pip install docformatter
+# pip install pyment

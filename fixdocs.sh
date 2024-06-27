@@ -12,7 +12,7 @@ while read -r package; do
     for py_file in $(find $package -name "*.py"); do
         echo "Processing $py_file"
         docformatter --in-place $py_file || true
-        # ↓ requires local installation
+        # ↓ pull from github (pipy version is broken)
         pyment -w -o reST -d $py_file || true
     done
 

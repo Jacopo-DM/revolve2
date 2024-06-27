@@ -43,7 +43,7 @@ class Evaluator(Eval):
         population: list[Genotype],
     ) -> list[float]:
         """Evaluate multiple robots.
-        
+
         Fitness is the distance traveled on the xy plane.
 
         :param population: The robots to simulate.

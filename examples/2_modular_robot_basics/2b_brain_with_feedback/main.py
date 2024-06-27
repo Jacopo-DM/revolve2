@@ -150,6 +150,7 @@ def main() -> None:
 
     # Simulate the scene.
     simulator = LocalSimulator(
+        # ERROR breaks on mac!
         viewer_type="native",  # TODO(jmdm): this breaks on mac, requires to run as mjpython
         headless=False,
         start_paused=True,

@@ -1,7 +1,7 @@
 import uuid
 import warnings
 import xml.dom.minidom as xmlMinidom  # defusedxml
-import xml.etree.cElementTree as xmlTree  # defusedxml
+import xml.etree.ElementTree as xmlTree  # defusedxml
 
 import scipy.spatial.transform
 from pyrr import Quaternion, Vector3

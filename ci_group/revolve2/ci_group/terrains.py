@@ -1,7 +1,6 @@
 """Standard terrains."""
 
 import math
-from dataclasses import field
 
 import numpy as np
 import numpy.typing as npt

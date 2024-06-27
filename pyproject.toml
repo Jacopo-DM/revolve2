@@ -111,6 +111,8 @@ ignore = [
     "FBT003", # Found "bool" in function argument
     "TID252", # relative imports
     "D205",   # blank line between summary and description
+    "T201",   # found print statement
+    "G004",   # Logging statement uses string formatting
 ]
 
 fixable = ["ALL"]

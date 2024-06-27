@@ -197,3 +197,6 @@ robohat/**
 
 # Performance stats
 **/*.pstats
+
+# Pickled objects
+**/*.pkl

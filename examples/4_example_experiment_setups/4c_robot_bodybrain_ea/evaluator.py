@@ -28,7 +28,6 @@ class Evaluator(Eval):
         num_simulators: int,
     ) -> None:
         """Initialize this object.
-
         :param headless: `headless` parameter for the physics simulator.
         :param num_simulators: `num_simulators` parameter for the
             physics simulator.

@@ -26,7 +26,7 @@ def init_subclass_get_generic_args(
         if get_origin(orig_base) is parent
     ]  # TODO(jmdm): fix type annotation? possible?
 
-    if len(orig_bases) == 1:
+    if len(orig_bases) >= 2:
         msg = "Implementer thinks this should be impossible. Expected that user can only inherit from parent class once."
         raise AssertionError(msg)
 
