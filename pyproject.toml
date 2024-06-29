@@ -113,6 +113,7 @@ ignore = [
     "D205",   # blank line between summary and description
     "T201",   # found print statement
     "G004",   # Logging statement uses string formatting
+    "INP001", # implicit module __init__ thing
 ]
 
 fixable = ["ALL"]

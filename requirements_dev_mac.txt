@@ -12,10 +12,16 @@
 -r ./docs/requirements.txt
 -r ./tests/requirements.txt
 
-# ↓ git pull robot hat
-pip install -e robohat
+# ↓ git pull robot hat (fix for mac install)
+# cd robohat
+# pip install -e .
 
-# pip install ruff
-# pip install docconvert
-# pip install docformatter
-# pip install pyment
+# Linting, formatting and docs
+ruff
+docconvert
+docformatter
+pyment
+
+# Dev Progs
+torch
+torchvision

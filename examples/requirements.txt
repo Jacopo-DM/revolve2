@@ -3,5 +3,9 @@ matplotlib
 multineat
 numpy
 pandas
+pydot
 pyrr
 SQLAlchemy
+torch
+torchview
+torchvision
