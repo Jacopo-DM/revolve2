@@ -23,7 +23,7 @@ def test_physical_robot(
     :param hinge_mapping: map each active hinge object to a specific
         Servo with its ID (int).
     :type hinge_mapping: dict[UUIDKey[ActiveHinge]
-    :param int]: 
+    :param int]:
     :param inverse_servos: If a servo is mounted in the wrong direction
         on the body one can fix it by inversing the action.
         inverse_servos allows you to inverse specific servos with their

@@ -155,11 +155,9 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
     def _queue_servo_targets(
         self, pins: list[int], targets: list[float]
     ) -> None:
-        """
-
-        :param pins: 
+        """:param pins:
         :type pins: list[int]
-        :param targets: 
+        :param targets:
         :type targets: list[float]
         :rtype: None
 
@@ -194,7 +192,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
 
         :param args: Arguments to the setup process.
         :type args: robot_daemon_protocol_capnp.SetupArgs
-        :param _context: 
+        :param _context:
         :type _context: Any
         :returns: Whether the setup was successful.
         :rtype: robot_daemon_protocol_capnp.SetupResponse
@@ -230,7 +228,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
 
         :param args: Args to the function.
         :type args: robot_daemon_protocol_capnp.ControlArgsReader
-        :param _context: 
+        :param _context:
         :type _context: Any
         :rtype: None
 
@@ -249,12 +247,12 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
         _context: Any,
     ) -> robot_daemon_protocol_capnp.SensorReadings:
         """Handle readSensors.
-        
+
         Stub that currently does reads nothing.
 
         :param args: Args to the function.
         :type args: robot_daemon_protocol_capnp.ReadSensorsArgsReader
-        :param _context: 
+        :param _context:
         :type _context: Any
         :returns: The readings.
         :rtype: robot_daemon_protocol_capnp.SensorReadings
@@ -274,7 +272,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
 
         :param args: Args to the function.
         :type args: robot_daemon_protocol_capnp.ControlAndReadSensorsArgsReader
-        :param _context: 
+        :param _context:
         :type _context: Any
         :returns: The readings.
         :rtype: robot_daemon_protocol_capnp.SensorReadings
@@ -293,9 +291,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
     def _get_sensor_readings(
         self, pins: Sequence[int]
     ) -> robot_daemon_protocol_capnp.SensorReadings:
-        """
-
-        :param pins: 
+        """:param pins:
         :type pins: Sequence[int]
         :rtype: robot_daemon_protocol_capnp.SensorReadings
 
@@ -350,7 +346,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
     @staticmethod
     def _camera_view_to_capnp(image: NDArray[np.uint8]) -> capnpImage:
         """Convert an image as an NDArray into an capnp compatible Image.
-        
+
         Not that we flatten the channels so they have to be
         reconstructed later on.
 

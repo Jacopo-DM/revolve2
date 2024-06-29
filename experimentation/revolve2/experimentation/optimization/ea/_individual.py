@@ -59,24 +59,24 @@ class Individual(HasId, orm.MappedAsDataclass, Generic[TGenotype]):
     else:
 
         @orm.declared_attr
-        def population_id(cls) -> orm.Mapped[int]:
-            return cls.__population_id_impl()
+        def population_id(self) -> orm.Mapped[int]:
+            return self.__population_id_impl()
 
         @orm.declared_attr
-        def population_index(cls) -> orm.Mapped[int]:
-            return cls.__population_index_impl()
+        def population_index(self) -> orm.Mapped[int]:
+            return self.__population_index_impl()
 
         @orm.declared_attr
-        def genotype_id(cls) -> orm.Mapped[int]:
-            return cls.__genotype_id_impl()
+        def genotype_id(self) -> orm.Mapped[int]:
+            return self.__genotype_id_impl()
 
         @orm.declared_attr
-        def genotype(cls) -> orm.Mapped[TGenotype]:
-            return cls.__genotype_impl()
+        def genotype(self) -> orm.Mapped[TGenotype]:
+            return self.__genotype_impl()
 
         @orm.declared_attr
-        def fitness(cls) -> orm.Mapped[float]:
-            return cls.__fitness_impl()
+        def fitness(self) -> orm.Mapped[float]:
+            return self.__fitness_impl()
 
     __type_tgenotype: ClassVar[type[TGenotype]]  # type: ignore[misc]
     __population_table: ClassVar[str]

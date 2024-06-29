@@ -1,5 +1,6 @@
 """Physical modular robot daemon that provides a network interface to use the
-robot."""
+robot.
+"""
 
 import typed_argparse as tap
 

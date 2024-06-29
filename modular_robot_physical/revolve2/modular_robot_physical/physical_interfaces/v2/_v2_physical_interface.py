@@ -89,7 +89,7 @@ class V2PhysicalInterface(PhysicalInterface):
 
     def set_servo_targets(self, pins: list[int], targets: list[float]) -> None:
         """Set the target for multiple servos.
-        
+
         This can be a fairly slow operation.
 
         :param pins: The GPIO pin numbers.
@@ -126,7 +126,7 @@ class V2PhysicalInterface(PhysicalInterface):
 
     def disable(self) -> None:
         """Set the robot to low power mode.
-        
+
         This disables all active modules and sensors.
 
 
