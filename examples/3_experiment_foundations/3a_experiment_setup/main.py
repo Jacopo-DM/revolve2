@@ -15,6 +15,7 @@ def run_experiment(num_samples: int, probability: float) -> None:
         experiment.
     :type num_samples: int
     :param probability: The probability to use for this experiment.
+    :rtype: None
     :type probability: float
     :rtype: None
 
@@ -25,17 +26,19 @@ def run_experiment(num_samples: int, probability: float) -> None:
         logging.info(
             f"Running experiment ( repetition {repetition} num_samples {num_samples} probability {probability} )"
         )
-        """
-        First, we set up a random number generator, or 'rng'.
-        A rng is not actually random; it is an algorithm creating semi-randomness from a given starting number (the 'seed'), defined by you.
-        This is both very useful and a pitfall.
-        Using the same seed makes our experiment reproducible,
-        but using the same seed between two seperate experiments will generate the same numbers (usually bad).
-        As such we create a unique seed for each experiment and run.
-        We will do this by creating a seed based on the current time.
-        This seed will be stored in the logs.
-        If we ever need to reproduce our results we can then use the seed from the log instead of generating a new one.
-        The function automatically logs the seed for you, so you cannot forget to.
+        """First, we set up a random number generator, or 'rng'.
+
+        A rng is not actually random; it is an algorithm creating semi-
+        randomness from a given starting number (the 'seed'), defined by
+        you. This is both very useful and a pitfall. Using the same seed
+        makes our experiment reproducible, but using the same seed
+        between two seperate experiments will generate the same numbers
+        (usually bad). As such we create a unique seed for each
+        experiment and run. We will do this by creating a seed based on
+        the current time. This seed will be stored in the logs. If we
+        ever need to reproduce our results we can then use the seed from
+        the log instead of generating a new one. The function
+        automatically logs the seed for you, so you cannot forget to.
         """
         rng = revolve2.experimentation.rng.make_rng_time_seed()
 
@@ -59,6 +62,7 @@ def run_experiment(num_samples: int, probability: float) -> None:
 def main() -> None:
     """Run the simulation.
 
+
     :rtype: None
 
     """
@@ -80,11 +84,12 @@ def main() -> None:
     logging.debug(
         "This debug message is invisible, because we set our visible severity to 'INFO' and higher."
     )
-    """
-    Our experiment will be very trivial; sample a number of times with a certain probability and determine the ratio of success.
-    Several probabilities and number of samples will be observed, and each experiment will be repeated a few times.
-    These parameters are defined in 'config.py'.
-    Iterate over all parameters.
+    """Our experiment will be very trivial; sample a number of times with a
+    certain probability and determine the ratio of success.
+
+    Several probabilities and number of samples will be observed, and
+    each experiment will be repeated a few times. These parameters are
+    defined in 'config.py'. Iterate over all parameters.
     """
     for num_samples in config.NUM_SAMPLES:
         for probability in config.PROBABILITIES:

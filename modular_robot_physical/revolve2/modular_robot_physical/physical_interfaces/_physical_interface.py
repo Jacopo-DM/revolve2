@@ -18,6 +18,7 @@ class PhysicalInterface(ABC):
         :param pins: The GPIO pins.
         :type pins: list[int]
         :param targets: The target angles.
+        :rtype: None
         :type targets: list[float]
         :rtype: None
 

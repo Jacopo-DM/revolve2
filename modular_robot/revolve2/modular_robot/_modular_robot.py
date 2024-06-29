@@ -26,6 +26,7 @@ class ModularRobot:
     def uuid(self) -> uuid.UUID:
         """Get the uuid, used for identification.
 
+
         :returns: The uuid.
 
         :rtype: uuid.UUID

@@ -37,7 +37,6 @@ class ControlInterfaceImpl(ControlInterface):
         :param position_delta:
         :type position_delta: float
         :rtype: None
-
         """
         maybe_hinge_joint_mujoco = (
             self._abstraction_to_mujoco_mapping.hinge_joint.get(

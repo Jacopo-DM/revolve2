@@ -15,6 +15,7 @@ def test_2b_brain_with_feedback(mocker: Mock) -> None:
     """Test 2b_brain_with_feedback example can complete.
 
     :param mocker: The mock object.
+    :rtype: None
     :type mocker: Mock
     :rtype: None
 

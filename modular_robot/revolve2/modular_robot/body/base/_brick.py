@@ -58,9 +58,11 @@ class Brick(Module):
         }
         self._mass = mass
         self._bounding_box = bounding_box
-        """The base module only has orientation as its parameter since not all modules are square.
+        """The base module only has orientation as its parameter since not all
+        modules are square.
 
-        Here we covert the angle of the module to its orientation in space.
+        Here we covert the angle of the module to its orientation in
+        space.
         """
         orientation = Quaternion.from_eulers([
             rotation if isinstance(rotation, float) else rotation.value,
@@ -75,6 +77,7 @@ class Brick(Module):
     def front(self) -> Module | None:
         """Get the front module of the brick.
 
+
         :returns: The attachment points module.
 
         :rtype: Module|None
@@ -87,6 +90,7 @@ class Brick(Module):
         """Set a module onto the attachment point.
 
         :param module: The Module.
+        :rtype: None
         :type module: Module
         :rtype: None
 
@@ -96,6 +100,7 @@ class Brick(Module):
     @property
     def right(self) -> Module | None:
         """Get right module of the brick.
+
 
         :returns: The attachment points module.
 
@@ -109,6 +114,7 @@ class Brick(Module):
         """Set a module onto the attachment point.
 
         :param module: The Module.
+        :rtype: None
         :type module: Module
         :rtype: None
 
@@ -118,6 +124,7 @@ class Brick(Module):
     @property
     def left(self) -> Module | None:
         """Get the left module of the brick.
+
 
         :returns: The attachment points module.
 
@@ -131,6 +138,7 @@ class Brick(Module):
         """Set a module onto the attachment point.
 
         :param module: The Module.
+        :rtype: None
         :type module: Module
         :rtype: None
 
@@ -140,6 +148,7 @@ class Brick(Module):
     @property
     def mass(self) -> float:
         """Get the mass of the brick (in kg).
+
 
         :returns: The value.
 

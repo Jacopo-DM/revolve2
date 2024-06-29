@@ -99,6 +99,7 @@ class Genotype(BodyGenotypeV2, BrainGenotypeCpg):
     def develop(self) -> ModularRobot:
         """Develop the genotype into a modular robot.
 
+
         :returns: The created robot.
 
         :rtype: ModularRobot

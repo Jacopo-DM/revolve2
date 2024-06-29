@@ -19,6 +19,7 @@ from ._body_develop import (
 if TYPE_CHECKING:
     import numpy as np
     from revolve2.modular_robot.body.v2 import BodyV2
+    from sqlalchemy.engine import Connection
 
 
 class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
@@ -54,6 +55,7 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
         :type rng: np.random.Generator
         :returns: The created genotype.
         :rtype: BodyGenotypeOrmV2
+
         """
         multineat_rng = multineat_rng_from_random(rng)
 
@@ -87,6 +89,7 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
         :type rng: np.random.Generator
         :returns: A mutated copy of the provided genotype.
         :rtype: BodyGenotypeOrmV2
+
         """
         multineat_rng = multineat_rng_from_random(rng)
 
@@ -117,6 +120,7 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
         :type rng: np.random.Generator
         :returns: A newly created genotype.
         :rtype: BodyGenotypeOrmV2
+
         """
         multineat_rng = multineat_rng_from_random(rng)
 
@@ -133,8 +137,11 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
     def develop_body(self) -> BodyV2:
         """Develop the genotype into a modular robot.
 
+
         :returns: The created robot.
+
         :rtype: BodyV2
+
         """
         return develop_body_v2(self.body)
 
@@ -142,20 +149,32 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
 @event.listens_for(BodyGenotypeOrmV2, "before_update", propagate=True)
 @event.listens_for(BodyGenotypeOrmV2, "before_insert", propagate=True)
 def _update_serialized_body(
+    mapper: orm.Mapper[BodyGenotypeOrmV2],
+    connection: Connection,
     target: BodyGenotypeOrmV2,
 ) -> None:
-    """:param target:
+    """:param mapper:
+    :type mapper: orm.Mapper[BodyGenotypeOrmV2]
+    :param connection:
+    :type connection: Connection
+    :param target:
     :type target: BodyGenotypeOrmV2
     :rtype: None
+
     """
     target.serialized_body = target.body.Serialize()
 
 
 @event.listens_for(BodyGenotypeOrmV2, "load", propagate=True)
-def _deserialize_body(target: BodyGenotypeOrmV2) -> None:
+def _deserialize_body(
+    target: BodyGenotypeOrmV2, context: orm.QueryContext
+) -> None:
     """:param target:
     :type target: BodyGenotypeOrmV2
+    :param context:
+    :type context: orm.QueryContext
     :rtype: None
+
     """
     body = multineat.Genome()
     body.Deserialize(target.serialized_body)

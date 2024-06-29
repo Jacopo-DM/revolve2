@@ -201,6 +201,7 @@ def run_experiment(dbengine: Engine) -> None:
 
     :param dbengine: An opened database with matching initialize
         database structure.
+    :rtype: None
     :type dbengine: Engine
     :rtype: None
 
@@ -216,8 +217,11 @@ def run_experiment(dbengine: Engine) -> None:
     # Create a new experiment instance.
     experiment = Experiment(rng_seed=rng_seed)
     """Now we save it to the database.
-    A session manages multiple changes to a database, which then can either be committed(accepted) or a rolled back(aborted) in case something bad happens in our code.
-    We add the experiment and commit as nothing can go wrong.
+
+    A session manages multiple changes to a database, which then can
+    either be committed(accepted) or a rolled back(aborted) in case
+    something bad happens in our code. We add the experiment and commit
+    as nothing can go wrong.
     """
     logging.info("Saving experiment configuration.")
     with Session(dbengine) as session:
@@ -310,15 +314,17 @@ def run_experiment(dbengine: Engine) -> None:
 def main() -> None:
     """Run the program.
 
+
     :rtype: None
 
     """
     # Set up logging.
     setup_logging(file_name="log.txt")
-    """
-    We open the database, only if it does not already exist.
-    If it did something when wrong in a previous run of this program, and we must manually figure out what to do with the existing database.
-    (maybe throw away?)
+    """We open the database, only if it does not already exist.
+
+    If it did something when wrong in a previous run of this program,
+    and we must manually figure out what to do with the existing
+    database. (maybe throw away?)
     """
     dbengine = open_database_sqlite(
         config.DATABASE_FILE, open_method=OpenMethod.OVERWRITE_IF_EXISTS

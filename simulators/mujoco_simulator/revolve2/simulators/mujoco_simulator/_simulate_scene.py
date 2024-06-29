@@ -93,7 +93,8 @@ def simulate_scene(
         fast_sim=fast_sim,
     )
     data = mujoco.MjData(model)
-    """Define a control interface for the mujoco simulation (used to control robots)."""
+    """Define a control interface for the mujoco simulation (used to control
+    robots)."""
     control_interface = ControlInterfaceImpl(
         data=data, abstraction_to_mujoco_mapping=mapping
     )
@@ -115,7 +116,8 @@ def simulate_scene(
     simulation_states: list[
         SimulationState
     ] = []  # The measured states of the simulation
-    """If we dont have cameras and the backend is not set we go to the default GLFW."""
+    """If we dont have cameras and the backend is not set we go to the default
+    GLFW."""
     if len(mapping.camera_sensor.values()) == 0:
         render_backend = RenderBackend.GLFW
 

@@ -23,6 +23,7 @@ class UnbuiltChild:
         :type position: Vector3
         :param orientation: The orientation of the attachment on the
             parent. (Default value = Quaternion())
+        :rtype: None
         :type orientation: Quaternion
         :rtype: None
 

@@ -12,6 +12,7 @@ class Evolution(ABC):
         """Step the current evolution by one iteration..
 
         :param population: The current population.
+            Any
         :type population: TPopulation
         :param **kwargs:
         :type **kwargs: Any

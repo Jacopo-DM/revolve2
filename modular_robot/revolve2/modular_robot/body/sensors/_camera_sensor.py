@@ -31,6 +31,7 @@ class CameraSensor(Sensor):
     def camera_size(self) -> tuple[int, int]:
         """Get the size of the camera.
 
+
         :returns: The camera size.
 
         :rtype: tuple[int,int]

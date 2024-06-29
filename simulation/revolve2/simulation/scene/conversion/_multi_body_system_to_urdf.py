@@ -47,16 +47,17 @@ def multi_body_system_to_urdf(
     :returns: A urdf string, plane geometries, heightmap geometries,
         joints and their names in the urdf, geometries and their names
         in the urdf, rigid bodies and their names in the urdf.
-    :rtype: tuple[str,list[GeometryPlane],list[GeometryHeightmap],list[tuple[JointHinge,str]],list[tuple[Geometry,str]],list[tuple[RigidBody,str]],]
+    :rtype: tuple[str,list[GeometryPlane],list[GeometryHeightmap],list[t
+        uple[JointHinge,str]],list[tuple[Geometry,str]],list[tuple[Rigid
+        Body,str]],]
     :raises ValueError: In case the graph is cyclic. # noqa: DAR402
         ValueError
-
     """
     return _URDFConverter().build(multi_body_system, name)
 
 
 class _URDFConverter:
-    """ """
+    """"""
 
     base_name: str
     multi_body_system: MultiBodySystem
@@ -81,8 +82,9 @@ class _URDFConverter:
         :type multi_body_system: MultiBodySystem
         :param name:
         :type name: str
-        :rtype: tuple[str,list[GeometryPlane],list[GeometryHeightmap],list[tuple[JointHinge,str]],list[tuple[Geometry,str]],list[tuple[RigidBody,str]],]
-
+        :rtype: tuple[str,list[GeometryPlane],list[GeometryHeightmap],li
+            st[tuple[JointHinge,str]],list[tuple[Geometry,str]],list[tup
+            le[RigidBody,str]],]
         """
         if not multi_body_system.has_root():
             msg = "Multi-body system has no root."
@@ -133,7 +135,6 @@ class _URDFConverter:
         :param parent_rigid_body:
         :type parent_rigid_body: RigidBody | None
         :rtype: list[xmlTree.Element]
-
         """
         if rigid_body.uuid in self.visited_rigid_bodies:
             msg = "Multi-body system is cyclic."
@@ -317,7 +318,6 @@ class _URDFConverter:
         :param rigid_body:
         :type rigid_body: RigidBody
         :rtype: None
-
         """
         el = xmlTree.SubElement(link, "collision", {"name": name})
         geometry_xml = xmlTree.SubElement(el, "geometry")
@@ -366,7 +366,6 @@ class _URDFConverter:
         :param rigid_body:
         :type rigid_body: RigidBody
         :rtype: None
-
         """
         el = xmlTree.SubElement(link, "collision", {"name": name})
         geometry_xml = xmlTree.SubElement(el, "geometry")
@@ -413,7 +412,6 @@ class _URDFConverter:
         :param rigid_body:
         :type rigid_body: RigidBody
         :rtype: None
-
         """
         _plane_box_height = 0.1
 
@@ -454,7 +452,6 @@ def _quaternion_to_euler(quaternion: Quaternion) -> Vector3:
     """:param quaternion:
     :type quaternion: Quaternion
     :rtype: Vector3
-
     """
     with warnings.catch_warnings():
         # ignore gimbal lock warning. it is irrelevant for us.

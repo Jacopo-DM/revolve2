@@ -45,6 +45,7 @@ class _AttachedSensors:
         """Add a sensor to the attached Sensors of the module.
 
         :param sensor: The sensor.
+        :rtype: None
         :type sensor: Sensor
         :rtype: None
         :raises KeyError: If something went wrong with attaching the
@@ -96,6 +97,7 @@ class _AttachedSensors:
     def imu_sensor(self) -> IMUSensor | None:
         """Get the potential IMU Sensor.
 
+
         :returns: The IMU Sensor or None.
 
         :rtype: IMUSensor|None
@@ -107,6 +109,7 @@ class _AttachedSensors:
     def active_hinge_sensor(self) -> ActiveHingeSensor | None:
         """Get the potential Active Hinge Sensor.
 
+
         :returns: The ActiveHinge Sensor or None.
 
         :rtype: ActiveHingeSensor|None
@@ -117,6 +120,7 @@ class _AttachedSensors:
     @property
     def camera_sensor(self) -> CameraSensor | None:
         """Get the potential Camera Sensor.
+
 
         :returns: The Camera Sensor or None.
 
@@ -184,6 +188,7 @@ class Module:
     def uuid(self) -> uuid.UUID:
         """Get the uuid.
 
+
         :returns: The uuid.
 
         :rtype: uuid.UUID
@@ -194,6 +199,7 @@ class Module:
     @property
     def orientation(self) -> Quaternion:
         """Get the orientation of this model relative to its parent.
+
 
         :returns: The orientation.
 
@@ -238,6 +244,7 @@ class Module:
     def children(self) -> dict[int, Module]:
         """Get all children on this module.
 
+
         :returns: The children and their respective attachment point
             index.
 
@@ -253,6 +260,7 @@ class Module:
         :type module: Module
         :param child_index: The index of the AttachmentPoint to attach
             it to.
+        :rtype: None
         :type child_index: int
         :rtype: None
         :raises KeyError: If attachment point is already populated.
@@ -323,6 +331,7 @@ class Module:
     def color(self) -> Color:
         """Get the color of this module.
 
+
         :returns: The color.
 
         :rtype: Color
@@ -335,6 +344,7 @@ class Module:
         """Set the color of a module.
 
         :param color: The color
+        :rtype: None
         :type color: Color
         :rtype: None
 
@@ -344,6 +354,7 @@ class Module:
     @property
     def attachment_points(self) -> dict[int, AttachmentPoint]:
         """Get all attachment points of this module.
+
 
         :returns: The attachment points.
 
@@ -356,6 +367,7 @@ class Module:
     def sensors(self) -> _AttachedSensors:
         """Get the sensors.
 
+
         :returns: The value.
 
         :rtype: _AttachedSensors
@@ -367,6 +379,7 @@ class Module:
         """Add a sensor to the module.
 
         :param sensor: The sensor.
+        :rtype: None
         :type sensor: Sensor
         :rtype: None
 

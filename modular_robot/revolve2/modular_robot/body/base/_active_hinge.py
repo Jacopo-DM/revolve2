@@ -132,6 +132,7 @@ class ActiveHinge(Module):
     def attachment(self) -> Module | None:
         """Get the module attached to this hinge.
 
+
         :returns: The attachment points module.
 
         :rtype: Module|None
@@ -144,6 +145,7 @@ class ActiveHinge(Module):
         """Set a module to the attachment point.
 
         :param module: The Module.
+        :rtype: None
         :type module: Module
         :rtype: None
 
@@ -153,6 +155,7 @@ class ActiveHinge(Module):
     @property
     def static_friction(self) -> float:
         """Get the static friction.
+
 
         :returns: The value.
 
@@ -165,6 +168,7 @@ class ActiveHinge(Module):
     def dynamic_friction(self) -> float:
         """Get the dynamic friction.
 
+
         :returns: The value.
 
         :rtype: float
@@ -175,6 +179,7 @@ class ActiveHinge(Module):
     @property
     def range(self) -> float:
         """Get the range of the servo.
+
 
         :returns: The value.
 
@@ -187,6 +192,7 @@ class ActiveHinge(Module):
     def effort(self) -> float:
         """Get the effort of the servo.
 
+
         :returns: The value.
 
         :rtype: float
@@ -197,6 +203,7 @@ class ActiveHinge(Module):
     @property
     def velocity(self) -> float:
         """Get the velocity of the servo.
+
 
         :returns: The value.
 
@@ -251,6 +258,7 @@ class ActiveHinge(Module):
     def frame_offset(self) -> float:
         """Get the offset of the frame (in m).
 
+
         :returns: The value.
 
         :rtype: float
@@ -261,6 +269,7 @@ class ActiveHinge(Module):
     @property
     def servo_offset(self) -> float:
         """Get the servo offset (in m).
+
 
         :returns: The value.
 
@@ -273,6 +282,7 @@ class ActiveHinge(Module):
     def frame_mass(self) -> float:
         """Get the frame mass (in kg).
 
+
         :returns: The value.
 
         :rtype: float
@@ -283,6 +293,7 @@ class ActiveHinge(Module):
     @property
     def servo1_mass(self) -> float:
         """Get the mass of the first servo part (in kg).
+
 
         :returns: The value.
 
@@ -295,6 +306,7 @@ class ActiveHinge(Module):
     def servo2_mass(self) -> float:
         """Get the mass of the second servo part (in kg).
 
+
         :returns: The value.
 
         :rtype: float
@@ -305,6 +317,7 @@ class ActiveHinge(Module):
     @property
     def joint_offset(self) -> float:
         """Get the joint offset (in m).
+
 
         :returns: The value.
 
@@ -332,6 +345,7 @@ class ActiveHinge(Module):
     def pid_gain_p(self) -> float:
         """Get the proportional gain of the pid position controller.
 
+
         :returns: The value.
 
         :rtype: float
@@ -342,6 +356,7 @@ class ActiveHinge(Module):
     @property
     def pid_gain_d(self) -> float:
         """Get the derivative gain of the pid position controller.
+
 
         :returns: The value.
 

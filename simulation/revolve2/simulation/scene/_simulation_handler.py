@@ -22,6 +22,7 @@ class SimulationHandler(ABC):
         :param control: Interface for setting control targets.
         :type control: ControlInterface
         :param dt: The time since the last call to this function.
+        :rtype: None
         :type dt: float
         :rtype: None
 

@@ -32,7 +32,9 @@ def simulate_manual_scene(
 
     :param scene: The scene to simulate.
     :type scene: Scene
-    :param render_backend: The render backend. (Default value = RenderBackend.GLFW)
+    :param render_backend: The render backend. (Default value =
+        RenderBackend.GLFW)
+    :rtype: None
     :type render_backend: RenderBackend
     :rtype: None
 

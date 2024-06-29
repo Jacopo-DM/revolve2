@@ -18,7 +18,7 @@ def flat(size: Vector2 = Vector2([20.0, 20.0])) -> Terrain:
     """Create a flat plane terrain.
 
     :param size: Size of the plane. (Default value = None)
-    :type size: Vector2 | None
+    :type size: Vector2
     :returns: The created terrain.
     :rtype: Terrain
 

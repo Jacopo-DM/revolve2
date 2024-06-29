@@ -31,6 +31,8 @@ class Generation(HasId, orm.MappedAsDataclass, Generic[TPopulation]):
 
         class MyGeneration(Base, Generation[MyPopulation]):
             __tablename__ = "my_generation"
+
+
     """
 
     # -------------------------------------
@@ -55,14 +57,17 @@ class Generation(HasId, orm.MappedAsDataclass, Generic[TPopulation]):
 
         @orm.declared_attr
         def generation_index(self) -> orm.Mapped[int]:
+            """:rtype: orm.Mapped[int]"""
             return self.__generation_index_impl()
 
         @orm.declared_attr
         def _population_id(self) -> orm.Mapped[int]:
+            """:rtype: orm.Mapped[int]"""
             return self.__population_id_impl()
 
         @orm.declared_attr
         def population(self) -> orm.Mapped[TPopulation]:
+            """:rtype: orm.Mapped[TPopulation]"""
             return self.__population_impl()
 
     __type_tpopulation: ClassVar[type[TPopulation]]  # type: ignore[misc]

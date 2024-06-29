@@ -23,6 +23,7 @@ def test_robot(
     :param simulator: The simulator.
     :type simulator: Simulator
     :param batch_parameters: The batch parameters.
+    :rtype: None
     :type batch_parameters: BatchParameters
     :rtype: None
 

@@ -139,6 +139,7 @@ class BodyGenotypeV2:
     def develop_body(self) -> BodyV2:
         """Develop the genotype into a modular robot.
 
+
         :returns: The created robot.
 
         :rtype: BodyV2

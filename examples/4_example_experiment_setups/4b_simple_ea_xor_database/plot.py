@@ -12,6 +12,7 @@ from sqlalchemy import select
 def main() -> None:
     """Run the program.
 
+
     :rtype: None
 
     """

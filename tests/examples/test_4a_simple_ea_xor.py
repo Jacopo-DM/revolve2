@@ -6,6 +6,7 @@ from tests.conftest import EXAMPLES_DIR, assert_command_succeeds
 def test_4a_simple_ea_xor() -> None:
     """Test 4a_simple_ea_xor example can complete.
 
+
     :rtype: None
 
     """

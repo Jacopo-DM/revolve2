@@ -15,8 +15,6 @@ class BrainCpgInstance(BrainInstance):
     A state array that is integrated over time following the differential equation `X'=WX`.
     W is a weight matrix that is multiplied by the state array.
     The outputs of the controller are defined by the `outputs`, a list of indices for the state array.
-
-
     """
 
     _initial_state: npt.NDArray[np.float64]
@@ -75,7 +73,6 @@ class BrainCpgInstance(BrainInstance):
         :type dt: float
         :returns: The new state.
         :rtype: tuple[npt.NDArray[np.float64],npt.NDArray[np.float64]]
-
         """
         a_mat_1: npt.NDArray[np.float64] = np.matmul(a_mat, state)
         a_mat_2: npt.NDArray[np.float64] = np.matmul(
@@ -101,7 +98,6 @@ class BrainCpgInstance(BrainInstance):
         :param dt:
         :type dt: float
         :rtype: tuple[npt.NDArray[np.float64],npt.NDArray[np.float64]]
-
         """
         delta = np.matmul(a, state) * dt
         return np.clip(state + delta, -1, 1), delta
@@ -125,7 +121,6 @@ class BrainCpgInstance(BrainInstance):
         :param control_interface: Interface for controlling the robot.
         :type control_interface: ModularRobotControlInterface
         :rtype: None
-
         """
         # Integrate ODE to obtain new state.
         # self._state, delta = self._rk45(self._state, self._weight_matrix, dt)

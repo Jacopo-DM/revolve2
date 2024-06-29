@@ -312,6 +312,7 @@ class MorphologicalMeasures(Generic[TModule]):
     def num_modules(self) -> int:
         """Get the number of modules.
 
+
         :returns: The number of modules.
 
         :rtype: int
@@ -323,6 +324,7 @@ class MorphologicalMeasures(Generic[TModule]):
     def num_bricks(self) -> int:
         """Get the number of bricks.
 
+
         :returns: The number of bricks.
 
         :rtype: int
@@ -333,6 +335,7 @@ class MorphologicalMeasures(Generic[TModule]):
     @property
     def num_active_hinges(self) -> int:
         """Get the number of active hinges.
+
 
         :returns: The number of active hinges.
 
@@ -673,6 +676,7 @@ class MorphologicalMeasures(Generic[TModule]):
     @property
     def symmetry(self) -> float:
         """Get the 'symmetry' measurement from the paper, but extended to 3d.
+
 
         :returns: Symmetry measurement.
 

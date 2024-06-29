@@ -60,6 +60,7 @@ class V1PhysicalInterface(PhysicalInterface):
         :param pins: The GPIO pins.
         :type pins: list[int]
         :param targets: The target angles.
+        :rtype: None
         :type targets: list[float]
         :rtype: None
 
@@ -122,6 +123,7 @@ class V1PhysicalInterface(PhysicalInterface):
         """Get the current position of multiple servos.
 
         :param pins: The GPIO pins.
+        :rtype: list[float]
         :type pins: Sequence[int]
         :rtype: list[float]
         :raises NotImplementedError: If getting the servo position is

@@ -91,6 +91,7 @@ class BrainCpgNetworkStatic(Brain):
     def make_instance(self) -> BrainInstance:
         """Create an instance of this brain.
 
+
         :returns: The created instance.
 
         :rtype: BrainInstance

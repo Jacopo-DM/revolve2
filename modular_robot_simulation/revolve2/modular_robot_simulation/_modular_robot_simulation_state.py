@@ -27,6 +27,7 @@ class ModularRobotSimulationState:
     def get_pose(self) -> Pose:
         """Get the pose of the modular robot.
 
+
         :returns: The retrieved pose.
 
         :rtype: Pose

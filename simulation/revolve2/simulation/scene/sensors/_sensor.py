@@ -19,6 +19,7 @@ class Sensor(ABC):
     def uuid(self) -> uuid.UUID:
         """Get the uuid.
 
+
         :returns: The uuid.
 
         :rtype: uuid.UUID

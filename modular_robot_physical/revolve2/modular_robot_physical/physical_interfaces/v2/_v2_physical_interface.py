@@ -95,6 +95,7 @@ class V2PhysicalInterface(PhysicalInterface):
         :param pins: The GPIO pin numbers.
         :type pins: list[int]
         :param targets: The target angles.
+        :rtype: None
         :type targets: list[float]
         :rtype: None
 

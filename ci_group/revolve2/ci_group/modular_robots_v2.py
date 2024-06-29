@@ -7,6 +7,7 @@ from revolve2.modular_robot.body.v2 import ActiveHingeV2, BodyV2, BrickV2
 def all() -> list[BodyV2]:
     """Get a list of all standard module robots.
 
+
     :returns: The list of robots.
 
     :rtype: list[BodyV2]
@@ -45,6 +46,7 @@ def get(name: str) -> BodyV2:
 
 def runner_v2() -> BodyV2:
     """Sample robot with new HW config.
+
 
     :returns: the robot
 
@@ -87,6 +89,7 @@ def runner_v2() -> BodyV2:
 def gecko_v2() -> BodyV2:
     """Sample robot with new HW config.
 
+
     :returns: the robot
 
     :rtype: BodyV2
@@ -124,6 +127,7 @@ def gecko_v2() -> BodyV2:
 
 def gecko_plus_v2() -> BodyV2:
     """Sample robot with new HW config.
+
 
     :returns: the robot
 
@@ -173,6 +177,7 @@ def gecko_plus_v2() -> BodyV2:
 def spider_v2() -> BodyV2:
     """Get the spider modular robot.
 
+
     :returns: the robot.
 
     :rtype: BodyV2
@@ -205,6 +210,7 @@ def spider_v2() -> BodyV2:
 
 def ant_v2() -> BodyV2:
     """Get the ant modular robot.
+
 
     :returns: the robot.
 
@@ -248,6 +254,7 @@ def ant_v2() -> BodyV2:
 
 def snake_v2() -> BodyV2:
     """Get the snake modular robot.
+
 
     :returns: the robot.
 

@@ -23,6 +23,7 @@ class ActiveHingeSensorStateImpl(ActiveHingeSensorState):
     def position(self) -> float:
         """Get the measured position of the active hinge.
 
+
         :returns: The measured position.
 
         :rtype: float

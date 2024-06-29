@@ -41,6 +41,7 @@ class NativeMujocoViewer(Viewer):
     def render(self) -> int | None:
         """Render the scene.
 
+
         :returns: A cycle position if applicable.
 
         :rtype: int|None
@@ -52,6 +53,7 @@ class NativeMujocoViewer(Viewer):
     def close_viewer(self) -> None:
         """Close the viewer.
 
+
         :rtype: None
 
         """
@@ -59,6 +61,7 @@ class NativeMujocoViewer(Viewer):
 
     def current_viewport_size(self) -> tuple[int, int]:
         """Grabs the *current* viewport size (and updates the cached values).
+
 
         :rtype: tuple[int,int]
 
@@ -71,6 +74,7 @@ class NativeMujocoViewer(Viewer):
     @property
     def context(self) -> mujoco.MjrContext:
         """Get the context.
+
 
         :returns: The context.
 
@@ -85,6 +89,7 @@ class NativeMujocoViewer(Viewer):
     def view_port(self) -> mujoco.MjrRect:
         """Get the view port.
 
+
         :rtype: mujoco.MjrRect
 
         :raises NotImplementedError: As it is not implemented.
@@ -96,6 +101,7 @@ class NativeMujocoViewer(Viewer):
     @property
     def can_record(self) -> bool:
         """Return False.
+
 
         :returns: False.
 

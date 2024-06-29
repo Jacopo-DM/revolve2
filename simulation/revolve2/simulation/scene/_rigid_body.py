@@ -14,7 +14,7 @@ from .sensors import CameraSensor, IMUSensor, Sensor
 
 @dataclass
 class _AttachedSensors:
-    """ """
+    """"""
 
     imu_sensors: list[IMUSensor] = field(default_factory=list)
     camera_sensors: list[CameraSensor] = field(default_factory=list)
@@ -26,7 +26,6 @@ class _AttachedSensors:
         :type sensor: Sensor
         :rtype: None
         :raises ValueError: If the sensor type is unknown.
-
         """
         match sensor:
             case IMUSensor():
@@ -75,9 +74,7 @@ class RigidBody:
         """Get the uuid.
 
         :returns: The uuid.
-
         :rtype: uuid.UUID
-
         """
         return self._uuid
 
@@ -85,9 +82,7 @@ class RigidBody:
         """Get mass of the rigid body.
 
         :returns: The mass.
-
         :rtype: float
-
         """
         return sum(geometry.mass for geometry in self.geometries)
 
@@ -98,11 +93,8 @@ class RigidBody:
         If no geometry has mass, the average position of all geometries
         is returned, unweighted.
 
-
         :returns: The center of mass.
-
         :rtype: Vector3
-
         """
         if self.mass() == 0:
             return sum(
@@ -124,12 +116,9 @@ class RigidBody:
         For more details on the inertia calculations, see
         https://en.wikipedia.org/wiki/List_of_moments_of_inertia.
 
-
         :returns: The inertia tensor.
-
         :rtype: Matrix33
         :raises ValueError: If one of the geometries is not a box.
-
         """
         com = self.center_of_mass()
         inertia = Matrix33()
@@ -179,7 +168,6 @@ class RigidBody:
         :type geometry: GeometryBox
         :returns: The local inertia.
         :rtype: Matrix33
-
         """
         # calculate inertia in local coordinates
         local_inertia = Matrix33()
@@ -208,7 +196,6 @@ class RigidBody:
         :type geometry: GeometrySphere
         :returns: The local inertia.
         :rtype: Matrix33
-
         """
         # calculate inertia in local coordinates
         local_inertia = Matrix33()
@@ -222,7 +209,6 @@ class RigidBody:
         """:param quat:
         :type quat: Quaternion
         :rtype: Matrix33
-
         """
         # https://automaticaddison.com/how-to-convert-a-quaternion-to-a-rotation-matrix/
 

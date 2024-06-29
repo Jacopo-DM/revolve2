@@ -17,6 +17,7 @@ from revolve2.simulators.mujoco_simulator import LocalSimulator
 def main() -> None:
     """Run the simulation.
 
+
     :rtype: None
 
     """
@@ -46,8 +47,12 @@ def main() -> None:
         batch_parameters=batch_parameters,
         scenes=scene,
     )
-    """Using the previously obtained scene_states we can now start to evaluate our robot.
-    Note in this example we simply use x-y displacement, but you can do any other way of evaluation as long as the required data is in the scene states.
+    """Using the previously obtained scene_states we can now start to evaluate
+    our robot.
+
+    Note in this example we simply use x-y displacement, but you can do
+    any other way of evaluation as long as the required data is in the
+    scene states.
     """
     # Get the state at the beginning and end of the simulation.
     scene_state_begin = scene_states[0]

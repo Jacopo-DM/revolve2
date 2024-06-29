@@ -217,6 +217,7 @@ def find_best_robot(
 def main() -> None:
     """Run the program.
 
+
     :rtype: None
 
     """
@@ -289,11 +290,14 @@ def main() -> None:
         logging.info(
             f"Generation {generation_index + 1} / {config.NUM_GENERATIONS}."
         )
-        """
-        In contrast to the previous example we do not explicitly stat the order of operations here, but let the ModularRobotEvolution object do the scheduling.
-        This does not give a performance boost, but is more readable and less prone to errors due to mixing up the order.
+        """In contrast to the previous example we do not explicitly stat the
+        order of operations here, but let the ModularRobotEvolution object do
+        the scheduling. This does not give a performance boost, but is more
+        readable and less prone to errors due to mixing up the order.
 
-        Not that you are not restricted to the classical ModularRobotEvolution object, since you can adjust the step function as you want.
+        Not that you are not restricted to the classical
+        ModularRobotEvolution object, since you can adjust the step
+        function as you want.
         """
         population = modular_robot_evolution.step(
             population

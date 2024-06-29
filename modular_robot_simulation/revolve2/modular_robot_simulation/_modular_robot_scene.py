@@ -44,7 +44,9 @@ class ModularRobotScene:
         :param translate_z_aabb: Whether the robot should be translated
             upwards so it's T-pose axis-aligned bounding box is exactly
             on the ground. I.e. if the robot should be placed exactly on
-            the ground. The pose parameters is still added afterwards. (Default value = True)
+            the ground. The pose parameters is still added afterwards.
+            (Default value = True)
+        :rtype: None
         :type translate_z_aabb: bool
         :rtype: None
 
@@ -60,6 +62,7 @@ class ModularRobotScene:
         """Add an intractable object to the scene.
 
         :param objt: The object as a multi body system.
+        :rtype: None
         :type objt: MultiBodySystem
         :rtype: None
 
@@ -70,6 +73,7 @@ class ModularRobotScene:
         self,
     ) -> tuple[Scene, dict[UUIDKey[ModularRobot], MultiBodySystem]]:
         """Convert this to a simulation scene.
+
 
         :returns: The created scene.
 

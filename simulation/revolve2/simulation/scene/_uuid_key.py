@@ -9,6 +9,7 @@ class HasUUID(Protocol):
     def uuid(self) -> UUID:
         """Get the uuid.
 
+
         :returns: The uuid.  # noqa: DAR202
 
         :rtype: UUID
@@ -38,6 +39,7 @@ class UUIDKey(Generic[_T]):
     @property
     def value(self) -> _T:
         """Get the wrapped value.
+
 
         :returns: The value.
 

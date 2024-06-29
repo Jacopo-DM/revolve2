@@ -36,7 +36,8 @@ class CoreV2(Core):
         mass = (
             num_batteries * self._BATTERY_MASS + self._FRAME_MASS
         )  # adjust if multiple batteries are installed
-        """Here we produce the attachment faces, with the advanced logic behind conflict checking."""
+        """Here we produce the attachment faces, with the advanced logic behind
+        conflict checking."""
         self._attachment_faces = {
             self.FRONT: AttachmentFaceCoreV2(
                 horizontal_offset=self._horizontal_offset,
@@ -76,6 +77,7 @@ class CoreV2(Core):
     def front_face(self) -> AttachmentFaceCoreV2:
         """Get the face attached to the front of the core.
 
+
         :returns: The attached module.
 
         :rtype: AttachmentFaceCoreV2
@@ -86,6 +88,7 @@ class CoreV2(Core):
     @property
     def right_face(self) -> AttachmentFaceCoreV2:
         """Get the face attached to the right of the core.
+
 
         :returns: The attached module.
 
@@ -98,6 +101,7 @@ class CoreV2(Core):
     def back_face(self) -> AttachmentFaceCoreV2:
         """Get the face attached to the back of the core.
 
+
         :returns: The attached module.
 
         :rtype: AttachmentFaceCoreV2
@@ -108,6 +112,7 @@ class CoreV2(Core):
     @property
     def left_face(self) -> AttachmentFaceCoreV2:
         """Get the face attached to the left of the core.
+
 
         :returns: The attached module.
 
@@ -120,6 +125,7 @@ class CoreV2(Core):
     def horizontal_offset(self) -> float:
         """Get the horizontal offset for attachment positions (in m).
 
+
         :returns: The value.
 
         :rtype: float
@@ -131,6 +137,7 @@ class CoreV2(Core):
     def vertical_offset(self) -> float:
         """Get the vertical offset for attachment positions (in m).
 
+
         :returns: The value.
 
         :rtype: float
@@ -141,6 +148,7 @@ class CoreV2(Core):
     @property
     def attachment_faces(self) -> dict[int, AttachmentFaceCoreV2]:
         """Get all attachment faces for the Core.
+
 
         :returns: The attachment faces.
 

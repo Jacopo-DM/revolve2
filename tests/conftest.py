@@ -17,6 +17,7 @@ def assert_command_succeeds(cmd: list[str]) -> None:
     """Assert if a given command succeeds.
 
     :param cmd: Slices of the command.
+    :rtype: None
     :type cmd: list[str]
     :rtype: None
 

@@ -36,7 +36,8 @@ def make_body() -> (
     body.core_v2.right_face.bottom.attachment.attachment = BrickV2(
         RightAngles.DEG_0
     )
-    """Here we collect all ActiveHinges, to map them later onto the physical robot."""
+    """Here we collect all ActiveHinges, to map them later onto the physical
+    robot."""
     active_hinges = (
         body.core_v2.left_face.bottom,
         body.core_v2.left_face.bottom.attachment,
@@ -101,8 +102,11 @@ def main() -> None:
         inverse_servos={},
     )
     """Create a Remote for the physical modular robot.
-    Make sure to target the correct hardware type and fill in the correct IP and credentials.
-    The debug flag is turned on. If the remote complains it cannot keep up, turning off debugging might improve performance.
+
+    Make sure to target the correct hardware type and fill in the
+    correct IP and credentials. The debug flag is turned on. If the
+    remote complains it cannot keep up, turning off debugging might
+    improve performance.
     """
     run_remote(
         config=config,

@@ -17,6 +17,7 @@ def test_4d_robot_bodybrain_ea_database(mocker: Mock, tmpdir: str) -> None:
     :param mocker: The mock object.
     :type mocker: Mock
     :param tmpdir: Temporary directory for spawning database file.
+    :rtype: None
     :type tmpdir: str
     :rtype: None
 

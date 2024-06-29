@@ -18,6 +18,7 @@ from sqlalchemy.orm import Session
 def main() -> None:
     """Perform the rerun.
 
+
     :rtype: None
 
     """

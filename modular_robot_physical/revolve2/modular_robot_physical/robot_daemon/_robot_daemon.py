@@ -42,6 +42,7 @@ class _Program:
         """Handle a new connection.
 
         :param stream: Connection stream.
+        :rtype: None
         :type stream: Any
         :rtype: None
 
@@ -91,6 +92,7 @@ def run_robot_daemon(
     :param dry: Run in dry mode, not writing/reading hardware.
     :type dry: bool
     :param hardware_type: The type of hardware this runs on.
+    :rtype: None
     :type hardware_type: HardwareType
     :rtype: None
 

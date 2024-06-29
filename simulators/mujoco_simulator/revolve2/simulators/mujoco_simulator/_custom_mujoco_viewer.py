@@ -85,6 +85,7 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
         :param text1: Some text.
         :type text1: str
         :param text2: Additional text.
+        :rtype: None
         :type text2: str
         :rtype: None
 
@@ -96,6 +97,7 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
 
     def _create_overlay(self) -> None:
         """Create a Custom Overlay.
+
 
         :rtype: None
 
@@ -237,6 +239,7 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
         :param action: The Action.
         :type action: int | None
         :param mods: The Mods.
+        :rtype: None
         :type mods: int | None
         :rtype: None
 
@@ -255,6 +258,7 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
 
     def render(self) -> int | None | str:
         """Render the scene.
+
 
         :returns: A cycle position if applicable.
 
@@ -276,6 +280,7 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer):  # type: ignore
 
     def _increment_position(self) -> None:
         """Increment our cycle position.
+
 
         :rtype: None
 

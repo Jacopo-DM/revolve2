@@ -29,6 +29,7 @@ def run_experiment(dbengine: Engine) -> None:
 
     :param dbengine: An opened database with matching initialize
         database structure.
+    :rtype: None
     :type dbengine: Engine
     :rtype: None
 
@@ -118,6 +119,7 @@ def run_experiment(dbengine: Engine) -> None:
 
 def main() -> None:
     """Run the program.
+
 
     :rtype: None
 

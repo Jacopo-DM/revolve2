@@ -21,6 +21,7 @@ class Scene:
         """Add a multi-body system to the scene.
 
         :param multi_body_system: The multi-body system to add.
+        :rtype: None
         :type multi_body_system: MultiBodySystem
         :rtype: None
 

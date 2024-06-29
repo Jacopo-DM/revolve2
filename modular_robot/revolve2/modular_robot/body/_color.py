@@ -18,6 +18,7 @@ class Color:
     def to_normalized_rgba_list(self) -> list[float]:
         """Convert to rgba list where each value is between 0 and 1.
 
+
         :returns: The list.
 
         :rtype: list[float]

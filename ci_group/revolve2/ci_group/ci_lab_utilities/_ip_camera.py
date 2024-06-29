@@ -96,6 +96,7 @@ class IPCamera:
     def _receive(self) -> None:
         """Receive data from the camera.
 
+
         :rtype: None
 
         """
@@ -118,6 +119,7 @@ class IPCamera:
     def _display(self) -> None:
         """Display the data from the camera.
 
+
         :rtype: None
 
         """
@@ -132,6 +134,7 @@ class IPCamera:
 
     def _record(self) -> None:
         """Record the data from the camera.
+
 
         :rtype: None
 
@@ -153,6 +156,7 @@ class IPCamera:
     def _dump_record(self) -> None:
         """Dump record queue if not used.
 
+
         :rtype: None
 
         """
@@ -162,6 +166,7 @@ class IPCamera:
 
     def _dump_display(self) -> None:
         """Dump display queue if not used.
+
 
         :rtype: None
 
@@ -195,6 +200,7 @@ class IPCamera:
         :type record: bool
         :param display: Whether to display the video stream. (Default
             value = True)
+        :rtype: None
         :rtype: None
         :rtype: None
         :type display: bool

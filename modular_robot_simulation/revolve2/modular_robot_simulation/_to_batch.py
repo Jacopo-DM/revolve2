@@ -18,7 +18,8 @@ def to_batch(
     :param batch_parameters: Parameters for the batch that are not
         contained in the modular robot scenes.
     :type batch_parameters: BatchParameters
-    :param record_settings: Setting for recording the simulations. (Default value = None)
+    :param record_settings: Setting for recording the simulations.
+        (Default value = None)
     :type record_settings: RecordSettings | None
     :returns: The created batch and a mapping from modular robots to
         multi-body systems for each scene.

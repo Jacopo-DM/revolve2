@@ -25,6 +25,7 @@ def main_with_args(args: Args) -> None:
     """Run the program from the point where arguments were parsed.
 
     :param args: The parsed program arguments.
+    :rtype: None
     :type args: Args
     :rtype: None
 

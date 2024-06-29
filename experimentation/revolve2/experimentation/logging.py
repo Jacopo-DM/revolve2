@@ -57,7 +57,9 @@ def setup_logging(
 
     :param level: The log level to use. (Default value = logging.INFO)
     :type level: int
-    :param file_name: If not None, also writes to this file. (Default value = None)
+    :param file_name: If not None, also writes to this file. (Default
+        value = None)
+    :rtype: None
     :type file_name: str | None
     :rtype: None
 

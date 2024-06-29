@@ -116,6 +116,7 @@ class CpgNetworkStructure:
     def num_connections(self) -> int:
         """Get the number of connections in the structure.
 
+
         :returns: The number of connections.
 
         :rtype: int
@@ -174,7 +175,7 @@ class CpgNetworkStructure:
 
         :param value: The value to use for all states
         :type value: float
-        :param balanced:  (Default value = True)
+        :param balanced: (Default value = True)
         :type balanced: bool
         :returns: The array of states.
         :rtype: npt.NDArray[np.float64]
@@ -192,6 +193,7 @@ class CpgNetworkStructure:
     @property
     def num_cpgs(self) -> int:
         """Get the number of CPGs in the structure.
+
 
         :returns: The number of CPGs.
 

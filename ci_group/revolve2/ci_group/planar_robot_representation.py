@@ -43,7 +43,6 @@ def draw_robots(
         100)
     :type scale: int
     :param path: The path for the output files. (Default value = None)
-    :rtype: None
     :type path: str | None
     :rtype: None
 
@@ -74,7 +73,6 @@ def draw_robot(
         = 100)
     :type scale: int
     :param path: The path to save images to. (Default value = None)
-    :rtype: None
     :type path: str | None
     :rtype: None
 
@@ -127,14 +125,12 @@ def _draw_module(
     :type orientation: NDArray[np.int_]
     :param context: The context to draw it on.
     :type context: "cairo.Context[cairo.ImageSurface]"
-    :param *:
     :param print_id: If the modules id should be drawn as well. (Default
         value = False)
-    :rtype: None
     :type print_id: bool
+    :param :
     :rtype: None
     :raises Exception: If the module cant be drawn.
-
     """
     x, y = position
     context.rectangle(x, y, 1, 1)  # draw module object
@@ -214,7 +210,6 @@ def _make_rot_mat(theta: float) -> NDArray[np.int_]:
     :type theta: float
     :returns: The matrix.
     :rtype: NDArray[np.int_]
-
     """
     c, s = int(round(np.cos(theta))), int(round(np.sin(theta)))
     return np.array(((c, -s), (s, c)))
@@ -226,9 +221,7 @@ def _save_png(image: cairo.ImageSurface, path: str) -> None:
     :param image: The image.
     :type image: cairo.ImageSurface
     :param path: The path to save the image to.
-    :rtype: None
     :type path: str
     :rtype: None
-
     """
     image.write_to_png(f"{path}/robot_2d_{hash(image)}.png")

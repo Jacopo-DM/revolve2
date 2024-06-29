@@ -15,6 +15,7 @@ def test_3b_evaluate_single_robot(mocker: Mock) -> None:
     """Test 3b_evaluate_single_robot example can complete.
 
     :param mocker: The mock object.
+    :rtype: None
     :type mocker: Mock
     :rtype: None
 

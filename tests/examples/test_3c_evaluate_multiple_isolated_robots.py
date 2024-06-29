@@ -17,6 +17,7 @@ def test_3c_evaluate_multiple_isolated_robots(mocker: Mock) -> None:
     """Test 3c_evaluate_multiple_isolated_robots example can complete.
 
     :param mocker: The mock object.
+    :rtype: None
     :type mocker: Mock
     :rtype: None
 

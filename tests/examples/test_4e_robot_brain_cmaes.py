@@ -12,6 +12,7 @@ def test_4e_robot_brain_cmaes(mocker: Mock) -> None:
     """Test 4e_robot_brain_cmaes example can complete.
 
     :param mocker: The mock object.
+    :rtype: None
     :type mocker: Mock
     :rtype: None
 

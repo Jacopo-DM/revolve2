@@ -18,6 +18,7 @@ from revolve2.simulators.mujoco_simulator import LocalSimulator
 def main() -> None:
     """Run the simulation.
 
+
     :rtype: None
 
     """

@@ -42,7 +42,16 @@ def _active_hinge_targets_to_pin_controls(
     config: Config,
     active_hinges_and_targets: list[tuple[UUIDKey[ActiveHinge], float]],
 ) -> list[robot_daemon_protocol_capnp.PinControl]:
-    """Convert active hinge targets to pin controls."""
+    """Convert active hinge targets to pin controls.
+
+    :param config:
+    :type config: Config
+    :param active_hinges_and_targets:
+    :type active_hinges_and_targets: list[tuple[UUIDKey[ActiveHinge]
+    :param float]]:
+    :rtype: list[robot_daemon_protocol_capnp.PinControl]
+
+    """
     pins = [
         config.hinge_mapping[active_hinge]
         for active_hinge, _ in active_hinges_and_targets
@@ -69,7 +78,24 @@ async def _run_remote_impl(
     debug: bool,
     manual_mode: bool,
 ) -> None:
-    """Run the robot remotely."""
+    """Run the robot remotely.
+
+    :param config:
+    :type config: Config
+    :param hostname:
+    :type hostname: str
+    :param on_prepared:
+    :type on_prepared: Callable[[]
+    :param None]:
+    :param port:
+    :type port: int
+    :param debug:
+    :type debug: bool
+    :param manual_mode:
+    :type manual_mode: bool
+    :rtype: None
+
+    """
     active_hinge_sensor_to_pin = {
         UUIDKey(key.value.sensors.active_hinge_sensor): pin
         for key, pin in config.hinge_mapping.items()
@@ -271,7 +297,13 @@ async def _run_remote_impl(
 
 
 def _capnp_to_vector3(vector: robot_daemon_protocol_capnp.Vector3) -> Vector3:
-    """Convert a capnp compatible Vector3 into a pyrr Vector3."""
+    """Convert a capnp compatible Vector3 into a pyrr Vector3.
+
+    :param vector:
+    :type vector: robot_daemon_protocol_capnp.Vector3
+    :rtype: Vector3
+
+    """
     return Vector3([vector.x, vector.y, vector.z])
 
 
@@ -362,14 +394,17 @@ def run_remote(
     :param on_prepared: Callback for when everything is prepared, ready
         to run the actual controller. You can use this for timing when
         the actual controller starts.
+        lambda: None)
     :type on_prepared: Callable[[]
     :param None]:  (Default value = lambda: None)
-    :param port: Port the robot daemon uses. (Default value = STANDARD_PORT)
+    :param port: Port the robot daemon uses. (Default value =
+        STANDARD_PORT)
     :type port: int
     :param debug: Enable debug messages. (Default value = False)
     :type debug: bool
     :param manual_mode: Enable manual controls for the robot, ignoring
         the brain. (Default value = False)
+    :rtype: None
     :type manual_mode: bool
     :rtype: None
 

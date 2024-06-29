@@ -48,7 +48,7 @@ class Population(HasId, orm.MappedAsDataclass, Generic[TIndividual]):
 
         @orm.declared_attr
         def individuals(self) -> orm.Mapped[list[TIndividual]]:
-            """:returns: :return: A list of individuals.
+            """:returns: returns: :return: A list of individuals.
 
             :rtype: orm.Mapped[list[TIndividual]]
 

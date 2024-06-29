@@ -15,7 +15,8 @@ def open_async_database_sqlite(
 
     :param db_file: File for the database.
     :type db_file: str
-    :param open_method: The way the database should be opened. (Default value = OpenMethod.OPEN_IF_EXISTS)
+    :param open_method: The way the database should be opened. (Default
+        value = OpenMethod.OPEN_IF_EXISTS)
     :type open_method: OpenMethod
     :returns: The opened database.
     :rtype: AsyncEngine
@@ -32,7 +33,8 @@ def open_database_sqlite(
 
     :param db_file: File for the database.
     :type db_file: str
-    :param open_method: The way the database should be opened. (Default value = OpenMethod.OPEN_IF_EXISTS)
+    :param open_method: The way the database should be opened. (Default
+        value = OpenMethod.OPEN_IF_EXISTS)
     :type open_method: OpenMethod
     :returns: The opened database.
     :rtype: Engine

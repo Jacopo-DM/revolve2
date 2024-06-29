@@ -28,6 +28,7 @@ def test_physical_robot(
         on the body one can fix it by inversing the action.
         inverse_servos allows you to inverse specific servos with their
         gpio number as key.
+    :rtype: None
     :type inverse_servos: dict[int, bool]
     :rtype: None
 

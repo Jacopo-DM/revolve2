@@ -18,6 +18,7 @@ if TYPE_CHECKING:
 def main() -> None:
     """Perform the rerun.
 
+
     :rtype: None
 
     """

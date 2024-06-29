@@ -240,6 +240,7 @@ def _add_planes(
     :param fast_sim: Whether fast sim is used.
     :type fast_sim: bool
     :param env_mjcf: The mujoco environment to simulate.
+    :rtype: None
     :type env_mjcf: mjcf.RootElement
     :rtype: None
 
@@ -334,6 +335,7 @@ def _add_sensors(
     :param multi_body_system_mjcf: The MBS in mujoco format.
     :type multi_body_system_mjcf: mjcf.RootElement
     :param env_mjcf: The environment in mujoco format.
+    :rtype: None
     :type env_mjcf: mjcf.RootElement
     :rtype: None
 
@@ -394,6 +396,7 @@ def _add_joint_actuators(
     :param joints_and_names: The joints.
     :type joints_and_names: list[tuple[JointHinge, str]]
     :param multi_body_system_mjcf: The multi body system.
+    :rtype: None
     :type multi_body_system_mjcf: mjcf.RootElement
     :rtype: None
 
@@ -436,6 +439,7 @@ def _set_colors_and_materials(
     :param multi_body_system_mjcf: The mujoco model.
     :type multi_body_system_mjcf: mjcf.RootElement
     :param fast_sim: Whether fast sim is used.
+    :rtype: None
     :type fast_sim: bool
     :rtype: None
 
@@ -461,6 +465,7 @@ def _set_heightmap_values(
     :param heightmaps: The heightmaps.
     :type heightmaps: list[GeometryHeightmap]
     :param model: The mujoco model.
+    :rtype: None
     :type model: mujoco.MjModel
     :rtype: None
 
@@ -492,6 +497,7 @@ def _create_sensor_maps(
         components.
     :type mapping: AbstractionToMujocoMapping
     :param model: The mujoco model.
+    :rtype: None
     :type model: mujoco.MjModel
     :rtype: None
 

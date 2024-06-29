@@ -11,8 +11,6 @@ class BrainCpgNetworkNeighborRandom(BrainCpgNetworkNeighbor):
 
     The weights are randomly generated when this object is created, so
     they will be the same for every controller instance.
-
-
     """
 
     _rng: np.random.Generator
@@ -40,7 +38,6 @@ class BrainCpgNetworkNeighborRandom(BrainCpgNetworkNeighbor):
         :param body:
         :type body: Body
         :rtype: tuple[list[float],list[float]]
-
         """
         # TODO(jmdm) ideal initial state?
         multiplier = 0.001

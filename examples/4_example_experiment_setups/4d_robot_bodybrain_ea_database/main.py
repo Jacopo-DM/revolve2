@@ -53,10 +53,13 @@ class ParentSelector(Selector):
         """Select the parents.
 
         :param population: The population of robots.
-        :type population: Population :param **kwargs: :type **kwargs:
             Any
+        :type population: Population
+        :param **kwargs:
+        :type **kwargs: Any
         :returns: The parent pairs.
         :rtype: tuple[npt.NDArray[np.int_],dict[str,Population]]
+
         """
         return np.array(
             [
@@ -98,11 +101,14 @@ class SurvivorSelector(Selector):
         """Select survivors using a tournament.
 
         :param population: The population the parents come from.
-        :type population: Population :param **kwargs: :type **kwargs:
             Any
+        :type population: Population
+        :param **kwargs:
+        :type **kwargs: Any
         :returns: A newly created population.
         :rtype: tuple[Population,dict[str,Any]]
         :raises ValueError: If the population is empty.
+
         """
         offspring = kwargs.get("children")
         offspring_fitness = kwargs.get("child_task_performance")
@@ -187,6 +193,7 @@ class CrossoverReproducer(Reproducer):
         :rtype: list[Genotype]
         :raises ValueError: If the parent population is not passed as a
             kwarg `parent_population`.
+
         """
         parent_population: Population | None = kwargs.get("parent_population")
         if parent_population is None:
@@ -211,6 +218,7 @@ def run_experiment(dbengine: Engine) -> None:
     :rtype: None
     :type dbengine: Engine
     :rtype: None
+
     """
     logging.info("----------------")
     logging.info("Start experiment")
@@ -311,7 +319,9 @@ def run_experiment(dbengine: Engine) -> None:
 def main() -> None:
     """Run the program.
 
+
     :rtype: None
+
     """
     # Set up logging.
     setup_logging(file_name="log.txt")
@@ -337,6 +347,7 @@ def save_to_db(dbengine: Engine, generation: Generation) -> None:
     :rtype: None
     :type generation: Generation
     :rtype: None
+
     """
     logging.info("Saving generation.")
     with Session(dbengine, expire_on_commit=False) as session:

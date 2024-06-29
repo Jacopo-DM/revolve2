@@ -63,11 +63,12 @@ class Evaluator(Eval):
 
             # Calculate the difference between the network outputs and the expect outputs
             errors = outputs - expected_outputs
-            """
-            Now we add the sum of squared errors to the results.
-            In our case 0 would be an optimal result.
-            We invert so we can maximize the fitness instead of minimize.
-            Finally we convert from a numpy float_ type to the python float type. This is not really important.
+            """Now we add the sum of squared errors to the results.
+
+            In our case 0 would be an optimal result. We invert so we
+            can maximize the fitness instead of minimize. Finally we
+            convert from a numpy float_ type to the python float type.
+            This is not really important.
             """
             results.append(float(-np.sum(errors**2)))
         return results

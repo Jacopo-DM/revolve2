@@ -26,6 +26,7 @@ class Evaluator(Eval):
         self,
         headless: bool,
         num_simulators: int,
+        start_paused: bool,
     ) -> None:
         """Initialize this object.
 
@@ -34,7 +35,9 @@ class Evaluator(Eval):
             physics simulator.
         """
         self._simulator = LocalSimulator(
-            headless=headless, num_simulators=num_simulators
+            headless=headless,
+            num_simulators=num_simulators,
+            start_paused=start_paused,
         )
         self._terrain = terrains.flat()
 

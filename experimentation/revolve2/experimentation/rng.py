@@ -10,7 +10,8 @@ import numpy as np
 def seed_from_time(log_seed: bool = True) -> int:
     """Create a seed from the current time in microseconds.
 
-    :param log_seed: If the seed should be logged. It probably should. (Default value = True)
+    :param log_seed: If the seed should be logged. It probably should.
+        (Default value = True)
     :type log_seed: bool
     :returns: The created seed.
     :rtype: int

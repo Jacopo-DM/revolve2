@@ -14,18 +14,17 @@ class AttachmentFaceCoreV2(AttachmentFace):
 
     _check_matrix: NDArray[np.uint8]
     _child_offset: Vector3
-    """
-    Check matrix allows us to determine which attachment points can be filled in the face.
+    """Check matrix allows us to determine which attachment points can be
+    filled in the face.
 
-    check_matrix =  0       0       0
-                        C      C
-                    0       0      0
-                        C      C
-                    0      0       0
+    check_matrix =  0       0       0                     C      C 0 0
+    0                     C      C                 0 0       0
 
-    By default the whole matrix is 0. Once we add a module at location x we adjust the C accordingly.
-    When adding a new module we want to have a C of 0 in the corresponding position, otherwise the attachment point cant be populated anymore.
-    Applying a simple 2D convolution allows for fast conflict checks.
+    By default the whole matrix is 0. Once we add a module at location x
+    we adjust the C accordingly. When adding a new module we want to
+    have a C of 0 in the corresponding position, otherwise the
+    attachment point cant be populated anymore. Applying a simple 2D
+    convolution allows for fast conflict checks.
     """
 
     def __init__(
@@ -83,6 +82,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
         :param module: The module to attach.
         :type module: Module
         :param child_index: The slot to attach it to.
+        :rtype: None
         :type child_index: int
         :rtype: None
         :raises KeyError: If attachment point is already populated or
@@ -113,7 +113,8 @@ class AttachmentFaceCoreV2(AttachmentFace):
         check_matrix = self._check_matrix.copy()
         check_matrix[child_index // 3, child_index % 3] += 1
         conv_check = np.zeros(shape=(2, 2), dtype=np.uint8)
-        """We use a simple convolution to check if the modules are overlapping."""
+        """We use a simple convolution to check if the modules are
+        overlapping."""
         for i, j in product(range(2), repeat=2):
             conv_check[i, j] = np.sum(check_matrix[i : i + 2, j : j + 2])
         if np.max(conv_check) > 1:  # Conflict detected.
@@ -123,6 +124,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
     @property
     def top_left(self) -> Module | None:
         """Get the top_left attachment points module.
+
 
         :returns: The attachment points module.
 
@@ -136,6 +138,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
         """Set a module to the top_left attachment point.
 
         :param module: The module.
+        :rtype: None
         :type module: Module
         :rtype: None
 
@@ -145,6 +148,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
     @property
     def top(self) -> Module | None:
         """Get the top attachment points module.
+
 
         :returns: The attachment points module.
 
@@ -158,6 +162,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
         """Set a module to the top attachment point.
 
         :param module: The module.
+        :rtype: None
         :type module: Module
         :rtype: None
 
@@ -167,6 +172,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
     @property
     def top_right(self) -> Module | None:
         """Get the top_right attachment points module.
+
 
         :returns: The attachment points module.
 
@@ -180,6 +186,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
         """Set a module to the top_right attachment point.
 
         :param module: The module.
+        :rtype: None
         :type module: Module
         :rtype: None
 
@@ -189,6 +196,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
     @property
     def middle_left(self) -> Module | None:
         """Get the middle_left attachment points module.
+
 
         :returns: The attachment points module.
 
@@ -202,6 +210,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
         """Set a module to the middle_left attachment point.
 
         :param module: The module.
+        :rtype: None
         :type module: Module
         :rtype: None
 
@@ -211,6 +220,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
     @property
     def middle(self) -> Module | None:
         """Get the middle attachment points module.
+
 
         :returns: The attachment points module.
 
@@ -224,6 +234,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
         """Set a module to the middle attachment point.
 
         :param module: The module.
+        :rtype: None
         :type module: Module
         :rtype: None
 
@@ -233,6 +244,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
     @property
     def middle_right(self) -> Module | None:
         """Get the middle_right attachment points module.
+
 
         :returns: The attachment points module.
 
@@ -246,6 +258,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
         """Set a module to the middle_right attachment point.
 
         :param module: The module.
+        :rtype: None
         :type module: Module
         :rtype: None
 
@@ -255,6 +268,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
     @property
     def bottom_left(self) -> Module | None:
         """Get the bottom_left attachment points module.
+
 
         :returns: The attachment points module.
 
@@ -268,6 +282,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
         """Set a module to the bottom_left attachment point.
 
         :param module: The module.
+        :rtype: None
         :type module: Module
         :rtype: None
 
@@ -277,6 +292,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
     @property
     def bottom(self) -> Module | None:
         """Get the bottom attachment points module.
+
 
         :returns: The attachment points module.
 
@@ -290,6 +306,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
         """Set a module to the bottom attachment point.
 
         :param module: The module.
+        :rtype: None
         :type module: Module
         :rtype: None
 
@@ -299,6 +316,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
     @property
     def bottom_right(self) -> Module | None:
         """Get the bottom_right attachment points module.
+
 
         :returns: The attachment points module.
 
@@ -312,6 +330,7 @@ class AttachmentFaceCoreV2(AttachmentFace):
         """Set a module to the bottom_right attachment point.
 
         :param module: The module.
+        :rtype: None
         :type module: Module
         :rtype: None
 

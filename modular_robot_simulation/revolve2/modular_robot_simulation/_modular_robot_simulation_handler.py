@@ -36,6 +36,8 @@ class ModularRobotSimulationHandler(SimulationHandler):
         :type brain_instance: BrainInstance
         :param body_to_multi_body_system_mapping: A mapping from body to
             multi-body system
+            BodyToMultiBodySystemMapping
+        :rtype: None
         :type body_to_multi_body_system_mapping: BodyToMultiBodySystemMapping
         :rtype: None
 
@@ -56,6 +58,7 @@ class ModularRobotSimulationHandler(SimulationHandler):
             targets.
         :type simulation_control: ControlInterface
         :param dt: The time since the last call to this function.
+        :rtype: None
         :type dt: float
         :rtype: None
 

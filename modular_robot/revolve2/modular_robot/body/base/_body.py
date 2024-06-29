@@ -37,7 +37,6 @@ class Body:
         :returns: The calculated position.
         :rtype: Vector3
         :raises KeyError: In case an attachment point is not found.
-
         """
         position = Vector3()
 
@@ -88,11 +87,11 @@ class Body:
 
         :param module_type: The type.
         :type module_type: type[TModule]
-        :param exclude: Module types to be excluded in search. (Default value = None)
+        :param exclude: Module types to be excluded in search. (Default
+            value = None)
         :type exclude: list[type[TModule]] | None
         :returns: The list of Modules.
         :rtype: list[TModule]
-
         """
         return self.__find_recur(
             self._core, module_type, [] if exclude is None else exclude
@@ -106,13 +105,10 @@ class Body:
 
         The grid is indexed depth, width, height, or x, y, z, from the perspective of the core.
 
-
         :returns: The created grid with cells set to either a Module or
             None and a position vector of the core. The position Vector3
             is dtype: int.
-
         :rtype: tuple[NDArray[TModuleNP],Vector3[np.int_]]
-
         """
         return _GridMaker().make_grid(self)
 
@@ -121,15 +117,13 @@ class Body:
         """Get the core of the Body.
 
         :returns: The core.
-
         :rtype: Core
-
         """
         return self._core
 
 
 class _GridMaker(Generic[TModuleNP]):
-    """ """
+    """"""
 
     _x: ClassVar[list[int]] = []
     _y: ClassVar[list[int]] = []
@@ -142,7 +136,6 @@ class _GridMaker(Generic[TModuleNP]):
         """:param body:
         :type body: Body
         :rtype: tuple[NDArray[TModuleNP],Vector3[np.int_]]
-
         """
         self._make_grid_recur(body._core, Vector3(), Quaternion())
 
@@ -173,7 +166,6 @@ class _GridMaker(Generic[TModuleNP]):
         :param orientation:
         :type orientation: Quaternion
         :rtype: None
-
         """
         self._add(position, module)
 
@@ -200,7 +192,6 @@ class _GridMaker(Generic[TModuleNP]):
         :param module:
         :type module: Module
         :rtype: None
-
         """
         self._modules.append(module)
         x, y, z = position

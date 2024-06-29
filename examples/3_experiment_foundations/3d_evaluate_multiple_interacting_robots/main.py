@@ -20,6 +20,7 @@ from revolve2.simulators.mujoco_simulator import LocalSimulator
 def main() -> None:
     """Run the simulation.
 
+
     :rtype: None
 
     """
@@ -38,9 +39,11 @@ def main() -> None:
     ]
     brains = [BrainCpgNetworkNeighborRandom(body, rng) for body in bodies]
     robots = list(starmap(ModularRobot, zip(bodies, brains, strict=False)))
-    """
-    Contrary to the previous examples, we now create a single scene and put all robots in it.
-    We place the robots at separate locations in the terrain so they do not overlap at the start of the simulation.
+    """Contrary to the previous examples, we now create a single scene and put
+    all robots in it.
+
+    We place the robots at separate locations in the terrain so they do
+    not overlap at the start of the simulation.
     """
     scene = ModularRobotScene(terrain=terrains.flat())
     poses = [

@@ -32,6 +32,7 @@ class IMUSensorStateImpl(IMUSensorState):
     def specific_force(self) -> Vector3:
         """Get the measured specific force.
 
+
         :returns: The measured specific force.
 
         :rtype: Vector3
@@ -43,6 +44,7 @@ class IMUSensorStateImpl(IMUSensorState):
     def angular_rate(self) -> Vector3:
         """Get the measured angular rate.
 
+
         :returns: The measured angular rate.
 
         :rtype: Vector3
@@ -53,6 +55,7 @@ class IMUSensorStateImpl(IMUSensorState):
     @property
     def orientation(self) -> Quaternion:
         """Get the measured orientation.
+
 
         :returns: The measured position.
 

@@ -25,6 +25,7 @@ class BrainDummyInstance(BrainInstance):
             state.
         :type sensor_state: ModularRobotSensorState
         :param control_interface: Interface for controlling the robot.
+        :rtype: None
         :type control_interface: ModularRobotControlInterface
         :rtype: None
 

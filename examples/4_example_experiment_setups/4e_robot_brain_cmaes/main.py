@@ -16,6 +16,7 @@ from revolve2.modular_robot.brain.cpg import (
 def main() -> None:
     """Run the experiment.
 
+
     :rtype: None
 
     """

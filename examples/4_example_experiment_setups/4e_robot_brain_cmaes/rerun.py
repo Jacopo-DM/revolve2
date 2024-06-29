@@ -25,6 +25,7 @@ PARAMS = np.array([
 def main() -> None:
     """Perform the rerun.
 
+
     :rtype: None
 
     """

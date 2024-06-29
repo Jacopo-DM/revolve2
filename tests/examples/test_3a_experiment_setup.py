@@ -6,6 +6,7 @@ from tests.conftest import EXAMPLES_DIR, assert_command_succeeds
 def test_3a_experiment_setup() -> None:
     """Test 3a_experiment_setup example can complete.
 
+
     :rtype: None
 
     """

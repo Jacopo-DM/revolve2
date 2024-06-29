@@ -20,8 +20,6 @@ class MultiBodySystem:
 
     The first rigid body added is considered the root of the system.
     That is, if the system is static, that rigid body will be static.
-
-
     """
 
     _uuid: uuid.UUID = field(init=False, default_factory=uuid.uuid1)
@@ -31,9 +29,7 @@ class MultiBodySystem:
         """Get the uuid.
 
         :returns: The uuid.
-
         :rtype: uuid.UUID
-
         """
         return self._uuid
 
@@ -79,7 +75,6 @@ class MultiBodySystem:
         :param rigid_body2_list_index:
         :type rigid_body2_list_index: int
         :rtype: int
-
         """
         assert rigid_body1_list_index != rigid_body2_list_index
         smallest_index = min(rigid_body1_list_index, rigid_body2_list_index)
@@ -98,7 +93,6 @@ class MultiBodySystem:
         :param rigid_body: The rigid body to add.
         :type rigid_body: RigidBody
         :rtype: None
-
         """
         assert (
             UUIDKey(rigid_body) not in self._rigid_body_to_index
@@ -117,7 +111,6 @@ class MultiBodySystem:
         :param joint: The joint to add.
         :type joint: Joint
         :rtype: None
-
         """
         maybe_rigid_body_index1 = self._rigid_body_to_index.get(
             UUIDKey(joint.rigid_body1)
@@ -154,11 +147,8 @@ class MultiBodySystem:
         so this is only false if there are zero rigid bodies in this
         multi-body system.
 
-
         :returns: Whether there is a root joint.
-
         :rtype: bool
-
         """
         return len(self._rigid_bodies) != 0
 
@@ -168,11 +158,8 @@ class MultiBodySystem:
 
         The root rigid body is the first rigid body that has been added.
 
-
         :returns: The root rigid body.
-
         :rtype: RigidBody
-
         """
         assert len(self._rigid_bodies) != 0, "Root has not been added yet."
         return self._rigid_bodies[0]
@@ -186,7 +173,6 @@ class MultiBodySystem:
         :type rigid_body: RigidBody
         :returns: The attached joints.
         :rtype: list[Joint|JointHinge]
-
         """
         maybe_index = self._rigid_body_to_index.get(UUIDKey(rigid_body))
         assert (
@@ -211,12 +197,9 @@ class MultiBodySystem:
         That is, when all joints are at position 0. Only box geometries
         are currently supported.
 
-
         :returns: Position, AABB
-
         :rtype: tuple[Vector3,AABB]
         :raises ValueError: If one of the geometries is not a box.
-
         """
         # Create list of all edges of geometry boxes.
         # We don't support anything but GeometryBox at this point.

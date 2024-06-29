@@ -28,8 +28,6 @@ Pin = int
 class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ignore
     """Implements the Cap'n Proto interface, run on the physical modular
     robot.
-
-
     """
 
     _CAREFUL_STEP = 0.1
@@ -83,9 +81,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
     def _update_loop(self) -> None:
         """Update the robot server.
 
-
         :rtype: None
-
         """
         assert self._active_pins is not None
 
@@ -169,9 +165,7 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
     def cleanup(self) -> None:
         """Stop the server and sets everything to low power.
 
-
         :rtype: None
-
         """
         if self._debug:
             pass
@@ -196,7 +190,6 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
         :type _context: Any
         :returns: Whether the setup was successful.
         :rtype: robot_daemon_protocol_capnp.SetupResponse
-
         """
         if self._debug:
             pass
@@ -231,7 +224,6 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
         :param _context:
         :type _context: Any
         :rtype: None
-
         """
         if self._debug:
             pass
@@ -256,7 +248,6 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
         :type _context: Any
         :returns: The readings.
         :rtype: robot_daemon_protocol_capnp.SensorReadings
-
         """
         if self._debug:
             pass
@@ -276,7 +267,6 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
         :type _context: Any
         :returns: The readings.
         :rtype: robot_daemon_protocol_capnp.SensorReadings
-
         """
         if self._debug:
             pass
@@ -337,7 +327,6 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
         :type vector: Vector3
         :returns: The capnp Vector3.
         :rtype: capnpVector3
-
         """
         return robot_daemon_protocol_capnp.Vector3(
             x=float(vector.x), y=float(vector.y), z=float(vector.z)
@@ -354,7 +343,6 @@ class RoboServerImpl(robot_daemon_protocol_capnp.RoboServer.Server):  # type: ig
         :type image: NDArray[np.uint8]
         :returns: The capnp Image object.
         :rtype: capnpImage
-
         """
         return robot_daemon_protocol_capnp.Image(
             r=image[0].flatten().tolist(),

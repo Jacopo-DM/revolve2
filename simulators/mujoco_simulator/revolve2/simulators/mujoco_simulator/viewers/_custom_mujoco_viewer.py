@@ -111,6 +111,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
         :param text1: Some text.
         :type text1: str
         :param text2: Additional text.
+        :rtype: None
         :type text2: str
         :rtype: None
 
@@ -122,6 +123,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
 
     def _create_overlay(self) -> None:
         """Create a Custom Overlay.
+
 
         :rtype: None
 
@@ -255,6 +257,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
         :param action: The Action.
         :type action: Any
         :param mods: The Mods.
+        :rtype: None
         :type mods: Any
         :rtype: None
 
@@ -273,6 +276,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
     def current_viewport_size(self) -> tuple[int, int]:
         """Grabs the *current* viewport size (and updates the cached values).
 
+
         :returns: the viewport size
 
         :rtype: tuple[int,int]
@@ -285,6 +289,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
 
     def render(self) -> int | None:
         """Render the scene.
+
 
         :returns: A cycle position if applicable.
 
@@ -299,6 +304,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
     def _increment_position(self) -> None:
         """Increment our cycle position.
 
+
         :rtype: None
 
         """
@@ -306,6 +312,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
 
     def close_viewer(self) -> None:
         """Close the viewer.
+
 
         :rtype: None
 
@@ -315,6 +322,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
     @property
     def context(self) -> mujoco.MjrContext:
         """Get the context.
+
 
         :returns: The context.
 
@@ -327,6 +335,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
     def view_port(self) -> mujoco.MjrRect:
         """Get the view_port.
 
+
         :returns: The viewport.
 
         :rtype: mujoco.MjrRect
@@ -337,6 +346,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
     @property
     def can_record(self) -> bool:
         """Return True.
+
 
         :returns: True.
 

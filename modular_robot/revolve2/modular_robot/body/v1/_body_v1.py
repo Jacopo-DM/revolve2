@@ -15,6 +15,7 @@ class BodyV1(Body):
     def core_v1(self) -> CoreV1:
         """Get the specific v1 core of the body.
 
+
         :returns: The v1 core.
 
         :rtype: CoreV1

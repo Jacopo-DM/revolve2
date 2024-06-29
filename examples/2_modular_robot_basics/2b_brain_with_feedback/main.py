@@ -50,6 +50,7 @@ class ANNBrainInstance(BrainInstance):
             state.
         :type sensor_state: ModularRobotSensorState
         :param control_interface: Interface for controlling the robot.
+        :rtype: None
         :type control_interface: ModularRobotControlInterface
         :rtype: None
 
@@ -109,6 +110,7 @@ class ANNBrain(Brain):
     def make_instance(self) -> BrainInstance:
         """Create an instance of this brain.
 
+
         :returns: The created instance.
 
         :rtype: BrainInstance
@@ -123,6 +125,7 @@ class ANNBrain(Brain):
 def main() -> None:
     """Run the simulation.
 
+
     :rtype: None
 
     """
@@ -131,7 +134,9 @@ def main() -> None:
 
     # Create a body for the robot.
     body = modular_robots_v2.gecko_v2()
-    """Every module on the robot can have sensors, to add them you do the following:"""
+    """Every module on the robot can have sensors, to add them you do the
+    following:
+    """
     # Add an IMU Sensor to the core.
     body.core.add_sensor(
         imu := IMUSensor(position=Vector3([0.075, 0.075, 0.14]))

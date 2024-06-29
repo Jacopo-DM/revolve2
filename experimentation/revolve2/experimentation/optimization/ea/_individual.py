@@ -35,6 +35,8 @@ class Individual(HasId, orm.MappedAsDataclass, Generic[TGenotype]):
 
         class MyIndividual(Base, Individual[MyGenotype], population_table="my_population"):
             __tablename__ = "my_individual"
+
+
     """
 
     # -------------------------------------
@@ -60,22 +62,27 @@ class Individual(HasId, orm.MappedAsDataclass, Generic[TGenotype]):
 
         @orm.declared_attr
         def population_id(self) -> orm.Mapped[int]:
+            """:rtype: orm.Mapped[int]"""
             return self.__population_id_impl()
 
         @orm.declared_attr
         def population_index(self) -> orm.Mapped[int]:
+            """:rtype: orm.Mapped[int]"""
             return self.__population_index_impl()
 
         @orm.declared_attr
         def genotype_id(self) -> orm.Mapped[int]:
+            """:rtype: orm.Mapped[int]"""
             return self.__genotype_id_impl()
 
         @orm.declared_attr
         def genotype(self) -> orm.Mapped[TGenotype]:
+            """:rtype: orm.Mapped[TGenotype]"""
             return self.__genotype_impl()
 
         @orm.declared_attr
         def fitness(self) -> orm.Mapped[float]:
+            """:rtype: orm.Mapped[float]"""
             return self.__fitness_impl()
 
     __type_tgenotype: ClassVar[type[TGenotype]]  # type: ignore[misc]
