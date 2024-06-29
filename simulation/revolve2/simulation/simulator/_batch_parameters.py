@@ -35,3 +35,6 @@ class BatchParameters:
     control_frequency: float
     """Similar to `sampling_frequency` but for how often the control function
     is called."""
+
+    integrator: str
+    """The integrator to use for simulation."""

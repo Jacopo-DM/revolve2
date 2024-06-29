@@ -245,7 +245,10 @@ def run_experiment(dbengine: Engine) -> None:
     - crossover_reproducer: Allows us to generate offspring from parents.
     - modular_robot_evolution: The evolutionary process as a object that can be iterated.
     """
-    evaluator = Evaluator(headless=True, num_simulators=config.NUM_SIMULATORS)
+    evaluator = Evaluator(
+        headless=True,
+        num_simulators=config.NUM_SIMULATORS,
+    )
     parent_selector = ParentSelector(
         offspring_size=config.OFFSPRING_SIZE, rng=rng
     )

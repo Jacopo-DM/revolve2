@@ -16,6 +16,10 @@
 # cd robohat
 # pip install -e .
 
+# ↓ brew install glew?
+PyOpenGL
+# PyOpenGL-accelerate
+
 # Linting, formatting and docs
 ruff
 docconvert

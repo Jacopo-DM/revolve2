@@ -1,11 +1,18 @@
 """Standard simulation functions and parameters."""
 
+import logging
+
 from revolve2.simulation.simulator import BatchParameters
 
-STANDARD_SIMULATION_TIME = 60
+STANDARD_SIMULATION_TIME = 100
 STANDARD_SAMPLING_FREQUENCY = 5
-STANDARD_SIMULATION_TIMESTEP = 0.004
-STANDARD_CONTROL_FREQUENCY = 15
+STANDARD_SIMULATION_TIMESTEP = 0.025
+STANDARD_CONTROL_FREQUENCY = 20
+# TODO(jmdm): do different integrators make a difference?
+STANDARD_INTEGRATOR: str = "implicitfast"  # , "RK4"
+# STANDARD_INTEGRATOR: str = "RK4"  # , "RK4"
+
+ran_once = False
 
 
 def make_standard_batch_parameters(
@@ -13,6 +20,7 @@ def make_standard_batch_parameters(
     sampling_frequency: float | None = STANDARD_SAMPLING_FREQUENCY,
     simulation_timestep: float = STANDARD_SIMULATION_TIMESTEP,
     control_frequency: float = STANDARD_CONTROL_FREQUENCY,
+    integrator: str = STANDARD_INTEGRATOR,
 ) -> BatchParameters:
     """Create batch parameters as standardized within the CI Group.
 
@@ -32,9 +40,23 @@ def make_standard_batch_parameters(
     :rtype: BatchParameters
 
     """
+    global ran_once
+    if not ran_once:
+        logging.info(f"ST = {simulation_time}")
+        logging.info(
+            f"SF = {sampling_frequency}~{round(1 / sampling_frequency, 4)}"
+        )
+        logging.info(f"TS = {simulation_timestep}")
+        logging.info(
+            f"CF = {control_frequency}~{round(1 / control_frequency, 4)}"
+        )
+        logging.info(f"DT = {integrator}")
+        ran_once = True
+
     return BatchParameters(
         simulation_time=simulation_time,
         sampling_frequency=sampling_frequency,
         simulation_timestep=simulation_timestep,
         control_frequency=control_frequency,
+        integrator=integrator,
     )

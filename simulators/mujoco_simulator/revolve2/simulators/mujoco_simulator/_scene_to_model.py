@@ -28,6 +28,7 @@ from ._abstraction_to_mujoco_mapping import (
 def scene_to_model(
     scene: Scene,
     simulation_timestep: float,
+    integrator: str,
     *,
     cast_shadows: bool,
     fast_sim: bool,
@@ -58,8 +59,7 @@ def scene_to_model(
 
     env_mjcf.option.timestep = simulation_timestep
 
-    # TODO(jmdm): do different integrators make a difference?
-    env_mjcf.option.integrator = "implicitfast"  # "RK4"
+    env_mjcf.option.integrator = integrator
 
     env_mjcf.option.gravity = [0, 0, -9.81]
 

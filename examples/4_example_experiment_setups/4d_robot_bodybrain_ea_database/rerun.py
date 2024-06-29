@@ -1,7 +1,6 @@
 """Rerun the best robot between all experiments."""
 
 import logging
-from tracemalloc import start
 
 import config
 from database_components import Genotype, Individual

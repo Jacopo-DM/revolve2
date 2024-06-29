@@ -277,6 +277,7 @@ class CollectionOfDefaultValues:
         "SpeciesDropoffAge": 100,  # -> 50
         "YoungAgeTreshold": 15,  # -> 5
     }
+
     TestHyperNEAT_xor: ClassVar[dict[str, float | int | bool]] = {
         "ActivationAMutationMaxPower": 0.5,  # -> 0.0
         "ActivationFunction_Linear_Prob": 1.0,  # -> 0.0

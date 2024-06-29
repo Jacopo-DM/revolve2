@@ -12,6 +12,10 @@ import multineat
 from ._multineat_collection import (
     CollectionOfDefaultValues,
 )
+from ._multineat_keys_info import (
+    SAFE_KEYS,
+    UNSAFE_KEYS,
+)
 
 if t.TYPE_CHECKING:
     from multineat._multineat import Parameters as multiNEATParamType
@@ -73,7 +77,6 @@ class ParamAnalyzer:
     def _analyse_parameters(self, params: multiNEATParamType) -> None:
         """Analyzes the parameters and stores the safe and unsafe keys.
 
-        Args:
         :param params:
         :type params: multiNEATParamType
         :rtype: None
@@ -146,9 +149,10 @@ class ParamAnalyzer:
 
         Returns:
         - tuple[dict[str, tuple[float | int | bool | str, str]], dict[str, tuple[float | int | bool | str, str]]]:
-          A tuple containing two dictionaries:
-          - diff_from: A dictionary containing the differences in values from self to other.
-          - diff_to: A dictionary containing the differences in values from other to self.
+
+            A tuple containing two dictionaries:
+            - diff_from: A dictionary containing the differences in values from self to other.
+            - diff_to: A dictionary containing the differences in values from other to self.
         """
         # Find the differences in the values (from self to other)
         diff_from: dict[str, tuple[float | int | bool | str, str]] = {
@@ -255,172 +259,6 @@ class ParamAnalyzer:
 class MultiNEATParamsWriter:
     """A class that provides methods for manipulating MultiNEAT parameters."""
 
-    __safe_keys__: ClassVar[set[str]] = {
-        "ActivationADiffCoeff",
-        "ActivationAMutationMaxPower",
-        "ActivationBDiffCoeff",
-        "ActivationBMutationMaxPower",
-        "ActivationFunctionDiffCoeff",
-        "ActivationFunction_Abs_Prob",
-        "ActivationFunction_Linear_Prob",
-        "ActivationFunction_SignedGauss_Prob",
-        "ActivationFunction_SignedSigmoid_Prob",
-        "ActivationFunction_SignedSine_Prob",
-        "ActivationFunction_SignedStep_Prob",
-        "ActivationFunction_TanhCubic_Prob",
-        "ActivationFunction_Tanh_Prob",
-        "ActivationFunction_UnsignedGauss_Prob",
-        "ActivationFunction_UnsignedSigmoid_Prob",
-        "ActivationFunction_UnsignedSine_Prob",
-        "ActivationFunction_UnsignedStep_Prob",
-        "AllowClones",
-        "AllowLoops",
-        "ArchiveEnforcement",
-        "BandThreshold",
-        "BiasDiffCoeff",
-        "BiasMutationMaxPower",
-        "CPPN_Bias",
-        "ClearLinkTraitParameters",
-        "CompatTreshChangeInterval_Evaluations",
-        "CompatTreshChangeInterval_Generations",
-        "CompatTreshold",
-        "CompatTresholdModifier",
-        "ComplexityFloorGenerations",
-        "CrossoverRate",
-        "DeltaCoding",
-        "DetectCompetetiveCoevolutionStagnation",
-        "DisjointCoeff",
-        "DivisionThreshold",
-        "DontUseBiasNeuron",
-        "DynamicCompatibility",
-        "EliteFraction",
-        "ExcessCoeff",
-        "GeometrySeed",
-        "GetLinkTraitParameters",
-        "Height",
-        "InitialDepth",
-        "InnovationsForever",
-        "InterspeciesCrossoverRate",
-        "KillWorstAge",
-        "KillWorstSpeciesEach",
-        "Leo",
-        "LeoSeed",
-        "LeoThreshold",
-        "LinkTries",
-        "ListLinkTraitParameters",
-        "Load",
-        "MaxActivationA",
-        "MaxActivationB",
-        "MaxDepth",
-        "MaxNeuronBias",
-        "MaxNeuronTimeConstant",
-        "MaxSpecies",
-        "MaxWeight",
-        "MinActivationA",
-        "MinActivationB",
-        "MinCompatTreshold",
-        "MinNeuronBias",
-        "MinNeuronTimeConstant",
-        "MinSpecies",
-        "MultipointCrossoverRate",
-        "MutateActivationAProb",
-        "MutateActivationBProb",
-        "MutateAddLinkFromBiasProb",
-        "MutateAddLinkProb",
-        "MutateAddNeuronProb",
-        "MutateLinkTraitsProb",
-        "MutateNeuronActivationTypeProb",
-        "MutateNeuronBiasesProb",
-        "MutateNeuronTimeConstantsProb",
-        "MutateNeuronTraitsProb",
-        "MutateOutputActivationFunction",
-        "MutateRemLinkProb",
-        "MutateRemSimpleNeuronProb",
-        "MutateWeightsProb",
-        "MutateWeightsSevereProb",
-        "NeuronRecursionLimit",
-        "NormalizeGenomeSize",
-        "NoveltySearch_Dynamic_Pmin",
-        "NoveltySearch_K",
-        "NoveltySearch_No_Archiving_Stagnation_Treshold",
-        "NoveltySearch_P_min",
-        "NoveltySearch_Pmin_lowering_multiplier",
-        "NoveltySearch_Pmin_min",
-        "NoveltySearch_Pmin_raising_multiplier",
-        "NoveltySearch_Quick_Archiving_Min_Evaluations",
-        "NoveltySearch_Recompute_Sparseness_Each",
-        "OldAgePenalty",
-        "OldAgeTreshold",
-        "OverallMutationRate",
-        "PhasedSearching",
-        "PopulationSize",
-        "Qtree_X",
-        "Qtree_Y",
-        "RecurrentLoopProb",
-        "RecurrentProb",
-        "RouletteWheelSelection",
-        "SetGenomeTraitParameters",
-        "SetNeuronTraitParameters",
-        "SimplifyingPhaseMPCTreshold",
-        "SimplifyingPhaseStagnationTreshold",
-        "SpeciesDropoffAge",
-        "SplitLoopedRecurrent",
-        "SplitRecurrent",
-        "StagnationDelta",
-        "SurvivalRate",
-        "TimeConstantDiffCoeff",
-        "TimeConstantMutationMaxPower",
-        "TournamentSize",
-        "VarianceThreshold",
-        "WeightDiffCoeff",
-        "WeightMutationMaxPower",
-        "WeightMutationRate",
-        "WeightReplacementMaxPower",
-        "WeightReplacementRate",
-        "Width",
-        "YoungAgeFitnessBoost",
-        "YoungAgeTreshold",
-    }
-
-    __unsafe_keys__: ClassVar[set[str]] = {
-        "__class__",
-        "__delattr__",
-        "__dir__",
-        "__doc__",
-        "__eq__",
-        "__format__",
-        "__ge__",
-        "__getattribute__",
-        "__getstate__",
-        "__gt__",
-        "__hash__",
-        "__init__",
-        "__init_subclass__",
-        "__le__",
-        "__lt__",
-        "__module__",
-        "__ne__",
-        "__new__",
-        "__reduce__",
-        "__reduce_ex__",
-        "__repr__",
-        "__setattr__",
-        "__setstate__",
-        "__sizeof__",
-        "__str__",
-        "__subclasshook__",
-        "ClearGenomeTraitParameters",
-        "ClearNeuronTraitParameters",
-        "CustomConstraints",
-        "GetGenomeTraitParameters",
-        "GetNeuronTraitParameters",
-        "ListGenomeTraitParameters",
-        "ListNeuronTraitParameters",
-        "Reset",
-        "Save",
-        "SetLinkTraitParameters",
-    }
-
     __inject_override__: ClassVar[dict[str, float | int | bool]] = {
         # NOTE - These field-values are enforced in every case
         "PhasedSearching": True,  # def: False
@@ -458,12 +296,12 @@ class MultiNEATParamsWriter:
             logging.warning("Empty source provided, this may be an error.")
 
         # Make sure no unsafe keys are present
-        if from_unsafe := source_keys.intersection(self.__unsafe_keys__):
+        if from_unsafe := source_keys.intersection(UNSAFE_KEYS):
             msg = f"Unsafe keys found: {from_unsafe}"
             raise ValueError(msg)
 
         # Make sure every key is known
-        if len(from_safe := source_keys - self.__safe_keys__) != 0:
+        if len(from_safe := source_keys - SAFE_KEYS) != 0:
             msg = f"Found unknown keys: {from_safe}"
             raise ValueError(msg)
 
@@ -542,7 +380,9 @@ class MultiNEATParamsWriter:
         return params
 
 
-def get_multineat_params(name: str = "NoveltySearch") -> multiNEATParamType:
+def get_multineat_params(
+    name: str = "TestESHyperNEAT_xor_3d",
+) -> multiNEATParamType:
     """Retrieve the multiNEAT parameters for the specified name.
 
     :param name: str (Default value = "NoveltySearch")

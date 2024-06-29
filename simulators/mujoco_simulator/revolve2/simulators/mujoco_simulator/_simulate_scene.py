@@ -33,6 +33,7 @@ def simulate_scene(
     sample_step: float | None,
     simulation_time: int | None,
     simulation_timestep: float,
+    integrator: str,
     render_backend: RenderBackend = RenderBackend.EGL,
     *,
     headless: bool,
@@ -89,6 +90,7 @@ def simulate_scene(
     model, mapping = scene_to_model(
         scene=scene,
         simulation_timestep=simulation_timestep,
+        integrator=integrator,
         cast_shadows=cast_shadows,
         fast_sim=fast_sim,
     )

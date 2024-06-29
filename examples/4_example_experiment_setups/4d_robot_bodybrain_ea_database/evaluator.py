@@ -1,10 +1,8 @@
 """Evaluator class."""
 
+import revolve2.ci_group.simulation_parameters as sim_p
 from database_components import Genotype
 from revolve2.ci_group import fitness_functions, terrains
-from revolve2.ci_group.simulation_parameters import (
-    make_standard_batch_parameters,
-)
 from revolve2.experimentation.evolution.abstract_elements import (
     Evaluator as Eval,
 )
@@ -26,7 +24,8 @@ class Evaluator(Eval):
         self,
         headless: bool,
         num_simulators: int,
-        start_paused: bool,
+        *,
+        start_paused: bool = False,
     ) -> None:
         """Initialize this object.
 
@@ -66,7 +65,7 @@ class Evaluator(Eval):
         # Simulate all scenes.
         scene_states = simulate_scenes(
             simulator=self._simulator,
-            batch_parameters=make_standard_batch_parameters(),
+            batch_parameters=sim_p.make_standard_batch_parameters(),
             scenes=scenes,
         )
 

@@ -1,5 +1,6 @@
 """A custom viewer for mujoco with additional features."""
 
+import os
 from enum import Enum
 from typing import Any
 
@@ -24,7 +25,7 @@ class CustomMujocoViewerMode(Enum):
     MANUAL = "manual"
 
 
-class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
+class CustomMujocoViewer(mujoco_viewer.MujocoViewer, Viewer):  # type: ignore
     """Custom Viewer Object that allows for additional keyboard inputs.
 
     We need the type ignore since the mujoco_viewer library is not typed
@@ -77,15 +78,17 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
         """
         match backend:
             case RenderBackend.EGL:
+                os.environ["MUJOCO_GL"] = "egl"
                 glfw.window_hint(
                     glfw.CONTEXT_CREATION_API, glfw.EGL_CONTEXT_API
                 )
             case RenderBackend.OSMESA:
+                os.environ["MUJOCO_GL"] = "osmesa"
                 glfw.window_hint(
                     glfw.CONTEXT_CREATION_API, glfw.OSMESA_CONTEXT_API
                 )
             case _:  # By default, we are using GLFW.
-                pass
+                os.environ["MUJOCO_GL"] = "glfw"
 
         super().__init__(
             model,
@@ -289,6 +292,7 @@ class CustomMujocoViewer(Viewer, mujoco_viewer.MujocoViewer):  # type: ignore
 
     def render(self) -> int | None:
         """Render the scene.
+
 
 
         :returns: A cycle position if applicable.
