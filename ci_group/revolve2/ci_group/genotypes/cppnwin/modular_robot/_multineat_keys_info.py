@@ -1,6 +1,5 @@
 """This module contains the keys that are safe to be used in the MultiNEAT configuration file."""
 
-from typing import ClassVar
 
 SAFE_KEYS: set[str] = {
     "ActivationADiffCoeff",

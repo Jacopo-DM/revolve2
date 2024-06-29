@@ -85,7 +85,7 @@ def simulate_scene(
     :raises ValueError: If the viewer is not able to record.
 
     """
-    logging.info("Simulating scene %d", scene_id)
+    logging.debug("Simulating scene %d", scene_id)
     """Define mujoco data and model objects for simulating."""
     model, mapping = scene_to_model(
         scene=scene,
@@ -262,5 +262,5 @@ def simulate_scene(
             )
         )
 
-    logging.info(f"Scene {scene_id} done.")
+    logging.debug(f"Scene {scene_id} done.")
     return simulation_states
