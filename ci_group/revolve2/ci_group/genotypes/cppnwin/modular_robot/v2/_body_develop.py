@@ -11,7 +11,7 @@ from revolve2.modular_robot.body import AttachmentPoint, Module
 from revolve2.modular_robot.body.v2 import ActiveHingeV2, BodyV2, BrickV2
 
 # Determine the maximum parts available for a robots body.
-MAX_PARTS = 20
+MAX_PARTS = 30
 GRID_SIZE = MAX_PARTS * 2 + 1
 
 
@@ -117,12 +117,13 @@ def __evaluate_cppn(
         raise TypeError(msg)
 
     # normalize position by grid size
-    x /= GRID_SIZE
-    y /= GRID_SIZE
-    z /= GRID_SIZE
-    chain_length /= MAX_PARTS
+    x = (x / GRID_SIZE) - 0.5
+    y = (y / GRID_SIZE) - 0.5
+    z = (z / GRID_SIZE) - 0.5
+    chain_length = (chain_length - MAX_PARTS) - 0.5
 
     # 1.0 is the bias input
+    body_net.Flush()
     body_net.Input([1.0, x, y, z, chain_length])
     body_net.ActivateAllLayers()
     outputs = body_net.Output()

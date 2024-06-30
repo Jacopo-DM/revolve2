@@ -87,7 +87,6 @@ class BrainCpgNetworkNeighbor(ModularRobotBrainCpgNetworkNeighbor):
                 for (active_hinge1, active_hinge2) in connections
             ]
         ]
-
         return (internal_weights, external_weights)
 
     @staticmethod
@@ -100,6 +99,11 @@ class BrainCpgNetworkNeighbor(ModularRobotBrainCpgNetworkNeighbor):
         :type inputs: list[float]
         :rtype: float
         """
+        network.Flush()
         network.Input(inputs)
         network.ActivateAllLayers()
-        return cast(float, network.Output()[0])
+        output = network.Output()[0]
+        return cast(
+            float,
+            output,
+        )

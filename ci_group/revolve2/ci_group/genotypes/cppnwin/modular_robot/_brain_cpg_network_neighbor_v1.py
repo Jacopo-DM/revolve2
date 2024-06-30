@@ -67,6 +67,7 @@ class BrainCpgNetworkNeighborV1(ModularRobotBrainCpgNetworkNeighbor):
                 float(pos.z),
             ]
             # Evaluate the network with the current input and append the result to the internal weights
+
             internal_weights.append(
                 self._evaluate_network(brain_net, network_input)
             )
@@ -112,6 +113,11 @@ class BrainCpgNetworkNeighborV1(ModularRobotBrainCpgNetworkNeighbor):
         :type inputs: list[float]
         :rtype: float
         """
+        network.Flush()
         network.Input(inputs)
         network.ActivateAllLayers()
-        return cast(float, network.Output()[0])
+        output = network.Output()[0]
+        return cast(
+            float,
+            output,
+        )

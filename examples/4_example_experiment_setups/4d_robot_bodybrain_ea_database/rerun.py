@@ -3,7 +3,7 @@
 import logging
 
 import config
-from database_components import Genotype, Individual
+from database_components import Generation, Genotype, Individual
 from evaluator import Evaluator
 from revolve2.experimentation.database import OpenMethod, open_database_sqlite
 from revolve2.experimentation.logging import setup_logging
@@ -32,9 +32,10 @@ def main() -> None:
                 Genotype, Individual, Genotype.id == Individual.genotype_id
             )
             .order_by(Individual.fitness.desc())
+            .filter(Genotype.id != 1)
+            .filter(Generation.id == 1)
             .limit(1)
-        ).one()
-        assert row is not None
+        ).fetchone()
 
         genotype = row[0]
         fitness = row[1]

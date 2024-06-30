@@ -1,5 +1,4 @@
-"""This module contains the keys that are safe to be used in the MultiNEAT configuration file."""
-
+"""Module contains the keys that are safe to be used in the MultiNEAT configuration file."""
 
 SAFE_KEYS: set[str] = {
     "ActivationADiffCoeff",
