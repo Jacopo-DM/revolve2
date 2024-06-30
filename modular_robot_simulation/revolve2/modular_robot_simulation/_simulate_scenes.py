@@ -97,6 +97,7 @@ def simulate_scenes(
     batch, modular_robot_to_multi_body_system_mappings = to_batch(
         scenes, batch_parameters, record_settings
     )
+
     simulation_results = simulator.simulate_batch(batch)
 
     results = [

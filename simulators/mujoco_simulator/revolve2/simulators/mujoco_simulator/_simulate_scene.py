@@ -101,7 +101,7 @@ def simulate_scene(
         data=data, abstraction_to_mujoco_mapping=mapping
     )
     """Make separate viewer for camera sensors."""
-    camera_viewers = {
+    camera_viewers: dict[int, OpenGLVision] = {
         camera.camera_id: OpenGLVision(
             model=model,
             camera=camera,
@@ -121,7 +121,7 @@ def simulate_scene(
     """If we dont have cameras and the backend is not set we go to the default
     GLFW."""
     if len(mapping.camera_sensor.values()) == 0:
-        render_backend = RenderBackend.GLFW
+        render_backend = RenderBackend.EGL if headless else RenderBackend.GLFW
 
     """Initialize viewer object if we need to render the scene."""
     if not headless or record_settings is not None:
@@ -145,7 +145,7 @@ def simulate_scene(
             hide_menus=(record_settings is not None),
         )
 
-    """Record the scene if we want to record."""
+s    """Record the scene if we want to record."""
     if record_settings is not None:
         if not viewer.can_record:
             msg = f"Selected Viewer {type(viewer).__name__} has no functionality to record."

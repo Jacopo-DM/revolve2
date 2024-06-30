@@ -4,13 +4,12 @@ import logging
 
 from revolve2.simulation.simulator import BatchParameters
 
+# TODO(jmdm): do different integrators make a difference?
 STANDARD_SIMULATION_TIME = 100
 STANDARD_SAMPLING_FREQUENCY = 5
-STANDARD_SIMULATION_TIMESTEP = 0.025
+STANDARD_SIMULATION_TIMESTEP = 0.005
 STANDARD_CONTROL_FREQUENCY = 20
-# TODO(jmdm): do different integrators make a difference?
-STANDARD_INTEGRATOR: str = "implicitfast"  # , "RK4"
-# STANDARD_INTEGRATOR: str = "RK4"  # , "RK4"
+STANDARD_INTEGRATOR: str = "RK4"  # "implicitfast"
 
 ran_once = False
 

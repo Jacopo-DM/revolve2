@@ -42,7 +42,7 @@ def main() -> None:
     logging.info(f"Best fitness: {fitness}")
 
     # Create the evaluator.
-    evaluator = Evaluator(headless=False, num_simulators=1, start_paused=True)
+    evaluator = Evaluator(headless=True, num_simulators=1)
 
     # Show the robot.
     evaluator.evaluate([genotype])

@@ -213,7 +213,7 @@ class CrossoverReproducer(Reproducer):
 def run_experiment(dbengine: Engine) -> None:
     """Run an experiment.
 
-    :param dbengine: An opened database with matching initialize
+    :param dbengine: An openened database with matching initialize
         database structure.
     :rtype: None
     :type dbengine: Engine

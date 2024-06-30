@@ -79,6 +79,9 @@ class CustomMujocoViewer(mujoco_viewer.MujocoViewer, Viewer):  # type: ignore
         match backend:
             case RenderBackend.EGL:
                 os.environ["MUJOCO_GL"] = "egl"
+                xla_flags = os.environ.get("XLA_FLAGS", "")
+                xla_flags += " --xla_gpu_triton_gemm_any=True"
+                os.environ["XLA_FLAGS"] = xla_flags
                 glfw.window_hint(
                     glfw.CONTEXT_CREATION_API, glfw.EGL_CONTEXT_API
                 )

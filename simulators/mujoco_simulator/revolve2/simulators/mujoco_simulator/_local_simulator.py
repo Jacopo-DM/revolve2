@@ -89,7 +89,6 @@ class LocalSimulator(Simulator):
             if batch.parameters.sampling_frequency is None
             else 1.0 / batch.parameters.sampling_frequency
         )
-
         if batch.record_settings is not None:
             path_to_video = Path(batch.record_settings.video_directory)
             path_to_video.mkdir(

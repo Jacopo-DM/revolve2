@@ -2,6 +2,7 @@
 
 import revolve2.ci_group.simulation_parameters as sim_p
 from database_components import Genotype
+from numpy import rec
 from revolve2.ci_group import fitness_functions, terrains
 from revolve2.experimentation.evolution.abstract_elements import (
     Evaluator as Eval,
@@ -10,6 +11,9 @@ from revolve2.modular_robot_simulation import (
     ModularRobotScene,
     Terrain,
     simulate_scenes,
+)
+from revolve2.simulation.simulator import (
+    RecordSettings,
 )
 from revolve2.simulators.mujoco_simulator import LocalSimulator
 
@@ -62,11 +66,21 @@ class Evaluator(Eval):
             scene.add_robot(robot)
             scenes.append(scene)
 
+        # Make recording settings.
+        record_settings = RecordSettings(
+            video_directory="./",
+            overwrite=True,
+            fps=24,
+            width=500,
+            height=500,
+        )
+
         # Simulate all scenes.
         scene_states = simulate_scenes(
             simulator=self._simulator,
             batch_parameters=sim_p.make_standard_batch_parameters(),
             scenes=scenes,
+            record_settings=record_settings,
         )
 
         # Calculate the xy displacements.
