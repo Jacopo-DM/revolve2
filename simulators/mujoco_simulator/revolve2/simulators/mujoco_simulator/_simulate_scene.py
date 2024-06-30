@@ -34,7 +34,7 @@ def simulate_scene(
     simulation_time: int | None,
     simulation_timestep: float,
     integrator: str,
-    render_backend: RenderBackend = RenderBackend.EGL,
+    render_backend: RenderBackend = RenderBackend.GLFW,
     *,
     headless: bool,
     start_paused: bool,
@@ -145,7 +145,7 @@ def simulate_scene(
             hide_menus=(record_settings is not None),
         )
 
-s    """Record the scene if we want to record."""
+    """Record the scene if we want to record."""
     if record_settings is not None:
         if not viewer.can_record:
             msg = f"Selected Viewer {type(viewer).__name__} has no functionality to record."

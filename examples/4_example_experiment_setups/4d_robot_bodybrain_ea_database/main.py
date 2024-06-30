@@ -331,7 +331,9 @@ def main() -> None:
 
     # Open the database, only if it does not already exists.
     dbengine = open_database_sqlite(
-        config.DATABASE_FILE, open_method=OpenMethod.OVERWRITE_IF_EXISTS
+        db_file=config.DATABASE_FILE,
+        open_method=OpenMethod.OPEN_OR_CREATE,
+        # open_method=OpenMethod.OVERWRITE_IF_EXISTS,
     )
     # Create the structure of the database.
     Base.metadata.create_all(dbengine)

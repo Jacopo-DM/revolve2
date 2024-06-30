@@ -67,20 +67,20 @@ class Evaluator(Eval):
             scenes.append(scene)
 
         # Make recording settings.
-        record_settings = RecordSettings(
-            video_directory="./",
-            overwrite=True,
-            fps=24,
-            width=500,
-            height=500,
-        )
+        # record_settings = RecordSettings(
+        #     video_directory="./",
+        #     overwrite=True,
+        #     fps=24,
+        #     width=500,
+        #     height=500,
+        # )
 
         # Simulate all scenes.
         scene_states = simulate_scenes(
             simulator=self._simulator,
             batch_parameters=sim_p.make_standard_batch_parameters(),
             scenes=scenes,
-            record_settings=record_settings,
+            # record_settings=record_settings,
         )
 
         # Calculate the xy displacements.
