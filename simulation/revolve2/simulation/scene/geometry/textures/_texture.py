@@ -37,7 +37,7 @@ class Texture:
     """Specular ranges between [0, 1]."""
     shininess: float = field(default=0.5)
     """Shininess ranges between [0, 1]."""
-    reflectance: float = field(default=0.2)
+    reflectance: float = field(default=0.0)
     """Reflectance ranges between [0, 1]."""
     emission: float = field(default=0.0)
     """Allows Objects to emit light [0, inf)."""

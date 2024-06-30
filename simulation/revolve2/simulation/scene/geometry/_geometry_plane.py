@@ -11,6 +11,7 @@ class GeometryPlane(Geometry):
     """A flat plane geometry."""
 
     size: Vector2
+    friction = 1
     texture: Texture = field(
         default_factory=lambda: Texture(
             base_color=Color(100, 100, 100, 255),
