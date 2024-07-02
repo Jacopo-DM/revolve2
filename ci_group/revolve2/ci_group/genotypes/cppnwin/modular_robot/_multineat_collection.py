@@ -55,18 +55,8 @@ class CollectionOfDefaultValues:
         "YoungAgeTreshold": 15,  # -> 5
         # Mods 1
         "MutateNeuronActivationTypeProb": 0.03,  # -> 0.0
-        "ActivationFunction_Abs_Prob": 0.03,  # -> 0.0
-        "ActivationFunction_Linear_Prob": 0.06,  # -> 0.0
-        "ActivationFunction_SignedGauss_Prob": 0.03,  # -> 0.0
-        "ActivationFunction_SignedSigmoid_Prob": 0.1,  # -> 0.0
-        "ActivationFunction_SignedSine_Prob": 0.03,  # -> 0.0
-        "ActivationFunction_SignedStep_Prob": 0.03,  # -> 0.0
-        "ActivationFunction_TanhCubic_Prob": 0.1,  # -> 0.0
-        "ActivationFunction_Tanh_Prob": 0.9,  # -> 0.0
-        "ActivationFunction_UnsignedGauss_Prob": 0.03,  # -> 0.0
-        "ActivationFunction_UnsignedSigmoid_Prob": 0.03,  # -> 0.0
-        "ActivationFunction_UnsignedSine_Prob": 0.03,  # -> 0.0
-        "ActivationFunction_UnsignedStep_Prob": 0.03,  # -> 0.0
+        "ActivationFunction_Tanh_Prob": 0.7,  # -> 0.0
+        "ActivationFunction_UnsignedSigmoid_Prob": 0.27,  # -> 1.0
         # Mods 2
         "MinNeuronBias": -3,
         "MaxNeuronBias": 3,
