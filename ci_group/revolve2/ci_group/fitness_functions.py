@@ -1,7 +1,6 @@
 """Standard fitness functions for modular robots."""
 
-import math
-
+import numpy as np
 from revolve2.modular_robot_simulation import ModularRobotSimulationState
 
 
@@ -20,9 +19,7 @@ def xy_displacement(
     :rtype: float
 
     """
-    begin_position = begin_state.get_pose().position
-    end_position = end_state.get_pose().position
-    return math.sqrt(
-        (begin_position.x - end_position.x) ** 2
-        + (begin_position.y - end_position.y) ** 2
-    )
+    begin_position = begin_state.get_pose().position.xyz
+    end_position = end_state.get_pose().position.xyz
+    # print(float(np.linalg.norm(end_position - begin_position)))
+    return float(np.linalg.norm(end_position - begin_position))

@@ -1,9 +1,12 @@
 """Main script for the example."""
 
 import logging
+import pickle
+from pathlib import Path
 
 import cma
 import config
+from database_components import Genotype
 from evaluator import Evaluator
 from revolve2.experimentation.logging import setup_logging
 from revolve2.experimentation.rng import seed_from_time
@@ -11,6 +14,11 @@ from revolve2.modular_robot.body.base import ActiveHinge
 from revolve2.modular_robot.brain.cpg import (
     active_hinges_to_cpg_network_structure_neighbor,
 )
+
+
+def get_genotype() -> Genotype:
+    with Path("best_robot.pkl").open("rb") as f:
+        return pickle.load(f)
 
 
 def main() -> None:
@@ -23,7 +31,9 @@ def main() -> None:
     setup_logging(file_name="log.txt")
 
     # Find all active hinges in the body
-    active_hinges = config.BODY.find_modules_of_type(ActiveHinge)
+    robot = get_genotype().develop()
+    body = robot.body
+    active_hinges = body.find_modules_of_type(ActiveHinge)
 
     # Create a structure for the CPG network from these hinges.
     # This also returns a mapping between active hinges and the index of there corresponding cpg in the network.
@@ -37,7 +47,7 @@ def main() -> None:
         headless=True,
         num_simulators=config.NUM_SIMULATORS,
         cpg_network_structure=cpg_network_structure,
-        body=config.BODY,
+        body=body,
         output_mapping=output_mapping,
     )
 
@@ -47,7 +57,8 @@ def main() -> None:
     # We use the CMA-ES optimizer from the cma python package.
     # Initialize the cma optimizer.
     options = cma.CMAOptions()
-    options.set("bounds", [-1.0, 1.0])
+    options.set("bounds", [-3.0, 3.0])
+
     # The cma package uses its own internal rng.
     # Instead of creating our own numpy rng, we use our seed to initialize cma.
     rng_seed = seed_from_time() % 2**32  # Cma seed must be smaller than 2**32.
@@ -73,6 +84,9 @@ def main() -> None:
         opt.tell(solutions, fitnesses)
 
         logging.info(f"{opt.result.xbest=} {opt.result.fbest=}")
+
+        with Path("best_robot_brain.pkl").open("wb") as f:
+            pickle.dump(opt.result.xbest, f)
 
         # Increase the generation index counter.
         generation_index += 1

@@ -32,4 +32,5 @@ class ModularRobot:
         :rtype: uuid.UUID
 
         """
-        return self._uuid
+        return self.body.core.uuid
+        # return self._uuid

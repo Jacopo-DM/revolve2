@@ -50,12 +50,12 @@ select = [
     "YTT",   # flake8-2020
     "ANN",   # flake8-annotations
     "ASYNC", # flake8-async
-    "TRIO",  # flake8-trio
-    "S",     # flake8-bandit
-    "BLE",   # flake8-blind-except
-    "FBT",   # flake8-boolean-trap
-    "B",     # flake8-bugbear
-    "A",     # flake8-builtins
+    # "TRIO",  # flake8-trio
+    "S",   # flake8-bandit
+    "BLE", # flake8-blind-except
+    "FBT", # flake8-boolean-trap
+    "B",   # flake8-bugbear
+    "A",   # flake8-builtins
     # "COM",   # flake8-commas
     # "CPY",   # flake8-copyright
     "C4",  # flake8-comprehensions
@@ -114,6 +114,8 @@ ignore = [
     "T201",   # found print statement
     "G004",   # Logging statement uses string formatting
     "INP001", # implicit module __init__ thing
+    "S301",   # pickle insecure
+    "S403",   # pickle insecure import
 ]
 
 fixable = ["ALL"]

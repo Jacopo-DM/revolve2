@@ -1,9 +1,17 @@
 """Rerun the best robot between all experiments."""
 
 import logging
+import pickle
+from pathlib import Path
 
 import config
-from database_components import Generation, Genotype, Individual
+from database_components import (
+    Experiment,
+    Generation,
+    Genotype,
+    Individual,
+    Population,
+)
 from evaluator import Evaluator
 from revolve2.experimentation.database import OpenMethod, open_database_sqlite
 from revolve2.experimentation.logging import setup_logging
@@ -26,21 +34,42 @@ def main() -> None:
     )
 
     with Session(dbengine) as ses:
+        # Aliasing the tables
         row = ses.execute(
-            select(Genotype, Individual.fitness)
-            .join_from(
-                Genotype, Individual, Genotype.id == Individual.genotype_id
+            select(
+                Individual.fitness,
+                Genotype,
             )
+            .join_from(
+                Experiment,
+                Generation,
+                Experiment.id == Generation.experiment_id,
+            )
+            .join_from(
+                Generation,
+                Population,
+                Generation.population_id == Population.id,
+            )
+            .join_from(
+                Population,
+                Individual,
+                Population.id == Individual.population_id,
+            )
+            .join(
+                Genotype,
+                Individual.genotype_id == Genotype.id,
+            )
+            # .where(Experiment.id == 1)
             .order_by(Individual.fitness.desc())
-            .filter(Genotype.id != 1)
-            .filter(Generation.id == 1)
             .limit(1)
-        ).fetchone()
-
-        genotype = row[0]
-        fitness = row[1]
+        ).one()
+        fitness = row[0]
+        genotype = row[1]
 
     logging.info(f"Best fitness: {fitness}")
+
+    with Path("best_robot.pkl").open("wb") as f:
+        pickle.dump(genotype, f)
 
     # Create the evaluator.
     evaluator = Evaluator(headless=False, num_simulators=1, start_paused=True)

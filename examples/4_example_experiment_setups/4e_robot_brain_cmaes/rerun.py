@@ -1,7 +1,9 @@
 """Rerun a robot with given body and parameters."""
 
-import config
-import numpy as np
+import pickle
+from pathlib import Path
+
+from database_components import Genotype
 from evaluator import Evaluator
 from revolve2.experimentation.logging import setup_logging
 from revolve2.modular_robot.body.base import ActiveHinge
@@ -9,17 +11,17 @@ from revolve2.modular_robot.brain.cpg import (
     active_hinges_to_cpg_network_structure_neighbor,
 )
 
-# These are set of parameters that we optimized using CMA-ES.
-# You can copy your own parameters from the optimization output log.
-PARAMS = np.array([
-    0.17494433,
-    -0.26256499,
-    0.200834,
-    -0.79566395,
-    -0.07747241,
-    -0.07661194,
-    0.08148032,
-])
+
+def get_genotype() -> Genotype:
+    """Get the best robot from the database."""
+    with Path("best_robot.pkl").open("rb") as f:
+        return pickle.load(f)
+
+
+def get_brain() -> Genotype:
+    """Get the best brain from the CMA-ES optimization."""
+    with Path("best_robot_brain.pkl").open("rb") as f:
+        return pickle.load(f)
 
 
 def main() -> None:
@@ -32,7 +34,10 @@ def main() -> None:
     setup_logging()
 
     # Find all active hinges in the body
-    active_hinges = config.BODY.find_modules_of_type(ActiveHinge)
+    robot = get_genotype().develop()
+    body = robot.body
+    active_hinges = body.find_modules_of_type(ActiveHinge)
+    prams = get_brain()
 
     # Create a structure for the CPG network from these hinges.
     # This also returns a mapping between active hinges and the index of there corresponding cpg in the network.
@@ -46,12 +51,12 @@ def main() -> None:
         headless=False,
         num_simulators=1,
         cpg_network_structure=cpg_network_structure,
-        body=config.BODY,
+        body=body,
         output_mapping=output_mapping,
     )
 
     # Show the robot.
-    evaluator.evaluate([PARAMS])
+    evaluator.evaluate([prams])
 
 
 if __name__ == "__main__":
