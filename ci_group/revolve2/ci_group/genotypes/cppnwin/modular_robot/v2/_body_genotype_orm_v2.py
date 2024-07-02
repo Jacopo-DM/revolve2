@@ -33,8 +33,8 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
     _BODY_NUM_INITIAL_MUTATIONS = 5
     # bias(always 1), pos_x, pos_y, pos_z, chain_length
     _BODY_NUM_INPUTS = 5
-    # empty, brick, activehinge, rot0, rot90
-    _BODY_NUM_OUTPUTS = 5
+    # empty, brick, activehinge, rot
+    _BODY_NUM_OUTPUTS = 4
 
     serialized_body: orm.Mapped[str] = orm.mapped_column(
         "serialized_body", init=False, nullable=False

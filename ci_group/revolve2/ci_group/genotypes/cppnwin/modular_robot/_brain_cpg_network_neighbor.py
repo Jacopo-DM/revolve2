@@ -1,6 +1,7 @@
 from typing import cast
 
 import multineat
+import numpy as np
 from revolve2.modular_robot.body.base import ActiveHinge, Body
 from revolve2.modular_robot.brain.cpg import (
     BrainCpgNetworkNeighbor as ModularRobotBrainCpgNetworkNeighbor,
@@ -51,7 +52,7 @@ class BrainCpgNetworkNeighbor(ModularRobotBrainCpgNetworkNeighbor):
             self._evaluate_network(
                 brain_net,
                 [
-                    1.0,
+                    0.5,
                     float(pos.x),
                     float(pos.y),
                     float(pos.z),
@@ -70,7 +71,7 @@ class BrainCpgNetworkNeighbor(ModularRobotBrainCpgNetworkNeighbor):
             self._evaluate_network(
                 brain_net,
                 [
-                    1.0,
+                    0.5,
                     float(pos1.x),
                     float(pos1.y),
                     float(pos1.z),
@@ -87,6 +88,8 @@ class BrainCpgNetworkNeighbor(ModularRobotBrainCpgNetworkNeighbor):
                 for (active_hinge1, active_hinge2) in connections
             ]
         ]
+        internal_weights = np.clip(internal_weights, -1.0, 1.0)
+        external_weights = np.clip(external_weights, -1.0, 1.0)
         return (internal_weights, external_weights)
 
     @staticmethod
@@ -102,8 +105,7 @@ class BrainCpgNetworkNeighbor(ModularRobotBrainCpgNetworkNeighbor):
         network.Flush()
         network.Input(inputs)
         network.ActivateAllLayers()
-        output = network.Output()[0]
         return cast(
             float,
-            output,
+            network.Output()[0],
         )

@@ -44,7 +44,7 @@ class BrainCpgInstance(BrainInstance):
         # Stabilise the state by integrating it for a while.
         # WARN very hacky way to stabilise the state
         # [ ] find a faster/better way to stabilise the state
-        for _ in range(200):
+        for _ in range(50):
             initial_state, _ = self._newtown_raphson(
                 initial_state, weight_matrix, 0.05
             )
@@ -123,17 +123,16 @@ class BrainCpgInstance(BrainInstance):
         :rtype: None
         """
         # Integrate ODE to obtain new state.
-        # self._state, delta = self._rk45(self._state, self._weight_matrix, dt)
-        self._state, delta = self._newtown_raphson(
+        self._state, delta = self._newtown_raphson(  # _rk45
             self._state, self._weight_matrix, dt
         )
 
         # Set active hinge targets to match newly calculated state.
         for state_index, active_hinge in self._output_mapping:
+            # TODO(jmdm): delta or absolute state?
+            # see ../../mujoco_simulator/_control_interface_impl.py
             control_interface.set_active_hinge_target(
                 active_hinge,
-                # TODO(jmdm) delta or absolute state?
-                # see ../../mujoco_simulator/_control_interface_impl.py
-                float(delta[state_index]),
-                # float(self._state[state_index]) * active_hinge.range,
+                float(delta[state_index]) * active_hinge.range,
+                # self._state[state_index] delta[state_index]
             )

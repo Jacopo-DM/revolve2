@@ -21,5 +21,4 @@ def xy_displacement(
     """
     begin_position = begin_state.get_pose().position.xyz
     end_position = end_state.get_pose().position.xyz
-    # print(float(np.linalg.norm(end_position - begin_position)))
     return float(np.linalg.norm(end_position - begin_position))

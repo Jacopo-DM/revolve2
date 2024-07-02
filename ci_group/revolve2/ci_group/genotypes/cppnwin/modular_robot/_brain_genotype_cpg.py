@@ -20,7 +20,7 @@ if TYPE_CHECKING:
     from revolve2.modular_robot.body.base import Body
 
 MULTINEAT_PARAMS = get_multineat_params()
-OUTPUT_ACT_F = multineat.ActivationFunction.LINEAR
+OUTPUT_ACT_F = multineat.ActivationFunction.UNSIGNED_SINE
 SEARCH_MODE = multineat.SearchMode.BLENDED
 NUM_INITIAL_MUTATIONS = 5
 NUM_BRAIN_INPUTS = 7  # bias(always 1), x1, y1, z1, x2, y2, z2

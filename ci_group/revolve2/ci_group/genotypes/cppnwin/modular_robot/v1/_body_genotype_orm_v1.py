@@ -18,10 +18,16 @@ if TYPE_CHECKING:
 class BodyGenotypeOrmV1(orm.MappedAsDataclass, kw_only=True):
     """SQLAlchemy model for a CPPNWIN body genotype."""
 
-    _NUM_INITIAL_MUTATIONS = 5
-    _MULTINEAT_PARAMS = get_multineat_params()
-
     body: multineat.Genome
+
+    _BODY_MULTINEAT_PARAMS = get_multineat_params()
+    _BODY_OUTPUT_ACT_FUNC = multineat.ActivationFunction.UNSIGNED_SINE
+    _BODY_SEARCH_MODE = multineat.SearchMode.BLENDED
+    _BODY_NUM_INITIAL_MUTATIONS = 5
+    # bias(always 1), pos_x, pos_y, pos_z, chain_length
+    _BODY_NUM_INPUTS = 5
+    # empty, brick, activehinge, rotation
+    _BODY_NUM_OUTPUTS = 4
 
     serialized_body: orm.Mapped[str] = orm.mapped_column(
         "serialized_body", init=False, nullable=False
@@ -48,11 +54,12 @@ class BodyGenotypeOrmV1(orm.MappedAsDataclass, kw_only=True):
         body = random_multineat_genotype(
             innov_db=innov_db,
             rng=multineat_rng,
-            multineat_params=cls._MULTINEAT_PARAMS,
-            output_activation_func=multineat.ActivationFunction.TANH,
-            num_inputs=5,  # bias(always 1), pos_x, pos_y, pos_z, chain_length
-            num_outputs=5,  # empty, brick, activehinge, rot0, rot90
-            num_initial_mutations=cls._NUM_INITIAL_MUTATIONS,
+            multineat_params=cls._BODY_MULTINEAT_PARAMS,
+            output_activation_func=cls._BODY_OUTPUT_ACT_FUNC,
+            num_inputs=cls._BODY_NUM_INPUTS,
+            num_outputs=cls._BODY_NUM_OUTPUTS,
+            num_initial_mutations=cls._BODY_NUM_INITIAL_MUTATIONS,
+            search_mode=cls._BODY_SEARCH_MODE,
         )
 
         return BodyGenotypeOrmV1(body=body)
@@ -80,9 +87,9 @@ class BodyGenotypeOrmV1(orm.MappedAsDataclass, kw_only=True):
         return BodyGenotypeOrmV1(
             body=self.body.MutateWithConstraints(
                 False,
-                multineat.SearchMode.BLENDED,
+                self._BODY_SEARCH_MODE,
                 innov_db,
-                self._MULTINEAT_PARAMS,
+                self._BODY_MULTINEAT_PARAMS,
                 multineat_rng,
             )
         )
@@ -113,7 +120,7 @@ class BodyGenotypeOrmV1(orm.MappedAsDataclass, kw_only=True):
                 False,
                 False,
                 multineat_rng,
-                cls._MULTINEAT_PARAMS,
+                cls._BODY_MULTINEAT_PARAMS,
             )
         )
 

@@ -28,7 +28,11 @@ class ControlInterfaceImpl(ControlInterface):
         self._abstraction_to_mujoco_mapping = abstraction_to_mujoco_mapping
 
     def set_joint_hinge_position_target(
-        self, joint_hinge: JointHinge, position_delta: float
+        self,
+        joint_hinge: JointHinge,
+        update: float,
+        *,
+        as_delta: bool = True,
     ) -> None:
         """Set the position target of a hinge joint.
 
@@ -49,11 +53,12 @@ class ControlInterfaceImpl(ControlInterface):
 
         # Set position target
         idx_pos = maybe_hinge_joint_mujoco.ctrl_index_position
+
         # TODO(jmdm) should be position be added (+=) or set (=) ?
-        self._data.ctrl[idx_pos] += position_delta
+        ctrl_data = self._data.ctrl[idx_pos] + update if as_delta else update
 
         self._data.ctrl[idx_pos] = np.clip(
-            self._data.ctrl[idx_pos],
+            ctrl_data,
             -joint_hinge.range,
             joint_hinge.range,
         )
