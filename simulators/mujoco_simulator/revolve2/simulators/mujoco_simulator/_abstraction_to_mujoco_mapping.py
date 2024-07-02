@@ -51,6 +51,7 @@ class AbstractionToMujocoMapping:
     imu_sensor: dict[UUIDKey[IMUSensor], IMUSensorMujoco] = field(
         init=False, default_factory=dict
     )
+
     camera_sensor: dict[UUIDKey[CameraSensor], CameraSensorMujoco] = field(
         init=False, default_factory=dict
     )

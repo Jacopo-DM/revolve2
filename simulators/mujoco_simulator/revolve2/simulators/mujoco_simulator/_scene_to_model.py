@@ -65,10 +65,12 @@ def scene_to_model(
 
     env_mjcf.worldbody.add(
         "light",
-        pos=[0, 0, 1],
+        pos=[0, 0, 100],
+        ambient=[0.5, 0.5, 0.5],
+        directional=True,
         castshadow=cast_shadows,
     )
-    env_mjcf.visual.headlight.active = 1
+    env_mjcf.visual.headlight.active = 0
 
     conversions = [
         multi_body_system_to_urdf(

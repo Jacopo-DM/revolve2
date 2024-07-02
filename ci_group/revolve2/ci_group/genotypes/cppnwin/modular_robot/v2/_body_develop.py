@@ -40,6 +40,7 @@ def develop(
     """
     # Instantiate the CPPN network for body construction.
     body_net = multineat.NeuralNetwork()
+
     # Build the CPPN from the genotype of the robot.
     genotype.BuildPhenotype(body_net)
 

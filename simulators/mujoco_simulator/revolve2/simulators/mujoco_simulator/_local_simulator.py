@@ -30,7 +30,7 @@ class LocalSimulator(Simulator):
         *,
         headless: bool = False,
         start_paused: bool = False,
-        cast_shadows: bool = True,
+        cast_shadows: bool = False,
         fast_sim: bool = False,
         manual_control: bool = False,
     ) -> None:
