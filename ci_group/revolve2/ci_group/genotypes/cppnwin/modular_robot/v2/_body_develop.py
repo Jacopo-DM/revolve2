@@ -83,6 +83,7 @@ def develop(
                 if child is not None:
                     to_explore.put(child)
                     part_count += 1
+
     return body
 
 
@@ -121,47 +122,36 @@ def __evaluate_cppn(
     x = (x / GRID_SIZE) - 0.5
     y = (y / GRID_SIZE) - 0.5
     z = (z / GRID_SIZE) - 0.5
-    chain_length = (chain_length - MAX_PARTS) - 0.5
+    chain_length = (chain_length / MAX_PARTS) - 0.5
 
-    # 1.0 is the bias input
-    body_net.Flush()
-    body_net.Input([1.0, x, y, z, chain_length])
-    body_net.ActivateAllLayers()
-    outputs = body_net.Output()
+    # TODO(jmdm): still to figure out?
+    # WARN Selection method is biased towards the first element
+    # [ ] Figure out best selection method
+    #   .choice(idxs_1, p=type_probs)
+    #   .argmax(type_probs)
+    #   .argmin(type_probs)
 
-    # ========= Set up ========= #
     """We select the module type for the current position using the first output
     of the CPPN network.
     """
-    # TODO(jmdm): gotta find a fix
+    # 1.0 is the bias input
+
+    inputs = [0.5, x, y, z, chain_length]
+    body_net.Flush()
+    body_net.Input(inputs)
+    body_net.ActivateAllLayers()
+    outputs = body_net.Output()
+
     types = [None, BrickV2, ActiveHingeV2]
-    target_idx = max(0, int(outputs[0] * len(types) - 1e-6))
-    # types = {0: None, 1: BrickV2, 2: ActiveHingeV2}
-    # idxs_1 = list(types.keys())
-    # idxs_2 = [3, 4]
-
-    # ========= get module type from output probabilities ========= #
+    _outputs = softmax(np.array(outputs)[: len(types)])
+    target_idx = np.argmax(_outputs)
     module_type = types[target_idx]
-    # type_probs = softmax(np.array(outputs)[idxs_1])
-    # WARN Selection method is biased towards the first element
-    # [ ] Figure out best selection method
-    #   rng = np.random.default_rng()
-    #   idx = rng.choice(idxs_1, p=type_probs)
-    #   idx = np.argmax(type_probs)
-    # idx = np.argmin(type_probs)
-    # module_type = types[idx]
 
-    # ========= get rotation from output probabilities ========= #
     """Here we get the rotation of the module from the second output of the CPPN network.
     The output ranges between [0,1] and we have 4 rotations available (0, 90, 180, 270).
     """
-    angle = max(0, int(outputs[0] * 4 - 1e-6)) * (np.pi / 2.0)
-    # rotation_probs = softmax(np.array(outputs)[idxs_2])
-    # [ ] Figure out best selection method
-    #   rotation_index = rng.choice(idxs_2, p=rotation_probs)
-    #   rotation_index = np.argmax(rotation_probs)
-    # angle = np.argmin(rotation_probs) * (np.pi / 2.0)
-    return module_type, angle
+    rotation = np.round(np.sin(np.array(outputs[3]) * 4)) * (np.pi / 2.0)
+    return module_type, float(rotation)
 
 
 def __add_child(
@@ -195,6 +185,7 @@ def __add_child(
         np.round(position + attachment_point.offset), dtype=np.int64
     )
     child_type, angle = __evaluate_cppn(body_net, new_pos, chain_length)
+
     """Here we check whether the CPPN evaluated to place a module and if the
     module can be set on the parent."""
     can_set = module.module_reference.can_set_child(attachment_index)

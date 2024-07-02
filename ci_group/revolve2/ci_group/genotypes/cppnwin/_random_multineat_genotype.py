@@ -10,7 +10,7 @@ def random_multineat_genotype(
     num_outputs: int,
     num_initial_mutations: int,
     search_mode: multineat.SearchMode = multineat.SearchMode.BLENDED,
-    hidden_act_f: multineat.ActivationFunction = multineat.ActivationFunction.UNSIGNED_SINE,
+    hidden_act_f: multineat.ActivationFunction = multineat.ActivationFunction.SIGNED_SINE,
 ) -> multineat.Genome:
     """Create a random multineat genotype.
 
@@ -38,7 +38,7 @@ def random_multineat_genotype(
     :param search_mode: (Default value = multineat.SearchMode.BLENDED)
     :type search_mode: multineat.SearchMode
     :param hidden_act_f: (Default value =
-        multineat.ActivationFunction.UNSIGNED_SINE)
+        multineat.ActivationFunction.SIGNED_SINE)
     :type hidden_act_f: multineat.ActivationFunction
     :returns: The created genotype.
     :rtype: multineat.Genome
