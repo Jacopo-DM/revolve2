@@ -154,6 +154,8 @@ cython_debug/
 **/*.jpg
 **/*.png
 **/*.pdf
+**/*.gv
+**/*.svg
 **/*.sqlite
 **/*.drawio
 
@@ -207,3 +209,4 @@ robohat/**
 
 # TEMP TODO: unlock later
 examples/6_dev_programs
+examples/7_ann_test
