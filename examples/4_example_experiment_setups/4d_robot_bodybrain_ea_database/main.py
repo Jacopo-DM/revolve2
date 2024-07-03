@@ -16,7 +16,6 @@ from database_components import (
     Population,
 )
 from evaluator import Evaluator
-from plot import plot_fig
 from revolve2.experimentation.database import OpenMethod, open_database_sqlite
 from revolve2.experimentation.evolution import ModularRobotEvolution
 from revolve2.experimentation.evolution.abstract_elements import (
@@ -318,7 +317,6 @@ def run_experiment(dbengine: Engine) -> None:
             population=population,
         )
         save_to_db(dbengine, generation)
-        plot_fig()
 
 
 def main() -> None:
