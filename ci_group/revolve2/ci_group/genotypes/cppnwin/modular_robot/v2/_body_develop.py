@@ -135,26 +135,25 @@ def __evaluate_cppn(
     of the CPPN network.
     """
     # 1.0 is the bias input
-
-    inputs = [0.5, x, y, z, chain_length]
+    inputs = [1, x, y, z, chain_length]
     body_net.Flush()
     body_net.Input(inputs)
     body_net.ActivateAllLayers()
     outputs = body_net.Output()
 
     types = (None, BrickV2, ActiveHingeV2)
+    i_types = len(types)
     # why calc, when we can look-up?
     rots = (
-        0,
+        0.0,
         np.pi * 0.5,
         np.pi,
         np.pi * 1.5,
     )
+    i_rots = len(rots) + i_types
 
-    _outputs_type = softmax(np.array(outputs)[: len(types)])
-    _outputs_rot = softmax(
-        np.array(outputs)[len(types) : len(types) + len(rots)]
-    )
+    _outputs_type = softmax(np.array(outputs)[:i_types])
+    _outputs_rot = softmax(np.array(outputs)[i_types:i_rots])
 
     _type_idx = np.argmax(_outputs_type)
     _rot_idx = np.argmax(_outputs_rot)
@@ -165,7 +164,7 @@ def __evaluate_cppn(
     """Here we get the rotation of the module from the second output of the CPPN network.
     The output ranges between [0,1] and we have 4 rotations available (0, 90, 180, 270).
     """
-    return module_type, float(rotation)
+    return module_type, rotation
 
 
 def __add_child(

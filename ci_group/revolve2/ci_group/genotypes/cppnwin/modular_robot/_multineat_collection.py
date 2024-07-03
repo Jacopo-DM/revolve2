@@ -38,40 +38,38 @@ class CollectionOfDefaultValues:
     Empty: ClassVar[dict[str, float | int | bool]] = {}
 
     Jacked: ClassVar[dict[str, float | int | bool]] = {
+        # ---
         "AllowClones": False,  # -> True
-        "RouletteWheelSelection": True,  # -> False
-        "ArchiveEnforcement": True,
-        "DetectCompetetiveCoevolutionStagnation": True,
-        "DontUseBiasNeuron": True,
+        "DetectCompetetiveCoevolutionStagnation": True,  # -> False
+        "DontUseBiasNeuron": False,  # -> False True
+        "RouletteWheelSelection": False,  # -> False True
+        # ---
         "DynamicCompatibility": True,
-        "GeometrySeed": True,
         "InnovationsForever": True,
-        "Leo": True,
-        "LeoSeed": True,
-        "NormalizeGenomeSize": True,
+        "NormalizeGenomeSize": True,  # -> True
         "NoveltySearch_Dynamic_Pmin": True,
         "SplitLoopedRecurrent": True,
-        "SplitRecurrent": True,
+        "SplitRecurrent": False,
         # ---
-        "MutateActivationAProb": 0.01,
-        "MutateActivationBProb": 0.005,
+        "MutateActivationAProb": 0.01,  # -> 0.0
+        "MutateActivationBProb": 0.005,  # -> 0.0
         "MutateNeuronActivationTypeProb": 0.03,  # -> 0.0
         "ActivationAMutationMaxPower": 0.5,  # -> 0.0
         "ActivationBMutationMaxPower": 0.25,  # -> 0.0
-        "ActivationFunctionDiffCoeff": 0.15,
-        "ActivationADiffCoeff": 0.05,
-        "ActivationBDiffCoeff": 0.05,
-        "ActivationFunction_Abs_Prob": 0.01,
-        "ActivationFunction_Linear_Prob": 0.05,
-        "ActivationFunction_SignedGauss_Prob": 0.01,
-        "ActivationFunction_SignedSigmoid_Prob": 0.5,
-        "ActivationFunction_SignedSine_Prob": 0.01,
-        "ActivationFunction_SignedStep_Prob": 0.05,
-        "ActivationFunction_TanhCubic_Prob": 0.01,
-        "ActivationFunction_Tanh_Prob": 0.5,
+        "ActivationFunctionDiffCoeff": 0.15,  # -> 0.0
+        "ActivationADiffCoeff": 0.05,  # -> 0.0
+        "ActivationBDiffCoeff": 0.05,  # -> 0.0
+        "ActivationFunction_Abs_Prob": 0.01,  # -> 0.0
+        "ActivationFunction_Linear_Prob": 0.05,  # -> 0.0
+        "ActivationFunction_SignedGauss_Prob": 0.01,  # -> 0.0
+        "ActivationFunction_SignedSigmoid_Prob": 0.5,  # -> 0.0
+        "ActivationFunction_SignedSine_Prob": 0.01,  # -> 0.0
+        "ActivationFunction_SignedStep_Prob": 0.05,  # -> 0.0
+        "ActivationFunction_TanhCubic_Prob": 0.01,  # -> 0.0
+        "ActivationFunction_Tanh_Prob": 0.5,  # -> 0.0
         # ---
         "BiasMutationMaxPower": 0.5,  # -> 1.0
-        "CPPN_Bias": -1.0,  # -> 1.0
+        # "CPPN_Bias": 1.0,  # -> 1.0 -1.0
         "CompatTreshold": 2.0,  # -> 5.0
         "CrossoverRate": 0.5,  # -> 0.7
         "DivisionThreshold": 0.5,  # -> 0.03
@@ -98,15 +96,8 @@ class CollectionOfDefaultValues:
         "WeightMutationMaxPower": 0.5,  # -> 1.0
         "WeightMutationRate": 0.75,  # -> 1.0
         "WeightReplacementMaxPower": 5.0,  # -> 1.0
-        # -- -
-        "Width": 2.0,  # -> 2.0
-        "Height": 2.0,  # -> 2.0
-        "InitialDepth": 3,  # -> 2.0
-        "MaxDepth": 3,  # -> 2.0
-        # ---
-        "MaxSpecies": 20,
-        "MinSpecies": 10,
-        # ---
+        "MaxSpecies": 20,  # -> 10
+        "MinSpecies": 10,  # -> 5
         "OldAgeTreshold": 40,  # -> 30
         "SpeciesDropoffAge": 100,  # -> 50
         "YoungAgeTreshold": 20,  # -> 5

@@ -25,15 +25,15 @@ MULTINEAT_PARAMS = get_multineat_params()
 SEARCH_MODE = multineat.SearchMode.BLENDED
 
 # SOFTPLUS RELU TANH SIGNED_SIGMOID
-OUTPUT_ACT_F = multineat.ActivationFunction.SOFTPLUS
+OUTPUT_ACT_F = multineat.ActivationFunction.SIGNED_STEP
 # SOFTPLUS, RELU, SIGNED_STEP, TANH, TANH_CUBIC, SIGNED_SIGMOID
 HIDDEN_ACT_F = multineat.ActivationFunction.SIGNED_SIGMOID
 
 NUM_INITIAL_MUTATIONS = 5
 # bias(always 1), pos_x, pos_y, pos_z, chain_length
-NUM_BODY_INPUTS = 5
-# 'empty, brick, activehinge' + 'rot1, rot2, rot3, rot4'
-NUM_BODY_OUTPUTS = 3 + 4
+NUM_BODY_INPUTS = 1 + 3 + 1
+# 'empty, brick, activehinge' + 'rot1, rot2, rot3, rot4' + 'bias'
+NUM_BODY_OUTPUTS = 3 + 4 + 1
 
 
 @dataclass

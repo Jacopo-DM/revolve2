@@ -267,8 +267,8 @@ class MultiNEATParamsWriter:
         "PopulationSize": 300,  # def: 150
         # WARN The following parameters seem to be the cause of the seg-fault
         #   └── [ ] To study
-        "RecurrentProb": 0,  # def: 0.25,
-        "RecurrentLoopProb": 0,  # def: 0.25,
+        "RecurrentProb": 0.25,  # def: 0.25,
+        "RecurrentLoopProb": 0.25,  # def: 0.25,
         "AllowLoops": False,  # def: True,
     }
 
