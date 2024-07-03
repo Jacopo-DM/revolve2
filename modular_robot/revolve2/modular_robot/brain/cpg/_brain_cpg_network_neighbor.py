@@ -1,4 +1,3 @@
-import math
 from abc import abstractmethod
 
 import numpy as np
@@ -66,7 +65,7 @@ class BrainCpgNetworkNeighbor(Brain):
             )
         )
         # TODO(jmdm): value??
-        value = 1  # np.pi / 2  # 0.5 * math.sqrt(2)  # 1
+        value = 1.0  # 2 / np.sqrt(2),
         self._initial_state = cpg_network_structure.make_uniform_state(
             value=value
         )

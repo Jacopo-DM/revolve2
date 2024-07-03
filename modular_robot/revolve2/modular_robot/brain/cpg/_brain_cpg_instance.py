@@ -84,9 +84,11 @@ class BrainCpgInstance(BrainInstance):
             a_mat, (state + dt * a_mat_3)
         )
         delta = dt / 6 * (a_mat_1 + 2 * (a_mat_2 + a_mat_3) + a_mat_4)
-        return np.clip(state, -STATE_CLIP, STATE_CLIP), np.clip(
-            delta, -DELTA_CLIP, DELTA_CLIP
-        )
+        state += delta
+
+        delta = np.clip(delta, -DELTA_CLIP, DELTA_CLIP)
+        state = np.clip(state, -STATE_CLIP, STATE_CLIP)
+        return state, delta
 
     @staticmethod
     def _newtown_raphson(
@@ -101,10 +103,11 @@ class BrainCpgInstance(BrainInstance):
         :rtype: tuple[npt.NDArray[np.float64],npt.NDArray[np.float64]]
         """
         delta = np.matmul(a, state) * dt
+        state += delta
 
-        return np.clip(state, -STATE_CLIP, STATE_CLIP), np.clip(
-            delta, -DELTA_CLIP, DELTA_CLIP
-        )
+        delta = np.clip(delta, -DELTA_CLIP, DELTA_CLIP)
+        state = np.clip(state, -STATE_CLIP, STATE_CLIP)
+        return state, delta
 
     def control(
         self,

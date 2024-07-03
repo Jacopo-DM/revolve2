@@ -59,13 +59,12 @@ def main() -> None:
                 Genotype,
                 Individual.genotype_id == Genotype.id,
             )
-            # .where(Experiment.id == 1)
+            .where(Experiment.id == 1)
             .order_by(Individual.fitness.desc())
-            # .limit(1)
-            # ).fetchone()
+            .limit(2)
         ).fetchall()
-        fitness = row[10][0]
-        genotype = row[10][1]
+        fitness = row[0][0]
+        genotype = row[0][1]
 
     logging.info(f"Best fitness: {fitness}")
 

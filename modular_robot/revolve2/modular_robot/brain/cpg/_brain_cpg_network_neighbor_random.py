@@ -39,15 +39,8 @@ class BrainCpgNetworkNeighborRandom(BrainCpgNetworkNeighbor):
         :type body: Body
         :rtype: tuple[list[float],list[float]]
         """
-        # TODO(jmdm) ideal initial state?
-        multiplier = 0.1
-        recenter = -multiplier / 2.0
+        # TODO(jmdm): ideal initial state?
         return (
-            (
-                self._rng.random(size=len(active_hinges)) * multiplier
-                + recenter
-            ).tolist(),
-            (
-                self._rng.random(size=len(connections)) * multiplier + recenter
-            ).tolist(),
+            (self._rng.random(size=len(active_hinges)) * 2.0 - 1).tolist(),
+            (self._rng.random(size=len(connections)) * 2.0 - 1).tolist(),
         )

@@ -53,6 +53,11 @@ class ControlInterfaceImpl(ControlInterface):
         # Set position target
         idx_pos = maybe_hinge_joint_mujoco.ctrl_index_position
 
+        # Update the position target
         self._data.ctrl[idx_pos] = (
             self._data.ctrl[idx_pos] + update if as_delta else update
         )
+
+        # Set velocity target
+        idx_vel = maybe_hinge_joint_mujoco.ctrl_index_velocity
+        self._data.ctrl[idx_vel] = 0.0

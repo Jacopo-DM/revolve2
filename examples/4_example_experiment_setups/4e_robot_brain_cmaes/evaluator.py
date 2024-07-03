@@ -79,7 +79,7 @@ class Evaluator:
                 brain=BrainCpgNetworkStatic.uniform_from_params(
                     params=params,
                     cpg_network_structure=self._cpg_network_structure,
-                    initial_state_uniform= 1 # math.sqrt(2) * 0.5,
+                    initial_state_uniform=1.0,  # 2 / np.sqrt(2),
                     output_mapping=self._output_mapping,
                 ),
             )

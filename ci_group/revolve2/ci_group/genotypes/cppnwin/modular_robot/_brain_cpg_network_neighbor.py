@@ -2,24 +2,25 @@ from typing import cast
 
 import multineat
 import numpy as np
+import numpy.typing as npt
 from revolve2.modular_robot.body.base import ActiveHinge, Body
 from revolve2.modular_robot.brain.cpg import (
     BrainCpgNetworkNeighbor as ModularRobotBrainCpgNetworkNeighbor,
 )
 
-WEIGHT_SCALE = 1
-EPS = 1e-8
+WEIGHT_SCALE = 2.0
+EPS1 = 1e-8
+EPS2 = 1e-7
 
 
-def normalise(x: np.ndarray) -> np.ndarray:
+def normalise(x: np.ndarray[float, float]) -> np.ndarray[float, float]:
     """Normalise a list of values between -1 and 1."""
-    return (
-        x
-        if len(x) == 0
-        else WEIGHT_SCALE
-        * ((x - np.min(x) + EPS) / (np.max(x) - np.min(x) + EPS))
-        - WEIGHT_SCALE / 2
-    )
+    if len(x) == 0:
+        return x
+    x = np.array(x)
+    _max = 1 if np.abs(np.max(x)) <= 1 else np.max(x)
+    _min = -1 if np.abs(np.min(x)) <= 1 else np.min(x)
+    return np.array((((x - _min + EPS1) / (_max - _min + +EPS2)) * 2) - 1)
 
 
 class BrainCpgNetworkNeighbor(ModularRobotBrainCpgNetworkNeighbor):
