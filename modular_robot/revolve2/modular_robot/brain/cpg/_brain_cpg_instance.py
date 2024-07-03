@@ -10,7 +10,10 @@ from .._brain_instance import BrainInstance
 
 # NOTE(jmdm): why '0.0025'? see:
 #   95, 39:  control_interface.set_joint_hinge_position_target()
-DELTA_CLIP = 0.025
+#   This value should be considered relative to:
+#   STANDARD_CONTROL_FREQUENCY
+#   17, 5: def make_standard_batch_parameters(
+DELTA_CLIP = 0.1
 STATE_CLIP = 1
 
 
@@ -44,15 +47,6 @@ class BrainCpgInstance(BrainInstance):
         assert weight_matrix.ndim == 2
         assert weight_matrix.shape[0] == weight_matrix.shape[1]
         assert initial_state.shape[0] == weight_matrix.shape[0]
-        assert all(i >= 0 and i < len(initial_state) for i, _ in output_mapping)
-
-        # Stabilise the state by integrating it for a while.
-        # WARN(jmdm) very hacky way to stabilise the state
-        # [ ] find a faster/better way to stabilise the state
-        for _ in range(50):
-            initial_state, _ = self._newtown_raphson(
-                initial_state, weight_matrix, 0.05
-            )
 
         self._state = initial_state
         self._weight_matrix = weight_matrix
