@@ -1,4 +1,5 @@
 import mujoco
+import numpy as np
 from revolve2.simulation.scene import ControlInterface, JointHinge, UUIDKey
 
 from ._abstraction_to_mujoco_mapping import (
@@ -54,8 +55,10 @@ class ControlInterfaceImpl(ControlInterface):
         idx_pos = maybe_hinge_joint_mujoco.ctrl_index_position
 
         # Update the position target
-        self._data.ctrl[idx_pos] = (
-            self._data.ctrl[idx_pos] + update if as_delta else update
+        self._data.ctrl[idx_pos] = np.clip(
+            (self._data.ctrl[idx_pos] + update if as_delta else update),
+            -joint_hinge.range,
+            joint_hinge.range,
         )
 
         # Set velocity target
