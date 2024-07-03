@@ -263,8 +263,8 @@ class MultiNEATParamsWriter:
         # NOTE - These field-values are enforced in every case
         "PhasedSearching": True,  # def: False
         "DeltaCoding": True,  # def: False
-        "MutateOutputActivationFunction": True,  # WARN CHANGED!
-        "PopulationSize": 400,  # def: 150
+        "MutateOutputActivationFunction": False,
+        "PopulationSize": 300,  # def: 150
         # WARN The following parameters seem to be the cause of the seg-fault
         #   └── [ ] To study
         "RecurrentProb": 0,  # def: 0.25,

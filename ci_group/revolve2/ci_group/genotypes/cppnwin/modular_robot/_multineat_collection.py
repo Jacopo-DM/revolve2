@@ -41,39 +41,42 @@ class CollectionOfDefaultValues:
         "AllowClones": False,  # -> True
         "DontUseBiasNeuron": True,  # -> False
         "RouletteWheelSelection": True,  # -> False
+        "ArchiveEnforcement": True,  # -> False
+        "DetectCompetetiveCoevolutionStagnation": True,  # -> False
         "CrossoverRate": 0.5,  # -> 0.7
-        "EliteFraction": 0.00001,  # -> 0.01
-        "MutateAddLinkProb": 0.02,  # -> 0.03
-        "MutateLinkTraitsProb": 0.0,  # -> 1.0
-        "MutateNeuronTraitsProb": 0.0,  # -> 1.0
+        "EliteFraction": 0.001,  # -> 0.01
+        "MutateAddLinkProb": 0.05,  # -> 0.03
+        "MutateLinkTraitsProb": 0.01,  # -> 1.0
+        "MutateNeuronTraitsProb": 0.01,  # -> 1.0
         "MutateWeightsSevereProb": 0.01,  # -> 0.25
-        "OverallMutationRate": 0.02,  # -> 0.25
+        "OverallMutationRate": 0.1,  # -> 0.25
         "WeightMutationRate": 0.75,  # -> 1.0
         "WeightReplacementMaxPower": 5.0,  # -> 1.0
-        "MinSpecies": 5,  # -> 5
+        "MinSpecies": 10,  # -> 5
+        "MaxSpecies": 20,  # -> 10
         "OldAgeTreshold": 35,  # -> 30
         "SpeciesDropoffAge": 100,  # -> 50
-        "YoungAgeTreshold": 15,  # -> 5
+        "YoungAgeTreshold": 25,  # -> 5
         # Mods 1
-        "MutateNeuronActivationTypeProb": 0.05,  # -> 0.0
-        "ActivationFunction_Tanh_Prob": 0.7,  # -> 0.0
-        "ActivationFunction_UnsignedSigmoid_Prob": 0.3,  # -> 1.0
-        "ActivationFunction_Linear_Prob": 0.01,
-        "ActivationFunction_Abs_Prob": 0.01,
-        "ActivationFunction_SignedGauss_Prob": 0.01,
-        "ActivationFunction_SignedSigmoid_Prob": 0.01,
-        "ActivationFunction_SignedSine_Prob": 0.01,
-        "ActivationFunction_SignedStep_Prob": 0.01,
-        "ActivationFunction_TanhCubic_Prob": 0.01,
-        "ActivationFunction_Tanh_Prob": 0.01,
-        "ActivationFunction_UnsignedGauss_Prob": 0.01,
-        "ActivationFunction_UnsignedSine_Prob": 0.01,
-        "ActivationFunction_UnsignedStep_Prob": 0.01,
+        "MutateNeuronActivationTypeProb": 0.0,  # -> 0.0
+        "ActivationFunctionDiffCoeff": 0.0,
+        "ActivationFunction_Abs_Prob": 0.0,
+        "ActivationFunction_Linear_Prob": 0.0,
+        "ActivationFunction_SignedGauss_Prob": 0.0,
+        "ActivationFunction_SignedSigmoid_Prob": 0.0,
+        "ActivationFunction_SignedSine_Prob": 0.0,
+        "ActivationFunction_SignedStep_Prob": 0.0,
+        "ActivationFunction_TanhCubic_Prob": 0.0,
+        "ActivationFunction_Tanh_Prob": 1.0,
+        "ActivationFunction_UnsignedGauss_Prob": 0.0,
+        "ActivationFunction_UnsignedSigmoid_Prob": 0.0,
+        "ActivationFunction_UnsignedSine_Prob": 0.0,
+        "ActivationFunction_UnsignedStep_Prob": 0.0,
         # Mods 2
         "MinNeuronBias": -1,
         "MaxNeuronBias": 1,
-        # "MaxActivationA": 6.0,
-        # "MinActivationA": 0.05,
+        "MaxActivationA": 6.0,
+        "MinActivationA": 0.05,
     }
 
     GenericOld: ClassVar[dict[str, float | int | bool]] = {

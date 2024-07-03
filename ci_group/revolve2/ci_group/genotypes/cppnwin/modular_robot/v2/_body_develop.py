@@ -142,15 +142,26 @@ def __evaluate_cppn(
     body_net.ActivateAllLayers()
     outputs = body_net.Output()
 
-    types = [None, BrickV2, ActiveHingeV2]
-    _outputs = softmax(np.array(outputs)[: len(types)])
-    target_idx = np.argmax(_outputs)
-    module_type = types[target_idx]
+    types = (None, BrickV2, ActiveHingeV2)
+    rots = (
+        0,
+        np.pi * 0.5,
+        np.pi,
+        np.pi * 1.5,
+    )  # why calc, when we can look-up?
+
+    _outputs_type = softmax(np.array(outputs)[: len(types)])
+    _outputs_rot = softmax(np.array(outputs)[len(types) :])
+
+    _type_idx = np.argmax(_outputs_type)
+    _rot_idx = np.argmax(_outputs_rot)
+
+    module_type = types[_type_idx]
+    rotation = rots[_rot_idx]
 
     """Here we get the rotation of the module from the second output of the CPPN network.
     The output ranges between [0,1] and we have 4 rotations available (0, 90, 180, 270).
     """
-    rotation = np.round(np.sin(np.array(outputs[3]) * 4)) * (np.pi / 2.0)
     return module_type, float(rotation)
 
 

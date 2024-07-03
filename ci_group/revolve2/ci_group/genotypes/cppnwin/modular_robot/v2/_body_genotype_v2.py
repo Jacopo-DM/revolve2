@@ -24,10 +24,12 @@ if TYPE_CHECKING:
 MULTINEAT_PARAMS = get_multineat_params()
 # TODO(jmdm): what act_f to use?
 SEARCH_MODE = multineat.SearchMode.BLENDED
-OUTPUT_ACT_F = multineat.ActivationFunction.SIGNED_SINE
+OUTPUT_ACT_F = multineat.ActivationFunction.SOFTPLUS
 NUM_INITIAL_MUTATIONS = 5
-NUM_BODY_INPUTS = 5  # bias(always 1), pos_x, pos_y, pos_z, chain_length
-NUM_BODY_OUTPUTS = 4  # empty, brick, activehinge, rotation
+# bias(always 1), pos_x, pos_y, pos_z, chain_length
+NUM_BODY_INPUTS = 5
+# 'empty, brick, activehinge' + 'rot1, rot2, rot3, rot4'
+NUM_BODY_OUTPUTS = 3 + 4
 
 
 @dataclass

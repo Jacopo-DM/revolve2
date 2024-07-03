@@ -27,7 +27,7 @@ class BrainGenotypeCpgOrm(orm.MappedAsDataclass, kw_only=True):
 
     _BRAIN_MULTINEAT_PARAMS = get_multineat_params()
     _BRAIN_SEARCH_MODE = multineat.SearchMode.BLENDED
-    _BRAIN_OUTPUT_ACT_FUNC = multineat.ActivationFunction.SIGNED_SINE
+    _BRAIN_OUTPUT_ACT_FUNC = multineat.ActivationFunction.TANH
     _BRAIN_NUM_INITIAL_MUTATIONS = 5
     # bias(always 1), x1, y1, z1, x2, y2, z2
     _BRAIN_NUM_INPUTS = 7

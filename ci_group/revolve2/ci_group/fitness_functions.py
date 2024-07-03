@@ -21,4 +21,8 @@ def xy_displacement(
     """
     begin_position = begin_state.get_pose().position.xyz
     end_position = end_state.get_pose().position.xyz
+
+    # body_st, core_st = begin_state.get_core_and_body_pose()
+    # body_ed, core_ed = begin_state.get_core_and_body_pose()
+
     return float(np.linalg.norm(end_position - begin_position))

@@ -52,7 +52,7 @@ class BodyGenotypeV1:
                 innov_db=innov_db,
                 rng=multineat_rng,
                 multineat_params=cls._MULTINEAT_PARAMS,
-                output_activation_func=multineat.ActivationFunction.SIGNED_SINE,
+                output_activation_func=multineat.ActivationFunction.SOFTPLUS,
                 # bias(always 1), pos_x, pos_y, pos_z, chain_length
                 num_inputs=5,
                 # empty, brick, activehinge, rotation

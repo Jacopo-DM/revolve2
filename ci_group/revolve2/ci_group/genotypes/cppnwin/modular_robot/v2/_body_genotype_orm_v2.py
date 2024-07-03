@@ -28,13 +28,13 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
     body: multineat.Genome
 
     _BODY_MULTINEAT_PARAMS = get_multineat_params()
-    _BODY_OUTPUT_ACT_FUNC = multineat.ActivationFunction.SIGNED_SINE
+    _BODY_OUTPUT_ACT_FUNC = multineat.ActivationFunction.SOFTPLUS
     _BODY_SEARCH_MODE = multineat.SearchMode.BLENDED
     _BODY_NUM_INITIAL_MUTATIONS = 5
     # bias(always 1), pos_x, pos_y, pos_z, chain_length
     _BODY_NUM_INPUTS = 5
-    # empty, brick, activehinge, rot
-    _BODY_NUM_OUTPUTS = 4
+    # 'empty, brick, activehinge' + 'rot1, rot2, rot3, rot4'
+    _BODY_NUM_OUTPUTS = 3 + 4
 
     serialized_body: orm.Mapped[str] = orm.mapped_column(
         "serialized_body", init=False, nullable=False

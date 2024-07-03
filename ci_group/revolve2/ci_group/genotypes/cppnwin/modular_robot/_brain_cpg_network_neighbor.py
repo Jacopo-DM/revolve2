@@ -7,6 +7,9 @@ from revolve2.modular_robot.brain.cpg import (
     BrainCpgNetworkNeighbor as ModularRobotBrainCpgNetworkNeighbor,
 )
 
+MIN_WEIGHT = -10.0
+MAX_WEIGHT = 10.0
+
 
 class BrainCpgNetworkNeighbor(ModularRobotBrainCpgNetworkNeighbor):
     """A CPG brain based on `ModularRobotBrainCpgNetworkNeighbor` that creates
@@ -88,8 +91,10 @@ class BrainCpgNetworkNeighbor(ModularRobotBrainCpgNetworkNeighbor):
                 for (active_hinge1, active_hinge2) in connections
             ]
         ]
-        internal_weights = np.clip(internal_weights, -1.0, 1.0)
-        external_weights = np.clip(external_weights, -1.0, 1.0)
+        # NOTE(jmdm): this is redundant with TANH;
+        #   ensure error catching when using other activations.
+        internal_weights = np.clip(internal_weights, -MIN_WEIGHT, MAX_WEIGHT)
+        external_weights = np.clip(external_weights, -MIN_WEIGHT, MAX_WEIGHT)
         return (internal_weights, external_weights)
 
     @staticmethod
