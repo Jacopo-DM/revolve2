@@ -59,17 +59,20 @@ class CollectionOfDefaultValues:
         "ActivationFunctionDiffCoeff": 0.15,  # -> 0.0
         "ActivationADiffCoeff": 0.05,  # -> 0.0
         "ActivationBDiffCoeff": 0.05,  # -> 0.0
-        "ActivationFunction_Abs_Prob": 0.01,  # -> 0.0
-        "ActivationFunction_Linear_Prob": 0.05,  # -> 0.0
-        "ActivationFunction_SignedGauss_Prob": 0.01,  # -> 0.0
-        "ActivationFunction_SignedSigmoid_Prob": 0.5,  # -> 0.0
-        "ActivationFunction_SignedSine_Prob": 0.01,  # -> 0.0
-        "ActivationFunction_SignedStep_Prob": 0.05,  # -> 0.0
-        "ActivationFunction_TanhCubic_Prob": 0.01,  # -> 0.0
-        "ActivationFunction_Tanh_Prob": 0.5,  # -> 0.0
+        "ActivationFunction_Abs_Prob": 0.05,
+        "ActivationFunction_Linear_Prob": 0.05,
+        "ActivationFunction_SignedGauss_Prob": 0.05,
+        "ActivationFunction_SignedSigmoid_Prob": 1.0,
+        "ActivationFunction_SignedSine_Prob": 0.05,
+        "ActivationFunction_SignedStep_Prob": 0.05,
+        "ActivationFunction_TanhCubic_Prob": 0.05,
+        "ActivationFunction_Tanh_Prob": 0.05,
+        "ActivationFunction_UnsignedGauss_Prob": 0.01,
+        "ActivationFunction_UnsignedSigmoid_Prob": 0.5,
+        "ActivationFunction_UnsignedSine_Prob": 0.01,
+        "ActivationFunction_UnsignedStep_Prob": 0.01,
         # ---
         "BiasMutationMaxPower": 0.5,  # -> 1.0
-        # "CPPN_Bias": 1.0,  # -> 1.0 -1.0
         "CompatTreshold": 2.0,  # -> 5.0
         "CrossoverRate": 0.5,  # -> 0.7
         "DivisionThreshold": 0.5,  # -> 0.03
