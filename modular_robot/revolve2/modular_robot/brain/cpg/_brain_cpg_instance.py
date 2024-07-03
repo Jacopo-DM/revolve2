@@ -8,6 +8,11 @@ from ...body.base import ActiveHinge
 from ...sensor_state import ModularRobotSensorState
 from .._brain_instance import BrainInstance
 
+# NOTE(jmdm): why '0.0025'? see:
+#   95, 39:  control_interface.set_joint_hinge_position_target()
+DELTA_CLIP = 0.025
+STATE_CLIP = 1
+
 
 class BrainCpgInstance(BrainInstance):
     """CPG network brain.
@@ -42,7 +47,7 @@ class BrainCpgInstance(BrainInstance):
         assert all(i >= 0 and i < len(initial_state) for i, _ in output_mapping)
 
         # Stabilise the state by integrating it for a while.
-        # WARN very hacky way to stabilise the state
+        # WARN(jmdm) very hacky way to stabilise the state
         # [ ] find a faster/better way to stabilise the state
         for _ in range(50):
             initial_state, _ = self._newtown_raphson(
@@ -61,7 +66,7 @@ class BrainCpgInstance(BrainInstance):
     ) -> tuple[npt.NDArray[np.float64], npt.NDArray[np.float64]]:
         """Calculate the next state using the RK45 method.
 
-        This implementation of the Runge–Kutta–Fehlberg method allows us to improve accuracy of state calculations by comparing solutions at different step sizes.
+        This implementation of the Runge-Kutta-Fehlberg method allows us to improve accuracy of state calculations by comparing solutions at different step sizes.
         For more info see: See https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta%E2%80%93Fehlberg_method.
         RK45 is a method of order 4 with an error estimator of order 5 (Fehlberg, E. (1969). Low-order classical Runge-Kutta formulas with stepsize control. NASA Technical Report R-315.).
 
@@ -85,7 +90,9 @@ class BrainCpgInstance(BrainInstance):
             a_mat, (state + dt * a_mat_3)
         )
         delta = dt / 6 * (a_mat_1 + 2 * (a_mat_2 + a_mat_3) + a_mat_4)
-        return np.clip(state + delta, -1, 1), delta
+        return np.clip(state, -STATE_CLIP, STATE_CLIP), np.clip(
+            delta, -DELTA_CLIP, DELTA_CLIP
+        )
 
     @staticmethod
     def _newtown_raphson(
@@ -100,7 +107,10 @@ class BrainCpgInstance(BrainInstance):
         :rtype: tuple[npt.NDArray[np.float64],npt.NDArray[np.float64]]
         """
         delta = np.matmul(a, state) * dt
-        return np.clip(state + delta, -1, 1), delta
+
+        return np.clip(state, -STATE_CLIP, STATE_CLIP), np.clip(
+            delta, -DELTA_CLIP, DELTA_CLIP
+        )
 
     def control(
         self,
@@ -123,7 +133,7 @@ class BrainCpgInstance(BrainInstance):
         :rtype: None
         """
         # Integrate ODE to obtain new state.
-        self._state, delta = self._newtown_raphson(  # _rk45
+        self._state, delta = self._rk45(  # _newtown_raphson
             self._state, self._weight_matrix, dt
         )
 

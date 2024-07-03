@@ -54,28 +54,6 @@ class ControlInterfaceImpl(ControlInterface):
         # Set position target
         idx_pos = maybe_hinge_joint_mujoco.ctrl_index_position
 
-        current = self._data.ctrl[idx_pos]
-        target = current + update if as_delta else update
-        max_delta = joint_hinge.range / 10
-        target = np.clip(target, current - max_delta, current + max_delta)
-
-        self._data.ctrl[idx_pos] = target
-
-        # """
-
-        """
-        # # TODO(jmdm) should be position be added (+=) or set (=) ?
-        ctrl_data = self._data.ctrl[idx_pos] + update if as_delta else update
-
-        np.clip(ctrl_data, -joint_hinge.range, joint_hinge.range)
-
-        self._data.ctrl[idx_pos] = np.clip(
-            ctrl_data,
-            -joint_hinge.range,
-            joint_hinge.range,
+        self._data.ctrl[idx_pos] = (
+            self._data.ctrl[idx_pos] + update if as_delta else update
         )
-
-        # Set velocity target
-        idx_vel = maybe_hinge_joint_mujoco.ctrl_index_velocity
-        self._data.ctrl[idx_vel] = 0.0
-        """
