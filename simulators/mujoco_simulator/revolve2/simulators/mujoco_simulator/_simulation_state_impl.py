@@ -14,6 +14,7 @@ from revolve2.simulation.scene.sensors import CameraSensor, IMUSensor
 
 from ._abstraction_to_mujoco_mapping import (
     AbstractionToMujocoMapping,
+    MultiBodySystemMujoco,
 )
 
 
@@ -51,6 +52,24 @@ class SimulationStateImpl(SimulationState):
         self._abstraction_to_mujoco_mapping = abstraction_to_mujoco_mapping
         self._camera_views = camera_views
 
+    def xpos(self) -> npt.NDArray[np.float64]:
+        """Get the position of all bodies.
+
+        :returns: The positions.
+        :rtype: npt.NDArray[np.float64]
+
+        """
+        return self._xpos
+
+    def xquat(self) -> npt.NDArray[np.float64]:
+        """Get the orientation of all bodies.
+
+        :returns: The orientations.
+        :rtype: npt.NDArray[np.float64]
+
+        """
+        return self._xquat
+
     def get_rigid_body_relative_pose(self, rigid_body: RigidBody) -> Pose:
         """Get the pose of a rigid body, relative to its parent multi-body
         system's reference frame.
@@ -75,6 +94,21 @@ class SimulationStateImpl(SimulationState):
 
         """
         raise NotImplementedError
+
+    def get_full_body(
+        self, multi_body_system: MultiBodySystem
+    ) -> MultiBodySystemMujoco:
+        """Get the multi-body system a rigid body is part of.
+
+        :param rigid_body: The rigid body to get the multi-body system for.
+        :type rigid_body: RigidBody
+        :returns: The multi-body system.
+        :rtype: MultiBodySystem
+
+        """
+        return self._abstraction_to_mujoco_mapping.multi_body_system[
+            UUIDKey(multi_body_system)
+        ]
 
     def get_multi_body_system_pose(
         self, multi_body_system: MultiBodySystem

@@ -143,15 +143,18 @@ def __evaluate_cppn(
     outputs = body_net.Output()
 
     types = (None, BrickV2, ActiveHingeV2)
+    # why calc, when we can look-up?
     rots = (
         0,
         np.pi * 0.5,
         np.pi,
         np.pi * 1.5,
-    )  # why calc, when we can look-up?
+    )
 
     _outputs_type = softmax(np.array(outputs)[: len(types)])
-    _outputs_rot = softmax(np.array(outputs)[len(types) :])
+    _outputs_rot = softmax(
+        np.array(outputs)[len(types) : len(types) + len(rots)]
+    )
 
     _type_idx = np.argmax(_outputs_type)
     _rot_idx = np.argmax(_outputs_rot)

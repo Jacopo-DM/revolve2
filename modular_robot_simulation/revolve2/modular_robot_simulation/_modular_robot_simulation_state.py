@@ -1,5 +1,9 @@
 from revolve2.modular_robot.body import Module
-from revolve2.simulation.scene import MultiBodySystem, Pose, SimulationState
+from revolve2.simulation.scene import (
+    MultiBodySystem,
+    Pose,
+    SimulationState,
+)
 
 
 class ModularRobotSimulationState:
@@ -36,6 +40,18 @@ class ModularRobotSimulationState:
         return self._simulation_state.get_multi_body_system_pose(
             self._multi_body_system
         )
+
+    def get_simulation_state(self) -> SimulationState:
+        """Get the simulation state corresponding to this modular robot state.
+
+        :returns: The simulation state.
+        :rtype: SimulationState
+
+        """
+        return self._simulation_state
+
+    def get_body(self) -> Pose:
+        return self._simulation_state.get_full_body(self._multi_body_system)
 
     def get_module_relative_pose(self, module: Module) -> Pose:
         """Get the pose of a module, relative to its parent module's reference

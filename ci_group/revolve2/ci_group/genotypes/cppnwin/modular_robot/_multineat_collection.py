@@ -40,24 +40,76 @@ class CollectionOfDefaultValues:
     Jacked: ClassVar[dict[str, float | int | bool]] = {
         "AllowClones": False,  # -> True
         "RouletteWheelSelection": True,  # -> False
-        # "AllowClones": False,  # -> True
-        # "DontUseBiasNeuron": False,  # -> False
-        # "RouletteWheelSelection": True,  # -> False
-        # "ArchiveEnforcement": True,  # -> False
-        "DetectCompetetiveCoevolutionStagnation": True,  # -> False
+        "ArchiveEnforcement": True,
+        "DetectCompetetiveCoevolutionStagnation": True,
+        "DontUseBiasNeuron": True,
+        "DynamicCompatibility": True,
+        "GeometrySeed": True,
+        "InnovationsForever": True,
+        "Leo": True,
+        "LeoSeed": True,
+        "NormalizeGenomeSize": True,
+        "NoveltySearch_Dynamic_Pmin": True,
+        "SplitLoopedRecurrent": True,
+        "SplitRecurrent": True,
+        # ---
+        "MutateActivationAProb": 0.01,
+        "MutateActivationBProb": 0.005,
+        "MutateNeuronActivationTypeProb": 0.03,  # -> 0.0
+        "ActivationAMutationMaxPower": 0.5,  # -> 0.0
+        "ActivationBMutationMaxPower": 0.25,  # -> 0.0
+        "ActivationFunctionDiffCoeff": 0.15,
+        "ActivationADiffCoeff": 0.05,
+        "ActivationBDiffCoeff": 0.05,
+        "ActivationFunction_Abs_Prob": 0.01,
+        "ActivationFunction_Linear_Prob": 0.05,
+        "ActivationFunction_SignedGauss_Prob": 0.01,
+        "ActivationFunction_SignedSigmoid_Prob": 0.5,
+        "ActivationFunction_SignedSine_Prob": 0.01,
+        "ActivationFunction_SignedStep_Prob": 0.05,
+        "ActivationFunction_TanhCubic_Prob": 0.01,
+        "ActivationFunction_Tanh_Prob": 0.5,
+        # ---
+        "BiasMutationMaxPower": 0.5,  # -> 1.0
+        "CPPN_Bias": -1.0,  # -> 1.0
+        "CompatTreshold": 2.0,  # -> 5.0
         "CrossoverRate": 0.5,  # -> 0.7
+        "DivisionThreshold": 0.5,  # -> 0.03
         "EliteFraction": 0.1,  # -> 0.01
+        "LeoThreshold": 0.3,  # -> 0.1
+        "MaxActivationA": 6.9,  # -> 1.0
+        "MaxNeuronBias": 8.0,  # -> 0.0
+        "MaxNeuronTimeConstant": 0.24,  # -> 0.0
+        "MinActivationA": 1.1,  # -> 1.0
+        "MinNeuronBias": -8.0,  # -> 0.0
+        "MinNeuronTimeConstant": 0.04,  # -> 0.0
+        "MultipointCrossoverRate": 0.4,  # -> 0.75
         "MutateAddLinkProb": 0.02,  # -> 0.03
+        "MutateAddNeuronProb": 0.1,  # -> 0.01
         "MutateLinkTraitsProb": 0.0,  # -> 1.0
         "MutateNeuronTraitsProb": 0.0,  # -> 1.0
+        "MutateRemLinkProb": 0.02,  # -> 0.0
+        "MutateWeightsProb": 0.8,  # -> 0.9
         "MutateWeightsSevereProb": 0.01,  # -> 0.25
         "OverallMutationRate": 0.02,  # -> 0.25
+        "SurvivalRate": 0.2,  # -> 0.25
+        "TimeConstantMutationMaxPower": 0.1,  # -> 0.0
+        "WeightDiffCoeff": 1.0,  # -> 0.5
+        "WeightMutationMaxPower": 0.5,  # -> 1.0
         "WeightMutationRate": 0.75,  # -> 1.0
         "WeightReplacementMaxPower": 5.0,  # -> 1.0
-        "MinSpecies": 3,  # -> 5
-        "OldAgeTreshold": 35,  # -> 30
+        # -- -
+        "Width": 2.0,  # -> 2.0
+        "Height": 2.0,  # -> 2.0
+        "InitialDepth": 3,  # -> 2.0
+        "MaxDepth": 3,  # -> 2.0
+        # ---
+        "MaxSpecies": 20,
+        "MinSpecies": 10,
+        # ---
+        "OldAgeTreshold": 40,  # -> 30
         "SpeciesDropoffAge": 100,  # -> 50
-        "YoungAgeTreshold": 15,  # -> 5
+        "YoungAgeTreshold": 20,  # -> 5
     }
 
     GenericOld: ClassVar[dict[str, float | int | bool]] = {
