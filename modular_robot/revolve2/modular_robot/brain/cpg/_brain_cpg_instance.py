@@ -13,7 +13,7 @@ from .._brain_instance import BrainInstance
 #   This value should be considered relative to:
 #   STANDARD_CONTROL_FREQUENCY
 #   17, 5: def make_standard_batch_parameters(
-DELTA_CLIP = 0.1
+DELTA_CLIP = 1
 STATE_CLIP = 1
 
 
