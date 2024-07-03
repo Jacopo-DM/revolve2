@@ -19,13 +19,25 @@ if TYPE_CHECKING:
     import numpy as np
     from revolve2.modular_robot.body.v1 import BodyV1
 
+MULTINEAT_PARAMS = get_multineat_params()
+SEARCH_MODE = multineat.SearchMode.BLENDED
+
+# SOFTPLUS RELU TANH SIGNED_SIGMOID
+OUTPUT_ACT_F = multineat.ActivationFunction.RELU
+# SOFTPLUS, RELU, SIGNED_STEP, TANH, TANH_CUBIC, SIGNED_SIGMOID
+HIDDEN_ACT_F = multineat.ActivationFunction.SOFTPLUS
+
+NUM_INITIAL_MUTATIONS = 5
+# bias(always 1), pos_x, pos_y, pos_z, chain_length
+NUM_BODY_INPUTS = 5
+# empty, brick, activehinge, rotation
+NUM_BODY_OUTPUTS = 4
+
 
 @dataclass
 class BodyGenotypeV1:
     """CPPNWIN body genotype."""
 
-    _NUM_INITIAL_MUTATIONS = 5
-    _MULTINEAT_PARAMS = get_multineat_params()
     body: MultineatGenotypePickleWrapper
 
     @classmethod
@@ -51,13 +63,13 @@ class BodyGenotypeV1:
             random_multineat_genotype(
                 innov_db=innov_db,
                 rng=multineat_rng,
-                multineat_params=cls._MULTINEAT_PARAMS,
-                output_activation_func=multineat.ActivationFunction.SOFTPLUS,
-                # bias(always 1), pos_x, pos_y, pos_z, chain_length
-                num_inputs=5,
-                # empty, brick, activehinge, rotation
-                num_outputs=4,
-                num_initial_mutations=cls._NUM_INITIAL_MUTATIONS,
+                multineat_params=MULTINEAT_PARAMS,
+                output_activation_func=OUTPUT_ACT_F,
+                num_inputs=NUM_BODY_INPUTS,
+                num_outputs=NUM_BODY_OUTPUTS,
+                num_initial_mutations=NUM_INITIAL_MUTATIONS,
+                hidden_act_f=HIDDEN_ACT_F,
+                search_mode=SEARCH_MODE,
             )
         )
 
@@ -88,9 +100,9 @@ class BodyGenotypeV1:
             MultineatGenotypePickleWrapper(
                 self.body.genotype.MutateWithConstraints(
                     False,
-                    multineat.SearchMode.BLENDED,
+                    SEARCH_MODE,
                     innov_db,
-                    self._MULTINEAT_PARAMS,
+                    MULTINEAT_PARAMS,
                     multineat_rng,
                 )
             )
@@ -124,7 +136,7 @@ class BodyGenotypeV1:
                     False,
                     False,
                     multineat_rng,
-                    cls._MULTINEAT_PARAMS,
+                    MULTINEAT_PARAMS,
                 )
             )
         )

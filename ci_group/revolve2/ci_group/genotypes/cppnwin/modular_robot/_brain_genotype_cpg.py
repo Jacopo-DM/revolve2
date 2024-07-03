@@ -20,8 +20,13 @@ if TYPE_CHECKING:
     from revolve2.modular_robot.body.base import Body
 
 MULTINEAT_PARAMS = get_multineat_params()
-OUTPUT_ACT_F = multineat.ActivationFunction.TANH
 SEARCH_MODE = multineat.SearchMode.BLENDED
+
+# UNSIGNED_GAUSS, LINEAR
+OUTPUT_ACT_F = multineat.ActivationFunction.LINEAR
+# SOFTPLUS, RELU, SIGNED_STEP, TANH, TANH_CUBIC, SIGNED_SIGMOID
+HIDDEN_ACT_F = multineat.ActivationFunction.SIGNED_SIGMOID
+
 NUM_INITIAL_MUTATIONS = 5
 NUM_BRAIN_INPUTS = 7  # bias(always 1), x1, y1, z1, x2, y2, z2
 NUM_BRAIN_OUTPUTS = 1  # weight
@@ -61,6 +66,7 @@ class BrainGenotypeCpg:
                 num_inputs=NUM_BRAIN_INPUTS,
                 num_outputs=NUM_BRAIN_OUTPUTS,
                 num_initial_mutations=NUM_INITIAL_MUTATIONS,
+                hidden_act_f=HIDDEN_ACT_F,
                 search_mode=SEARCH_MODE,
             )
         )

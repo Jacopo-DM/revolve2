@@ -22,9 +22,13 @@ if TYPE_CHECKING:
     from revolve2.modular_robot.body.v2 import BodyV2
 
 MULTINEAT_PARAMS = get_multineat_params()
-# TODO(jmdm): what act_f to use?
 SEARCH_MODE = multineat.SearchMode.BLENDED
+
+# SOFTPLUS RELU TANH SIGNED_SIGMOID
 OUTPUT_ACT_F = multineat.ActivationFunction.SOFTPLUS
+# SOFTPLUS, RELU, SIGNED_STEP, TANH, TANH_CUBIC, SIGNED_SIGMOID
+HIDDEN_ACT_F = multineat.ActivationFunction.SIGNED_SIGMOID
+
 NUM_INITIAL_MUTATIONS = 5
 # bias(always 1), pos_x, pos_y, pos_z, chain_length
 NUM_BODY_INPUTS = 5
@@ -66,6 +70,7 @@ class BodyGenotypeV2:
                 num_inputs=NUM_BODY_INPUTS,
                 num_outputs=NUM_BODY_OUTPUTS,
                 num_initial_mutations=NUM_INITIAL_MUTATIONS,
+                hidden_act_f=HIDDEN_ACT_F,
                 search_mode=SEARCH_MODE,
             )
         )

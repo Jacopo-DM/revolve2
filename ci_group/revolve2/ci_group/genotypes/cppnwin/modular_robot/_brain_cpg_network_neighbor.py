@@ -7,8 +7,19 @@ from revolve2.modular_robot.brain.cpg import (
     BrainCpgNetworkNeighbor as ModularRobotBrainCpgNetworkNeighbor,
 )
 
-MIN_WEIGHT = -10.0
-MAX_WEIGHT = 10.0
+WEIGHT_SCALE = 1
+EPS = 1e-8
+
+
+def normalise(x: np.ndarray) -> np.ndarray:
+    """Normalise a list of values between -1 and 1."""
+    return (
+        x
+        if len(x) == 0
+        else WEIGHT_SCALE
+        * ((x - np.min(x) + EPS) / (np.max(x) - np.min(x) + EPS))
+        - WEIGHT_SCALE / 2
+    )
 
 
 class BrainCpgNetworkNeighbor(ModularRobotBrainCpgNetworkNeighbor):
@@ -91,10 +102,10 @@ class BrainCpgNetworkNeighbor(ModularRobotBrainCpgNetworkNeighbor):
                 for (active_hinge1, active_hinge2) in connections
             ]
         ]
-        # NOTE(jmdm): this is redundant with TANH;
+        # NOTE(jmdm): this is redundant with certain activations;
         #   ensure error catching when using other activations.
-        internal_weights = np.clip(internal_weights, -MIN_WEIGHT, MAX_WEIGHT)
-        external_weights = np.clip(external_weights, -MIN_WEIGHT, MAX_WEIGHT)
+        internal_weights = normalise(internal_weights)
+        external_weights = normalise(external_weights)
         return (internal_weights, external_weights)
 
     @staticmethod

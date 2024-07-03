@@ -28,8 +28,13 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
     body: multineat.Genome
 
     _BODY_MULTINEAT_PARAMS = get_multineat_params()
-    _BODY_OUTPUT_ACT_FUNC = multineat.ActivationFunction.SOFTPLUS
     _BODY_SEARCH_MODE = multineat.SearchMode.BLENDED
+
+    # SOFTPLUS RELU TANH SIGNED_SIGMOID
+    _BODY_OUTPUT_ACT_FUNC = multineat.ActivationFunction.SOFTPLUS
+    # SOFTPLUS, RELU, SIGNED_STEP, TANH, TANH_CUBIC, SIGNED_SIGMOID
+    _BODY_HIDDEN_ACT_FUNC = multineat.ActivationFunction.SIGNED_SIGMOID
+
     _BODY_NUM_INITIAL_MUTATIONS = 5
     # bias(always 1), pos_x, pos_y, pos_z, chain_length
     _BODY_NUM_INPUTS = 5
@@ -67,6 +72,7 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
             num_inputs=cls._BODY_NUM_INPUTS,
             num_outputs=cls._BODY_NUM_OUTPUTS,
             num_initial_mutations=cls._BODY_NUM_INITIAL_MUTATIONS,
+            hidden_act_f=cls._BODY_HIDDEN_ACT_FUNC,
             search_mode=cls._BODY_SEARCH_MODE,
         )
 

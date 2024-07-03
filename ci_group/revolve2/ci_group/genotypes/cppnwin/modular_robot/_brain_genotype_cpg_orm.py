@@ -27,7 +27,12 @@ class BrainGenotypeCpgOrm(orm.MappedAsDataclass, kw_only=True):
 
     _BRAIN_MULTINEAT_PARAMS = get_multineat_params()
     _BRAIN_SEARCH_MODE = multineat.SearchMode.BLENDED
-    _BRAIN_OUTPUT_ACT_FUNC = multineat.ActivationFunction.TANH
+
+    # UNSIGNED_GAUSS, LINEAR
+    _BRAIN_OUTPUT_ACT_FUNC = multineat.ActivationFunction.LINEAR
+    # SOFTPLUS, RELU, SIGNED_STEP, TANH, TANH_CUBIC, SIGNED_SIGMOID
+    _BRAIN_HIDDEN_ACT_FUNC = multineat.ActivationFunction.SIGNED_SIGMOID
+
     _BRAIN_NUM_INITIAL_MUTATIONS = 5
     # bias(always 1), x1, y1, z1, x2, y2, z2
     _BRAIN_NUM_INPUTS = 7
@@ -65,6 +70,7 @@ class BrainGenotypeCpgOrm(orm.MappedAsDataclass, kw_only=True):
             num_inputs=cls._BRAIN_NUM_INPUTS,
             num_outputs=cls._BRAIN_NUM_OUTPUTS,
             num_initial_mutations=cls._BRAIN_NUM_INITIAL_MUTATIONS,
+            hidden_act_f=cls._BRAIN_HIDDEN_ACT_FUNC,
             search_mode=cls._BRAIN_SEARCH_MODE,
         )
 

@@ -9,8 +9,8 @@ def random_multineat_genotype(
     num_inputs: int,
     num_outputs: int,
     num_initial_mutations: int,
-    search_mode: multineat.SearchMode = multineat.SearchMode.BLENDED,
-    hidden_act_f: multineat.ActivationFunction = multineat.TANH,
+    hidden_act_f: multineat.ActivationFunction,
+    search_mode: multineat.SearchMode,
 ) -> multineat.Genome:
     """Create a random multineat genotype.
 
