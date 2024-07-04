@@ -12,7 +12,8 @@ from revolve2.modular_robot.body.v2 import ActiveHingeV2, BodyV2, BrickV2
 
 # Determine the maximum parts available for a robots body.
 MAX_PARTS = 30
-GRID_SIZE = MAX_PARTS * 2 + 1
+ABS_MAX_PARTS = 100
+GRID_SIZE = ABS_MAX_PARTS * 2 + 1
 
 
 @dataclass
@@ -56,7 +57,7 @@ def develop(
     v2_core = body.core_v2
 
     core_position = Vector3(
-        [MAX_PARTS + 1, MAX_PARTS + 1, MAX_PARTS + 1], dtype=np.int_
+        [ABS_MAX_PARTS + 1, ABS_MAX_PARTS + 1, ABS_MAX_PARTS + 1], dtype=np.int_
     )
 
     for attachment_face in v2_core.attachment_faces.values():
@@ -72,17 +73,25 @@ def develop(
     grid[tuple(core_position)] = 1
     part_count = 1
 
+    max_parts = 30
     while not to_explore.empty():
         module = to_explore.get()
         attachment_dict = module.module_reference.attachment_points.items()
         for attachment_point_tuple in attachment_dict:
-            if part_count < MAX_PARTS:
+            if part_count < max_parts and part_count < ABS_MAX_PARTS:
                 child = __add_child(
                     body_net, module, attachment_point_tuple, grid
                 )
-                if child is not None:
-                    to_explore.put(child)
-                    part_count += 1
+
+                if child is None:
+                    continue
+
+                t_child = child.module_reference.__class__.__name__
+                if t_child == "BrickV2":
+                    max_parts += 2
+
+                to_explore.put(child)
+                part_count += 1
 
     return body
 
@@ -118,15 +127,17 @@ def __evaluate_cppn(
         msg = f"Error: The position is not of type int. Type: {type(x)}."
         raise TypeError(msg)
 
+    # TODO(jmdm): normalizing is a good idea?
+    """
     # normalize position by grid size
     x = (x / GRID_SIZE) - 0.5
     y = (y / GRID_SIZE) - 0.5
     z = (z / GRID_SIZE) - 0.5
     chain_length = (chain_length / MAX_PARTS) - 0.5
+    """
 
     # TODO(jmdm): still to figure out?
     # WARN Selection method is biased towards the first element
-    # [ ] Figure out best selection method
     #   .choice(idxs_1, p=type_probs)
     #   .argmax(type_probs)
     #   .argmin(type_probs)

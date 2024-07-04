@@ -1,6 +1,5 @@
 """Standard fitness functions for modular robots."""
 
-
 import numpy as np
 from pyrr import Quaternion, Vector3
 from revolve2.modular_robot_simulation import ModularRobotSimulationState
@@ -24,20 +23,15 @@ def xy_displacement(
     :rtype: float
 
     """
-    body_st = begin_state.get_body()
-    st_xpos = begin_state.get_simulation_state().xpos().copy()
-    st_xquat = begin_state.get_simulation_state().xquat().copy()
-
     body_ed = end_state.get_body()
     ed_xpos = end_state.get_simulation_state().xpos().copy()
     ed_xquat = end_state.get_simulation_state().xquat().copy()
 
-    pose_st = Pose(
-        Vector3(st_xpos[body_st.id]),
-        Quaternion(st_xquat[body_st.id]),
-    )
     pose_ed = Pose(
         Vector3(ed_xpos[body_ed.id]),
         Quaternion(ed_xquat[body_ed.id]),
     )
-    return float(np.linalg.norm(pose_ed.position.xyz - pose_st.position.xyz))
+
+    xyz_n = pose_ed.position.xyz
+    xyz_0 = Vector3([0.0, 0.0, 0.0])
+    return np.sum((xyz_n - xyz_0) ** 2, axis=0)

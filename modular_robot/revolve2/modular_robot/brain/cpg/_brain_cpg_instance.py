@@ -134,6 +134,9 @@ class BrainCpgInstance(BrainInstance):
             self._state, self._weight_matrix, dt
         )
 
+        # Delta scaling for stability
+        delta *= 0.9
+
         # Set active hinge targets to match newly calculated state.
         for state_index, active_hinge in self._output_mapping:
             # TODO(jmdm): delta or absolute state?
