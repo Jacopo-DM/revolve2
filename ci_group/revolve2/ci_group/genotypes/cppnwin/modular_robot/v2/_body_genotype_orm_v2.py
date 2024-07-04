@@ -31,9 +31,9 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
     _BODY_SEARCH_MODE = multineat.SearchMode.BLENDED
 
     # SOFTPLUS RELU TANH SIGNED_SIGMOID LINEAR
-    _BODY_OUTPUT_ACT_FUNC = multineat.ActivationFunction.RELU
+    _BODY_OUTPUT_ACT_FUNC = multineat.ActivationFunction.TANH
     # SOFTPLUS, RELU, SIGNED_STEP, TANH, TANH_CUBIC, SIGNED_SIGMOID
-    _BODY_HIDDEN_ACT_FUNC = multineat.ActivationFunction.SOFTPLUS
+    _BODY_HIDDEN_ACT_FUNC = multineat.ActivationFunction.TANH
 
     _BODY_NUM_INITIAL_MUTATIONS = 5
     # bias(always 1), pos_x, pos_y, pos_z, chain_length
