@@ -264,7 +264,7 @@ class MultiNEATParamsWriter:
         "PhasedSearching": True,  # def: False
         "DeltaCoding": True,  # def: False
         "MutateOutputActivationFunction": False,
-        "PopulationSize": 50,  # def: 150
+        "PopulationSize": 300,  # def: 150
         # WARN The following parameters seem to be the cause of the seg-fault
         #   └── [ ] To study
         "RecurrentProb": 0,  # def: 0.25,
@@ -381,7 +381,7 @@ class MultiNEATParamsWriter:
 
 
 def get_multineat_params(
-    name: str = "gym_lunar_lander",
+    name: str = "NoveltySearch",
 ) -> multiNEATParamType:
     """Retrieve the multiNEAT parameters for the specified name.
 

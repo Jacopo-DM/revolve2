@@ -34,4 +34,5 @@ def xy_displacement(
 
     xyz_n = pose_ed.position.xyz
     xyz_0 = Vector3([0.0, 0.0, 0.0])
-    return np.sum((xyz_n - xyz_0) ** 2, axis=0)
+    # return np.sum((xyz_n - xyz_0) ** 2, axis=0)
+    return xyz_n[-1]
