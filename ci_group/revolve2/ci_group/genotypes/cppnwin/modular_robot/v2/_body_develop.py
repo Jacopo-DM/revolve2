@@ -11,9 +11,10 @@ from revolve2.modular_robot.body import AttachmentPoint, Module
 from revolve2.modular_robot.body.v2 import ActiveHingeV2, BodyV2, BrickV2
 
 # Determine the maximum parts available for a robots body.
-MAX_PARTS = 30
-ABS_MAX_PARTS = 100
-GRID_SIZE = ABS_MAX_PARTS * 2 + 1
+MAX_HINGES = 20
+MAX_BRICKS = 20
+ABS_MAX = MAX_HINGES + MAX_BRICKS
+GRID_SIZE = ABS_MAX * 2 + 1
 
 
 @dataclass
@@ -57,7 +58,7 @@ def develop(
     v2_core = body.core_v2
 
     core_position = Vector3(
-        [ABS_MAX_PARTS + 1, ABS_MAX_PARTS + 1, ABS_MAX_PARTS + 1], dtype=np.int_
+        [ABS_MAX + 1, ABS_MAX + 1, ABS_MAX + 1], dtype=np.int_
     )
 
     for attachment_face in v2_core.attachment_faces.values():
@@ -72,25 +73,31 @@ def develop(
         )
     grid[tuple(core_position)] = 1
     part_count = 1
+    hinge_count = 0
+    brick_count = 0
 
-    max_parts = 30
     while not to_explore.empty():
         module = to_explore.get()
         attachment_dict = module.module_reference.attachment_points.items()
         for attachment_point_tuple in attachment_dict:
-            if part_count < max_parts and part_count < ABS_MAX_PARTS:
+            assert part_count == (hinge_count + brick_count + 1)
+            if part_count < ABS_MAX:
                 child = __add_child(
                     body_net, module, attachment_point_tuple, grid
                 )
 
                 if child is None:
                     continue
-
                 t_child = child.module_reference.__class__.__name__
+
                 if t_child == "ActiveHingeV2":
-                    max_parts -= 1
+                    if hinge_count >= MAX_HINGES:
+                        continue
+                    hinge_count += 1
                 elif t_child == "BrickV2":
-                    max_parts += 3
+                    if brick_count >= MAX_BRICKS:
+                        continue
+                    brick_count += 1
 
                 to_explore.put(child)
                 part_count += 1
