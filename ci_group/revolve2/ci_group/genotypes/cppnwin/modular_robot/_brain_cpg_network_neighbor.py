@@ -2,7 +2,6 @@ from typing import cast
 
 import multineat
 import numpy as np
-import numpy.typing as npt
 from revolve2.modular_robot.body.base import ActiveHinge, Body
 from revolve2.modular_robot.brain.cpg import (
     BrainCpgNetworkNeighbor as ModularRobotBrainCpgNetworkNeighbor,

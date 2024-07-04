@@ -27,7 +27,7 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
 
     body: multineat.Genome
 
-    _BODY_MULTINEAT_PARAMS = get_multineat_params()
+    _BODY_MULTINEAT_PARAMS = get_multineat_params("NoveltySearch")
     _BODY_SEARCH_MODE = multineat.SearchMode.BLENDED
 
     # SOFTPLUS RELU TANH SIGNED_SIGMOID LINEAR UNSIGNED_SINE

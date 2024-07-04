@@ -380,9 +380,7 @@ class MultiNEATParamsWriter:
         return params
 
 
-def get_multineat_params(
-    name: str = "NoveltySearch",
-) -> multiNEATParamType:
+def get_multineat_params(name: str) -> multiNEATParamType:
     """Retrieve the multiNEAT parameters for the specified name.
 
     :param name: str (Default value = "NoveltySearch")

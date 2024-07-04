@@ -23,15 +23,9 @@ def xy_displacement(
     :rtype: float
 
     """
-    body_ed = end_state.get_body()
-    ed_xpos = end_state.get_simulation_state().xpos().copy()
-    ed_xquat = end_state.get_simulation_state().xquat().copy()
+    end_position = end_state.get_pose().position
 
-    pose_ed = Pose(
-        Vector3(ed_xpos[body_ed.id]),
-        Quaternion(ed_xquat[body_ed.id]),
-    )
-
-    xyz_n = pose_ed.position.xyz
+    xyz_n = end_position.xyz
     xyz_0 = Vector3([0.0, 0.0, 0.0])
+
     return np.sum((xyz_n - xyz_0) ** 2, axis=0)
