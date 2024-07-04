@@ -23,13 +23,15 @@ MULTINEAT_PARAMS = get_multineat_params()
 SEARCH_MODE = multineat.SearchMode.BLENDED
 
 # UNSIGNED_GAUSS, LINEAR
-OUTPUT_ACT_F = multineat.ActivationFunction.LINEAR
+OUTPUT_ACT_F = multineat.ActivationFunction.SIGNED_GAUSS
 # SOFTPLUS, RELU, SIGNED_STEP, TANH, TANH_CUBIC, SIGNED_SIGMOID
-HIDDEN_ACT_F = multineat.ActivationFunction.SIGNED_SIGMOID
+HIDDEN_ACT_F = multineat.ActivationFunction.TANH
 
 NUM_INITIAL_MUTATIONS = 5
-NUM_BRAIN_INPUTS = 7  # bias(always 1), x1, y1, z1, x2, y2, z2
-NUM_BRAIN_OUTPUTS = 1  # weight
+# bias(always 1), x1, y1, z1, x2, y2, z2
+NUM_BRAIN_INPUTS = 7
+# weight
+NUM_BRAIN_OUTPUTS = 1
 
 
 @dataclass

@@ -25,9 +25,9 @@ MULTINEAT_PARAMS = get_multineat_params()
 SEARCH_MODE = multineat.SearchMode.BLENDED
 
 # SOFTPLUS RELU TANH SIGNED_SIGMOID
-OUTPUT_ACT_F = multineat.ActivationFunction.UNSIGNED_SIGMOID
+OUTPUT_ACT_F = multineat.ActivationFunction.SIGNED_SINE
 # SOFTPLUS, RELU, SIGNED_STEP, TANH, TANH_CUBIC, SIGNED_SIGMOID
-HIDDEN_ACT_F = multineat.ActivationFunction.UNSIGNED_SIGMOID
+HIDDEN_ACT_F = multineat.ActivationFunction.TANH
 
 NUM_INITIAL_MUTATIONS = 5
 # bias(always 1), pos_x, pos_y, pos_z, chain_length

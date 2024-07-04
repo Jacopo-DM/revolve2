@@ -105,8 +105,8 @@ class BrainCpgNetworkNeighbor(ModularRobotBrainCpgNetworkNeighbor):
         ]
         # NOTE(jmdm): this is redundant with certain activations;
         #   ensure error catching when using other activations.
-        internal_weights = normalise(internal_weights)
-        external_weights = normalise(external_weights)
+        # internal_weights = normalise(internal_weights)
+        # external_weights = normalise(external_weights)
         return (internal_weights, external_weights)
 
     @staticmethod
