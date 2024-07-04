@@ -41,8 +41,8 @@ class CollectionOfDefaultValues:
         # ---
         "AllowClones": False,  # -> True
         "DetectCompetetiveCoevolutionStagnation": True,  # -> False
-        "DontUseBiasNeuron": False,  # -> False True
-        "RouletteWheelSelection": False,  # -> False True
+        "DontUseBiasNeuron": True,  # -> False
+        "RouletteWheelSelection": True,  # -> False
         # ---
         "DynamicCompatibility": True,
         "InnovationsForever": True,
@@ -51,56 +51,50 @@ class CollectionOfDefaultValues:
         "SplitLoopedRecurrent": True,
         "SplitRecurrent": False,
         # ---
-        "MutateActivationAProb": 0.01,  # -> 0.0
-        "MutateActivationBProb": 0.005,  # -> 0.0
+        # "MutateActivationAProb": 0.01,  # -> 0.0
+        # "MutateActivationBProb": 0.005,  # -> 0.0
         "MutateNeuronActivationTypeProb": 0.03,  # -> 0.0
-        "ActivationAMutationMaxPower": 0.5,  # -> 0.0
-        "ActivationBMutationMaxPower": 0.25,  # -> 0.0
-        "ActivationFunctionDiffCoeff": 0.15,  # -> 0.0
-        "ActivationADiffCoeff": 0.05,  # -> 0.0
-        "ActivationBDiffCoeff": 0.05,  # -> 0.0
-        "ActivationFunction_Abs_Prob": 0.05,
-        "ActivationFunction_Linear_Prob": 0.05,
-        "ActivationFunction_SignedGauss_Prob": 0.05,
+        # "ActivationAMutationMaxPower": 0.5,  # -> 0.0
+        # "ActivationBMutationMaxPower": 0.25,  # -> 0.0
+        # "ActivationFunctionDiffCoeff": 0.15,  # -> 0.0
+        # "ActivationADiffCoeff": 0.05,  # -> 0.0
+        # "ActivationBDiffCoeff": 0.05,  # -> 0.0
+        # "ActivationFunction_Abs_Prob": 0.05,
+        # "ActivationFunction_Linear_Prob": 0.05,
+        # "ActivationFunction_SignedGauss_Prob": 0.05,
         "ActivationFunction_SignedSigmoid_Prob": 1.0,
         "ActivationFunction_SignedSine_Prob": 0.05,
         "ActivationFunction_SignedStep_Prob": 0.05,
-        "ActivationFunction_TanhCubic_Prob": 0.05,
-        "ActivationFunction_Tanh_Prob": 0.05,
-        "ActivationFunction_UnsignedGauss_Prob": 0.01,
+        # "ActivationFunction_TanhCubic_Prob": 0.05,
+        "ActivationFunction_Tanh_Prob": 0.1,
+        # "ActivationFunction_UnsignedGauss_Prob": 0.01,
         "ActivationFunction_UnsignedSigmoid_Prob": 0.5,
-        "ActivationFunction_UnsignedSine_Prob": 0.01,
-        "ActivationFunction_UnsignedStep_Prob": 0.01,
+        # "ActivationFunction_UnsignedSine_Prob": 0.01,
+        # "ActivationFunction_UnsignedStep_Prob": 0.01,
         # ---
         "BiasMutationMaxPower": 0.5,  # -> 1.0
         "CompatTreshold": 2.0,  # -> 5.0
         "CrossoverRate": 0.5,  # -> 0.7
         "DivisionThreshold": 0.5,  # -> 0.03
-        "EliteFraction": 0.1,  # -> 0.01
+        # "EliteFraction": 0.001,  # -> 0.01
         "LeoThreshold": 0.3,  # -> 0.1
-        "MaxActivationA": 6.9,  # -> 1.0
-        "MaxNeuronBias": 8.0,  # -> 0.0
+        # "MaxActivationA": 6.9,  # -> 1.0
+        # "MinActivationA": 1.1,  # -> 1.0
+        "MaxNeuronBias": 3.0,  # -> 0.0
+        "MinNeuronBias": -3.0,  # -> 0.0
         "MaxNeuronTimeConstant": 0.24,  # -> 0.0
-        "MinActivationA": 1.1,  # -> 1.0
-        "MinNeuronBias": -8.0,  # -> 0.0
         "MinNeuronTimeConstant": 0.04,  # -> 0.0
         "MultipointCrossoverRate": 0.4,  # -> 0.75
         "MutateAddLinkProb": 0.02,  # -> 0.03
         "MutateAddNeuronProb": 0.1,  # -> 0.01
-        "MutateLinkTraitsProb": 0.0,  # -> 1.0
-        "MutateNeuronTraitsProb": 0.0,  # -> 1.0
+        # "MutateLinkTraitsProb": 0.0,  # -> 1.0
+        # "MutateNeuronTraitsProb": 0.0,  # -> 1.0
         "MutateRemLinkProb": 0.02,  # -> 0.0
-        "MutateWeightsProb": 0.8,  # -> 0.9
-        "MutateWeightsSevereProb": 0.01,  # -> 0.25
-        "OverallMutationRate": 0.02,  # -> 0.25
-        "SurvivalRate": 0.2,  # -> 0.25
         "TimeConstantMutationMaxPower": 0.1,  # -> 0.0
-        "WeightDiffCoeff": 1.0,  # -> 0.5
-        "WeightMutationMaxPower": 0.5,  # -> 1.0
-        "WeightMutationRate": 0.75,  # -> 1.0
-        "WeightReplacementMaxPower": 5.0,  # -> 1.0
-        "MaxSpecies": 20,  # -> 10
-        "MinSpecies": 10,  # -> 5
+        # --
+        "MaxSpecies": 14,  # -> 10
+        "MinSpecies": 7,  # -> 5
+        # --
         "OldAgeTreshold": 40,  # -> 30
         "SpeciesDropoffAge": 100,  # -> 50
         "YoungAgeTreshold": 20,  # -> 5
