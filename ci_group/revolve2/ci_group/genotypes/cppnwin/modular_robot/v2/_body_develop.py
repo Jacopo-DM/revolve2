@@ -76,12 +76,13 @@ def develop(
     hinge_count = 0
     brick_count = 0
 
+    max_parts = 30
     while not to_explore.empty():
         module = to_explore.get()
         attachment_dict = module.module_reference.attachment_points.items()
         for attachment_point_tuple in attachment_dict:
             assert part_count == (hinge_count + brick_count + 1)
-            if part_count < ABS_MAX:
+            if part_count < max_parts and part_count < ABS_MAX:
                 child = __add_child(
                     body_net, module, attachment_point_tuple, grid
                 )
@@ -94,10 +95,12 @@ def develop(
                     if hinge_count >= MAX_HINGES:
                         continue
                     hinge_count += 1
+                    max_parts += 2
                 elif t_child == "BrickV2":
                     if brick_count >= MAX_BRICKS:
                         continue
                     brick_count += 1
+                    max_parts -= 2
 
                 to_explore.put(child)
                 part_count += 1
