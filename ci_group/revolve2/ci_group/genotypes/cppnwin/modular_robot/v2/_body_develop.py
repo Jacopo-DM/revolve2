@@ -87,8 +87,10 @@ def develop(
                     continue
 
                 t_child = child.module_reference.__class__.__name__
-                if t_child == "BrickV2":
-                    max_parts += 2
+                if t_child == "ActiveHingeV2":
+                    max_parts -= 1
+                elif t_child == "BrickV2":
+                    max_parts += 3
 
                 to_explore.put(child)
                 part_count += 1
