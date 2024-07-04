@@ -270,6 +270,19 @@ class MultiNEATParamsWriter:
         "RecurrentProb": 0,  # def: 0.25,
         "RecurrentLoopProb": 0,  # def: 0.25,
         "AllowLoops": False,  # def: True,
+        # Can't have mods to the base without consent
+        "ActivationFunction_Abs_Prob": 0.0,
+        "ActivationFunction_Linear_Prob": 0.0,
+        "ActivationFunction_SignedGauss_Prob": 0.0,
+        "ActivationFunction_SignedSigmoid_Prob": 0.0,
+        "ActivationFunction_SignedSine_Prob": 0.0,
+        "ActivationFunction_SignedStep_Prob": 0.0,
+        "ActivationFunction_TanhCubic_Prob": 0.0,
+        "ActivationFunction_Tanh_Prob": 1.0,
+        "ActivationFunction_UnsignedGauss_Prob": 0.0,
+        "ActivationFunction_UnsignedSigmoid_Prob": 0.0,
+        "ActivationFunction_UnsignedSine_Prob": 0.0,
+        "ActivationFunction_UnsignedStep_Prob": 0.0,
     }
 
     __rejection__: ClassVar[dict[str, str | None]] = {
