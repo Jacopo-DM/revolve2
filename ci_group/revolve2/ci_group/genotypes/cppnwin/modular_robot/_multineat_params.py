@@ -381,7 +381,7 @@ class MultiNEATParamsWriter:
 
 
 def get_multineat_params(
-    name: str = "Jacked",
+    name: str = "NoveltySearch",
 ) -> multiNEATParamType:
     """Retrieve the multiNEAT parameters for the specified name.
 
