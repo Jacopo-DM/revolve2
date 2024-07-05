@@ -25,7 +25,7 @@ class BrainGenotypeCpgOrm(orm.MappedAsDataclass, kw_only=True):
 
     brain: multineat.Genome
 
-    _BRAIN_MULTINEAT_PARAMS = get_multineat_params("ball_keeper")
+    _BRAIN_MULTINEAT_PARAMS = get_multineat_params("Empty")
     _BRAIN_SEARCH_MODE = multineat.SearchMode.BLENDED
 
     # UNSIGNED_GAUSS, LINEAR

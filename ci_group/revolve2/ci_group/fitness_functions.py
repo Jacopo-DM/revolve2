@@ -1,11 +1,8 @@
 """Standard fitness functions for modular robots."""
 
 import numpy as np
-from pyrr import Quaternion, Vector3
+from pyrr import Vector3
 from revolve2.modular_robot_simulation import ModularRobotSimulationState
-from revolve2.simulation.scene import (
-    Pose,
-)
 
 
 def xy_displacement(
@@ -27,5 +24,4 @@ def xy_displacement(
 
     xyz_n = end_position.xyz
     xyz_0 = Vector3([0.0, 0.0, 0.0])
-
-    return np.sum((xyz_n - xyz_0) ** 2, axis=0)
+    return np.sum((xyz_n - xyz_0) ** 2)

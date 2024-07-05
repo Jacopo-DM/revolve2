@@ -135,7 +135,7 @@ class BrainCpgInstance(BrainInstance):
         )
 
         # Delta scaling for stability
-        delta *= 0.9
+        delta *= 0.99
 
         # Set active hinge targets to match newly calculated state.
         for state_index, active_hinge in self._output_mapping:

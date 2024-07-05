@@ -19,7 +19,7 @@ if TYPE_CHECKING:
     import numpy as np
     from revolve2.modular_robot.body.base import Body
 
-MULTINEAT_PARAMS = get_multineat_params("ball_keeper")
+MULTINEAT_PARAMS = get_multineat_params("Empty")
 SEARCH_MODE = multineat.SearchMode.BLENDED
 
 # UNSIGNED_GAUSS, LINEAR

@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     import numpy as np
     from revolve2.modular_robot.body.v2 import BodyV2
 
-MULTINEAT_PARAMS = get_multineat_params("NoveltySearch")
+MULTINEAT_PARAMS = get_multineat_params("Empty")
 SEARCH_MODE = multineat.SearchMode.BLENDED
 
 # SOFTPLUS RELU TANH SIGNED_SIGMOID
