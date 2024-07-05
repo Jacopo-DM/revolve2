@@ -25,11 +25,11 @@ class BrainGenotypeCpgOrm(orm.MappedAsDataclass, kw_only=True):
 
     brain: multineat.Genome
 
-    _BRAIN_MULTINEAT_PARAMS = get_multineat_params("gym_lunar_lander")
+    _BRAIN_MULTINEAT_PARAMS = get_multineat_params("ball_keeper")
     _BRAIN_SEARCH_MODE = multineat.SearchMode.BLENDED
 
     # UNSIGNED_GAUSS, LINEAR
-    _BRAIN_OUTPUT_ACT_FUNC = multineat.ActivationFunction.SIGNED_GAUSS
+    _BRAIN_OUTPUT_ACT_FUNC = multineat.ActivationFunction.TANH
     # SOFTPLUS, RELU, SIGNED_STEP, TANH, TANH_CUBIC, SIGNED_SIGMOID
     _BRAIN_HIDDEN_ACT_FUNC = multineat.ActivationFunction.TANH
 

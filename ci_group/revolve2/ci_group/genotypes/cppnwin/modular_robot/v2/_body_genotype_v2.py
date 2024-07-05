@@ -21,11 +21,11 @@ if TYPE_CHECKING:
     import numpy as np
     from revolve2.modular_robot.body.v2 import BodyV2
 
-MULTINEAT_PARAMS = get_multineat_params("Empty")
+MULTINEAT_PARAMS = get_multineat_params("NoveltySearch")
 SEARCH_MODE = multineat.SearchMode.BLENDED
 
 # SOFTPLUS RELU TANH SIGNED_SIGMOID
-OUTPUT_ACT_F = multineat.ActivationFunction.SIGNED_SINE
+OUTPUT_ACT_F = multineat.ActivationFunction.TANH
 # SOFTPLUS, RELU, SIGNED_STEP, TANH, TANH_CUBIC, SIGNED_SIGMOID
 HIDDEN_ACT_F = multineat.ActivationFunction.TANH
 

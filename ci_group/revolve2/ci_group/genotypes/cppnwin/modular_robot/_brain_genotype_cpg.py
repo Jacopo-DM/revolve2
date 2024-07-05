@@ -19,11 +19,11 @@ if TYPE_CHECKING:
     import numpy as np
     from revolve2.modular_robot.body.base import Body
 
-MULTINEAT_PARAMS = get_multineat_params("gym_lunar_lander")
+MULTINEAT_PARAMS = get_multineat_params("ball_keeper")
 SEARCH_MODE = multineat.SearchMode.BLENDED
 
 # UNSIGNED_GAUSS, LINEAR
-OUTPUT_ACT_F = multineat.ActivationFunction.SIGNED_GAUSS
+OUTPUT_ACT_F = multineat.ActivationFunction.TANH
 # SOFTPLUS, RELU, SIGNED_STEP, TANH, TANH_CUBIC, SIGNED_SIGMOID
 HIDDEN_ACT_F = multineat.ActivationFunction.TANH
 

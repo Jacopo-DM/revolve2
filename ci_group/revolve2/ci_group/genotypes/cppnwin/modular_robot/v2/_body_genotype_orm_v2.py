@@ -27,11 +27,11 @@ class BodyGenotypeOrmV2(orm.MappedAsDataclass, kw_only=True):
 
     body: multineat.Genome
 
-    _BODY_MULTINEAT_PARAMS = get_multineat_params("Empty")
+    _BODY_MULTINEAT_PARAMS = get_multineat_params("NoveltySearch")
     _BODY_SEARCH_MODE = multineat.SearchMode.BLENDED
 
     # SOFTPLUS RELU TANH SIGNED_SIGMOID LINEAR UNSIGNED_SINE
-    _BODY_OUTPUT_ACT_FUNC = multineat.ActivationFunction.SIGNED_SINE
+    _BODY_OUTPUT_ACT_FUNC = multineat.ActivationFunction.TANH
     # SOFTPLUS, RELU, SIGNED_STEP, TANH, TANH_CUBIC, SIGNED_SIGMOID
     _BODY_HIDDEN_ACT_FUNC = multineat.ActivationFunction.TANH
 
