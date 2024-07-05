@@ -8,7 +8,7 @@ from ...body.base import ActiveHinge
 from ...sensor_state import ModularRobotSensorState
 from .._brain_instance import BrainInstance
 
-# NOTE(jmdm): why '0.0025'? see:
+# NOTE(jmdm): the update should not be too big, see:
 #   95, 39:  control_interface.set_joint_hinge_position_target()
 #   This value should be considered relative to:
 #   STANDARD_CONTROL_FREQUENCY
