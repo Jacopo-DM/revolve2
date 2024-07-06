@@ -97,6 +97,22 @@ class Body:
             self._core, module_type, [] if exclude is None else exclude
         )
 
+    def find_modules_of_any_type(
+        self,
+        exclude: list[type[TModule]] | None = None,
+    ) -> list[TModule]:
+        """Find all Modules of any type in the robot.
+
+        :param exclude: Module types to be excluded in search. (Default
+            value = None)
+        :type exclude: list[type[TModule]] | None
+        :returns: The list of Modules.
+        :rtype: list[TModule]
+        """
+        return self.__find_recur(
+            self._core, Module, [] if exclude is None else exclude
+        )
+
     def to_grid(self) -> tuple[NDArray[TModuleNP], Vector3[np.int_]]:
         """Convert the tree structure to a grid.
 

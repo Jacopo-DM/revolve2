@@ -4,14 +4,8 @@
 # *.sqlite
 
 # JMDM ------------------------------------------------------------------------
-# TEMP TODO: unlock later
-# examples/6_dev_programs
-# examples/7_ann_test
-
 # Folders
 # __*__
-# modular_robot_physical
-# robohat/*
 
 # MuJoCo
 # MUJOCO_LOG.TXT
@@ -34,25 +28,5 @@
 # PyTorch model files
 # *ubyte
 
-# Graphviz files
-# *.gv
-
-# Draw.io files
-# *.drawio
-
-# Video files
-# *.mp4
-
-# VSCODE AUTOGEN ##############################################################
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
-
-# Local History for Visual Studio Code
-.history/
-
-# Built Visual Studio Code Extensions
-*.vsix
+# TEMP TODO: unlock later
+examples/999_thesis

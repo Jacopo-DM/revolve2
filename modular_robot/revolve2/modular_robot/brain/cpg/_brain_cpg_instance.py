@@ -141,6 +141,10 @@ class BrainCpgInstance(BrainInstance):
         for state_index, active_hinge in self._output_mapping:
             # TODO(jmdm): delta or absolute state?
             # see ../../mujoco_simulator/_control_interface_impl.py
+            try:
+                _ = active_hinge.range
+            except AttributeError:
+                continue
             control_interface.set_active_hinge_target(
                 active_hinge,
                 float(delta[state_index]) * active_hinge.range,
