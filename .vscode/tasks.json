@@ -1,0 +1,146 @@
+{
+    // Open new terminal
+    // Open directory of selected file (cd)
+    // Run python with <PATH_TO_ENV>/python -m cProfile -o output.pstats <PATH_TO_FILE>
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "000-Python: Run Current File",
+            "type": "shell",
+            "command": "${command:python.interpreterPath}",
+            "args": [
+                "${file}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "focus": true,
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "001-Python: Profile Current File",
+            "type": "shell",
+            "command": "${command:python.interpreterPath}",
+            "args": [
+                "-m",
+                "cProfile",
+                "-o",
+                "${fileDirname}/output.pstats",
+                "${file}"
+            ],
+            "dependsOn": [
+                "prep-task-01: remove output.pstats"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "focus": true,
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "prep-task-00: if Target SVG exists give it new name",
+            "type": "shell",
+            "command": "mv",
+            "args": [
+                "${fileDirname}/callgraph.svg",
+                "${fileDirname}/callgraph_$(date",
+                "'+%Y-%m-%d_%H-%M-%S').svg||true"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "focus": true,
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "prep-task-01: remove output.pstats",
+            "type": "shell",
+            "command": "rm",
+            "args": [
+                "${fileDirname}/output.pstats||true"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "focus": true,
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "002-Python: Plot Profiling Results",
+            "type": "shell",
+            "command": "gprof2dot",
+            "args": [
+                // "-s",
+                // "--show-samples",
+                "--node-label",
+                "self-time",
+                "--node-label",
+                "total-time",
+                "--node-label",
+                "self-time-percentage",
+                "--node-label",
+                "total-time-percentage",
+                "-f",
+                "pstats",
+                "${fileDirname}/output.pstats",
+                "|",
+                "dot",
+                "-Tsvg",
+                "-o",
+                "${fileDirname}/callgraph.svg"
+            ],
+            "dependsOn": [
+                "prep-task-00: if Target SVG exists give it new name",
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "focus": true,
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "003-Python: Profile & Plot",
+            "type": "shell",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "001-Python: Profile Current File",
+                "002-Python: Plot Profiling Results"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "focus": true,
+            },
+            "problemMatcher": []
+        }
+    ]
+}
