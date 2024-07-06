@@ -1,3 +1,16 @@
+import logging
+
+from ._simulate_scene_minimal import simulate_scene_minimal
+
+logging.debug(
+    "'simulate_scene_minimal' must be first import to not break the renderers"
+)
+from ._simulate_scene import simulate_scene
+
+logging.debug(
+    "'simulate_scene' must be the second import to not break the renderers"
+)
+
 import concurrent.futures
 import logging
 from pathlib import Path
@@ -8,7 +21,6 @@ from revolve2.simulation.simulator import Batch, Simulator
 from ._simulate_manual_scene import (
     simulate_manual_scene,
 )
-from ._simulate_scene import simulate_scene
 from .viewers import ViewerType
 
 
@@ -130,7 +142,7 @@ class LocalSimulator(Simulator):
                 results = [future.result() for future in futures]
         else:
             results = [
-                simulate_scene(
+                simulate_scene_minimal(
                     viewer_type=self._viewer_type,
                     scene_id=scene_index,
                     scene=scene,
