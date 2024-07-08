@@ -9,8 +9,7 @@
 pip install pipreqs
 
 # Recursively enter all the directories and subdirectories
-for dir in $(find . -type d)
-do
+for dir in $(find . -type d); do
     # Run the command in each of the directories
     pipreqs $dir --mode no-pin --force
 done
