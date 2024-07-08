@@ -1,5 +1,0 @@
-cma
-matplotlib
-numpy
-pandas
-SQLAlchemy

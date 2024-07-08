@@ -1,5 +1,0 @@
-matplotlib
-multineat
-numpy
-pandas
-SQLAlchemy
