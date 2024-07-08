@@ -1,11 +1,15 @@
 cma
 matplotlib
+mediapy
+mujoco
 multineat
 numpy
 pandas
 pydot
 pyrr
+seaborn
 SQLAlchemy
 torch
 torchview
 torchvision
+tqdm

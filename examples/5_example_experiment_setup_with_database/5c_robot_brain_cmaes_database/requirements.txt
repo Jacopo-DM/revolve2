@@ -1,4 +1,5 @@
 cma
-multineat
+matplotlib
 numpy
+pandas
 SQLAlchemy
