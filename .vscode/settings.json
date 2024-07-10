@@ -1,14 +1,4 @@
 {
-    "workbench.colorCustomizations": {
-        "sash.hoverBorder": "#f6f39e",
-        "sideBar.border": "#f6f39e",
-        "statusBar.background": "#f2ed6f",
-        "statusBar.foreground": "#15202b",
-        "statusBarItem.hoverBackground": "#eee740",
-        "statusBarItem.remoteBackground": "#f2ed6f",
-        "statusBarItem.remoteForeground": "#15202b"
-    },
-    "peacock.remoteColor": "#6383f0",
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
@@ -50,6 +40,15 @@
         "**/.config": true,
         "**/.local": true
     },
-    "explorerExclude.backup": {}
-    "peacock.color": "#F2ED6F"
+    "explorerExclude.backup": {},
+    "workbench.colorCustomizations": {
+        "sash.hoverBorder": "#1f6fd0",
+        "sideBar.border": "#1f6fd0",
+        "statusBar.background": "#1857a4",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#1f6fd0",
+        "statusBarItem.remoteBackground": "#1857a4",
+        "statusBarItem.remoteForeground": "#e7e7e7"
+    },
+    "peacock.remoteColor": "#1857a4",
 }

@@ -89,6 +89,36 @@
 					"label": "SIM RUNNER"
 				}
 			]
+		},
+		{
+			"path": "ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/_brain_genotype_cpg_orm.py",
+			"bookmarks": [
+				{
+					"line": 27,
+					"column": 4,
+					"label": "BRAIN NEAT PARAMS"
+				}
+			]
+		},
+		{
+			"path": "ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_develop.py",
+			"bookmarks": [
+				{
+					"line": 26,
+					"column": 12,
+					"label": "BRAIN DEVELOP"
+				}
+			]
+		},
+		{
+			"path": "ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/v2/_body_genotype_orm_v2.py",
+			"bookmarks": [
+				{
+					"line": 29,
+					"column": 4,
+					"label": "BODY NEAT PARAMS"
+				}
+			]
 		}
 	]
 }
