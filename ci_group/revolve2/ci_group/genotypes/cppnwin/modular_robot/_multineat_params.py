@@ -267,22 +267,32 @@ class MultiNEATParamsWriter:
         "PopulationSize": 300,  # def: 150
         # WARN The following parameters seem to be the cause of the seg-fault
         #   └── [ ] To study
-        "RecurrentProb": 0,  # def: 0.25,
-        "RecurrentLoopProb": 0,  # def: 0.25,
+        "RecurrentProb": 0.2,  # def: 0.25,
+        "RecurrentLoopProb": 0.2,  # def: 0.25,
         "AllowLoops": False,  # def: True,
         # Can't have mods to the base without consent
-        "ActivationFunction_Abs_Prob": 0.0,
-        "ActivationFunction_Linear_Prob": 0.0,
-        "ActivationFunction_SignedGauss_Prob": 0.0,
-        "ActivationFunction_SignedSigmoid_Prob": 0.0,
-        "ActivationFunction_SignedSine_Prob": 0.0,
-        "ActivationFunction_SignedStep_Prob": 0.0,
-        "ActivationFunction_TanhCubic_Prob": 0.0,
+        "ActivationFunction_Abs_Prob": 0.01,
+        "ActivationFunction_Linear_Prob": 0.01,
+        "ActivationFunction_SignedGauss_Prob": 0.01,
+        "ActivationFunction_SignedSigmoid_Prob": 0.01,
+        "ActivationFunction_SignedSine_Prob": 0.01,
+        "ActivationFunction_SignedStep_Prob": 0.01,
+        "ActivationFunction_TanhCubic_Prob": 0.01,
         "ActivationFunction_Tanh_Prob": 1.0,
-        "ActivationFunction_UnsignedGauss_Prob": 0.0,
-        "ActivationFunction_UnsignedSigmoid_Prob": 0.0,
-        "ActivationFunction_UnsignedSine_Prob": 0.0,
-        "ActivationFunction_UnsignedStep_Prob": 0.0,
+        "ActivationFunction_UnsignedGauss_Prob": 0.01,
+        "ActivationFunction_UnsignedSigmoid_Prob": 0.01,
+        "ActivationFunction_UnsignedSine_Prob": 0.01,
+        "ActivationFunction_UnsignedStep_Prob": 0.01,
+        # ---
+        "AllowClones": False,
+        "DetectCompetetiveCoevolutionStagnation": True,
+        "DontUseBiasNeuron": True,
+        "DynamicCompatibility": True,
+        "InnovationsForever": True,
+        "NoveltySearch_Dynamic_Pmin": True,
+        "RouletteWheelSelection": False,
+        "SplitLoopedRecurrent": True,
+        "SplitRecurrent": True,
     }
 
     __rejection__: ClassVar[dict[str, str | None]] = {

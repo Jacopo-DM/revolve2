@@ -19,13 +19,13 @@ if TYPE_CHECKING:
     import numpy as np
     from revolve2.modular_robot.body.base import Body
 
-MULTINEAT_PARAMS = get_multineat_params("Empty")
+MULTINEAT_PARAMS = get_multineat_params("NoveltySearch")
 SEARCH_MODE = multineat.SearchMode.BLENDED
 
 # UNSIGNED_GAUSS, LINEAR
-OUTPUT_ACT_F = multineat.ActivationFunction.TANH
+OUTPUT_ACT_F = multineat.ActivationFunction.SIGNED_SIGMOID
 # SOFTPLUS, RELU, SIGNED_STEP, TANH, TANH_CUBIC, SIGNED_SIGMOID
-HIDDEN_ACT_F = multineat.ActivationFunction.TANH
+HIDDEN_ACT_F = multineat.ActivationFunction.SIGNED_SIGMOID
 
 NUM_INITIAL_MUTATIONS = 5
 # bias(always 1), x1, y1, z1, x2, y2, z2

@@ -135,21 +135,19 @@ def __evaluate_cppn(
     of the CPPN network.
     """
     # 1.0 is the bias input
-    inputs = [0, x, y, z, chain_length]
+    inputs = [0.5, x, y, z, chain_length]
     body_net.Flush()
     body_net.Input(inputs)
     body_net.ActivateAllLayers()
     outputs = body_net.Output()
 
+    # with open("outputs.txt", "a") as f:
+    #     f.write(str(outputs) + "\n")
+
     types = (None, BrickV2, ActiveHingeV2)
     i_types = len(types)
     # why calc, when we can look-up?
-    rots = (
-        0.0,
-        np.pi * 0.5,
-        np.pi,
-        np.pi * 1.5,
-    )
+    rots = (0.0, np.pi * 0.5, np.pi, np.pi * 1.5)
     i_rots = len(rots) + i_types
 
     _type_idx = np.argmax(np.array(outputs)[:i_types])

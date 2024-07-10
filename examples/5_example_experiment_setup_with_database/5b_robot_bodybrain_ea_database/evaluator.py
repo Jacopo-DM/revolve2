@@ -5,6 +5,7 @@ import logging
 import numpy as np
 import revolve2.ci_group.simulation_parameters as sim_p
 from database_components import Genotype
+from readable_number import ReadableNumber
 from revolve2.ci_group import fitness_functions, terrains
 from revolve2.experimentation.evolution.abstract_elements import (
     Evaluator as Eval,
@@ -65,7 +66,6 @@ class Evaluator(Eval):
             scene.add_robot(robot)
             scenes.append(scene)
 
-        # Simulate all scenes.
         scene_states = simulate_scenes(
             simulator=self._simulator,
             batch_parameters=sim_p.make_standard_batch_parameters(),
@@ -73,12 +73,17 @@ class Evaluator(Eval):
         )
 
         # Calculate the xy displacements.
-        fitness = [
-            fitness_functions.xy_displacement(
-                states[0].get_modular_robot_simulation_state(robot),
-                states[-1].get_modular_robot_simulation_state(robot),
-            )
-            for robot, states in zip(robots, scene_states, strict=False)
-        ]
-        logging.info(np.max(fitness))
+        fitness = []
+        for robot, states in zip(robots, scene_states, strict=False):
+            _states = [
+                state.get_modular_robot_simulation_state(robot)
+                .get_pose()
+                .position.xyz
+                for state in states
+            ]
+            fitness.append(fitness_functions.xy_displacement(_states))
+
+        logging.info(f"fit: {ReadableNumber(np.max(fitness))}")
+        logging.info(f"fit: {ReadableNumber(np.mean(fitness))}")
+        logging.info(f"fit: {ReadableNumber(np.min(fitness))}")
         return fitness

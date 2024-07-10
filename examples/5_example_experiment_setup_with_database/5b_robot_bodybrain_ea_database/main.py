@@ -16,6 +16,8 @@ from database_components import (
     Population,
 )
 from evaluator import Evaluator
+from plot import main as plot_fig
+from rerun import main as rerun_main
 from revolve2.experimentation.database import OpenMethod, open_database_sqlite
 from revolve2.experimentation.evolution import ModularRobotEvolution
 from revolve2.experimentation.evolution.abstract_elements import (
@@ -317,6 +319,7 @@ def run_experiment(dbengine: Engine) -> None:
             population=population,
         )
         save_to_db(dbengine, generation)
+        plot_fig()
 
 
 def main() -> None:
@@ -332,15 +335,15 @@ def main() -> None:
     # Open the database, only if it does not already exists.
     dbengine = open_database_sqlite(
         db_file=config.DATABASE_FILE,
-        # open_method=OpenMethod.OPEN_OR_CREATE,
         open_method=OpenMethod.OVERWRITE_IF_EXISTS,
     )
     # Create the structure of the database.
     Base.metadata.create_all(dbengine)
 
     # Run the experiment several times.
-    for _ in range(config.NUM_REPETITIONS):
+    for id in range(config.NUM_REPETITIONS):
         run_experiment(dbengine)
+        rerun_main(id + 1)
 
 
 def save_to_db(dbengine: Engine, generation: Generation) -> None:

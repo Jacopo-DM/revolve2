@@ -19,7 +19,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 
-def main() -> None:
+def main(exp_id=1) -> None:
     """Perform the rerun.
 
 
@@ -59,9 +59,9 @@ def main() -> None:
                 Genotype,
                 Individual.genotype_id == Genotype.id,
             )
-            .where(Experiment.id == 1)
+            .where(Experiment.id == exp_id)
             .order_by(Individual.fitness.desc())
-            .limit(2)
+            .limit(1)
         ).fetchall()
         fitness = row[0][0]
         genotype = row[0][1]
