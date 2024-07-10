@@ -22,7 +22,7 @@
         "**/.tox": true,
         "**/.venv": true,
         "**/.env": true,
-        "**/.vscode": false,
+        "**/.vscode": true,
         "**/.history": true,
         "**/__pypackages__": true,
         "**/__pycache__": true,
