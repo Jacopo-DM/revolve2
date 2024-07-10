@@ -1,0 +1,94 @@
+{
+	"files": [
+		{
+			"path": "ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/_multineat_collection.py",
+			"bookmarks": [
+				{
+					"line": 5,
+					"column": 32,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/_multineat_params.py",
+			"bookmarks": [
+				{
+					"line": 406,
+					"column": 25,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "ci_group/revolve2/ci_group/simulation_parameters.py",
+			"bookmarks": [
+				{
+					"line": 7,
+					"column": 30,
+					"label": "SIM PARAMS"
+				}
+			]
+		},
+		{
+			"path": "ci_group/revolve2/ci_group/fitness_functions.py",
+			"bookmarks": [
+				{
+					"line": 6,
+					"column": 20,
+					"label": "FITNESS FUNCTION: XY DISP"
+				},
+				{
+					"line": 54,
+					"column": 20,
+					"label": "FITNESS FUNCTION (XY_DISP)"
+				}
+			]
+		},
+		{
+			"path": "modular_robot/revolve2/modular_robot/_modular_robot.py",
+			"bookmarks": [
+				{
+					"line": 34,
+					"column": 34,
+					"label": "ROBOT UUID RETURN TYPE"
+				}
+			]
+		},
+		{
+			"path": "simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_control_interface_impl.py",
+			"bookmarks": [
+				{
+					"line": 56,
+					"column": 36,
+					"label": "CONTROL INTERFACE (HINGE UPDATE)"
+				}
+			]
+		},
+		{
+			"path": "modular_robot/revolve2/modular_robot/brain/cpg/_brain_cpg_instance.py",
+			"bookmarks": [
+				{
+					"line": 15,
+					"column": 16,
+					"label": "CLIPPING VALUES FOR CONTROLLER STATE UPDATE"
+				},
+				{
+					"line": 111,
+					"column": 16,
+					"label": "ROBOT CONTROLLER UPDATE"
+				}
+			]
+		},
+		{
+			"path": "simulators/mujoco_simulator/revolve2/simulators/mujoco_simulator/_local_simulator.py",
+			"bookmarks": [
+				{
+					"line": 144,
+					"column": 39,
+					"label": "SIM RUNNER"
+				}
+			]
+		}
+	]
+}
