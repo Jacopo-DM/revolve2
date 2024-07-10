@@ -30,7 +30,7 @@ _calculate_novelty.c
 # VSCODE AUTOGEN ##############################################################
 .vscode/*
 !.vscode/bookmarks.json
-!.vscode/settings.json
+# !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
