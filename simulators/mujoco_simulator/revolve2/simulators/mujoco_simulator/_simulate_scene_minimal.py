@@ -1,5 +1,6 @@
 import logging
 import os
+from pathlib import Path
 
 import numpy as np
 
@@ -74,8 +75,9 @@ def simulate_scene_minimal(
     scene_option.flags[mujoco.mjtVisFlag.mjVIS_JOINT] = True
 
     frames = []
+    w, h = 640, 480
     framerate = 24
-    renderer = mujoco.Renderer(model)
+    renderer = mujoco.Renderer(model, height=h, width=w)
 
     while (time := data.time) < (
         float("inf") if simulation_time is None else simulation_time
@@ -114,6 +116,9 @@ def simulate_scene_minimal(
 
     logging.info(f"Writing video to video/{timestamp}{name}.mp4")
     logging.info(f"Frames dimension: {np.array(frames).shape}")
+
+    # make dir if not exists
+    Path("video").mkdir(parents=True, exist_ok=True)
 
     media.write_video(
         path=f"video/{timestamp}{name}.mp4", images=frames, fps=framerate
