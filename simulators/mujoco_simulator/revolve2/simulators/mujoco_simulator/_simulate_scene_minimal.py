@@ -2,6 +2,7 @@ import logging
 import os
 from pathlib import Path
 
+import cv2
 import numpy as np
 
 print("Setting environment variable to use GPU rendering:")
@@ -25,6 +26,21 @@ from ._scene_to_model import scene_to_model
 from ._simulation_state_impl import (
     SimulationStateImpl,
 )
+
+
+def __draw_label(img, text, pos, bg_color):
+    font_face = cv2.FONT_HERSHEY_SIMPLEX
+    scale = 0.4
+    color = (0, 0, 0)
+    thickness = cv2.FILLED
+    margin = 2
+    txt_size = cv2.getTextSize(text, font_face, scale, thickness)
+
+    end_x = pos[0] + txt_size[0][0] + margin
+    end_y = pos[1] - txt_size[0][1] - margin
+
+    cv2.rectangle(img, pos, (end_x, end_y), bg_color, thickness)
+    cv2.putText(img, text, pos, font_face, scale, color, 1, cv2.LINE_AA)
 
 
 def simulate_scene_minimal(
@@ -85,6 +101,8 @@ def simulate_scene_minimal(
         if len(frames) < data.time * framerate:
             renderer.update_scene(data, scene_option=scene_option)
             pixels = renderer.render()
+            # TODO(jmdm): the video maker should probably store the frames on disc, later these frames can be joined into a video, so that text can be appropriately added to the video
+            # TODO(jmdm): the frame name (stored on disk) should be 0..0.jpg to n..n.jpg or something similar; we can calculate the 0 padding by making an estimate on the number of total frames (duration (seconds) * framerate (frames per second))
             frames.append(pixels)
 
         if time >= last_control_time + control_step:
