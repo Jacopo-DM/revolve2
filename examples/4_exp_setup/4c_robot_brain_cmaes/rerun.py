@@ -4,22 +4,16 @@ import pickle
 from pathlib import Path
 
 import config
-from database_components import Genotype
 from evaluator import Evaluator
 from revolve2.experimentation.logging import setup_logging
+from revolve2.experimentation.optimization.ea._individual import Individual
 from revolve2.modular_robot.body.base import ActiveHinge
 from revolve2.modular_robot.brain.cpg import (
     active_hinges_to_cpg_network_structure_neighbor,
 )
 
 
-def get_genotype() -> Genotype:
-    """Get the best robot from the database."""
-    with Path("best_robot.pkl").open("rb") as f:
-        return pickle.load(f)
-
-
-def get_brain() -> Genotype:
+def get_brain():
     """Get the best brain from the CMA-ES optimization."""
     with Path("best_robot_brain.pkl").open("rb") as f:
         return pickle.load(f)
@@ -34,14 +28,8 @@ def main() -> None:
     """
     setup_logging()
 
-    # Find all active hinges in the body
-    # robot = get_genotype().develop()
-    # body = robot.body
-    # active_hinges = body.find_modules_of_type(ActiveHinge)
-
     body = config.BODY
-    active_hinges = body.find_modules_of_any_type()
-    # active_hinges = body.find_modules_of_type(ActiveHinge)
+    active_hinges = body.find_modules_of_type(ActiveHinge)
 
     prams = get_brain()
 

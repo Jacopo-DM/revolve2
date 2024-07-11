@@ -1,9 +1,10 @@
 """Evaluator class."""
 
-import math
+import logging
 
 import numpy as np
 import numpy.typing as npt
+from readable_number import ReadableNumber
 from revolve2.ci_group import fitness_functions, terrains
 from revolve2.ci_group.simulation_parameters import (
     make_standard_batch_parameters,
@@ -101,12 +102,17 @@ class Evaluator:
         )
 
         # Calculate the xy displacements.
-        xy_displacements = [
-            fitness_functions.xy_displacement(
-                states[0].get_modular_robot_simulation_state(robot),
-                states[-1].get_modular_robot_simulation_state(robot),
-            )
-            for robot, states in zip(robots, scene_states, strict=False)
-        ]
+        fitness = []
+        for robot, states in zip(robots, scene_states, strict=False):
+            _states = [
+                state.get_modular_robot_simulation_state(robot)
+                .get_pose()
+                .position.xyz
+                for state in states
+            ]
+            fitness.append(fitness_functions.xy_displacement(_states))
 
-        return np.array(xy_displacements)
+        logging.info(f"fit: {ReadableNumber(np.max(fitness))}")
+        logging.info(f"fit: {ReadableNumber(np.mean(fitness))}")
+        logging.info(f"fit: {ReadableNumber(np.min(fitness))}")
+        return np.array(fitness)
