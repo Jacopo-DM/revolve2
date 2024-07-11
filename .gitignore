@@ -24,7 +24,7 @@ MUJOCO_LOG.TXT
 # Draw.io files
 *.drawio
 # Video files
-*.mp4
+# *.mp4
 # Autogen
 _calculate_novelty.c
 # VSCODE AUTOGEN ##############################################################
