@@ -65,13 +65,17 @@ def main() -> None:
     )
 
     # Calculate the xy displacements for all robots in the scenes we just simulated.
-    xy_displacements = [
-        fitness_functions.xy_displacement(
-            states[0].get_modular_robot_simulation_state(robot),
-            states[-1].get_modular_robot_simulation_state(robot),
+    xy_displacements = []
+    for robot, states in zip(robots, scene_states, strict=False):
+        robot_satates = [
+            state.get_modular_robot_simulation_state(robot)
+            .get_pose()
+            .position.xyz
+            for state in states
+        ]
+        xy_displacements.append(
+            fitness_functions.xy_displacement(robot_satates)
         )
-        for robot, states in zip(robots, scene_states, strict=False)
-    ]
 
     logging.info(xy_displacements)
 
