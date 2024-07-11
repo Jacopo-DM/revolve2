@@ -25,3 +25,5 @@ docformatter
 torch
 torchvision
 pydot
+mediapy
+readable-number
