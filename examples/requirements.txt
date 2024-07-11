@@ -1,15 +1,10 @@
 cma
 matplotlib
-mediapy
-mujoco
 multineat
 numpy
 pandas
-pydot
 pyrr
-seaborn
+readable_number
 SQLAlchemy
 torch
-torchview
-torchvision
 tqdm

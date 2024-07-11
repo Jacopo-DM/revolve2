@@ -2,5 +2,6 @@ matplotlib
 multineat
 numpy
 pandas
+readable_number
 SQLAlchemy
 tqdm

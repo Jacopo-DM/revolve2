@@ -14,7 +14,7 @@
 
 # ↓ brew install glew?
 PyOpenGL
-PyOpenGL-accelerate
+# PyOpenGL-accelerate
 
 # Linting, formatting and docs
 ruff
