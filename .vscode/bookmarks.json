@@ -6,7 +6,17 @@
 				{
 					"line": 5,
 					"column": 32,
-					"label": "DEFAULT NEAT VALS"
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/_multineat_params.py",
+			"bookmarks": [
+				{
+					"line": 406,
+					"column": 25,
+					"label": ""
 				}
 			]
 		},
@@ -24,12 +34,12 @@
 			"path": "ci_group/revolve2/ci_group/fitness_functions.py",
 			"bookmarks": [
 				{
-					"line": 6,
+					"line": 4,
 					"column": 20,
 					"label": "FITNESS FUNCTION: XY DISP"
 				},
 				{
-					"line": 54,
+					"line": 75,
 					"column": 20,
 					"label": "FITNESS FUNCTION (XY_DISP)"
 				}
