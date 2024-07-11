@@ -6,17 +6,7 @@
 				{
 					"line": 5,
 					"column": 32,
-					"label": ""
-				}
-			]
-		},
-		{
-			"path": "ci_group/revolve2/ci_group/genotypes/cppnwin/modular_robot/_multineat_params.py",
-			"bookmarks": [
-				{
-					"line": 406,
-					"column": 25,
-					"label": ""
+					"label": "DEFAULT NEAT VALS"
 				}
 			]
 		},
