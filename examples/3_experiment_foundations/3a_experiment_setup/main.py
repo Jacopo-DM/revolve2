@@ -43,8 +43,8 @@ def run_experiment(num_samples: int, probability: float) -> None:
         rng = revolve2.experimentation.rng.make_rng_time_seed()
 
         # If you run with a set seed, use the following lines instead.
-        # SEED = 1234
-        # rng = revolve2.experimentation.rng.make_rng(SEED)
+        seed = 1234
+        rng = revolve2.experimentation.rng.make_rng(seed)
 
         samples = rng.binomial(
             n=1, p=probability, size=num_samples
