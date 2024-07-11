@@ -1,4 +1,0 @@
-cma
-multineat
-numpy
-SQLAlchemy
