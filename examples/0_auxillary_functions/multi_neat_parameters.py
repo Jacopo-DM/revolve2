@@ -9,7 +9,7 @@ from revolve2.ci_group.genotypes.cppnwin.modular_robot import (
 
 if __name__ == "__main__":
     # Get the parameters
-    params = get_multineat_params()
+    params = get_multineat_params("NoveltySearch")
 
     # Strip of pre-defined parameters
     param_writer = MultiNEATParamsWriter()
