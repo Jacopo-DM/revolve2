@@ -54,20 +54,14 @@ def main() -> None:
     any other way of evaluation as long as the required data is in the
     scene states.
     """
-    # Get the state at the beginning and end of the simulation.
-    scene_state_begin = scene_states[0]
-    scene_state_end = scene_states[-1]
-
-    # Retrieve the state of the modular robot, which also contains the location of the robot.
-    robot_state_begin = scene_state_begin.get_modular_robot_simulation_state(
-        robot
-    )
-    robot_state_end = scene_state_end.get_modular_robot_simulation_state(robot)
+    # Get the state of the robot.
+    robot_satates = [
+        state.get_modular_robot_simulation_state(robot).get_pose().position.xyz
+        for state in scene_states
+    ]
 
     # Calculate the xy displacement, using the locations of the robot.
-    xy_displacement = fitness_functions.xy_displacement(
-        robot_state_begin, robot_state_end
-    )
+    xy_displacement = fitness_functions.xy_displacement(robot_satates)
 
     logging.info(xy_displacement)
 
