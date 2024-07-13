@@ -34,9 +34,10 @@ exclude = [
     "env",
 ]
 
-line-length = 80
+line-length = 79
 indent-width = 4
 target-version = "py311"
+show-fixes = true
 
 [tool.ruff.lint]
 select = [
@@ -50,94 +51,93 @@ select = [
     "YTT",   # flake8-2020
     "ANN",   # flake8-annotations
     "ASYNC", # flake8-async
-    # "TRIO",  # flake8-trio
-    "S",   # flake8-bandit
-    "BLE", # flake8-blind-except
-    "FBT", # flake8-boolean-trap
-    "B",   # flake8-bugbear
-    "A",   # flake8-builtins
-    # "COM",   # flake8-commas
-    # "CPY",   # flake8-copyright
-    "C4",  # flake8-comprehensions
-    "DTZ", # flake8-datetimez
-    "T10", # flake8-debugger
-    "DJ",  # flake8-django
-    "EM",  # flake8-errmsg
-    "EXE", # flake8-executable
-    "FA",  # flake8-future-annotations
-    # "ISC",  # flake8-implicit-str-concat
-    "ICN",  # flake8-import-conventions
-    "LOG",  # flake8-logging
-    "G",    # flake8-logging-format
-    "INP",  # flake8-no-pep420
-    "PIE",  # flake8-pie
-    "T20",  # flake8-print
-    "PYI",  # flake8-pyi
-    "PT",   # flake8-pytest-style
-    "Q",    # flake8-quotes
-    "RSE",  # flake8-raise
-    "RET",  # flake8-return
-    "SLF",  # flake8-self
-    "SLOT", # flake8-slots
-    "SIM",  # flake8-simplify
-    "TID",  # flake8-tidy-imports
-    "TCH",  # flake8-type-checking
-    "INT",  # flake8-gettext
-    "ARG",  # flake8-unused-arguments
-    "PTH",  # flake8-use-pathlib
-    "TD",   # flake8-todos
-    "FIX",  # flake8-fixme
-    "ERA",  # eradicate
-    "PD",   # pandas-vet
-    "PGH",  # pygrep-hooks
-    "PL",   # Pylint
-    "TRY",  # tryceratops
-    "FLY",  # flynt
-    "NPY",  # NumPy-specific rules
-    "AIR",  # Airflow
-    "PERF", # Perflint
-    "FURB", # refurb
-    "RUF",  # Ruff-specific rules
+    "S",     # flake8-bandit
+    "BLE",   # flake8-blind-except
+    "FBT",   # flake8-boolean-trap
+    "B",     # flake8-bugbear
+    "A",     # flake8-builtins
+    "COM",   # flake8-commas
+    "CPY",   # flake8-copyright
+    "C4",    # flake8-comprehensions
+    "DTZ",   # flake8-datetimez
+    "T10",   # flake8-debugger
+    "DJ",    # flake8-django
+    "EM",    # flake8-errmsg
+    "EXE",   # flake8-executable
+    "FA",    # flake8-future-annotations
+    "ISC",   # flake8-implicit-str-concat
+    "ICN",   # flake8-import-conventions
+    "LOG",   # flake8-logging
+    "G",     # flake8-logging-format
+    "INP",   # flake8-no-pep420
+    "PIE",   # flake8-pie
+    "T20",   # flake8-print
+    "PYI",   # flake8-pyi
+    "PT",    # flake8-pytest-style
+    "Q",     # flake8-quotes
+    "RSE",   # flake8-raise
+    "RET",   # flake8-return
+    "SLF",   # flake8-self
+    "SLOT",  # flake8-slots
+    "SIM",   # flake8-simplify
+    "TID",   # flake8-tidy-imports
+    "TCH",   # flake8-type-checking
+    "INT",   # flake8-gettext
+    "ARG",   # flake8-unused-arguments
+    "PTH",   # flake8-use-pathlib
+    "TD",    # flake8-todos
+    "FIX",   # flake8-fixme
+    "ERA",   # eradicate
+    "PD",    # pandas-vet
+    "PGH",   # pygrep-hooks
+    "PL",    # Pylint
+    "TRY",   # tryceratops
+    "FLY",   # flynt
+    "NPY",   # NumPy-specific rules
+    "AIR",   # Airflow
+    "PERF",  # Perflint
+    "FURB",  # refurb
+    "RUF",   # Ruff-specific rules
 ]
 ignore = [
-    "ANN101",  # Missing type annotation for self in method
-    "ANN102",  # Missing type annotation for cls in classmethod
-    "N801",    # Should use CapWords convention
-    "PLR0913", # Too many arguments for method
-    "PLR0904", # Too many public methods
-    "FIX002",  # Found "TODO" in code
-    "TD003",   # link under TODO
+    # "ANN101",  # Missing type annotation for self in method
+    # "ANN102",  # Missing type annotation for cls in classmethod
+    # "N801",    # Should use CapWords convention
+    # "PLR0913", # Too many arguments for method
+    # "PLR0904", # Too many public methods
+    # "FIX002",  # Found "TODO" in code
+    # "TD003",   # link under TODO
     # "ERA001",  # Found commented-out code
-    "FBT003", # Found "bool" in function argument
-    "TID252", # relative imports
-    "D205",   # blank line between summary and description
-    "T201",   # found print statement
-    "G004",   # Logging statement uses string formatting
-    "INP001", # implicit module __init__ thing
-    "S301",   # pickle insecure
-    "S403",   # pickle insecure import
+    # "FBT003", # Found "bool" in function argument
+    # "TID252", # relative imports
+    # "D205",   # blank line between summary and description
+    # "T201",   # found print statement
+    # "G004",   # Logging statement uses string formatting
+    # "INP001", # implicit module __init__ thing
+    # "S301",   # pickle insecure
+    # "S403",   # pickle insecure import
 ]
 
 fixable = ["ALL"]
 unfixable = []
 preview = true
 
-# Allow unused variables when underscore-prefixed.
-# dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
-
 [tool.ruff.format]
 preview = true
 quote-style = "double"
 indent-style = "space"
-skip-magic-trailing-comma = false
-line-ending = "auto"
-docstring-code-format = false
-docstring-code-line-length = "dynamic"
+# skip-magic-trailing-comma = true
+# line-ending = "auto"
+# docstring-code-format = true
+# docstring-code-line-length = "dynamic"
 
 [tool.pydoclint]
 style = 'sphinx'
 exclude = '\.git|.?venv|\.tox|tests/data|unparser\.py'
-# require-return-section-when-returning-nothing = true
-# check-class-attributes = false
+# require-return-section-when-returning-nothing = false
+# check-class-attributes = true
 # arg-type-hints-in-docstring = true
 # check-return-types = true
+
+[tool.mypy]
+strict = true

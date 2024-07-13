@@ -3,8 +3,10 @@ matplotlib
 multineat
 numpy
 pandas
+pydot
 pyrr
 readable_number
 SQLAlchemy
 torch
+torchview
 tqdm
