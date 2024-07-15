@@ -6,6 +6,7 @@ pandas
 pydot
 pyrr
 readable_number
+seaborn
 SQLAlchemy
 torch
 torchview

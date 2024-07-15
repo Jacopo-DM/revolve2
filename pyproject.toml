@@ -106,16 +106,17 @@ ignore = [
     # "PLR0913", # Too many arguments for method
     # "PLR0904", # Too many public methods
     # "FIX002",  # Found "TODO" in code
-    # "TD003",   # link under TODO
     # "ERA001",  # Found commented-out code
     # "FBT003", # Found "bool" in function argument
     # "TID252", # relative imports
     # "D205",   # blank line between summary and description
     # "T201",   # found print statement
-    # "G004",   # Logging statement uses string formatting
-    # "INP001", # implicit module __init__ thing
     # "S301",   # pickle insecure
     # "S403",   # pickle insecure import
+    "CPY001", # Found copyright symbol
+    "INP001", # implicit module __init__ thing
+    "G004",   # Logging statement uses string formatting
+    "TD003",  # link under TODO
 ]
 
 fixable = ["ALL"]
