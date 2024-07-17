@@ -28,3 +28,6 @@ mediapy
 
 # ↓ install graphviz libgraphviz-dev ?
 dsplot
+
+# Script profiling
+gprof2dot
