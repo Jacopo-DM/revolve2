@@ -4,7 +4,6 @@ log.txt
 # JMDM ------------------------------------------------------------------------
 # Folders
 __*__
-999_thesis/
 # MuJoCo
 MUJOCO_LOG.TXT
 # Aim-stack
