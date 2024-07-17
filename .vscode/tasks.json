@@ -5,8 +5,11 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "000-Python: Run Current File",
+            "label": "Py000: Run Script",
             "type": "shell",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
             "command": "${command:python.interpreterPath}",
             "args": [
                 "${file}"
@@ -23,18 +26,87 @@
             "problemMatcher": []
         },
         {
-            "label": "001-Python: Profile Current File",
+            "label": "py-199: Create profiling/",
             "type": "shell",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "command": "mkdir",
+            "args": [
+                "-p",
+                "profiling"
+            ],
+            "group": "none",
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared",
+                "focus": false,
+                "close": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "py-198: Move callgraph.svg",
+            "type": "shell",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "command": "mv",
+            "args": [
+                "profiling/callgraph.svg",
+                "profiling/callgraph_$(date",
+                "'+%Y-%m-%d_%H-%M-%S').svg||true"
+            ],
+            "dependsOn": [
+                "py-199: Create profiling/"
+            ],
+            "group": "none",
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared",
+                "focus": false,
+                "close": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "py-197: Remove output.pstats",
+            "type": "shell",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "command": "rm",
+            "args": [
+                "profiling/output.pstats||true"
+            ],
+            "dependsOn": [
+                "py-199: Create profiling/"
+            ],
+            "group": "none",
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared",
+                "focus": false,
+                "close": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Py100: Profile Script",
+            "type": "shell",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
             "command": "${command:python.interpreterPath}",
             "args": [
                 "-m",
                 "cProfile",
                 "-o",
-                "${fileDirname}/output.pstats",
+                "${fileDirname}/profiling/output.pstats",
                 "${file}"
             ],
             "dependsOn": [
-                "prep-task-01: remove output.pstats"
+                "py-197: Remove output.pstats"
             ],
             "group": {
                 "kind": "build",
@@ -44,50 +116,16 @@
                 "reveal": "always",
                 "panel": "new",
                 "focus": true,
+                "close": true
             },
             "problemMatcher": []
         },
         {
-            "label": "prep-task-00: if Target SVG exists give it new name",
+            "label": "Py101: Plot Profiling",
             "type": "shell",
-            "command": "mv",
-            "args": [
-                "${fileDirname}/callgraph.svg",
-                "${fileDirname}/callgraph_$(date",
-                "'+%Y-%m-%d_%H-%M-%S').svg||true"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": false
+            "options": {
+                "cwd": "${fileDirname}"
             },
-            "presentation": {
-                "reveal": "always",
-                "panel": "new",
-                "focus": true,
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "prep-task-01: remove output.pstats",
-            "type": "shell",
-            "command": "rm",
-            "args": [
-                "${fileDirname}/output.pstats||true"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": false
-            },
-            "presentation": {
-                "reveal": "always",
-                "panel": "new",
-                "focus": true,
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "002-Python: Plot Profiling Results",
-            "type": "shell",
             "command": "gprof2dot",
             "args": [
                 // "-s",
@@ -102,15 +140,15 @@
                 "total-time-percentage",
                 "-f",
                 "pstats",
-                "${fileDirname}/output.pstats",
+                "${fileDirname}/profiling/output.pstats",
                 "|",
                 "dot",
                 "-Tsvg",
                 "-o",
-                "${fileDirname}/callgraph.svg"
+                "${fileDirname}/profiling/callgraph.svg"
             ],
             "dependsOn": [
-                "prep-task-00: if Target SVG exists give it new name",
+                "py-198: Move callgraph.svg",
             ],
             "group": {
                 "kind": "build",
@@ -120,16 +158,20 @@
                 "reveal": "always",
                 "panel": "new",
                 "focus": true,
+                "close": true
             },
             "problemMatcher": []
         },
         {
-            "label": "003-Python: Profile & Plot",
+            "label": "Py102: Profile & Plot Script",
             "type": "shell",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
             "dependsOrder": "sequence",
             "dependsOn": [
-                "001-Python: Profile Current File",
-                "002-Python: Plot Profiling Results"
+                "Py100: Profile Script",
+                "Py101: Plot Profiling"
             ],
             "group": {
                 "kind": "build",
@@ -139,6 +181,7 @@
                 "reveal": "always",
                 "panel": "new",
                 "focus": true,
+                "close": true
             },
             "problemMatcher": []
         }
