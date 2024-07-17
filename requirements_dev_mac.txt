@@ -23,8 +23,11 @@ docconvert
 docformatter
 
 # Dev Progs
+torch
 torchvision
+pydot
 mediapy
+seaborn
 
 # ↓ install graphviz libgraphviz-dev ?
 dsplot
