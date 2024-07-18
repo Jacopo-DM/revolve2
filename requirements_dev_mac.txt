@@ -7,15 +7,11 @@
 -e modular_robot_physical[dev]
 -e modular_robot[dev]
 -e simulation[dev]
+
 # -r ./requirements.txt # WARN(jmdm): is this risky?
 -r ./examples/requirements.txt
 -r ./codetools/requirements.txt
--r ./docs/requirements.txt
 -r ./tests/requirements.txt
-
-# ↓ install glew?
-PyOpenGL
-# PyOpenGL-accelerate
 
 # Linting, formatting and docs
 ruff
@@ -29,8 +25,12 @@ pydot
 mediapy
 seaborn
 
-# ↓ install graphviz libgraphviz-dev ?
-dsplot
-
 # Script profiling
 gprof2dot
+
+# ↓ install glew?
+PyOpenGL
+# PyOpenGL-accelerate
+
+# ↓ install graphviz libgraphviz-dev ?
+dsplot
